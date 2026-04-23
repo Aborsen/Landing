@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Motion — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css">
+</head>
+<body>
+<a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app">
+<aside class="sb-sidebar" data-sb-render-sidebar="../"></aside>
+<main class="sb-main" id="main">
+
+<header class="sb-header">
+  <div class="sb-header__kicker">Foundations</div>
+  <h1 class="sb-header__title">Motion</h1>
+  <p class="sb-header__description">Two motion classes with distinct rules. State-communicating motion always runs; decorative motion is off on mobile + reduced-motion.</p>
+</header>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Duration + easing tokens</h2>
+  <table class="sb-table">
+    <thead><tr><th>Token</th><th>Value</th><th>Use</th></tr></thead>
+    <tbody>
+      <tr><td><code>--ins-duration-fast</code></td><td>120ms</td><td>Micro-interactions, color swaps</td></tr>
+      <tr><td><code>--ins-duration-base</code></td><td>180ms</td><td>Default transitions (hover/focus)</td></tr>
+      <tr><td><code>--ins-duration-slow</code></td><td>320ms</td><td>Modal open, drawer slide</td></tr>
+      <tr><td><code>--ins-duration-xslow</code></td><td>400ms</td><td>Page-level transitions</td></tr>
+      <tr><td><code>--ins-easing-standard</code></td><td>cubic-bezier(.4,0,.2,1)</td><td>Most transitions</td></tr>
+      <tr><td><code>--ins-easing-accelerate</code></td><td>cubic-bezier(.4,0,1,1)</td><td>Exits, dismissals</td></tr>
+      <tr><td><code>--ins-easing-decelerate</code></td><td>cubic-bezier(0,0,.2,1)</td><td>Enters, reveals</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Motion classes — the rule</h2>
+  <div class="sb-do-dont">
+    <div class="sb-do">
+      <div class="sb-do__label">.ins-motion-state · always on</div>
+      <p style="color:var(--ins-text-body); font-size:var(--ins-font-size-14); line-height:20px;">Spinners, typing dots, toast enter/exit, skeleton shimmer, progress bars. Communicate UI state — stopping them is worse than animating. Under <code>prefers-reduced-motion</code> they slow to 2×, don't stop.</p>
+    </div>
+    <div class="sb-do">
+      <div class="sb-do__label">.ins-motion-decorative · off &lt;768</div>
+      <p style="color:var(--ins-text-body); font-size:var(--ins-font-size-14); line-height:20px;">Marquee, staggered fade-in, card hover-lift, parallax. No state info; purely feel. Disabled on mobile (&lt;768px) and under <code>prefers-reduced-motion</code>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Live previews</h2>
+  <div class="sb-preview">
+    <div style="display:flex; flex-wrap:wrap; gap:var(--ins-space-3xl); align-items:center;">
+      <div style="text-align:center;"><div class="ins-spinner ins-motion-state"></div><div class="sb-specimen__name" style="margin-top:8px;">spinner · always</div></div>
+      <div style="text-align:center;"><div class="ins-typing ins-motion-state"><span class="ins-typing__dot"></span><span class="ins-typing__dot"></span><span class="ins-typing__dot"></span></div><div class="sb-specimen__name">typing dots · always</div></div>
+      <div style="text-align:center; min-width:160px;"><div class="ins-progress ins-progress--indeterminate ins-motion-state"><div class="ins-progress__bar"></div></div><div class="sb-specimen__name" style="margin-top:8px;">progress · always</div></div>
+      <div style="text-align:center; min-width:160px;"><div class="ins-skeleton ins-skeleton--line ins-motion-state" style="width:160px; height:16px;"></div><div class="sb-specimen__name" style="margin-top:8px;">skeleton · always</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Snippet</h2>
+  <div class="sb-code"><pre>/* State-communicating */
+.my-spinner { animation: ins-spin 800ms linear infinite; }
+
+/* Decorative — disabled on mobile (base rule), enabled on ≥768 */
+.my-marquee { animation: none; }
+@media (min-width: 768px) {
+  .my-marquee { animation: scroll 30s linear infinite; }
+}
+
+/* Reduced-motion (global) is in base.css */</pre></div>
+</section>
+
+</main>
+</div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script>
+</body></html>

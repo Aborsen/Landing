@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Chat bubble — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Chat bubble</h1><p class="sb-header__description">User / AI variants. Asymmetric bottom radius to read as speech. <strong>Typing bubble</strong> (<code>--typing</code>) is compact with 4px dots + tight padding — deliberately smaller than a message so it reads as a loading indicator, not content.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Conversation</h2>
+<div class="sb-preview">
+  <div class="ins-chat" style="max-width:640px;">
+    <div class="ins-chat__bubble ins-chat__bubble--user">What was our CAC last 30 days vs. prior 30?</div>
+    <div class="ins-chat__bubble ins-chat__bubble--ai">Last 30 days: <strong>$142</strong> (↓ 8.3% vs. prior 30). Driven mostly by lower paid-social spend. Want the full breakdown?</div>
+    <div class="ins-chat__bubble ins-chat__bubble--user">Yes, by channel please.</div>
+    <div class="ins-chat__bubble ins-chat__bubble--ai ins-chat__bubble--typing">
+      <div class="ins-typing ins-motion-state">
+        <span class="ins-typing__dot"></span>
+        <span class="ins-typing__dot"></span>
+        <span class="ins-typing__dot"></span>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;div class="ins-chat"&gt;
+  &lt;div class="ins-chat__bubble ins-chat__bubble--user"&gt;
+    User message
+  &lt;/div&gt;
+  &lt;div class="ins-chat__bubble ins-chat__bubble--ai"&gt;
+    AI response with &lt;strong&gt;highlighted values&lt;/strong&gt;.
+  &lt;/div&gt;
+
+  &lt;!-- AI thinking state --&gt;
+  &lt;div class="ins-chat__bubble ins-chat__bubble--ai"&gt;
+    &lt;div class="ins-typing ins-motion-state"&gt;
+      &lt;span class="ins-typing__dot"&gt;&lt;/span&gt;
+      &lt;span class="ins-typing__dot"&gt;&lt;/span&gt;
+      &lt;span class="ins-typing__dot"&gt;&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

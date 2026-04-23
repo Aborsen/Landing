@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sidebar — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Sidebar</h1><p class="sb-header__description">Docs-style left navigation. <strong>Not collapsable</strong>. Hides below 1024px — use the Navbar drawer on small screens.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Example</h2>
+<div class="sb-preview" style="padding:0;">
+  <div style="display:grid; grid-template-columns:minmax(0,240px) 1fr; gap:0; min-height:320px;">
+    <aside class="ins-sidebar" style="display:flex; position:static;">
+      <div class="ins-sidebar__section">
+        <span class="ins-sidebar__section-title">Getting started</span>
+        <a class="ins-sidebar__link" href="#">Overview</a>
+        <a class="ins-sidebar__link is-active" href="#" aria-current="page">Installation</a>
+        <a class="ins-sidebar__link" href="#">First query</a>
+      </div>
+      <div class="ins-sidebar__section">
+        <span class="ins-sidebar__section-title">Guides</span>
+        <a class="ins-sidebar__link" href="#">Connect Snowflake</a>
+        <a class="ins-sidebar__link" href="#">Define metrics</a>
+        <a class="ins-sidebar__link" href="#">Share answers</a>
+      </div>
+    </aside>
+    <div style="padding:var(--ins-space-xl);">
+      <h2 class="ins-text-h2">Content area</h2>
+      <p class="ins-text-body" style="margin-top:var(--ins-space-md);">Page body goes here. Sidebar stays fixed at 240px on desktop.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;aside class="ins-sidebar" aria-label="Docs"&gt;
+  &lt;nav class="ins-sidebar__section"&gt;
+    &lt;span class="ins-sidebar__section-title"&gt;Getting started&lt;/span&gt;
+    &lt;a class="ins-sidebar__link" href="/docs"&gt;Overview&lt;/a&gt;
+    &lt;a class="ins-sidebar__link is-active" href="/docs/install"
+       aria-current="page"&gt;Installation&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/aside&gt;</pre></div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

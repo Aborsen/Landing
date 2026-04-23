@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Breadcrumbs — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Breadcrumbs</h1><p class="sb-header__description">Location trail. Last item is the current page (not a link, <code>aria-current="page"</code>).</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Default</h2>
+<div class="sb-preview">
+  <nav aria-label="Breadcrumb"><ol class="ins-breadcrumbs">
+    <li class="ins-breadcrumbs__item"><a href="#">Home</a></li>
+    <li class="ins-breadcrumbs__item"><span class="ins-breadcrumbs__separator">/</span><a href="#">Solutions</a></li>
+    <li class="ins-breadcrumbs__item"><span class="ins-breadcrumbs__separator">/</span><a href="#">Data teams</a></li>
+    <li class="ins-breadcrumbs__item" aria-current="page"><span class="ins-breadcrumbs__separator">/</span>Pricing</li>
+  </ol></nav>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;nav aria-label="Breadcrumb"&gt;
+  &lt;ol class="ins-breadcrumbs"&gt;
+    &lt;li class="ins-breadcrumbs__item"&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="ins-breadcrumbs__item"&gt;
+      &lt;span class="ins-breadcrumbs__separator"&gt;/&lt;/span&gt;
+      &lt;a href="/solutions"&gt;Solutions&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="ins-breadcrumbs__item" aria-current="page"&gt;
+      &lt;span class="ins-breadcrumbs__separator"&gt;/&lt;/span&gt;Pricing
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</pre></div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

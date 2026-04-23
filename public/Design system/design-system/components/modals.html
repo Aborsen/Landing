@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Modal — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Modal</h1><p class="sb-header__description">sm / md / lg sizes plus drawer variant (mobile menu). Focus trap, ESC, outside-click all handled by storybook.js.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Demos</h2>
+<div class="sb-preview"><div class="sb-preview-row">
+  <button class="ins-btn ins-btn--secondary" data-sb-open="#demo-sm">Open small</button>
+  <button class="ins-btn ins-btn--secondary" data-sb-open="#demo-md">Open medium</button>
+  <button class="ins-btn ins-btn--secondary" data-sb-open="#demo-lg">Open large</button>
+  <button class="ins-btn ins-btn--secondary" data-sb-open="#demo-drawer">Open drawer</button>
+</div></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;button data-sb-open="#my-modal"&gt;Open&lt;/button&gt;
+
+&lt;div class="ins-modal" id="my-modal" role="dialog" aria-modal="true"
+     aria-labelledby="my-modal-title" aria-hidden="true"&gt;
+  &lt;div class="ins-modal__dialog"&gt;
+    &lt;header class="ins-modal__header"&gt;
+      &lt;h2 class="ins-modal__title" id="my-modal-title"&gt;Delete account?&lt;/h2&gt;
+      &lt;button class="ins-btn ins-btn--icon" data-sb-close aria-label="Close"&gt;
+        &lt;svg...&gt;&lt;/svg&gt;
+      &lt;/button&gt;
+    &lt;/header&gt;
+    &lt;div class="ins-modal__body"&gt;
+      &lt;p&gt;This action is permanent.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;footer class="ins-modal__footer"&gt;
+      &lt;button class="ins-btn ins-btn--ghost" data-sb-close&gt;Cancel&lt;/button&gt;
+      &lt;button class="ins-btn ins-btn--primary"&gt;Delete&lt;/button&gt;
+    &lt;/footer&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Variants --&gt;
+&lt;div class="ins-modal ins-modal--sm"&gt;...&lt;/div&gt;
+&lt;div class="ins-modal ins-modal--lg"&gt;...&lt;/div&gt;
+&lt;div class="ins-modal ins-modal--drawer"&gt;...&lt;/div&gt;</pre></div></section>
+
+</main></div>
+
+<!-- Demo modals -->
+<div class="ins-modal ins-modal--sm" id="demo-sm" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="demo-sm-title">
+  <div class="ins-modal__dialog">
+    <header class="ins-modal__header">
+      <h2 class="ins-modal__title" id="demo-sm-title">Confirm action</h2>
+      <button class="ins-btn ins-btn--icon" data-sb-close aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </header>
+    <div class="ins-modal__body"><p class="ins-text-body">Small modals work for yes/no confirmations.</p></div>
+    <footer class="ins-modal__footer">
+      <button class="ins-btn ins-btn--ghost" data-sb-close>Cancel</button>
+      <button class="ins-btn ins-btn--primary" data-sb-close>Confirm</button>
+    </footer>
+  </div>
+</div>
+
+<div class="ins-modal" id="demo-md" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="demo-md-title">
+  <div class="ins-modal__dialog">
+    <header class="ins-modal__header">
+      <h2 class="ins-modal__title" id="demo-md-title">Edit metric</h2>
+      <button class="ins-btn ins-btn--icon" data-sb-close aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </header>
+    <div class="ins-modal__body">
+      <div class="ins-form-group">
+        <label class="ins-form-group__label" for="mm-name">Metric name</label>
+        <input class="ins-input" id="mm-name" value="Monthly Recurring Revenue">
+      </div>
+    </div>
+    <footer class="ins-modal__footer">
+      <button class="ins-btn ins-btn--ghost" data-sb-close>Cancel</button>
+      <button class="ins-btn ins-btn--primary" data-sb-close>Save</button>
+    </footer>
+  </div>
+</div>
+
+<div class="ins-modal ins-modal--lg" id="demo-lg" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="demo-lg-title">
+  <div class="ins-modal__dialog">
+    <header class="ins-modal__header">
+      <h2 class="ins-modal__title" id="demo-lg-title">Query builder</h2>
+      <button class="ins-btn ins-btn--icon" data-sb-close aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </header>
+    <div class="ins-modal__body"><p class="ins-text-body">Large modals fit complex forms or full workflows.</p></div>
+    <footer class="ins-modal__footer">
+      <button class="ins-btn ins-btn--ghost" data-sb-close>Close</button>
+    </footer>
+  </div>
+</div>
+
+<div class="ins-modal ins-modal--drawer" id="demo-drawer" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="demo-drawer-title">
+  <div class="ins-modal__dialog">
+    <header class="ins-modal__header">
+      <h2 class="ins-modal__title" id="demo-drawer-title">Navigation</h2>
+      <button class="ins-btn ins-btn--icon" data-sb-close aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </header>
+    <div class="ins-modal__body">
+      <nav style="display:flex; flex-direction:column; gap:var(--ins-space-sm);">
+        <a class="ins-sidebar__link" href="#">Platform</a>
+        <a class="ins-sidebar__link" href="#">Solutions</a>
+        <a class="ins-sidebar__link" href="#">Pricing</a>
+        <a class="ins-sidebar__link" href="#">About</a>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Table — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Table</h1><p class="sb-header__description">Simple data table. Row hover, sticky header. Horizontal scroll on mobile.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Default</h2>
+<div class="sb-preview">
+  <div class="ins-table-wrap">
+    <table class="ins-table">
+      <thead><tr><th>Name</th><th>Plan</th><th>Status</th><th>MRR</th></tr></thead>
+      <tbody>
+        <tr><td>Acme Co.</td><td>Team</td><td><span class="ins-badge ins-badge--success">Active</span></td><td>$1,200</td></tr>
+        <tr><td>Widgets Inc.</td><td>Enterprise</td><td><span class="ins-badge ins-badge--success">Active</span></td><td>$8,400</td></tr>
+        <tr><td>Acme Solutions</td><td>Starter</td><td><span class="ins-badge ins-badge--warning">Past due</span></td><td>$29</td></tr>
+        <tr><td>Brightlab</td><td>Team</td><td><span class="ins-badge ins-badge--error">Churned</span></td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Compact + striped</h2>
+<div class="sb-preview">
+  <div class="ins-table-wrap">
+    <table class="ins-table ins-table--compact ins-table--striped">
+      <thead><tr><th>#</th><th>Event</th><th>Time</th></tr></thead>
+      <tbody>
+        <tr><td>01</td><td>User signed up</td><td>12:03</td></tr>
+        <tr><td>02</td><td>Viewed pricing</td><td>12:05</td></tr>
+        <tr><td>03</td><td>Clicked CTA</td><td>12:07</td></tr>
+        <tr><td>04</td><td>Started trial</td><td>12:09</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;div class="ins-table-wrap"&gt;
+  &lt;table class="ins-table"&gt;
+    &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Plan&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;Acme&lt;/td&gt;&lt;td&gt;Team&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;
+
+&lt;!-- Variants --&gt;
+&lt;table class="ins-table ins-table--compact"&gt;...&lt;/table&gt;
+&lt;table class="ins-table ins-table--striped"&gt;...&lt;/table&gt;</pre></div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

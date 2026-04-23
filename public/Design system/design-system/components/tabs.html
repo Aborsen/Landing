@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Tabs — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Tabs</h1><p class="sb-header__description">Horizontal underline (default) / horizontal pill / vertical. Full keyboard support via arrows + Home/End.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Horizontal · underline</h2>
+<div class="sb-preview">
+  <div class="ins-tabs">
+    <div role="tablist" class="ins-tabs__list">
+      <button role="tab" class="ins-tabs__tab" aria-selected="true">Overview</button>
+      <button role="tab" class="ins-tabs__tab" aria-selected="false">Usage</button>
+      <button role="tab" class="ins-tabs__tab" aria-selected="false">API</button>
+      <button role="tab" class="ins-tabs__tab" aria-selected="false">Accessibility</button>
+    </div>
+    <div role="tabpanel" class="ins-tabs__panel"><p class="ins-text-body">Overview panel content.</p></div>
+    <div role="tabpanel" class="ins-tabs__panel" hidden><p class="ins-text-body">Usage panel.</p></div>
+    <div role="tabpanel" class="ins-tabs__panel" hidden><p class="ins-text-body">API panel.</p></div>
+    <div role="tabpanel" class="ins-tabs__panel" hidden><p class="ins-text-body">Accessibility panel.</p></div>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Horizontal · pill</h2>
+<div class="sb-preview">
+  <div class="ins-tabs ins-tabs--pill">
+    <div role="tablist" class="ins-tabs__list">
+      <button role="tab" class="ins-tabs__tab" aria-selected="true">Marketing</button>
+      <button role="tab" class="ins-tabs__tab" aria-selected="false">Sales</button>
+      <button role="tab" class="ins-tabs__tab" aria-selected="false">Finance</button>
+    </div>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Vertical</h2>
+<div class="sb-preview">
+  <div class="ins-tabs ins-tabs--vertical">
+    <div role="tablist" class="ins-tabs__list">
+      <button role="tab" class="ins-tabs__tab" aria-selected="true">Getting started</button>
+      <button role="tab" class="ins-tabs__tab" aria-selected="false">Connect data</button>
+      <button role="tab" class="ins-tabs__tab" aria-selected="false">Define metrics</button>
+      <button role="tab" class="ins-tabs__tab" aria-selected="false">Share answers</button>
+    </div>
+    <div role="tabpanel" class="ins-tabs__panel" style="flex:1;">
+      <p class="ins-text-body">Get started panel content.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;div class="ins-tabs"&gt;
+  &lt;div role="tablist" class="ins-tabs__list"&gt;
+    &lt;button role="tab" class="ins-tabs__tab" aria-selected="true"&gt;Tab 1&lt;/button&gt;
+    &lt;button role="tab" class="ins-tabs__tab" aria-selected="false"&gt;Tab 2&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div role="tabpanel" class="ins-tabs__panel"&gt;Panel 1&lt;/div&gt;
+  &lt;div role="tabpanel" class="ins-tabs__panel" hidden&gt;Panel 2&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Variants --&gt;
+&lt;div class="ins-tabs ins-tabs--pill"&gt;...&lt;/div&gt;
+&lt;div class="ins-tabs ins-tabs--vertical"&gt;...&lt;/div&gt;</pre></div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

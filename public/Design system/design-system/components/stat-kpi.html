@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Stat / KPI — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Stat / KPI</h1><p class="sb-header__description">Label + large number + optional delta trend. Tabular-nums to keep widths stable across updates.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Single stat</h2>
+<div class="sb-preview"><div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:var(--ins-space-xl);">
+
+  <div class="ins-stat-kpi">
+    <span class="ins-stat-kpi__label">Customers</span>
+    <div class="ins-stat-kpi__value">2,400</div>
+  </div>
+
+  <div class="ins-stat-kpi">
+    <span class="ins-stat-kpi__label">Monthly revenue</span>
+    <div class="ins-stat-kpi__value">$148K</div>
+    <span class="ins-stat-kpi__delta ins-stat-kpi__delta--positive">▲ 12.4%</span>
+  </div>
+
+  <div class="ins-stat-kpi">
+    <span class="ins-stat-kpi__label">Churn rate</span>
+    <div class="ins-stat-kpi__value">3.2%</div>
+    <span class="ins-stat-kpi__delta ins-stat-kpi__delta--negative">▼ 0.8%</span>
+  </div>
+
+</div></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Stat strip (bordered)</h2>
+<div class="sb-preview">
+  <div class="ins-stat-strip">
+    <div class="ins-stat-kpi"><span class="ins-stat-kpi__label">Customers</span><div class="ins-stat-kpi__value">2,400+</div></div>
+    <div class="ins-stat-kpi"><span class="ins-stat-kpi__label">Queries / day</span><div class="ins-stat-kpi__value">1.2M</div></div>
+    <div class="ins-stat-kpi"><span class="ins-stat-kpi__label">Accuracy</span><div class="ins-stat-kpi__value">98.4%</div></div>
+    <div class="ins-stat-kpi"><span class="ins-stat-kpi__label">Avg. latency</span><div class="ins-stat-kpi__value">1.8s</div></div>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;div class="ins-stat-kpi"&gt;
+  &lt;span class="ins-stat-kpi__label"&gt;Monthly revenue&lt;/span&gt;
+  &lt;div class="ins-stat-kpi__value"&gt;$148K&lt;/div&gt;
+  &lt;span class="ins-stat-kpi__delta ins-stat-kpi__delta--positive"&gt;▲ 12.4%&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Bordered strip (auto-divides on desktop) --&gt;
+&lt;div class="ins-stat-strip"&gt;
+  &lt;div class="ins-stat-kpi"&gt;...&lt;/div&gt;
+  &lt;div class="ins-stat-kpi"&gt;...&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Legal prose — Patterns</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Pattern</div><h1 class="sb-header__title">Legal prose</h1><p class="sb-header__description">Privacy / Terms long-form layout. Sticky <code>.ins-toc</code> on the left, scroll-spy-driven active item. Anchor targets use <code>--ins-scroll-margin</code> so they land below the fixed navbar.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">TOC + prose</h2>
+<div class="sb-preview" style="padding:0;">
+  <div style="display:grid; grid-template-columns:200px 1fr; gap:var(--ins-space-xl); min-height:480px;">
+    <nav class="ins-toc" data-sb-scrollspy aria-label="On this page">
+      <div class="ins-toc__title">On this page</div>
+      <ol class="ins-toc__list">
+        <li><a class="ins-toc__link" href="#scope">Scope</a></li>
+        <li><a class="ins-toc__link" href="#data">Data we collect</a></li>
+        <li><a class="ins-toc__link" href="#usage">How we use it</a></li>
+        <li><a class="ins-toc__link" href="#rights">Your rights</a></li>
+        <li><a class="ins-toc__link" href="#contact">Contact</a></li>
+      </ol>
+    </nav>
+    <div style="max-height:480px; overflow-y:auto; padding-right:var(--ins-space-lg);">
+      <section id="scope" style="padding-block:var(--ins-space-xl);"><h2 class="ins-text-h2">Scope</h2><p class="ins-text-body" style="margin-top:var(--ins-space-md); max-width:60ch;">This policy applies to all Insightis services. We process data to provide the product, communicate about it, and improve it. Scroll to observe the TOC following your position.</p></section>
+      <section id="data" style="padding-block:var(--ins-space-xl);"><h2 class="ins-text-h2">Data we collect</h2><p class="ins-text-body" style="margin-top:var(--ins-space-md); max-width:60ch;">We collect only what we need: account data, usage analytics, payment history, and optional integration credentials.</p></section>
+      <section id="usage" style="padding-block:var(--ins-space-xl);"><h2 class="ins-text-h2">How we use it</h2><p class="ins-text-body" style="margin-top:var(--ins-space-md); max-width:60ch;">Operate the service, communicate about features, improve accuracy of citations. Never for third-party advertising.</p></section>
+      <section id="rights" style="padding-block:var(--ins-space-xl);"><h2 class="ins-text-h2">Your rights</h2><p class="ins-text-body" style="margin-top:var(--ins-space-md); max-width:60ch;">Access, correct, or delete your data anytime. Email <a href="mailto:privacy@insightis.com">privacy@insightis.com</a>.</p></section>
+      <section id="contact" style="padding-block:var(--ins-space-xl);"><h2 class="ins-text-h2">Contact</h2><p class="ins-text-body" style="margin-top:var(--ins-space-md); max-width:60ch;">Privacy questions: <a href="mailto:privacy@insightis.com">privacy@insightis.com</a>.</p></section>
+    </div>
+  </div>
+</div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Banner — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Banner</h1><p class="sb-header__description">Three layouts: top announcement strip, bottom CTA promo, newsletter composer (input + button in one rail).</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Top announcement</h2>
+<div class="sb-preview">
+  <div class="ins-banner-top ins-banner-top--brand" style="position:relative;" role="status" aria-live="polite">
+    <span>🎉  Insightis v2.4 ships AI suggestions — <a href="#">read the release notes</a></span>
+    <button class="ins-banner-top__close" aria-label="Dismiss"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Bottom promo</h2>
+<div class="sb-preview" data-sb-viewport-preview>
+  <div class="ins-banner-promo">
+    <span class="ins-text-overline">Get started</span>
+    <h2 class="ins-banner-promo__title">Ready to stop answering the same questions twice?</h2>
+    <p class="ins-banner-promo__description">Start free — no credit card required. Connect your warehouse in 3 clicks.</p>
+    <div class="ins-banner-promo__actions">
+      <button class="ins-btn ins-btn--primary ins-btn--lg">Create account</button>
+      <button class="ins-btn ins-btn--ghost ins-btn--lg">Book a demo</button>
+    </div>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Newsletter / CTA composer banner</h2>
+<p class="sb-section__description">Matches the "Still waiting on insights?" pattern. Heading on the left, dark inline composer on the right. Collapses stacked below 768px. <strong>Submit is active by default</strong> — pair with <code>data-sb-validate-email</code> only when validation-gated submission is required.</p>
+<div class="sb-preview sb-preview--fullbleed" data-sb-viewport-preview>
+  <div class="ins-banner-newsletter">
+    <h3 class="ins-banner-newsletter__title">Still waiting on <em>insights</em> that take <em>days</em>?</h3>
+    <form class="ins-banner-newsletter__composer" onsubmit="event.preventDefault()">
+      <input type="email" placeholder="What info are you looking for?">
+      <button type="submit">
+        Get Insight
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </button>
+    </form>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Newsletter with validation gate</h2>
+<p class="sb-section__description">Opt-in variant — submit stays disabled until the email validates. Add <code>data-sb-validate-email</code>.</p>
+<div class="sb-preview sb-preview--fullbleed">
+  <div class="ins-banner-newsletter">
+    <h3 class="ins-banner-newsletter__title">Ship cleaner answers. Start free.</h3>
+    <form class="ins-banner-newsletter__composer" data-sb-validate-email onsubmit="event.preventDefault()">
+      <input type="email" placeholder="you@work.com" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;!-- Top announcement --&gt;
+&lt;div class="ins-banner-top ins-banner-top--brand" role="status" aria-live="polite"&gt;
+  &lt;span&gt;Message with &lt;a href="#"&gt;CTA&lt;/a&gt;&lt;/span&gt;
+  &lt;button class="ins-banner-top__close" aria-label="Dismiss"&gt;...&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Bottom promo --&gt;
+&lt;div class="ins-banner-promo"&gt;
+  &lt;span class="ins-text-overline"&gt;Get started&lt;/span&gt;
+  &lt;h2 class="ins-banner-promo__title"&gt;Title&lt;/h2&gt;
+  &lt;p class="ins-banner-promo__description"&gt;Description&lt;/p&gt;
+  &lt;div class="ins-banner-promo__actions"&gt;
+    &lt;button class="ins-btn ins-btn--primary ins-btn--lg"&gt;Primary&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Newsletter composer --&gt;
+&lt;div class="ins-banner-newsletter"&gt;
+  &lt;div&gt;&lt;h3&gt;Title&lt;/h3&gt;&lt;p&gt;Description&lt;/p&gt;&lt;/div&gt;
+  &lt;div class="ins-input-group"&gt;
+    &lt;input type="email" class="ins-input"&gt;
+    &lt;button class="ins-btn ins-btn--primary"&gt;Subscribe&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

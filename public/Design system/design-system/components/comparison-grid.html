@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Comparison grid — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Comparison grid</h1><p class="sb-header__description">Two-column before/after with check/x feature rows. Used to contrast old workflow vs. new.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Before / After</h2>
+<div class="sb-preview">
+  <div class="ins-comparison">
+    <div class="ins-comparison__column ins-comparison__column--negative">
+      <h3 class="ins-comparison__heading">Without Insightis</h3>
+      <div class="ins-comparison__list">
+        <div class="ins-comparison__row"><svg class="ins-comparison__mark ins-comparison__mark--x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg><span><strong>Repeated work.</strong> Analysts rebuild the same CAC report every week.</span></div>
+        <div class="ins-comparison__row"><svg class="ins-comparison__mark ins-comparison__mark--x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg><span><strong>Black-box AI.</strong> Answers you can't verify or reproduce.</span></div>
+        <div class="ins-comparison__row"><svg class="ins-comparison__mark ins-comparison__mark--x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg><span><strong>Stale dashboards.</strong> By the time the chart renders, the question changed.</span></div>
+      </div>
+    </div>
+    <div class="ins-comparison__column ins-comparison__column--highlight">
+      <h3 class="ins-comparison__heading">With Insightis</h3>
+      <div class="ins-comparison__list">
+        <div class="ins-comparison__row"><svg class="ins-comparison__mark ins-comparison__mark--check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><span><strong>Self-serve answers.</strong> Stakeholders ask; analysts define metrics once.</span></div>
+        <div class="ins-comparison__row"><svg class="ins-comparison__mark ins-comparison__mark--check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><span><strong>Cited answers.</strong> Every claim links to a source query you can inspect.</span></div>
+        <div class="ins-comparison__row"><svg class="ins-comparison__mark ins-comparison__mark--check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><span><strong>Live data.</strong> Queries hit production, not hourly snapshots.</span></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;div class="ins-comparison"&gt;
+  &lt;div class="ins-comparison__column"&gt;
+    &lt;h3 class="ins-comparison__heading"&gt;Without&lt;/h3&gt;
+    &lt;div class="ins-comparison__list"&gt;
+      &lt;div class="ins-comparison__row"&gt;
+        &lt;svg class="ins-comparison__mark ins-comparison__mark--x" ...&gt;&lt;/svg&gt;
+        &lt;span&gt;&lt;strong&gt;Label.&lt;/strong&gt; Description.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="ins-comparison__column ins-comparison__column--highlight"&gt;
+    &lt;h3 class="ins-comparison__heading"&gt;With&lt;/h3&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

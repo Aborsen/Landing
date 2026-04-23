@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Input — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css">
+</head>
+<body>
+<a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app">
+<aside class="sb-sidebar" data-sb-render-sidebar="../"></aside>
+<main class="sb-main" id="main">
+
+<header class="sb-header">
+  <div class="sb-header__kicker">Component</div>
+  <h1 class="sb-header__title">Input</h1>
+  <p class="sb-header__description">Text, email, search, password, number. State priority: disabled &gt; error &gt; focus &gt; hover &gt; default (hover never overrides focus/error). Left side = passive icons; right side = active utility actions only.</p>
+</header>
+
+<section class="sb-section"><h2 class="sb-section__title">Sizes</h2>
+<div class="sb-preview">
+  <div style="display:flex; flex-direction:column; gap:var(--ins-space-md); max-width:360px;">
+    <input type="text" class="ins-input ins-input--sm" placeholder="Small (32px)">
+    <input type="text" class="ins-input" placeholder="Medium (40px) — default">
+    <input type="text" class="ins-input ins-input--lg" placeholder="Large (48px)">
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">States (priority: disabled &gt; error &gt; focus &gt; hover &gt; default)</h2>
+<div class="sb-preview">
+  <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:var(--ins-space-md);">
+    <div class="sb-specimen"><input type="text" class="ins-input" value="Default"><span class="sb-specimen__name">default (try it)</span></div>
+    <div class="sb-specimen"><input type="text" class="ins-input" value="Hover me" style="border-color:var(--ins-border-prominent);"><span class="sb-specimen__name">hover</span></div>
+    <div class="sb-specimen"><input type="text" class="ins-input" value="Focused" autofocus><span class="sb-specimen__name">focus (progressive ring)</span></div>
+    <div class="sb-specimen"><input type="text" class="ins-input is-error" value="Invalid@email" aria-invalid="true"><span class="sb-specimen__name">error (beats focus + hover)</span></div>
+    <div class="sb-specimen"><input type="text" class="ins-input" placeholder="Placeholder text"><span class="sb-specimen__name">empty + placeholder</span></div>
+    <div class="sb-specimen"><input type="text" class="ins-input" placeholder="Company name" disabled><span class="sb-specimen__name">disabled · with placeholder</span></div>
+    <div class="sb-specimen"><input type="text" class="ins-input is-filled" value="Acme Corp" disabled><span class="sb-specimen__name">disabled · filled (.is-filled)</span></div>
+  </div>
+  <p class="ins-text-caption" style="margin-top:var(--ins-space-md);">Focus border animates progressively (0 → 3px ring) — matching the error-ring treatment. Hover never overrides focus or error states.</p>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">With icon — left = passive / right = active</h2>
+<div class="sb-preview">
+  <div style="display:flex; flex-direction:column; gap:var(--ins-space-md); max-width:360px;">
+
+    <!-- Passive info icon on LEFT (close to content, non-interactive) -->
+    <div class="ins-input-wrap">
+      <svg class="ins-input-wrap__icon ins-input-wrap__icon--leading" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="search" class="ins-input ins-input--with-leading" placeholder="Search documentation">
+    </div>
+
+    <!-- Email with mail glyph on LEFT (redrawn, simple envelope) -->
+    <div class="ins-input-wrap">
+      <svg class="ins-input-wrap__icon ins-input-wrap__icon--leading" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      <input type="email" class="ins-input ins-input--with-leading" placeholder="you@work.com">
+    </div>
+
+    <!-- Search with active clear button on RIGHT — uses same close icon family as alerts -->
+    <div class="ins-input-wrap" data-sb-clearable>
+      <svg class="ins-input-wrap__icon ins-input-wrap__icon--leading" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="search" class="ins-input ins-input--with-leading ins-input--with-trailing is-filled" value="monthly recurring revenue">
+      <button class="ins-input-wrap__action" type="button" aria-label="Clear input">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Input group (composer) — all states</h2>
+<div class="sb-preview">
+  <div style="display:flex; flex-direction:column; gap:var(--ins-space-md); max-width:480px;">
+
+    <div>
+      <span class="sb-specimen__name" style="display:block; margin-bottom:4px;">default (empty — submit disabled until valid)</span>
+      <div class="ins-input-group" data-sb-validate-email>
+        <input type="email" class="ins-input" placeholder="you@work.com">
+        <button type="submit" class="ins-btn ins-btn--primary ins-btn--radius-md">Subscribe</button>
+      </div>
+    </div>
+
+    <div>
+      <span class="sb-specimen__name" style="display:block; margin-bottom:4px;">focused (ring on the group)</span>
+      <div class="ins-input-group" style="border-color:var(--ins-border-focus); box-shadow:var(--ins-focus-ring);">
+        <input type="email" class="ins-input" value="you@work.com">
+        <button type="submit" class="ins-btn ins-btn--primary ins-btn--radius-md">Subscribe</button>
+      </div>
+    </div>
+
+    <div>
+      <span class="sb-specimen__name" style="display:block; margin-bottom:4px;">error</span>
+      <div class="ins-input-group is-error">
+        <input type="email" class="ins-input" value="not-valid" aria-invalid="true">
+        <button type="submit" class="ins-btn ins-btn--primary ins-btn--radius-md">Subscribe</button>
+      </div>
+    </div>
+
+    <div>
+      <span class="sb-specimen__name" style="display:block; margin-bottom:4px;">disabled</span>
+      <div class="ins-input-group is-disabled">
+        <input type="email" class="ins-input" value="you@work.com" disabled>
+        <button type="submit" class="ins-btn ins-btn--primary ins-btn--radius-md" disabled>Subscribe</button>
+      </div>
+    </div>
+
+  </div>
+  <p class="ins-text-caption" style="margin-top:var(--ins-space-md);">First composer's submit button stays disabled until the input passes <code>type="email"</code> validation (try typing a valid address).</p>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;!-- Leading passive icon (left side only) --&gt;
+&lt;div class="ins-input-wrap"&gt;
+  &lt;svg class="ins-input-wrap__icon ins-input-wrap__icon--leading" ...&gt;&lt;/svg&gt;
+  &lt;input type="search" class="ins-input ins-input--with-leading"&gt;
+&lt;/div&gt;
+
+&lt;!-- Trailing ACTIVE clear button (right side only — interactive) --&gt;
+&lt;div class="ins-input-wrap" data-sb-clearable&gt;
+  &lt;input class="ins-input ins-input--with-trailing is-filled" value="..."&gt;
+  &lt;button class="ins-input-wrap__action" aria-label="Clear"&gt;
+    &lt;svg&gt;...close (same as alerts)...&lt;/svg&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Disabled variants --&gt;
+&lt;input class="ins-input" value="" disabled&gt;                   &lt;!-- empty --&gt;
+&lt;input class="ins-input is-filled" value="Acme Corp" disabled&gt; &lt;!-- filled, value stays legible --&gt;
+
+&lt;!-- Input group (composer) — button disabled until input is valid --&gt;
+&lt;div class="ins-input-group" data-sb-validate-email&gt;
+  &lt;input type="email" class="ins-input"&gt;
+  &lt;button type="submit" class="ins-btn ins-btn--primary ins-btn--radius-md"&gt;Subscribe&lt;/button&gt;
+&lt;/div&gt;</pre></div></section>
+
+</main>
+</div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script>
+</body></html>

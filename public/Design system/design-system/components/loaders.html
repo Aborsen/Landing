@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Loaders — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Loaders</h1><p class="sb-header__description">Spinner, progress (determinate + indeterminate), typing dots, skeleton. All marked <code>.ins-motion-state</code> — animate on every size.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Spinner</h2>
+<div class="sb-preview"><div class="sb-preview-row">
+  <div class="sb-specimen"><div class="ins-spinner ins-spinner--sm ins-motion-state"></div><span class="sb-specimen__name">sm (16)</span></div>
+  <div class="sb-specimen"><div class="ins-spinner ins-motion-state"></div><span class="sb-specimen__name">md (24, default)</span></div>
+  <div class="sb-specimen"><div class="ins-spinner ins-spinner--lg ins-motion-state"></div><span class="sb-specimen__name">lg (32)</span></div>
+</div></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Progress</h2>
+<div class="sb-preview"><div style="display:flex; flex-direction:column; gap:var(--ins-space-lg); max-width:420px;">
+  <div><div class="ins-progress ins-motion-state"><div class="ins-progress__bar" style="width:30%;"></div></div><span class="sb-specimen__name" style="margin-top:6px; display:block;">determinate 30%</span></div>
+  <div><div class="ins-progress ins-motion-state"><div class="ins-progress__bar" style="width:75%;"></div></div><span class="sb-specimen__name" style="margin-top:6px; display:block;">determinate 75%</span></div>
+  <div><div class="ins-progress ins-progress--indeterminate ins-motion-state"><div class="ins-progress__bar"></div></div><span class="sb-specimen__name" style="margin-top:6px; display:block;">indeterminate</span></div>
+</div></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Typing dots</h2>
+<div class="sb-preview"><div class="ins-typing ins-motion-state" style="background:var(--ins-surface-card); border:1px solid var(--ins-border-default); border-radius:var(--ins-radius-2xl); border-bottom-left-radius:var(--ins-radius-sm);">
+  <span class="ins-typing__dot"></span>
+  <span class="ins-typing__dot"></span>
+  <span class="ins-typing__dot"></span>
+</div></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Skeleton</h2>
+<div class="sb-preview"><div style="display:flex; flex-direction:column; gap:var(--ins-space-md); max-width:420px;">
+  <div class="ins-skeleton ins-skeleton--line ins-motion-state" style="width:70%;"></div>
+  <div class="ins-skeleton ins-skeleton--line ins-motion-state" style="width:50%;"></div>
+  <div class="ins-skeleton ins-skeleton--block ins-motion-state"></div>
+</div></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;div class="ins-spinner ins-motion-state" role="status" aria-label="Loading"&gt;&lt;/div&gt;
+
+&lt;div class="ins-progress ins-motion-state"&gt;
+  &lt;div class="ins-progress__bar" style="width: 60%;"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="ins-progress ins-progress--indeterminate ins-motion-state"&gt;
+  &lt;div class="ins-progress__bar"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Typing dots (chat AI "thinking") --&gt;
+&lt;div class="ins-typing ins-motion-state"&gt;
+  &lt;span class="ins-typing__dot"&gt;&lt;/span&gt;
+  &lt;span class="ins-typing__dot"&gt;&lt;/span&gt;
+  &lt;span class="ins-typing__dot"&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Skeleton (dimensions match final content to avoid CLS) --&gt;
+&lt;div class="ins-skeleton ins-skeleton--line ins-motion-state"&gt;&lt;/div&gt;
+&lt;div class="ins-skeleton ins-skeleton--block ins-motion-state"&gt;&lt;/div&gt;</pre></div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

@@ -1,0 +1,496 @@
+/* ══════════════════════════════════════════════════════════════════
+   INSIGHTIS DESIGN SYSTEM — Tokens v1.0.0
+   Dark-mode marketing kit. Single canonical file.
+   Two-tier architecture: PRIMITIVES → SEMANTIC.
+   Components (components.css) consume SEMANTIC tokens only.
+   ══════════════════════════════════════════════════════════════════ */
+
+:root {
+
+  /* ══════════════════════════════════════════════════════════════
+     PRIMITIVES — raw values, no semantics attached.
+     Never consumed directly by components.
+     ══════════════════════════════════════════════════════════════ */
+
+  /* ─ Color primitives — Neutral (gray) ─ */
+  --ins-color-white:     #FFFFFF;
+  --ins-color-gray-50:   #E8F2F5;
+  --ins-color-gray-100:  #C0D4DC;
+  --ins-color-gray-200:  #A8BFC8;
+  --ins-color-gray-300:  #7FA0AC;
+  --ins-color-gray-400:  #6E8D9A;
+  --ins-color-gray-500:  #4A6070;
+  --ins-color-gray-600:  #2E3E50;
+  --ins-color-gray-700:  #1A2230;
+  --ins-color-gray-800:  #131820;
+  --ins-color-gray-900:  #0D1117;
+  --ins-color-gray-950:  #0A0E13;
+  --ins-color-black:     #000000;
+
+  /* ─ Color primitives — Brand (teal) ─ */
+  --ins-color-teal-100:  #9FE4E2;
+  --ins-color-teal-200:  #5DCFCC;
+  --ins-color-teal-300:  #13D4D1;  /* vivid */
+  --ins-color-teal-400:  #0EC4C1;  /* UI accent */
+  --ins-color-teal-500:  #148F8D;
+  --ins-color-teal-600:  #07807E;  /* primary button bg */
+  --ins-color-teal-650:  #096968;  /* primary hover */
+  --ins-color-teal-700:  #0A9896;
+  --ins-color-teal-800:  #055E5C;
+  --ins-color-teal-850:  #055957;  /* primary active */
+  --ins-color-teal-950:  #0D3A39;  /* primary disabled */
+
+  /* ─ Color primitives — Status ─ */
+  --ins-color-green-400: #34D399;
+  --ins-color-green-500: #22C55E;
+  --ins-color-green-600: #15803D;
+  --ins-color-green-700: #047857;
+  --ins-color-amber-400: #FBBF24;
+  --ins-color-amber-700: #B45309;
+  --ins-color-red-400:   #F87171;
+  --ins-color-red-600:   #DC2626;
+  --ins-color-blue-400:  #60A5FA;
+  --ins-color-blue-600:  #2563EB;
+  --ins-color-purple-400:#A78BFA;
+  --ins-color-purple-600:#7C3AED;
+
+  /* ─ Color primitives — Alpha-blended (explicit, named, never raw rgba in semantic) ─ */
+  --ins-color-white-a-06: rgba(255, 255, 255, 0.06);
+  --ins-color-white-a-12: rgba(255, 255, 255, 0.12);
+  --ins-color-white-a-45: rgba(255, 255, 255, 0.45);
+  --ins-color-teal-a-08: rgba(9, 160, 157, 0.08);
+  --ins-color-teal-a-12: rgba(9, 196, 193, 0.12);
+  --ins-color-teal-a-20: rgba(14, 196, 193, 0.20);
+  --ins-color-teal-a-25: rgba(9, 196, 193, 0.25);
+  --ins-color-teal-a-50: rgba(9, 160, 157, 0.50);
+  --ins-color-red-a-30:  rgba(248, 113, 113, 0.30);
+  --ins-color-body-a-30: rgba(168, 191, 200, 0.30);    /* inline-link underline — 30% of body color */
+  --ins-color-overlay:   rgba(10, 14, 19, 0.72);
+  --ins-color-status-success-bg: rgba(34, 197, 94, 0.10);
+  --ins-color-status-warning-bg: rgba(251, 191, 36, 0.10);
+  --ins-color-status-error-bg:   rgba(248, 113, 113, 0.10);
+  --ins-color-status-info-bg:    rgba(96, 165, 250, 0.10);
+  --ins-color-status-planned-bg: rgba(167, 139, 250, 0.10);
+  --ins-color-status-shipped-bg: rgba(52, 211, 153, 0.10);
+
+  /* Named alpha of surface-container — for navbar/popover glass */
+  --ins-color-container-a-72: rgba(13, 17, 23, 0.72);
+
+  /* Named alpha variants — for promo/composer gradients + scrim overlays */
+  --ins-color-black-a-30:    rgba(0, 0, 0, 0.30);
+  --ins-color-black-a-50:    rgba(0, 0, 0, 0.50);
+  --ins-color-promo-a:       rgba(18, 18, 31, 0.95);      /* promo gradient outer */
+  --ins-color-promo-b:       rgba(13, 13, 26, 0.98);      /* promo gradient mid */
+  --ins-color-promo-solid:   #0D0D1A;                      /* composer dark bg */
+  --ins-color-page-a-97:     rgba(10, 14, 19, 0.97);      /* mega-menu panel bg */
+
+  /* ─ Opacity primitives (for CSS `opacity:` property only, NOT for building colors) ─ */
+  --ins-opacity-04: 0.04;
+  --ins-opacity-08: 0.08;
+  --ins-opacity-12: 0.12;
+  --ins-opacity-24: 0.24;
+  --ins-opacity-48: 0.48;
+  --ins-opacity-72: 0.72;
+  --ins-opacity-92: 0.92;
+
+  /* ─ Typography primitives ─ */
+  --ins-font-family-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --ins-font-family-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --ins-font-size-11: 11px;
+  --ins-font-size-12: 12px;
+  --ins-font-size-14: 14px;
+  --ins-font-size-15: 15px;
+  --ins-font-size-16: 16px;
+  --ins-font-size-17: 17px;
+  --ins-font-size-18: 18px;
+  --ins-font-size-20: 20px;
+  --ins-font-size-22: 22px;
+  --ins-font-size-24: 24px;
+  --ins-font-size-28: 28px;
+  --ins-font-size-32: 32px;
+  --ins-font-size-36: 36px;
+  --ins-font-size-44: 44px;
+  --ins-font-size-48: 48px;
+  --ins-font-size-56: 56px;
+  --ins-font-size-60: 60px;
+  --ins-font-size-76: 76px;
+
+  --ins-font-weight-400: 400;
+  --ins-font-weight-500: 500;
+  --ins-font-weight-600: 600;
+  --ins-font-weight-700: 700;
+
+  --ins-line-height-tight:   1.1;
+  --ins-line-height-snug:    1.2;
+  --ins-line-height-normal:  1.4;
+  --ins-line-height-relaxed: 1.55;
+
+  --ins-letter-spacing-tighter: -0.048em;
+  --ins-letter-spacing-tight:   -0.015em;
+  --ins-letter-spacing-normal:  0;
+  --ins-letter-spacing-wide:    0.01em;
+  --ins-letter-spacing-wider:   0.1em;
+
+  /* ─ Spacing primitives (4px base grid; 2px half-step) ─ */
+  --ins-size-0:    0;
+  --ins-size-half: 2px;   /* 2xs — half-step, sparingly */
+  --ins-size-1:    4px;
+  --ins-size-2:    8px;
+  --ins-size-3:   12px;
+  --ins-size-4:   16px;
+  --ins-size-5:   20px;
+  --ins-size-6:   24px;
+  --ins-size-7:   28px;
+  --ins-size-8:   32px;
+  --ins-size-10:  40px;
+  --ins-size-12:  48px;
+  --ins-size-14:  56px;
+  --ins-size-16:  64px;
+  --ins-size-20:  80px;
+  --ins-size-24:  96px;
+  --ins-size-32: 128px;
+
+  /* ─ Radius primitives ─ */
+  --ins-radius-2:    2px;
+  --ins-radius-4:    4px;
+  --ins-radius-6:    6px;
+  --ins-radius-8:    8px;
+  --ins-radius-12:  12px;
+  --ins-radius-16:  16px;
+  --ins-radius-20:  20px;
+  --ins-radius-full: 9999px;
+
+  /* ─ Elevation primitives ─ */
+  --ins-elevation-0: none;
+  --ins-elevation-1: 0 1px 2px rgba(0,0,0,0.25);
+  --ins-elevation-2: 0 1px 3px rgba(0,0,0,0.30), 0 4px 12px rgba(0,0,0,0.20);
+  --ins-elevation-3: 0 2px 4px rgba(0,0,0,0.40), 0 8px 24px rgba(0,0,0,0.30);
+  --ins-elevation-4: 0 16px 48px -8px rgba(0,0,0,0.45);
+  /* Glow variants — reserve for colored / branded / highlighted blocks (not for default UI) */
+  --ins-glow-brand:   0 0 24px rgba(14, 196, 193, 0.30);
+  --ins-glow-success: 0 0 20px rgba(34, 197, 94, 0.28);
+  --ins-glow-error:   0 0 20px rgba(248, 113, 113, 0.28);
+  --ins-glow-dot:     0 0 8px currentColor;
+
+  /* ─ Border width primitives ─ */
+  --ins-border-width-1:   1px;
+  --ins-border-width-1-5: 1.5px;
+  --ins-border-width-2:   2px;
+  --ins-border-width-3:   3px;
+
+  /* ─ Blur primitives ─ */
+  --ins-blur-4:   4px;
+  --ins-blur-8:   8px;
+  --ins-blur-16: 16px;
+  --ins-blur-24: 24px;
+
+  /* ─ Icon-size primitives ─ */
+  --ins-icon-size-12: 12px;
+  --ins-icon-size-14: 14px;
+  --ins-icon-size-16: 16px;
+  --ins-icon-size-20: 20px;
+  --ins-icon-size-24: 24px;
+  --ins-icon-size-32: 32px;
+  --ins-icon-size-48: 48px;
+
+  /* ─ Motion primitives ─ */
+  --ins-duration-fast:  120ms;
+  --ins-duration-base:  180ms;
+  --ins-duration-slow:  320ms;
+  --ins-duration-xslow: 400ms;
+  --ins-easing-standard:   cubic-bezier(0.4, 0, 0.2, 1);
+  --ins-easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
+  --ins-easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
+
+  /* ─ Z-index primitives ─ */
+  --ins-z-base:     0;
+  --ins-z-dropdown: 100;
+  --ins-z-sticky:   200;
+  --ins-z-fixed:    300;
+  --ins-z-modal:    400;
+  --ins-z-popover:  500;
+  --ins-z-toast:    600;
+  --ins-z-tooltip:  700;
+
+  /* ─ Breakpoint primitives (mobile-first, 4 stops) ─ */
+  --ins-bp-480:  480px;
+  --ins-bp-768:  768px;
+  --ins-bp-1024: 1024px;
+  --ins-bp-1280: 1280px;
+  --ins-min-viewport: 320px;
+
+  /* ─ Grid primitives ─ */
+  --ins-grid-columns-mobile:  4;
+  --ins-grid-columns-tablet:  8;
+  --ins-grid-columns-laptop:  12;
+  --ins-grid-columns-desktop: 24;
+
+  --ins-grid-gutter-mobile:  16px;
+  --ins-grid-gutter-tablet:  20px;
+  --ins-grid-gutter-desktop: 24px;
+
+  --ins-container-max:              1280px;
+  --ins-container-padding-mobile:   16px;
+  --ins-container-padding-tablet:   24px;
+  --ins-container-padding-desktop:  32px;
+
+  /* Responsive navbar height (used by scroll-margin) */
+  --ins-navbar-height: 52px;
+
+
+  /* ══════════════════════════════════════════════════════════════
+     SEMANTIC — role-named tokens. Reference primitives only.
+     Components (components.css) consume THESE, not primitives.
+     ══════════════════════════════════════════════════════════════ */
+
+  /* ─ Text tier (three progressive levels — body > inactive > disabled) ─
+     body     → default prose / UI. AA-compliant on every surface.
+     inactive → secondary / resting meta / placeholders. AA-compliant (≥ 4.5:1) on page+container; marginal on card — prefer body there.
+     disabled → non-interactive disabled state only. WCAG 1.4.3 exempt (visibly dimmer than inactive).
+  */
+  --ins-text-heading:      var(--ins-color-white);
+  --ins-text-heading-soft: var(--ins-color-gray-50);   /* display sizes on surface-page only */
+  --ins-text-body:         var(--ins-color-gray-200);  /* #A8BFC8 — AA everywhere */
+  --ins-text-inactive:     var(--ins-color-gray-300);  /* #7FA0AC — AA on page, marginal on card */
+  --ins-text-disabled:     var(--ins-color-gray-400);  /* #6E8D9A — exempt from AA */
+  --ins-text-highlight:    var(--ins-color-teal-400);
+
+  /* ─ Surface ─ */
+  --ins-surface-page:       var(--ins-color-gray-950);
+  --ins-surface-container:  var(--ins-color-gray-900);
+  --ins-surface-card:       var(--ins-color-gray-800);
+  --ins-surface-elevated:   var(--ins-color-gray-700);
+  --ins-surface-overlay:    var(--ins-color-overlay);
+  --ins-surface-brand-tint: var(--ins-color-teal-a-08);
+  --ins-surface-glass:      var(--ins-color-container-a-72);   /* navbar, popover behind backdrop-blur */
+
+  /* ─ Border ─ */
+  --ins-border-default:   var(--ins-color-white-a-06);
+  --ins-border-hover:     var(--ins-color-white-a-12);
+  --ins-border-prominent: var(--ins-color-white-a-45);
+  --ins-border-strong:    var(--ins-color-gray-700);
+  --ins-border-brand:     var(--ins-color-teal-a-20);
+  --ins-border-focus:     var(--ins-color-teal-400);    /* solid thin border — matches error-border pattern */
+  --ins-border-error:     var(--ins-color-red-400);
+  --ins-border-inactive:  var(--ins-color-white-a-06);  /* AA 3:1 for essential UI borders */
+  --ins-border-disabled:  var(--ins-color-white-a-06);  /* matches default — relies on bg + text to signal */
+
+  /* ─ Icon (separate from text) ─ */
+  --ins-icon-default:   var(--ins-color-gray-200);
+  --ins-icon-inactive:  var(--ins-color-gray-300);  /* AA-compliant icon (≥ 3:1) */
+  --ins-icon-disabled:  var(--ins-color-gray-400);  /* WCAG 1.4.3 exempt */
+  --ins-icon-highlight: var(--ins-color-teal-400);
+
+  /* ─ Interactive (buttons) ─ */
+  --ins-button-primary-bg:           var(--ins-color-teal-600);
+  --ins-button-primary-bg-hover:     var(--ins-color-teal-650);
+  --ins-button-primary-bg-active:    var(--ins-color-teal-850);
+  --ins-button-primary-bg-disabled:  var(--ins-color-teal-950);
+  --ins-button-primary-fg:           var(--ins-color-white);
+
+  --ins-button-secondary-bg:          var(--ins-surface-card);
+  --ins-button-secondary-bg-hover:    var(--ins-surface-elevated);
+  --ins-button-secondary-bg-active:   var(--ins-color-gray-600);
+  --ins-button-secondary-fg:          var(--ins-text-heading);
+  --ins-button-secondary-border:      var(--ins-border-default);
+  --ins-button-secondary-border-hover:var(--ins-border-hover);
+
+  --ins-button-ghost-fg:         var(--ins-text-heading);      /* higher contrast for transparent-bg button */
+  --ins-button-ghost-bg-hover:   var(--ins-color-white-a-06);
+  --ins-button-ghost-bg-active:  var(--ins-color-white-a-12);
+
+  /* Unified disabled-button text (same color across primary/secondary/ghost/icon) */
+  --ins-button-fg-disabled:      var(--ins-text-disabled);
+
+  /* ─ Status (fg + bg pairs) ─ */
+  --ins-status-success-fg: var(--ins-color-green-500);
+  --ins-status-success-bg: var(--ins-color-status-success-bg);
+  --ins-status-warning-fg: var(--ins-color-amber-400);
+  --ins-status-warning-bg: var(--ins-color-status-warning-bg);
+  --ins-status-error-fg:   var(--ins-color-red-400);
+  --ins-status-error-bg:   var(--ins-color-status-error-bg);
+  --ins-status-info-fg:    var(--ins-color-blue-400);
+  --ins-status-info-bg:    var(--ins-color-status-info-bg);
+  --ins-status-planned-fg: var(--ins-color-purple-400);
+  --ins-status-planned-bg: var(--ins-color-status-planned-bg);
+  --ins-status-shipped-fg: var(--ins-color-green-400);
+  --ins-status-shipped-bg: var(--ins-color-status-shipped-bg);
+
+  /* Lifecycle aliases → map to SEMANTIC, not primitives */
+  --ins-status-live:        var(--ins-status-success-fg);
+  --ins-status-in-progress: var(--ins-status-info-fg);
+  --ins-status-coming-soon: var(--ins-status-planned-fg);
+  --ins-status-negative:    var(--ins-status-error-fg);
+
+  /* ─ Chart palette (6 series) ─ */
+  --ins-chart-1: var(--ins-color-teal-400);
+  --ins-chart-2: var(--ins-color-blue-400);
+  --ins-chart-3: var(--ins-color-purple-400);
+  --ins-chart-4: var(--ins-color-green-400);
+  --ins-chart-5: var(--ins-color-amber-400);
+  --ins-chart-6: var(--ins-color-red-400);
+
+  /* ─ Focus rings — two-layer pattern (thin main border + subtle outer glow).
+     Matches the error treatment: `border: 1px solid teal-400` + `box-shadow: 0 0 0 3px teal-a-20`.
+     Components apply both border-color AND this ring for the layered look. */
+  --ins-focus-ring:       0 0 0 var(--ins-border-width-3) var(--ins-color-teal-a-20);
+  --ins-focus-ring-error: 0 0 0 var(--ins-border-width-3) var(--ins-color-red-a-30);
+
+  /* ─ Radius semantic aliases ─ */
+  --ins-radius-xs:   var(--ins-radius-2);   /* badges, tiny indicators */
+  --ins-radius-sm:   var(--ins-radius-4);   /* checkboxes, tags */
+  --ins-radius-md:   var(--ins-radius-6);   /* small inputs */
+  --ins-radius-lg:   var(--ins-radius-8);   /* buttons, inputs, avatars */
+  --ins-radius-xl:   var(--ins-radius-12);  /* cards, panels */
+  --ins-radius-2xl:  var(--ins-radius-16);  /* hero widgets, modals, dropdowns */
+  --ins-radius-3xl:  var(--ins-radius-20);  /* drawers */
+  --ins-radius-pill: var(--ins-radius-full);
+  --ins-radius-badge:  var(--ins-radius-md);
+  --ins-radius-card:   var(--ins-radius-xl);
+  --ins-radius-input:  var(--ins-radius-lg);
+
+  /* ─ Elevation semantic aliases ─ */
+  --ins-shadow-xs:          var(--ins-elevation-1);
+  --ins-shadow-sm:          var(--ins-elevation-2);
+  --ins-shadow-md:          var(--ins-elevation-3);
+  --ins-shadow-lg:          var(--ins-elevation-4);
+  --ins-shadow-glow-brand:  var(--ins-glow-brand);    /* colored/brand cards, active chips */
+  --ins-shadow-glow-dot:    var(--ins-glow-dot);      /* badge status dot */
+  --ins-shadow-navbar:      0 4px 24px var(--ins-color-black-a-30), 0 1px 2px rgba(0, 0, 0, 0.20);
+  --ins-shadow-mega-menu:   0 12px 48px var(--ins-color-black-a-50);
+
+  /* ─ Spacing semantic aliases (component-level) ─ */
+  --ins-space-2xs: var(--ins-size-half);
+  --ins-space-xs:  var(--ins-size-1);
+  --ins-space-sm:  var(--ins-size-2);
+  --ins-space-md:  var(--ins-size-3);
+  --ins-space-lg:  var(--ins-size-4);
+  --ins-space-xl:  var(--ins-size-6);
+  --ins-space-2xl: var(--ins-size-8);
+  --ins-space-3xl: var(--ins-size-12);
+  --ins-space-4xl: var(--ins-size-16);
+  --ins-space-5xl: var(--ins-size-20);
+  --ins-space-6xl: var(--ins-size-24);
+
+  /* Scroll-margin for anchor targets under sticky nav */
+  --ins-scroll-margin: calc(var(--ins-navbar-height) + var(--ins-space-lg));
+
+
+  /* ══════════════════════════════════════════════════════════════
+     LEGACY ALIASES — @deprecated, kept for backward compatibility
+     with existing pages that consume colors_and_type.css. Do NOT
+     use these in new code. See DEPRECATED.md for migration targets.
+     ══════════════════════════════════════════════════════════════ */
+
+  --ins-font-ui:        var(--ins-font-family-sans);  /* @deprecated → --ins-font-family-sans */
+  --ins-font-display:   var(--ins-font-family-sans);  /* @deprecated */
+  --ins-font-marketing: var(--ins-font-family-sans);  /* @deprecated */
+  --ins-font-mono:      var(--ins-font-family-mono);  /* @deprecated → --ins-font-family-mono */
+
+  --ins-text-primary:   var(--ins-text-heading);      /* @deprecated → --ins-text-heading */
+  --ins-text-secondary: var(--ins-text-body);         /* @deprecated → --ins-text-body */
+
+  --ins-primary-100:    var(--ins-color-teal-100);    /* @deprecated → --ins-color-teal-* */
+  --ins-primary-200:    var(--ins-color-teal-200);
+  --ins-primary-400:    var(--ins-color-teal-400);
+  --ins-primary-500:    var(--ins-color-teal-500);
+  --ins-primary-600:    var(--ins-color-teal-600);
+  --ins-primary-700:    var(--ins-color-teal-700);
+  --ins-primary-800:    var(--ins-color-teal-800);
+  --ins-primary-vivid:  var(--ins-color-teal-300);
+  --ins-primary-dark:   var(--ins-color-teal-850);
+
+  --ins-gray-0:         var(--ins-color-white);       /* @deprecated → --ins-color-* */
+  --ins-gray-100:       var(--ins-color-gray-50);
+  --ins-gray-200:       var(--ins-color-gray-100);
+  --ins-gray-300:       var(--ins-color-gray-200);
+  --ins-gray-350:       var(--ins-color-gray-300);
+  --ins-gray-400:       var(--ins-color-gray-400);
+  --ins-gray-500:       var(--ins-color-gray-500);
+  --ins-gray-600:       var(--ins-color-gray-600);
+  --ins-gray-700:       var(--ins-color-gray-700);
+  --ins-gray-800:       var(--ins-color-gray-800);
+  --ins-gray-900:       var(--ins-color-gray-900);
+  --ins-gray-950:       var(--ins-color-gray-950);
+
+  /* Legacy state aliases — map to SEMANTIC tokens only */
+  --ins-state-live:        var(--ins-status-live);
+  --ins-state-in-progress: var(--ins-status-in-progress);
+  --ins-state-shipped:     var(--ins-status-shipped-fg);
+  --ins-state-warning:     var(--ins-status-warning-fg);
+  --ins-state-planned:     var(--ins-status-planned-fg);
+  --ins-state-error:       var(--ins-status-error-fg);
+  --ins-state-coming-soon: var(--ins-status-coming-soon);
+  --ins-state-negative:    var(--ins-status-negative);
+  --ins-state-amber:       var(--ins-status-warning-fg);
+  --ins-state-live-bg:        var(--ins-color-green-500);
+  --ins-state-live-fg:        var(--ins-color-green-600);
+  --ins-state-in-progress-bg: var(--ins-color-blue-400);
+  --ins-state-in-progress-fg: var(--ins-color-blue-600);
+  --ins-state-shipped-bg:     var(--ins-color-green-400);
+  --ins-state-shipped-fg:     var(--ins-color-green-700);
+  --ins-state-warning-bg:     var(--ins-color-amber-400);
+  --ins-state-warning-fg:     var(--ins-color-amber-700);
+  --ins-state-planned-bg:     var(--ins-color-purple-400);
+  --ins-state-planned-fg:     var(--ins-color-purple-600);
+  --ins-state-error-bg:       var(--ins-color-red-400);
+  --ins-state-error-fg:       var(--ins-color-red-600);
+
+  /* Legacy surface + border aliases */
+  --ins-surface-hover:      var(--ins-color-white-a-06);
+  --ins-surface-brand-weak: var(--ins-color-teal-a-08);
+  --ins-card-border-hover:  var(--ins-border-hover);
+  --ins-chat-user-bg:       var(--ins-color-teal-a-12);
+  --ins-chat-user-border:   var(--ins-color-teal-a-25);
+
+  /* Legacy radius aliases */
+  --ins-radius-3xl:     var(--ins-radius-20);
+
+  /* Legacy shadow aliases */
+  --ins-shadow-nav:   var(--ins-shadow-sm);
+  --ins-shadow-menu:  var(--ins-shadow-lg);
+
+  /* Legacy breakpoint primitives */
+  --ins-bp-sm:        var(--ins-bp-480);
+  --ins-bp-md:        var(--ins-bp-768);
+  --ins-bp-lg:        var(--ins-bp-1024);
+  --ins-bp-xl:        var(--ins-bp-1280);
+  --ins-content-max:  var(--ins-container-max);
+
+  /* Legacy spacing numeric aliases */
+  --ins-space-none: 0;
+  --ins-space-0:    var(--ins-space-xs);
+  --ins-space-2:    var(--ins-space-2xs);
+  --ins-space-4:    var(--ins-space-xs);
+  --ins-space-8:    var(--ins-space-sm);
+  --ins-space-12:   var(--ins-space-md);
+  --ins-space-16:   var(--ins-space-lg);
+  --ins-space-24:   var(--ins-space-xl);
+  --ins-space-32:   var(--ins-space-2xl);
+  --ins-space-48:   var(--ins-space-3xl);
+  --ins-space-64:   var(--ins-space-4xl);
+  --ins-space-80:   var(--ins-space-5xl);
+  --ins-space-96:   var(--ins-space-6xl);
+
+  --ins-space-inline-gap:     var(--ins-space-sm);
+  --ins-space-card-gap:       var(--ins-space-md);
+  --ins-space-card-padding:   var(--ins-space-lg);
+  --ins-space-page-inset:     var(--ins-space-xl);
+  --ins-space-cta-padding:    var(--ins-space-2xl);
+  --ins-space-section-bottom: var(--ins-space-3xl);
+
+  /* Motion legacy aliases */
+  --ins-ease:        var(--ins-easing-standard);
+  --ins-dur-fast:    var(--ins-duration-fast);
+  --ins-dur-base:    var(--ins-duration-base);
+  --ins-dur-slow:    var(--ins-duration-slow);
+
+  --ins-border-width:   var(--ins-border-width-1);
+  --ins-border-focus-w: var(--ins-border-width-1-5);
+}
+
+/* Responsive navbar height (used by scroll-margin + any offset calc) */
+@media (min-width: 768px) {
+  :root { --ins-navbar-height: 56px; }
+}

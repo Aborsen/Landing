@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://insightis-landing.vercel.app/sitemap.xml

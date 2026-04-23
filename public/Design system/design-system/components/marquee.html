@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Marquee — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Marquee</h1><p class="sb-header__description">Infinite horizontal scroll for logo walls / partner strips. Decorative — disabled below 768px and under <code>prefers-reduced-motion</code>. Pauses on hover + when off-screen.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Logo wall</h2>
+<div class="sb-preview" style="padding:0; overflow:hidden;">
+  <div class="ins-marquee">
+    <div class="ins-marquee__track">
+      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">ACME</span>
+      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">Widgets</span>
+      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">Brightlab</span>
+      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">Horizon</span>
+      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">Orbit</span>
+      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">Helix</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">ACME</span>
+      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">Widgets</span>
+      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">Brightlab</span>
+      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">Horizon</span>
+      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">Orbit</span>
+      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">Helix</span>
+    </div>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;div class="ins-marquee"&gt;
+  &lt;div class="ins-marquee__track"&gt;
+    &lt;!-- Content × 2 for seamless loop --&gt;
+    &lt;img src="/logos/acme.svg" alt="Acme"&gt;
+    &lt;img src="/logos/widgets.svg" alt="Widgets"&gt;
+    ...
+    &lt;!-- Duplicate set --&gt;
+    &lt;img src="/logos/acme.svg" alt="" aria-hidden="true"&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Rules</h2>
+<ul style="color:var(--ins-text-body); padding-left:var(--ins-space-lg); line-height:22px;">
+  <li>Duplicate content once — the track animates from 0 to -50%</li>
+  <li>First set of logos have meaningful <code>alt</code>; duplicates use <code>alt=""</code> + <code>aria-hidden="true"</code></li>
+  <li>Decorative — no animation below 768px, paused on hover, paused when off-screen (IntersectionObserver in storybook.js)</li>
+</ul>
+</section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

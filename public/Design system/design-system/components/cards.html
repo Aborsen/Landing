@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Card — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Card</h1><p class="sb-header__description">14 variants built from a single base. Hover lift on desktop (decorative — disabled &lt;768px). Pain-point + answer variants show top-gradient accents clipped to the card's border radius.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Default</h2>
+<div class="sb-preview"><div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:var(--ins-space-lg);">
+
+  <div class="ins-card">
+    <div class="ins-card__title">Default card</div>
+    <p class="ins-card__body">Base card with border and 24px padding.</p>
+  </div>
+
+  <div class="ins-card ins-card--interactive" tabindex="0">
+    <div class="ins-card__title">Interactive</div>
+    <p class="ins-card__body">Hover on desktop to lift. Keyboard-focusable.</p>
+  </div>
+
+  <div class="ins-card ins-card--selected">
+    <div class="ins-card__title">Selected</div>
+    <p class="ins-card__body">Brand-tint bg + teal border.</p>
+  </div>
+
+  <div class="ins-card ins-card--feature">
+    <div class="ins-card__eyebrow">Feature</div>
+    <div class="ins-card__title">Cited answers</div>
+    <p class="ins-card__body">Every claim links to a source query.</p>
+  </div>
+
+</div></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Pricing card</h2>
+<div class="sb-preview"><div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:var(--ins-space-lg);">
+
+  <div class="ins-card ins-card--pricing">
+    <div class="ins-card__eyebrow">Starter</div>
+    <div class="ins-card__price">$29<span style="font-size:14px; color:var(--ins-text-inactive); font-weight:400;">/mo</span></div>
+    <p class="ins-card__body">Core features for small teams.</p>
+    <button class="ins-btn ins-btn--secondary">Get started</button>
+  </div>
+
+  <div class="ins-card ins-card--pricing ins-card--selected">
+    <div class="ins-card__eyebrow">Team</div>
+    <div class="ins-card__price">$99<span style="font-size:14px; color:var(--ins-text-inactive); font-weight:400;">/mo</span></div>
+    <p class="ins-card__body">Everything in Starter, plus analytics.</p>
+    <button class="ins-btn ins-btn--primary">Choose Team</button>
+  </div>
+
+  <div class="ins-card ins-card--pricing">
+    <div class="ins-card__eyebrow">Enterprise</div>
+    <div class="ins-card__price">Custom</div>
+    <p class="ins-card__body">SSO, SLA, dedicated CSM.</p>
+    <button class="ins-btn ins-btn--secondary">Contact sales</button>
+  </div>
+
+</div></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Accent (top gradient rail)</h2>
+<p class="sb-section__description">Generic accent — renamed from <code>--pain-point</code>. Uses inset box-shadow so the rail hugs the card radius smoothly.</p>
+<div class="sb-preview"><div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:var(--ins-space-lg);">
+
+  <div class="ins-card ins-card--accent-top">
+    <div class="ins-card__eyebrow">Problem</div>
+    <div class="ins-card__title">Same question, every Monday</div>
+    <p class="ins-card__body">Analysts rebuild the same CAC report every week.</p>
+  </div>
+
+  <div class="ins-card ins-card--accent-top">
+    <div class="ins-card__eyebrow">Value</div>
+    <div class="ins-card__title">Cited answers</div>
+    <p class="ins-card__body">Every claim links to a source query you can inspect.</p>
+  </div>
+
+</div></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Glow card (themed — brand / error)</h2>
+<p class="sb-section__description">Renamed from <code>--answer</code> to <code>--glow</code> with theme modifiers. Scales to any semantic theme (brand, error today — success/warning deferred). Shared slots: <code>.ins-card__header</code> (colored dot + label) + <code>.ins-card__console</code> (mono inner panel).</p>
+<div class="sb-preview"><div style="display:grid; grid-template-columns:1fr; gap:var(--ins-space-lg);">
+
+  <div class="ins-card ins-card--glow ins-card--glow--brand" style="max-width:560px;">
+    <div class="ins-card__header">Insightis</div>
+    <div class="ins-card__console">
+      <div style="color:var(--ins-text-inactive); margin-bottom:var(--ins-space-sm);">→ "What's our churn rate?"</div>
+      <div style="color:var(--ins-color-gray-100);">
+        Your churn rate in March was <strong style="color:var(--ins-text-highlight);">2.1%</strong> — down from 2.8% in February. Main driver: reduced churn in Starter plan (↓ 0.9pp).
+      </div>
+    </div>
+    <p class="ins-text-body-sm" style="margin-top:var(--ins-space-md); font-style:italic; color:var(--ins-color-teal-500);">brand theme — used for AI responses + branded callouts</p>
+  </div>
+
+  <div class="ins-card ins-card--glow ins-card--glow--error" style="max-width:560px;">
+    <div class="ins-card__header">MRR alert</div>
+    <div class="ins-card__console">
+      <div style="color:var(--ins-text-inactive); margin-bottom:var(--ins-space-sm);">→ "Why did MRR drop last week?"</div>
+      <div style="color:var(--ins-color-gray-100);">
+        Trial expiry without activation drove <strong style="color:var(--ins-status-error-fg);">60%</strong> of last week's $1,240 MRR drop. Six distinct causes identified.
+      </div>
+    </div>
+    <p class="ins-text-body-sm" style="margin-top:var(--ins-space-md); font-style:italic; color:var(--ins-status-error-fg);">error theme — negative outcomes / warnings / drops</p>
+  </div>
+
+</div></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Metric tile grid (inside answer card)</h2>
+<div class="sb-preview">
+  <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:var(--ins-space-sm); max-width:640px;">
+    <div class="ins-card ins-card--metric">
+      <span class="ins-card__metric-label">Trial expiry</span>
+      <span class="ins-card__metric-value" style="color:var(--ins-status-error-fg);">-$740</span>
+    </div>
+    <div class="ins-card ins-card--metric">
+      <span class="ins-card__metric-label">Pro → Starter</span>
+      <span class="ins-card__metric-value" style="color:var(--ins-status-error-fg);">-$260</span>
+    </div>
+    <div class="ins-card ins-card--metric">
+      <span class="ins-card__metric-label">Low engagement</span>
+      <span class="ins-card__metric-value" style="color:var(--ins-status-error-fg);">-$240</span>
+    </div>
+    <div class="ins-card ins-card--metric">
+      <span class="ins-card__metric-label">Annual → Monthly</span>
+      <span class="ins-card__metric-value" style="color:var(--ins-status-error-fg);">-$180</span>
+    </div>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Compositions — see Patterns section</h2>
+<p class="sb-section__description">Testimonial, team-member, roadmap, connector, and logo cards are <strong>compositions</strong> (base <code>.ins-card</code> + badge/avatar atoms), not separate card variants. They live in the <a href="../patterns/testimonial-row.html" class="ins-btn--link">Patterns</a> section. This keeps the card component scalable — any new composition is HTML-only.</p>
+</section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;div class="ins-card"&gt;
+  &lt;div class="ins-card__eyebrow"&gt;Feature&lt;/div&gt;
+  &lt;div class="ins-card__title"&gt;Title&lt;/div&gt;
+  &lt;p class="ins-card__body"&gt;Body text.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- Hover-liftable, keyboard-focusable --&gt;
+&lt;div class="ins-card ins-card--interactive" tabindex="0"&gt;...&lt;/div&gt;
+
+&lt;!-- Selected state (brand-tinted) --&gt;
+&lt;div class="ins-card ins-card--selected"&gt;...&lt;/div&gt;
+
+&lt;!-- Variants --&gt;
+&lt;div class="ins-card ins-card--pricing"&gt;...&lt;/div&gt;
+&lt;div class="ins-card ins-card--accent-top"&gt;...&lt;/div&gt;
+&lt;div class="ins-card ins-card--glow ins-card--glow--brand"&gt;...&lt;/div&gt;
+&lt;div class="ins-card ins-card--glow ins-card--glow--error"&gt;...&lt;/div&gt;
+&lt;div class="ins-card ins-card--metric"&gt;...&lt;/div&gt;</pre></div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

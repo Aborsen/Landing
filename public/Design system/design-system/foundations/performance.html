@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Performance &amp; SEO — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css">
+</head>
+<body>
+<a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app">
+<aside class="sb-sidebar" data-sb-render-sidebar="../"></aside>
+<main class="sb-main" id="main">
+
+<header class="sb-header">
+  <div class="sb-header__kicker">Foundations</div>
+  <h1 class="sb-header__title">Performance &amp; SEO</h1>
+  <p class="sb-header__description">Core Web Vitals targets, mitigations baked into the kit, and SEO habits the dev team must preserve.</p>
+</header>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Budget targets</h2>
+  <table class="sb-table">
+    <thead><tr><th>Metric</th><th>Target</th></tr></thead>
+    <tbody>
+      <tr><td>LCP (Largest Contentful Paint)</td><td>≤ 2.5s on 4G</td></tr>
+      <tr><td>CLS (Cumulative Layout Shift)</td><td>≤ 0.1</td></tr>
+      <tr><td>INP (Interaction to Next Paint)</td><td>≤ 200ms</td></tr>
+      <tr><td>Initial CSS (gzipped)</td><td>≤ 60 KB</td></tr>
+      <tr><td>Font payload (2 families, 3 weights)</td><td>≤ 100 KB</td></tr>
+      <tr><td>Total initial page weight (marketing)</td><td>≤ 500 KB</td></tr>
+      <tr><td>Total initial page weight (brand / about with aurora)</td><td>≤ 1 MB</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Required &lt;head&gt; block</h2>
+  <div class="sb-code"><pre>&lt;!-- Preload critical fonts --&gt;
+&lt;link rel="preload" href="/design-system/assets/fonts/Geist-Variable.ttf"
+      as="font" type="font/ttf" crossorigin&gt;
+&lt;link rel="preload" href="/design-system/assets/fonts/GeistMono-Variable.ttf"
+      as="font" type="font/ttf" crossorigin&gt;
+
+&lt;!-- Critical CSS (inline, ≤8 KB) --&gt;
+&lt;style&gt; /* inlined tokens.css variables + base reset */ &lt;/style&gt;
+
+&lt;!-- Defer non-critical components.css --&gt;
+&lt;link rel="preload" href="/design-system/assets/components.css" as="style"
+      onload="this.onload=null;this.rel='stylesheet'"&gt;
+&lt;noscript&gt;&lt;link rel="stylesheet" href="/design-system/assets/components.css"&gt;&lt;/noscript&gt;</pre></div>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Kit mitigations (already baked in)</h2>
+  <table class="sb-table">
+    <thead><tr><th>Concern</th><th>Mitigation</th></tr></thead>
+    <tbody>
+      <tr><td>Font LCP/CLS</td><td>font-display: swap; variable fonts; size-adjust recommended in production</td></tr>
+      <tr><td>Aurora paint cost</td><td>contain: paint on wrapper; single element with 7 gradient stops</td></tr>
+      <tr><td>Marquee animation</td><td>IntersectionObserver pauses off-screen; disabled &lt;768px</td></tr>
+      <tr><td>Backdrop-filter mobile cost</td><td>Solid bg fallback; @supports gate</td></tr>
+      <tr><td>Hover paint</td><td>translateY transform (GPU), not box-shadow swap</td></tr>
+      <tr><td>Reduced-motion</td><td>Global block respects prefers-reduced-motion</td></tr>
+      <tr><td>Skeleton → content CLS</td><td>Skeleton dimensions match final content</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">SEO habits (dev team must preserve)</h2>
+  <div class="sb-do-dont">
+    <div class="sb-do">
+      <div class="sb-do__label">✓ Always</div>
+      <p style="color:var(--ins-text-body); font-size:var(--ins-font-size-14); line-height:20px;">One h1 per page. Sequential heading levels (h1→h2→h3, never skip). <code>alt</code> on every <code>&lt;img&gt;</code> (<code>alt=""</code> for decorative). Status chips pair color + icon + text.</p>
+    </div>
+    <div class="sb-dont">
+      <div class="sb-dont__label">✗ Never</div>
+      <p style="color:var(--ins-text-body); font-size:var(--ins-font-size-14); line-height:20px;">Don't use <code>&lt;div&gt;</code> for clickable elements (use <code>&lt;button&gt;</code>). Don't skip heading levels. Don't convey meaning with color alone.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Recommended JSON-LD</h2>
+  <p class="sb-section__description">Not part of the visual kit — but include these schemas per-page type for rich-result eligibility.</p>
+  <div class="sb-code"><pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Insightis",
+  "url": "https://insightis.com",
+  "logo": "https://insightis.com/logo.png"
+}
+&lt;/script&gt;</pre></div>
+</section>
+
+</main>
+</div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script>
+</body></html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Badge — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Badge</h1><p class="sb-header__description">Status, count, brand, trend, dot, removable, metric-pill. Status badges always pair color + text (a11y).</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Status</h2>
+<div class="sb-preview"><div class="sb-preview-row">
+  <span class="ins-badge ins-badge--success"><span class="ins-badge__dot"></span>Live</span>
+  <span class="ins-badge ins-badge--info">In progress</span>
+  <span class="ins-badge ins-badge--shipped">Shipped</span>
+  <span class="ins-badge ins-badge--warning">Warning</span>
+  <span class="ins-badge ins-badge--planned">Planned</span>
+  <span class="ins-badge ins-badge--error">Failed</span>
+</div></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Count</h2>
+<div class="sb-preview"><div class="sb-preview-row">
+  <span class="ins-badge ins-badge--count">3</span>
+  <span class="ins-badge ins-badge--count">24</span>
+  <span class="ins-badge ins-badge--count">99+</span>
+</div></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Brand</h2>
+<div class="sb-preview"><div class="sb-preview-row">
+  <span class="ins-badge ins-badge--brand">Beta</span>
+  <span class="ins-badge ins-badge--brand">New</span>
+  <span class="ins-badge ins-badge--brand">Pro</span>
+</div></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Trend (mono)</h2>
+<div class="sb-preview"><div class="sb-preview-row">
+  <span class="ins-badge ins-badge--success ins-badge--trend">▲ 12.4%</span>
+  <span class="ins-badge ins-badge--error ins-badge--trend">▼ 3.2%</span>
+  <span class="ins-badge ins-badge--info ins-badge--trend">+142</span>
+</div></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Dot (pulse)</h2>
+<div class="sb-preview"><div class="sb-preview-row">
+  <span class="ins-badge ins-badge--success"><span class="ins-badge__dot ins-badge__dot--pulse ins-motion-state"></span>Live</span>
+  <span class="ins-badge ins-badge--warning"><span class="ins-badge__dot"></span>Idle</span>
+</div></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Removable</h2>
+<div class="sb-preview"><div class="sb-preview-row">
+  <span class="ins-badge ins-badge--brand">Marketing<button class="ins-badge__remove" aria-label="Remove tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button></span>
+  <span class="ins-badge ins-badge--brand">Sales<button class="ins-badge__remove" aria-label="Remove tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button></span>
+</div></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Metric pill</h2>
+<div class="sb-preview"><div class="sb-preview-row">
+  <span class="ins-badge ins-badge--metric-pill">CAC · 30d</span>
+  <span class="ins-badge ins-badge--metric-pill">MRR</span>
+  <span class="ins-badge ins-badge--metric-pill">NRR · Q4</span>
+</div></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;span class="ins-badge ins-badge--success"&gt;Live&lt;/span&gt;
+&lt;span class="ins-badge ins-badge--count"&gt;3&lt;/span&gt;
+&lt;span class="ins-badge ins-badge--brand"&gt;Beta&lt;/span&gt;
+&lt;span class="ins-badge ins-badge--success ins-badge--trend"&gt;▲ 12.4%&lt;/span&gt;
+
+&lt;!-- With dot (pulse version is state-communicating) --&gt;
+&lt;span class="ins-badge ins-badge--success"&gt;
+  &lt;span class="ins-badge__dot ins-badge__dot--pulse ins-motion-state"&gt;&lt;/span&gt;Live
+&lt;/span&gt;
+
+&lt;!-- Removable --&gt;
+&lt;span class="ins-badge ins-badge--brand"&gt;
+  Marketing
+  &lt;button class="ins-badge__remove" aria-label="Remove"&gt;...&lt;/button&gt;
+&lt;/span&gt;</pre></div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

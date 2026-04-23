@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atmosphere — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css">
+</head>
+<body>
+<a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app">
+<aside class="sb-sidebar" data-sb-render-sidebar="../"></aside>
+<main class="sb-main" id="main">
+
+<header class="sb-header">
+  <div class="sb-header__kicker">Foundations</div>
+  <h1 class="sb-header__title">Atmosphere</h1>
+  <p class="sb-header__description">Three optional "feel" treatments with strict scope rules. All opt-in via utility class.</p>
+</header>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">1. Soft heading color</h2>
+  <p class="sb-section__description">Use <code>.ins-text-heading-soft</code> only on display-size text placed directly on <code>--ins-surface-page</code>. Never on h1–h4 or inside cards.</p>
+  <div class="sb-preview">
+    <h1 class="ins-text-display-xl ins-text-heading-soft" style="margin:var(--ins-space-xl) 0;">Softened hero headline</h1>
+  </div>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">2. Noise texture</h2>
+  <p class="sb-section__description">Adds 3% opacity tactile grain via <code>::before</code>. Use on marketing/brand page backgrounds only. Never on docs/legal pages.</p>
+  <div class="sb-preview ins-bg-noise" style="min-height:160px; display:flex; align-items:center; justify-content:center;">
+    <span class="ins-text-body">This preview has .ins-bg-noise applied.</span>
+  </div>
+  <div class="sb-code"><pre>&lt;body class="ins-bg-noise"&gt;
+  &lt;!-- page content --&gt;
+&lt;/body&gt;</pre></div>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">3. Aurora backdrop</h2>
+  <p class="sb-section__description">Multi-radial gradient for brand-focused hero sections. One per page maximum. Never in docs/legal/pricing. Uses <code>contain: paint</code> to isolate paint work.</p>
+  <div class="sb-preview ins-bg-aurora" style="min-height:200px; display:flex; align-items:center; justify-content:center;">
+    <div style="text-align:center;">
+      <h2 class="ins-text-display" style="margin-bottom:var(--ins-space-sm);">Aurora hero</h2>
+      <p class="ins-text-body">Use on ONE hero section per brand page.</p>
+    </div>
+  </div>
+  <div class="sb-code"><pre>&lt;section class="ins-bg-aurora ins-section"&gt;
+  &lt;div class="ins-container"&gt;
+    &lt;h1 class="ins-text-display-xl"&gt;Hero&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</pre></div>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Scope rules (strict)</h2>
+  <table class="sb-table">
+    <thead><tr><th>Utility</th><th>Allowed on</th><th>Never on</th></tr></thead>
+    <tbody>
+      <tr><td><code>.ins-text-heading-soft</code></td><td>display-xl / display on surface-page hero</td><td>h1–h4, body, labels, any heading in a card</td></tr>
+      <tr><td><code>.ins-bg-noise</code></td><td>Marketing/brand full-page backgrounds</td><td>Docs, legal, pricing, cards, data surfaces</td></tr>
+      <tr><td><code>.ins-bg-aurora</code></td><td>ONE brand hero per page</td><td>Below-the-fold, docs, legal, cards, forms, tables</td></tr>
+    </tbody>
+  </table>
+</section>
+
+</main>
+</div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script>
+</body></html>

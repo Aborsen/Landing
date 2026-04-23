@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Code — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Code</h1><p class="sb-header__description">Inline <code>&lt;code&gt;</code> and fenced block. Both use Geist Mono.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Inline</h2>
+<div class="sb-preview">
+  <p class="ins-text-body">Use <code>var(--ins-text-body)</code> for paragraph color. Never reference <code>--ins-color-gray-300</code> directly.</p>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Fenced block (default — no copy button)</h2>
+<div class="sb-preview">
+  <div class="ins-code-block">
+    <span class="ins-code-block__lang">sql</span>
+    <pre><code>SELECT
+  date_trunc('month', created_at) AS month,
+  SUM(amount) AS mrr
+FROM subscriptions
+WHERE status = 'active'
+GROUP BY 1
+ORDER BY 1 DESC;</code></pre>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Fenced block with copy button (opt-in)</h2>
+<p class="sb-section__description">Add <code>data-copy="true"</code> to show the Copy button. Storybook's <code>.sb-code</code> snippets have their own universal copy — this is for production docs.</p>
+<div class="sb-preview">
+  <div class="ins-code-block" data-copy="true">
+    <span class="ins-code-block__lang">shell</span>
+    <pre><code>npm install @insightis/design-system
+# or
+pnpm add @insightis/design-system</code></pre>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;!-- Inline --&gt;
+&lt;p&gt;Use &lt;code&gt;var(--ins-text-body)&lt;/code&gt; for paragraphs.&lt;/p&gt;
+
+&lt;!-- Fenced --&gt;
+&lt;div class="ins-code-block"&gt;
+  &lt;span class="ins-code-block__lang"&gt;sql&lt;/span&gt;
+  &lt;pre&gt;&lt;code&gt;SELECT * FROM users;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</pre></div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>
