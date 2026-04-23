@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Alert / Toast — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Alert / Toast</h1><p class="sb-header__description">Inline alerts for form-level messages. Floating toasts for transient feedback. Four semantic variants.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Inline — info / success / warning / error</h2>
+<div class="sb-preview"><div style="display:flex; flex-direction:column; gap:var(--ins-space-md);">
+
+  <div class="ins-alert ins-alert--info" role="status">
+    <svg class="ins-alert__icon" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+    <div><div class="ins-alert__title">Heads up</div><div>Your trial ends in 7 days.</div></div>
+    <button class="ins-alert__close" aria-label="Dismiss"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+
+  <div class="ins-alert ins-alert--success" role="status">
+    <svg class="ins-alert__icon" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>
+    <div><div class="ins-alert__title">Saved</div><div>Metric definition has been published.</div></div>
+  </div>
+
+  <div class="ins-alert ins-alert--warning" role="status">
+    <svg class="ins-alert__icon" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path d="M12 4l10 17H2z"/><path d="M12 10v4M12 17h.01"/></svg>
+    <div><div class="ins-alert__title">Approaching limit</div><div>You've used 80% of your query quota.</div></div>
+  </div>
+
+  <div class="ins-alert ins-alert--error" role="alert">
+    <svg class="ins-alert__icon" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+    <div><div class="ins-alert__title">Query failed</div><div>The source database is unreachable. <a href="#">Retry</a></div></div>
+    <button class="ins-alert__close" aria-label="Dismiss"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+
+</div></div>
+<p class="sb-section__description" style="margin-top:var(--ins-space-md);"><strong>Unified icon system</strong>: info = <em>i-in-circle</em>; success = <em>check-in-circle</em>; warning = <em>exclamation-in-triangle</em>; error = <em>x-in-circle</em>. Stroke 1.5, rounded caps, 20×20. Same glyphs reused across toasts, banners, form-group messages.</p>
+</section>
+
+<section class="sb-section"><h2 class="sb-section__title">Compact toast (single-line ephemeral feedback)</h2>
+<p class="sb-section__description">Same component system, just the <code>--compact</code> modifier. No title, 16×16 icon, tight padding.</p>
+<div class="sb-preview" style="min-height:80px; position:relative;">
+  <div class="ins-alert ins-alert--success ins-toast--compact" style="position:relative; transform:none; left:auto; bottom:auto; max-width:320px;">
+    <svg class="ins-alert__icon" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>
+    <span>Copied to clipboard</span>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;div class="ins-alert ins-alert--success" role="status"&gt;
+  &lt;svg class="ins-alert__icon" ...&gt;&lt;/svg&gt;
+  &lt;div&gt;
+    &lt;div class="ins-alert__title"&gt;Saved&lt;/div&gt;
+    &lt;div&gt;Your changes were published.&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;button class="ins-alert__close" aria-label="Dismiss"&gt;...&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Variants --&gt;
+&lt;div class="ins-alert ins-alert--info"&gt;...&lt;/div&gt;
+&lt;div class="ins-alert ins-alert--warning"&gt;...&lt;/div&gt;
+&lt;div class="ins-alert ins-alert--error" role="alert"&gt;...&lt;/div&gt;
+
+&lt;!-- Floating toast (bottom-right on desktop, bottom-center on mobile) --&gt;
+&lt;div class="ins-toast ins-alert ins-alert--success" role="status"&gt;
+  ...
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Accessibility</h2>
+<ul style="color:var(--ins-text-body); padding-left:var(--ins-space-lg); line-height:22px;">
+  <li>Info/success/warning: <code>role="status"</code> (polite)</li>
+  <li>Error: <code>role="alert"</code> (assertive — interrupts screen reader)</li>
+  <li>Dismiss button needs <code>aria-label</code></li>
+</ul>
+</section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

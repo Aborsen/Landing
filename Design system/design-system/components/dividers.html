@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Divider — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Divider</h1><p class="sb-header__description">Horizontal / vertical / labeled. Use instead of <code>&lt;hr&gt;</code> for tokenized styling.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Horizontal</h2>
+<div class="sb-preview">
+  <p class="ins-text-body">Section content above</p>
+  <hr class="ins-divider">
+  <p class="ins-text-body">Section content below</p>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Vertical (inline)</h2>
+<div class="sb-preview">
+  <div style="display:inline-flex; align-items:center; gap:var(--ins-space-md); padding:var(--ins-space-md); background:var(--ins-surface-card); border-radius:var(--ins-radius-md);">
+    <span class="ins-text-body-sm">Published today</span>
+    <span class="ins-divider ins-divider--vertical" style="height:16px;"></span>
+    <span class="ins-text-body-sm">5 min read</span>
+    <span class="ins-divider ins-divider--vertical" style="height:16px;"></span>
+    <span class="ins-text-body-sm">Author</span>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Labeled</h2>
+<div class="sb-preview">
+  <div class="ins-divider ins-divider--labeled">OR continue with email</div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;hr class="ins-divider"&gt;
+&lt;span class="ins-divider ins-divider--vertical"&gt;&lt;/span&gt;
+&lt;div class="ins-divider ins-divider--labeled"&gt;OR&lt;/div&gt;</pre></div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

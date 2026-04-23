@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Typography — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" href="../assets/components.css">
+<link rel="stylesheet" href="../assets/storybook.css">
+</head>
+<body>
+<a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app">
+  <aside class="sb-sidebar" data-sb-render-sidebar="../"></aside>
+  <main class="sb-main" id="main">
+
+    <header class="sb-header">
+      <div class="sb-header__kicker">Foundations</div>
+      <h1 class="sb-header__title">Typography</h1>
+      <p class="sb-header__description">Geist for all UI. Geist Mono for code, stats, data only. Responsive escalation at ≥768px and ≥1280px.</p>
+    </header>
+
+    <section class="sb-section">
+      <h2 class="sb-section__title">Display</h2>
+      <div class="sb-preview">
+        <div class="sb-specimen"><div class="sb-specimen__stage"><h1 class="ins-text-display-xl">Display XL</h1></div><div class="sb-specimen__name">.ins-text-display-xl — 44/48 mobile · 60/64 tablet · 76/84 desktop · 700</div></div>
+        <div class="sb-specimen" style="margin-top:var(--ins-space-lg);"><div class="sb-specimen__stage"><h1 class="ins-text-display">Display</h1></div><div class="sb-specimen__name">.ins-text-display — 36/40 mobile · 48/52 tablet · 600</div></div>
+      </div>
+    </section>
+
+    <section class="sb-section">
+      <h2 class="sb-section__title">Headings</h2>
+      <div class="sb-preview">
+        <div class="sb-specimen"><div class="sb-specimen__stage"><h1 class="ins-text-h1">Heading 1</h1></div><div class="sb-specimen__name">.ins-text-h1 — 28/32 · 36/40 ≥768 · 600</div></div>
+        <div class="sb-specimen" style="margin-top:var(--ins-space-md);"><div class="sb-specimen__stage"><h2 class="ins-text-h2">Heading 2</h2></div><div class="sb-specimen__name">.ins-text-h2 — 22/28 · 24/28 ≥768 · 600</div></div>
+        <div class="sb-specimen" style="margin-top:var(--ins-space-md);"><div class="sb-specimen__stage"><h3 class="ins-text-h3">Heading 3</h3></div><div class="sb-specimen__name">.ins-text-h3 — 18/24 · 600</div></div>
+        <div class="sb-specimen" style="margin-top:var(--ins-space-md);"><div class="sb-specimen__stage"><h4 class="ins-text-h4">Heading 4</h4></div><div class="sb-specimen__name">.ins-text-h4 — 15/20 · 600</div></div>
+      </div>
+    </section>
+
+    <section class="sb-section">
+      <h2 class="sb-section__title">Body</h2>
+      <div class="sb-preview">
+        <p class="ins-text-body-lg" style="margin-bottom:var(--ins-space-md);">Body large — 16/24 mobile, 17/24 ≥768px. Used for hero subtitles and lead paragraphs.</p>
+        <p class="ins-text-body" style="margin-bottom:var(--ins-space-md);">Body default — 14/20. Used for paragraph copy, card bodies, inputs, and most UI content.</p>
+        <p class="ins-text-body-sm">Body small — 12/16. Used for meta, helper text, and compact listings.</p>
+      </div>
+    </section>
+
+    <section class="sb-section">
+      <h2 class="sb-section__title">Labels &amp; meta</h2>
+      <div class="sb-preview">
+        <div style="display:flex; flex-direction:column; gap:var(--ins-space-md);">
+          <span class="ins-text-label-lg">Label large — 16/24 · 500 · +1%</span>
+          <span class="ins-text-label">Label default — 14/20 · 500 · +1%</span>
+          <span class="ins-text-label-sm">Label small — 12/16 · 500 · +1%</span>
+          <span class="ins-text-caption">Caption — 12/16 inactive color</span>
+          <span class="ins-text-overline">Overline — 11/16 · 500 · +10% · UPPERCASE</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sb-section">
+      <h2 class="sb-section__title">Monospace (Geist Mono)</h2>
+      <p class="sb-section__description">Reserved for code, stats, data tables, timestamps, trend badges. Never body prose.</p>
+      <div class="sb-preview">
+        <div style="display:flex; flex-direction:column; gap:var(--ins-space-md);">
+          <span class="ins-text-mono">mono default — 14/20 (data cells, stat labels)</span>
+          <span class="ins-text-mono-sm">mono small — 12/16 (legal footer, meta)</span>
+          <span class="ins-text-mono-xs">mono extra-small — 11/16 (tags, build-ids)</span>
+          <div class="ins-stat">1,247.59</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sb-section">
+      <h2 class="sb-section__title">Soft heading</h2>
+      <p class="sb-section__description">Use <code>--ins-text-heading-soft</code> only on display sizes placed directly on <code>--ins-surface-page</code> (no card). Softens pure white headlines on dark hero surfaces.</p>
+      <div class="sb-preview">
+        <h1 class="ins-text-display-xl ins-text-heading-soft">Soft hero headline</h1>
+        <div class="sb-specimen__name">.ins-text-display-xl.ins-text-heading-soft</div>
+      </div>
+    </section>
+
+    <section class="sb-section">
+      <h2 class="sb-section__title">Snippet</h2>
+      <div class="sb-code"><pre>&lt;h1 class="ins-text-display-xl"&gt;Hero headline&lt;/h1&gt;
+&lt;p class="ins-text-body-lg"&gt;Lead paragraph.&lt;/p&gt;
+&lt;p class="ins-text-body"&gt;Default paragraph.&lt;/p&gt;
+&lt;span class="ins-text-overline"&gt;Section eyebrow&lt;/span&gt;
+&lt;code class="ins-text-mono"&gt;const x = 1;&lt;/code&gt;</pre></div>
+    </section>
+
+  </main>
+</div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script>
+</body>
+</html>

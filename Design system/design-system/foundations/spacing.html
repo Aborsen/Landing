@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spacing — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css">
+</head>
+<body>
+<a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app">
+<aside class="sb-sidebar" data-sb-render-sidebar="../"></aside>
+<main class="sb-main" id="main">
+
+<header class="sb-header">
+  <div class="sb-header__kicker">Foundations</div>
+  <h1 class="sb-header__title">Spacing</h1>
+  <p class="sb-header__description">4px base grid. 2px half-step available for tight nudges (use sparingly). T-shirt scale maps to numeric primitives.</p>
+</header>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Scale</h2>
+  <div class="sb-preview">
+    <table class="sb-table">
+      <thead><tr><th>Token</th><th>Primitive</th><th>px</th><th>Visual</th></tr></thead>
+      <tbody>
+        <tr><td><code>space-2xs</code></td><td><code>size-half</code></td><td>2</td><td><div class="sb-space-bar" style="width:2px"></div></td></tr>
+        <tr><td><code>space-xs</code></td><td><code>size-1</code></td><td>4</td><td><div class="sb-space-bar" style="width:4px"></div></td></tr>
+        <tr><td><code>space-sm</code></td><td><code>size-2</code></td><td>8</td><td><div class="sb-space-bar" style="width:8px"></div></td></tr>
+        <tr><td><code>space-md</code></td><td><code>size-3</code></td><td>12</td><td><div class="sb-space-bar" style="width:12px"></div></td></tr>
+        <tr><td><code>space-lg</code></td><td><code>size-4</code></td><td>16</td><td><div class="sb-space-bar" style="width:16px"></div></td></tr>
+        <tr><td>—</td><td><code>size-5</code></td><td>20</td><td><div class="sb-space-bar" style="width:20px"></div></td></tr>
+        <tr><td><code>space-xl</code></td><td><code>size-6</code></td><td>24</td><td><div class="sb-space-bar" style="width:24px"></div></td></tr>
+        <tr><td>—</td><td><code>size-7</code></td><td>28</td><td><div class="sb-space-bar" style="width:28px"></div></td></tr>
+        <tr><td><code>space-2xl</code></td><td><code>size-8</code></td><td>32</td><td><div class="sb-space-bar" style="width:32px"></div></td></tr>
+        <tr><td>—</td><td><code>size-10</code></td><td>40</td><td><div class="sb-space-bar" style="width:40px"></div></td></tr>
+        <tr><td><code>space-3xl</code></td><td><code>size-12</code></td><td>48</td><td><div class="sb-space-bar" style="width:48px"></div></td></tr>
+        <tr><td>—</td><td><code>size-14</code></td><td>56</td><td><div class="sb-space-bar" style="width:56px"></div></td></tr>
+        <tr><td><code>space-4xl</code></td><td><code>size-16</code></td><td>64</td><td><div class="sb-space-bar" style="width:64px"></div></td></tr>
+        <tr><td><code>space-5xl</code></td><td><code>size-20</code></td><td>80</td><td><div class="sb-space-bar" style="width:80px"></div></td></tr>
+        <tr><td><code>space-6xl</code></td><td><code>size-24</code></td><td>96</td><td><div class="sb-space-bar" style="width:96px"></div></td></tr>
+        <tr><td>—</td><td><code>size-32</code></td><td>128</td><td><div class="sb-space-bar" style="width:128px"></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Usage</h2>
+  <div class="sb-do-dont">
+    <div class="sb-do"><div class="sb-do__label">✓ Do</div><p style="color:var(--ins-text-body); font-size:var(--ins-font-size-14); line-height:20px;">Use semantic T-shirt aliases (<code>--ins-space-lg</code>) in components. Keep all values on the 4px grid.</p></div>
+    <div class="sb-dont"><div class="sb-dont__label">✗ Don't</div><p style="color:var(--ins-text-body); font-size:var(--ins-font-size-14); line-height:20px;">Don't use arbitrary px. Don't use 2px half-step unless a hair-line nudge is required.</p></div>
+  </div>
+  <div class="sb-code"><pre>padding: var(--ins-space-lg);   /* 16px */
+gap: var(--ins-space-md);         /* 12px */
+margin-block: var(--ins-space-3xl); /* 48px */</pre></div>
+</section>
+
+</main>
+</div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script>
+</body></html>

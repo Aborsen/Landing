@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Form group — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Form group</h1><p class="sb-header__description">Composition pattern for label + input + helper/error. Wires ARIA correctly so screen readers announce validation.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Variants</h2>
+<div class="sb-preview"><div style="display:grid; grid-template-columns:1fr; gap:var(--ins-space-xl); max-width:480px;">
+
+  <div class="ins-form-group">
+    <label class="ins-form-group__label" for="ex1">Email</label>
+    <input type="email" class="ins-input" id="ex1" placeholder="you@work.com" aria-describedby="ex1-hint">
+    <span class="ins-form-group__hint" id="ex1-hint">We'll never share your address.</span>
+  </div>
+
+  <div class="ins-form-group">
+    <label class="ins-form-group__label ins-form-group__label--required" for="ex2">Company name</label>
+    <input type="text" class="ins-input" id="ex2" placeholder="Acme Inc." required>
+  </div>
+
+  <div class="ins-form-group">
+    <label class="ins-form-group__label" for="ex3">Email</label>
+    <input type="email" class="ins-input is-error" id="ex3" value="not-an-email" aria-invalid="true" aria-describedby="ex3-err">
+    <span class="ins-form-group__message ins-form-group__message--error" id="ex3-err">Enter a valid email address.</span>
+  </div>
+
+</div></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;div class="ins-form-group"&gt;
+  &lt;label class="ins-form-group__label ins-form-group__label--required" for="email"&gt;Email&lt;/label&gt;
+  &lt;input type="email" class="ins-input" id="email"
+         required aria-describedby="email-hint"&gt;
+  &lt;span class="ins-form-group__hint" id="email-hint"&gt;We'll never share it.&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Error state: aria-invalid + error message via aria-describedby --&gt;
+&lt;div class="ins-form-group"&gt;
+  &lt;label class="ins-form-group__label" for="e2"&gt;Email&lt;/label&gt;
+  &lt;input type="email" class="ins-input is-error" id="e2"
+         aria-invalid="true" aria-describedby="e2-err"&gt;
+  &lt;span class="ins-form-group__message ins-form-group__message--error"
+        id="e2-err"&gt;Enter a valid email.&lt;/span&gt;
+&lt;/div&gt;</pre></div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

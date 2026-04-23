@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pagination — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Pagination</h1><p class="sb-header__description">Page-number bar with ellipsis truncation. Current uses <code>aria-current="page"</code>.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Default</h2>
+<div class="sb-preview"><nav aria-label="Pagination" class="ins-pagination">
+  <button class="ins-pagination__item" disabled aria-label="Previous">‹</button>
+  <button class="ins-pagination__item" aria-current="page">1</button>
+  <button class="ins-pagination__item">2</button>
+  <button class="ins-pagination__item">3</button>
+  <span class="ins-pagination__ellipsis">…</span>
+  <button class="ins-pagination__item">12</button>
+  <button class="ins-pagination__item" aria-label="Next">›</button>
+</nav></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Mid-range</h2>
+<div class="sb-preview"><nav aria-label="Pagination" class="ins-pagination">
+  <button class="ins-pagination__item" aria-label="Previous">‹</button>
+  <button class="ins-pagination__item">1</button>
+  <span class="ins-pagination__ellipsis">…</span>
+  <button class="ins-pagination__item">5</button>
+  <button class="ins-pagination__item" aria-current="page">6</button>
+  <button class="ins-pagination__item">7</button>
+  <span class="ins-pagination__ellipsis">…</span>
+  <button class="ins-pagination__item">12</button>
+  <button class="ins-pagination__item" aria-label="Next">›</button>
+</nav></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;nav aria-label="Pagination" class="ins-pagination"&gt;
+  &lt;button class="ins-pagination__item" disabled aria-label="Previous"&gt;‹&lt;/button&gt;
+  &lt;button class="ins-pagination__item" aria-current="page"&gt;1&lt;/button&gt;
+  &lt;button class="ins-pagination__item"&gt;2&lt;/button&gt;
+  &lt;span class="ins-pagination__ellipsis"&gt;…&lt;/span&gt;
+  &lt;button class="ins-pagination__item"&gt;12&lt;/button&gt;
+  &lt;button class="ins-pagination__item" aria-label="Next"&gt;›&lt;/button&gt;
+&lt;/nav&gt;</pre></div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

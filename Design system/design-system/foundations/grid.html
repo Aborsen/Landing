@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grid — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css">
+<style>
+.sb-grid-demo .col { background: var(--ins-color-teal-a-12); border: 1px solid var(--ins-color-teal-a-25); border-radius:4px; padding:10px; text-align:center; color:var(--ins-text-heading); font-family:var(--ins-font-family-mono); font-size:11px; min-height:40px; display:flex; align-items:center; justify-content:center; }
+</style>
+</head>
+<body>
+<a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app">
+<aside class="sb-sidebar" data-sb-render-sidebar="../"></aside>
+<main class="sb-main" id="main">
+
+<header class="sb-header">
+  <div class="sb-header__kicker">Foundations</div>
+  <h1 class="sb-header__title">Grid</h1>
+  <p class="sb-header__description">Responsive column count: 4 / 8 / 12 / 24 at mobile / tablet / laptop / desktop. Gutters scale with breakpoint.</p>
+</header>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Responsive columns</h2>
+  <table class="sb-table">
+    <thead><tr><th>Breakpoint</th><th>Columns</th><th>Gutter</th><th>Container padding</th></tr></thead>
+    <tbody>
+      <tr><td>mobile (320–479)</td><td>4</td><td>16px</td><td>16px</td></tr>
+      <tr><td>mobile-lg (480–767)</td><td>4</td><td>16px</td><td>20px</td></tr>
+      <tr><td>tablet (768–1023)</td><td>8</td><td>20px</td><td>24px</td></tr>
+      <tr><td>laptop (1024–1279)</td><td>12</td><td>24px</td><td>32px</td></tr>
+      <tr><td>desktop (1280+)</td><td>24</td><td>24px</td><td>32px (container max 1280)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Live grid (resize to see column count change)</h2>
+  <div class="sb-preview sb-grid-demo">
+    <div class="ins-grid">
+      <div class="col ins-col-quarter">¼</div>
+      <div class="col ins-col-quarter">¼</div>
+      <div class="col ins-col-quarter">¼</div>
+      <div class="col ins-col-quarter">¼</div>
+      <div class="col ins-col-third">⅓</div>
+      <div class="col ins-col-third">⅓</div>
+      <div class="col ins-col-third">⅓</div>
+      <div class="col ins-col-half">½</div>
+      <div class="col ins-col-half">½</div>
+      <div class="col ins-col-full">full</div>
+    </div>
+  </div>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Utilities</h2>
+  <div class="sb-code"><pre>&lt;div class="ins-grid"&gt;
+  &lt;div class="ins-col-quarter"&gt;1/4&lt;/div&gt;
+  &lt;div class="ins-col-quarter"&gt;1/4&lt;/div&gt;
+  &lt;div class="ins-col-half"&gt;1/2&lt;/div&gt;
+  &lt;div class="ins-col-full"&gt;full-width&lt;/div&gt;
+&lt;/div&gt;</pre></div>
+  <p class="sb-section__description">Press <kbd>G</kbd> anywhere in storybook to toggle a grid overlay (debug-only).</p>
+</section>
+
+</main>
+</div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script>
+</body></html>

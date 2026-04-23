@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Tooltip — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Tooltip</h1><p class="sb-header__description">Four positions + rich variant. CSS-only (hover/focus-within). Ships visible on hover or keyboard focus.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Positions</h2>
+<div class="sb-preview" style="padding:60px;">
+  <div class="sb-preview-row" style="gap:60px;">
+    <div class="ins-tooltip-wrap">
+      <button class="ins-btn ins-btn--secondary">Top</button>
+      <div class="ins-tooltip ins-tooltip--top" role="tooltip">Tooltip text</div>
+    </div>
+    <div class="ins-tooltip-wrap">
+      <button class="ins-btn ins-btn--secondary">Right</button>
+      <div class="ins-tooltip ins-tooltip--right" role="tooltip">Tooltip text</div>
+    </div>
+    <div class="ins-tooltip-wrap">
+      <button class="ins-btn ins-btn--secondary">Bottom</button>
+      <div class="ins-tooltip ins-tooltip--bottom" role="tooltip">Tooltip text</div>
+    </div>
+    <div class="ins-tooltip-wrap">
+      <button class="ins-btn ins-btn--secondary">Left</button>
+      <div class="ins-tooltip ins-tooltip--left" role="tooltip">Tooltip text</div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Rich (title + description)</h2>
+<div class="sb-preview" style="padding:60px;">
+  <div class="ins-tooltip-wrap">
+    <button class="ins-btn ins-btn--icon" aria-label="Info"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg></button>
+    <div class="ins-tooltip ins-tooltip--top ins-tooltip--rich" role="tooltip">
+      <div class="ins-tooltip__title">Metric definition</div>
+      <div class="ins-tooltip__description">Monthly recurring revenue, normalized to calendar month and excluding one-time charges.</div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;div class="ins-tooltip-wrap"&gt;
+  &lt;button class="ins-btn ins-btn--icon" aria-label="Info"&gt;...&lt;/button&gt;
+  &lt;div class="ins-tooltip ins-tooltip--top" role="tooltip"&gt;Tooltip text&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Rich --&gt;
+&lt;div class="ins-tooltip ins-tooltip--rich" role="tooltip"&gt;
+  &lt;div class="ins-tooltip__title"&gt;Title&lt;/div&gt;
+  &lt;div class="ins-tooltip__description"&gt;Description&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

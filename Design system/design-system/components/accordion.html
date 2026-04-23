@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Accordion — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Accordion</h1><p class="sb-header__description">Single-open (default) or <code>data-allow-multiple</code>. Items have hover + focus states — hover over any row to preview.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Single-open (FAQ)</h2>
+<div class="sb-preview">
+  <div class="ins-accordion">
+    <div class="ins-accordion__item" aria-expanded="true">
+      <button class="ins-accordion__trigger">What is Insightis?
+        <svg class="ins-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="ins-accordion__panel"><p class="ins-text-body">Decision intelligence for data teams. Ask a question, get a cited answer sourced from your warehouse.</p></div>
+    </div>
+    <div class="ins-accordion__item" aria-expanded="false">
+      <button class="ins-accordion__trigger">How is it different from BI tools?
+        <svg class="ins-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="ins-accordion__panel"><p class="ins-text-body">BI tools produce dashboards. Insightis produces cited, auditable answers to ad-hoc questions.</p></div>
+    </div>
+    <div class="ins-accordion__item" aria-expanded="false">
+      <button class="ins-accordion__trigger">What sources are supported?
+        <svg class="ins-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="ins-accordion__panel"><p class="ins-text-body">Snowflake, BigQuery, Redshift, Postgres, and dbt models via the semantic layer.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;div class="ins-accordion"&gt;
+  &lt;div class="ins-accordion__item" aria-expanded="true"&gt;
+    &lt;button class="ins-accordion__trigger"&gt;Question
+      &lt;svg class="ins-accordion__icon" ...&gt;&lt;/svg&gt;
+    &lt;/button&gt;
+    &lt;div class="ins-accordion__panel"&gt;
+      &lt;p&gt;Answer.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Allow multiple open at once --&gt;
+&lt;div class="ins-accordion" data-allow-multiple="true"&gt;...&lt;/div&gt;</pre></div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

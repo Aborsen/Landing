@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Layout primitives — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css">
+</head>
+<body>
+<a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app">
+<aside class="sb-sidebar" data-sb-render-sidebar="../"></aside>
+<main class="sb-main" id="main">
+
+<header class="sb-header">
+  <div class="sb-header__kicker">Foundation</div>
+  <h1 class="sb-header__title">Layout primitives</h1>
+  <p class="sb-header__description">Four low-level layout utilities: container, section, split, grid. Section-level block compositions (hero, feature grid, pricing, CTA, promo, newsletter, stats strip, team grid, sidebar+content, testimonial, logo wall, FAQ, legal prose) live in <strong><a href="../patterns/hero.html">Patterns</a></strong> — each on its own page, built from real component classes.</p>
+</header>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Container</h2>
+  <p class="sb-section__description">Max-width wrapper (1280px) with responsive horizontal padding (16 / 24 / 32).</p>
+  <div class="sb-preview" style="padding:0;">
+    <div class="ins-container" style="background:var(--ins-color-teal-a-08); border:1px dashed var(--ins-color-teal-a-50); padding-block:var(--ins-space-lg); color:var(--ins-text-heading); text-align:center;">.ins-container</div>
+  </div>
+  <div class="sb-code"><pre>&lt;div class="ins-container"&gt;...&lt;/div&gt;</pre></div>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Section</h2>
+  <p class="sb-section__description">Vertical rhythm wrapper — padding-block scales at ≥768.</p>
+  <div class="sb-code"><pre>&lt;section class="ins-section"&gt;
+  &lt;div class="ins-container"&gt;...&lt;/div&gt;
+&lt;/section&gt;</pre></div>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Grid</h2>
+  <p class="sb-section__description">24-col responsive grid with <code>.ins-col-full</code> / <code>-half</code> / <code>-third</code> / <code>-quarter</code> shorthand. See <a href="grid.html">Grid</a> foundation for the full system.</p>
+  <div class="sb-preview">
+    <div class="ins-grid">
+      <div class="ins-col-half" style="background:var(--ins-color-teal-a-12); padding:var(--ins-space-md); color:var(--ins-text-heading); text-align:center; border-radius:var(--ins-radius-sm);">½</div>
+      <div class="ins-col-half" style="background:var(--ins-color-teal-a-12); padding:var(--ins-space-md); color:var(--ins-text-heading); text-align:center; border-radius:var(--ins-radius-sm);">½</div>
+    </div>
+  </div>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Split (text + media)</h2>
+  <p class="sb-section__description">2-col layout, stacks on mobile. Compose with <code>.ins-grid + .ins-col-half</code>.</p>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Block patterns</h2>
+  <p class="sb-section__description">All section-level blocks are dedicated pages in the Patterns section — they demonstrate how to compose components without new styling. Atom approach: no inline drift.</p>
+  <ul style="color:var(--ins-text-body); font-size:var(--ins-font-size-14); line-height:24px; padding-left:var(--ins-space-lg);">
+    <li><a href="../patterns/hero.html">Hero</a> · <a href="../patterns/feature-grid.html">Feature grid</a> · <a href="../patterns/pricing-section.html">Pricing section</a></li>
+    <li><a href="../patterns/cta-block.html">CTA block</a> · <a href="../patterns/promo-banner.html">Promo banner</a> · <a href="../patterns/newsletter-block.html">Newsletter block</a></li>
+    <li><a href="../patterns/stats-strip.html">Stats strip</a> · <a href="../patterns/team-grid.html">Team grid</a> · <a href="../patterns/sidebar-content.html">Sidebar + content</a></li>
+    <li><a href="../patterns/testimonial-row.html">Testimonial row</a> · <a href="../patterns/logo-wall.html">Logo wall</a> · <a href="../patterns/faq-block.html">FAQ block</a> · <a href="../patterns/legal-prose.html">Legal prose</a></li>
+  </ul>
+</section>
+
+</main>
+</div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script>
+</body></html>

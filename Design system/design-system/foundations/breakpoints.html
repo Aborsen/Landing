@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Breakpoints — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css">
+</head>
+<body>
+<a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app">
+<aside class="sb-sidebar" data-sb-render-sidebar="../"></aside>
+<main class="sb-main" id="main">
+
+<header class="sb-header">
+  <div class="sb-header__kicker">Foundations</div>
+  <h1 class="sb-header__title">Breakpoints</h1>
+  <p class="sb-header__description">Mobile-first. Four <code>min-width</code> stops. 320px is the smallest supported viewport.</p>
+</header>
+
+<section class="sb-section">
+  <table class="sb-table">
+    <thead><tr><th>Name</th><th>Min width</th><th>Token</th><th>Typical device</th></tr></thead>
+    <tbody>
+      <tr><td>mobile</td><td>320px (floor)</td><td>—</td><td>iPhone SE, iPhone 5s portrait</td></tr>
+      <tr><td>mobile-lg</td><td>480px</td><td><code>--ins-bp-480</code> / <code>--ins-breakpoint-sm</code></td><td>Large phones portrait, small phones landscape</td></tr>
+      <tr><td>tablet</td><td>768px</td><td><code>--ins-bp-768</code> / <code>--ins-breakpoint-md</code></td><td>iPad portrait, small tablets</td></tr>
+      <tr><td>laptop</td><td>1024px</td><td><code>--ins-bp-1024</code> / <code>--ins-breakpoint-lg</code></td><td>iPad landscape, small laptops</td></tr>
+      <tr><td>desktop</td><td>1280px</td><td><code>--ins-bp-1280</code> / <code>--ins-breakpoint-xl</code></td><td>Laptop, desktop (container max)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Visual map</h2>
+  <div class="sb-preview">
+    <div style="position:relative; height:40px; background:var(--ins-surface-elevated); border-radius:var(--ins-radius-sm);">
+      <div style="position:absolute; inset:0 calc(100% - 37.5%) 0 0; background:var(--ins-color-teal-a-20); border-right:2px solid var(--ins-color-teal-400); border-radius:var(--ins-radius-sm);"></div>
+      <span style="position:absolute; left:4px; top:50%; transform:translateY(-50%); font-family:var(--ins-font-family-mono); font-size:10px; color:var(--ins-text-heading);">0–479</span>
+      <span style="position:absolute; left:37.5%; top:50%; transform:translateY(-50%); font-family:var(--ins-font-family-mono); font-size:10px; color:var(--ins-text-body); margin-left:4px;">480–767</span>
+      <span style="position:absolute; left:60%; top:50%; transform:translateY(-50%); font-family:var(--ins-font-family-mono); font-size:10px; color:var(--ins-text-body); margin-left:4px;">768–1023</span>
+      <span style="position:absolute; left:80%; top:50%; transform:translateY(-50%); font-family:var(--ins-font-family-mono); font-size:10px; color:var(--ins-text-body); margin-left:4px;">1024–1279</span>
+      <span style="position:absolute; right:4px; top:50%; transform:translateY(-50%); font-family:var(--ins-font-family-mono); font-size:10px; color:var(--ins-text-heading);">1280+</span>
+    </div>
+    <p class="ins-text-caption" style="margin-top:var(--ins-space-md);">Resize your browser; layouts across the kit reflow at these stops.</p>
+  </div>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Usage</h2>
+  <div class="sb-code"><pre>/* Mobile-first: base rules target <480px */
+.my-card { padding: var(--ins-space-lg); }
+
+/* Tablet+ */
+@media (min-width: 768px) {
+  .my-card { padding: var(--ins-space-xl); }
+}
+
+/* Desktop */
+@media (min-width: 1280px) {
+  .my-card { padding: var(--ins-space-2xl); }
+}</pre></div>
+</section>
+
+</main>
+</div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script>
+</body></html>

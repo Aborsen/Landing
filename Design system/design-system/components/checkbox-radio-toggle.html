@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Checkbox / Radio / Toggle — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Checkbox · Radio · Toggle</h1><p class="sb-header__description">Form controls with 16×16 hit-marks; full-row hit-area ≥44×44 on mobile per WCAG 2.5.5. Check glyph is centered + sized via SVG data-URI so it never drifts. Disabled rows have <code>cursor: not-allowed</code> and <strong>never</strong> show hover styles.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Checkbox</h2>
+<div class="sb-preview"><div style="display:flex; flex-direction:column; gap:var(--ins-space-md);">
+  <label class="ins-checkbox"><input type="checkbox"><span class="ins-checkbox__box"></span>Default</label>
+  <label class="ins-checkbox"><input type="checkbox" checked><span class="ins-checkbox__box"></span>Checked</label>
+  <label class="ins-checkbox"><input type="checkbox" id="indet"><span class="ins-checkbox__box"></span>Indeterminate</label>
+  <label class="ins-checkbox"><input type="checkbox" disabled><span class="ins-checkbox__box"></span>Disabled</label>
+  <label class="ins-checkbox"><input type="checkbox" checked disabled><span class="ins-checkbox__box"></span>Disabled &amp; checked</label>
+</div></div>
+<script>document.getElementById('indet').indeterminate = true;</script>
+</section>
+
+<section class="sb-section"><h2 class="sb-section__title">Radio</h2>
+<div class="sb-preview"><div style="display:flex; flex-direction:column; gap:var(--ins-space-md);">
+  <label class="ins-radio"><input type="radio" name="r"><span class="ins-radio__dot"></span>Option A</label>
+  <label class="ins-radio"><input type="radio" name="r" checked><span class="ins-radio__dot"></span>Option B (selected)</label>
+  <label class="ins-radio"><input type="radio" name="r" disabled><span class="ins-radio__dot"></span>Option C (disabled)</label>
+</div></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Toggle</h2>
+<div class="sb-preview"><div style="display:flex; flex-direction:column; gap:var(--ins-space-md);">
+  <label class="ins-toggle"><input type="checkbox"><span class="ins-toggle__track"></span>Off</label>
+  <label class="ins-toggle"><input type="checkbox" checked><span class="ins-toggle__track"></span>On</label>
+  <label class="ins-toggle"><input type="checkbox" disabled><span class="ins-toggle__track"></span>Disabled</label>
+</div></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;label class="ins-checkbox"&gt;
+  &lt;input type="checkbox"&gt;
+  &lt;span class="ins-checkbox__box"&gt;&lt;/span&gt;
+  Accept terms
+&lt;/label&gt;
+
+&lt;label class="ins-radio"&gt;
+  &lt;input type="radio" name="plan"&gt;
+  &lt;span class="ins-radio__dot"&gt;&lt;/span&gt;
+  Starter
+&lt;/label&gt;
+
+&lt;label class="ins-toggle"&gt;
+  &lt;input type="checkbox"&gt;
+  &lt;span class="ins-toggle__track"&gt;&lt;/span&gt;
+  Enable notifications
+&lt;/label&gt;</pre></div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Button — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css">
+</head>
+<body>
+<a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app">
+<aside class="sb-sidebar" data-sb-render-sidebar="../"></aside>
+<main class="sb-main" id="main">
+
+<header class="sb-header">
+  <div class="sb-header__kicker">Component</div>
+  <h1 class="sb-header__title">Button</h1>
+  <p class="sb-header__description">Five variants, three sizes, all states. Icon-only buttons enforce 44×44 touch target on mobile.</p>
+</header>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Variants</h2>
+  <div class="sb-preview" data-sb-state-target-id>
+    <div class="sb-preview-row">
+      <button class="ins-btn ins-btn--primary">Primary</button>
+      <button class="ins-btn ins-btn--secondary">Secondary</button>
+      <button class="ins-btn ins-btn--ghost">Ghost</button>
+      <button class="ins-btn ins-btn--icon" aria-label="Settings"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
+      <button class="ins-btn ins-btn--link">Inline link</button>
+    </div>
+  </div>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Sizes</h2>
+  <div class="sb-preview">
+    <div class="sb-preview-row">
+      <button class="ins-btn ins-btn--primary ins-btn--sm">Small</button>
+      <button class="ins-btn ins-btn--primary ins-btn--md">Medium</button>
+      <button class="ins-btn ins-btn--primary ins-btn--lg">Large</button>
+    </div>
+  </div>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">States (primary)</h2>
+  <div class="sb-preview">
+    <div class="sb-preview-row">
+      <div class="sb-specimen"><button class="ins-btn ins-btn--primary">Default</button><span class="sb-specimen__name">default</span></div>
+      <div class="sb-specimen"><button class="ins-btn ins-btn--primary" style="background:var(--ins-button-primary-bg-hover);">Hover</button><span class="sb-specimen__name">hover</span></div>
+      <div class="sb-specimen"><button class="ins-btn ins-btn--primary" style="background:var(--ins-button-primary-bg-active);">Active</button><span class="sb-specimen__name">active</span></div>
+      <div class="sb-specimen"><button class="ins-btn ins-btn--primary" style="box-shadow:var(--ins-focus-ring);">Focus</button><span class="sb-specimen__name">focus</span></div>
+      <div class="sb-specimen"><button class="ins-btn ins-btn--primary" disabled>Disabled</button><span class="sb-specimen__name">disabled</span></div>
+      <div class="sb-specimen"><button class="ins-btn ins-btn--primary is-loading">Saving…</button><span class="sb-specimen__name">loading</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">States (secondary)</h2>
+  <div class="sb-preview">
+    <div class="sb-preview-row">
+      <button class="ins-btn ins-btn--secondary">Default</button>
+      <button class="ins-btn ins-btn--secondary" style="background:var(--ins-button-secondary-bg-hover); border-color:var(--ins-button-secondary-border-hover);">Hover</button>
+      <button class="ins-btn ins-btn--secondary" style="background:var(--ins-button-secondary-bg-active);">Active</button>
+      <button class="ins-btn ins-btn--secondary" style="box-shadow:var(--ins-focus-ring);">Focus</button>
+      <button class="ins-btn ins-btn--secondary" disabled>Disabled</button>
+    </div>
+  </div>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">HTML</h2>
+  <div class="sb-code"><pre>&lt;button class="ins-btn ins-btn--primary ins-btn--md"&gt;Primary&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--secondary ins-btn--md"&gt;Secondary&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--ghost ins-btn--md"&gt;Ghost&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--icon" aria-label="Settings"&gt;
+  &lt;svg width="16" height="16" ...&gt;&lt;/svg&gt;
+&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--link"&gt;Inline link&lt;/button&gt;
+
+&lt;!-- Loading state: reserves min-width --&gt;
+&lt;button class="ins-btn ins-btn--primary is-loading"&gt;Saving&lt;/button&gt;</pre></div>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Accessibility</h2>
+  <ul style="color:var(--ins-text-body); font-size:var(--ins-font-size-14); line-height:22px; padding-left:var(--ins-space-lg);">
+    <li>Icon-only buttons MUST include <code>aria-label</code></li>
+    <li>Loading buttons set <code>aria-busy="true"</code> and stay focusable; add <code>disabled</code> on submits</li>
+    <li>Touch target: minimum 44×44 on mobile (enforced by <code>.ins-btn--icon</code> min-width/height)</li>
+    <li>Focus ring: <code>--ins-focus-ring</code> applied via <code>:focus-visible</code> from base.css</li>
+  </ul>
+</section>
+
+</main>
+</div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script>
+</body></html>

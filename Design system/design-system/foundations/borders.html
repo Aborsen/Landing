@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Borders — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css">
+</head>
+<body>
+<a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app">
+<aside class="sb-sidebar" data-sb-render-sidebar="../"></aside>
+<main class="sb-main" id="main">
+
+<header class="sb-header">
+  <div class="sb-header__kicker">Foundations</div>
+  <h1 class="sb-header__title">Borders</h1>
+  <p class="sb-header__description">Four widths (hairline → focus ring) plus seven semantic border-color roles.</p>
+</header>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Widths</h2>
+  <div class="sb-preview"><div class="sb-preview-grid">
+    <div class="sb-specimen"><div class="sb-specimen__stage"><div style="width:120px; height:60px; border:var(--ins-border-width-1) solid var(--ins-border-prominent); border-radius:var(--ins-radius-8);"></div></div><div class="sb-specimen__name">1px — default</div></div>
+    <div class="sb-specimen"><div class="sb-specimen__stage"><div style="width:120px; height:60px; border:var(--ins-border-width-1-5) solid var(--ins-border-prominent); border-radius:var(--ins-radius-8);"></div></div><div class="sb-specimen__name">1.5px — input focus</div></div>
+    <div class="sb-specimen"><div class="sb-specimen__stage"><div style="width:120px; height:60px; border:var(--ins-border-width-2) solid var(--ins-border-prominent); border-radius:var(--ins-radius-8);"></div></div><div class="sb-specimen__name">2px — tab underline</div></div>
+    <div class="sb-specimen"><div class="sb-specimen__stage"><div style="width:120px; height:60px; border:var(--ins-border-width-3) solid var(--ins-border-focus); border-radius:var(--ins-radius-8);"></div></div><div class="sb-specimen__name">3px — focus ring</div></div>
+  </div></div>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Semantic colors</h2>
+  <table class="sb-table">
+    <thead><tr><th>Token</th><th>Value</th><th>Preview</th></tr></thead>
+    <tbody>
+      <tr><td><code>--ins-border-default</code></td><td>white 6%</td><td><div style="width:100%; height:24px; border:1px solid var(--ins-border-default); border-radius:4px; background:var(--ins-surface-card);"></div></td></tr>
+      <tr><td><code>--ins-border-hover</code></td><td>white 12%</td><td><div style="width:100%; height:24px; border:1px solid var(--ins-border-hover); border-radius:4px; background:var(--ins-surface-card);"></div></td></tr>
+      <tr><td><code>--ins-border-prominent</code></td><td>white 45%</td><td><div style="width:100%; height:24px; border:1px solid var(--ins-border-prominent); border-radius:4px; background:var(--ins-surface-card);"></div></td></tr>
+      <tr><td><code>--ins-border-strong</code></td><td>gray-700</td><td><div style="width:100%; height:24px; border:1px solid var(--ins-border-strong); border-radius:4px; background:var(--ins-surface-card);"></div></td></tr>
+      <tr><td><code>--ins-border-brand</code></td><td>teal 20%</td><td><div style="width:100%; height:24px; border:1px solid var(--ins-border-brand); border-radius:4px; background:var(--ins-surface-card);"></div></td></tr>
+      <tr><td><code>--ins-border-focus</code></td><td>teal 50%</td><td><div style="width:100%; height:24px; border:2px solid var(--ins-border-focus); border-radius:4px; background:var(--ins-surface-card);"></div></td></tr>
+      <tr><td><code>--ins-border-error</code></td><td>red-400</td><td><div style="width:100%; height:24px; border:2px solid var(--ins-border-error); border-radius:4px; background:var(--ins-surface-card);"></div></td></tr>
+    </tbody>
+  </table>
+</section>
+
+</main>
+</div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script>
+</body></html>

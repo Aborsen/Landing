@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pricing section — Patterns</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Pattern</div><h1 class="sb-header__title">Pricing section</h1><p class="sb-header__description">Segmented monthly/yearly toggle + 3 pricing cards. Card CTAs align to same baseline via <code>margin-top: auto</code>.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Pricing tiers</h2>
+<div class="sb-preview sb-preview--fullbleed" data-sb-viewport-preview>
+  <div class="ins-container" style="padding-block:var(--ins-space-3xl);">
+    <div style="text-align:center; margin-bottom:var(--ins-space-2xl);">
+      <h2 class="ins-text-h1" style="margin-bottom:var(--ins-space-lg);">Simple pricing</h2>
+      <div role="tablist" class="ins-segmented" style="margin:0 auto;">
+        <button role="tab" class="ins-segmented__item" aria-selected="true">Monthly</button>
+        <button role="tab" class="ins-segmented__item" aria-selected="false">Yearly</button>
+      </div>
+    </div>
+    <div class="ins-grid">
+      <div class="ins-card ins-card--pricing ins-col-third">
+        <div class="ins-card__eyebrow">Starter</div>
+        <div class="ins-card__price">$29<span style="font-size:14px; color:var(--ins-text-inactive); font-weight:400;">/mo</span></div>
+        <p class="ins-card__body">Core features for small teams starting with decision intelligence.</p>
+        <button class="ins-btn ins-btn--secondary">Get started</button>
+      </div>
+      <div class="ins-card ins-card--pricing ins-card--selected ins-col-third">
+        <div class="ins-card__eyebrow">Team</div>
+        <div class="ins-card__price">$99<span style="font-size:14px; color:var(--ins-text-inactive); font-weight:400;">/mo</span></div>
+        <p class="ins-card__body">Everything in Starter, plus analytics, SSO, and priority support.</p>
+        <button class="ins-btn ins-btn--primary">Choose Team</button>
+      </div>
+      <div class="ins-card ins-card--pricing ins-col-third">
+        <div class="ins-card__eyebrow">Enterprise</div>
+        <div class="ins-card__price">Custom</div>
+        <p class="ins-card__body">SSO, SLA, dedicated CSM, custom connectors.</p>
+        <button class="ins-btn ins-btn--secondary">Contact sales</button>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

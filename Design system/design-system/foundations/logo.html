@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Logo — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css">
+<style>
+.sb-logo { display:inline-flex; align-items:center; gap:var(--ins-space-sm); font-family: var(--ins-font-family-sans); font-weight: var(--ins-font-weight-600); font-size: 20px; letter-spacing: var(--ins-letter-spacing-tight); color: var(--ins-text-heading); }
+.sb-logo__mark { width: 20px; height: 20px; border-radius: 50%; background: linear-gradient(135deg, var(--ins-color-teal-300), var(--ins-color-teal-600)); box-shadow: 0 0 0 2px var(--ins-color-teal-a-50); }
+.sb-logo--sm { font-size: 16px; }
+.sb-logo--sm .sb-logo__mark { width: 16px; height: 16px; }
+.sb-logo--lg { font-size: 28px; }
+.sb-logo--lg .sb-logo__mark { width: 28px; height: 28px; }
+</style>
+</head>
+<body>
+<a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app">
+<aside class="sb-sidebar" data-sb-render-sidebar="../"></aside>
+<main class="sb-main" id="main">
+
+<header class="sb-header">
+  <div class="sb-header__kicker">Foundations</div>
+  <h1 class="sb-header__title">Logo</h1>
+  <p class="sb-header__description">Mark + wordmark. Teal gradient mark on dark background. Preserve clear-space = height of the mark on all sides.</p>
+</header>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Variants</h2>
+  <div class="sb-preview"><div class="sb-preview-row" style="gap:var(--ins-space-3xl);">
+    <div class="sb-specimen"><span class="sb-logo sb-logo--sm"><span class="sb-logo__mark"></span>Insightis</span><div class="sb-specimen__name">small (16px)</div></div>
+    <div class="sb-specimen"><span class="sb-logo"><span class="sb-logo__mark"></span>Insightis</span><div class="sb-specimen__name">default (20px)</div></div>
+    <div class="sb-specimen"><span class="sb-logo sb-logo--lg"><span class="sb-logo__mark"></span>Insightis</span><div class="sb-specimen__name">large (28px)</div></div>
+  </div></div>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Mark only</h2>
+  <div class="sb-preview">
+    <div class="sb-preview-row">
+      <span class="sb-logo__mark" style="width:16px; height:16px; border-radius:50%; background:linear-gradient(135deg, var(--ins-color-teal-300), var(--ins-color-teal-600));"></span>
+      <span class="sb-logo__mark" style="width:24px; height:24px; border-radius:50%; background:linear-gradient(135deg, var(--ins-color-teal-300), var(--ins-color-teal-600));"></span>
+      <span class="sb-logo__mark" style="width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg, var(--ins-color-teal-300), var(--ins-color-teal-600));"></span>
+      <span class="sb-logo__mark" style="width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg, var(--ins-color-teal-300), var(--ins-color-teal-600));"></span>
+    </div>
+  </div>
+</section>
+
+<section class="sb-section">
+  <h2 class="sb-section__title">Clear-space</h2>
+  <p class="sb-section__description">Always maintain padding equal to the mark's height on every side. Never pair the logo with competing graphics in its clear-space zone.</p>
+</section>
+
+</main>
+</div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script>
+</body></html>

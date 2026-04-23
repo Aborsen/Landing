@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Select — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Select</h1><p class="sb-header__description">Native styled dropdown. On mobile, native UI falls back to OS picker — keeps familiar UX.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Sizes</h2>
+<div class="sb-preview"><div style="display:flex; flex-direction:column; gap:var(--ins-space-md); max-width:320px;">
+  <select class="ins-select ins-select--sm"><option>Small</option><option>Option 2</option></select>
+  <select class="ins-select"><option>Medium (default)</option><option>Option 2</option></select>
+  <select class="ins-select ins-select--lg"><option>Large</option><option>Option 2</option></select>
+</div></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">States</h2>
+<div class="sb-preview"><div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:var(--ins-space-md);">
+  <div class="sb-specimen"><select class="ins-select"><option>Default</option></select><span class="sb-specimen__name">default</span></div>
+  <div class="sb-specimen"><select class="ins-select" style="border-color:var(--ins-border-focus); box-shadow:var(--ins-focus-ring);"><option>Focused</option></select><span class="sb-specimen__name">focus</span></div>
+  <div class="sb-specimen"><select class="ins-select is-error"><option>Invalid</option></select><span class="sb-specimen__name">error</span></div>
+  <div class="sb-specimen"><select class="ins-select" disabled><option>Disabled</option></select><span class="sb-specimen__name">disabled</span></div>
+</div></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;select class="ins-select"&gt;
+  &lt;option&gt;United States&lt;/option&gt;
+  &lt;option&gt;Canada&lt;/option&gt;
+  &lt;option&gt;Mexico&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;select class="ins-select is-error" aria-invalid="true"&gt;...&lt;/select&gt;</pre></div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Feature grid — Patterns</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Pattern</div><h1 class="sb-header__title">Feature grid</h1><p class="sb-header__description">3-up desktop / 2-up tablet / 1-up mobile. Composed of <code>.ins-grid</code> + <code>.ins-card.ins-card--feature</code>.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">3-up</h2>
+<div class="sb-preview sb-preview--fullbleed" data-sb-viewport-preview>
+  <div class="ins-container">
+    <div class="ins-grid">
+      <div class="ins-card ins-card--feature ins-col-third">
+        <div class="ins-card__eyebrow">Feature</div>
+        <div class="ins-card__title">Cited answers</div>
+        <p class="ins-card__body">Every claim links to a source query you can verify.</p>
+      </div>
+      <div class="ins-card ins-card--feature ins-col-third">
+        <div class="ins-card__eyebrow">Feature</div>
+        <div class="ins-card__title">Semantic layer</div>
+        <p class="ins-card__body">Metrics defined once, used everywhere.</p>
+      </div>
+      <div class="ins-card ins-card--feature ins-col-third">
+        <div class="ins-card__eyebrow">Feature</div>
+        <div class="ins-card__title">Live data</div>
+        <p class="ins-card__body">Queries run against production, not snapshots.</p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;div class="ins-grid"&gt;
+  &lt;div class="ins-card ins-card--feature ins-col-third"&gt;
+    &lt;div class="ins-card__eyebrow"&gt;Feature&lt;/div&gt;
+    &lt;div class="ins-card__title"&gt;Title&lt;/div&gt;
+    &lt;p class="ins-card__body"&gt;Body.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Hero — Patterns</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Pattern</div><h1 class="sb-header__title">Hero</h1><p class="sb-header__description">Centered brand hero with overline + display-xl + subtitle + CTA row. Uses only base typography + button atoms — no hero-specific CSS.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Centered (with aurora backdrop)</h2>
+<div class="sb-preview sb-preview--fullbleed ins-bg-aurora" data-sb-viewport-preview>
+  <div class="ins-container" style="text-align:center; padding-block:var(--ins-space-4xl);">
+    <span class="ins-text-overline">Decision intelligence</span>
+    <h1 class="ins-text-display-xl ins-text-heading-soft" style="margin:var(--ins-space-md) auto; max-width:18ch;">Ask about your data</h1>
+    <p class="ins-text-body-lg" style="max-width:56ch; margin:0 auto var(--ins-space-xl);">Get a cited answer in seconds. No black boxes.</p>
+    <div style="display:flex; gap:var(--ins-space-md); justify-content:center; flex-wrap:wrap;">
+      <button class="ins-btn ins-btn--primary ins-btn--lg">Start for Free</button>
+      <button class="ins-btn ins-btn--secondary ins-btn--lg">Book a demo</button>
+    </div>
+  </div>
+</div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;section class="ins-section ins-bg-aurora"&gt;
+  &lt;div class="ins-container" style="text-align:center;"&gt;
+    &lt;span class="ins-text-overline"&gt;Overline&lt;/span&gt;
+    &lt;h1 class="ins-text-display-xl ins-text-heading-soft"&gt;Headline&lt;/h1&gt;
+    &lt;p class="ins-text-body-lg"&gt;Subtitle&lt;/p&gt;
+    &lt;div&gt;&lt;button class="ins-btn ins-btn--primary ins-btn--lg"&gt;CTA&lt;/button&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</pre></div></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>
