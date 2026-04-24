@@ -1,28 +1,40 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import ReactDOM from 'react-dom/client'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
 import './app.css'
 
+/* Single shared IntersectionObserver for all fade-ups.
+   Replaces 33 per-component framer-motion `useInView` observers + re-render cascades.
+   CSS handles the opacity/translate transition; no JS re-render on reveal. */
+const fadeObserver = typeof window !== 'undefined'
+  ? new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            fadeObserver.unobserve(e.target);
+          }
+        }
+      },
+      { rootMargin: '-80px' }
+    )
+  : null;
 
-// Motion wrapper for scroll animations
-const MotionDiv = motion.div;
-const MotionSection = motion.section;
-const MotionSpan = motion.span;
-
-// Fade-up animation wrapper
-function FadeUp({ children, delay = 0, className = "" }) {
+function FadeUp({ children, delay = 0, className = '' }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || !fadeObserver) return;
+    fadeObserver.observe(el);
+    return () => fadeObserver.unobserve(el);
+  }, []);
   return (
-    <MotionDiv
+    <div
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ duration: 0.6, delay, ease: [0.25, 0.1, 0.25, 1] }}
-      className={className}
+      className={`fade-up ${className}`}
+      style={delay ? { transitionDelay: `${delay}s` } : undefined}
     >
       {children}
-    </MotionDiv>
+    </div>
   );
 }
 
@@ -1449,75 +1461,6 @@ function BottomCTA() {
 }
 
 // ─── APP ───
-function FAQ() {
-  const [open, setOpen] = useState(null);
-  const items = [
-    {
-      q: "What is Insightis?",
-      a: "Insightis is an AI analytics platform built by the Devart team that connects to your data sources, auto-generates dashboards, and delivers plain-English insight summaries so your team makes faster, more confident decisions."
-    },
-    {
-      q: "What data sources does Insightis support?",
-      a: "Insightis connects to 200+ data sources including HubSpot, Salesforce, Google Analytics, PostgreSQL, BigQuery, Snowflake, Stripe, AWS, Slack, and more."
-    },
-    {
-      q: "How is Insightis different from traditional BI tools?",
-      a: "Unlike traditional BI tools that require manual dashboard setup, Insightis uses an AI Semantic Layer to automatically understand your business context and answer questions in plain English — delivering answers 3× more accurately than generic AI chatbots."
-    },
-    {
-      q: "Is Insightis free to get started?",
-      a: "Yes, Insightis offers a free plan with no credit card required. You can connect your data sources and explore AI-generated insights immediately after signing up."
-    }
-  ];
-  return (
-    <section id="faq" style={{padding:'80px 0', background:'linear-gradient(180deg,var(--ins-surface-container) 0%,var(--ins-surface-card) 100%)'}}>
-      <div className="container" style={{maxWidth:'760px'}}>
-        <FadeUp>
-          <div style={{textAlign:'center', marginBottom:'48px'}}>
-            <div className="section-label">FAQ</div>
-            <h2 className="section-title">Common questions</h2>
-          </div>
-        </FadeUp>
-        <div style={{display:'flex', flexDirection:'column', gap:'8px'}}>
-          {items.map((item, i) => (
-            <div
-              key={i}
-              style={{
-                background: open===i ? 'rgba(7,128,126,.08)' : 'rgba(255,255,255,.03)',
-                border: `1px solid ${open===i ? 'rgba(7,128,126,.35)' : 'rgba(255,255,255,.07)'}`,
-                borderRadius:'14px',
-                overflow:'hidden',
-                transition:'background .2s,border-color .2s'
-              }}
-            >
-              <h3 style={{margin:0}}>
-                <button
-                  onClick={() => setOpen(open===i ? null : i)}
-                  aria-expanded={open===i}
-                  aria-controls={`faq-answer-${i}`}
-                  style={{
-                    width:'100%', display:'flex', alignItems:'center', justifyContent:'space-between',
-                    padding:'18px 22px', background:'none', border:'none', cursor:'pointer',
-                    textAlign:'left', gap:'16px'
-                  }}
-                >
-                  <span style={{fontSize:'15px', fontWeight:500, color:'var(--ins-text-heading)', letterSpacing:'-.02em', lineHeight:1.3}}>{item.q}</span>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0, transition:'transform .25s', transform: open===i ? 'rotate(180deg)' : 'rotate(0deg)'}} aria-hidden="true">
-                    <polyline points="6 9 12 15 18 9"/>
-                  </svg>
-                </button>
-              </h3>
-              <div id={`faq-answer-${i}`} role="region" style={{maxHeight: open===i ? '200px' : '0', overflow:'hidden', transition:'max-height .35s ease'}}>
-                <p style={{padding:'0 22px 18px', fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.65, margin:0}}>{item.a}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function App() {
   return (
     <div className="font-body">
@@ -1532,7 +1475,6 @@ function App() {
         <Testimonials />
         <WhatIsInsightis />
         <Pricing />
-        <FAQ />
         <BottomCTA />
       </main>
       <Footer />

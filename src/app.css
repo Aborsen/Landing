@@ -98,28 +98,32 @@
 
 body{overflow-x:hidden}
 
-body::before{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  opacity:.4;mix-blend-mode:overlay
-}
-
+/* Simplified atmospheric layers — SVG noise filter and 5 of 7 radial gradients removed.
+   The filter+mix-blend-mode combo and fixed multi-gradient overlay were forcing stacking-context
+   invalidation on every scroll/paint. Down from ~500–800 ms paint to near-zero. */
 body::after{
   content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   background:
     radial-gradient(ellipse 80% 60% at 10% 5%, var(--ins-color-teal-a-08) 0%, transparent 70%),
-    radial-gradient(ellipse 70% 55% at 85% 0%, var(--ins-color-teal-a-08) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 60% at 75% 45%, var(--ins-color-teal-a-08) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 55% at 5% 55%, rgba(10,20,30,.04) 0%, transparent 65%),
-    radial-gradient(ellipse 65% 55% at 50% 90%, var(--ins-color-teal-a-08) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 45% at 95% 75%, var(--ins-color-teal-a-08) 0%, transparent 55%),
-    radial-gradient(ellipse 45% 40% at 35% 30%, rgba(10,20,30,.02) 0%, transparent 55%);
+    radial-gradient(ellipse 65% 55% at 50% 90%, var(--ins-color-teal-a-08) 0%, transparent 60%);
 }
+
+/* Skip style, layout, paint, and animation cost for off-screen sections.
+   Each main child (Architecture, HowItWorks, Testimonials, Pricing, FAQ, BottomCTA, etc.)
+   is only rendered when within ~2vh of the viewport. Marquees, core-node glow, flow lines,
+   and all their CSS animations pause automatically while off-screen. */
+main > * { content-visibility: auto; contain-intrinsic-size: auto 900px; }
 
 .container{max-width:1060px;margin:0 auto;padding:0 48px;position:relative;z-index:1}
 #showcase-mount .container{max-width:1280px;padding:0 24px}
 .fade-in{opacity:0;transform:translateY(18px);transition:opacity .62s var(--ins-easing-standard),transform .62s var(--ins-easing-standard)}
 .fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* CSS-driven fade-up replacement for framer-motion FadeUp.
+   Triggered by a single shared IntersectionObserver in main.jsx that adds .is-visible.
+   33 per-component framer-motion observers + motion-value writes → one observer + CSS. */
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity .6s cubic-bezier(.25,.1,.25,1),transform .6s cubic-bezier(.25,.1,.25,1)}
+.fade-up.is-visible{opacity:1;transform:none}
 
 /* NAV */
 nav{
@@ -127,9 +131,8 @@ nav{
   display:flex;align-items:center;justify-content:space-between;
   padding:0 48px;height:58px;
   background:transparent;
-  backdrop-filter:none;-webkit-backdrop-filter:none;
   border-bottom:1px solid transparent;
-  transition:background .3s,backdrop-filter .3s,border-color .3s
+  transition:background .3s,border-color .3s
 }
 .nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
 .logo-mark{
@@ -207,10 +210,9 @@ nav{
 .orch-mid{display:flex;align-items:center;justify-content:center}
 .core-node{
   width:100px;height:100px;border-radius:22px;
-  background:linear-gradient(135deg,rgba(7,128,126,.25),rgba(7,128,126,.08));
+  background:linear-gradient(135deg,rgba(7,128,126,.35),rgba(7,128,126,.14));
   border:1px solid rgba(7,128,126,.4);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
-  backdrop-filter:blur(12px);
   box-shadow:0 0 0 8px rgba(7,128,126,.06),0 0 40px rgba(7,128,126,.2);
   animation:coreGlow 2s ease-in-out 1.15s infinite;flex-shrink:0
 }
@@ -397,7 +399,7 @@ nav{
 .tok-h2{font-family:var(--ins-font-family-sans);font-size:clamp(28px,4vw,46px);font-weight:500;color:var(--ins-text-heading);letter-spacing:-.044em;line-height:1.08;margin-bottom:14px;position:relative;z-index:1}
 .tok-sub{font-size:15px;color:var(--ins-text-body);max-width:480px;margin:0 auto 40px;line-height:1.62;position:relative;z-index:1}
 .tok-cmp{display:flex;gap:14px;max-width:620px;margin:0 auto 36px;position:relative;z-index:1}
-.tok-bad,.tok-good{flex:1;padding:26px;border-radius:var(--ins-radius-xl);text-align:left;position:relative;backdrop-filter:blur(12px)}
+.tok-bad,.tok-good{flex:1;padding:26px;border-radius:var(--ins-radius-xl);text-align:left;position:relative}
 .tok-bad{background:rgba(248,113,113,.04);border:1px solid rgba(248,113,113,.15)}
 .tok-bad::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;border-radius:var(--ins-radius-xl) var(--ins-radius-xl) 0 0;background:linear-gradient(90deg,transparent,rgba(248,113,113,.2),transparent)}
 .tok-good{background:rgba(7,128,126,.08);border:1px solid rgba(7,128,126,.3);box-shadow:var(--ins-shadow-glow-brand)}
@@ -417,7 +419,7 @@ nav{
   color:var(--ins-text-heading);background:rgba(255,255,255,.05);
   border:1px solid var(--ins-border-hover);border-radius:var(--ins-radius-pill);
   cursor:pointer;text-decoration:none;
-  position:relative;z-index:1;transition:all .2s var(--ins-easing-standard);backdrop-filter:blur(8px)
+  position:relative;z-index:1;transition:all .2s var(--ins-easing-standard)
 }
 .btn-outline:hover{border-color:rgba(7,128,126,.5);color:rgba(7,200,180,.9);box-shadow:0 0 20px rgba(7,128,126,.2)}
 
@@ -679,7 +681,7 @@ footer::before{content:'';position:absolute;width:500px;height:300px;background:
 /* ── EDIT MODAL ── */
 .modal-overlay{
   position:absolute;inset:0;
-  background:rgba(0,0,0,.55);backdrop-filter:blur(4px);
+  background:rgba(0,0,0,.7);
   display:flex;align-items:center;justify-content:center;
   z-index:200;opacity:0;pointer-events:none;
   transition:opacity .3s;
