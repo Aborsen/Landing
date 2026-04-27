@@ -41,17 +41,51 @@ function goToStep(n){
         if(typeof p2Init==='function') setTimeout(p2Init,100);
       } else if(i===3){
         if(typeof p3_chain!=='undefined') p3_chain.forEach(id=>clearTimeout(id));
-        const _sA=document.getElementById('p3screenA');
+        // reset p3 state instantly before panel becomes visible
+        const _sA=document.getElementById('p3screenA'),_sB=document.getElementById('p3screenB'),_sC=document.getElementById('p3screenC'),_mo=document.getElementById('p3modal'),_to=document.getElementById('p3successToast');
         if(_sA){_sA.style.cssText='display:flex;opacity:1';}
+        if(_sB){_sB.style.cssText='display:none;opacity:0';}
+        if(_sC){_sC.style.cssText='display:none;opacity:0';}
+        if(_mo){_mo.style.cssText='display:none;opacity:0';}
+        if(_to){_to.style.cssText='display:none;opacity:0';}
+        const _sb=document.getElementById('p3saveBtn');
+        if(_sb){_sb.classList.remove('saved');_sb.innerHTML='<svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 2h6l2 2v6a1 1 0 01-1 1H2a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.3"/><path d="M4 12V7h4v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg> Save as Report';}
+        const _te=document.getElementById('p3typedEmail');if(_te)_te.textContent='';
+        const _tx2=document.getElementById('p3tagX');if(_tx2)_tx2.style.opacity='0';
+        const _tt2=document.getElementById('p3tagTyping');if(_tt2)_tt2.style.display='none';
+        const _ar2=document.getElementById('p3addRecipient');if(_ar2)_ar2.style.display='none';
+        const _cu=document.getElementById('p3cursor');if(_cu)_cu.style.display='none';
+
         requestAnimationFrame(()=>p.classList.add('active'));
+        if(typeof p3Init==='function') setTimeout(p3Init,100);
       } else if(i===4){
         if(typeof p4_chain!=='undefined') p4_chain.forEach(clearTimeout);
-        const _p4tr=document.getElementById('p4trust');
+        // ── full reset BEFORE panel becomes visible ──
+        const _p4sA=document.getElementById('p4screenA');
+        const _p4sB=document.getElementById('p4screenB');
+        const _p4jm=document.getElementById('p4jiraModal');
+        const _p4t=document.getElementById('p4successToast');
         const _p4c=document.getElementById('p4cursor');
-        if(_p4tr) _p4tr.classList.remove('expanded');
+        const _p4sm=document.getElementById('p4jmSummary');
+        if(_p4sA){_p4sA.style.cssText='display:flex;flex-direction:column;flex:1;overflow:hidden;opacity:1';}
+        if(_p4sB){_p4sB.style.cssText='display:none;visibility:hidden;opacity:0;flex-direction:column;flex:1;overflow:hidden';}
+        if(_p4jm){_p4jm.style.cssText='display:none;opacity:0';}
+        if(_p4t){_p4t.style.cssText='display:none;opacity:0';}
         if(_p4c){_p4c.style.cssText='display:none;position:absolute;z-index:999;pointer-events:none';}
-        document.querySelectorAll('.p4at-src,.p4at-formula,.p4at-cac-token').forEach(el=>el.classList.remove('p4at-glow','p4at-pulse'));
-        requestAnimationFrame(()=>p.classList.add('active'));
+        if(_p4sm) _p4sm.textContent='';
+        const _p4db=document.getElementById('p4detailBody');if(_p4db) _p4db.scrollTop=0;
+        document.querySelectorAll('.p4-insight-row').forEach(r=>r.classList.remove('p4-row-active'));
+        // Force panel invisible, disable transition, reset, then show
+        p.style.transition='none';
+        p.style.opacity='0';
+        p.style.transform='translateY(0) scale(1)';
+        p.classList.add('active');
+        // After one frame, re-enable transition and fade in
+        requestAnimationFrame(()=>requestAnimationFrame(()=>{
+          p.style.transition='';
+          p.style.opacity='';
+          p.style.transform='';
+        }));
         if(typeof p4Init==='function') setTimeout(p4Init, 150);
       } else {
         const clone=p.cloneNode(true);
@@ -846,7 +880,91 @@ async function p3_crossfade(outEl, inEl, ms=300){
 
 async function p3_runDemo(){
   p3_chain.forEach(clearTimeout); p3_chain=[];
-  // Drill-in panel is static — chat is rendered as HTML; no animation needed.
+
+  const awEl  = document.querySelector('#p3');
+  const p3cur = document.getElementById('p3cursor');
+  const screenA = document.getElementById('p3screenA');
+  const screenB = document.getElementById('p3screenB');
+  const screenC = document.getElementById('p3screenC');
+  const modal   = document.getElementById('p3modal');
+  const toast   = document.getElementById('p3successToast');
+
+  // reset
+  [screenB,screenC,modal,toast].forEach(el=>{ el.style.display='none'; el.style.opacity='0'; el.style.transition=''; });
+  screenA.style.display='flex'; screenA.style.opacity='1';
+  p3cur.style.display='none'; p3cur.style.transition='';
+  document.getElementById('p3typedEmail').textContent='';
+  const saveBtn = document.getElementById('p3saveBtn');
+  if(saveBtn){ saveBtn.classList.remove('saved'); saveBtn.innerHTML='<svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 2h6l2 2v6a1 1 0 01-1 1H2a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.3"/><path d="M4 12V7h4v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg> Save as Report'; }
+  document.getElementById('p3shareBtn').classList.remove('hovered');
+  document.getElementById('p3awlbl').textContent='AI Chat';
+
+  await p3_t(1000);
+
+  // ── STEP 1: cursor appears → moves to Save as Report ──
+  const awRect = awEl.getBoundingClientRect();
+  p3cur.style.cssText = `display:block;transition:none;left:${awRect.width*0.4-9}px;top:${awRect.height*0.6-9}px;width:18px;height:18px;position:absolute;z-index:999;pointer-events:none`;
+  requestAnimationFrame(()=>{ p3cur.style.transition='left .5s cubic-bezier(.4,0,.2,1),top .5s cubic-bezier(.4,0,.2,1)'; });
+  await p3_click(saveBtn);
+
+  // ── STEP 2: button becomes success ──
+  saveBtn.classList.add('saved');
+  saveBtn.innerHTML='<svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l2.5 2.5L10 3" stroke="var(--ins-status-success-fg)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Saved! View Reports →';
+  await p3_t(1500);
+
+  // ── STEP 3: crossfade to reports list (no second click) ──
+
+  await p3_crossfade(screenA, screenB, 280);
+  await p3_t(1800);
+
+
+
+  // ── STEP 5: cursor → new report row ──
+  const newReport = document.getElementById('p3newReport');
+  await p3_click(newReport);
+  await p3_t(200);
+
+  // ── STEP 6: to report detail ──
+
+  await p3_crossfade(screenB, screenC, 280);
+  await p3_t(1500);
+  // slow scroll to reveal takeaways
+  const rv = screenC.querySelector('.p3-report-view');
+  if(rv){ rv.scrollTo({top:120, behavior:'smooth'}); }
+  await p3_t(1200);
+
+  // ── STEP 7: cursor → Share ──
+  const shareBtn = document.getElementById('p3shareBtn');
+  await p3_click(shareBtn);
+  shareBtn.classList.add('hovered');
+  await p3_t(300);
+
+  // ── STEP 8: modal appears ──
+  await p3_fadeIn(modal, 280, 'flex');
+  await p3_t(700);
+
+  // ── STEP 9: type recipient email ──
+  const _tt=document.getElementById('p3tagTyping'); if(_tt) _tt.style.display='inline-flex';
+  await p3_typeEmail('michael.torres@company.com');
+  const _tx=document.getElementById('p3tagX'); if(_tx) _tx.style.opacity='1';
+  const _ar=document.getElementById('p3addRecipient'); if(_ar) _ar.style.display='block';
+  await p3_t(700);
+
+  // ── STEP 10: cursor → Send Email ──
+  const sendEmailBtn = document.getElementById('p3sendEmailBtn');
+  await p3_moveCursor(sendEmailBtn);
+  sendEmailBtn.classList.add('hovered');
+  await p3_t(300);
+
+  // ── STEP 11: modal out → success toast ──
+  await p3_fadeOut(modal, 220);
+  await p3_fadeIn(toast, 280, 'flex');
+  await p3_t(1000);
+
+  p3cur.style.display='none';
+  await p3_t(1500);
+  // loop: restart animation if still on this step
+  if(cur === 3) p3_runDemo();
 }
 
 function p3Init(){
@@ -908,83 +1026,93 @@ async function p4_typeText(elId, text, speed=38){
 
 async function p4_runDemo(){
   p4_chain.forEach(clearTimeout); p4_chain=[];
-  const panel = p4_getEl('p4');
-  const aw    = p4_getEl('p4aw');
-  const cur   = p4_getEl('p4cursor');
-  const trust = p4_getEl('p4trust');
-  const trustHd = p4_getEl('p4trustHd');
-  const cacTok  = p4_getEl('p4cacToken');
-  const srcStripe = p4_getEl('p4srcStripe');
-  const srcGA   = p4_getEl('p4srcGA');
-  const formula = p4_getEl('p4formula');
-  if(!panel||!cur||!trust||!trustHd) return;
 
-  // reset
-  trust.classList.remove('expanded');
-  [cacTok,srcStripe,srcGA,formula].forEach(el=>el && el.classList.remove('p4at-glow','p4at-pulse'));
-  cur.style.cssText='display:none;position:absolute;z-index:999;pointer-events:none';
+  const panel   = p4_getEl('p4');
+  const cur     = p4_getEl('p4cursor');
+  const screenA = p4_getEl('p4screenA');
+  const screenB = p4_getEl('p4screenB');
+  const jiraModal = p4_getEl('p4jiraModal');
+  const toast   = p4_getEl('p4successToast');
+  const row0    = p4_getEl('p4row0');
+  const jiraBtn = p4_getEl('p4jiraBtn');
+  const jmCreate= p4_getEl('p4jmCreate');
+  const detailBody = p4_getEl('p4detailBody');
+  const summary = p4_getEl('p4jmSummary');
+  if(!panel||!cur||!screenA) return;
 
-  await p4_t(900);
+  // ── reset ──
+  screenA.style.display='flex'; screenA.style.opacity='1';
+  screenB.style.display='none'; screenB.style.opacility='hidden'; screenB.style.opacity='0';
+  jiraModal.style.display='none'; jiraModal.style.opacity='0';
+  toast.style.display='none'; toast.style.opacity='0';
+  if(summary) summary.textContent='';
+  if(jiraBtn) jiraBtn.classList.remove('hovered');
+  if(jmCreate) jmCreate.classList.remove('hovered');
+  // remove any active row highlight
+  document.querySelectorAll('.p4-insight-row').forEach(r=>r.classList.remove('p4-row-active'));
+  cur.style.display='none'; cur.style.transition='none';
 
-  // 1) Cursor appears near the @cac token
-  if(!cacTok) return;
-  const awRect = aw.getBoundingClientRect();
-  const tRect  = cacTok.getBoundingClientRect();
-  const startX = (tRect.left - awRect.left) + tRect.width/2 - 9;
-  const startY = (tRect.top  - awRect.top)  + tRect.height/2 - 9;
-  cur.style.cssText = `display:block;transition:none;left:${startX+24}px;top:${startY+18}px;width:18px;height:18px;position:absolute;z-index:999;pointer-events:none`;
+  await p4_t(600);
+
+  // ── STEP 1: cursor appears, hovers over first row (CAC) ──
+  // Use offsetTop relative to panel — works even if panel is off-screen
+  let r0top = row0.offsetTop + row0.offsetHeight/2 - 9;
+  let r0left = row0.offsetLeft + 20;
+  cur.style.cssText = `display:block;transition:none;left:${r0left}px;top:${r0top}px;position:absolute;z-index:999;pointer-events:none`;
   await p4_t(50);
-  requestAnimationFrame(()=>{ cur.style.transition='left .55s cubic-bezier(.4,0,.2,1),top .55s cubic-bezier(.4,0,.2,1)'; });
-  cur.style.left = `${startX}px`;
-  cur.style.top  = `${startY}px`;
+  requestAnimationFrame(()=>{ cur.style.transition='left .5s cubic-bezier(.4,0,.2,1),top .5s cubic-bezier(.4,0,.2,1)'; });
+  await p4_t(500);
+
+  // hover row0
+  row0.classList.add('p4-row-active');
+  await p4_t(800);
+
+  // ── STEP 2: click → crossfade to detail screen ──
+  await p4_click(cur, null, row0);
+
+  // overlap both screens, fade A out while B fades in
+  const awEl4 = p4_getEl('p4aw');
+  const awH = awEl4 ? awEl4.clientHeight - 32 : 200; // minus aw-bar
+  screenB.style.cssText = `display:flex;flex-direction:column;opacity:0;position:absolute;inset:32px 0 0 0;background:var(--ins-surface-container);z-index:10;transition:opacity .4s ease`;
+  screenA.style.transition='opacity .4s ease';
+  await p4_t(30);
+  screenA.style.opacity='0';
+  screenB.style.opacity='1';
+  await p4_t(420);
+  screenA.style.display='none';
+  screenB.style.cssText = `display:flex;flex-direction:column;overflow:hidden;opacity:1;position:absolute;inset:32px 0 0 0`;
+
+  // ── STEP 3: wait for screenB to render ──
+  await p4_t(1200);
+
+  // ── STEP 5: cursor → Jira button ──
+  await p4_click(cur, null, jiraBtn);
+  jiraBtn.classList.add('hovered');
+  await p4_t(200);
+  jiraBtn.classList.remove('hovered');
+
+  // ── STEP 6: Jira modal fades in ──
+  await p4_fade(jiraModal, 1, 280, 'flex');
+  await p4_t(500);
+
+  // ── STEP 7: type summary ──
+  await p4_typeText('p4jmSummary', 'Investigate CAC spike — Google Ads channel', 40);
   await p4_t(700);
 
-  // 2) Cursor moves down to trust header → click → expand
-  const hdRect = trustHd.getBoundingClientRect();
-  cur.style.left = `${(hdRect.left - awRect.left) + 18}px`;
-  cur.style.top  = `${(hdRect.top  - awRect.top)  + hdRect.height/2 - 9}px`;
-  await p4_t(550);
-  trust.classList.add('expanded');
-  await p4_t(700);
+  // ── STEP 8: cursor → Create Issue button ──
+  await p4_click(cur, null, jmCreate);
+  jmCreate.classList.add('hovered');
+  await p4_t(300);
+  jmCreate.classList.remove('hovered');
 
-  // 3) Cursor → Stripe source pill
-  if(srcStripe){
-    const r = srcStripe.getBoundingClientRect();
-    cur.style.left = `${(r.left - awRect.left) + r.width/2 - 9}px`;
-    cur.style.top  = `${(r.top  - awRect.top)  + r.height/2 - 9}px`;
-    await p4_t(550);
-    srcStripe.classList.add('p4at-glow');
-    await p4_t(900);
-    srcStripe.classList.remove('p4at-glow');
-  }
+  // ── STEP 9: modal out, toast in ──
+  await p4_fade(jiraModal, 0, 200);
+  await p4_t(100);
+  await p4_fade(toast, 1, 300, 'flex');
+  cur.style.display='none';
+  await p4_t(2200);
 
-  // 4) Cursor → Google Ads pill
-  if(srcGA){
-    const r = srcGA.getBoundingClientRect();
-    cur.style.left = `${(r.left - awRect.left) + r.width/2 - 9}px`;
-    cur.style.top  = `${(r.top  - awRect.top)  + r.height/2 - 9}px`;
-    await p4_t(500);
-    srcGA.classList.add('p4at-glow');
-    await p4_t(900);
-    srcGA.classList.remove('p4at-glow');
-  }
-
-  // 5) Cursor → formula
-  if(formula){
-    const r = formula.getBoundingClientRect();
-    cur.style.left = `${(r.left - awRect.left) + 24}px`;
-    cur.style.top  = `${(r.top  - awRect.top)  + r.height/2 - 9}px`;
-    await p4_t(500);
-    formula.classList.add('p4at-pulse');
-    await p4_t(1300);
-    formula.classList.remove('p4at-pulse');
-  }
-
-  // hold then loop
-  cur.style.transition = 'opacity .3s';
-  cur.style.opacity = '0';
-  await p4_t(1500);
-
+  // loop: restart animation if still on this step
   if(window.cur === 4) p4_runDemo();
 }
 
