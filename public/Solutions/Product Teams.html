@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Product Teams — Insightis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Geist', sans-serif;
+  background: #0A0E13;
+  color: #E8F2F5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: .4; mix-blend-mode: overlay;
+}
+
+body::after {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 5%, rgba(10,152,150,.09) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 55% at 85% 0%, rgba(110,60,200,.07) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 60% at 75% 45%, rgba(20,80,200,.05) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 55% at 5% 55%, rgba(160,50,220,.045) 0%, transparent 65%),
+    radial-gradient(ellipse 65% 55% at 50% 90%, rgba(10,152,150,.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 45% at 95% 75%, rgba(50,90,240,.04) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 40% at 35% 30%, rgba(200,60,180,.03) 0%, transparent 55%);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+@keyframes typing { from{width:0} to{width:100%} }
+@keyframes blink  { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes slideUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+@keyframes pulse  { 0%,100%{opacity:.4;transform:scale(.85)} 50%{opacity:1;transform:scale(1)} }
+@keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+
+.fu0 { animation: fadeUp .7s ease both; }
+.fu1 { animation: fadeUp .7s ease .1s both; }
+.fu2 { animation: fadeUp .7s ease .2s both; }
+.fu3 { animation: fadeUp .7s ease .35s both; }
+.fu4 { animation: fadeUp .7s ease .5s both; }
+
+/* ── CHAT MOCK ── */
+.chat-bubble-user {
+  background: rgba(9,160,157,0.12);
+  border: 1px solid rgba(9,160,157,0.25);
+  border-radius: 16px 16px 4px 16px;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  color: #E8F2F5;
+  align-self: flex-end;
+  max-width: 85%;
+}
+.chat-bubble-ai {
+  background: rgba(255,255,255,0.038);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 4px 16px 16px 16px;
+  padding: 12px 14px;
+  font-size: 13.5px;
+  color: #C0D4DC;
+  align-self: flex-start;
+  max-width: 95%;
+  line-height: 1.6;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+
+/* ── SECTION SPACING ── */
+section { position: relative; }
+
+/* ── COMPARISON CARDS ── */
+.compare-card {
+  border-radius: 16px;
+  padding: 28px;
+  flex: 1;
+}
+
+/* ── QUESTION PILL ── */
+.q-pill {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 14px; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.03);
+  font-size: 13px; color: #7FA0AC;
+  cursor: pointer; transition: all .15s;
+  white-space: nowrap;
+}
+.q-pill:hover {
+  border-color: rgba(9,160,157,0.4);
+  color: #E8F2F5;
+  background: rgba(9,160,157,0.06);
+}
+.q-pill.active {
+  border-color: rgba(9,160,157,0.5);
+  color: #0EC4C1;
+  background: rgba(9,160,157,0.08);
+}
+
+/* ── METRIC PILL ── */
+.metric-pill {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.07);
+  background: rgba(255,255,255,.03);
+  font-size: 13px;
+  color: #7FA0AC;
+  font-family: 'Geist Mono', monospace;
+  cursor: default;
+  transition: all .15s;
+}
+.metric-pill:hover {
+  border-color: rgba(9,160,157,.4);
+  color: #0EC4C1;
+  background: rgba(9,160,157,.06);
+}
+
+/* ── CONNECTOR CARD ── */
+.connector-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,.025);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 12px;
+  transition: all .18s ease;
+  cursor: default;
+}
+.connector-card:hover {
+  background: rgba(255,255,255,.05);
+  border-color: rgba(255,255,255,.12);
+  transform: translateY(-1px);
+}
+.connector-icon {
+  width: 36px; height: 36px;
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 10px; font-weight: 500;
+  font-family: 'Geist Mono', monospace;
+  letter-spacing: -.02em;
+}
+
+@media (max-width: 768px) {
+  [data-hero-grid] { grid-template-columns: 1fr !important; }
+  [data-gallery-grid] {
+    grid-template-columns: 1fr !important;
+    min-height: auto !important;
+  }
+  [data-gallery-left] {
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,.05) !important;
+    padding: 12px !important;
+    gap: 8px !important;
+  }
+  [data-gallery-left] > div { flex-direction: row !important; gap: 8px !important; }
+  [data-gallery-left] > div > div {
+    flex: none !important;
+    padding: 8px 14px !important;
+    border-bottom: none !important;
+    border-radius: 999px !important;
+    border: 1px solid rgba(255,255,255,.08) !important;
+    white-space: nowrap !important;
+  }
+  [data-steps-grid] { grid-template-columns: 1fr !important; }
+  [data-pain-grid] { grid-template-columns: 1fr !important; }
+  [data-connectors-grid] { grid-template-columns: repeat(2,1fr) !important; }
+  [data-compare-grid] { grid-template-columns: 1fr !important; }
+}
+</style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+
+/* ── HEADER ── */
+function MenuIcon({ size = 24, color = "#fff" }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>;
+}
+function CloseIcon({ size = 24, color = "#fff" }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>;
+}
+
+function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) setActiveDropdown(null);
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
+
+  const NAV_ICONS = {
+    chat: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z M8 11h.01 M12 11h.01 M16 11h.01',
+    link: 'M12 22v-5 M9 8V2 M15 8V2 M18 8H6a3 3 0 0 0-3 3v1a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-1a3 3 0 0 0-3-3z',
+    file: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M8 18v-4 M12 18v-2 M16 18v-6',
+    bars: 'M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z M2 12l8.58 3.91a2 2 0 0 0 1.66 0L21 12 M2 17l8.58 3.91a2 2 0 0 0 1.66 0L21 17',
+    box: 'M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z M12 3v9 M20 7.5l-8 4.5 M4 7.5l8 4.5',
+    dollar: 'M23 6l-9.5 9.5-5-5L1 18 M17 6h6v6',
+    star: 'M2 20H22 M5 20L7 12L12 17L17 12L19 20H5Z',
+    pulse: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z',
+    settings: 'M21 4H8 M3 4h1 M4 4a3 3 0 1 0 6 0 3 3 0 0 0-6 0 M21 12h-5 M3 12h8 M16 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0 M21 20H8 M3 20h1 M4 20a3 3 0 1 0 6 0 3 3 0 0 0-6 0',
+    play: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z M10 8l6 4-6 4V8z',
+    rss: 'M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z M16 6l2 2 M2 21.5l6.36-6.36',
+    support: 'M3 18v-6a9 9 0 0 1 18 0v6 M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z',
+    grid: 'M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z',
+    map: 'M18 6H5a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h13l4-3.5L18 6z M12 12v8 M12 2v4',
+  };
+
+  function NavIcon({ name }) {
+    const d = NAV_ICONS[name];
+    if (!d) return null;
+    const paths = d.split(' M').map((p, i) => i === 0 ? p : 'M' + p);
+    return (
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        {paths.map((p, i) => <path key={i} d={p} />)}
+      </svg>
+    );
+  }
+
+  const linkUrls = {
+    'AI Chat': '../Platform/AI Chat.html',
+    'Integrations': '../Platform/Integrations.html',
+    'Insights Engine': '../Platform/Insights Engine.html',
+    'Semantic Layer': '../Platform/Semantic Layer.html',
+    'Reports': '../Platform/Reports.html',
+    'Memory & Storage': '../Platform/Memory & Storage.html',
+    'For RevOps & BizOps': 'RevOps BizOps.html',
+    'For Founders & CEOs': 'Founders CEOs.html',
+    'For Marketing Teams': 'Marketing Teams.html',
+    'For Product Teams': 'Product Teams.html',
+    'For Data & Analytics Teams': 'Data Analytics Teams.html',
+    'For Operations & Finance': 'Operations Finance.html',
+    'Pricing': '../Pricing.html',
+    'Documentation': '../docs/',
+    'Blog': '../blog/',
+    'Support Center': '../Resources/Contact Support.html',
+    'Community': '../Resources/Community.html',
+    'Roadmap': '../Resources/Roadmap.html',
+    'About Insightis': '../Company/About Insightis.html',
+    'Contacts': '../Company/Contacts.html',
+    'Success Stories': '../Company/Success Stories.html',
+    'Press & Media': '../Company/Press Media.html',
+    'Video Tutorials': 'https://www.youtube.com/@InsightisAI',
+  };
+
+  const dropdowns = {
+    Platform: {
+      sections: [
+        { heading: 'PRODUCT', items: [
+          { label: 'AI Chat', desc: 'Ask anything about your data', icon: 'chat' },
+          { label: 'Integrations', desc: 'Connect 200+ sources', icon: 'link' },
+          { label: 'Insights Engine', desc: 'Automated insights from your data', icon: 'pulse' },
+        ]},
+        { heading: 'FEATURES', items: [
+          { label: 'Semantic Layer', desc: 'One trusted source of truth', icon: 'bars' },
+          { label: 'Reports', desc: 'Save and share answers with your team', icon: 'file' },
+          { label: 'Memory & Storage', desc: 'Your business context, always remembered', icon: 'box', comingSoon: true },
+        ]},
+      ]
+    },
+    Solutions: {
+      sections: [
+        { heading: 'BY ROLE', items: [
+          { label: 'For RevOps & BizOps', desc: 'Revenue operations and business intelligence', icon: 'dollar' },
+          { label: 'For Founders & CEOs', desc: 'Strategic KPIs and company health at a glance', icon: 'star' },
+          { label: 'For Marketing Teams', desc: 'Campaign analytics and cross-channel attribution', icon: 'pulse' },
+        ]},
+        { heading: 'BY TEAM', items: [
+          { label: 'For Product Teams', desc: 'Usage metrics and feature adoption tracking', icon: 'box' },
+          { label: 'For Data & Analytics Teams', desc: 'Advanced querying and data exploration', icon: 'bars' },
+          { label: 'For Operations & Finance', desc: 'Cost tracking and operational efficiency', icon: 'settings' },
+        ]},
+      ]
+    },
+    Resources: {
+      sections: [
+        { heading: 'LEARN', items: [
+          { label: 'Documentation', desc: 'Setup guides and API reference', icon: 'file' },
+          { label: 'Video Tutorials', desc: 'Step-by-step walkthroughs', icon: 'play', external: true },
+          { label: 'Blog', desc: 'Data analytics tips and product updates', icon: 'rss' },
+        ]},
+        { heading: 'CONNECT', items: [
+          { label: 'Support Center', desc: 'Get help from our team', icon: 'support' },
+          { label: 'Roadmap', desc: 'Follow product development in real time', icon: 'map' },
+          { label: 'Community', desc: 'Join our community', icon: 'grid' },
+        ]},
+      ]
+    }
+  };
+
+  const hasDropdown = (link) => !!dropdowns[link];
+  const anyOpen = activeDropdown !== null;
+
+  return (
+    <>
+      <div style={{
+        position:'sticky', top:0, zIndex:50,
+        backdropFilter:'blur(20px)', WebkitBackdropFilter:'blur(20px)',
+      }}>
+      <div ref={navRef} style={{
+        position:'relative',
+        maxWidth:'1240px', width:'calc(100% - 32px)',
+        margin:'0 auto',
+        padding:'12px 0 0',
+      }}>
+        <nav style={{
+          height:'56px', display:'flex', alignItems:'center',
+          background:'rgba(10,14,19,0.92)',
+          backdropFilter:'blur(20px)', WebkitBackdropFilter:'blur(20px)',
+          border:'1px solid rgba(255,255,255,0.08)',
+          borderRadius:'50px',
+          boxShadow:'0 4px 24px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2)',
+          padding:'0 8px 0 24px',
+          transition:'border-radius 0.25s ease, box-shadow 0.3s ease',
+        }}>
+          <div style={{width:'100%'}} className="flex items-center justify-between">
+            <a href="../index.html" className="flex items-center gap-2.5 flex-shrink-0">
+              <svg width="111" height="26" viewBox="0 0 111 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7"><g clipPath="url(#clip0_hdr)"><path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="#1498B9"/><path d="M33.2746 17.5261V5.60823H35.5859V17.5261H33.2746Z" fill="white"/><path d="M38.2797 17.5261V8.0821H40.1758L40.1216 10.9713H40.4466C40.6152 10.261 40.8379 9.67717 41.1148 9.21971C41.4037 8.76226 41.7708 8.41917 42.2163 8.19044C42.6617 7.96171 43.1793 7.84735 43.7692 7.84735C44.8406 7.84735 45.6532 8.22656 46.207 8.98497C46.7728 9.74338 47.0557 10.9171 47.0557 12.5062V17.5261H44.7624V12.7409C44.7624 11.7177 44.6059 10.9713 44.2929 10.5018C43.9919 10.0203 43.5405 9.77949 42.9386 9.77949C42.433 9.77949 42.0056 9.94201 41.6565 10.267C41.3074 10.58 41.0365 11.0014 40.8439 11.5311C40.6633 12.0487 40.567 12.6205 40.555 13.2465V17.5261H38.2797Z" fill="white"/><path d="M53.1255 17.7609C52.4875 17.7609 51.9096 17.6947 51.392 17.5622C50.8864 17.4419 50.453 17.2673 50.0918 17.0386C49.7307 16.7978 49.4418 16.5149 49.2251 16.1899C49.0084 15.8528 48.876 15.4796 48.8278 15.0703L50.6155 14.4022C50.6396 14.7152 50.76 14.9981 50.9767 15.2509C51.1933 15.4917 51.4943 15.6843 51.8795 15.8287C52.2647 15.9732 52.7282 16.0454 53.2699 16.0454C53.8719 16.0454 54.3353 15.9551 54.6604 15.7746C54.9974 15.5819 55.166 15.3111 55.166 14.962C55.166 14.7092 55.0757 14.5105 54.8951 14.3661C54.7145 14.2096 54.4497 14.0832 54.1006 13.9869C53.7635 13.8785 53.3542 13.7762 52.8727 13.6799C52.4273 13.5836 51.9758 13.4752 51.5184 13.3549C51.073 13.2224 50.6576 13.0539 50.2724 12.8493C49.8992 12.6326 49.5922 12.3557 49.3515 12.0186C49.1228 11.6695 49.0084 11.2301 49.0084 10.7004C49.0084 10.1226 49.1589 9.623 49.4598 9.20166C49.7728 8.78032 50.2182 8.44926 50.7961 8.2085C51.386 7.96773 52.0962 7.84735 52.9269 7.84735C53.7093 7.84735 54.3835 7.9557 54.9493 8.17238C55.5271 8.38907 55.9966 8.70207 56.3578 9.11137C56.7189 9.50863 56.9476 9.98415 57.0439 10.5379L55.166 11.1338C55.1299 10.7967 55.0155 10.5138 54.8229 10.2851C54.6303 10.0443 54.3714 9.86376 54.0464 9.74338C53.7214 9.623 53.3422 9.56281 52.9088 9.56281C52.355 9.56281 51.9217 9.65911 51.6087 9.85172C51.2957 10.0443 51.1392 10.3032 51.1392 10.6282C51.1392 10.893 51.2355 11.1037 51.4281 11.2602C51.6327 11.4167 51.9096 11.5431 52.2587 11.6394C52.6199 11.7357 53.0292 11.832 53.4866 11.9283C53.9682 12.0246 54.4316 12.139 54.8771 12.2714C55.3345 12.3918 55.7438 12.5543 56.105 12.759C56.4661 12.9636 56.755 13.2345 56.9717 13.5716C57.1884 13.8966 57.2967 14.3179 57.2967 14.8356C57.2967 15.4616 57.1282 15.9973 56.7911 16.4427C56.4541 16.8761 55.9725 17.2071 55.3465 17.4358C54.7326 17.6525 53.9922 17.7609 53.1255 17.7609Z" fill="white"/><path d="M59.2115 17.5261V8.0821H61.4868V17.5261H59.2115ZM60.3492 6.60139C59.8917 6.60139 59.5366 6.50508 59.2838 6.31247C59.043 6.10782 58.9226 5.8189 58.9226 5.44571C58.9226 5.07253 59.043 4.78963 59.2838 4.59702C59.5366 4.39236 59.8917 4.29004 60.3492 4.29004C60.8307 4.29004 61.1918 4.38635 61.4326 4.57896C61.6734 4.77157 61.7937 5.06049 61.7937 5.44571C61.7937 5.8189 61.6673 6.10782 61.4145 6.31247C61.1738 6.50508 60.8186 6.60139 60.3492 6.60139Z" fill="white"/><path d="M67.709 20.7765C66.6857 20.7765 65.843 20.6982 65.1809 20.5417C64.5309 20.3852 64.0493 20.1505 63.7363 19.8375C63.4233 19.5245 63.2668 19.1393 63.2668 18.6818C63.2668 18.128 63.4835 17.6766 63.9169 17.3275C64.3623 16.9663 65.0184 16.7436 65.8852 16.6594V16.2982C65.2351 16.3103 64.7415 16.2441 64.4045 16.0996C64.0674 15.9431 63.8988 15.6963 63.8988 15.3592C63.8988 15.0342 64.0614 14.7453 64.3864 14.4925C64.7235 14.2397 65.2772 14.029 66.0477 13.8605V13.4993C65.3133 13.4632 64.7415 13.2345 64.3322 12.8131C63.9229 12.3798 63.7183 11.82 63.7183 11.1338C63.7183 10.5198 63.8868 9.97813 64.2239 9.50863C64.561 9.03914 65.0545 8.67197 65.7046 8.40713C66.3667 8.13025 67.1672 7.99181 68.1062 7.99181H72.7831V9.79755L69.8217 9.36417V9.76144C70.5681 9.88182 71.1158 10.0925 71.4649 10.3934C71.8261 10.6944 72.0066 11.1037 72.0066 11.6214C72.0066 12.1149 71.8501 12.5543 71.5371 12.9395C71.2241 13.3127 70.7667 13.6077 70.1648 13.8244C69.5749 14.029 68.8586 14.1313 68.0159 14.1313C67.8594 14.1313 67.6909 14.1253 67.5103 14.1133C67.3298 14.1012 67.0469 14.0711 66.6616 14.023C66.4088 14.2036 66.2042 14.3661 66.0477 14.5105C65.8912 14.643 65.8129 14.7694 65.8129 14.8897C65.8129 14.986 65.8731 15.0703 65.9935 15.1425C66.1139 15.2027 66.2704 15.2449 66.463 15.2689C66.6556 15.293 66.8422 15.3051 67.0228 15.3051H69.5328C69.7735 15.3051 70.0805 15.3231 70.4537 15.3592C70.8389 15.3954 71.2181 15.4917 71.5913 15.6482C71.9765 15.8047 72.2955 16.0514 72.5484 16.3885C72.8132 16.7256 72.9456 17.2011 72.9456 17.815C72.9456 18.5012 72.747 19.061 72.3497 19.4944C71.9645 19.9398 71.3806 20.2648 70.5982 20.4695C69.8277 20.6741 68.8646 20.7765 67.709 20.7765ZM67.9076 18.9346C68.654 18.9346 69.2499 18.8925 69.6953 18.8082C70.1407 18.7239 70.4597 18.5855 70.6523 18.3929C70.8449 18.2123 70.9412 17.9776 70.9412 17.6886C70.9412 17.4238 70.8811 17.2192 70.7607 17.0747C70.6403 16.9182 70.4838 16.8098 70.2912 16.7497C70.1106 16.6895 69.924 16.6534 69.7314 16.6413C69.5388 16.6293 69.3763 16.6233 69.2438 16.6233H67.0228C66.4449 16.7075 66.0356 16.87 65.7949 17.1108C65.5662 17.3516 65.4518 17.6164 65.4518 17.9053C65.4518 18.1943 65.5481 18.4109 65.7407 18.5554C65.9333 18.7119 66.2102 18.8142 66.5713 18.8624C66.9445 18.9105 67.3899 18.9346 67.9076 18.9346ZM67.9618 12.8854C68.5878 12.8854 69.0633 12.7409 69.3883 12.452C69.7133 12.151 69.8759 11.7598 69.8759 11.2783C69.8759 10.7606 69.7073 10.3393 69.3702 10.0142C69.0452 9.67717 68.5697 9.50863 67.9437 9.50863C67.3177 9.50863 66.8302 9.67115 66.4811 9.99618C66.144 10.3212 65.9755 10.7365 65.9755 11.2421C65.9755 11.5672 66.0477 11.8561 66.1921 12.1089C66.3486 12.3497 66.5713 12.5423 66.8603 12.6867C67.1612 12.8192 67.5284 12.8854 67.9618 12.8854Z" fill="white"/><path d="M74.7825 17.5261V4.70536H77.0758V7.64872C77.0758 7.90152 77.0638 8.16035 77.0397 8.42519C77.0277 8.69003 77.0036 8.96089 76.9675 9.23777C76.9314 9.51465 76.8892 9.79153 76.8411 10.0684C76.805 10.3453 76.7628 10.6222 76.7147 10.8991H77.0939C77.2624 10.249 77.4791 9.70125 77.7439 9.25583C78.0088 8.79837 78.3459 8.44926 78.7552 8.2085C79.1765 7.96773 79.6881 7.84735 80.29 7.84735C81.3855 7.84735 82.2041 8.23258 82.7459 9.00303C83.2876 9.76144 83.5584 10.9171 83.5584 12.47V17.5261H81.2651V12.7951C81.2651 11.7598 81.1087 10.9954 80.7957 10.5018C80.4947 10.0082 80.0372 9.76144 79.4233 9.76144C78.9177 9.76144 78.4963 9.91793 78.1593 10.2309C77.8222 10.5319 77.5634 10.9352 77.3828 11.4408C77.2022 11.9464 77.0939 12.5182 77.0578 13.1562V17.5261H74.7825Z" fill="white"/><path d="M89.2495 17.7428C88.2503 17.7428 87.516 17.478 87.0465 16.9483C86.577 16.4066 86.3422 15.5699 86.3422 14.4383V9.9059H84.9518L84.9879 8.10015H85.9089C86.258 8.10015 86.5168 8.04598 86.6853 7.93764C86.8539 7.82929 86.9562 7.63668 86.9923 7.3598L87.209 5.98744H88.5272V8.0821H91.0191V9.97813H88.5272V14.348C88.5272 14.7934 88.6295 15.1185 88.8342 15.3231C89.0509 15.5278 89.3699 15.6301 89.7912 15.6301C90.0199 15.6301 90.2426 15.606 90.4593 15.5579C90.6881 15.4977 90.8987 15.4014 91.0913 15.2689V17.4358C90.7182 17.5562 90.3751 17.6345 90.0621 17.6706C89.7611 17.7187 89.4903 17.7428 89.2495 17.7428Z" fill="white"/><path d="M92.9634 17.5261V8.0821H95.2386V17.5261H92.9634ZM94.101 6.60139C93.6436 6.60139 93.2884 6.50508 93.0356 6.31247C92.7949 6.10782 92.6745 5.8189 92.6745 5.44571C92.6745 5.07253 92.7949 4.78963 93.0356 4.59702C93.2884 4.39236 93.6436 4.29004 94.101 4.29004C94.5825 4.29004 94.9437 4.38635 95.1845 4.57896C95.4252 4.77157 95.5456 5.06049 95.5456 5.44571C95.5456 5.8189 95.4192 6.10782 95.1664 6.31247C94.9256 6.50508 94.5705 6.60139 94.101 6.60139Z" fill="white"/><path d="M101.461 17.7609C100.823 17.7609 100.245 17.6947 99.7273 17.5622C99.2217 17.4419 98.7883 17.2673 98.4272 17.0386C98.066 16.7978 97.7771 16.5149 97.5604 16.1899C97.3437 15.8528 97.2113 15.4796 97.1632 15.0703L98.9508 14.4022C98.9749 14.7152 99.0953 14.9981 99.312 15.2509C99.5287 15.4917 99.8296 15.6843 100.215 15.8287C100.6 15.9732 101.064 16.0454 101.605 16.0454C102.207 16.0454 102.671 15.9551 102.996 15.7746C103.333 15.5819 103.501 15.3111 103.501 14.962C103.501 14.7092 103.411 14.5105 103.23 14.3661C103.05 14.2096 102.785 14.0832 102.436 13.9869C102.099 13.8785 101.69 13.7762 101.208 13.6799C100.763 13.5836 100.311 13.4752 99.8537 13.3549C99.4083 13.2224 98.993 13.0539 98.6077 12.8493C98.2346 12.6326 97.9276 12.3557 97.6868 12.0186C97.4581 11.6695 97.3437 11.2301 97.3437 10.7004C97.3437 10.1226 97.4942 9.623 97.7952 9.20166C98.1082 8.78032 98.5536 8.44926 99.1314 8.2085C99.7213 7.96773 100.432 7.84735 101.262 7.84735C102.045 7.84735 102.719 7.9557 103.285 8.17238C103.862 8.38907 104.332 8.70207 104.693 9.11137C105.054 9.50863 105.283 9.98415 105.379 10.5379L103.501 11.1338C103.465 10.7967 103.351 10.5138 103.158 10.2851C102.966 10.0443 102.707 9.86376 102.382 9.74338C102.057 9.623 101.678 9.56281 101.244 9.56281C100.69 9.56281 100.257 9.65911 99.944 9.85172C99.631 10.0443 99.4745 10.3032 99.4745 10.6282C99.4745 10.893 99.5708 11.1037 99.7634 11.2602C99.9681 11.4167 100.245 11.5431 100.594 11.6394C100.955 11.7357 101.365 11.832 101.822 11.9283C102.303 12.0246 102.767 12.139 103.212 12.2714C103.67 12.3918 104.079 12.5543 104.44 12.759C104.801 12.9636 105.09 13.2345 105.307 13.5716C105.524 13.8966 105.632 14.3179 105.632 14.8356C105.632 15.4616 105.464 15.9973 105.126 16.4427C104.789 16.8761 104.308 17.2071 103.682 17.4358C103.068 17.6525 102.328 17.7609 101.461 17.7609Z" fill="white"/></g><defs><clipPath id="clip0_hdr"><rect width="111" height="25.4928" fill="white"/></clipPath></defs></svg>
+            </a>
+
+            <div className="hidden md:flex items-center" style={{gap:'2px'}}>
+              {['Platform', 'Solutions', 'Resources', 'Pricing'].map(link => (
+                <div key={link}>
+                  {hasDropdown(link) ? (
+                    <button
+                      onClick={() => setActiveDropdown(activeDropdown === link ? null : link)}
+                      className={`flex items-center gap-1 px-4 py-1.5 rounded-full text-sm transition-colors ${activeDropdown === link ? 'text-white bg-white/[0.08]' : 'text-[#A0A0B8] hover:text-white hover:bg-white/[0.04]'}`}
+                    >
+                      {link}
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                        style={{transition:'transform 0.2s', transform: activeDropdown === link ? 'rotate(180deg)' : 'rotate(0deg)', opacity:0.5}}>
+                        <polyline points="6 9 12 15 18 9"/>
+                      </svg>
+                    </button>
+                  ) : (
+                    <a href={linkUrls[link] || '#'} className="flex items-center px-4 py-1.5 rounded-full text-sm text-[#A0A0B8] hover:text-white hover:bg-white/[0.04] transition-colors">
+                      {link}
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div className="hidden md:flex items-center flex-shrink-0" style={{gap:'12px'}}>
+              <a href="#" className="text-sm text-[#A0A0B8] hover:text-white transition-colors px-3 py-1.5">Sign In</a>
+              <a href="#" className="text-sm font-medium text-white bg-[#07807E] hover:bg-[#09A09D] px-5 py-2 rounded-full transition-colors">Start for Free</a>
+            </div>
+
+            <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden p-2">
+              {mobileOpen ? <CloseIcon /> : <MenuIcon />}
+            </button>
+          </div>
+        </nav>
+
+        {anyOpen && dropdowns[activeDropdown] && (
+          <div style={{
+            position:'absolute', left:0, right:0, zIndex:-1,
+            marginTop:'-24px',
+            background:'rgba(10,14,19,0.97)',
+            backdropFilter:'blur(24px)', WebkitBackdropFilter:'blur(24px)',
+            borderLeft:'1px solid rgba(255,255,255,0.08)',
+            borderRight:'1px solid rgba(255,255,255,0.08)',
+            borderBottom:'1px solid rgba(255,255,255,0.08)',
+            borderRadius:'0 0 24px 24px',
+            boxShadow:'0 12px 48px rgba(0,0,0,0.5)',
+          }}>
+            <div style={{padding:'44px 32px 28px'}}>
+              <div className="flex gap-10">
+                {dropdowns[activeDropdown].sections.map((section, si) => (
+                  <div key={si} style={{flex:'1'}}>
+                    <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-[#A0A0B8] mb-4 px-3">{section.heading}</p>
+                    <div className="flex flex-col gap-0.5">
+                      {section.items.map((item, ii) => (
+                        <a key={ii} href={linkUrls[item.label] || '#'} {...(item.external ? {target:'_blank', rel:'noopener noreferrer'} : {})} onClick={() => setActiveDropdown(null)}
+                          className="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-white/[0.05] transition-colors group">
+                          {item.icon && (
+                            <div style={{
+                              flexShrink:0, marginTop:'2px',
+                              width:'30px', height:'30px',
+                              display:'flex', alignItems:'center', justifyContent:'center',
+                              borderRadius:'8px',
+                              background:'rgba(10,152,150,0.1)',
+                              border:'1px solid rgba(10,152,150,0.2)',
+                              color:'#0EC4C1',
+                            }}>
+                              <NavIcon name={item.icon} />
+                            </div>
+                          )}
+                          <div className="flex flex-col">
+                            <span className="flex items-center gap-2">
+                              <span className="text-sm font-medium text-white group-hover:text-[#0EC4C1] transition-colors">{item.label}{item.external && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</span>
+                              {item.comingSoon && (
+                                <span style={{fontSize:'10px', fontWeight:500, letterSpacing:'0.04em', padding:'1px 6px', borderRadius:'4px', background:'rgba(10,152,150,0.12)', border:'1px solid rgba(10,152,150,0.3)', color:'#0EC4C1', whiteSpace:'nowrap'}}>Coming Soon</span>
+                              )}
+                            </span>
+                            <span className="text-xs text-[#A0A0B8] mt-0.5 leading-relaxed">{item.desc}</span>
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {mobileOpen && (
+          <div className="md:hidden" style={{
+            position:'absolute', left:0, right:0, zIndex:-1,
+            background:'rgba(10,14,19,0.97)',
+            backdropFilter:'blur(24px)', WebkitBackdropFilter:'blur(24px)',
+            borderLeft:'1px solid rgba(255,255,255,0.08)',
+            borderRight:'1px solid rgba(255,255,255,0.08)',
+            borderBottom:'1px solid rgba(255,255,255,0.08)',
+            borderRadius:'0 0 24px 24px',
+            padding:'16px 24px',
+          }}>
+            {['Platform', 'Solutions', 'Resources', 'Pricing'].map(link => (
+              <a key={link} href={linkUrls[link] || '#'} className="block py-3 text-[#A0A0B8] hover:text-white transition-colors">{link}</a>
+            ))}
+            <div className="mt-4 pt-4 border-t border-[#1E1E30] flex flex-col gap-3">
+              <a href="#" className="text-sm text-[#A0A0B8]">Sign In</a>
+              <a href="#" className="text-sm font-medium text-white bg-[#07807E] px-5 py-2.5 rounded-full text-center">Start for Free</a>
+            </div>
+          </div>
+        )}
+      </div>
+      </div>
+
+      {anyOpen && (
+        <div onClick={() => setActiveDropdown(null)} style={{
+          position:'fixed', inset:0, zIndex:48,
+          background:'rgba(0,0,0,0.4)',
+          backdropFilter:'blur(2px)',
+        }}/>
+      )}
+    </>
+  );
+}
+
+/* ── CHART COMPONENTS ── */
+function MiniBarChart({ data, color }) {
+  const max = Math.max(...data);
+  return (
+    <div style={{display:'flex',alignItems:'flex-end',gap:'3px',height:'36px',marginTop:'10px'}}>
+      {data.map((v,i) => (
+        <div key={i} style={{
+          flex:1, borderRadius:'2px 2px 0 0',
+          background: i===data.length-1 ? color : color+'55',
+          height:`${(v/max)*100}%`,
+          minHeight:'4px',
+        }}/>
+      ))}
+    </div>
+  );
+}
+
+/* ── HERO ── */
+function Hero() {
+  return (
+    <section style={{
+      padding:'120px 0 80px',
+      position:'relative',
+      background:'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(9,160,157,.06) 0%, transparent 70%)',
+    }}>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
+        <div data-hero-grid style={{
+          display:'grid',
+          gridTemplateColumns:'1fr 1fr',
+          gap:'64px',
+          alignItems:'center',
+        }}>
+          {/* Left: text */}
+          <div>
+            <div className="fu0" style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'20px'}}>
+              <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
+              <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>For Product Teams</span>
+            </div>
+
+            <h1 className="fu1" style={{fontSize:'clamp(36px,4.5vw,58px)',fontWeight:500,letterSpacing:'-.03em',lineHeight:1.12,marginBottom:'20px'}}>
+              <span style={{color:'#E8F2F5'}}>"Usage insights on demand,"</span>
+              <br/>
+              <span style={{color:'#0EC4C1'}}>"without the data request."</span>
+            </h1>
+
+            <p className="fu2" style={{fontSize:'clamp(16px,1.2vw,18px)',color:'rgba(255,255,255,.65)',lineHeight:1.65,marginBottom:'28px',maxWidth:'480px'}}>
+              Stop waiting 2 weeks for a data pull every time you need feature adoption numbers. Ask any product metric in plain English — Insightis queries your event data and billing instantly.
+            </p>
+
+            <div className="fu3" style={{display:'flex',gap:'12px',flexWrap:'wrap',marginBottom:'28px'}}>
+              <a href="#" style={{
+                display:'inline-flex',alignItems:'center',gap:'8px',
+                padding:'12px 24px',borderRadius:'999px',
+                background:'linear-gradient(135deg,#09A09D,#07807E)',
+                color:'#fff',fontSize:'14px',fontWeight:500,
+                textDecoration:'none',
+                boxShadow:'0 0 24px rgba(9,160,157,.3)',
+                transition:'all .2s',
+              }}>
+                Start for Free
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="#" style={{
+                display:'inline-flex',alignItems:'center',gap:'8px',
+                padding:'12px 24px',borderRadius:'999px',
+                border:'1px solid rgba(255,255,255,.12)',
+                color:'#C0D4DC',fontSize:'14px',fontWeight:400,
+                textDecoration:'none',
+                background:'rgba(255,255,255,.03)',
+                transition:'all .2s',
+              }}>
+                See how it works
+              </a>
+            </div>
+
+            <div className="fu4" style={{display:'flex',gap:'20px',flexWrap:'wrap'}}>
+              {['Real-time feature usage','Cohort & retention data','No SQL required'].map((t,i) => (
+                <span key={i} style={{display:'flex',alignItems:'center',gap:'5px',fontSize:'12px',color:'#7FA0AC',fontFamily:'Geist Mono,monospace'}}>
+                  <span style={{color:'#09A09D'}}>✓</span>{t}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: static chat mock */}
+          <div className="fu2" style={{
+            background:'rgba(13,17,23,0.9)',
+            border:'1px solid rgba(255,255,255,0.08)',
+            borderRadius:'20px',
+            overflow:'hidden',
+            backdropFilter:'blur(20px)',
+            boxShadow:'0 24px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04)',
+          }}>
+            {/* Chat window chrome */}
+            <div style={{padding:'14px 18px',borderBottom:'1px solid rgba(255,255,255,0.06)',display:'flex',alignItems:'center',gap:'10px'}}>
+              <div style={{display:'flex',gap:'5px'}}>
+                {['#FF5F57','#FFBD2E','#28C840'].map((c,i) => (
+                  <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
+                ))}
+              </div>
+              <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'#6E8D9A',fontFamily:'Geist Mono, monospace'}}>
+                insightis — ai chat
+              </div>
+              <div style={{display:'flex',alignItems:'center',gap:5,padding:'3px 8px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'5px'}}>
+                <div style={{width:'5px',height:'5px',borderRadius:'50%',background:'#22C55E',boxShadow:'0 0 6px #22C55E'}}/>
+                <span style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'#0EC4C1',fontWeight:500}}>Gemini Pro</span>
+              </div>
+            </div>
+
+            {/* Messages */}
+            <div style={{padding:'18px',display:'flex',flexDirection:'column',gap:'10px',minHeight:'200px'}}>
+              <div className="chat-bubble-user">
+                Which features are most used by retained customers?
+              </div>
+              <div className="chat-bubble-ai">
+                Retained customers use Saved Reports 3.7× more than churned accounts. Slack Alerts adoption is 61% among 12-month users vs. 18% for churned. These are your two strongest activation signals.
+                <MiniBarChart data={[18, 40, 44, 61, 78]} color="#0EC4C1"/>
+              </div>
+            </div>
+
+            {/* Input bar */}
+            <div style={{padding:'12px 16px',borderTop:'1px solid rgba(255,255,255,0.06)',display:'flex',alignItems:'center',gap:'8px'}}>
+              <div style={{flex:1,background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.08)',borderRadius:'10px',padding:'9px 12px',fontSize:'13px',color:'#6E8D9A',fontFamily:'Geist,sans-serif'}}>
+                What product metric do you need answered?
+              </div>
+              <div style={{display:'flex',alignItems:'center',gap:'5px'}}>
+                <div style={{width:'28px',height:'28px',borderRadius:'7px',background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.08)',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer'}}>
+                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M14 10a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h1l2-2h2l2 2h1a2 2 0 012 2v4z" stroke="#6E8D9A" strokeWidth="1.3"/></svg>
+                </div>
+                <div style={{width:'28px',height:'28px',borderRadius:'7px',background:'linear-gradient(135deg,#09A09D,#07807E)',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer',boxShadow:'0 0 10px rgba(9,160,157,.3)'}}>
+                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── PAIN POINTS ── */
+function PainPoints() {
+  const pains = [
+    {
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="#0EC4C1" strokeWidth="1.5"/><circle cx="12" cy="12" r="3" stroke="#0EC4C1" strokeWidth="1.5"/></svg>,
+      title: 'Feature adoption is a black box',
+      desc: 'You shipped a feature 3 months ago. Is anyone using it? You don\'t know without filing a data request and waiting two weeks for the answer.',
+    },
+    {
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><polyline points="16 18 22 12 16 6" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><polyline points="8 6 2 12 8 18" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      title: 'Retention analysis requires SQL',
+      desc: 'Understanding which features drive 90-day retention means writing complex SQL joins across event, user, and cohort tables. You\'re blocked without a data engineer.',
+    },
+    {
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><polyline points="17 18 23 18 23 12" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      title: 'Onboarding drop-off is hard to diagnose',
+      desc: 'You know users are churning before they activate. But which step causes the most abandonment, and why, requires a full analytics deep-dive.',
+    },
+    {
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#0EC4C1" strokeWidth="1.5"/><polyline points="12 6 12 12 16 14" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      title: 'Time-to-value is impossible to measure quickly',
+      desc: 'Knowing how long it takes a new user to get their first \'aha moment\' requires correlating sign-up, event, and retention data together. Hours of work.',
+    },
+    {
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#0EC4C1" strokeWidth="1.5"/><line x1="12" y1="8" x2="12" y2="12" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/><line x1="12" y1="16" x2="12.01" y2="16" stroke="#0EC4C1" strokeWidth="2" strokeLinecap="round"/></svg>,
+      title: 'Data requests slow down every sprint',
+      desc: 'Every product decision that needs data goes through the same bottleneck: write a ticket, wait for the analyst, get stale numbers, make a stale decision.',
+    },
+    {
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M13.73 21a2 2 0 01-3.46 0" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      title: 'You can\'t detect activation problems in real time',
+      desc: 'When a new cohort\'s activation rate drops, you find out at the weekly review — too late to course-correct before the cohort churns.',
+    },
+  ];
+
+  return (
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
+        <div style={{textAlign:'center',marginBottom:'56px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
+            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>The Problem</span>
+          </div>
+          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
+            Product decisions are running on stale data
+          </h2>
+          <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
+            Sound familiar? These are the problems Insightis eliminates.
+          </p>
+        </div>
+
+        <div data-pain-grid style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:'16px'}}>
+          {pains.map((p,i) => (
+            <div key={i}
+              style={{
+                background:'rgba(13,17,23,.6)',
+                border:'1px solid rgba(255,255,255,.06)',
+                borderRadius:'16px',padding:'28px',
+                position:'relative',overflow:'hidden',
+                transition:'all .2s',
+              }}
+              onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
+              onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}
+            >
+              <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
+              <div style={{width:'40px',height:'40px',borderRadius:'10px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'16px'}}>
+                {p.icon}
+              </div>
+              <h3 style={{fontSize:'16px',fontWeight:600,color:'#E8F2F5',marginBottom:'8px'}}>{p.title}</h3>
+              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.65}}>{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── RELEVANT INTEGRATIONS ── */
+function RelevantIntegrations() {
+  const connectors = [
+    {
+      name:'Mixpanel', bg:'rgba(120,86,255,.12)', desc:'Product analytics',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="7" r="2.5" fill="#7856ff"/>
+        <circle cx="12" cy="17" r="2.5" fill="#7856ff"/>
+        <circle cx="7" cy="12" r="2.5" fill="#7856ff"/>
+        <circle cx="17" cy="12" r="2.5" fill="#7856ff"/>
+      </svg>,
+    },
+    {
+      name:'Amplitude', bg:'rgba(25,124,230,.12)', desc:'Behavioral data',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M3 17l4-8 4 10 3-6 2 4 5-12" stroke="#197ce6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>,
+    },
+    {
+      name:'Segment', bg:'rgba(82,189,149,.12)', desc:'Customer data platform',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="9" stroke="#52bd95" strokeWidth="1.5" fill="none"/>
+        <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5" stroke="#52bd95" strokeWidth="1.8" strokeLinecap="round"/>
+        <path d="M14 9l3-2" stroke="#52bd95" strokeWidth="1.6" strokeLinecap="round"/>
+        <path d="M14 15l3 2" stroke="#52bd95" strokeWidth="1.6" strokeLinecap="round"/>
+      </svg>,
+    },
+    {
+      name:'PostgreSQL', bg:'rgba(51,103,145,.12)', desc:'Data warehouse',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <ellipse cx="12" cy="6" rx="8" ry="3" stroke="#336791" strokeWidth="1.5" fill="#336791" opacity=".18"/>
+        <path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6" stroke="#336791" strokeWidth="1.5" fill="none"/>
+        <path d="M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" stroke="#336791" strokeWidth="1.5" fill="none"/>
+        <path d="M19 7c.63.55 1 1.21 1 1.9V18" stroke="#336791" strokeWidth="1.3" strokeLinecap="round" fill="none"/>
+      </svg>,
+    },
+    {
+      name:'BigQuery', bg:'rgba(66,133,244,.12)', desc:'Cloud analytics',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#4285f4"/>
+        <path d="M2 17l10 5 10-5" stroke="#34a853" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+        <path d="M2 12l10 5 10-5" stroke="#fbbc04" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+      </svg>,
+    },
+    {
+      name:'Snowflake', bg:'rgba(41,181,232,.12)', desc:'Data platform',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <line x1="12" y1="2" x2="12" y2="22" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
+        <line x1="2" y1="7" x2="22" y2="17" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
+        <line x1="22" y1="7" x2="2" y2="17" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
+        <circle cx="12" cy="2" r="1.5" fill="#29b5e8"/>
+        <circle cx="12" cy="22" r="1.5" fill="#29b5e8"/>
+        <circle cx="2" cy="7" r="1.5" fill="#29b5e8"/>
+        <circle cx="22" cy="17" r="1.5" fill="#29b5e8"/>
+        <circle cx="22" cy="7" r="1.5" fill="#29b5e8"/>
+        <circle cx="2" cy="17" r="1.5" fill="#29b5e8"/>
+        <circle cx="12" cy="12" r="2.5" fill="#29b5e8"/>
+      </svg>,
+    },
+    {
+      name:'Redshift', bg:'rgba(140,79,255,.12)', desc:'Data warehouse',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <ellipse cx="12" cy="7" rx="9" ry="3" stroke="#8c4fff" strokeWidth="1.5" fill="#8c4fff" opacity=".15"/>
+        <path d="M3 7v5c0 1.66 4.03 3 9 3s9-1.34 9-3V7" stroke="#8c4fff" strokeWidth="1.5" fill="none"/>
+        <path d="M3 12v5c0 1.66 4.03 3 9 3s9-1.34 9-3v-5" stroke="#8c4fff" strokeWidth="1.5" fill="none"/>
+      </svg>,
+    },
+    {
+      name:'Stripe', bg:'rgba(99,91,255,.12)', desc:'Billing & revenue',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z" fill="#635bff"/>
+      </svg>,
+    },
+    {
+      name:'HubSpot', bg:'rgba(255,122,89,.12)', desc:'CRM & lifecycle',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="3" fill="#ff7a59"/>
+        <line x1="12" y1="3.5" x2="12" y2="9" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/>
+        <line x1="12" y1="15" x2="12" y2="20.5" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/>
+        <line x1="3.5" y1="12" x2="9" y2="12" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/>
+        <line x1="15" y1="12" x2="20.5" y2="12" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/>
+        <circle cx="12" cy="3.5" r="1.8" fill="#ff7a59"/>
+        <circle cx="12" cy="20.5" r="1.8" fill="#ff7a59"/>
+        <circle cx="3.5" cy="12" r="1.8" fill="#ff7a59"/>
+        <circle cx="20.5" cy="12" r="1.8" fill="#ff7a59"/>
+      </svg>,
+    },
+    {
+      name:'Intercom', bg:'rgba(40,110,241,.12)', desc:'Support & success',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <rect x="2" y="2" width="20" height="20" rx="5" fill="#286ef1" opacity=".18"/>
+        <circle cx="8" cy="12" r="1.5" fill="#286ef1"/>
+        <circle cx="12" cy="12" r="1.5" fill="#286ef1"/>
+        <circle cx="16" cy="12" r="1.5" fill="#286ef1"/>
+        <rect x="2" y="2" width="20" height="20" rx="5" stroke="#286ef1" strokeWidth="1.5" fill="none"/>
+      </svg>,
+    },
+    {
+      name:'Firebase', bg:'rgba(255,109,0,.12)', desc:'Mobile analytics',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M5.5 20L8 10l3.5 4L14 6l4.5 14H5.5z" fill="#ff6d00" opacity=".3" stroke="#ff6d00" strokeWidth="1.3" strokeLinejoin="round"/>
+        <path d="M5.5 20L11 8l3 6" stroke="#ff9800" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+        <path d="M14 6l4.5 14" stroke="#ff6d00" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+      </svg>,
+    },
+    {
+      name:'dbt', bg:'rgba(255,105,74,.12)', desc:'Data transforms',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2 L22 19 L2 19 Z" fill="#ff694a" opacity=".2" stroke="#ff694a" strokeWidth="1.5" strokeLinejoin="round"/>
+        <circle cx="12" cy="14" r="3" fill="#ff694a"/>
+        <line x1="12" y1="2" x2="12" y2="11" stroke="#ff694a" strokeWidth="1.8" strokeLinecap="round"/>
+      </svg>,
+    },
+    {
+      name:'Databricks', bg:'rgba(228,23,63,.12)', desc:'Data lakehouse',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L22 8v8L12 22 2 16V8L12 2z" fill="#e4173f" opacity=".18" stroke="#e4173f" strokeWidth="1.5" strokeLinejoin="round"/>
+        <path d="M12 6l6 3.5v7L12 20 6 16.5v-7L12 6z" fill="#e4173f" opacity=".35"/>
+        <path d="M12 10l3 1.75v3.5L12 17l-3-1.75v-3.5L12 10z" fill="#e4173f"/>
+      </svg>,
+    },
+    {
+      name:'Google Analytics', bg:'rgba(227,116,0,.12)', desc:'Web analytics',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <rect x="2" y="13" width="5" height="9" rx="1" fill="#e37400"/>
+        <rect x="9.5" y="7" width="5" height="15" rx="1" fill="#fbbc04"/>
+        <rect x="17" y="2" width="5" height="20" rx="1" fill="#34a853"/>
+      </svg>,
+    },
+    {
+      name:'Notion', bg:'rgba(232,242,245,.04)', desc:'Docs & reports',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <rect x="4" y="2" width="16" height="20" rx="2" stroke="#E8F2F5" strokeWidth="1.3" opacity=".4" fill="none"/>
+        <line x1="8" y1="7" x2="16" y2="7" stroke="#E8F2F5" strokeWidth="1.2" strokeLinecap="round" opacity=".4"/>
+        <line x1="8" y1="11" x2="16" y2="11" stroke="#E8F2F5" strokeWidth="1.2" strokeLinecap="round" opacity=".4"/>
+        <line x1="8" y1="15" x2="13" y2="15" stroke="#E8F2F5" strokeWidth="1.2" strokeLinecap="round" opacity=".4"/>
+      </svg>,
+    },
+    {
+      name:'Slack', bg:'rgba(97,31,105,.12)', desc:'Team alerts',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <line x1="5" y1="3" x2="5" y2="21" stroke="#611f69" strokeWidth="2.5" strokeLinecap="round"/>
+        <line x1="19" y1="3" x2="19" y2="21" stroke="#611f69" strokeWidth="2.5" strokeLinecap="round"/>
+        <line x1="3" y1="8" x2="21" y2="8" stroke="#e01e5a" strokeWidth="2.5" strokeLinecap="round"/>
+        <line x1="3" y1="16" x2="21" y2="16" stroke="#36c5f0" strokeWidth="2.5" strokeLinecap="round"/>
+      </svg>,
+    },
+  ];
+
+  return (
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0D1117 0%,#101620 100%)'}}>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
+        <div style={{textAlign:'center',marginBottom:'56px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
+            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Your Data Sources</span>
+          </div>
+          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
+            Connects to every product data source
+          </h2>
+          <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
+            Insightis connects your event data, billing, and CRM so you can see the full user journey.
+          </p>
+        </div>
+
+        <div data-connectors-grid style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'10px',marginBottom:'32px'}}>
+          {connectors.map((c,i) => (
+            <div key={i} className="connector-card">
+              <div className="connector-icon" style={{background:c.bg, display:'flex', alignItems:'center', justifyContent:'center'}}>
+                {c.icon}
+              </div>
+              <div>
+                <div style={{fontSize:'13px',fontWeight:500,color:'#E8F2F5'}}>{c.name}</div>
+                <div style={{fontSize:'11px',color:'#6E8D9A',marginTop:'2px'}}>{c.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{textAlign:'center'}}>
+          <a href="#" style={{
+            display:'inline-flex',alignItems:'center',gap:'6px',
+            fontSize:'13px',color:'#7FA0AC',
+            textDecoration:'none',
+            border:'1px solid rgba(255,255,255,.07)',
+            borderRadius:'999px',
+            padding:'8px 20px',
+            background:'rgba(255,255,255,.02)',
+            transition:'all .15s',
+          }}
+          onMouseEnter={e=>{e.currentTarget.style.color='#0EC4C1';e.currentTarget.style.borderColor='rgba(9,160,157,.3)';}}
+          onMouseLeave={e=>{e.currentTarget.style.color='#7FA0AC';e.currentTarget.style.borderColor='rgba(255,255,255,.07)';}}
+          >
+            See all 200+ integrations
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── METRICS ── */
+function Metrics() {
+  const metrics = [
+    'DAU / MAU','Feature Adoption Rate','Time to Activate','D30 Retention','D90 Retention',
+    'NPS Score','Session Depth','Activation Rate','Cohort Retention','Onboarding Completion',
+    'Feature Stickiness','Power User %','Trial Conversion','In-App Event Rate','User Churn by Cohort',
+    'Breadth of Use','Time to Value','Signup to Active','Weekly Active Users','Feature Request Volume',
+  ];
+
+  return (
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#101620 0%,#0A0E13 100%)'}}>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
+        <div style={{textAlign:'center',marginBottom:'48px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
+            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Metrics That Matter</span>
+          </div>
+          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
+            Every KPI a product team tracks
+          </h2>
+          <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
+            Ask about any of these — or any metric you define — in plain English.
+          </p>
+        </div>
+
+        <div style={{display:'flex',flexWrap:'wrap',gap:'10px',justifyContent:'center',marginBottom:'28px'}}>
+          {metrics.map((m,i) => (
+            <span key={i} className="metric-pill">{m}</span>
+          ))}
+        </div>
+
+        <p style={{textAlign:'center',fontSize:'13px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',fontStyle:'italic'}}>
+          These are just examples — ask about any metric in plain English.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* ── BEFORE / AFTER ── */
+function BeforeAfter() {
+  return (
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
+        <div style={{textAlign:'center',marginBottom:'52px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
+            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>The Difference</span>
+          </div>
+          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
+            Product work before vs. after Insightis
+          </h2>
+        </div>
+
+        <div data-compare-grid style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'12px'}}>
+          {/* Before */}
+          <div style={{background:'rgba(248,113,113,.04)',border:'1px solid rgba(248,113,113,.15)',borderRadius:'16px',padding:'28px'}}>
+            <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'20px'}}>
+              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#F87171'}}/>
+              <span style={{fontSize:'13px',fontWeight:600,color:'#F87171'}}>Before Insightis</span>
+            </div>
+            <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'12px'}}>
+              {[
+                'Feature adoption requires SQL + 2-week wait',
+                'Retention analysis blocked on data team',
+                'Onboarding drop-off hard to diagnose',
+                'Activation problems found at weekly review',
+                'Every product question needs a ticket',
+                'Can\'t correlate usage data with revenue',
+              ].map((item,i) => (
+                <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'#7FA0AC',lineHeight:1.55}}>
+                  <span style={{color:'#F87171',fontWeight:500,flexShrink:0}}>✕</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* After */}
+          <div style={{background:'rgba(9,160,157,.05)',border:'1px solid rgba(9,160,157,.25)',borderRadius:'16px',padding:'28px',position:'relative'}}>
+            <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.6),transparent)',borderRadius:'16px 16px 0 0'}}/>
+            <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'20px'}}>
+              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#0EC4C1',boxShadow:'0 0 8px #0EC4C1'}}/>
+              <span style={{fontSize:'13px',fontWeight:600,color:'#0EC4C1'}}>With Insightis</span>
+            </div>
+            <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'12px'}}>
+              {[
+                'Any feature metric available instantly',
+                'Retention cohorts in plain English',
+                'Drop-off steps identified in seconds',
+                'Activation anomalies surface in real time',
+                'Product questions answered self-serve',
+                'Usage-to-LTV correlation at your fingertips',
+              ].map((item,i) => (
+                <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'#C0D4DC',lineHeight:1.55}}>
+                  <span style={{color:'#0EC4C1',fontWeight:500,flexShrink:0}}>✓</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div style={{textAlign:'center',marginTop:'36px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
+            <span style={{fontSize:'40px',fontWeight:500,color:'#0EC4C1',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>2×</span>
+            <span style={{fontSize:'15px',color:'#7FA0AC',whiteSpace:'nowrap'}}>faster product decisions. Zero data request tickets.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── BOTTOM CTA ── */
+function BottomCTA() {
+  return (
+    <section style={{paddingTop:'32px',paddingBottom:'64px',position:'relative'}}>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
+        <div style={{
+          position:'relative',borderRadius:'16px',
+          border:'1px solid rgba(30,30,48,1)',
+          padding:'32px 48px',overflow:'hidden',
+          display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'24px',
+          flexWrap:'wrap',
+          background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)',
+        }}>
+          <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
+          <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',lineHeight:1.2,flexShrink:0}}>
+            Stop waiting on <span style={{color:'#07807E'}}>data requests.</span> Start shipping <span style={{color:'#07807E'}}> faster.</span>
+          </h3>
+          <div style={{
+            display:'flex',alignItems:'center',
+            width:'100%',maxWidth:'420px',
+            background:'#0D0D1A',border:'1px solid rgba(46,46,64,1)',
+            borderRadius:'12px',overflow:'hidden',
+            flex:'1 1 340px',
+          }}>
+            <input
+              type="text"
+              placeholder="What product metric do you need answered?"
+              style={{
+                flex:1,background:'transparent',fontSize:'14px',color:'#fff',
+                padding:'12px 16px',outline:'none',border:'none',
+                fontFamily:'Geist,sans-serif',minWidth:0,
+              }}
+            />
+            <button style={{
+              display:'inline-flex',alignItems:'center',gap:'8px',
+              padding:'10px 20px',margin:'4px',
+              fontSize:'13px',fontWeight:600,color:'#fff',
+              background:'linear-gradient(135deg,#07807E,#09A09D)',
+              borderRadius:'8px',border:'none',cursor:'pointer',
+              whiteSpace:'nowrap',flexShrink:0,
+              fontFamily:'Geist,sans-serif',
+            }}>
+              Get Started
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── FOOTER ── */
+function TwitterXIcon({ size = 16, color = "#A0A0B8" }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill={color}><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>;
+}
+function LinkedInIcon({ size = 16, color = "#A0A0B8" }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill={color}><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>;
+}
+function YouTubeIcon({ size = 16, color = "#A0A0B8" }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill={color}><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>;
+}
+function TikTokIcon({ size = 16, color = "#A0A0B8" }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill={color}><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.43v-7.15a8.16 8.16 0 005.58 2.17v-3.4a4.85 4.85 0 01-1-.16l.01-.02V6.69h.99z"/></svg>;
+}
+
+function Footer() {
+  const linkUrls = {
+    'AI Chat': '../Platform/AI Chat.html',
+    'Integrations': '../Platform/Integrations.html',
+    'Insights Engine': '../Platform/Insights Engine.html',
+    'Semantic Layer': '../Platform/Semantic Layer.html',
+    'Reports': '../Platform/Reports.html',
+    'Memory & Storage': '../Platform/Memory & Storage.html',
+    'For RevOps & BizOps': 'RevOps BizOps.html',
+    'For Founders & CEOs': 'Founders CEOs.html',
+    'For Marketing Teams': 'Marketing Teams.html',
+    'For Product Teams': 'Product Teams.html',
+    'For Data & Analytics Teams': 'Data Analytics Teams.html',
+    'For Operations & Finance': 'Operations Finance.html',
+  };
+  return (
+    <footer className="pt-16 pb-8 border-t border-[#1E1E30]">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row gap-10 md:gap-16 mb-14 items-start">
+          {/* Brand */}
+          <div className="shrink-0 md:max-w-[220px]">
+            <a href="../index.html" className="flex items-center gap-2.5 mb-4">
+              <svg width="111" height="26" viewBox="0 0 111 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7"><g clipPath="url(#clip0_ftr)"><path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="#1498B9"/><path d="M33.2746 17.5261V5.60823H35.5859V17.5261H33.2746Z" fill="white"/><path d="M38.2797 17.5261V8.0821H40.1758L40.1216 10.9713H40.4466C40.6152 10.261 40.8379 9.67717 41.1148 9.21971C41.4037 8.76226 41.7708 8.41917 42.2163 8.19044C42.6617 7.96171 43.1793 7.84735 43.7692 7.84735C44.8406 7.84735 45.6532 8.22656 46.207 8.98497C46.7728 9.74338 47.0557 10.9171 47.0557 12.5062V17.5261H44.7624V12.7409C44.7624 11.7177 44.6059 10.9713 44.2929 10.5018C43.9919 10.0203 43.5405 9.77949 42.9386 9.77949C42.433 9.77949 42.0056 9.94201 41.6565 10.267C41.3074 10.58 41.0365 11.0014 40.8439 11.5311C40.6633 12.0487 40.567 12.6205 40.555 13.2465V17.5261H38.2797Z" fill="white"/><path d="M53.1255 17.7609C52.4875 17.7609 51.9096 17.6947 51.392 17.5622C50.8864 17.4419 50.453 17.2673 50.0918 17.0386C49.7307 16.7978 49.4418 16.5149 49.2251 16.1899C49.0084 15.8528 48.876 15.4796 48.8278 15.0703L50.6155 14.4022C50.6396 14.7152 50.76 14.9981 50.9767 15.2509C51.1933 15.4917 51.4943 15.6843 51.8795 15.8287C52.2647 15.9732 52.7282 16.0454 53.2699 16.0454C53.8719 16.0454 54.3353 15.9551 54.6604 15.7746C54.9974 15.5819 55.166 15.3111 55.166 14.962C55.166 14.7092 55.0757 14.5105 54.8951 14.3661C54.7145 14.2096 54.4497 14.0832 54.1006 13.9869C53.7635 13.8785 53.3542 13.7762 52.8727 13.6799C52.4273 13.5836 51.9758 13.4752 51.5184 13.3549C51.073 13.2224 50.6576 13.0539 50.2724 12.8493C49.8992 12.6326 49.5922 12.3557 49.3515 12.0186C49.1228 11.6695 49.0084 11.2301 49.0084 10.7004C49.0084 10.1226 49.1589 9.623 49.4598 9.20166C49.7728 8.78032 50.2182 8.44926 50.7961 8.2085C51.386 7.96773 52.0962 7.84735 52.9269 7.84735C53.7093 7.84735 54.3835 7.9557 54.9493 8.17238C55.5271 8.38907 55.9966 8.70207 56.3578 9.11137C56.7189 9.50863 56.9476 9.98415 57.0439 10.5379L55.166 11.1338C55.1299 10.7967 55.0155 10.5138 54.8229 10.2851C54.6303 10.0443 54.3714 9.86376 54.0464 9.74338C53.7214 9.623 53.3422 9.56281 52.9088 9.56281C52.355 9.56281 51.9217 9.65911 51.6087 9.85172C51.2957 10.0443 51.1392 10.3032 51.1392 10.6282C51.1392 10.893 51.2355 11.1037 51.4281 11.2602C51.6327 11.4167 51.9096 11.5431 52.2587 11.6394C52.6199 11.7357 53.0292 11.832 53.4866 11.9283C53.9682 12.0246 54.4316 12.139 54.8771 12.2714C55.3345 12.3918 55.7438 12.5543 56.105 12.759C56.4661 12.9636 56.755 13.2345 56.9717 13.5716C57.1884 13.8966 57.2967 14.3179 57.2967 14.8356C57.2967 15.4616 57.1282 15.9973 56.7911 16.4427C56.4541 16.8761 55.9725 17.2071 55.3465 17.4358C54.7326 17.6525 53.9922 17.7609 53.1255 17.7609Z" fill="white"/><path d="M59.2115 17.5261V8.0821H61.4868V17.5261H59.2115ZM60.3492 6.60139C59.8917 6.60139 59.5366 6.50508 59.2838 6.31247C59.043 6.10782 58.9226 5.8189 58.9226 5.44571C58.9226 5.07253 59.043 4.78963 59.2838 4.59702C59.5366 4.39236 59.8917 4.29004 60.3492 4.29004C60.8307 4.29004 61.1918 4.38635 61.4326 4.57896C61.6734 4.77157 61.7937 5.06049 61.7937 5.44571C61.7937 5.8189 61.6673 6.10782 61.4145 6.31247C61.1738 6.50508 60.8186 6.60139 60.3492 6.60139Z" fill="white"/><path d="M67.709 20.7765C66.6857 20.7765 65.843 20.6982 65.1809 20.5417C64.5309 20.3852 64.0493 20.1505 63.7363 19.8375C63.4233 19.5245 63.2668 19.1393 63.2668 18.6818C63.2668 18.128 63.4835 17.6766 63.9169 17.3275C64.3623 16.9663 65.0184 16.7436 65.8852 16.6594V16.2982C65.2351 16.3103 64.7415 16.2441 64.4045 16.0996C64.0674 15.9431 63.8988 15.6963 63.8988 15.3592C63.8988 15.0342 64.0614 14.7453 64.3864 14.4925C64.7235 14.2397 65.2772 14.029 66.0477 13.8605V13.4993C65.3133 13.4632 64.7415 13.2345 64.3322 12.8131C63.9229 12.3798 63.7183 11.82 63.7183 11.1338C63.7183 10.5198 63.8868 9.97813 64.2239 9.50863C64.561 9.03914 65.0545 8.67197 65.7046 8.40713C66.3667 8.13025 67.1672 7.99181 68.1062 7.99181H72.7831V9.79755L69.8217 9.36417V9.76144C70.5681 9.88182 71.1158 10.0925 71.4649 10.3934C71.8261 10.6944 72.0066 11.1037 72.0066 11.6214C72.0066 12.1149 71.8501 12.5543 71.5371 12.9395C71.2241 13.3127 70.7667 13.6077 70.1648 13.8244C69.5749 14.029 68.8586 14.1313 68.0159 14.1313C67.8594 14.1313 67.6909 14.1253 67.5103 14.1133C67.3298 14.1012 67.0469 14.0711 66.6616 14.023C66.4088 14.2036 66.2042 14.3661 66.0477 14.5105C65.8912 14.643 65.8129 14.7694 65.8129 14.8897C65.8129 14.986 65.8731 15.0703 65.9935 15.1425C66.1139 15.2027 66.2704 15.2449 66.463 15.2689C66.6556 15.293 66.8422 15.3051 67.0228 15.3051H69.5328C69.7735 15.3051 70.0805 15.3231 70.4537 15.3592C70.8389 15.3954 71.2181 15.4917 71.5913 15.6482C71.9765 15.8047 72.2955 16.0514 72.5484 16.3885C72.8132 16.7256 72.9456 17.2011 72.9456 17.815C72.9456 18.5012 72.747 19.061 72.3497 19.4944C71.9645 19.9398 71.3806 20.2648 70.5982 20.4695C69.8277 20.6741 68.8646 20.7765 67.709 20.7765ZM67.9076 18.9346C68.654 18.9346 69.2499 18.8925 69.6953 18.8082C70.1407 18.7239 70.4597 18.5855 70.6523 18.3929C70.8449 18.2123 70.9412 17.9776 70.9412 17.6886C70.9412 17.4238 70.8811 17.2192 70.7607 17.0747C70.6403 16.9182 70.4838 16.8098 70.2912 16.7497C70.1106 16.6895 69.924 16.6534 69.7314 16.6413C69.5388 16.6293 69.3763 16.6233 69.2438 16.6233H67.0228C66.4449 16.7075 66.0356 16.87 65.7949 17.1108C65.5662 17.3516 65.4518 17.6164 65.4518 17.9053C65.4518 18.1943 65.5481 18.4109 65.7407 18.5554C65.9333 18.7119 66.2102 18.8142 66.5713 18.8624C66.9445 18.9105 67.3899 18.9346 67.9076 18.9346ZM67.9618 12.8854C68.5878 12.8854 69.0633 12.7409 69.3883 12.452C69.7133 12.151 69.8759 11.7598 69.8759 11.2783C69.8759 10.7606 69.7073 10.3393 69.3702 10.0142C69.0452 9.67717 68.5697 9.50863 67.9437 9.50863C67.3177 9.50863 66.8302 9.67115 66.4811 9.99618C66.144 10.3212 65.9755 10.7365 65.9755 11.2421C65.9755 11.5672 66.0477 11.8561 66.1921 12.1089C66.3486 12.3497 66.5713 12.5423 66.8603 12.6867C67.1612 12.8192 67.5284 12.8854 67.9618 12.8854Z" fill="white"/><path d="M74.7825 17.5261V4.70536H77.0758V7.64872C77.0758 7.90152 77.0638 8.16035 77.0397 8.42519C77.0277 8.69003 77.0036 8.96089 76.9675 9.23777C76.9314 9.51465 76.8892 9.79153 76.8411 10.0684C76.805 10.3453 76.7628 10.6222 76.7147 10.8991H77.0939C77.2624 10.249 77.4791 9.70125 77.7439 9.25583C78.0088 8.79837 78.3459 8.44926 78.7552 8.2085C79.1765 7.96773 79.6881 7.84735 80.29 7.84735C81.3855 7.84735 82.2041 8.23258 82.7459 9.00303C83.2876 9.76144 83.5584 10.9171 83.5584 12.47V17.5261H81.2651V12.7951C81.2651 11.7598 81.1087 10.9954 80.7957 10.5018C80.4947 10.0082 80.0372 9.76144 79.4233 9.76144C78.9177 9.76144 78.4963 9.91793 78.1593 10.2309C77.8222 10.5319 77.5634 10.9352 77.3828 11.4408C77.2022 11.9464 77.0939 12.5182 77.0578 13.1562V17.5261H74.7825Z" fill="white"/><path d="M89.2495 17.7428C88.2503 17.7428 87.516 17.478 87.0465 16.9483C86.577 16.4066 86.3422 15.5699 86.3422 14.4383V9.9059H84.9518L84.9879 8.10015H85.9089C86.258 8.10015 86.5168 8.04598 86.6853 7.93764C86.8539 7.82929 86.9562 7.63668 86.9923 7.3598L87.209 5.98744H88.5272V8.0821H91.0191V9.97813H88.5272V14.348C88.5272 14.7934 88.6295 15.1185 88.8342 15.3231C89.0509 15.5278 89.3699 15.6301 89.7912 15.6301C90.0199 15.6301 90.2426 15.606 90.4593 15.5579C90.6881 15.4977 90.8987 15.4014 91.0913 15.2689V17.4358C90.7182 17.5562 90.3751 17.6345 90.0621 17.6706C89.7611 17.7187 89.4903 17.7428 89.2495 17.7428Z" fill="white"/><path d="M92.9634 17.5261V8.0821H95.2386V17.5261H92.9634ZM94.101 6.60139C93.6436 6.60139 93.2884 6.50508 93.0356 6.31247C92.7949 6.10782 92.6745 5.8189 92.6745 5.44571C92.6745 5.07253 92.7949 4.78963 93.0356 4.59702C93.2884 4.39236 93.6436 4.29004 94.101 4.29004C94.5825 4.29004 94.9437 4.38635 95.1845 4.57896C95.4252 4.77157 95.5456 5.06049 95.5456 5.44571C95.5456 5.8189 95.4192 6.10782 95.1664 6.31247C94.9256 6.50508 94.5705 6.60139 94.101 6.60139Z" fill="white"/><path d="M101.461 17.7609C100.823 17.7609 100.245 17.6947 99.7273 17.5622C99.2217 17.4419 98.7883 17.2673 98.4272 17.0386C98.066 16.7978 97.7771 16.5149 97.5604 16.1899C97.3437 15.8528 97.2113 15.4796 97.1632 15.0703L98.9508 14.4022C98.9749 14.7152 99.0953 14.9981 99.312 15.2509C99.5287 15.4917 99.8296 15.6843 100.215 15.8287C100.6 15.9732 101.064 16.0454 101.605 16.0454C102.207 16.0454 102.671 15.9551 102.996 15.7746C103.333 15.5819 103.501 15.3111 103.501 14.962C103.501 14.7092 103.411 14.5105 103.23 14.3661C103.05 14.2096 102.785 14.0832 102.436 13.9869C102.099 13.8785 101.69 13.7762 101.208 13.6799C100.763 13.5836 100.311 13.4752 99.8537 13.3549C99.4083 13.2224 98.993 13.0539 98.6077 12.8493C98.2346 12.6326 97.9276 12.3557 97.6868 12.0186C97.4581 11.6695 97.3437 11.2301 97.3437 10.7004C97.3437 10.1226 97.4942 9.623 97.7952 9.20166C98.1082 8.78032 98.5536 8.44926 99.1314 8.2085C99.7213 7.96773 100.432 7.84735 101.262 7.84735C102.045 7.84735 102.719 7.9557 103.285 8.17238C103.862 8.38907 104.332 8.70207 104.693 9.11137C105.054 9.50863 105.283 9.98415 105.379 10.5379L103.501 11.1338C103.465 10.7967 103.351 10.5138 103.158 10.2851C102.966 10.0443 102.707 9.86376 102.382 9.74338C102.057 9.623 101.678 9.56281 101.244 9.56281C100.69 9.56281 100.257 9.65911 99.944 9.85172C99.631 10.0443 99.4745 10.3032 99.4745 10.6282C99.4745 10.893 99.5708 11.1037 99.7634 11.2602C99.9681 11.4167 100.245 11.5431 100.594 11.6394C100.955 11.7357 101.365 11.832 101.822 11.9283C102.303 12.0246 102.767 12.139 103.212 12.2714C103.67 12.3918 104.079 12.5543 104.44 12.759C104.801 12.9636 105.09 13.2345 105.307 13.5716C105.524 13.8966 105.632 14.3179 105.632 14.8356C105.632 15.4616 105.464 15.9973 105.126 16.4427C104.789 16.8761 104.308 17.2071 103.682 17.4358C103.068 17.6525 102.328 17.7609 101.461 17.7609Z" fill="white"/></g><defs><clipPath id="clip0_ftr"><rect width="111" height="25.4928" fill="white"/></clipPath></defs></svg>
+            </a>
+            <p className="text-xs font-medium text-[#09A09D] uppercase tracking-wider mb-2">AI Analytics Workspace for instant insights</p>
+            <p className="text-sm text-[#7878A8] leading-relaxed">Every data has an insight. We help you find them, without the complexity.</p>
+          </div>
+
+          {/* Nav columns */}
+          <div className="md:ml-auto grid grid-cols-2 gap-8 md:flex md:flex-row md:gap-16">
+
+            <div>
+              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Platform</h4>
+              <ul className="flex flex-col gap-2.5">
+                {['AI Chat', 'Integrations', 'Insights Engine', 'Semantic Layer', 'Reports', 'Memory & Storage'].map(link => (
+                  <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Solutions</h4>
+              <ul className="flex flex-col gap-2.5">
+                {[
+                  { label:'For RevOps & BizOps', href:'RevOps BizOps.html' },
+                  { label:'For Founders & CEOs', href:'Founders CEOs.html' },
+                  { label:'For Marketing Teams', href:'Marketing Teams.html' },
+                  { label:'For Product Teams', href:'Product Teams.html' },
+                  { label:'For Data & Analytics Teams', href:'Data Analytics Teams.html' },
+                  { label:'For Operations & Finance', href:'Operations Finance.html' },
+                ].map(link => (
+                  <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Resources</h4>
+              <ul className="flex flex-col gap-2.5">
+                {['Documentation', 'Video Tutorials', 'Blog', 'Support Center', 'Roadmap', 'Community'].map(link => (
+                  <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Company</h4>
+              <ul className="flex flex-col gap-2.5">
+                {[
+                  { label: 'About Insightis', href: '../Company/About Insightis.html' },
+                  { label: 'About Devart', href: 'https://www.devart.com/company/' },
+                  { label: 'Careers', href: 'https://www.devart.com/vacancies/' },
+                  { label: 'Contacts', href: '../Company/Contacts.html' },
+                  { label: 'Success Stories', href: '../Company/Success Stories.html' },
+                  { label: 'Press & Media', href: '../Company/Press Media.html' },
+                ].map(link => (
+                  <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Legal</h4>
+              <ul className="flex flex-col gap-2.5">
+                {[
+                  { label: 'Privacy', href: '../Security/Privacy.html' },
+                  { label: 'Terms', href: '../Security/Terms.html' },
+                  { label: 'Security', href: '../Security/Security.html' },
+                  { label: 'Cookie Settings', href: '../Security/Cookie Settings.html' },
+                ].map(link => (
+                  <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                ))}
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+        <div className="border-t border-[#1E1E30] pt-6 flex items-center justify-between">
+          <p className="text-xs text-[#7878A8]">&copy; Copyright © Devart 2026</p>
+          <div className="flex items-center gap-4">
+            <a href="https://x.com/Insightisai" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity"><TwitterXIcon size={18} color="#7878A8" /></a>
+            <a href="https://www.tiktok.com/@insightisai" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity"><TikTokIcon size={18} color="#7878A8" /></a>
+            <a href="https://www.youtube.com/@InsightisAI" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity"><YouTubeIcon size={18} color="#7878A8" /></a>
+            <a href="https://www.linkedin.com/company/112025589" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity"><LinkedInIcon size={18} color="#7878A8" /></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/* ── APP ── */
+function App() {
+  return (
+    <div>
+      <Header />
+      <Hero />
+      <PainPoints />
+      <RelevantIntegrations />
+      <Metrics />
+      <BeforeAfter />
+      <BottomCTA />
+      <Footer />
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

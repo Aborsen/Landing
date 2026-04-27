@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Integrations for AI Analytics — Insightis</title>
+<meta name="description" content="Connect 200+ CRMs, warehouses, ads, and product tools to Insightis and query every source in plain English — no SQL, no pipelines, live in minutes.">
+<meta name="keywords" content="insightis integrations, data integrations, AI analytics connectors, CRM integration, data warehouse integration, semantic layer">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Insightis">
+<meta name="publisher" content="Devart">
+<link rel="canonical" href="https://insightis.ai/platform/integrations/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Data Integrations for AI Analytics — Insightis">
+<meta property="og:description" content="Connect 200+ CRMs, warehouses, ads, and product tools and query every source in plain English.">
+<meta property="og:url" content="https://insightis.ai/platform/integrations/">
+<!-- TODO SEO [P1]: Create and upload OG image asset at https://insightis.ai/og/integrations.png (1200x630). -->
+<meta property="og:image" content="https://insightis.ai/og/integrations.png">
+<meta property="og:site_name" content="Insightis">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Insightisai">
+<meta name="twitter:title" content="Data Integrations for AI Analytics — Insightis">
+<meta name="twitter:description" content="Connect 200+ CRMs, warehouses, ads, and product tools and query every source in plain English.">
+<meta name="twitter:image" content="https://insightis.ai/og/integrations.png">
+
+<!-- JSON-LD: SoftwareApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Insightis",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "description": "AI analytics platform that connects 200+ data sources and answers business questions in plain English.",
+  "url": "https://insightis.ai/platform/integrations/",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@type": "Organization", "name": "Devart", "url": "https://www.devart.com/" }
+}
+</script>
+
+<!-- JSON-LD: BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://insightis.ai/" },
+    { "@type": "ListItem", "position": 2, "name": "Platform", "item": "https://insightis.ai/platform/" },
+    { "@type": "ListItem", "position": 3, "name": "Integrations", "item": "https://insightis.ai/platform/integrations/" }
+  ]
+}
+</script>
+
+<!-- JSON-LD: FAQPage (mirrors the on-page FAQ section further below) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long does it take to connect a data source to Insightis?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Most connectors go live in under five minutes. You authenticate with OAuth or an API key, pick the objects you want, and Insightis starts syncing immediately. Connections are read-only, SOC 2 secured, and refreshed continuously — no engineering work or pipeline maintenance required." }
+    },
+    {
+      "@type": "Question",
+      "name": "Which data sources does Insightis integrate with?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Insightis supports 200+ connectors across CRMs (HubSpot, Salesforce, Pipedrive), warehouses (Snowflake, BigQuery, Redshift), ad platforms (Google Ads, Meta, LinkedIn), product analytics (Mixpanel, Amplitude, PostHog), finance (Stripe, QuickBooks, NetSuite) and ops tools (Jira, Linear, Slack). New connectors are added monthly based on customer demand." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need SQL or a data engineer to use Insightis integrations?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Insightis' semantic layer maps every connected source to certified business metrics — MRR, CAC, NRR, WAU — so your team asks questions in plain English and gets a precise answer. SQL is optional for power users, never a requirement for daily use." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my data secure once it's connected?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. All connectors are read-only and authenticated via OAuth or scoped API keys. Insightis is SOC 2 Type II compliant, encrypts data in transit and at rest, and never writes back to your source systems. You can revoke a connection at any time from the admin panel." }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens when fields or metrics conflict across sources?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The semantic layer resolves conflicts automatically. It reconciles naming (deal vs opportunity), time zones, currencies, and duplicate records so the answer stays consistent whether the question starts in Stripe, HubSpot, or Snowflake. Certified metrics are versioned, so changes are auditable." }
+    }
+  ]
+}
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1/dist/fonts/geist-sans/style.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1/dist/fonts/geist-mono/style.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script crossorigin src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Geist', sans-serif; background: #0A0E13; color: #E8F2F5; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+h1, h2, h3 { font-family: 'Outfit', sans-serif; letter-spacing: -0.04em; line-height: 1.05; text-wrap: balance; }
+p { text-wrap: pretty; }
+body::before {
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity:.4;mix-blend-mode:overlay;
+}
+body::after {
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 5%, rgba(10,152,150,.09) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 55% at 85% 0%, rgba(110,60,200,.07) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 60% at 75% 45%, rgba(20,80,200,.05) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 55% at 5% 55%, rgba(160,50,220,.045) 0%, transparent 65%),
+    radial-gradient(ellipse 65% 55% at 50% 90%, rgba(10,152,150,.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 45% at 95% 75%, rgba(50,90,240,.04) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 40% at 35% 30%, rgba(200,60,180,.03) 0%, transparent 55%);
+}
+:root { --mint:#0A9896; --mint-lt:#0EC4C1; --fm:'Geist Mono',monospace; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+@keyframes slideUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+@keyframes pulse { 0%,100%{opacity:.4;transform:scale(.85)} 50%{opacity:1;transform:scale(1)} }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes spin { to{transform:rotate(360deg)} }
+@keyframes floatGlow { 0%,100%{opacity:.55} 50%{opacity:1} }
+@keyframes dash { to{stroke-dashoffset:-24} }
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .hero-grid .hero-anim { max-width: 560px; margin: 0 auto; width: 100%; }
+}
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+.connector-card { display:flex; align-items:center; gap:12px; padding:14px 16px; background:rgba(255,255,255,.025); border:1px solid rgba(255,255,255,.06); border-radius:12px; transition:all .25s cubic-bezier(0.34,1.56,0.64,1); cursor:default; position:relative; overflow:hidden; }
+.connector-card::before { content:''; position:absolute; inset:0; border-radius:inherit; padding:1px; background:radial-gradient(600px circle at var(--mouse-x,50%) var(--mouse-y,50%), rgba(14,196,193,0.12), transparent 40%); -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none; }
+.connector-card:hover { background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.12); transform:translateY(-2px) scale(1.01); box-shadow:0 8px 24px rgba(9,160,157,0.08); }
+.connector-card:active { transform:scale(0.98); }
+.connector-icon { width:36px; height:36px; border-radius:9px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:10px; font-weight:700; font-family:'Geist Mono',monospace; letter-spacing:-.02em; }
+
+/* ── ENHANCED STYLES ── */
+.text-gradient { background:linear-gradient(135deg, #fff 30%, #0EC4C1 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.cta-btn { transition:all 0.25s cubic-bezier(0.34,1.56,0.64,1); }
+.cta-btn:hover { transform:translateY(-1px); box-shadow:0 4px 20px rgba(9,160,157,0.3); }
+.cta-btn:active { transform:translateY(1px) scale(0.98); }
+.spotlight-card { position:relative; overflow:hidden; transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease; }
+.spotlight-card::before { content:''; position:absolute; inset:0; border-radius:inherit; padding:1px; background:radial-gradient(600px circle at var(--mouse-x,50%) var(--mouse-y,50%), rgba(14,196,193,0.12), transparent 40%); -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none; }
+.spotlight-card:hover { transform:translateY(-3px); box-shadow:0 12px 40px rgba(9,160,157,0.08); }
+[data-mono] { font-variant-numeric:tabular-nums; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useEffect, useRef, useCallback } = React;
+const { motion, useInView, AnimatePresence } = window["framer-motion"] || { motion: { div: 'div', span: 'span', p: 'p', h1: 'h1', h2: 'h2', h3: 'h3', button: 'button', a: 'a', section: 'section', nav: 'nav', header: 'header', li: 'li', img: 'img' }, useInView: () => true, AnimatePresence: ({ children }) => children };
+const MotionDiv = motion.div;
+
+function FadeUp({ children, delay = 0, className = "" }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  return (
+    <MotionDiv ref={ref} initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }} transition={{ duration: 0.6, delay, ease: [0.25, 0.1, 0.25, 1] }} className={className}>
+      {children}
+    </MotionDiv>
+  );
+}
+
+function MenuIcon({ size = 24, color = "#fff" }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>;
+}
+function CloseIcon({ size = 24, color = "#fff" }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>;
+}
+function TwitterXIcon({ size = 16, color = "#A0A0B8" }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill={color}><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>;
+}
+function LinkedInIcon({ size = 16, color = "#A0A0B8" }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill={color}><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>;
+}
+function YouTubeIcon({ size = 16, color = "#A0A0B8" }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill={color}><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>;
+}
+function TikTokIcon({ size = 16, color = "#A0A0B8" }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill={color}><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.43v-7.15a8.16 8.16 0 005.58 2.17v-3.4a4.85 4.85 0 01-1-.16l.01-.02V6.69h.99z"/></svg>;
+}
+
+/* ── HEADER ── */
+
+function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) setActiveDropdown(null);
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
+
+  const NAV_ICONS = {
+    chat: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z M8 11h.01 M12 11h.01 M16 11h.01',
+    link: 'M12 22v-5 M9 8V2 M15 8V2 M18 8H6a3 3 0 0 0-3 3v1a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-1a3 3 0 0 0-3-3z',
+    file: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M8 18v-4 M12 18v-2 M16 18v-6',
+    bars: 'M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z M2 12l8.58 3.91a2 2 0 0 0 1.66 0L21 12 M2 17l8.58 3.91a2 2 0 0 0 1.66 0L21 17',
+    box: 'M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z M12 3v9 M20 7.5l-8 4.5 M4 7.5l8 4.5',
+    dollar: 'M23 6l-9.5 9.5-5-5L1 18 M17 6h6v6',
+    star: 'M2 20H22 M5 20L7 12L12 17L17 12L19 20H5Z',
+    pulse: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z',
+    settings: 'M21 4H8 M3 4h1 M4 4a3 3 0 1 0 6 0 3 3 0 0 0-6 0 M21 12h-5 M3 12h8 M16 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0 M21 20H8 M3 20h1 M4 20a3 3 0 1 0 6 0 3 3 0 0 0-6 0',
+    play: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z M10 8l6 4-6 4V8z',
+    rss: 'M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z M16 6l2 2 M2 21.5l6.36-6.36',
+    support: 'M3 18v-6a9 9 0 0 1 18 0v6 M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z',
+    grid: 'M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z',
+    map: 'M18 6H5a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h13l4-3.5L18 6z M12 12v8 M12 2v4',
+  };
+
+  function NavIcon({ name }) {
+    const d = NAV_ICONS[name];
+    if (!d) return null;
+    const paths = d.split(' M').map((p, i) => i === 0 ? p : 'M' + p);
+    return (
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        {paths.map((p, i) => <path key={i} d={p} />)}
+      </svg>
+    );
+  }
+
+  const linkUrls = {
+    'AI Chat': 'AI Chat.html',
+    'Integrations': 'Integrations.html',
+    'Semantic Layer': 'Semantic Layer.html',
+    'Memory & Storage': 'Memory & Storage.html',
+    'For RevOps & BizOps': '../Solutions/RevOps BizOps.html',
+    'For Founders & CEOs': '../Solutions/Founders CEOs.html',
+    'For Marketing Teams': '../Solutions/Marketing Teams.html',
+    'For Product Teams': '../Solutions/Product Teams.html',
+    'For Data & Analytics Teams': '../Solutions/Data Analytics Teams.html',
+    'For Operations & Finance': '../Solutions/Operations Finance.html',
+    'Pricing': '../Pricing.html',
+    'Documentation': '../docs/',
+    'Blog': '../blog/',
+    'Support Center': '../Resources/Contact Support.html',
+    'Roadmap': '../Resources/Roadmap.html',
+    'Prompt Library': '../Resources/Prompt Library.html',
+    'Data Connectors': 'Connectors.html',
+    'About Insightis': '../Company/About Insightis.html',
+    'Contacts': '../Company/Contacts.html',
+    'Success Stories': '../Company/Success Stories.html',
+    'Press & Media': '../Company/Press Media.html',
+  };
+
+  const dropdowns = {
+    Platform: {
+      sections: [
+        { heading: 'PRODUCT', items: [
+          { label: 'AI Chat', desc: 'Ask anything about your data', icon: 'chat' },
+          { label: 'Integrations', desc: 'Connect 200+ sources', icon: 'link' },
+          { label: 'Semantic Layer', desc: 'One trusted source of truth', icon: 'bars' },
+        ]},
+        { heading: 'FEATURES', items: [
+          { label: 'AI Connect', desc: 'Bring Insightis to your favorite AI tools', icon: 'pulse', comingSoon: true, notClickable: true },
+          { label: 'Advanced Reports', desc: 'Rich, interactive reporting', icon: 'file', comingSoon: true, notClickable: true },
+          { label: 'Memory & Storage', desc: 'Your business context, always remembered', icon: 'box', comingSoon: true },
+        ]},
+      ]
+    },
+    Solutions: {
+      sections: [
+        { heading: 'BY ROLE', items: [
+          { label: 'For RevOps & BizOps', desc: 'Revenue operations and business intelligence', icon: 'dollar' },
+          { label: 'For Founders & CEOs', desc: 'Strategic KPIs and company health at a glance', icon: 'star' },
+          { label: 'For Marketing Teams', desc: 'Campaign analytics and cross-channel attribution', icon: 'pulse' },
+        ]},
+        { heading: 'BY TEAM', items: [
+          { label: 'For Product Teams', desc: 'Usage metrics and feature adoption tracking', icon: 'box' },
+          { label: 'For Data & Analytics Teams', desc: 'Advanced querying and data exploration', icon: 'bars' },
+          { label: 'For Operations & Finance', desc: 'Cost tracking and operational efficiency', icon: 'settings' },
+        ]},
+      ]
+    },
+    Resources: {
+      sections: [
+        { heading: 'LEARN', items: [
+          { label: 'Documentation', desc: 'Setup guides and API reference', icon: 'file' },
+          { label: 'Prompt Library', desc: 'Ready-made prompts for your data', icon: 'play' },
+          { label: 'Blog', desc: 'Data analytics tips and product updates', icon: 'rss' },
+        ]},
+        { heading: 'CONNECT', items: [
+          { label: 'Support Center', desc: 'Get help from our team', icon: 'support' },
+          { label: 'Roadmap', desc: 'Follow product development in real time', icon: 'map' },
+          { label: 'Data Connectors', desc: 'Browse all supported data sources', icon: 'grid' },
+        ]},
+      ]
+    }
+  };
+
+  const hasDropdown = (link) => !!dropdowns[link];
+  const anyOpen = activeDropdown !== null;
+
+  return (
+    <>
+      <div style={{position:'sticky', top:0, zIndex:50, backdropFilter:'blur(20px)', WebkitBackdropFilter:'blur(20px)'}}>
+      <div ref={navRef} style={{position:'relative', maxWidth:'1240px', width:'calc(100% - 32px)', margin:'0 auto', padding:'12px 0 0'}}>
+        <nav style={{height:'56px', display:'flex', alignItems:'center', background:'rgba(10,14,19,0.92)', backdropFilter:'blur(20px)', WebkitBackdropFilter:'blur(20px)', border:'1px solid rgba(255,255,255,0.08)', borderRadius:'50px', boxShadow:'inset 0 1px 0 rgba(255,255,255,0.06), 0 4px 24px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2)', padding:'0 8px 0 24px', transition:'border-radius 0.25s ease, box-shadow 0.3s ease'}}>
+          <div style={{width:'100%'}} className="flex items-center justify-between">
+            <a href="../index.html" className="flex items-center gap-2.5 flex-shrink-0">
+              <svg width="111" height="26" viewBox="0 0 111 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7"><g clipPath="url(#clip0_h)"><path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="#1498B9"/><path d="M33.2746 17.5261V5.60823H35.5859V17.5261H33.2746Z" fill="white"/><path d="M38.2797 17.5261V8.0821H40.1758L40.1216 10.9713H40.4466C40.6152 10.261 40.8379 9.67717 41.1148 9.21971C41.4037 8.76226 41.7708 8.41917 42.2163 8.19044C42.6617 7.96171 43.1793 7.84735 43.7692 7.84735C44.8406 7.84735 45.6532 8.22656 46.207 8.98497C46.7728 9.74338 47.0557 10.9171 47.0557 12.5062V17.5261H44.7624V12.7409C44.7624 11.7177 44.6059 10.9713 44.2929 10.5018C43.9919 10.0203 43.5405 9.77949 42.9386 9.77949C42.433 9.77949 42.0056 9.94201 41.6565 10.267C41.3074 10.58 41.0365 11.0014 40.8439 11.5311C40.6633 12.0487 40.567 12.6205 40.555 13.2465V17.5261H38.2797Z" fill="white"/><path d="M53.1255 17.7609C52.4875 17.7609 51.9096 17.6947 51.392 17.5622C50.8864 17.4419 50.453 17.2673 50.0918 17.0386C49.7307 16.7978 49.4418 16.5149 49.2251 16.1899C49.0084 15.8528 48.876 15.4796 48.8278 15.0703L50.6155 14.4022C50.6396 14.7152 50.76 14.9981 50.9767 15.2509C51.1933 15.4917 51.4943 15.6843 51.8795 15.8287C52.2647 15.9732 52.7282 16.0454 53.2699 16.0454C53.8719 16.0454 54.3353 15.9551 54.6604 15.7746C54.9974 15.5819 55.166 15.3111 55.166 14.962C55.166 14.7092 55.0757 14.5105 54.8951 14.3661C54.7145 14.2096 54.4497 14.0832 54.1006 13.9869C53.7635 13.8785 53.3542 13.7762 52.8727 13.6799C52.4273 13.5836 51.9758 13.4752 51.5184 13.3549C51.073 13.2224 50.6576 13.0539 50.2724 12.8493C49.8992 12.6326 49.5922 12.3557 49.3515 12.0186C49.1228 11.6695 49.0084 11.2301 49.0084 10.7004C49.0084 10.1226 49.1589 9.623 49.4598 9.20166C49.7728 8.78032 50.2182 8.44926 50.7961 8.2085C51.386 7.96773 52.0962 7.84735 52.9269 7.84735C53.7093 7.84735 54.3835 7.9557 54.9493 8.17238C55.5271 8.38907 55.9966 8.70207 56.3578 9.11137C56.7189 9.50863 56.9476 9.98415 57.0439 10.5379L55.166 11.1338C55.1299 10.7967 55.0155 10.5138 54.8229 10.2851C54.6303 10.0443 54.3714 9.86376 54.0464 9.74338C53.7214 9.623 53.3422 9.56281 52.9088 9.56281C52.355 9.56281 51.9217 9.65911 51.6087 9.85172C51.2957 10.0443 51.1392 10.3032 51.1392 10.6282C51.1392 10.893 51.2355 11.1037 51.4281 11.2602C51.6327 11.4167 51.9096 11.5431 52.2587 11.6394C52.6199 11.7357 53.0292 11.832 53.4866 11.9283C53.9682 12.0246 54.4316 12.139 54.8771 12.2714C55.3345 12.3918 55.7438 12.5543 56.105 12.759C56.4661 12.9636 56.755 13.2345 56.9717 13.5716C57.1884 13.8966 57.2967 14.3179 57.2967 14.8356C57.2967 15.4616 57.1282 15.9973 56.7911 16.4427C56.4541 16.8761 55.9725 17.2071 55.3465 17.4358C54.7326 17.6525 53.9922 17.7609 53.1255 17.7609Z" fill="white"/><path d="M59.2115 17.5261V8.0821H61.4868V17.5261H59.2115ZM60.3492 6.60139C59.8917 6.60139 59.5366 6.50508 59.2838 6.31247C59.043 6.10782 58.9226 5.8189 58.9226 5.44571C58.9226 5.07253 59.043 4.78963 59.2838 4.59702C59.5366 4.39236 59.8917 4.29004 60.3492 4.29004C60.8307 4.29004 61.1918 4.38635 61.4326 4.57896C61.6734 4.77157 61.7937 5.06049 61.7937 5.44571C61.7937 5.8189 61.6673 6.10782 61.4145 6.31247C61.1738 6.50508 60.8186 6.60139 60.3492 6.60139Z" fill="white"/><path d="M67.709 20.7765C66.6857 20.7765 65.843 20.6982 65.1809 20.5417C64.5309 20.3852 64.0493 20.1505 63.7363 19.8375C63.4233 19.5245 63.2668 19.1393 63.2668 18.6818C63.2668 18.128 63.4835 17.6766 63.9169 17.3275C64.3623 16.9663 65.0184 16.7436 65.8852 16.6594V16.2982C65.2351 16.3103 64.7415 16.2441 64.4045 16.0996C64.0674 15.9431 63.8988 15.6963 63.8988 15.3592C63.8988 15.0342 64.0614 14.7453 64.3864 14.4925C64.7235 14.2397 65.2772 14.029 66.0477 13.8605V13.4993C65.3133 13.4632 64.7415 13.2345 64.3322 12.8131C63.9229 12.3798 63.7183 11.82 63.7183 11.1338C63.7183 10.5198 63.8868 9.97813 64.2239 9.50863C64.561 9.03914 65.0545 8.67197 65.7046 8.40713C66.3667 8.13025 67.1672 7.99181 68.1062 7.99181H72.7831V9.79755L69.8217 9.36417V9.76144C70.5681 9.88182 71.1158 10.0925 71.4649 10.3934C71.8261 10.6944 72.0066 11.1037 72.0066 11.6214C72.0066 12.1149 71.8501 12.5543 71.5371 12.9395C71.2241 13.3127 70.7667 13.6077 70.1648 13.8244C69.5749 14.029 68.8586 14.1313 68.0159 14.1313C67.8594 14.1313 67.6909 14.1253 67.5103 14.1133C67.3298 14.1012 67.0469 14.0711 66.6616 14.023C66.4088 14.2036 66.2042 14.3661 66.0477 14.5105C65.8912 14.643 65.8129 14.7694 65.8129 14.8897C65.8129 14.986 65.8731 15.0703 65.9935 15.1425C66.1139 15.2027 66.2704 15.2449 66.463 15.2689C66.6556 15.293 66.8422 15.3051 67.0228 15.3051H69.5328C69.7735 15.3051 70.0805 15.3231 70.4537 15.3592C70.8389 15.3954 71.2181 15.4917 71.5913 15.6482C71.9765 15.8047 72.2955 16.0514 72.5484 16.3885C72.8132 16.7256 72.9456 17.2011 72.9456 17.815C72.9456 18.5012 72.747 19.061 72.3497 19.4944C71.9645 19.9398 71.3806 20.2648 70.5982 20.4695C69.8277 20.6741 68.8646 20.7765 67.709 20.7765ZM67.9076 18.9346C68.654 18.9346 69.2499 18.8925 69.6953 18.8082C70.1407 18.7239 70.4597 18.5855 70.6523 18.3929C70.8449 18.2123 70.9412 17.9776 70.9412 17.6886C70.9412 17.4238 70.8811 17.2192 70.7607 17.0747C70.6403 16.9182 70.4838 16.8098 70.2912 16.7497C70.1106 16.6895 69.924 16.6534 69.7314 16.6413C69.5388 16.6293 69.3763 16.6233 69.2438 16.6233H67.0228C66.4449 16.7075 66.0356 16.87 65.7949 17.1108C65.5662 17.3516 65.4518 17.6164 65.4518 17.9053C65.4518 18.1943 65.5481 18.4109 65.7407 18.5554C65.9333 18.7119 66.2102 18.8142 66.5713 18.8624C66.9445 18.9105 67.3899 18.9346 67.9076 18.9346ZM67.9618 12.8854C68.5878 12.8854 69.0633 12.7409 69.3883 12.452C69.7133 12.151 69.8759 11.7598 69.8759 11.2783C69.8759 10.7606 69.7073 10.3393 69.3702 10.0142C69.0452 9.67717 68.5697 9.50863 67.9437 9.50863C67.3177 9.50863 66.8302 9.67115 66.4811 9.99618C66.144 10.3212 65.9755 10.7365 65.9755 11.2421C65.9755 11.5672 66.0477 11.8561 66.1921 12.1089C66.3486 12.3497 66.5713 12.5423 66.8603 12.6867C67.1612 12.8192 67.5284 12.8854 67.9618 12.8854Z" fill="white"/><path d="M74.7825 17.5261V4.70536H77.0758V7.64872C77.0758 7.90152 77.0638 8.16035 77.0397 8.42519C77.0277 8.69003 77.0036 8.96089 76.9675 9.23777C76.9314 9.51465 76.8892 9.79153 76.8411 10.0684C76.805 10.3453 76.7628 10.6222 76.7147 10.8991H77.0939C77.2624 10.249 77.4791 9.70125 77.7439 9.25583C78.0088 8.79837 78.3459 8.44926 78.7552 8.2085C79.1765 7.96773 79.6881 7.84735 80.29 7.84735C81.3855 7.84735 82.2041 8.23258 82.7459 9.00303C83.2876 9.76144 83.5584 10.9171 83.5584 12.47V17.5261H81.2651V12.7951C81.2651 11.7598 81.1087 10.9954 80.7957 10.5018C80.4947 10.0082 80.0372 9.76144 79.4233 9.76144C78.9177 9.76144 78.4963 9.91793 78.1593 10.2309C77.8222 10.5319 77.5634 10.9352 77.3828 11.4408C77.2022 11.9464 77.0939 12.5182 77.0578 13.1562V17.5261H74.7825Z" fill="white"/><path d="M89.2495 17.7428C88.2503 17.7428 87.516 17.478 87.0465 16.9483C86.577 16.4066 86.3422 15.5699 86.3422 14.4383V9.9059H84.9518L84.9879 8.10015H85.9089C86.258 8.10015 86.5168 8.04598 86.6853 7.93764C86.8539 7.82929 86.9562 7.63668 86.9923 7.3598L87.209 5.98744H88.5272V8.0821H91.0191V9.97813H88.5272V14.348C88.5272 14.7934 88.6295 15.1185 88.8342 15.3231C89.0509 15.5278 89.3699 15.6301 89.7912 15.6301C90.0199 15.6301 90.2426 15.606 90.4593 15.5579C90.6881 15.4977 90.8987 15.4014 91.0913 15.2689V17.4358C90.7182 17.5562 90.3751 17.6345 90.0621 17.6706C89.7611 17.7187 89.4903 17.7428 89.2495 17.7428Z" fill="white"/><path d="M92.9634 17.5261V8.0821H95.2386V17.5261H92.9634ZM94.101 6.60139C93.6436 6.60139 93.2884 6.50508 93.0356 6.31247C92.7949 6.10782 92.6745 5.8189 92.6745 5.44571C92.6745 5.07253 92.7949 4.78963 93.0356 4.59702C93.2884 4.39236 93.6436 4.29004 94.101 4.29004C94.5825 4.29004 94.9437 4.38635 95.1845 4.57896C95.4252 4.77157 95.5456 5.06049 95.5456 5.44571C95.5456 5.8189 95.4192 6.10782 95.1664 6.31247C94.9256 6.50508 94.5705 6.60139 94.101 6.60139Z" fill="white"/><path d="M101.461 17.7609C100.823 17.7609 100.245 17.6947 99.7273 17.5622C99.2217 17.4419 98.7883 17.2673 98.4272 17.0386C98.066 16.7978 97.7771 16.5149 97.5604 16.1899C97.3437 15.8528 97.2113 15.4796 97.1632 15.0703L98.9508 14.4022C98.9749 14.7152 99.0953 14.9981 99.312 15.2509C99.5287 15.4917 99.8296 15.6843 100.215 15.8287C100.6 15.9732 101.064 16.0454 101.605 16.0454C102.207 16.0454 102.671 15.9551 102.996 15.7746C103.333 15.5819 103.501 15.3111 103.501 14.962C103.501 14.7092 103.411 14.5105 103.23 14.3661C103.05 14.2096 102.785 14.0832 102.436 13.9869C102.099 13.8785 101.69 13.7762 101.208 13.6799C100.763 13.5836 100.311 13.4752 99.8537 13.3549C99.4083 13.2224 98.993 13.0539 98.6077 12.8493C98.2346 12.6326 97.9276 12.3557 97.6868 12.0186C97.4581 11.6695 97.3437 11.2301 97.3437 10.7004C97.3437 10.1226 97.4942 9.623 97.7952 9.20166C98.1082 8.78032 98.5536 8.44926 99.1314 8.2085C99.7213 7.96773 100.432 7.84735 101.262 7.84735C102.045 7.84735 102.719 7.9557 103.285 8.17238C103.862 8.38907 104.332 8.70207 104.693 9.11137C105.054 9.50863 105.283 9.98415 105.379 10.5379L103.501 11.1338C103.465 10.7967 103.351 10.5138 103.158 10.2851C102.966 10.0443 102.707 9.86376 102.382 9.74338C102.057 9.623 101.678 9.56281 101.244 9.56281C100.69 9.56281 100.257 9.65911 99.944 9.85172C99.631 10.0443 99.4745 10.3032 99.4745 10.6282C99.4745 10.893 99.5708 11.1037 99.7634 11.2602C99.9681 11.4167 100.245 11.5431 100.594 11.6394C100.955 11.7357 101.365 11.832 101.822 11.9283C102.303 12.0246 102.767 12.139 103.212 12.2714C103.67 12.3918 104.079 12.5543 104.44 12.759C104.801 12.9636 105.09 13.2345 105.307 13.5716C105.524 13.8966 105.632 14.3179 105.632 14.8356C105.632 15.4616 105.464 15.9973 105.126 16.4427C104.789 16.8761 104.308 17.2071 103.682 17.4358C103.068 17.6525 102.328 17.7609 101.461 17.7609Z" fill="white"/></g><defs><clipPath id="clip0_h"><rect width="111" height="25.4928" fill="white"/></clipPath></defs></svg>
+            </a>
+
+            <div className="hidden md:flex items-center" style={{gap:'2px'}}>
+              {['Platform', 'Solutions', 'Resources', 'Pricing'].map(link => (
+                <div key={link}>
+                  {hasDropdown(link) ? (
+                    <button onClick={() => setActiveDropdown(activeDropdown === link ? null : link)}
+                      className={`flex items-center gap-1 px-4 py-1.5 rounded-full text-sm transition-colors ${activeDropdown === link ? 'text-white bg-white/[0.08]' : 'text-[#A0A0B8] hover:text-white hover:bg-white/[0.04]'}`}>
+                      {link}
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{transition:'transform 0.2s', transform: activeDropdown === link ? 'rotate(180deg)' : 'rotate(0deg)', opacity:0.5}}>
+                        <polyline points="6 9 12 15 18 9"/>
+                      </svg>
+                    </button>
+                  ) : (
+                    <a href={linkUrls[link] || '#'} className="flex items-center px-4 py-1.5 rounded-full text-sm text-[#A0A0B8] hover:text-white hover:bg-white/[0.04] transition-colors">{link}</a>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div className="hidden md:flex items-center flex-shrink-0" style={{gap:'12px'}}>
+              <a href="#" className="text-sm text-[#A0A0B8] hover:text-white transition-colors px-3 py-1.5">Sign In</a>
+              <a href="#" className="text-sm font-medium text-white bg-[#07807E] hover:bg-[#09A09D] px-5 py-2 rounded-full transition-colors">Start for Free</a>
+            </div>
+
+            <button onClick={() => setMobileOpen(!mobileOpen)} aria-label={mobileOpen ? "Close menu" : "Open menu"} aria-expanded={mobileOpen} className="md:hidden p-2">
+              {mobileOpen ? <CloseIcon /> : <MenuIcon />}
+            </button>
+          </div>
+        </nav>
+
+        {anyOpen && dropdowns[activeDropdown] && (
+          <div style={{position:'absolute', left:0, right:0, zIndex:-1, marginTop:'-24px', background:'rgba(10,14,19,0.97)', backdropFilter:'blur(24px)', WebkitBackdropFilter:'blur(24px)', borderLeft:'1px solid rgba(255,255,255,0.08)', borderRight:'1px solid rgba(255,255,255,0.08)', borderBottom:'1px solid rgba(255,255,255,0.08)', borderRadius:'0 0 24px 24px', boxShadow:'0 12px 48px rgba(0,0,0,0.5)'}}>
+            <div style={{padding:'44px 32px 28px'}}>
+              <div className="flex gap-10">
+                {dropdowns[activeDropdown].sections.map((section, si) => (
+                  <div key={si} style={{flex:'1'}}>
+                    <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-[#A0A0B8] mb-4 px-3">{section.heading}</p>
+                    <div className="flex flex-col gap-0.5">
+                      {section.items.map((item, ii) => {
+                        const inner = (<>
+                          {item.icon && (
+                            <div style={{flexShrink:0, marginTop:'2px', width:'30px', height:'30px', display:'flex', alignItems:'center', justifyContent:'center', borderRadius:'8px', background:'rgba(10,152,150,0.1)', border:'1px solid rgba(10,152,150,0.2)', color:'#0EC4C1'}}>
+                              <NavIcon name={item.icon} />
+                            </div>
+                          )}
+                          <div className="flex flex-col">
+                            <span className="flex items-center gap-2">
+                              <span className={`text-sm font-medium text-white transition-colors ${item.notClickable ? '' : 'group-hover:text-[#0EC4C1]'}`}>{item.label}{item.external && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</span>
+                              {item.comingSoon && (
+                                <span style={{fontSize:'10px', fontWeight:500, letterSpacing:'0.04em', padding:'1px 6px', borderRadius:'4px', background:'rgba(10,152,150,0.12)', border:'1px solid rgba(10,152,150,0.3)', color:'#0EC4C1', whiteSpace:'nowrap'}}>Coming Soon</span>
+                              )}
+                            </span>
+                            <span className="text-xs text-[#A0A0B8] mt-0.5 leading-relaxed">{item.desc}</span>
+                          </div>
+                        </>);
+                        return item.notClickable ? (
+                          <div key={ii} className="flex items-start gap-3 px-3 py-2.5 rounded-xl group" style={{cursor:'default'}}>{inner}</div>
+                        ) : (
+                          <a key={ii} href={linkUrls[item.label] || '#'} {...(item.external ? {target:'_blank', rel:'noopener noreferrer'} : {})} onClick={() => setActiveDropdown(null)} className="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-white/[0.05] transition-colors group">{inner}</a>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {mobileOpen && (
+          <div className="md:hidden" style={{position:'absolute', left:0, right:0, zIndex:-1, background:'rgba(10,14,19,0.97)', backdropFilter:'blur(24px)', WebkitBackdropFilter:'blur(24px)', borderLeft:'1px solid rgba(255,255,255,0.08)', borderRight:'1px solid rgba(255,255,255,0.08)', borderBottom:'1px solid rgba(255,255,255,0.08)', borderRadius:'0 0 24px 24px', padding:'16px 24px'}}>
+            {['Platform', 'Solutions', 'Resources', 'Pricing'].map(link => (
+              <a key={link} href={linkUrls[link] || '#'} className="block py-3 text-[#A0A0B8] hover:text-white transition-colors">{link}</a>
+            ))}
+            <div className="mt-4 pt-4 border-t border-[#1E1E30] flex flex-col gap-3">
+              <a href="#" className="text-sm text-[#A0A0B8]">Sign In</a>
+              <a href="#" className="text-sm font-medium text-white bg-[#07807E] px-5 py-2.5 rounded-full text-center">Start for Free</a>
+            </div>
+          </div>
+        )}
+      </div>
+      </div>
+
+      {anyOpen && (
+        <div onClick={() => setActiveDropdown(null)} style={{position:'fixed', inset:0, zIndex:48, background:'rgba(0,0,0,0.4)', backdropFilter:'blur(2px)'}}/>
+      )}
+    </>
+  );
+}
+
+/* ── CHAT UI HELPERS ── */
+function InsightisIcon({size=20}) {
+  return (
+    <svg width={size} height={Math.round(size*0.895)} viewBox="0 0 25.5 22.84" fill="none">
+      <path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="#1498B9"/>
+    </svg>
+  );
+}
+function HubSpotMark({size=20}) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 32 32" fill="none">
+      <circle cx="22.5" cy="22" r="5.2" stroke="#FF7A59" strokeWidth="2.4" fill="rgba(255,122,89,0.18)"/>
+      <circle cx="22.5" cy="9.5" r="2.5" fill="#FF7A59"/>
+      <path d="M13.2 13.8l6.4 5.2" stroke="#FF7A59" strokeWidth="2.2" strokeLinecap="round"/>
+      <circle cx="10" cy="15" r="3.8" stroke="#FF7A59" strokeWidth="2.2" fill="none"/>
+    </svg>
+  );
+}
+
+/* ── CHAOS → ORDER ANIMATION ── */
+function BrandTile({name, slug, domain, color}) {
+  const [idx, setIdx] = useState(0);
+  const hex = color.replace('#','').toLowerCase();
+  const sources = [
+    domain ? `https://logo.clearbit.com/${domain}` : null,
+    slug   ? `https://cdn.simpleicons.org/${slug}/${hex}` : null,
+  ].filter(Boolean);
+  return (
+    <span style={{
+      width:'22px',height:'22px',borderRadius:'6px',
+      background:`${color}22`,border:`1px solid ${color}55`,
+      display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,
+      overflow:'hidden',
+    }}>
+      {idx < sources.length ? (
+        <img
+          key={sources[idx]}
+          src={sources[idx]}
+          width="15" height="15" alt=""
+          draggable="false"
+          onError={() => setIdx(idx + 1)}
+          style={{display:'block',objectFit:'contain'}}
+        />
+      ) : (
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <ellipse cx="12" cy="6" rx="8" ry="3"/>
+          <path d="M4 6v12c0 1.66 3.58 3 8 3s8-1.34 8-3V6"/>
+          <path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/>
+        </svg>
+      )}
+    </span>
+  );
+}
+
+function ConnectionChatAnimation() {
+  const SOURCES = [
+    {name:'HubSpot',    slug:'hubspot',        domain:'hubspot.com',    color:'#FF7A59'},
+    {name:'Stripe',     slug:'stripe',         domain:'stripe.com',     color:'#635BFF'},
+    {name:'Salesforce', slug:'salesforce',     domain:'salesforce.com', color:'#00A1E0'},
+    {name:'PostgreSQL', slug:'postgresql',     domain:'postgresql.org', color:'#4169E1'},
+    {name:'BigQuery',   slug:'googlebigquery', domain:null,             color:'#669DF6'},
+    {name:'Snowflake',  slug:'snowflake',      domain:'snowflake.com',  color:'#29B5E8'},
+    {name:'Jira',       slug:'jira',           domain:'atlassian.com',  color:'#2684FF'},
+    {name:'Mixpanel',   slug:'mixpanel',       domain:'mixpanel.com',   color:'#7856FF'},
+    {name:'Amplitude',  slug:'amplitude',      domain:'amplitude.com',  color:'#1E61F0'},
+    {name:'Segment',    slug:'segment',        domain:'segment.com',    color:'#52BD94'},
+    {name:'Intercom',   slug:'intercom',       domain:'intercom.com',   color:'#1F8DED'},
+    {name:'Zoho CRM',   slug:'zoho',           domain:'zoho.com',       color:'#E42527'},
+  ];
+
+  const CHAOS_END     = 2800;
+  const ORDER_END     = 4000;
+  const BEAMS_ON      = 4200;
+  const FINAL_STATE   = 7600;
+
+  const containerRef = useRef(null);
+  const canvasRef    = useRef(null);
+  const sourceRefs   = useRef([]);
+  const [phase, setPhase] = useState('chaos');
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    let W = el.clientWidth;
+    let H = el.clientHeight;
+    const pillW = 116, pillH = 32;
+    const centerBox = 64;
+
+    const recalc = () => {
+      W = el.clientWidth;
+      H = el.clientHeight;
+    };
+    window.addEventListener('resize', recalc);
+
+    const items = SOURCES.map((s, i) => {
+      const ringRx = Math.min(W * 0.36, 220);
+      const ringRy = Math.min((H - 60) * 0.36, 160);
+      const angle = (i / SOURCES.length) * Math.PI * 2 - Math.PI / 2;
+      // Random chaos start outside center box
+      let rx, ry;
+      do {
+        rx = (Math.random() - 0.5) * (W - pillW - 20);
+        ry = (Math.random() - 0.5) * (H - pillH - 80);
+      } while (Math.abs(rx) < centerBox + 40 && Math.abs(ry) < centerBox + 20);
+      return {
+        x: rx, y: ry,
+        vx: (Math.random() - 0.5) * 0.9,
+        vy: (Math.random() - 0.5) * 0.9,
+        rot: (Math.random() - 0.5) * 18,
+        vrot: (Math.random() - 0.5) * 0.35,
+        tx: ringRx * Math.cos(angle),
+        ty: ringRy * Math.sin(angle),
+      };
+    });
+
+    const phaseRef = { current: 'chaos' };
+    let raf, start = null;
+
+    function loop(ts) {
+      if (!start) start = ts;
+      const t = ts - start;
+
+      // Phase transitions
+      if (t >= CHAOS_END && phaseRef.current === 'chaos') {
+        phaseRef.current = 'ordering';
+        setPhase('ordering');
+        // Recompute targets with current W/H
+        const ringRx = Math.min(W * 0.36, 220);
+        const ringRy = Math.min((H - 60) * 0.36, 160);
+        items.forEach((p, i) => {
+          const angle = (i / SOURCES.length) * Math.PI * 2 - Math.PI / 2;
+          p.tx = ringRx * Math.cos(angle);
+          p.ty = ringRy * Math.sin(angle);
+        });
+      }
+      if (t >= ORDER_END && phaseRef.current === 'ordering') {
+        phaseRef.current = 'ordered';
+        setPhase('ordered');
+      }
+
+      // Update pill positions
+      if (phaseRef.current === 'chaos') {
+        const bx = (W - pillW) / 2 - 4;
+        const by = (H - pillH) / 2 - 34;
+        items.forEach((p, i) => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rot += p.vrot;
+          if (p.x < -bx || p.x > bx) { p.vx *= -1; p.x = Math.max(-bx, Math.min(bx, p.x)); }
+          if (p.y < -by || p.y > by) { p.vy *= -1; p.y = Math.max(-by, Math.min(by, p.y)); }
+          const n = sourceRefs.current[i];
+          if (n) {
+            n.style.transition = 'none';
+            n.style.transform = `translate(-50%, -50%) translate(${p.x}px, ${p.y}px) rotate(${p.rot}deg)`;
+          }
+        });
+      } else if (phaseRef.current === 'ordering') {
+        items.forEach((p, i) => {
+          const n = sourceRefs.current[i];
+          if (n) {
+            n.style.transition = 'transform 1.1s cubic-bezier(0.34, 1.25, 0.5, 1)';
+            n.style.transform = `translate(-50%, -50%) translate(${p.tx}px, ${p.ty}px) rotate(0deg)`;
+          }
+        });
+      }
+
+      // Draw beams on canvas (ordered phase)
+      const cv = canvasRef.current;
+      if (cv) {
+        const dpr = window.devicePixelRatio || 1;
+        if (cv.width !== W * dpr || cv.height !== H * dpr) {
+          cv.width = W * dpr; cv.height = H * dpr;
+          cv.style.width = W + 'px'; cv.style.height = H + 'px';
+        }
+        const ctx = cv.getContext('2d');
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, W, H);
+
+        if (t >= BEAMS_ON) {
+          const fade = Math.min(1, (t - BEAMS_ON) / 700);
+          const cx = W / 2, cy = H / 2 + 10; // offset slightly for header
+          items.forEach((p, i) => {
+            const sx = cx + p.tx;
+            const sy = cy + p.ty;
+            const grad = ctx.createLinearGradient(sx, sy, cx, cy);
+            grad.addColorStop(0, `rgba(14,196,193,${0.05 * fade})`);
+            grad.addColorStop(0.6, `rgba(14,196,193,${0.22 * fade})`);
+            grad.addColorStop(1, `rgba(14,196,193,${0.40 * fade})`);
+            ctx.beginPath();
+            ctx.moveTo(sx, sy);
+            ctx.lineTo(cx, cy);
+            ctx.strokeStyle = grad;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            const pulse = ((t * 0.00028 + i / SOURCES.length) % 1);
+            const px = sx + (cx - sx) * pulse;
+            const py = sy + (cy - sy) * pulse;
+            const pa = Math.sin(pulse * Math.PI) * 0.9 * fade;
+            if (pa > 0.02) {
+              ctx.beginPath();
+              ctx.arc(px, py, 2.2, 0, Math.PI * 2);
+              ctx.fillStyle = `rgba(200,255,254,${pa})`;
+              ctx.shadowColor = 'rgba(14,196,193,0.85)';
+              ctx.shadowBlur = 9;
+              ctx.fill();
+              ctx.shadowBlur = 0;
+            }
+          });
+        }
+      }
+
+      if (t < FINAL_STATE) {
+        raf = requestAnimationFrame(loop);
+      } else {
+        // Keep drawing beams indefinitely (subtle idle loop)
+        raf = requestAnimationFrame(loop);
+      }
+    }
+    raf = requestAnimationFrame(loop);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('resize', recalc);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <div ref={containerRef} style={{
+      position:'relative',
+      height:'500px',
+      borderRadius:'16px',
+      border:'1px solid rgba(255,255,255,0.09)',
+      background:'#0C1117',
+      overflow:'hidden',
+      boxShadow:'0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.06)',
+    }}>
+      {/* Background */}
+      <div style={{position:'absolute',inset:0,pointerEvents:'none',background:'radial-gradient(ellipse 55% 50% at 50% 55%, rgba(14,196,193,0.09) 0%, transparent 65%)'}}/>
+
+      {/* Header */}
+      <div style={{position:'absolute',top:0,left:0,right:0,padding:'13px 18px',borderBottom:'1px solid rgba(255,255,255,0.07)',display:'flex',alignItems:'center',gap:'9px',background:'rgba(255,255,255,0.015)',zIndex:10}}>
+        <InsightisIcon size={20}/>
+        <span style={{fontSize:'13.5px',fontWeight:500,color:'#E0EDF2',letterSpacing:'-0.01em'}}>insightis</span>
+      </div>
+
+      {/* Beams canvas */}
+      <canvas ref={canvasRef} style={{position:'absolute',inset:0,pointerEvents:'none',zIndex:2}}/>
+
+      {/* Central logo square */}
+      <div style={{
+        position:'absolute',
+        left:'50%',top:'calc(50% + 10px)',
+        width:'128px',height:'128px',
+        borderRadius:'22px',
+        background: phase === 'chaos'
+          ? 'rgba(14,196,193,0.02)'
+          : 'linear-gradient(135deg, rgba(14,196,193,0.14), rgba(9,160,157,0.06))',
+        border: `1px solid rgba(14,196,193,${phase === 'chaos' ? 0.12 : 0.40})`,
+        display:'flex',alignItems:'center',justifyContent:'center',
+        opacity: phase === 'chaos' ? 0.25 : 1,
+        transform: `translate(-50%, -50%) scale(${phase === 'chaos' ? 0.55 : 1})`,
+        transition: 'opacity .8s ease, transform 1s cubic-bezier(0.34,1.56,0.64,1), background .6s ease, border-color .6s ease, box-shadow .6s ease',
+        boxShadow: phase === 'ordered'
+          ? '0 0 70px rgba(14,196,193,0.35), inset 0 0 36px rgba(14,196,193,0.1), 0 0 0 1px rgba(14,196,193,0.2)'
+          : 'none',
+        zIndex: 4,
+      }}>
+        <InsightisIcon size={58}/>
+      </div>
+
+
+      {/* Source pills */}
+      {SOURCES.map((s, i) => (
+        <div key={i} ref={el => sourceRefs.current[i] = el} style={{
+          position:'absolute',
+          left:'50%',top:'calc(50% + 10px)',
+          display:'inline-flex',alignItems:'center',gap:'7px',
+          padding:'6px 11px 6px 6px',
+          borderRadius:'10px',
+          background:'rgba(12,17,23,0.88)',
+          border:`1px solid ${s.color}55`,
+          fontSize:'11.5px',color:'#E0EDF2',
+          fontFamily:'Geist, sans-serif',
+          fontWeight:500,
+          letterSpacing:'-0.01em',
+          whiteSpace:'nowrap',
+          willChange:'transform',
+          boxShadow:`0 4px 14px rgba(0,0,0,0.45), 0 0 18px ${s.color}22`,
+          zIndex:5,
+        }}>
+          <BrandTile name={s.name} slug={s.slug} domain={s.domain} color={s.color}/>
+          {s.name}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ── HERO ── */
+function Hero() {
+  const [vis, setVis] = useState(false);
+  useEffect(()=>{ const t=setTimeout(()=>setVis(true),300); return()=>clearTimeout(t); },[]);
+  return (
+    <section style={{minHeight:'100dvh',display:'flex',alignItems:'center',position:'relative',overflow:'hidden',padding:'120px 0 80px'}}>
+      <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 70% 60% at 72% 50%,rgba(9,160,157,0.09) 0%,transparent 70%)',pointerEvents:'none',zIndex:1}}/>
+      <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 60% 50% at 20% 50%,rgba(59,31,94,0.12) 0%,transparent 70%)',pointerEvents:'none',zIndex:1}}/>
+
+      <div className="hero-grid" style={{position:'relative',zIndex:10,maxWidth:'1240px',width:'calc(100% - 32px)',margin:'0 auto',display:'grid',gridTemplateColumns:'minmax(0,1fr) minmax(0,1fr)',gap:'60px',alignItems:'center'}}>
+
+        {/* LEFT: Text */}
+        <div style={{
+          opacity: vis ? 1 : 0,
+          transform: vis ? 'translateY(0)' : 'translateY(20px)',
+          transition: 'opacity 1s cubic-bezier(0.34,1.56,0.64,1) .3s, transform 1s cubic-bezier(0.34,1.56,0.64,1) .3s',
+        }}>
+          <h1 style={{fontSize:'clamp(2.6rem,3.8vw,4.5rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'22px',textWrap:'balance'}}>
+            <span style={{display:'block',fontSize:'0.42em',fontWeight:600,letterSpacing:'.08em',textTransform:'uppercase',color:'#0EC4C1',marginBottom:'14px',opacity:.85}}>Insightis Integrations</span>
+            <span className="text-gradient">Connect everything. </span>
+            <span style={{color:'#0EC4C1'}}>Understand anything.</span>
+          </h1>
+          <p style={{fontSize:'clamp(16px,1.2vw,18px)',color:'rgba(255,255,255,.75)',lineHeight:1.7,marginBottom:'28px',maxWidth:'480px'}}>
+            Plug in your CRM, warehouse, ads, and product analytics. Insightis unifies every source into one layer your team can query in plain English — no SQL, no tickets, no waiting.
+          </p>
+          <div style={{display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap',marginBottom:'24px'}}>
+            <a href="#" className="cta-btn" style={{display:'inline-flex',alignItems:'center',gap:'7px',padding:'12px 28px',borderRadius:'999px',background:'linear-gradient(135deg,#09A09D,#07807E)',color:'#fff',fontWeight:600,fontSize:'14px',textDecoration:'none',boxShadow:'0 0 30px rgba(9,160,157,.25), 0 4px 12px rgba(0,0,0,.3)'}}>
+              Start for free
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </a>
+            <a href="#" className="cta-btn" style={{display:'inline-flex',alignItems:'center',gap:'6px',padding:'12px 22px',borderRadius:'999px',border:'1px solid rgba(255,255,255,.1)',color:'#7FA0AC',fontSize:'14px',textDecoration:'none',fontWeight:500,background:'rgba(255,255,255,0.02)'}}>See how it works</a>
+          </div>
+          <div style={{display:'flex',alignItems:'center',gap:'18px',flexWrap:'wrap'}}>
+            {['Free plan','No SQL required','Setup in minutes'].map(t=>(
+              <span key={t} style={{display:'flex',alignItems:'center',gap:'5px',fontSize:'12px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',fontVariantNumeric:'tabular-nums'}}>
+                <span style={{color:'#09A09D'}}>✓</span>{t}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* RIGHT: Connection → chat animation */}
+        <div className="hero-anim" style={{
+          opacity: vis ? 1 : 0,
+          transform: vis ? 'translateY(0)' : 'translateY(16px)',
+          transition: 'opacity .8s ease .2s, transform .8s ease .2s',
+        }}>
+          <ConnectionChatAnimation/>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── CONNECTORS DATA ── */
+const CONNECTORS = {
+  'RevOps & BizOps': [
+    { name:'Stripe',      slug:'stripe',          abbr:'S',   color:'#6772e5', bg:'rgba(103,114,229,.12)', desc:'Revenue, MRR & subscriptions' },
+    { name:'HubSpot',     slug:'hubspot',         abbr:'H',   color:'#ff7a59', bg:'rgba(255,122,89,.12)',  desc:'CRM, deals & pipeline' },
+    { name:'Salesforce',  slug:'salesforce',      abbr:'SF',  color:'#00a1e0', bg:'rgba(0,161,224,.12)',   desc:'Enterprise CRM & opportunities' },
+    { name:'Chargebee',   slug:'chargebee',       abbr:'CB',  color:'#f76d2b', bg:'rgba(247,109,43,.12)',  desc:'Subscription billing' },
+    { name:'Pipedrive',   slug:'pipedrive',       abbr:'PD',  color:'#1f9e42', bg:'rgba(31,158,66,.12)',   desc:'Sales pipeline management' },
+    { name:'Close',       slug:'close',           abbr:'CL',  color:'#5c90d2', bg:'rgba(92,144,210,.12)',  desc:'Sales CRM & sequences' },
+    { name:'Zoho CRM',    slug:'zoho',            abbr:'ZH',  color:'#e42527', bg:'rgba(228,37,39,.12)',   desc:'Mid-market CRM & pipeline' },
+    { name:'Zendesk Sell',slug:'zendesk',         abbr:'ZS',  color:'#03363d', bg:'rgba(3,54,61,.18)',     desc:'Support-led sales CRM' },
+    { name:'Freshsales',  slug:'freshworks',      abbr:'FS',  color:'#ff5a1f', bg:'rgba(255,90,31,.12)',   desc:'SMB CRM & sequences' },
+    { name:'Outreach',    slug:'outreach',        abbr:'OR',  color:'#5952ff', bg:'rgba(89,82,255,.12)',   desc:'Sales engagement & plays' },
+    { name:'Gong',        slug:'gong',            abbr:'GN',  color:'#7d3cf4', bg:'rgba(125,60,244,.12)',  desc:'Call intelligence & coaching' },
+    { name:'Clari',       slug:'clari',           abbr:'CR',  color:'#fa8d00', bg:'rgba(250,141,0,.12)',   desc:'Forecast & revenue ops' },
+    { name:'Copper',      slug:'copper',          abbr:'CP',  color:'#ff6f61', bg:'rgba(255,111,97,.12)',  desc:'Google-native CRM' },
+    { name:'Monday',      slug:'mondaydotcom',    abbr:'MD',  color:'#ff3d57', bg:'rgba(255,61,87,.12)',   desc:'Sales ops & workflows' },
+    { name:'DocuSign',    slug:'docusign',        abbr:'DS',  color:'#ffcc22', bg:'rgba(255,204,34,.12)',  desc:'Contracts & e-signatures' },
+    { name:'Calendly',    slug:'calendly',        abbr:'CA',  color:'#006bff', bg:'rgba(0,107,255,.12)',   desc:'Meeting scheduling data' },
+    { name:'Apollo',      slug:'apollostack',     abbr:'AP',  color:'#1e3a8a', bg:'rgba(30,58,138,.18)',   desc:'Prospecting & sales intel' },
+    { name:'Salesloft',   slug:'salesloft',       abbr:'SL',  color:'#1a1a1a', bg:'rgba(255,255,255,.06)', desc:'Sales engagement platform' },
+    { name:'Aircall',     slug:'aircall',         abbr:'AI',  color:'#00b388', bg:'rgba(0,179,136,.12)',   desc:'Cloud phone & call data' },
+    { name:'Drift',       slug:'drift',           abbr:'DF',  color:'#ff5c35', bg:'rgba(255,92,53,.12)',   desc:'Conversational marketing' },
+  ],
+  'Founders & CEOs': [
+    { name:'Stripe',      slug:'stripe',          abbr:'S',   color:'#6772e5', bg:'rgba(103,114,229,.12)', desc:'Revenue & growth metrics' },
+    { name:'QuickBooks',  slug:'quickbooks',      abbr:'QB',  color:'#2ca01c', bg:'rgba(44,160,28,.12)',   desc:'P&L, cash flow & burn rate' },
+    { name:'PostgreSQL',  slug:'postgresql',      abbr:'PG',  color:'#336791', bg:'rgba(51,103,145,.12)',  desc:'Core business database' },
+    { name:'HubSpot',     slug:'hubspot',         abbr:'H',   color:'#ff7a59', bg:'rgba(255,122,89,.12)',  desc:'Pipeline & customer health' },
+    { name:'Mixpanel',    slug:'mixpanel',        abbr:'MP',  color:'#a855f7', bg:'rgba(168,85,247,.12)',  desc:'Product & retention metrics' },
+    { name:'Xero',        slug:'xero',            abbr:'X',   color:'#13b5ea', bg:'rgba(19,181,234,.12)',  desc:'Accounting & financials' },
+    { name:'NetSuite',    slug:'netsuite',        abbr:'NS',  color:'#009ee2', bg:'rgba(0,158,226,.12)',   desc:'ERP & consolidated finance' },
+    { name:'Brex',        slug:'brex',            abbr:'BX',  color:'#d4c0a8', bg:'rgba(212,192,168,.14)', desc:'Corporate spend & cards' },
+    { name:'Ramp',        slug:'ramp',            abbr:'RM',  color:'#fff27a', bg:'rgba(255,242,122,.12)', desc:'Spend management & AP' },
+    { name:'Mercury',     slug:'mercury',         abbr:'MC',  color:'#5465ff', bg:'rgba(84,101,255,.12)',  desc:'Banking & cash position' },
+    { name:'Carta',       slug:'carta',           abbr:'CT',  color:'#2d91df', bg:'rgba(45,145,223,.12)',  desc:'Cap table & equity' },
+    { name:'Plaid',       slug:'plaid',           abbr:'PL',  color:'#111111', bg:'rgba(255,255,255,.06)', desc:'Bank & payments data' },
+    { name:'Chargebee',   slug:'chargebee',       abbr:'CB',  color:'#f76d2b', bg:'rgba(247,109,43,.12)',  desc:'Subscription economics' },
+    { name:'Gusto',       slug:'gusto',           abbr:'GU',  color:'#f45d48', bg:'rgba(244,93,72,.12)',   desc:'Headcount & payroll' },
+    { name:'Snowflake',   slug:'snowflake',       abbr:'SN',  color:'#29b5e8', bg:'rgba(41,181,232,.12)',  desc:'Unified data warehouse' },
+    { name:'Salesforce',  slug:'salesforce',      abbr:'SF',  color:'#00a1e0', bg:'rgba(0,161,224,.12)',   desc:'Enterprise pipeline' },
+    { name:'Asana',       slug:'asana',           abbr:'AS',  color:'#f06a6a', bg:'rgba(240,106,106,.12)', desc:'Company-wide priorities' },
+    { name:'Notion',      slug:'notion',          abbr:'NT',  color:'#ffffff', bg:'rgba(255,255,255,.08)', desc:'Strategy & team wiki' },
+    { name:'AWS',         slug:'amazonaws',       abbr:'AW',  color:'#ff9900', bg:'rgba(255,153,0,.12)',   desc:'Cloud infra & billing' },
+    { name:'ClickUp',     slug:'clickup',         abbr:'CU',  color:'#7b68ee', bg:'rgba(123,104,238,.12)', desc:'Company OKRs & roadmap' },
+  ],
+  'Marketing Teams': [
+    { name:'GA4',         slug:'googleanalytics', abbr:'GA',  color:'#f9ab00', bg:'rgba(249,171,0,.12)',   desc:'Website traffic & conversions' },
+    { name:'Google Ads',  slug:'googleads',       abbr:'GD',  color:'#4285f4', bg:'rgba(66,133,244,.12)',  desc:'Ad spend & campaign ROI' },
+    { name:'Meta Ads',    slug:'meta',            abbr:'FB',  color:'#1877f2', bg:'rgba(24,119,242,.12)',  desc:'Facebook & Instagram ads' },
+    { name:'LinkedIn Ads',slug:'linkedin',        abbr:'LI',  color:'#0a66c2', bg:'rgba(10,102,194,.12)',  desc:'B2B ad performance' },
+    { name:'Mailchimp',   slug:'mailchimp',       abbr:'MC',  color:'#e8a320', bg:'rgba(232,163,32,.12)',  desc:'Email campaigns & lists' },
+    { name:'Klaviyo',     slug:'klaviyo',         abbr:'KL',  color:'#9b4dca', bg:'rgba(155,77,202,.12)',  desc:'Email & SMS automation' },
+    { name:'TikTok Ads',  slug:'tiktok',          abbr:'TT',  color:'#ff0050', bg:'rgba(255,0,80,.12)',    desc:'Short-form ad spend & ROAS' },
+    { name:'Pinterest Ads',slug:'pinterest',      abbr:'PI',  color:'#e60023', bg:'rgba(230,0,35,.12)',    desc:'Discovery ad performance' },
+    { name:'X Ads',       slug:'x',               abbr:'X',   color:'#ffffff', bg:'rgba(255,255,255,.08)', desc:'Twitter/X campaigns' },
+    { name:'Marketo',     slug:'marketo',         abbr:'MK',  color:'#5c4c9f', bg:'rgba(92,76,159,.12)',   desc:'B2B marketing automation' },
+    { name:'Braze',       slug:'braze',           abbr:'BZ',  color:'#ffa300', bg:'rgba(255,163,0,.12)',   desc:'Cross-channel messaging' },
+    { name:'Customer.io', slug:'customerio',      abbr:'CI',  color:'#7c30eb', bg:'rgba(124,48,235,.12)',  desc:'Behavioral messaging' },
+    { name:'ActiveCampaign',slug:'activecampaign',abbr:'AC',  color:'#356ae6', bg:'rgba(53,106,230,.12)',  desc:'Email & CRM automation' },
+    { name:'Iterable',    slug:'iterable',        abbr:'IT',  color:'#ffb400', bg:'rgba(255,180,0,.12)',   desc:'Growth marketing platform' },
+    { name:'Intercom',    slug:'intercom',        abbr:'IC',  color:'#1f8ded', bg:'rgba(31,141,237,.12)',  desc:'In-app & lifecycle messages' },
+    { name:'HubSpot',     slug:'hubspot',         abbr:'H',   color:'#ff7a59', bg:'rgba(255,122,89,.12)',  desc:'Inbound & nurture campaigns' },
+    { name:'Segment',     slug:'segment',         abbr:'SG',  color:'#52bd94', bg:'rgba(82,189,148,.12)',  desc:'Customer data pipeline' },
+    { name:'Shopify',     slug:'shopify',         abbr:'SH',  color:'#96bf48', bg:'rgba(150,191,72,.12)',  desc:'Storefront & commerce data' },
+    { name:'YouTube',     slug:'youtube',         abbr:'YT',  color:'#ff0000', bg:'rgba(255,0,0,.12)',     desc:'Video ads & channel metrics' },
+    { name:'SendGrid',    slug:'sendgrid',        abbr:'SD',  color:'#1a82e2', bg:'rgba(26,130,226,.12)',  desc:'Transactional email' },
+  ],
+  'Product Teams': [
+    { name:'Mixpanel',    slug:'mixpanel',        abbr:'MP',  color:'#a855f7', bg:'rgba(168,85,247,.12)',  desc:'User events & funnels' },
+    { name:'Amplitude',   slug:'amplitude',       abbr:'AM',  color:'#2196f3', bg:'rgba(33,150,243,.12)',  desc:'Behavioral analytics' },
+    { name:'Segment',     slug:'segment',         abbr:'SG',  color:'#52bd95', bg:'rgba(82,189,149,.12)',  desc:'Customer data pipeline' },
+    { name:'Heap',        slug:'heap',            abbr:'HP',  color:'#7c3aed', bg:'rgba(124,58,237,.12)',  desc:'Auto-captured user actions' },
+    { name:'Intercom',    slug:'intercom',        abbr:'IC',  color:'#286ef1', bg:'rgba(40,110,241,.12)',  desc:'Support & onboarding data' },
+    { name:'Pendo',       slug:'pendo',           abbr:'PN',  color:'#ff4081', bg:'rgba(255,64,129,.12)',  desc:'Feature adoption & NPS' },
+    { name:'PostHog',     slug:'posthog',         abbr:'PH',  color:'#f54e00', bg:'rgba(245,78,0,.12)',    desc:'Product analytics & session' },
+    { name:'Hotjar',      slug:'hotjar',          abbr:'HJ',  color:'#ff3c00', bg:'rgba(255,60,0,.12)',    desc:'Heatmaps & session recordings' },
+    { name:'FullStory',   slug:'fullstory',       abbr:'FY',  color:'#ff5700', bg:'rgba(255,87,0,.12)',    desc:'Digital experience analytics' },
+    { name:'LogRocket',   slug:'logrocket',       abbr:'LR',  color:'#764abc', bg:'rgba(118,74,188,.12)',  desc:'Session replay & errors' },
+    { name:'LaunchDarkly',slug:'launchdarkly',    abbr:'LD',  color:'#405bff', bg:'rgba(64,91,255,.12)',   desc:'Feature flags & experiments' },
+    { name:'Split',       slug:'split',           abbr:'SP',  color:'#5551ff', bg:'rgba(85,81,255,.12)',   desc:'Experimentation platform' },
+    { name:'Appcues',     slug:'appcues',         abbr:'AP',  color:'#5c5cff', bg:'rgba(92,92,255,.12)',   desc:'In-product onboarding' },
+    { name:'Userpilot',   slug:'userpilot',       abbr:'UP',  color:'#ff5050', bg:'rgba(255,80,80,.12)',   desc:'Onboarding & product tours' },
+    { name:'June',        slug:'june',            abbr:'JN',  color:'#ffc94a', bg:'rgba(255,201,74,.12)',  desc:'Auto-generated insights' },
+    { name:'Plausible',   slug:'plausible',       abbr:'PL',  color:'#5850ec', bg:'rgba(88,80,236,.12)',   desc:'Privacy-first analytics' },
+    { name:'Datadog',     slug:'datadog',         abbr:'DD',  color:'#632ca6', bg:'rgba(99,44,166,.12)',   desc:'Performance & observability' },
+    { name:'Sentry',      slug:'sentry',          abbr:'SN',  color:'#362d59', bg:'rgba(54,45,89,.18)',    desc:'Error tracking & release' },
+    { name:'Zendesk',     slug:'zendesk',         abbr:'ZD',  color:'#03363d', bg:'rgba(3,54,61,.18)',     desc:'Support ticket signals' },
+    { name:'Figma',       slug:'figma',           abbr:'FG',  color:'#f24e1e', bg:'rgba(242,78,30,.12)',   desc:'Design & prototype usage' },
+  ],
+  'Data & Analytics': [
+    { name:'PostgreSQL',  slug:'postgresql',      abbr:'PG',  color:'#336791', bg:'rgba(51,103,145,.12)',  desc:'Relational SQL database' },
+    { name:'Snowflake',   slug:'snowflake',       abbr:'SN',  color:'#29b5e8', bg:'rgba(41,181,232,.12)',  desc:'Cloud data warehouse' },
+    { name:'BigQuery',    slug:'googlebigquery',  abbr:'BQ',  color:'#4285f4', bg:'rgba(66,133,244,.12)',  desc:'Google analytics warehouse' },
+    { name:'Redshift',    slug:'amazonredshift',  abbr:'RS',  color:'#d13212', bg:'rgba(209,50,18,.12)',   desc:'AWS data warehouse' },
+    { name:'MongoDB',     slug:'mongodb',         abbr:'MG',  color:'#47a248', bg:'rgba(71,162,72,.12)',   desc:'Document database' },
+    { name:'dbt',         slug:'dbt',             abbr:'dbt', color:'#f76d2b', bg:'rgba(247,109,43,.12)',  desc:'Transformation & modeling' },
+    { name:'Databricks',  slug:'databricks',      abbr:'DB',  color:'#ff3621', bg:'rgba(255,54,33,.12)',   desc:'Lakehouse & ML platform' },
+    { name:'MySQL',       slug:'mysql',           abbr:'MY',  color:'#4479a1', bg:'rgba(68,121,161,.12)',  desc:'Open-source SQL database' },
+    { name:'ClickHouse',  slug:'clickhouse',      abbr:'CH',  color:'#ffcc00', bg:'rgba(255,204,0,.12)',   desc:'Columnar analytics DB' },
+    { name:'Fivetran',    slug:'fivetran',        abbr:'FT',  color:'#2196f3', bg:'rgba(33,150,243,.12)',  desc:'Managed data pipelines' },
+    { name:'Airbyte',     slug:'airbyte',         abbr:'AB',  color:'#615eff', bg:'rgba(97,94,255,.12)',   desc:'Open-source data ingest' },
+    { name:'Hex',         slug:'hex',             abbr:'HX',  color:'#5c5cff', bg:'rgba(92,92,255,.12)',   desc:'Collaborative notebooks' },
+    { name:'Metabase',    slug:'metabase',        abbr:'MB',  color:'#509ee3', bg:'rgba(80,158,227,.12)',  desc:'Open-source BI & dashboards' },
+    { name:'Looker',      slug:'looker',          abbr:'LK',  color:'#4285f4', bg:'rgba(66,133,244,.12)',  desc:'Modern BI & LookML' },
+    { name:'Tableau',     slug:'tableau',         abbr:'TB',  color:'#e97627', bg:'rgba(233,118,39,.12)',  desc:'Enterprise visualization' },
+    { name:'Power BI',    slug:'powerbi',         abbr:'PB',  color:'#f2c811', bg:'rgba(242,200,17,.12)',  desc:'Microsoft BI suite' },
+    { name:'Supabase',    slug:'supabase',        abbr:'SB',  color:'#3ecf8e', bg:'rgba(62,207,142,.12)',  desc:'Postgres-as-a-service' },
+    { name:'Elastic',     slug:'elastic',         abbr:'EL',  color:'#005571', bg:'rgba(0,85,113,.18)',    desc:'Search & log analytics' },
+    { name:'Kafka',       slug:'apachekafka',     abbr:'KF',  color:'#231f20', bg:'rgba(255,255,255,.06)', desc:'Event streaming platform' },
+    { name:'Airflow',     slug:'apacheairflow',   abbr:'AF',  color:'#017cee', bg:'rgba(1,124,238,.12)',   desc:'Data orchestration & DAGs' },
+  ],
+  'Ops & Finance': [
+    { name:'QuickBooks',  slug:'quickbooks',      abbr:'QB',  color:'#2ca01c', bg:'rgba(44,160,28,.12)',   desc:'Accounting & reports' },
+    { name:'Xero',        slug:'xero',            abbr:'X',   color:'#13b5ea', bg:'rgba(19,181,234,.12)',  desc:'Cloud accounting' },
+    { name:'NetSuite',    slug:'netsuite',        abbr:'NS',  color:'#009ee2', bg:'rgba(0,158,226,.12)',   desc:'ERP & finance management' },
+    { name:'Gusto',       slug:'gusto',           abbr:'GU',  color:'#f45d48', bg:'rgba(244,93,72,.12)',   desc:'Payroll & HR data' },
+    { name:'Jira',        slug:'jira',            abbr:'JR',  color:'#0052cc', bg:'rgba(0,82,204,.12)',    desc:'Sprint & project tracking' },
+    { name:'Linear',      slug:'linear',          abbr:'LN',  color:'#5e6ad2', bg:'rgba(94,106,210,.12)',  desc:'Engineering velocity' },
+    { name:'Asana',       slug:'asana',           abbr:'AS',  color:'#f06a6a', bg:'rgba(240,106,106,.12)', desc:'Task & project management' },
+    { name:'Monday',      slug:'mondaydotcom',    abbr:'MD',  color:'#ff3d57', bg:'rgba(255,61,87,.12)',   desc:'Work OS & operations' },
+    { name:'Notion',      slug:'notion',          abbr:'NT',  color:'#ffffff', bg:'rgba(255,255,255,.08)', desc:'Docs, wikis & workflows' },
+    { name:'Rippling',    slug:'rippling',        abbr:'RP',  color:'#f9b917', bg:'rgba(249,185,23,.12)',  desc:'HR, IT & finance OS' },
+    { name:'Deel',        slug:'deel',            abbr:'DL',  color:'#001e3c', bg:'rgba(0,30,60,.18)',     desc:'Global payroll & EOR' },
+    { name:'BambooHR',    slug:'bamboohr',        abbr:'BH',  color:'#73c41d', bg:'rgba(115,196,29,.12)',  desc:'HR info & records' },
+    { name:'Workday',     slug:'workday',         abbr:'WD',  color:'#f38c00', bg:'rgba(243,140,0,.12)',   desc:'Enterprise HCM & finance' },
+    { name:'Bill.com',    slug:'bill',            abbr:'BL',  color:'#ee3524', bg:'rgba(238,53,36,.12)',   desc:'AP / AR automation' },
+    { name:'Expensify',   slug:'expensify',       abbr:'EX',  color:'#03d47c', bg:'rgba(3,212,124,.12)',   desc:'Expense management' },
+    { name:'Slack',       slug:'slack',           abbr:'SL',  color:'#4a154b', bg:'rgba(74,21,75,.18)',    desc:'Team comms & alerts' },
+    { name:'ClickUp',     slug:'clickup',         abbr:'CU',  color:'#7b68ee', bg:'rgba(123,104,238,.12)', desc:'Tasks, docs & goals' },
+    { name:'Trello',      slug:'trello',          abbr:'TR',  color:'#0052cc', bg:'rgba(0,82,204,.12)',    desc:'Kanban boards & workflows' },
+    { name:'Confluence',  slug:'confluence',      abbr:'CF',  color:'#172b4d', bg:'rgba(23,43,77,.18)',    desc:'Team docs & knowledge base' },
+    { name:'Zoom',        slug:'zoom',            abbr:'ZM',  color:'#2d8cff', bg:'rgba(45,140,255,.12)',  desc:'Meetings & webinar data' },
+  ],
+};
+
+/* ── CONNECTOR ICON ── */
+function ConnectorIcon({ name, slug, abbr, color, bg }) {
+  const [failed, setFailed] = useState(false);
+  return (
+    <div className="connector-icon" style={{background: bg, color: color}}>
+      {slug && !failed
+        ? <img
+            src={`https://cdn.simpleicons.org/${slug}`}
+            width="20" height="20"
+            alt={name}
+            draggable="false"
+            onError={() => setFailed(true)}
+            style={{display:'block', objectFit:'contain'}}
+          />
+        : <span>{abbr}</span>
+      }
+    </div>
+  );
+}
+
+/* ── CONNECTORS GALLERY ── */
+function ConnectorsGallery() {
+  const cats = Object.keys(CONNECTORS);
+  const [activeCat, setActiveCat] = useState(cats[0]);
+
+  return (
+    <section style={{padding:'100px 0 120px', background:'linear-gradient(180deg,#0D1117 0%,#101620 100%)'}}>
+      <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 1.5rem'}}>
+
+        {/* Heading */}
+        <div style={{textAlign:'center',marginBottom:'32px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
+            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:600,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Built for every team</span>
+          </div>
+          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'16px',textWrap:'balance'}}>
+            Which data sources does Insightis integrate with?
+          </h2>
+          <p style={{fontSize:'clamp(1rem,1.8vw,1.19rem)',color:'rgba(255,255,255,0.7)',maxWidth:'42rem',margin:'0 auto',lineHeight:1.7}}>
+            <strong style={{color:'#fff'}}>200+ certified connectors across CRMs, warehouses, ad platforms, product analytics, and finance tools.</strong> Browse connectors organized by the teams that rely on them most — each one continuously synced and ready to query.
+          </p>
+        </div>
+
+        {/* Category tabs */}
+        <div style={{display:'flex',justifyContent:'center',gap:'8px',marginBottom:'28px',flexWrap:'wrap'}}>
+          {cats.map(cat => (
+            <button key={cat} onClick={() => setActiveCat(cat)} style={{
+              padding:'7px 18px',borderRadius:'999px',fontSize:'13px',fontWeight:500,
+              cursor:'pointer',fontFamily:'Geist,sans-serif',transition:'all .15s',
+              border:`1px solid ${cat===activeCat?'rgba(9,160,157,.5)':'rgba(255,255,255,.08)'}`,
+              background: cat===activeCat?'rgba(9,160,157,.08)':'transparent',
+              color: cat===activeCat?'#0EC4C1':'#7FA0AC',
+            }}>
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Cards grid */}
+        <div key={activeCat} style={{
+          display:'grid',
+          gridTemplateColumns:'repeat(auto-fill, minmax(220px, 1fr))',
+          gap:'10px',
+          animation:'fadeUp .3s cubic-bezier(0.34,1.56,0.64,1) both',
+        }}
+        onMouseMove={(e) => {
+          const cards = e.currentTarget.querySelectorAll('.connector-card');
+          cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+            card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+          });
+        }}>
+          {CONNECTORS[activeCat].map((c, i) => (
+            <div key={c.name} className="connector-card">
+              <ConnectorIcon name={c.name} slug={c.slug} abbr={c.abbr} color={c.color} bg={c.bg}/>
+              <div style={{minWidth:0}}>
+                <div style={{fontSize:'0.875rem',fontWeight:500,color:'#fff',marginBottom:'3px'}}>{c.name}</div>
+                <div style={{fontSize:'12px',color:'#8A9BA4',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{c.desc}</div>
+              </div>
+              <div style={{marginLeft:'auto',flexShrink:0,width:6,height:6,borderRadius:'50%',background:'#22C55E',boxShadow:'0 0 6px rgba(34,197,94,.6)'}}/>
+            </div>
+          ))}
+        </div>
+
+        {/* Footer note */}
+        <div style={{textAlign:'center',marginTop:'32px'}}>
+          <span style={{fontSize:'12.5px',color:'#8A9BA4',fontFamily:'Geist Mono,monospace'}}>
+            + 180 more connectors available ·{' '}
+            <a href="#" style={{color:'rgba(9,160,157,.7)',textDecoration:'none'}}>see full list →</a>
+          </span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── HOW SYNC WORKS ── */
+function HowSyncWorks() {
+  const steps = [
+    {
+      // TODO SEO [P2]: Reconcile connector count with hero/FAQ ("200+" everywhere else).
+      // Hero says "200+", FAQ draft says "200+", this step card says "40+". Pick one truthful number
+      // and use it consistently across hero copy, this step, the FAQ answer, and SoftwareApplication schema.
+      // Assumed canonical = "200+" per the audit's "Out of scope" reconciliation note; change if product confirms "40+".
+      n:'01', title:'Connect in minutes',
+      desc:'Authenticate with OAuth or API key. No engineering required — most connectors are live in under 5 minutes. Pick from 200+ pre-built integrations across CRMs, warehouses, ads and analytics — all read-only and SOC 2 secured.',
+      example:'OAuth / API key → 200+ connectors live in under 5 min, read-only & SOC 2 secured',
+    },
+    {
+      n:'02', title:'Semantic layer maps it',
+      desc:'Insightis maps your fields to certified metrics — MRR, CAC, NRR, WAU. One truth across every source. The semantic layer resolves naming conflicts, time zones and currencies so answers stay consistent everywhere.',
+      example:'MRR · CAC · NRR · WAU → mapped automatically, with conflict & currency resolution',
+    },
+    {
+      n:'03', title:'Ask in plain English',
+      desc:'Your team asks questions. Insightis queries the right sources, joins the data, and returns a precise answer — no SQL, no ticket. Drill into contributing factors, ask follow-ups in the chat, and save any insight as a live report.',
+      example:'"Why did CAC spike last week?" → precise answer with drill-down and follow-ups',
+    },
+  ];
+
+  return (
+    <section style={{padding:'120px 0 140px',background:'#0A0E13'}}>
+      <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 1.5rem'}}>
+        <div style={{textAlign:'center',marginBottom:'64px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
+            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>How it works</span>
+          </div>
+          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,textWrap:'balance'}}>
+            How does Insightis connect to your data sources?
+          </h2>
+          <p style={{fontSize:'clamp(1rem,1.8vw,1.125rem)',color:'rgba(255,255,255,0.7)',maxWidth:'42rem',margin:'18px auto 0',lineHeight:1.7,textAlign:'center'}}>
+            <strong style={{color:'#fff'}}>In three steps: authenticate, map, ask.</strong> OAuth or API key in minutes, semantic layer unifies every source into certified metrics, then your team asks questions in plain English.
+          </p>
+        </div>
+
+        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(300px, 1fr))',gap:'20px'}}>
+          {steps.map((s, i) => (
+            <div key={i} className="spotlight-card" style={{
+              background:'rgba(13,17,23,.6)',
+              border:'1px solid rgba(255,255,255,.06)',
+              borderRadius:'16px',padding:'32px',
+              position:'relative',overflow:'hidden',
+              transition:'transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease',
+            }} onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-3px)';e.currentTarget.style.boxShadow='0 12px 40px rgba(9,160,157,0.08)'}} onMouseLeave={e=>{e.currentTarget.style.transform='';e.currentTarget.style.boxShadow=''}}>
+              {/* Top line accent */}
+              <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.4),transparent)'}}/>
+              {/* Number + Title on one line */}
+              <div style={{display:'flex',alignItems:'baseline',gap:'10px',marginBottom:'16px'}}>
+                <span style={{fontSize:'18px',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#0EC4C1',letterSpacing:'-0.02em',flexShrink:0}}>{s.n}.</span>
+                <h3 style={{fontSize:'18px',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#0EC4C1',letterSpacing:'-0.02em',margin:0,lineHeight:1.2}}>{s.title}</h3>
+              </div>
+              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.7,marginBottom:'18px',maxWidth:'45ch'}}>{s.desc}</p>
+              <div style={{padding:'10px 14px',background:'rgba(255,255,255,.03)',border:'1px solid rgba(255,255,255,.06)',borderRadius:'8px',fontSize:'12px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',fontStyle:'italic'}}>
+                {s.example}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── INTEGRATION IMPACT ── */
+function IntegrationImpact() {
+  const STATS = [
+    { display:'12×',  label:'faster time to insight',              sub:'vs. manual exports & BI tools' },
+    { display:'8 hrs',label:'saved per analyst per week',          sub:'no more copy-paste dashboards' },
+    { display:'90%',  label:'fewer data requests',  sub:'teams self-serve in plain English' },
+  ];
+
+  return (
+    <section style={{padding:'120px 0 140px', background:'linear-gradient(180deg,#101620 0%,#0A0E13 100%)'}}>
+      <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 1.5rem'}}>
+
+        {/* Heading */}
+        <div style={{textAlign:'center',marginBottom:'56px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
+            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Why direct integration matters</span>
+          </div>
+          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
+            Why do disconnected data tools slow teams down?
+          </h2>
+          <p style={{fontSize:'17px',color:'rgba(255,255,255,.7)',maxWidth:'520px',margin:'0 auto',lineHeight:1.7}}>
+            <strong style={{color:'#fff'}}>Scattered tools guess. A unified layer answers.</strong> Exports, manual joins and copy-pasted dashboards turn every question into a 3-5 day project — Insightis returns the answer in seconds.
+          </p>
+          {/* TODO SEO [P1]: Replace the two <div>-based comparison cards below with a semantic <table>
+              for AI/SERP extraction. Columns: "Dimension | Disconnected data | Insightis".
+              Rows from audit:
+                Time to one answer        | 3-5 days              | Seconds
+                Analyst hours/week lost   | 8 hrs                 | 0 (self-serve)
+                Tools touched per request | 4                     | 1 (Insightis)
+                Source of truth           | Scattered             | Semantic layer
+              Keep the visual gradient/colored styling on the <tr>/<td>s via CSS; the current colored
+              cards can stay visually, but the <table> must also render so crawlers can extract it. */}
+        </div>
+
+        {/* Comparison cards */}
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'16px',alignItems:'stretch'}}>
+          {/* Disconnected data */}
+          <div className="compare-card" style={{background:'rgba(248,113,113,.04)',border:'1px solid rgba(248,113,113,.15)',borderRadius:'16px',padding:'32px',display:'flex',flexDirection:'column'}}>
+            <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'22px'}}>
+              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#F87171'}}/>
+              <span style={{fontSize:'13px',fontWeight:600,color:'#F87171'}}>Disconnected data</span>
+            </div>
+            <div style={{flex:1,background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',display:'flex',flexDirection:'column'}}>
+              <div style={{fontSize:'11px',color:'#6E8D9A',marginBottom:'10px'}}>→ "Which channel drove the most signups last month?"</div>
+              
+              <div style={{display:'flex',flexDirection:'column',gap:'10px'}}>
+                {[
+                  {display:'3–5 days', label:'to produce one number',            sub:'export CSVs, VLOOKUP, reconcile by hand'},
+                  {display:'8 hrs',    label:'lost per analyst weekly',        sub:'manualcopy-paste data'},
+                  {display:'4 tools',  label:'to query for a request',   sub:'HubSpot, Stripe and the warehouse'},
+                ].map((s, i) => (
+                  <div key={i} style={{display:'flex',alignItems:'baseline',gap:'12px',fontSize:'12.5px',lineHeight:1.45}}>
+                    <span style={{color:'#F87171',fontWeight:600,minWidth:'64px',flexShrink:0,fontVariantNumeric:'tabular-nums',letterSpacing:'-.02em'}}>
+                      {s.display}
+                    </span>
+                    <span style={{minWidth:0}}>
+                      <span style={{color:'#8A8A9A'}}>{s.label}</span>
+                      <span style={{color:'#5E5E70'}}> — {s.sub}</span>
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <p style={{fontSize:'12px',color:'rgba(248,113,113,.6)',fontStyle:'italic'}}>Exports, manual joins, copy-pasted dashboards. Stale by the time they land.</p>
+          </div>
+
+          {/* Insightis */}
+          <div className="compare-card" style={{background:'rgba(9,160,157,.05)',border:'1px solid rgba(9,160,157,.25)',borderRadius:'16px',padding:'32px',position:'relative',boxShadow:'0 8px 40px rgba(9,160,157,0.06)',display:'flex',flexDirection:'column'}}>
+            <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.6),transparent)',borderRadius:'16px 16px 0 0'}}/>
+            <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'22px'}}>
+              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#0EC4C1',boxShadow:'0 0 8px #0EC4C1'}}/>
+              <span style={{fontSize:'13px',fontWeight:500,color:'#0EC4C1'}}>Insightis</span>
+            </div>
+            <div style={{flex:1,background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',display:'flex',flexDirection:'column'}}>
+             
+              <div style={{fontSize:'12.5px',color:'#C0D4DC',lineHeight:1.6,marginBottom:'14px'}}>
+                Answered in seconds. What direct integration unlocks:
+              </div>
+              <div style={{display:'flex',flexDirection:'column',gap:'10px'}}>
+                {STATS.map((s, i) => (
+                  <div key={i} style={{display:'flex',alignItems:'baseline',gap:'12px',fontSize:'12.5px',lineHeight:1.45}}>
+                    <span style={{color:'#0EC4C1',fontWeight:600,minWidth:'64px',flexShrink:0,fontVariantNumeric:'tabular-nums',letterSpacing:'-.02em'}}>
+                      {s.display}
+                    </span>
+                    <span style={{minWidth:0}}>
+                      <span style={{color:'#C0D4DC'}}>{s.label}</span>
+                      <span style={{color:'#6E8D9A'}}> — {s.sub}</span>
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <p style={{fontSize:'12px',color:'rgba(9,160,157,.6)',fontStyle:'italic'}}>Direct connectors + Semantic Layer. Real numbers, refreshed continuously.</p>
+          </div>
+        </div>
+
+        {/* Headline callout */}
+        <div style={{textAlign:'center',marginTop:'40px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:'14px',flexWrap:'wrap',justifyContent:'center'}}>
+            <span style={{fontSize:'40px',fontWeight:500,color:'#0EC4C1',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0,letterSpacing:'-.02em'}}>&lt; 1 min</span>
+            <span style={{fontSize:'15px',color:'#7FA0AC'}}>to connect a new source — OAuth, no pipelines to maintain.</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+/* ── CTA SECTION ── */
+
+/* ── BOTTOM CTA ── */
+function CTA() {
+  return (
+    <section aria-labelledby="cta-heading" style={{paddingTop:'40px',paddingBottom:'80px'}}>
+      <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 1.5rem'}}>
+        {/* SEO: renamed orphan <h3> to <h2> so it has no parent-level-skip (was an orphan in the page outline). */}
+        <h2 id="cta-heading" style={{position:'absolute',width:'1px',height:'1px',padding:0,margin:'-1px',overflow:'hidden',clip:'rect(0,0,0,0)',whiteSpace:'nowrap',border:0}}>Start connecting your stack</h2>
+        <div style={{position:'relative',borderRadius:'20px',border:'1px solid rgba(30,30,48,1)',padding:'40px 52px',overflow:'hidden',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'28px',flexWrap:'wrap',background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)',boxShadow:'0 16px 64px rgba(0,0,0,0.3), 0 0 80px rgba(9,160,157,0.04)'}}>
+          <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.5),transparent)'}}/>
+          <div style={{position:'absolute',top:'-40%',left:'50%',transform:'translateX(-50%)',width:'60%',height:'180%',background:'radial-gradient(ellipse at center,rgba(9,160,157,0.06) 0%,transparent 70%)',pointerEvents:'none'}}/>
+          <p style={{fontSize:'clamp(1.375rem,3vw,1.875rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.03em',lineHeight:1.15,flexShrink:0,textWrap:'balance',margin:0}}>
+            Your data is already there.<span style={{color:'#0EC4C1'}}> Connect it in minutes.</span>
+          </p>
+          <div style={{display:'flex',alignItems:'center',width:'100%',maxWidth:'420px',background:'#0D0D1A',border:'1px solid rgba(46,46,64,1)',borderRadius:'12px',overflow:'hidden',flex:'1 1 340px'}}>
+            <label htmlFor="cta-connector-input" style={{position:'absolute',width:'1px',height:'1px',padding:0,margin:'-1px',overflow:'hidden',clip:'rect(0,0,0,0)',whiteSpace:'nowrap',border:0}}>Which tool do you want to connect?</label>
+            <input id="cta-connector-input" type="text" placeholder="Which tool do you want to connect?" aria-label="Which tool do you want to connect?" style={{flex:1,background:'transparent',fontSize:'14px',color:'#fff',padding:'12px 16px',outline:'none',border:'none',fontFamily:'Geist,sans-serif',minWidth:0}}/>
+            <button aria-label="Connect this tool" style={{display:'inline-flex',alignItems:'center',gap:'8px',padding:'10px 20px',margin:'4px',fontSize:'13px',fontWeight:600,color:'#fff',background:'linear-gradient(135deg,#07807E,#09A09D)',borderRadius:'8px',border:'none',cursor:'pointer',whiteSpace:'nowrap',flexShrink:0,fontFamily:'Geist,sans-serif',transition:'all 0.25s cubic-bezier(0.34,1.56,0.64,1)',boxShadow:'0 0 20px rgba(9,160,157,.2)'}}>
+              Connect
+              <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── FOOTER ── */
+function Footer() {
+  const linkUrls = {
+    'AI Chat': 'AI Chat.html',
+    'Integrations': 'Integrations.html',
+    'Semantic Layer': 'Semantic Layer.html',
+    'Memory & Storage': 'Memory & Storage.html',
+    'For RevOps & BizOps': '../Solutions/RevOps BizOps.html',
+    'For Founders & CEOs': '../Solutions/Founders CEOs.html',
+    'For Marketing Teams': '../Solutions/Marketing Teams.html',
+    'For Product Teams': '../Solutions/Product Teams.html',
+    'For Data & Analytics Teams': '../Solutions/Data Analytics Teams.html',
+    'For Operations & Finance': '../Solutions/Operations Finance.html',
+    'Documentation': '../docs/',
+    'Blog': '../blog/',
+    'Support Center': '../Resources/Contact Support.html',
+    'Roadmap': '../Resources/Roadmap.html',
+    'Prompt Library': '../Resources/Prompt Library.html',
+    'Data Connectors': 'Connectors.html',
+  };
+  return (
+    <footer className="pt-16 pb-8 border-t border-[#1E1E30]">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row gap-10 md:gap-16 mb-14 items-start">
+          <div className="shrink-0 md:max-w-[220px]">
+            <a href="../index.html" className="flex items-center gap-2.5 mb-4">
+              <svg width="111" height="26" viewBox="0 0 111 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7"><g clipPath="url(#clip0_f)"><path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="#1498B9"/><path d="M33.2746 17.5261V5.60823H35.5859V17.5261H33.2746Z" fill="white"/><path d="M38.2797 17.5261V8.0821H40.1758L40.1216 10.9713H40.4466C40.6152 10.261 40.8379 9.67717 41.1148 9.21971C41.4037 8.76226 41.7708 8.41917 42.2163 8.19044C42.6617 7.96171 43.1793 7.84735 43.7692 7.84735C44.8406 7.84735 45.6532 8.22656 46.207 8.98497C46.7728 9.74338 47.0557 10.9171 47.0557 12.5062V17.5261H44.7624V12.7409C44.7624 11.7177 44.6059 10.9713 44.2929 10.5018C43.9919 10.0203 43.5405 9.77949 42.9386 9.77949C42.433 9.77949 42.0056 9.94201 41.6565 10.267C41.3074 10.58 41.0365 11.0014 40.8439 11.5311C40.6633 12.0487 40.567 12.6205 40.555 13.2465V17.5261H38.2797Z" fill="white"/><path d="M53.1255 17.7609C52.4875 17.7609 51.9096 17.6947 51.392 17.5622C50.8864 17.4419 50.453 17.2673 50.0918 17.0386C49.7307 16.7978 49.4418 16.5149 49.2251 16.1899C49.0084 15.8528 48.876 15.4796 48.8278 15.0703L50.6155 14.4022C50.6396 14.7152 50.76 14.9981 50.9767 15.2509C51.1933 15.4917 51.4943 15.6843 51.8795 15.8287C52.2647 15.9732 52.7282 16.0454 53.2699 16.0454C53.8719 16.0454 54.3353 15.9551 54.6604 15.7746C54.9974 15.5819 55.166 15.3111 55.166 14.962C55.166 14.7092 55.0757 14.5105 54.8951 14.3661C54.7145 14.2096 54.4497 14.0832 54.1006 13.9869C53.7635 13.8785 53.3542 13.7762 52.8727 13.6799C52.4273 13.5836 51.9758 13.4752 51.5184 13.3549C51.073 13.2224 50.6576 13.0539 50.2724 12.8493C49.8992 12.6326 49.5922 12.3557 49.3515 12.0186C49.1228 11.6695 49.0084 11.2301 49.0084 10.7004C49.0084 10.1226 49.1589 9.623 49.4598 9.20166C49.7728 8.78032 50.2182 8.44926 50.7961 8.2085C51.386 7.96773 52.0962 7.84735 52.9269 7.84735C53.7093 7.84735 54.3835 7.9557 54.9493 8.17238C55.5271 8.38907 55.9966 8.70207 56.3578 9.11137C56.7189 9.50863 56.9476 9.98415 57.0439 10.5379L55.166 11.1338C55.1299 10.7967 55.0155 10.5138 54.8229 10.2851C54.6303 10.0443 54.3714 9.86376 54.0464 9.74338C53.7214 9.623 53.3422 9.56281 52.9088 9.56281C52.355 9.56281 51.9217 9.65911 51.6087 9.85172C51.2957 10.0443 51.1392 10.3032 51.1392 10.6282C51.1392 10.893 51.2355 11.1037 51.4281 11.2602C51.6327 11.4167 51.9096 11.5431 52.2587 11.6394C52.6199 11.7357 53.0292 11.832 53.4866 11.9283C53.9682 12.0246 54.4316 12.139 54.8771 12.2714C55.3345 12.3918 55.7438 12.5543 56.105 12.759C56.4661 12.9636 56.755 13.2345 56.9717 13.5716C57.1884 13.8966 57.2967 14.3179 57.2967 14.8356C57.2967 15.4616 57.1282 15.9973 56.7911 16.4427C56.4541 16.8761 55.9725 17.2071 55.3465 17.4358C54.7326 17.6525 53.9922 17.7609 53.1255 17.7609Z" fill="white"/><path d="M59.2115 17.5261V8.0821H61.4868V17.5261H59.2115ZM60.3492 6.60139C59.8917 6.60139 59.5366 6.50508 59.2838 6.31247C59.043 6.10782 58.9226 5.8189 58.9226 5.44571C58.9226 5.07253 59.043 4.78963 59.2838 4.59702C59.5366 4.39236 59.8917 4.29004 60.3492 4.29004C60.8307 4.29004 61.1918 4.38635 61.4326 4.57896C61.6734 4.77157 61.7937 5.06049 61.7937 5.44571C61.7937 5.8189 61.6673 6.10782 61.4145 6.31247C61.1738 6.50508 60.8186 6.60139 60.3492 6.60139Z" fill="white"/><path d="M67.709 20.7765C66.6857 20.7765 65.843 20.6982 65.1809 20.5417C64.5309 20.3852 64.0493 20.1505 63.7363 19.8375C63.4233 19.5245 63.2668 19.1393 63.2668 18.6818C63.2668 18.128 63.4835 17.6766 63.9169 17.3275C64.3623 16.9663 65.0184 16.7436 65.8852 16.6594V16.2982C65.2351 16.3103 64.7415 16.2441 64.4045 16.0996C64.0674 15.9431 63.8988 15.6963 63.8988 15.3592C63.8988 15.0342 64.0614 14.7453 64.3864 14.4925C64.7235 14.2397 65.2772 14.029 66.0477 13.8605V13.4993C65.3133 13.4632 64.7415 13.2345 64.3322 12.8131C63.9229 12.3798 63.7183 11.82 63.7183 11.1338C63.7183 10.5198 63.8868 9.97813 64.2239 9.50863C64.561 9.03914 65.0545 8.67197 65.7046 8.40713C66.3667 8.13025 67.1672 7.99181 68.1062 7.99181H72.7831V9.79755L69.8217 9.36417V9.76144C70.5681 9.88182 71.1158 10.0925 71.4649 10.3934C71.8261 10.6944 72.0066 11.1037 72.0066 11.6214C72.0066 12.1149 71.8501 12.5543 71.5371 12.9395C71.2241 13.3127 70.7667 13.6077 70.1648 13.8244C69.5749 14.029 68.8586 14.1313 68.0159 14.1313C67.8594 14.1313 67.6909 14.1253 67.5103 14.1133C67.3298 14.1012 67.0469 14.0711 66.6616 14.023C66.4088 14.2036 66.2042 14.3661 66.0477 14.5105C65.8912 14.643 65.8129 14.7694 65.8129 14.8897C65.8129 14.986 65.8731 15.0703 65.9935 15.1425C66.1139 15.2027 66.2704 15.2449 66.463 15.2689C66.6556 15.293 66.8422 15.3051 67.0228 15.3051H69.5328C69.7735 15.3051 70.0805 15.3231 70.4537 15.3592C70.8389 15.3954 71.2181 15.4917 71.5913 15.6482C71.9765 15.8047 72.2955 16.0514 72.5484 16.3885C72.8132 16.7256 72.9456 17.2011 72.9456 17.815C72.9456 18.5012 72.747 19.061 72.3497 19.4944C71.9645 19.9398 71.3806 20.2648 70.5982 20.4695C69.8277 20.6741 68.8646 20.7765 67.709 20.7765ZM67.9076 18.9346C68.654 18.9346 69.2499 18.8925 69.6953 18.8082C70.1407 18.7239 70.4597 18.5855 70.6523 18.3929C70.8449 18.2123 70.9412 17.9776 70.9412 17.6886C70.9412 17.4238 70.8811 17.2192 70.7607 17.0747C70.6403 16.9182 70.4838 16.8098 70.2912 16.7497C70.1106 16.6895 69.924 16.6534 69.7314 16.6413C69.5388 16.6293 69.3763 16.6233 69.2438 16.6233H67.0228C66.4449 16.7075 66.0356 16.87 65.7949 17.1108C65.5662 17.3516 65.4518 17.6164 65.4518 17.9053C65.4518 18.1943 65.5481 18.4109 65.7407 18.5554C65.9333 18.7119 66.2102 18.8142 66.5713 18.8624C66.9445 18.9105 67.3899 18.9346 67.9076 18.9346ZM67.9618 12.8854C68.5878 12.8854 69.0633 12.7409 69.3883 12.452C69.7133 12.151 69.8759 11.7598 69.8759 11.2783C69.8759 10.7606 69.7073 10.3393 69.3702 10.0142C69.0452 9.67717 68.5697 9.50863 67.9437 9.50863C67.3177 9.50863 66.8302 9.67115 66.4811 9.99618C66.144 10.3212 65.9755 10.7365 65.9755 11.2421C65.9755 11.5672 66.0477 11.8561 66.1921 12.1089C66.3486 12.3497 66.5713 12.5423 66.8603 12.6867C67.1612 12.8192 67.5284 12.8854 67.9618 12.8854Z" fill="white"/><path d="M74.7825 17.5261V4.70536H77.0758V7.64872C77.0758 7.90152 77.0638 8.16035 77.0397 8.42519C77.0277 8.69003 77.0036 8.96089 76.9675 9.23777C76.9314 9.51465 76.8892 9.79153 76.8411 10.0684C76.805 10.3453 76.7628 10.6222 76.7147 10.8991H77.0939C77.2624 10.249 77.4791 9.70125 77.7439 9.25583C78.0088 8.79837 78.3459 8.44926 78.7552 8.2085C79.1765 7.96773 79.6881 7.84735 80.29 7.84735C81.3855 7.84735 82.2041 8.23258 82.7459 9.00303C83.2876 9.76144 83.5584 10.9171 83.5584 12.47V17.5261H81.2651V12.7951C81.2651 11.7598 81.1087 10.9954 80.7957 10.5018C80.4947 10.0082 80.0372 9.76144 79.4233 9.76144C78.9177 9.76144 78.4963 9.91793 78.1593 10.2309C77.8222 10.5319 77.5634 10.9352 77.3828 11.4408C77.2022 11.9464 77.0939 12.5182 77.0578 13.1562V17.5261H74.7825Z" fill="white"/><path d="M89.2495 17.7428C88.2503 17.7428 87.516 17.478 87.0465 16.9483C86.577 16.4066 86.3422 15.5699 86.3422 14.4383V9.9059H84.9518L84.9879 8.10015H85.9089C86.258 8.10015 86.5168 8.04598 86.6853 7.93764C86.8539 7.82929 86.9562 7.63668 86.9923 7.3598L87.209 5.98744H88.5272V8.0821H91.0191V9.97813H88.5272V14.348C88.5272 14.7934 88.6295 15.1185 88.8342 15.3231C89.0509 15.5278 89.3699 15.6301 89.7912 15.6301C90.0199 15.6301 90.2426 15.606 90.4593 15.5579C90.6881 15.4977 90.8987 15.4014 91.0913 15.2689V17.4358C90.7182 17.5562 90.3751 17.6345 90.0621 17.6706C89.7611 17.7187 89.4903 17.7428 89.2495 17.7428Z" fill="white"/><path d="M92.9634 17.5261V8.0821H95.2386V17.5261H92.9634ZM94.101 6.60139C93.6436 6.60139 93.2884 6.50508 93.0356 6.31247C92.7949 6.10782 92.6745 5.8189 92.6745 5.44571C92.6745 5.07253 92.7949 4.78963 93.0356 4.59702C93.2884 4.39236 93.6436 4.29004 94.101 4.29004C94.5825 4.29004 94.9437 4.38635 95.1845 4.57896C95.4252 4.77157 95.5456 5.06049 95.5456 5.44571C95.5456 5.8189 95.4192 6.10782 95.1664 6.31247C94.9256 6.50508 94.5705 6.60139 94.101 6.60139Z" fill="white"/><path d="M101.461 17.7609C100.823 17.7609 100.245 17.6947 99.7273 17.5622C99.2217 17.4419 98.7883 17.2673 98.4272 17.0386C98.066 16.7978 97.7771 16.5149 97.5604 16.1899C97.3437 15.8528 97.2113 15.4796 97.1632 15.0703L98.9508 14.4022C98.9749 14.7152 99.0953 14.9981 99.312 15.2509C99.5287 15.4917 99.8296 15.6843 100.215 15.8287C100.6 15.9732 101.064 16.0454 101.605 16.0454C102.207 16.0454 102.671 15.9551 102.996 15.7746C103.333 15.5819 103.501 15.3111 103.501 14.962C103.501 14.7092 103.411 14.5105 103.23 14.3661C103.05 14.2096 102.785 14.0832 102.436 13.9869C102.099 13.8785 101.69 13.7762 101.208 13.6799C100.763 13.5836 100.311 13.4752 99.8537 13.3549C99.4083 13.2224 98.993 13.0539 98.6077 12.8493C98.2346 12.6326 97.9276 12.3557 97.6868 12.0186C97.4581 11.6695 97.3437 11.2301 97.3437 10.7004C97.3437 10.1226 97.4942 9.623 97.7952 9.20166C98.1082 8.78032 98.5536 8.44926 99.1314 8.2085C99.7213 7.96773 100.432 7.84735 101.262 7.84735C102.045 7.84735 102.719 7.9557 103.285 8.17238C103.862 8.38907 104.332 8.70207 104.693 9.11137C105.054 9.50863 105.283 9.98415 105.379 10.5379L103.501 11.1338C103.465 10.7967 103.351 10.5138 103.158 10.2851C102.966 10.0443 102.707 9.86376 102.382 9.74338C102.057 9.623 101.678 9.56281 101.244 9.56281C100.69 9.56281 100.257 9.65911 99.944 9.85172C99.631 10.0443 99.4745 10.3032 99.4745 10.6282C99.4745 10.893 99.5708 11.1037 99.7634 11.2602C99.9681 11.4167 100.245 11.5431 100.594 11.6394C100.955 11.7357 101.365 11.832 101.822 11.9283C102.303 12.0246 102.767 12.139 103.212 12.2714C103.67 12.3918 104.079 12.5543 104.44 12.759C104.801 12.9636 105.09 13.2345 105.307 13.5716C105.524 13.8966 105.632 14.3179 105.632 14.8356C105.632 15.4616 105.464 15.9973 105.126 16.4427C104.789 16.8761 104.308 17.2071 103.682 17.4358C103.068 17.6525 102.328 17.7609 101.461 17.7609Z" fill="white"/></g><defs><clipPath id="clip0_f"><rect width="111" height="25.4928" fill="white"/></clipPath></defs></svg>
+            </a>
+            <p className="text-xs font-medium text-[#09A09D] uppercase tracking-wider mb-2">AI Analytics Workspace for instant insights</p>
+            <p className="text-sm text-[#7878A8] leading-relaxed">Every data has an insight. We help you find them, without the complexity.</p>
+          </div>
+
+          <div className="md:ml-auto grid grid-cols-2 gap-8 md:flex md:flex-row md:gap-16">
+            <div>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Platform</h3>
+              <ul className="flex flex-col gap-2.5">
+                {['AI Chat', 'Integrations', 'Semantic Layer', 'AI Connect', 'Advanced Reports', 'Memory & Storage'].map(link => {
+                  const isComingSoon = ['AI Connect', 'Advanced Reports', 'Memory & Storage'].includes(link);
+                  const isNotClickable = ['AI Connect', 'Advanced Reports'].includes(link);
+                  const badge = (
+                    <span style={{fontSize:'10px', fontWeight:500, letterSpacing:'0.04em', padding:'1px 6px', borderRadius:'4px', background:'rgba(10,152,150,0.12)', border:'1px solid rgba(10,152,150,0.3)', color:'#0EC4C1', whiteSpace:'nowrap'}}>Coming Soon</span>
+                  );
+                  if (isComingSoon) {
+                    return (
+                      <li key={link}>
+                        <span className="flex items-center gap-2 whitespace-nowrap">
+                          {isNotClickable ? (
+                            <span className="text-sm text-[#A0A0B8]" style={{cursor:'default'}}>{link}</span>
+                          ) : (
+                            <a href={linkUrls[link] || '#'} className="text-sm text-[#A0A0B8] hover:text-white transition-colors">{link}</a>
+                          )}
+                          {badge}
+                        </span>
+                      </li>
+                    );
+                  }
+                  return (
+                    <li key={link}><a href={linkUrls[link] || '#'} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}</a></li>
+                  );
+                })}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Solutions</h3>
+              <ul className="flex flex-col gap-2.5">
+                {['For RevOps & BizOps', 'For Founders & CEOs', 'For Marketing Teams', 'For Product Teams', 'For Data & Analytics Teams', 'For Operations & Finance'].map(link => (
+                  <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Resources</h3>
+              <ul className="flex flex-col gap-2.5">
+                {['Documentation', 'Prompt Library', 'Blog', 'Support Center', 'Roadmap', 'Data Connectors'].map(link => (
+                  <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Company</h3>
+              <ul className="flex flex-col gap-2.5">
+                {[
+                  { label: 'About Insightis', href: '../Company/About Insightis.html' },
+                  { label: 'About Devart', href: 'https://www.devart.com/company/' },
+                  { label: 'Careers', href: 'https://www.devart.com/vacancies/' },
+                  { label: 'Contacts', href: '../Company/Contacts.html' },
+                  { label: 'Success Stories', href: '../Company/Success Stories.html' },
+                  { label: 'Press & Media', href: '../Company/Press Media.html' },
+                ].map(link => (
+                  <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Legal</h3>
+              <ul className="flex flex-col gap-2.5">
+                {[
+                  { label: 'Privacy', href: '../Security/Privacy.html' },
+                  { label: 'Terms', href: '../Security/Terms.html' },
+                  { label: 'Security', href: '../Security/Security.html' },
+                  { label: 'Cookie Settings', href: '../Security/Cookie Settings.html' },
+                ].map(link => (
+                  <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-[#1E1E30] pt-6 flex items-center justify-between">
+          <p className="text-xs text-[#7878A8]">&copy; Copyright &copy; Devart 2026</p>
+          <div className="flex items-center gap-4">
+            <a href="https://x.com/Insightisai" target="_blank" rel="noopener noreferrer" aria-label="Insightis on X (Twitter)" className="hover:opacity-80 transition-opacity"><TwitterXIcon size={18} color="#7878A8" /></a>
+            <a href="https://www.tiktok.com/@insightisai" target="_blank" rel="noopener noreferrer" aria-label="Insightis on TikTok" className="hover:opacity-80 transition-opacity"><TikTokIcon size={18} color="#7878A8" /></a>
+            <a href="https://www.youtube.com/@InsightisAI" target="_blank" rel="noopener noreferrer" aria-label="Insightis on YouTube" className="hover:opacity-80 transition-opacity"><YouTubeIcon size={18} color="#7878A8" /></a>
+            <a href="https://www.linkedin.com/company/112025589" target="_blank" rel="noopener noreferrer" aria-label="Insightis on LinkedIn" className="hover:opacity-80 transition-opacity"><LinkedInIcon size={18} color="#7878A8" /></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/* ── APP ── */
+function App() {
+  return (
+    <div>
+      <Header/>
+      <Hero/>
+      {/* TODO SEO [P0]: Add TL;DR / Executive Summary block here (80-100 words, format: Problem -> Insightis -> Key Benefit).
+          Build a <TLDR/> component that renders a <section aria-label="Summary"> with one answer-first paragraph, then mount it below.
+          Verbatim draft copy from audit "Suggested rewrites -> TL;DR block":
+
+          "Scattered data slows every team down. Answers live in five tools - HubSpot, Stripe, the warehouse,
+          the ad platforms, product analytics - and pulling them together takes days of CSV exports and VLOOKUPs.
+          Insightis fixes that at the source: 200+ certified connectors (OAuth, read-only, SOC 2) feed a semantic
+          layer that unifies MRR, CAC, NRR, WAU and every other metric your team asks about. You ask in plain
+          English; Insightis queries the right sources, joins the data, and returns a precise answer in seconds
+          - no SQL, no tickets, no waiting." (96 words)
+
+          See audit: C:/Users/victorg/.claude/plans/d-landing-new-integrations-2-html-using-smooth-cupcake.md */}
+      <HowSyncWorks/>
+      <ConnectorsGallery/>
+      <IntegrationImpact/>
+      {/* TODO SEO [P1]: Insert FAQ section here (5 Q&A, answers 40-60 words each) before the CTA.
+          JSON-LD FAQPage is already emitted in <head>; on-page copy must match it word-for-word so
+          Google's validator doesn't flag a mismatch. Build an <FAQ/> component rendering one <h2>
+          ("Frequently asked questions") plus five <details>/<summary> pairs.
+
+          Verbatim draft Q&As from audit "Suggested rewrites -> FAQ entries":
+
+          Q1. How long does it take to connect a data source to Insightis?
+          A. Most connectors go live in under five minutes. You authenticate with OAuth or an API key,
+          pick the objects you want, and Insightis starts syncing immediately. Connections are read-only,
+          SOC 2 secured, and refreshed continuously - no engineering work or pipeline maintenance required.
+
+          Q2. Which data sources does Insightis integrate with?
+          A. Insightis supports 200+ connectors across CRMs (HubSpot, Salesforce, Pipedrive),
+          warehouses (Snowflake, BigQuery, Redshift), ad platforms (Google Ads, Meta, LinkedIn),
+          product analytics (Mixpanel, Amplitude, PostHog), finance (Stripe, QuickBooks, NetSuite)
+          and ops tools (Jira, Linear, Slack). New connectors are added monthly based on customer demand.
+
+          Q3. Do I need SQL or a data engineer to use Insightis integrations?
+          A. No. Insightis' semantic layer maps every connected source to certified business metrics -
+          MRR, CAC, NRR, WAU - so your team asks questions in plain English and gets a precise answer.
+          SQL is optional for power users, never a requirement for daily use.
+
+          Q4. Is my data secure once it's connected?
+          A. Yes. All connectors are read-only and authenticated via OAuth or scoped API keys.
+          Insightis is SOC 2 Type II compliant, encrypts data in transit and at rest, and never writes
+          back to your source systems. You can revoke a connection at any time from the admin panel.
+
+          Q5. What happens when fields or metrics conflict across sources?
+          A. The semantic layer resolves conflicts automatically. It reconciles naming (deal vs opportunity),
+          time zones, currencies, and duplicate records so the answer stays consistent whether the question
+          starts in Stripe, HubSpot, or Snowflake. Certified metrics are versioned, so changes are auditable.
+
+          See audit: C:/Users/victorg/.claude/plans/d-landing-new-integrations-2-html-using-smooth-cupcake.md */}
+      <CTA/>
+      <Footer/>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

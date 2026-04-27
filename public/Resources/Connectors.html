@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Connectors — Insightis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Geist', sans-serif;
+  background: #0A0E13;
+  color: #E8F2F5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: .4; mix-blend-mode: overlay;
+}
+
+body::after {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 5%, rgba(10,152,150,.09) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 55% at 85% 0%, rgba(110,60,200,.07) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 60% at 75% 45%, rgba(20,80,200,.05) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 55% at 5% 55%, rgba(160,50,220,.045) 0%, transparent 65%),
+    radial-gradient(ellipse 65% 55% at 50% 90%, rgba(10,152,150,.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 45% at 95% 75%, rgba(50,90,240,.04) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 40% at 35% 30%, rgba(200,60,180,.03) 0%, transparent 55%);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+@keyframes slideInRight { from{opacity:0;transform:translateX(24px)} to{opacity:1;transform:translateX(0)} }
+@keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+
+.fu0 { animation: fadeUp .7s ease both; }
+.fu1 { animation: fadeUp .7s ease .1s both; }
+.fu2 { animation: fadeUp .7s ease .2s both; }
+.fu3 { animation: fadeUp .7s ease .35s both; }
+.fu4 { animation: fadeUp .7s ease .5s both; }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+
+/* ── SECTION SPACING ── */
+section { position: relative; }
+
+@keyframes tileIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── CONNECTORS LAYOUT ── */
+.connectors-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: calc(100% - 48px);
+  align-items: start;
+  padding-bottom: 120px;
+  position: relative;
+  z-index: 1;
+}
+.connectors-sidebar-col {
+  position: sticky;
+  top: 72px;
+  max-height: calc(100vh - 72px);
+  overflow-y: auto;
+  border-right: 1px solid rgba(255,255,255,0.055);
+  padding: 24px 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.connectors-sidebar-col::-webkit-scrollbar { display: none; }
+.connectors-content {
+  padding: 24px 0 0 32px;
+  min-width: 0;
+}
+@media (max-width: 900px) {
+  .connectors-layout { grid-template-columns: 1fr; }
+  .connectors-sidebar-col { display: none; }
+  .connectors-content { padding: 16px 0 0 0; }
+}
+
+.connector-search {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(16,22,30,0.7);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 11px 14px;
+  width: 100%;
+  margin: 0 0 24px;
+  transition: border-color .2s;
+}
+
+/* ── FLOATING CHAT ALIGN TO CONNECTORS GRID ── */
+.floating-chat-wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: calc(100% - 48px);
+  padding: 16px 0 20px 292px; /* 260 sidebar + 32 gap */
+}
+.floating-chat-wrap > div {
+  max-width: 520px;
+  margin: 0 auto;
+}
+@media (max-width: 900px) {
+  .floating-chat-wrap { padding: 16px 0 20px; }
+  .floating-chat-wrap > div { max-width: 100%; }
+}
+.connector-search:focus-within { border-color: rgba(9,160,157,.5); }
+.connector-search input {
+  flex: 1; background: transparent; border: none; outline: none;
+  font-size: 14px; color: #E8F2F5; font-family: 'Geist', sans-serif;
+}
+
+.cat-group-header {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 6px 16px;
+  color: #5E8290; font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  font-family: 'Geist', sans-serif;
+  margin-bottom: 4px;
+}
+.cat-item {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; padding: 7px 16px;
+  background: transparent; border: none; cursor: pointer;
+  text-align: left; font-size: 13px;
+  color: #7FA0AC; font-family: 'Geist', sans-serif;
+  transition: background .12s, color .12s;
+  border-left: 2px solid transparent;
+}
+.cat-item:hover { background: rgba(255,255,255,0.04); color: #E8F2F5; }
+.cat-item.active {
+  background: rgba(10,152,150,0.08);
+  border-left-color: #0A9896;
+  color: #E8F2F5;
+}
+.cat-item .count {
+  margin-left: auto;
+  font-size: 11px; color: #5E8290;
+  font-family: 'Geist Mono', monospace;
+}
+.cat-item.active .count { color: #0EC4C1; }
+
+.connector-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+@media (max-width: 1100px) { .connector-grid { grid-template-columns: repeat(5, 1fr); } }
+@media (max-width: 900px)  { .connector-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 640px)  { .connector-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 440px)  { .connector-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.connector-tile {
+  position: relative;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  aspect-ratio: 1 / 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px;
+  padding: 16px 10px;
+  transition: border-color .2s, background .2s, transform .2s;
+  cursor: pointer;
+  overflow: hidden;
+  animation: tileIn .35s ease both;
+}
+.connector-tile:hover {
+  border-color: rgba(9,160,157,.4);
+  background: rgba(13,17,23,0.6);
+}
+.connector-tile:hover .connector-overlay { opacity: 1; pointer-events: auto; }
+.connector-tile:hover .connector-face     { opacity: 0.18; transform: scale(.96); }
+
+.connector-logo {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 8px;
+  background: #fff;
+  padding: 6px;
+  flex-shrink: 0;
+}
+.connector-logo img { width: 100%; height: 100%; object-fit: contain; }
+.connector-logo .fallback {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 15px;
+  color: #0A0E13;
+}
+.connector-face {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px;
+  transition: opacity .2s, transform .2s;
+  text-align: center;
+}
+.connector-name {
+  font-size: 12.5px; color: #C8D8DE; font-weight: 500;
+  text-align: center; line-height: 1.25;
+  max-width: 100%;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* ── HOVER OVERLAY ── */
+.connector-overlay {
+  position: absolute; inset: 8px;
+  display: flex; flex-direction: column;
+  align-items: stretch; justify-content: center;
+  gap: 6px;
+  padding: 12px 10px;
+  border-radius: 8px;
+  background: linear-gradient(160deg, rgba(9,160,157,0.92) 0%, rgba(7,128,126,0.96) 100%);
+  opacity: 0; pointer-events: none;
+  transition: opacity .18s;
+}
+.connector-overlay .banner-label {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+  margin-bottom: 2px;
+}
+.overlay-btn {
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+  padding: 7px 8px;
+  border-radius: 6px; border: none; cursor: pointer;
+  font-size: 11.5px; font-weight: 600;
+  font-family: 'Geist', sans-serif;
+  line-height: 1.2; text-align: center;
+  transition: background .15s, transform .15s;
+}
+.overlay-btn.primary {
+  background: #0A0E13; color: #fff;
+}
+.overlay-btn.primary:hover { background: #000; transform: translateY(-1px); }
+.overlay-btn.secondary {
+  background: rgba(255,255,255,0.12); color: #fff;
+  border: 1px solid rgba(255,255,255,0.18);
+}
+.overlay-btn.secondary:hover { background: rgba(255,255,255,0.2); transform: translateY(-1px); }
+</style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+
+/* ── HEADER ── */
+function MenuIcon({ size = 24, color = "#fff" }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>;
+}
+function CloseIcon({ size = 24, color = "#fff" }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>;
+}
+
+function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) setActiveDropdown(null);
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
+
+  const NAV_ICONS = {
+    chat: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z M8 11h.01 M12 11h.01 M16 11h.01',
+    link: 'M12 22v-5 M9 8V2 M15 8V2 M18 8H6a3 3 0 0 0-3 3v1a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-1a3 3 0 0 0-3-3z',
+    file: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M8 18v-4 M12 18v-2 M16 18v-6',
+    bars: 'M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z M2 12l8.58 3.91a2 2 0 0 0 1.66 0L21 12 M2 17l8.58 3.91a2 2 0 0 0 1.66 0L21 17',
+    box: 'M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z M12 3v9 M20 7.5l-8 4.5 M4 7.5l8 4.5',
+    dollar: 'M23 6l-9.5 9.5-5-5L1 18 M17 6h6v6',
+    star: 'M2 20H22 M5 20L7 12L12 17L17 12L19 20H5Z',
+    pulse: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z',
+    settings: 'M21 4H8 M3 4h1 M4 4a3 3 0 1 0 6 0 3 3 0 0 0-6 0 M21 12h-5 M3 12h8 M16 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0 M21 20H8 M3 20h1 M4 20a3 3 0 1 0 6 0 3 3 0 0 0-6 0',
+    play: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z M10 8l6 4-6 4V8z',
+    rss: 'M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z M16 6l2 2 M2 21.5l6.36-6.36',
+    support: 'M3 18v-6a9 9 0 0 1 18 0v6 M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z',
+    grid: 'M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z',
+    map: 'M18 6H5a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h13l4-3.5L18 6z M12 12v8 M12 2v4',
+  };
+
+  function NavIcon({ name }) {
+    const d = NAV_ICONS[name];
+    if (!d) return null;
+    const paths = d.split(' M').map((p, i) => i === 0 ? p : 'M' + p);
+    return (
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        {paths.map((p, i) => <path key={i} d={p} />)}
+      </svg>
+    );
+  }
+
+  const linkUrls = {
+    'AI Chat': '../Platform/AI Chat.html',
+    'Integrations': '../Platform/Integrations.html',
+    'Semantic Layer': '../Platform/Semantic Layer.html',
+    'Memory & Storage': '../Platform/Memory & Storage.html',
+    'For RevOps & BizOps': '../Solutions/RevOps BizOps.html',
+    'For Founders & CEOs': '../Solutions/Founders CEOs.html',
+    'For Marketing Teams': '../Solutions/Marketing Teams.html',
+    'For Product Teams': '../Solutions/Product Teams.html',
+    'For Data & Analytics Teams': '../Solutions/Data Analytics Teams.html',
+    'For Operations & Finance': '../Solutions/Operations Finance.html',
+    'Documentation': '../docs/',
+    'Blog': '../blog/',
+    'Support Center': 'Contact Support.html',
+    'Roadmap': 'Roadmap.html',
+    'Prompt Library': 'Prompt Library.html',
+    'Data Connectors': 'Connectors.html',
+    'Pricing': '../Pricing.html',
+    'About Insightis': '../Company/About Insightis.html',
+    'Contacts': '../Company/Contacts.html',
+    'Success Stories': '../Company/Success Stories.html',
+    'Press & Media': '../Company/Press Media.html',
+  };
+
+  const dropdowns = {
+    Platform: {
+      sections: [
+        { heading: 'PRODUCT', items: [
+          { label: 'AI Chat', desc: 'Ask anything about your data', icon: 'chat' },
+          { label: 'Integrations', desc: 'Connect 200+ sources', icon: 'link' },
+          { label: 'Semantic Layer', desc: 'One trusted source of truth', icon: 'bars' },
+        ]},
+        { heading: 'FEATURES', items: [
+          { label: 'AI Connect', desc: 'Bring Insightis to your favorite AI tools', icon: 'pulse', comingSoon: true, notClickable: true },
+          { label: 'Advanced Reports', desc: 'Rich, interactive reporting', icon: 'file', comingSoon: true, notClickable: true },
+          { label: 'Memory & Storage', desc: 'Your business context, always remembered', icon: 'box', comingSoon: true },
+        ]},
+      ]
+    },
+    Solutions: {
+      sections: [
+        { heading: 'BY ROLE', items: [
+          { label: 'For RevOps & BizOps', desc: 'Revenue operations and business intelligence', icon: 'dollar' },
+          { label: 'For Founders & CEOs', desc: 'Strategic KPIs and company health at a glance', icon: 'star' },
+          { label: 'For Marketing Teams', desc: 'Campaign analytics and cross-channel attribution', icon: 'pulse' },
+        ]},
+        { heading: 'BY TEAM', items: [
+          { label: 'For Product Teams', desc: 'Usage metrics and feature adoption tracking', icon: 'box' },
+          { label: 'For Data & Analytics Teams', desc: 'Advanced querying and data exploration', icon: 'bars' },
+          { label: 'For Operations & Finance', desc: 'Cost tracking and operational efficiency', icon: 'settings' },
+        ]},
+      ]
+    },
+    Resources: {
+      sections: [
+        { heading: 'LEARN', items: [
+          { label: 'Documentation', desc: 'Setup guides and API reference', icon: 'file' },
+          { label: 'Prompt Library', desc: 'Ready-made prompts for your data', icon: 'play' },
+          { label: 'Blog', desc: 'Data analytics tips and product updates', icon: 'rss' },
+        ]},
+        { heading: 'CONNECT', items: [
+          { label: 'Support Center', desc: 'Get help from our team', icon: 'support' },
+          { label: 'Roadmap', desc: 'Follow product development in real time', icon: 'map' },
+          { label: 'Data Connectors', desc: 'Browse all supported data sources', icon: 'grid' },
+        ]},
+      ]
+    }
+  };
+
+  const hasDropdown = (link) => !!dropdowns[link];
+  const anyOpen = activeDropdown !== null;
+
+  return (
+    <>
+      <div style={{
+        position:'sticky', top:0, zIndex:50,
+        backdropFilter:'blur(20px)', WebkitBackdropFilter:'blur(20px)',
+      }}>
+      <div ref={navRef} style={{
+        position:'relative',
+        maxWidth:'1280px', width:'calc(100% - 48px)',
+        margin:'0 auto',
+        padding:'12px 0 0',
+      }}>
+        <nav style={{
+          height:'56px', display:'flex', alignItems:'center',
+          background:'rgba(10,14,19,0.92)',
+          backdropFilter:'blur(20px)', WebkitBackdropFilter:'blur(20px)',
+          border:'1px solid rgba(255,255,255,0.08)',
+          borderRadius:'50px',
+          boxShadow:'0 4px 24px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2)',
+          padding:'0 8px 0 24px',
+          transition:'border-radius 0.25s ease, box-shadow 0.3s ease',
+        }}>
+          <div style={{width:'100%'}} className="flex items-center justify-between">
+            <a href="../index.html" className="flex items-center gap-2.5 flex-shrink-0">
+              <svg width="111" height="26" viewBox="0 0 111 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7"><g clipPath="url(#clip0_2673_16536)"><path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="#1498B9"/><path d="M33.2746 17.5261V5.60823H35.5859V17.5261H33.2746Z" fill="white"/><path d="M38.2797 17.5261V8.0821H40.1758L40.1216 10.9713H40.4466C40.6152 10.261 40.8379 9.67717 41.1148 9.21971C41.4037 8.76226 41.7708 8.41917 42.2163 8.19044C42.6617 7.96171 43.1793 7.84735 43.7692 7.84735C44.8406 7.84735 45.6532 8.22656 46.207 8.98497C46.7728 9.74338 47.0557 10.9171 47.0557 12.5062V17.5261H44.7624V12.7409C44.7624 11.7177 44.6059 10.9713 44.2929 10.5018C43.9919 10.0203 43.5405 9.77949 42.9386 9.77949C42.433 9.77949 42.0056 9.94201 41.6565 10.267C41.3074 10.58 41.0365 11.0014 40.8439 11.5311C40.6633 12.0487 40.567 12.6205 40.555 13.2465V17.5261H38.2797Z" fill="white"/><path d="M53.1255 17.7609C52.4875 17.7609 51.9096 17.6947 51.392 17.5622C50.8864 17.4419 50.453 17.2673 50.0918 17.0386C49.7307 16.7978 49.4418 16.5149 49.2251 16.1899C49.0084 15.8528 48.876 15.4796 48.8278 15.0703L50.6155 14.4022C50.6396 14.7152 50.76 14.9981 50.9767 15.2509C51.1933 15.4917 51.4943 15.6843 51.8795 15.8287C52.2647 15.9732 52.7282 16.0454 53.2699 16.0454C53.8719 16.0454 54.3353 15.9551 54.6604 15.7746C54.9974 15.5819 55.166 15.3111 55.166 14.962C55.166 14.7092 55.0757 14.5105 54.8951 14.3661C54.7145 14.2096 54.4497 14.0832 54.1006 13.9869C53.7635 13.8785 53.3542 13.7762 52.8727 13.6799C52.4273 13.5836 51.9758 13.4752 51.5184 13.3549C51.073 13.2224 50.6576 13.0539 50.2724 12.8493C49.8992 12.6326 49.5922 12.3557 49.3515 12.0186C49.1228 11.6695 49.0084 11.2301 49.0084 10.7004C49.0084 10.1226 49.1589 9.623 49.4598 9.20166C49.7728 8.78032 50.2182 8.44926 50.7961 8.2085C51.386 7.96773 52.0962 7.84735 52.9269 7.84735C53.7093 7.84735 54.3835 7.9557 54.9493 8.17238C55.5271 8.38907 55.9966 8.70207 56.3578 9.11137C56.7189 9.50863 56.9476 9.98415 57.0439 10.5379L55.166 11.1338C55.1299 10.7967 55.0155 10.5138 54.8229 10.2851C54.6303 10.0443 54.3714 9.86376 54.0464 9.74338C53.7214 9.623 53.3422 9.56281 52.9088 9.56281C52.355 9.56281 51.9217 9.65911 51.6087 9.85172C51.2957 10.0443 51.1392 10.3032 51.1392 10.6282C51.1392 10.893 51.2355 11.1037 51.4281 11.2602C51.6327 11.4167 51.9096 11.5431 52.2587 11.6394C52.6199 11.7357 53.0292 11.832 53.4866 11.9283C53.9682 12.0246 54.4316 12.139 54.8771 12.2714C55.3345 12.3918 55.7438 12.5543 56.105 12.759C56.4661 12.9636 56.755 13.2345 56.9717 13.5716C57.1884 13.8966 57.2967 14.3179 57.2967 14.8356C57.2967 15.4616 57.1282 15.9973 56.7911 16.4427C56.4541 16.8761 55.9725 17.2071 55.3465 17.4358C54.7326 17.6525 53.9922 17.7609 53.1255 17.7609Z" fill="white"/><path d="M59.2115 17.5261V8.0821H61.4868V17.5261H59.2115ZM60.3492 6.60139C59.8917 6.60139 59.5366 6.50508 59.2838 6.31247C59.043 6.10782 58.9226 5.8189 58.9226 5.44571C58.9226 5.07253 59.043 4.78963 59.2838 4.59702C59.5366 4.39236 59.8917 4.29004 60.3492 4.29004C60.8307 4.29004 61.1918 4.38635 61.4326 4.57896C61.6734 4.77157 61.7937 5.06049 61.7937 5.44571C61.7937 5.8189 61.6673 6.10782 61.4145 6.31247C61.1738 6.50508 60.8186 6.60139 60.3492 6.60139Z" fill="white"/><path d="M67.709 20.7765C66.6857 20.7765 65.843 20.6982 65.1809 20.5417C64.5309 20.3852 64.0493 20.1505 63.7363 19.8375C63.4233 19.5245 63.2668 19.1393 63.2668 18.6818C63.2668 18.128 63.4835 17.6766 63.9169 17.3275C64.3623 16.9663 65.0184 16.7436 65.8852 16.6594V16.2982C65.2351 16.3103 64.7415 16.2441 64.4045 16.0996C64.0674 15.9431 63.8988 15.6963 63.8988 15.3592C63.8988 15.0342 64.0614 14.7453 64.3864 14.4925C64.7235 14.2397 65.2772 14.029 66.0477 13.8605V13.4993C65.3133 13.4632 64.7415 13.2345 64.3322 12.8131C63.9229 12.3798 63.7183 11.82 63.7183 11.1338C63.7183 10.5198 63.8868 9.97813 64.2239 9.50863C64.561 9.03914 65.0545 8.67197 65.7046 8.40713C66.3667 8.13025 67.1672 7.99181 68.1062 7.99181H72.7831V9.79755L69.8217 9.36417V9.76144C70.5681 9.88182 71.1158 10.0925 71.4649 10.3934C71.8261 10.6944 72.0066 11.1037 72.0066 11.6214C72.0066 12.1149 71.8501 12.5543 71.5371 12.9395C71.2241 13.3127 70.7667 13.6077 70.1648 13.8244C69.5749 14.029 68.8586 14.1313 68.0159 14.1313C67.8594 14.1313 67.6909 14.1253 67.5103 14.1133C67.3298 14.1012 67.0469 14.0711 66.6616 14.023C66.4088 14.2036 66.2042 14.3661 66.0477 14.5105C65.8912 14.643 65.8129 14.7694 65.8129 14.8897C65.8129 14.986 65.8731 15.0703 65.9935 15.1425C66.1139 15.2027 66.2704 15.2449 66.463 15.2689C66.6556 15.293 66.8422 15.3051 67.0228 15.3051H69.5328C69.7735 15.3051 70.0805 15.3231 70.4537 15.3592C70.8389 15.3954 71.2181 15.4917 71.5913 15.6482C71.9765 15.8047 72.2955 16.0514 72.5484 16.3885C72.8132 16.7256 72.9456 17.2011 72.9456 17.815C72.9456 18.5012 72.747 19.061 72.3497 19.4944C71.9645 19.9398 71.3806 20.2648 70.5982 20.4695C69.8277 20.6741 68.8646 20.7765 67.709 20.7765ZM67.9076 18.9346C68.654 18.9346 69.2499 18.8925 69.6953 18.8082C70.1407 18.7239 70.4597 18.5855 70.6523 18.3929C70.8449 18.2123 70.9412 17.9776 70.9412 17.6886C70.9412 17.4238 70.8811 17.2192 70.7607 17.0747C70.6403 16.9182 70.4838 16.8098 70.2912 16.7497C70.1106 16.6895 69.924 16.6534 69.7314 16.6413C69.5388 16.6293 69.3763 16.6233 69.2438 16.6233H67.0228C66.4449 16.7075 66.0356 16.87 65.7949 17.1108C65.5662 17.3516 65.4518 17.6164 65.4518 17.9053C65.4518 18.1943 65.5481 18.4109 65.7407 18.5554C65.9333 18.7119 66.2102 18.8142 66.5713 18.8624C66.9445 18.9105 67.3899 18.9346 67.9076 18.9346ZM67.9618 12.8854C68.5878 12.8854 69.0633 12.7409 69.3883 12.452C69.7133 12.151 69.8759 11.7598 69.8759 11.2783C69.8759 10.7606 69.7073 10.3393 69.3702 10.0142C69.0452 9.67717 68.5697 9.50863 67.9437 9.50863C67.3177 9.50863 66.8302 9.67115 66.4811 9.99618C66.144 10.3212 65.9755 10.7365 65.9755 11.2421C65.9755 11.5672 66.0477 11.8561 66.1921 12.1089C66.3486 12.3497 66.5713 12.5423 66.8603 12.6867C67.1612 12.8192 67.5284 12.8854 67.9618 12.8854Z" fill="white"/><path d="M74.7825 17.5261V4.70536H77.0758V7.64872C77.0758 7.90152 77.0638 8.16035 77.0397 8.42519C77.0277 8.69003 77.0036 8.96089 76.9675 9.23777C76.9314 9.51465 76.8892 9.79153 76.8411 10.0684C76.805 10.3453 76.7628 10.6222 76.7147 10.8991H77.0939C77.2624 10.249 77.4791 9.70125 77.7439 9.25583C78.0088 8.79837 78.3459 8.44926 78.7552 8.2085C79.1765 7.96773 79.6881 7.84735 80.29 7.84735C81.3855 7.84735 82.2041 8.23258 82.7459 9.00303C83.2876 9.76144 83.5584 10.9171 83.5584 12.47V17.5261H81.2651V12.7951C81.2651 11.7598 81.1087 10.9954 80.7957 10.5018C80.4947 10.0082 80.0372 9.76144 79.4233 9.76144C78.9177 9.76144 78.4963 9.91793 78.1593 10.2309C77.8222 10.5319 77.5634 10.9352 77.3828 11.4408C77.2022 11.9464 77.0939 12.5182 77.0578 13.1562V17.5261H74.7825Z" fill="white"/><path d="M89.2495 17.7428C88.2503 17.7428 87.516 17.478 87.0465 16.9483C86.577 16.4066 86.3422 15.5699 86.3422 14.4383V9.9059H84.9518L84.9879 8.10015H85.9089C86.258 8.10015 86.5168 8.04598 86.6853 7.93764C86.8539 7.82929 86.9562 7.63668 86.9923 7.3598L87.209 5.98744H88.5272V8.0821H91.0191V9.97813H88.5272V14.348C88.5272 14.7934 88.6295 15.1185 88.8342 15.3231C89.0509 15.5278 89.3699 15.6301 89.7912 15.6301C90.0199 15.6301 90.2426 15.606 90.4593 15.5579C90.6881 15.4977 90.8987 15.4014 91.0913 15.2689V17.4358C90.7182 17.5562 90.3751 17.6345 90.0621 17.6706C89.7611 17.7187 89.4903 17.7428 89.2495 17.7428Z" fill="white"/><path d="M92.9634 17.5261V8.0821H95.2386V17.5261H92.9634ZM94.101 6.60139C93.6436 6.60139 93.2884 6.50508 93.0356 6.31247C92.7949 6.10782 92.6745 5.8189 92.6745 5.44571C92.6745 5.07253 92.7949 4.78963 93.0356 4.59702C93.2884 4.39236 93.6436 4.29004 94.101 4.29004C94.5825 4.29004 94.9437 4.38635 95.1845 4.57896C95.4252 4.77157 95.5456 5.06049 95.5456 5.44571C95.5456 5.8189 95.4192 6.10782 95.1664 6.31247C94.9256 6.50508 94.5705 6.60139 94.101 6.60139Z" fill="white"/><path d="M101.461 17.7609C100.823 17.7609 100.245 17.6947 99.7273 17.5622C99.2217 17.4419 98.7883 17.2673 98.4272 17.0386C98.066 16.7978 97.7771 16.5149 97.5604 16.1899C97.3437 15.8528 97.2113 15.4796 97.1632 15.0703L98.9508 14.4022C98.9749 14.7152 99.0953 14.9981 99.312 15.2509C99.5287 15.4917 99.8296 15.6843 100.215 15.8287C100.6 15.9732 101.064 16.0454 101.605 16.0454C102.207 16.0454 102.671 15.9551 102.996 15.7746C103.333 15.5819 103.501 15.3111 103.501 14.962C103.501 14.7092 103.411 14.5105 103.23 14.3661C103.05 14.2096 102.785 14.0832 102.436 13.9869C102.099 13.8785 101.69 13.7762 101.208 13.6799C100.763 13.5836 100.311 13.4752 99.8537 13.3549C99.4083 13.2224 98.993 13.0539 98.6077 12.8493C98.2346 12.6326 97.9276 12.3557 97.6868 12.0186C97.4581 11.6695 97.3437 11.2301 97.3437 10.7004C97.3437 10.1226 97.4942 9.623 97.7952 9.20166C98.1082 8.78032 98.5536 8.44926 99.1314 8.2085C99.7213 7.96773 100.432 7.84735 101.262 7.84735C102.045 7.84735 102.719 7.9557 103.285 8.17238C103.862 8.38907 104.332 8.70207 104.693 9.11137C105.054 9.50863 105.283 9.98415 105.379 10.5379L103.501 11.1338C103.465 10.7967 103.351 10.5138 103.158 10.2851C102.966 10.0443 102.707 9.86376 102.382 9.74338C102.057 9.623 101.678 9.56281 101.244 9.56281C100.69 9.56281 100.257 9.65911 99.944 9.85172C99.631 10.0443 99.4745 10.3032 99.4745 10.6282C99.4745 10.893 99.5708 11.1037 99.7634 11.2602C99.9681 11.4167 100.245 11.5431 100.594 11.6394C100.955 11.7357 101.365 11.832 101.822 11.9283C102.303 12.0246 102.767 12.139 103.212 12.2714C103.67 12.3918 104.079 12.5543 104.44 12.759C104.801 12.9636 105.09 13.2345 105.307 13.5716C105.524 13.8966 105.632 14.3179 105.632 14.8356C105.632 15.4616 105.464 15.9973 105.126 16.4427C104.789 16.8761 104.308 17.2071 103.682 17.4358C103.068 17.6525 102.328 17.7609 101.461 17.7609Z" fill="white"/></g><defs><clipPath id="clip0_2673_16536"><rect width="111" height="25.4928" fill="white"/></clipPath></defs></svg>
+            </a>
+
+            <div className="hidden md:flex items-center" style={{gap:'2px'}}>
+              {['Platform', 'Solutions', 'Resources', 'Pricing'].map(link => (
+                <div key={link}>
+                  {hasDropdown(link) ? (
+                    <button
+                      onClick={() => setActiveDropdown(activeDropdown === link ? null : link)}
+                      className={`flex items-center gap-1 px-4 py-1.5 rounded-full text-sm transition-colors ${activeDropdown === link ? 'text-white bg-white/[0.08]' : 'text-[#A0A0B8] hover:text-white hover:bg-white/[0.04]'}`}
+                    >
+                      {link}
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                        style={{transition:'transform 0.2s', transform: activeDropdown === link ? 'rotate(180deg)' : 'rotate(0deg)', opacity:0.5}}>
+                        <polyline points="6 9 12 15 18 9"/>
+                      </svg>
+                    </button>
+                  ) : (
+                    <a href={linkUrls[link] || '#'} className="flex items-center px-4 py-1.5 rounded-full text-sm text-[#A0A0B8] hover:text-white hover:bg-white/[0.04] transition-colors">
+                      {link}
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div className="hidden md:flex items-center flex-shrink-0" style={{gap:'12px'}}>
+              <a href="#" className="text-sm text-[#A0A0B8] hover:text-white transition-colors px-3 py-1.5">Sign In</a>
+              <a href="#" className="text-sm font-medium text-white bg-[#07807E] hover:bg-[#09A09D] px-5 py-2 rounded-full transition-colors">Start for Free</a>
+            </div>
+
+            <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden p-2">
+              {mobileOpen ? <CloseIcon /> : <MenuIcon />}
+            </button>
+          </div>
+        </nav>
+
+        {anyOpen && dropdowns[activeDropdown] && (
+          <div style={{
+            position:'absolute', left:0, right:0, zIndex:-1,
+            marginTop:'-24px',
+            background:'rgba(10,14,19,0.97)',
+            backdropFilter:'blur(24px)', WebkitBackdropFilter:'blur(24px)',
+            borderLeft:'1px solid rgba(255,255,255,0.08)',
+            borderRight:'1px solid rgba(255,255,255,0.08)',
+            borderBottom:'1px solid rgba(255,255,255,0.08)',
+            borderRadius:'0 0 24px 24px',
+            boxShadow:'0 12px 48px rgba(0,0,0,0.5)',
+          }}>
+            <div style={{padding:'44px 32px 28px'}}>
+              <div className="flex gap-10">
+                {dropdowns[activeDropdown].sections.map((section, si) => (
+                  <div key={si} style={{flex:'1'}}>
+                    <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-[#A0A0B8] mb-4 px-3">{section.heading}</p>
+                    <div className="flex flex-col gap-0.5">
+                      {section.items.map((item, ii) => {
+                        const inner = (<>
+                          {item.icon && (
+                            <div style={{
+                              flexShrink:0, marginTop:'2px',
+                              width:'30px', height:'30px',
+                              display:'flex', alignItems:'center', justifyContent:'center',
+                              borderRadius:'8px',
+                              background:'rgba(10,152,150,0.1)',
+                              border:'1px solid rgba(10,152,150,0.2)',
+                              color:'#0EC4C1',
+                            }}>
+                              <NavIcon name={item.icon} />
+                            </div>
+                          )}
+                          <div className="flex flex-col">
+                            <span className="flex items-center gap-2">
+                              <span className={`text-sm font-medium text-white transition-colors ${item.notClickable ? '' : 'group-hover:text-[#0EC4C1]'}`}>{item.label}{item.external && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</span>
+                              {item.comingSoon && (
+                                <span style={{fontSize:'10px', fontWeight:500, letterSpacing:'0.04em', padding:'1px 6px', borderRadius:'4px', background:'rgba(10,152,150,0.12)', border:'1px solid rgba(10,152,150,0.3)', color:'#0EC4C1', whiteSpace:'nowrap'}}>Coming Soon</span>
+                              )}
+                            </span>
+                            <span className="text-xs text-[#A0A0B8] mt-0.5 leading-relaxed">{item.desc}</span>
+                          </div>
+                        </>);
+                        return item.notClickable ? (
+                          <div key={ii} className="flex items-start gap-3 px-3 py-2.5 rounded-xl group" style={{cursor:'default'}}>{inner}</div>
+                        ) : (
+                          <a key={ii} href={linkUrls[item.label] || '#'} {...(item.external ? {target:'_blank', rel:'noopener noreferrer'} : {})} onClick={() => setActiveDropdown(null)}
+                            className="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-white/[0.05] transition-colors group">{inner}</a>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {mobileOpen && (
+          <div className="md:hidden" style={{
+            position:'absolute', left:0, right:0, zIndex:-1,
+            background:'rgba(10,14,19,0.97)',
+            backdropFilter:'blur(24px)', WebkitBackdropFilter:'blur(24px)',
+            borderLeft:'1px solid rgba(255,255,255,0.08)',
+            borderRight:'1px solid rgba(255,255,255,0.08)',
+            borderBottom:'1px solid rgba(255,255,255,0.08)',
+            borderRadius:'0 0 24px 24px',
+            padding:'16px 24px',
+          }}>
+            {['Platform', 'Solutions', 'Resources', 'Pricing'].map(link => (
+              <a key={link} href={linkUrls[link] || '#'} className="block py-3 text-[#A0A0B8] hover:text-white transition-colors">{link}</a>
+            ))}
+            <div className="mt-4 pt-4 border-t border-[#1E1E30] flex flex-col gap-3">
+              <a href="#" className="text-sm text-[#A0A0B8]">Sign In</a>
+              <a href="#" className="text-sm font-medium text-white bg-[#07807E] px-5 py-2.5 rounded-full text-center">Start for Free</a>
+            </div>
+          </div>
+        )}
+      </div>
+      </div>
+
+      {anyOpen && (
+        <div onClick={() => setActiveDropdown(null)} style={{
+          position:'fixed', inset:0, zIndex:48,
+          background:'rgba(0,0,0,0.4)',
+          backdropFilter:'blur(2px)',
+        }}/>
+      )}
+    </>
+  );
+}
+
+
+/* ── FOOTER ── */
+
+function TwitterXIcon({ size = 16, color = "#A0A0B8" }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill={color}><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>;
+}
+function LinkedInIcon({ size = 16, color = "#A0A0B8" }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill={color}><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>;
+}
+function YouTubeIcon({ size = 16, color = "#A0A0B8" }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill={color}><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>;
+}
+function TikTokIcon({ size = 16, color = "#A0A0B8" }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill={color}><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.43v-7.15a8.16 8.16 0 005.58 2.17v-3.4a4.85 4.85 0 01-1-.16l.01-.02V6.69h.99z"/></svg>;
+}
+
+function Footer() {
+  const linkUrls = {
+    'AI Chat': '../Platform/AI Chat.html',
+    'Integrations': '../Platform/Integrations.html',
+    'Semantic Layer': '../Platform/Semantic Layer.html',
+    'Memory & Storage': '../Platform/Memory & Storage.html',
+    'For RevOps & BizOps': '../Solutions/RevOps BizOps.html',
+    'For Founders & CEOs': '../Solutions/Founders CEOs.html',
+    'For Marketing Teams': '../Solutions/Marketing Teams.html',
+    'For Product Teams': '../Solutions/Product Teams.html',
+    'For Data & Analytics Teams': '../Solutions/Data Analytics Teams.html',
+    'For Operations & Finance': '../Solutions/Operations Finance.html',
+    'Documentation': '../docs/',
+    'Blog': '../blog/',
+    'Support Center': 'Contact Support.html',
+    'Roadmap': 'Roadmap.html',
+    'Prompt Library': 'Prompt Library.html',
+    'Data Connectors': 'Connectors.html',
+  };
+  return (
+    <footer className="pt-16 pb-8 border-t border-[#1E1E30]">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row gap-10 md:gap-16 mb-14 items-start">
+          {/* Brand */}
+          <div className="shrink-0 md:max-w-[220px]">
+            <a href="../index.html" className="flex items-center gap-2.5 mb-4">
+              <svg width="111" height="26" viewBox="0 0 111 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7"><g clipPath="url(#clip0_footer)"><path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="#1498B9"/><path d="M33.2746 17.5261V5.60823H35.5859V17.5261H33.2746Z" fill="white"/><path d="M38.2797 17.5261V8.0821H40.1758L40.1216 10.9713H40.4466C40.6152 10.261 40.8379 9.67717 41.1148 9.21971C41.4037 8.76226 41.7708 8.41917 42.2163 8.19044C42.6617 7.96171 43.1793 7.84735 43.7692 7.84735C44.8406 7.84735 45.6532 8.22656 46.207 8.98497C46.7728 9.74338 47.0557 10.9171 47.0557 12.5062V17.5261H44.7624V12.7409C44.7624 11.7177 44.6059 10.9713 44.2929 10.5018C43.9919 10.0203 43.5405 9.77949 42.9386 9.77949C42.433 9.77949 42.0056 9.94201 41.6565 10.267C41.3074 10.58 41.0365 11.0014 40.8439 11.5311C40.6633 12.0487 40.567 12.6205 40.555 13.2465V17.5261H38.2797Z" fill="white"/><path d="M53.1255 17.7609C52.4875 17.7609 51.9096 17.6947 51.392 17.5622C50.8864 17.4419 50.453 17.2673 50.0918 17.0386C49.7307 16.7978 49.4418 16.5149 49.2251 16.1899C49.0084 15.8528 48.876 15.4796 48.8278 15.0703L50.6155 14.4022C50.6396 14.7152 50.76 14.9981 50.9767 15.2509C51.1933 15.4917 51.4943 15.6843 51.8795 15.8287C52.2647 15.9732 52.7282 16.0454 53.2699 16.0454C53.8719 16.0454 54.3353 15.9551 54.6604 15.7746C54.9974 15.5819 55.166 15.3111 55.166 14.962C55.166 14.7092 55.0757 14.5105 54.8951 14.3661C54.7145 14.2096 54.4497 14.0832 54.1006 13.9869C53.7635 13.8785 53.3542 13.7762 52.8727 13.6799C52.4273 13.5836 51.9758 13.4752 51.5184 13.3549C51.073 13.2224 50.6576 13.0539 50.2724 12.8493C49.8992 12.6326 49.5922 12.3557 49.3515 12.0186C49.1228 11.6695 49.0084 11.2301 49.0084 10.7004C49.0084 10.1226 49.1589 9.623 49.4598 9.20166C49.7728 8.78032 50.2182 8.44926 50.7961 8.2085C51.386 7.96773 52.0962 7.84735 52.9269 7.84735C53.7093 7.84735 54.3835 7.9557 54.9493 8.17238C55.5271 8.38907 55.9966 8.70207 56.3578 9.11137C56.7189 9.50863 56.9476 9.98415 57.0439 10.5379L55.166 11.1338C55.1299 10.7967 55.0155 10.5138 54.8229 10.2851C54.6303 10.0443 54.3714 9.86376 54.0464 9.74338C53.7214 9.623 53.3422 9.56281 52.9088 9.56281C52.355 9.56281 51.9217 9.65911 51.6087 9.85172C51.2957 10.0443 51.1392 10.3032 51.1392 10.6282C51.1392 10.893 51.2355 11.1037 51.4281 11.2602C51.6327 11.4167 51.9096 11.5431 52.2587 11.6394C52.6199 11.7357 53.0292 11.832 53.4866 11.9283C53.9682 12.0246 54.4316 12.139 54.8771 12.2714C55.3345 12.3918 55.7438 12.5543 56.105 12.759C56.4661 12.9636 56.755 13.2345 56.9717 13.5716C57.1884 13.8966 57.2967 14.3179 57.2967 14.8356C57.2967 15.4616 57.1282 15.9973 56.7911 16.4427C56.4541 16.8761 55.9725 17.2071 55.3465 17.4358C54.7326 17.6525 53.9922 17.7609 53.1255 17.7609Z" fill="white"/><path d="M59.2115 17.5261V8.0821H61.4868V17.5261H59.2115ZM60.3492 6.60139C59.8917 6.60139 59.5366 6.50508 59.2838 6.31247C59.043 6.10782 58.9226 5.8189 58.9226 5.44571C58.9226 5.07253 59.043 4.78963 59.2838 4.59702C59.5366 4.39236 59.8917 4.29004 60.3492 4.29004C60.8307 4.29004 61.1918 4.38635 61.4326 4.57896C61.6734 4.77157 61.7937 5.06049 61.7937 5.44571C61.7937 5.8189 61.6673 6.10782 61.4145 6.31247C61.1738 6.50508 60.8186 6.60139 60.3492 6.60139Z" fill="white"/><path d="M67.709 20.7765C66.6857 20.7765 65.843 20.6982 65.1809 20.5417C64.5309 20.3852 64.0493 20.1505 63.7363 19.8375C63.4233 19.5245 63.2668 19.1393 63.2668 18.6818C63.2668 18.128 63.4835 17.6766 63.9169 17.3275C64.3623 16.9663 65.0184 16.7436 65.8852 16.6594V16.2982C65.2351 16.3103 64.7415 16.2441 64.4045 16.0996C64.0674 15.9431 63.8988 15.6963 63.8988 15.3592C63.8988 15.0342 64.0614 14.7453 64.3864 14.4925C64.7235 14.2397 65.2772 14.029 66.0477 13.8605V13.4993C65.3133 13.4632 64.7415 13.2345 64.3322 12.8131C63.9229 12.3798 63.7183 11.82 63.7183 11.1338C63.7183 10.5198 63.8868 9.97813 64.2239 9.50863C64.561 9.03914 65.0545 8.67197 65.7046 8.40713C66.3667 8.13025 67.1672 7.99181 68.1062 7.99181H72.7831V9.79755L69.8217 9.36417V9.76144C70.5681 9.88182 71.1158 10.0925 71.4649 10.3934C71.8261 10.6944 72.0066 11.1037 72.0066 11.6214C72.0066 12.1149 71.8501 12.5543 71.5371 12.9395C71.2241 13.3127 70.7667 13.6077 70.1648 13.8244C69.5749 14.029 68.8586 14.1313 68.0159 14.1313C67.8594 14.1313 67.6909 14.1253 67.5103 14.1133C67.3298 14.1012 67.0469 14.0711 66.6616 14.023C66.4088 14.2036 66.2042 14.3661 66.0477 14.5105C65.8912 14.643 65.8129 14.7694 65.8129 14.8897C65.8129 14.986 65.8731 15.0703 65.9935 15.1425C66.1139 15.2027 66.2704 15.2449 66.463 15.2689C66.6556 15.293 66.8422 15.3051 67.0228 15.3051H69.5328C69.7735 15.3051 70.0805 15.3231 70.4537 15.3592C70.8389 15.3954 71.2181 15.4917 71.5913 15.6482C71.9765 15.8047 72.2955 16.0514 72.5484 16.3885C72.8132 16.7256 72.9456 17.2011 72.9456 17.815C72.9456 18.5012 72.747 19.061 72.3497 19.4944C71.9645 19.9398 71.3806 20.2648 70.5982 20.4695C69.8277 20.6741 68.8646 20.7765 67.709 20.7765ZM67.9076 18.9346C68.654 18.9346 69.2499 18.8925 69.6953 18.8082C70.1407 18.7239 70.4597 18.5855 70.6523 18.3929C70.8449 18.2123 70.9412 17.9776 70.9412 17.6886C70.9412 17.4238 70.8811 17.2192 70.7607 17.0747C70.6403 16.9182 70.4838 16.8098 70.2912 16.7497C70.1106 16.6895 69.924 16.6534 69.7314 16.6413C69.5388 16.6293 69.3763 16.6233 69.2438 16.6233H67.0228C66.4449 16.7075 66.0356 16.87 65.7949 17.1108C65.5662 17.3516 65.4518 17.6164 65.4518 17.9053C65.4518 18.1943 65.5481 18.4109 65.7407 18.5554C65.9333 18.7119 66.2102 18.8142 66.5713 18.8624C66.9445 18.9105 67.3899 18.9346 67.9076 18.9346ZM67.9618 12.8854C68.5878 12.8854 69.0633 12.7409 69.3883 12.452C69.7133 12.151 69.8759 11.7598 69.8759 11.2783C69.8759 10.7606 69.7073 10.3393 69.3702 10.0142C69.0452 9.67717 68.5697 9.50863 67.9437 9.50863C67.3177 9.50863 66.8302 9.67115 66.4811 9.99618C66.144 10.3212 65.9755 10.7365 65.9755 11.2421C65.9755 11.5672 66.0477 11.8561 66.1921 12.1089C66.3486 12.3497 66.5713 12.5423 66.8603 12.6867C67.1612 12.8192 67.5284 12.8854 67.9618 12.8854Z" fill="white"/><path d="M74.7825 17.5261V4.70536H77.0758V7.64872C77.0758 7.90152 77.0638 8.16035 77.0397 8.42519C77.0277 8.69003 77.0036 8.96089 76.9675 9.23777C76.9314 9.51465 76.8892 9.79153 76.8411 10.0684C76.805 10.3453 76.7628 10.6222 76.7147 10.8991H77.0939C77.2624 10.249 77.4791 9.70125 77.7439 9.25583C78.0088 8.79837 78.3459 8.44926 78.7552 8.2085C79.1765 7.96773 79.6881 7.84735 80.29 7.84735C81.3855 7.84735 82.2041 8.23258 82.7459 9.00303C83.2876 9.76144 83.5584 10.9171 83.5584 12.47V17.5261H81.2651V12.7951C81.2651 11.7598 81.1087 10.9954 80.7957 10.5018C80.4947 10.0082 80.0372 9.76144 79.4233 9.76144C78.9177 9.76144 78.4963 9.91793 78.1593 10.2309C77.8222 10.5319 77.5634 10.9352 77.3828 11.4408C77.2022 11.9464 77.0939 12.5182 77.0578 13.1562V17.5261H74.7825Z" fill="white"/><path d="M89.2495 17.7428C88.2503 17.7428 87.516 17.478 87.0465 16.9483C86.577 16.4066 86.3422 15.5699 86.3422 14.4383V9.9059H84.9518L84.9879 8.10015H85.9089C86.258 8.10015 86.5168 8.04598 86.6853 7.93764C86.8539 7.82929 86.9562 7.63668 86.9923 7.3598L87.209 5.98744H88.5272V8.0821H91.0191V9.97813H88.5272V14.348C88.5272 14.7934 88.6295 15.1185 88.8342 15.3231C89.0509 15.5278 89.3699 15.6301 89.7912 15.6301C90.0199 15.6301 90.2426 15.606 90.4593 15.5579C90.6881 15.4977 90.8987 15.4014 91.0913 15.2689V17.4358C90.7182 17.5562 90.3751 17.6345 90.0621 17.6706C89.7611 17.7187 89.4903 17.7428 89.2495 17.7428Z" fill="white"/><path d="M92.9634 17.5261V8.0821H95.2386V17.5261H92.9634ZM94.101 6.60139C93.6436 6.60139 93.2884 6.50508 93.0356 6.31247C92.7949 6.10782 92.6745 5.8189 92.6745 5.44571C92.6745 5.07253 92.7949 4.78963 93.0356 4.59702C93.2884 4.39236 93.6436 4.29004 94.101 4.29004C94.5825 4.29004 94.9437 4.38635 95.1845 4.57896C95.4252 4.77157 95.5456 5.06049 95.5456 5.44571C95.5456 5.8189 95.4192 6.10782 95.1664 6.31247C94.9256 6.50508 94.5705 6.60139 94.101 6.60139Z" fill="white"/><path d="M101.461 17.7609C100.823 17.7609 100.245 17.6947 99.7273 17.5622C99.2217 17.4419 98.7883 17.2673 98.4272 17.0386C98.066 16.7978 97.7771 16.5149 97.5604 16.1899C97.3437 15.8528 97.2113 15.4796 97.1632 15.0703L98.9508 14.4022C98.9749 14.7152 99.0953 14.9981 99.312 15.2509C99.5287 15.4917 99.8296 15.6843 100.215 15.8287C100.6 15.9732 101.064 16.0454 101.605 16.0454C102.207 16.0454 102.671 15.9551 102.996 15.7746C103.333 15.5819 103.501 15.3111 103.501 14.962C103.501 14.7092 103.411 14.5105 103.23 14.3661C103.05 14.2096 102.785 14.0832 102.436 13.9869C102.099 13.8785 101.69 13.7762 101.208 13.6799C100.763 13.5836 100.311 13.4752 99.8537 13.3549C99.4083 13.2224 98.993 13.0539 98.6077 12.8493C98.2346 12.6326 97.9276 12.3557 97.6868 12.0186C97.4581 11.6695 97.3437 11.2301 97.3437 10.7004C97.3437 10.1226 97.4942 9.623 97.7952 9.20166C98.1082 8.78032 98.5536 8.44926 99.1314 8.2085C99.7213 7.96773 100.432 7.84735 101.262 7.84735C102.045 7.84735 102.719 7.9557 103.285 8.17238C103.862 8.38907 104.332 8.70207 104.693 9.11137C105.054 9.50863 105.283 9.98415 105.379 10.5379L103.501 11.1338C103.465 10.7967 103.351 10.5138 103.158 10.2851C102.966 10.0443 102.707 9.86376 102.382 9.74338C102.057 9.623 101.678 9.56281 101.244 9.56281C100.69 9.56281 100.257 9.65911 99.944 9.85172C99.631 10.0443 99.4745 10.3032 99.4745 10.6282C99.4745 10.893 99.5708 11.1037 99.7634 11.2602C99.9681 11.4167 100.245 11.5431 100.594 11.6394C100.955 11.7357 101.365 11.832 101.822 11.9283C102.303 12.0246 102.767 12.139 103.212 12.2714C103.67 12.3918 104.079 12.5543 104.44 12.759C104.801 12.9636 105.09 13.2345 105.307 13.5716C105.524 13.8966 105.632 14.3179 105.632 14.8356C105.632 15.4616 105.464 15.9973 105.126 16.4427C104.789 16.8761 104.308 17.2071 103.682 17.4358C103.068 17.6525 102.328 17.7609 101.461 17.7609Z" fill="white"/></g><defs><clipPath id="clip0_footer"><rect width="111" height="25.4928" fill="white"/></clipPath></defs></svg>
+            </a>
+            <p className="text-xs font-medium text-[#09A09D] uppercase tracking-wider mb-2">AI Analytics Workspace for instant insights</p>
+            <p className="text-sm text-[#7878A8] leading-relaxed">Every data has an insight. We help you find them, without the complexity.</p>
+          </div>
+
+          {/* 5 text columns */}
+          <div className="md:ml-auto grid grid-cols-2 gap-8 md:flex md:flex-row md:gap-16">
+
+            {/* Platform */}
+            <div>
+              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Platform</h4>
+              <ul className="flex flex-col gap-2.5">
+                {['AI Chat', 'Integrations', 'Semantic Layer', 'AI Connect', 'Advanced Reports', 'Memory & Storage'].map(link => {
+                  const isComingSoon = ['AI Connect', 'Advanced Reports', 'Memory & Storage'].includes(link);
+                  const isNotClickable = ['AI Connect', 'Advanced Reports'].includes(link);
+                  const badge = (
+                    <span style={{fontSize:'10px', fontWeight:500, letterSpacing:'0.04em', padding:'1px 6px', borderRadius:'4px', background:'rgba(10,152,150,0.12)', border:'1px solid rgba(10,152,150,0.3)', color:'#0EC4C1', whiteSpace:'nowrap'}}>Coming Soon</span>
+                  );
+                  if (isComingSoon) {
+                    return (
+                      <li key={link}>
+                        <span className="flex items-center gap-2 whitespace-nowrap">
+                          {isNotClickable ? (
+                            <span className="text-sm text-[#A0A0B8]" style={{cursor:'default'}}>{link}</span>
+                          ) : (
+                            <a href={linkUrls[link] || '#'} className="text-sm text-[#A0A0B8] hover:text-white transition-colors">{link}</a>
+                          )}
+                          {badge}
+                        </span>
+                      </li>
+                    );
+                  }
+                  return (
+                    <li key={link}><a href={linkUrls[link] || '#'} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}</a></li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            {/* Solutions */}
+            <div>
+              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Solutions</h4>
+              <ul className="flex flex-col gap-2.5">
+                {['For RevOps & BizOps', 'For Founders & CEOs', 'For Marketing Teams', 'For Product Teams', 'For Data & Analytics Teams', 'For Operations & Finance'].map(link => (
+                  <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Resources */}
+            <div>
+              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Resources</h4>
+              <ul className="flex flex-col gap-2.5">
+                {['Documentation', 'Prompt Library', 'Blog', 'Support Center', 'Roadmap', 'Data Connectors'].map(link => (
+                  <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Company */}
+            <div>
+              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Company</h4>
+              <ul className="flex flex-col gap-2.5">
+                {[
+                  { label: 'About Insightis', href: '../Company/About Insightis.html' },
+                  { label: 'About Devart', href: 'https://www.devart.com/company/' },
+                  { label: 'Careers', href: 'https://www.devart.com/vacancies/' },
+                  { label: 'Contacts', href: '../Company/Contacts.html' },
+                  { label: 'Success Stories', href: '../Company/Success Stories.html' },
+                  { label: 'Press & Media', href: '../Company/Press Media.html' },
+                ].map(link => (
+                  <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Legal */}
+            <div>
+              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Legal</h4>
+              <ul className="flex flex-col gap-2.5">
+                {[
+                  { label: 'Privacy', href: '../Security/Privacy.html' },
+                  { label: 'Terms', href: '../Security/Terms.html' },
+                  { label: 'Security', href: '../Security/Security.html' },
+                  { label: 'Cookie Settings', href: '../Security/Cookie Settings.html' },
+                ].map(link => (
+                  <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                ))}
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="border-t border-[#1E1E30] pt-6 flex items-center justify-between">
+          <p className="text-xs text-[#7878A8]">&copy; Copyright &copy; Devart 2026</p>
+          <div className="flex items-center gap-4">
+            <a href="https://x.com/Insightisai" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity"><TwitterXIcon size={18} color="#7878A8" /></a>
+            <a href="https://www.tiktok.com/@insightisai" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity"><TikTokIcon size={18} color="#7878A8" /></a>
+            <a href="https://www.youtube.com/@InsightisAI" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity"><YouTubeIcon size={18} color="#7878A8" /></a>
+            <a href="https://www.linkedin.com/company/112025589" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity"><LinkedInIcon size={18} color="#7878A8" /></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+
+/* ── APP ── */
+/* ── FLOATING CHAT BAR ── */
+function FloatingChat({ onSubmit }) {
+  const [value, setValue] = React.useState('');
+  const [focused, setFocused] = React.useState(false);
+  const [visible, setVisible] = React.useState(true);
+
+  React.useEffect(() => {
+    const footer = document.querySelector('footer');
+    if (!footer) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(!entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
+
+  const handleSubmit = () => {
+    if (!value.trim()) return;
+    onSubmit(value.trim());
+    setValue('');
+  };
+
+  return (
+    <div style={{
+      position:'fixed', bottom:0, left:0, right:0,
+      zIndex:100,
+      opacity: visible ? 1 : 0,
+      pointerEvents: 'none',
+      transform: visible ? 'translateY(0)' : 'translateY(12px)',
+      transition: 'opacity .25s, transform .25s',
+    }}>
+      <div className="floating-chat-wrap" style={{ pointerEvents:'all' }}>
+        <div style={{
+          display:'flex', alignItems:'center', gap:'8px',
+          background:'rgba(16,22,30,0.96)',
+          border: focused ? '1px solid rgba(9,160,157,.5)' : '1px solid rgba(255,255,255,.09)',
+          borderRadius:'12px',
+          padding:'6px 6px 6px 12px',
+          transition:'border-color .2s',
+          boxShadow:'0 8px 32px rgba(0,0,0,0.45)',
+          backdropFilter:'blur(10px)',
+          WebkitBackdropFilter:'blur(10px)',
+        }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7FA0AC" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          <input
+            type="text"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            onKeyDown={(e) => { if (e.key === 'Enter') handleSubmit(); }}
+            placeholder="Ask a question..."
+            style={{
+              flex:1, background:'transparent', border:'none', outline:'none',
+              fontSize:'13px', color:'#E8F2F5',
+              fontFamily:'inherit',
+            }}
+          />
+          <button
+            onClick={handleSubmit}
+            style={{
+              flexShrink:0,
+              padding:'6px 14px', borderRadius:'7px',
+              background: value.trim() ? '#07807E' : 'rgba(9,160,157,.15)',
+              color: value.trim() ? '#fff' : '#4A9EA0',
+              border:'none', cursor: value.trim() ? 'pointer' : 'default',
+              fontSize:'12px', fontWeight:600,
+              fontFamily:'inherit',
+              transition:'background .2s, color .2s',
+            }}
+            onMouseEnter={(e) => { if (value.trim()) e.currentTarget.style.background = '#09A09D'; }}
+            onMouseLeave={(e) => { if (value.trim()) e.currentTarget.style.background = '#07807E'; }}
+          >
+            Ask AI
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── AI ASSISTANT PANEL ── */
+function AssistantResponseText({ text }) {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return (
+    <span>
+      {parts.map((p, i) =>
+        p.startsWith('**') && p.endsWith('**')
+          ? <strong key={i} style={{ color:'#C8E6EA', fontWeight:600 }}>{p.slice(2,-2)}</strong>
+          : <span key={i}>{p}</span>
+      )}
+    </span>
+  );
+}
+
+function AIAssistantPanel({ query, onClose }) {
+  const [phase, setPhase] = React.useState('searching'); // searching | reading | done
+  const [input, setInput] = React.useState('');
+  const [inputFocused, setInputFocused] = React.useState(false);
+  const [messages, setMessages] = React.useState([{ role:'user', text: query }]);
+  const [copied, setCopied] = React.useState(false);
+  const bottomRef = React.useRef(null);
+
+  const SAMPLE_RESPONSE = {
+    searchTerms: query.toLowerCase().split(' ').filter(w => w.length > 2).slice(0, 3).join(', ') || 'insightis',
+    intro: '**Insightis** is an AI-powered analytics workspace that lets you ask questions about your business data in plain language — and get instant, reliable answers. No SQL, no dashboards, no waiting.',
+    bullets: [
+      { bold: 'AI Chat', text: ' — ask anything about your data and get answers in seconds' },
+      { bold: 'Semantic Layer', text: ' — define your metrics once, use them everywhere with one trusted source of truth' },
+      { bold: '200+ Integrations', text: ' — connect your databases, CRMs, and SaaS tools directly' },
+      { bold: 'Reports', text: ' — save and share insights with your team on a schedule' },
+    ],
+    outro: 'Think of it as your personal data analyst — always available, always accurate, no technical skills required.',
+    links: ['Quick Start Guide', 'Connecting Your First Data Source', 'AI Chat Overview'],
+  };
+
+  React.useEffect(() => {
+    const t1 = setTimeout(() => setPhase('reading'), 800);
+    const t2 = setTimeout(() => {
+      setPhase('done');
+      setMessages(m => [...m, { role:'assistant', response: SAMPLE_RESPONSE }]);
+    }, 1800);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, []);
+
+  React.useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior:'smooth' });
+  }, [messages, phase]);
+
+  const handleFollowUp = () => {
+    if (!input.trim()) return;
+    const q = input.trim();
+    setInput('');
+    setMessages(m => [...m, { role:'user', text: q }]);
+    setPhase('searching');
+    setTimeout(() => setPhase('reading'), 800);
+    setTimeout(() => {
+      setPhase('done');
+      setMessages(m => [...m, { role:'assistant', response: SAMPLE_RESPONSE }]);
+    }, 1800);
+  };
+
+  const iconBtn = (title, path) => (
+    <button title={title} onClick={() => {
+      if (title === 'Copy') { navigator.clipboard?.writeText(''); setCopied(true); setTimeout(() => setCopied(false), 2000); }
+    }} style={{
+      background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
+      color:'#5E8290', transition:'color .15s',
+    }}
+    onMouseEnter={e => e.currentTarget.style.color = '#7FA0AC'}
+    onMouseLeave={e => e.currentTarget.style.color = '#5E8290'}
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d={path}/>
+      </svg>
+    </button>
+  );
+
+  return (
+    <div style={{
+      position:'fixed', right:0, top:0, bottom:0, width:'280px',
+      background:'#0B0F16',
+      borderLeft:'1px solid rgba(255,255,255,0.07)',
+      display:'flex', flexDirection:'column',
+      zIndex:200,
+      animation:'slideInRight .25s ease',
+    }}>
+      {/* Header */}
+      <div style={{
+        display:'flex', alignItems:'center', justifyContent:'space-between',
+        padding:'12px 14px', borderBottom:'1px solid rgba(255,255,255,0.07)',
+        flexShrink:0,
+      }}>
+        <div style={{ display:'flex', alignItems:'center', gap:'7px' }}>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+          <span style={{ fontSize:'13px', fontWeight:600, color:'#E8F2F5' }}>Assistant</span>
+        </div>
+        <div style={{ display:'flex', gap:'2px' }}>
+          <button onClick={onClose} style={{
+            background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
+            color:'#5E8290', transition:'color .15s', display:'flex',
+          }}
+          onMouseEnter={e => e.currentTarget.style.color = '#E8F2F5'}
+          onMouseLeave={e => e.currentTarget.style.color = '#5E8290'}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Messages */}
+      <div style={{ flex:1, overflowY:'auto', padding:'16px 14px', display:'flex', flexDirection:'column', gap:'16px' }}>
+        {messages.map((msg, idx) => (
+          <div key={idx}>
+            {msg.role === 'user' ? (
+              <div style={{ display:'flex', justifyContent:'flex-end' }}>
+                <div style={{
+                  background:'rgba(9,160,157,0.15)',
+                  border:'1px solid rgba(9,160,157,0.25)',
+                  borderRadius:'10px 10px 2px 10px',
+                  padding:'8px 12px',
+                  fontSize:'13px', color:'#C8E6EA', maxWidth:'90%',
+                  lineHeight:1.5,
+                }}>
+                  {msg.text}
+                </div>
+              </div>
+            ) : (
+              <div>
+                <div style={{ fontSize:'12px', color:'#3A6070', marginBottom:'10px', display:'flex', flexDirection:'column', gap:'4px' }}>
+                  <div style={{ display:'flex', alignItems:'center', gap:'6px' }}>
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    Found results for <em style={{ color:'#4A8090', fontStyle:'normal' }}>{msg.response.searchTerms}</em>
+                  </div>
+                  <div style={{ display:'flex', alignItems:'center', gap:'6px' }}>
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    Read 1 file
+                  </div>
+                </div>
+                <p style={{ fontSize:'13px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'10px' }}>
+                  <AssistantResponseText text={msg.response.intro} />
+                </p>
+                <ul style={{ margin:'0 0 10px 0', padding:'0', listStyle:'none', display:'flex', flexDirection:'column', gap:'5px' }}>
+                  {msg.response.bullets.map((b, i) => (
+                    <li key={i} style={{ fontSize:'13px', color:'#8AAAB8', lineHeight:1.6, paddingLeft:'14px', position:'relative' }}>
+                      <span style={{ position:'absolute', left:0, color:'#0EC4C1', fontWeight:700 }}>·</span>
+                      <strong style={{ color:'#C8E6EA' }}>{b.bold}</strong>{b.text}
+                    </li>
+                  ))}
+                </ul>
+                <p style={{ fontSize:'13px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'12px' }}>
+                  {msg.response.outro}
+                </p>
+                <div style={{ display:'flex', flexDirection:'column', gap:'4px', marginBottom:'12px' }}>
+                  {msg.response.links.map((l, i) => (
+                    <a key={i} href="#" style={{ fontSize:'12px', color:'#09A09D', textDecoration:'none' }}
+                      onMouseEnter={e => e.currentTarget.style.textDecoration = 'underline'}
+                      onMouseLeave={e => e.currentTarget.style.textDecoration = 'none'}
+                    >{l}</a>
+                  ))}
+                </div>
+                {/* Feedback row */}
+                <div style={{ display:'flex', gap:'4px', alignItems:'center' }}>
+                  {iconBtn('Helpful', 'M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z')}
+                  {iconBtn('Not helpful', 'M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z')}
+                  {iconBtn('Copy', copied ? 'M20 6L9 17l-5-5' : 'M8 17.929H6c-1.105 0-2-.912-2-2.036V5.036C4 3.912 4.895 3 6 3h8c1.105 0 2 .912 2 2.036v1.866m-6 .17h8c1.105 0 2 .91 2 2.035v10.857C20 21.088 19.105 22 18 22h-8c-1.105 0-2-.911-2-2.036V9.107c0-1.124.895-2.036 2-2.036z')}
+                  {iconBtn('Regenerate', 'M1 4v6h6M23 20v-6h-6M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15')}
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+
+        {/* Loading state */}
+        {phase !== 'done' && (
+          <div style={{ display:'flex', flexDirection:'column', gap:'6px' }}>
+            <div style={{ display:'flex', alignItems:'center', gap:'6px', fontSize:'12px', color:'#3A6070' }}>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ animation:'pulse 1.2s ease infinite' }}><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              {phase === 'searching' ? 'Searching docs…' : 'Reading file…'}
+            </div>
+            <div style={{ display:'flex', gap:'5px', paddingTop:'4px' }}>
+              {[0,1,2].map(i => (
+                <div key={i} style={{
+                  width:'6px', height:'6px', borderRadius:'50%',
+                  background:'#0EC4C1',
+                  animation:`pulse 1.2s ease ${i * 0.2}s infinite`,
+                }}/>
+              ))}
+            </div>
+          </div>
+        )}
+        <div ref={bottomRef}/>
+      </div>
+
+      {/* Follow-up input */}
+      <div style={{
+        padding:'10px 14px 18px', borderTop:'1px solid rgba(255,255,255,0.07)', flexShrink:0,
+      }}>
+        <div style={{
+          display:'flex', alignItems:'center', gap:'8px',
+          background:'rgba(255,255,255,0.04)',
+          border: inputFocused ? '1px solid rgba(9,160,157,.4)' : '1px solid rgba(255,255,255,.07)',
+          borderRadius:'10px',
+          padding:'8px 8px 8px 12px',
+          transition:'border-color .2s',
+        }}>
+          <input
+            value={input}
+            onChange={e => setInput(e.target.value)}
+            onFocus={() => setInputFocused(true)}
+            onBlur={() => setInputFocused(false)}
+            onKeyDown={e => { if (e.key === 'Enter') handleFollowUp(); }}
+            placeholder="Ask a question..."
+            style={{
+              flex:1, background:'transparent', border:'none', outline:'none',
+              fontSize:'13px', color:'#E8F2F5', fontFamily:'Geist,sans-serif',
+            }}
+          />
+          <button onClick={handleFollowUp} style={{
+            width:'28px', height:'28px', borderRadius:'7px', flexShrink:0,
+            background: input.trim() ? '#07807E' : 'rgba(9,160,157,.12)',
+            border:'none', cursor: input.trim() ? 'pointer' : 'default',
+            display:'flex', alignItems:'center', justifyContent:'center',
+            transition:'background .2s',
+          }}>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={input.trim() ? '#fff' : '#3A7080'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── CONNECTORS DATA ── */
+const CATEGORIES = [
+  'All',
+  'Databases & Warehouses',
+  'CRM',
+  'Marketing & Ads',
+  'Support',
+  'Productivity',
+  'Finance & E-commerce',
+  'HR & People',
+  'Product Analytics',
+  'Cloud & Storage',
+  'Developer Tools',
+  'Communication & Email',
+  'Security & Identity',
+  'Data Pipelines & ETL',
+];
+
+// domain = clearbit logo domain; color = fallback bubble color
+const CONNECTORS = [
+  // Databases & Warehouses (30)
+  { name:'Amazon Redshift',   category:'Databases & Warehouses', domain:'aws.amazon.com',       color:'#8C4FFF' },
+  { name:'Amazon Athena',     category:'Databases & Warehouses', domain:'aws.amazon.com',       color:'#F58220' },
+  { name:'Amazon DynamoDB',   category:'Databases & Warehouses', domain:'aws.amazon.com',       color:'#3B48CC' },
+  { name:'Snowflake',         category:'Databases & Warehouses', domain:'snowflake.com',        color:'#29B5E8' },
+  { name:'Google BigQuery',   category:'Databases & Warehouses', domain:'cloud.google.com',     color:'#4285F4' },
+  { name:'Databricks',        category:'Databases & Warehouses', domain:'databricks.com',       color:'#FF3621' },
+  { name:'Azure Synapse',     category:'Databases & Warehouses', domain:'azure.microsoft.com',  color:'#0078D4' },
+  { name:'Azure SQL',         category:'Databases & Warehouses', domain:'azure.microsoft.com',  color:'#0078D4' },
+  { name:'AlloyDB',           category:'Databases & Warehouses', domain:'cloud.google.com',     color:'#4285F4' },
+  { name:'PostgreSQL',        category:'Databases & Warehouses', domain:'postgresql.org',       color:'#336791' },
+  { name:'MySQL',             category:'Databases & Warehouses', domain:'mysql.com',            color:'#00758F' },
+  { name:'MariaDB',           category:'Databases & Warehouses', domain:'mariadb.org',          color:'#003545' },
+  { name:'MongoDB',           category:'Databases & Warehouses', domain:'mongodb.com',          color:'#47A248' },
+  { name:'Oracle',            category:'Databases & Warehouses', domain:'oracle.com',           color:'#F80000' },
+  { name:'SQL Server',        category:'Databases & Warehouses', domain:'microsoft.com',        color:'#CC2927' },
+  { name:'SAP HANA',          category:'Databases & Warehouses', domain:'sap.com',              color:'#008FD3' },
+  { name:'IBM Db2',           category:'Databases & Warehouses', domain:'ibm.com',              color:'#054ADA' },
+  { name:'Teradata',          category:'Databases & Warehouses', domain:'teradata.com',         color:'#F05D40' },
+  { name:'Vertica',           category:'Databases & Warehouses', domain:'vertica.com',          color:'#1A5E9A' },
+  { name:'ClickHouse',        category:'Databases & Warehouses', domain:'clickhouse.com',       color:'#FFCC00' },
+  { name:'Elasticsearch',     category:'Databases & Warehouses', domain:'elastic.co',           color:'#005571' },
+  { name:'Firebolt',          category:'Databases & Warehouses', domain:'firebolt.io',          color:'#FF3C4A' },
+  { name:'SingleStore',       category:'Databases & Warehouses', domain:'singlestore.com',      color:'#AA00FF' },
+  { name:'CockroachDB',       category:'Databases & Warehouses', domain:'cockroachlabs.com',    color:'#6933FF' },
+  { name:'TimescaleDB',       category:'Databases & Warehouses', domain:'timescale.com',        color:'#FDB515' },
+  { name:'InfluxDB',          category:'Databases & Warehouses', domain:'influxdata.com',       color:'#22ADF6' },
+  { name:'Neo4j',             category:'Databases & Warehouses', domain:'neo4j.com',            color:'#008CC1' },
+  { name:'Couchbase',         category:'Databases & Warehouses', domain:'couchbase.com',        color:'#ED2226' },
+  { name:'Redis',             category:'Databases & Warehouses', domain:'redis.io',             color:'#DC382D' },
+  { name:'Supabase',          category:'Databases & Warehouses', domain:'supabase.com',         color:'#3ECF8E' },
+
+  // CRM (15)
+  { name:'Salesforce',        category:'CRM',                    domain:'salesforce.com',       color:'#00A1E0' },
+  { name:'HubSpot',           category:'CRM',                    domain:'hubspot.com',          color:'#FF7A59' },
+  { name:'Pipedrive',         category:'CRM',                    domain:'pipedrive.com',        color:'#1A1A1A' },
+  { name:'Zoho CRM',          category:'CRM',                    domain:'zoho.com',             color:'#E42527' },
+  { name:'Microsoft Dynamics',category:'CRM',                    domain:'microsoft.com',        color:'#002050' },
+  { name:'Copper',            category:'CRM',                    domain:'copper.com',           color:'#FF6F31' },
+  { name:'Close',             category:'CRM',                    domain:'close.com',            color:'#0A6AFF' },
+  { name:'Freshsales',        category:'CRM',                    domain:'freshworks.com',       color:'#2F9CEE' },
+  { name:'Insightly',         category:'CRM',                    domain:'insightly.com',        color:'#F99F2B' },
+  { name:'Nimble',            category:'CRM',                    domain:'nimble.com',           color:'#F16522' },
+  { name:'Nutshell',          category:'CRM',                    domain:'nutshell.com',         color:'#C8332D' },
+  { name:'Keap',              category:'CRM',                    domain:'keap.com',             color:'#3ECF22' },
+  { name:'Sugar CRM',         category:'CRM',                    domain:'sugarcrm.com',         color:'#ED1C24' },
+  { name:'Capsule CRM',       category:'CRM',                    domain:'capsulecrm.com',       color:'#1DC3D3' },
+  { name:'Creatio',           category:'CRM',                    domain:'creatio.com',          color:'#FF4F27' },
+
+  // Marketing & Ads (22)
+  { name:'Google Ads',        category:'Marketing & Ads',        domain:'ads.google.com',       color:'#4285F4' },
+  { name:'Google Analytics',  category:'Marketing & Ads',        domain:'analytics.google.com', color:'#F9AB00' },
+  { name:'Bing Ads',          category:'Marketing & Ads',        domain:'microsoft.com',        color:'#008373' },
+  { name:'LinkedIn Ads',      category:'Marketing & Ads',        domain:'linkedin.com',         color:'#0A66C2' },
+  { name:'Facebook Ads',      category:'Marketing & Ads',        domain:'facebook.com',         color:'#1877F2' },
+  { name:'TikTok Ads',        category:'Marketing & Ads',        domain:'tiktok.com',           color:'#000000' },
+  { name:'Pinterest Ads',     category:'Marketing & Ads',        domain:'pinterest.com',        color:'#E60023' },
+  { name:'Snapchat Ads',      category:'Marketing & Ads',        domain:'snapchat.com',         color:'#FFFC00' },
+  { name:'Reddit Ads',        category:'Marketing & Ads',        domain:'reddit.com',           color:'#FF4500' },
+  { name:'Criteo',            category:'Marketing & Ads',        domain:'criteo.com',           color:'#F8903E' },
+  { name:'Taboola',           category:'Marketing & Ads',        domain:'taboola.com',          color:'#0067DB' },
+  { name:'Outbrain',          category:'Marketing & Ads',        domain:'outbrain.com',         color:'#F26B24' },
+  { name:'Mailchimp',         category:'Marketing & Ads',        domain:'mailchimp.com',        color:'#FFE01B' },
+  { name:'SendGrid',          category:'Marketing & Ads',        domain:'sendgrid.com',         color:'#1A82E2' },
+  { name:'Klaviyo',           category:'Marketing & Ads',        domain:'klaviyo.com',          color:'#000000' },
+  { name:'Marketo',           category:'Marketing & Ads',        domain:'marketo.com',          color:'#5C4C9F' },
+  { name:'Pardot',            category:'Marketing & Ads',        domain:'pardot.com',           color:'#00A1E0' },
+  { name:'ActiveCampaign',    category:'Marketing & Ads',        domain:'activecampaign.com',   color:'#356AE6' },
+  { name:'Braze',             category:'Marketing & Ads',        domain:'braze.com',            color:'#FFA524' },
+  { name:'Iterable',          category:'Marketing & Ads',        domain:'iterable.com',         color:'#7F56D9' },
+  { name:'Customer.io',       category:'Marketing & Ads',        domain:'customer.io',          color:'#7B40F2' },
+  { name:'Omnisend',          category:'Marketing & Ads',        domain:'omnisend.com',         color:'#15BC71' },
+
+  // Support (12)
+  { name:'Zendesk',           category:'Support',                domain:'zendesk.com',          color:'#03363D' },
+  { name:'Freshdesk',         category:'Support',                domain:'freshworks.com',       color:'#25C16F' },
+  { name:'Intercom',          category:'Support',                domain:'intercom.com',         color:'#1F8DED' },
+  { name:'Help Scout',        category:'Support',                domain:'helpscout.com',        color:'#1292EE' },
+  { name:'Kustomer',          category:'Support',                domain:'kustomer.com',         color:'#FFBF00' },
+  { name:'Gorgias',           category:'Support',                domain:'gorgias.com',          color:'#0E1E1A' },
+  { name:'Drift',             category:'Support',                domain:'drift.com',            color:'#1D0E5F' },
+  { name:'Zoho Desk',         category:'Support',                domain:'zoho.com',             color:'#E42527' },
+  { name:'Front',             category:'Support',                domain:'front.com',            color:'#A857F8' },
+  { name:'Crisp',             category:'Support',                domain:'crisp.chat',           color:'#1972F5' },
+  { name:'Gladly',            category:'Support',                domain:'gladly.com',           color:'#EA5E3F' },
+  { name:'ServiceNow',        category:'Support',                domain:'servicenow.com',       color:'#62D84E' },
+
+  // Productivity (18)
+  { name:'Slack',             category:'Productivity',           domain:'slack.com',            color:'#4A154B' },
+  { name:'Microsoft Teams',   category:'Productivity',           domain:'teams.microsoft.com',  color:'#6264A7' },
+  { name:'Asana',             category:'Productivity',           domain:'asana.com',            color:'#F06A6A' },
+  { name:'Trello',            category:'Productivity',           domain:'trello.com',           color:'#0079BF' },
+  { name:'Jira',              category:'Productivity',           domain:'atlassian.com',        color:'#0052CC' },
+  { name:'Confluence',        category:'Productivity',           domain:'atlassian.com',        color:'#172B4D' },
+  { name:'Notion',            category:'Productivity',           domain:'notion.so',            color:'#000000' },
+  { name:'Airtable',          category:'Productivity',           domain:'airtable.com',         color:'#FCB400' },
+  { name:'Monday.com',        category:'Productivity',           domain:'monday.com',           color:'#FF3D57' },
+  { name:'ClickUp',           category:'Productivity',           domain:'clickup.com',          color:'#7B68EE' },
+  { name:'Smartsheet',        category:'Productivity',           domain:'smartsheet.com',       color:'#0073EC' },
+  { name:'Basecamp',          category:'Productivity',           domain:'basecamp.com',         color:'#1D2D35' },
+  { name:'Wrike',             category:'Productivity',           domain:'wrike.com',            color:'#08BB67' },
+  { name:'Coda',              category:'Productivity',           domain:'coda.io',              color:'#F46A54' },
+  { name:'Figma',             category:'Productivity',           domain:'figma.com',            color:'#F24E1E' },
+  { name:'Miro',              category:'Productivity',           domain:'miro.com',             color:'#FFD02F' },
+  { name:'Lucidchart',        category:'Productivity',           domain:'lucid.co',             color:'#F68D42' },
+  { name:'Loom',              category:'Productivity',           domain:'loom.com',             color:'#625DF5' },
+
+  // Finance & E-commerce (25)
+  { name:'Stripe',            category:'Finance & E-commerce',   domain:'stripe.com',           color:'#635BFF' },
+  { name:'QuickBooks',        category:'Finance & E-commerce',   domain:'quickbooks.intuit.com',color:'#2CA01C' },
+  { name:'Xero',              category:'Finance & E-commerce',   domain:'xero.com',             color:'#13B5EA' },
+  { name:'NetSuite',          category:'Finance & E-commerce',   domain:'netsuite.com',         color:'#F58220' },
+  { name:'Sage',              category:'Finance & E-commerce',   domain:'sage.com',             color:'#00D639' },
+  { name:'Square',            category:'Finance & E-commerce',   domain:'squareup.com',         color:'#3E4348' },
+  { name:'PayPal',            category:'Finance & E-commerce',   domain:'paypal.com',           color:'#003087' },
+  { name:'Adyen',             category:'Finance & E-commerce',   domain:'adyen.com',            color:'#0ABF53' },
+  { name:'Braintree',         category:'Finance & E-commerce',   domain:'braintreepayments.com',color:'#000000' },
+  { name:'Chargebee',         category:'Finance & E-commerce',   domain:'chargebee.com',        color:'#FF7846' },
+  { name:'Recurly',           category:'Finance & E-commerce',   domain:'recurly.com',          color:'#5C068C' },
+  { name:'Zuora',             category:'Finance & E-commerce',   domain:'zuora.com',            color:'#DE2332' },
+  { name:'Paddle',            category:'Finance & E-commerce',   domain:'paddle.com',           color:'#FFD00E' },
+  { name:'Expensify',         category:'Finance & E-commerce',   domain:'expensify.com',        color:'#0185FF' },
+  { name:'Bill.com',          category:'Finance & E-commerce',   domain:'bill.com',             color:'#ED2224' },
+  { name:'Ramp',              category:'Finance & E-commerce',   domain:'ramp.com',             color:'#FFE900' },
+  { name:'Brex',              category:'Finance & E-commerce',   domain:'brex.com',             color:'#FF5500' },
+  { name:'Coupa',             category:'Finance & E-commerce',   domain:'coupa.com',            color:'#083166' },
+  { name:'Shopify',           category:'Finance & E-commerce',   domain:'shopify.com',          color:'#96BF48' },
+  { name:'BigCommerce',       category:'Finance & E-commerce',   domain:'bigcommerce.com',      color:'#34313F' },
+  { name:'Magento',           category:'Finance & E-commerce',   domain:'magento.com',          color:'#EE672F' },
+  { name:'WooCommerce',       category:'Finance & E-commerce',   domain:'woocommerce.com',      color:'#7F54B3' },
+  { name:'Amazon Marketplace',category:'Finance & E-commerce',   domain:'sellercentral.amazon.com', color:'#FF9900' },
+  { name:'Wix',               category:'Finance & E-commerce',   domain:'wix.com',              color:'#0C6EFC' },
+  { name:'Squarespace',       category:'Finance & E-commerce',   domain:'squarespace.com',      color:'#000000' },
+
+  // HR & People (15)
+  { name:'Workday',           category:'HR & People',            domain:'workday.com',          color:'#0875E1' },
+  { name:'BambooHR',          category:'HR & People',            domain:'bamboohr.com',         color:'#73C41D' },
+  { name:'Gusto',             category:'HR & People',            domain:'gusto.com',            color:'#F45D48' },
+  { name:'Rippling',          category:'HR & People',            domain:'rippling.com',         color:'#FECE00' },
+  { name:'ADP',               category:'HR & People',            domain:'adp.com',              color:'#D0271D' },
+  { name:'Paychex',           category:'HR & People',            domain:'paychex.com',          color:'#004B8D' },
+  { name:'Paylocity',         category:'HR & People',            domain:'paylocity.com',        color:'#3078C2' },
+  { name:'Justworks',         category:'HR & People',            domain:'justworks.com',        color:'#00A1DF' },
+  { name:'TriNet',            category:'HR & People',            domain:'trinet.com',           color:'#E31E38' },
+  { name:'UKG',               category:'HR & People',            domain:'ukg.com',              color:'#005EB8' },
+  { name:'Ceridian Dayforce', category:'HR & People',            domain:'ceridian.com',         color:'#005EB8' },
+  { name:'Greenhouse',        category:'HR & People',            domain:'greenhouse.io',        color:'#23AA49' },
+  { name:'Lever',             category:'HR & People',            domain:'lever.co',             color:'#5B2AE8' },
+  { name:'Workable',          category:'HR & People',            domain:'workable.com',         color:'#0F996D' },
+  { name:'SAP SuccessFactors',category:'HR & People',            domain:'sap.com',              color:'#008FD3' },
+
+  // Product Analytics (12)
+  { name:'Mixpanel',          category:'Product Analytics',      domain:'mixpanel.com',         color:'#7856FF' },
+  { name:'Amplitude',         category:'Product Analytics',      domain:'amplitude.com',        color:'#1E61F0' },
+  { name:'Segment',           category:'Product Analytics',      domain:'segment.com',          color:'#52BD94' },
+  { name:'Heap',              category:'Product Analytics',      domain:'heap.io',              color:'#4F43DC' },
+  { name:'Pendo',             category:'Product Analytics',      domain:'pendo.io',             color:'#FF4876' },
+  { name:'Hotjar',            category:'Product Analytics',      domain:'hotjar.com',           color:'#FF3C00' },
+  { name:'FullStory',         category:'Product Analytics',      domain:'fullstory.com',        color:'#FF4A00' },
+  { name:'LogRocket',         category:'Product Analytics',      domain:'logrocket.com',        color:'#764ABC' },
+  { name:'Sentry',            category:'Product Analytics',      domain:'sentry.io',            color:'#362D59' },
+  { name:'PostHog',           category:'Product Analytics',      domain:'posthog.com',          color:'#1D4AFF' },
+  { name:'June',              category:'Product Analytics',      domain:'june.so',              color:'#161B22' },
+  { name:'Smartlook',         category:'Product Analytics',      domain:'smartlook.com',        color:'#FBA50A' },
+
+  // Cloud & Storage (12)
+  { name:'Amazon S3',         category:'Cloud & Storage',        domain:'aws.amazon.com',       color:'#E25444' },
+  { name:'Azure Data Lake',   category:'Cloud & Storage',        domain:'azure.microsoft.com',  color:'#0078D4' },
+  { name:'Azure Blob Storage',category:'Cloud & Storage',        domain:'azure.microsoft.com',  color:'#0078D4' },
+  { name:'Google Cloud Storage', category:'Cloud & Storage',     domain:'cloud.google.com',     color:'#4285F4' },
+  { name:'Google Drive',      category:'Cloud & Storage',        domain:'drive.google.com',     color:'#0F9D58' },
+  { name:'Google Sheets',     category:'Cloud & Storage',        domain:'sheets.google.com',    color:'#0F9D58' },
+  { name:'Dropbox',           category:'Cloud & Storage',        domain:'dropbox.com',          color:'#0061FF' },
+  { name:'Box',               category:'Cloud & Storage',        domain:'box.com',              color:'#0061D5' },
+  { name:'OneDrive',          category:'Cloud & Storage',        domain:'onedrive.live.com',    color:'#0364B8' },
+  { name:'Backblaze B2',      category:'Cloud & Storage',        domain:'backblaze.com',        color:'#EE3027' },
+  { name:'Wasabi',            category:'Cloud & Storage',        domain:'wasabi.com',           color:'#01CD3E' },
+  { name:'Cloudflare R2',     category:'Cloud & Storage',        domain:'cloudflare.com',       color:'#F6821F' },
+
+  // Developer Tools (15)
+  { name:'GitHub',            category:'Developer Tools',        domain:'github.com',           color:'#181717' },
+  { name:'GitLab',            category:'Developer Tools',        domain:'gitlab.com',           color:'#FC6D26' },
+  { name:'Bitbucket',         category:'Developer Tools',        domain:'bitbucket.org',        color:'#0052CC' },
+  { name:'CircleCI',          category:'Developer Tools',        domain:'circleci.com',         color:'#343434' },
+  { name:'Jenkins',           category:'Developer Tools',        domain:'jenkins.io',           color:'#D24939' },
+  { name:'Azure DevOps',      category:'Developer Tools',        domain:'azure.microsoft.com',  color:'#0078D4' },
+  { name:'Vercel',            category:'Developer Tools',        domain:'vercel.com',           color:'#000000' },
+  { name:'Netlify',           category:'Developer Tools',        domain:'netlify.com',          color:'#00AD9F' },
+  { name:'Heroku',            category:'Developer Tools',        domain:'heroku.com',           color:'#430098' },
+  { name:'Render',            category:'Developer Tools',        domain:'render.com',           color:'#46E3B7' },
+  { name:'Cloudflare',        category:'Developer Tools',        domain:'cloudflare.com',       color:'#F6821F' },
+  { name:'Fastly',            category:'Developer Tools',        domain:'fastly.com',           color:'#FF282D' },
+  { name:'Datadog',           category:'Developer Tools',        domain:'datadoghq.com',        color:'#632CA6' },
+  { name:'New Relic',         category:'Developer Tools',        domain:'newrelic.com',         color:'#00AC69' },
+  { name:'PagerDuty',         category:'Developer Tools',        domain:'pagerduty.com',        color:'#06AC38' },
+
+  // Communication & Email (12)
+  { name:'Gmail',             category:'Communication & Email',  domain:'mail.google.com',      color:'#EA4335' },
+  { name:'Outlook',           category:'Communication & Email',  domain:'outlook.com',          color:'#0078D4' },
+  { name:'Calendly',          category:'Communication & Email',  domain:'calendly.com',         color:'#006BFF' },
+  { name:'Cal.com',           category:'Communication & Email',  domain:'cal.com',              color:'#111827' },
+  { name:'Zoom',              category:'Communication & Email',  domain:'zoom.us',              color:'#2D8CFF' },
+  { name:'Google Meet',       category:'Communication & Email',  domain:'meet.google.com',      color:'#00897B' },
+  { name:'Webex',             category:'Communication & Email',  domain:'webex.com',            color:'#00A0D2' },
+  { name:'RingCentral',       category:'Communication & Email',  domain:'ringcentral.com',      color:'#FF7A00' },
+  { name:'Dialpad',           category:'Communication & Email',  domain:'dialpad.com',          color:'#7E44FA' },
+  { name:'Aircall',           category:'Communication & Email',  domain:'aircall.io',           color:'#00B388' },
+  { name:'Twilio',            category:'Communication & Email',  domain:'twilio.com',           color:'#F22F46' },
+  { name:'Mailgun',           category:'Communication & Email',  domain:'mailgun.com',          color:'#F06B66' },
+
+  // Security & Identity (8)
+  { name:'Okta',              category:'Security & Identity',    domain:'okta.com',             color:'#007DC1' },
+  { name:'Auth0',             category:'Security & Identity',    domain:'auth0.com',            color:'#EB5424' },
+  { name:'OneLogin',          category:'Security & Identity',    domain:'onelogin.com',         color:'#1D252C' },
+  { name:'JumpCloud',         category:'Security & Identity',    domain:'jumpcloud.com',        color:'#3ACE01' },
+  { name:'Duo',               category:'Security & Identity',    domain:'duo.com',              color:'#6BBE45' },
+  { name:'1Password',         category:'Security & Identity',    domain:'1password.com',        color:'#0572EC' },
+  { name:'LastPass',          category:'Security & Identity',    domain:'lastpass.com',         color:'#D32D27' },
+  { name:'Cloudflare Access', category:'Security & Identity',    domain:'cloudflare.com',       color:'#F6821F' },
+
+  // Data Pipelines & ETL (10)
+  { name:'Fivetran',          category:'Data Pipelines & ETL',   domain:'fivetran.com',         color:'#0070FF' },
+  { name:'Stitch Data',       category:'Data Pipelines & ETL',   domain:'stitchdata.com',       color:'#FF6700' },
+  { name:'Airbyte',           category:'Data Pipelines & ETL',   domain:'airbyte.com',          color:'#615EFF' },
+  { name:'dbt',               category:'Data Pipelines & ETL',   domain:'getdbt.com',           color:'#FF694A' },
+  { name:'Matillion',         category:'Data Pipelines & ETL',   domain:'matillion.com',        color:'#19E57F' },
+  { name:'Hevo Data',         category:'Data Pipelines & ETL',   domain:'hevodata.com',         color:'#FFC043' },
+  { name:'Talend',            category:'Data Pipelines & ETL',   domain:'talend.com',           color:'#FF6D70' },
+  { name:'Informatica',       category:'Data Pipelines & ETL',   domain:'informatica.com',      color:'#FF4D00' },
+  { name:'Rivery',            category:'Data Pipelines & ETL',   domain:'rivery.io',            color:'#0B50F8' },
+  { name:'Dataiku',           category:'Data Pipelines & ETL',   domain:'dataiku.com',          color:'#2AB1AC' },
+];
+
+/* ── CONNECTORS HERO ── */
+function ConnectorsHero() {
+  return (
+    <section style={{padding:'80px 0 36px', textAlign:'center', position:'relative', zIndex:1}}>
+      <div style={{maxWidth:'760px', margin:'0 auto', padding:'0 24px'}}>
+        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid rgba(255,255,255,.07)', background:'rgba(255,255,255,.03)', fontSize:'12px', color:'#7FA0AC', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
+          ✦ DATA CONNECTORS
+        </div>
+        <h1 className="fu1" style={{fontSize:'clamp(34px,4.6vw,52px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'#E8F2F5', marginBottom:'18px'}}>
+          Connect to everything you run on.
+        </h1>
+        <p className="fu2" style={{fontSize:'16px', color:'#7FA0AC', lineHeight:1.6, maxWidth:'580px', margin:'0 auto'}}>
+          200+ data connectors across your CRM, warehouse, ads, finance, product, and developer stack. Plug one in and start asking questions in plain English.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* ── CATEGORY SIDEBAR ── */
+function ConnectorCategorySidebar({ active, setActive, counts, onRequestConnector }) {
+  return (
+    <aside className="connectors-sidebar-col">
+      <div className="cat-group-header">Categories</div>
+      <div>
+        {CATEGORIES.map(cat => (
+          <button
+            key={cat}
+            onClick={() => setActive(cat)}
+            className={`cat-item ${active === cat ? 'active' : ''}`}
+          >
+            <span style={{overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap'}}>{cat}</span>
+            <span className="count">{counts[cat] || 0}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* Request a connector */}
+      <div style={{
+        marginTop:'20px', padding:'16px',
+        borderTop:'1px solid rgba(255,255,255,0.055)',
+      }}>
+        <p style={{
+          fontSize:'11.5px', color:'#7FA0AC', lineHeight:1.5, marginBottom:'10px',
+        }}>
+          Don't see what you need?
+        </p>
+        <button
+          onClick={onRequestConnector}
+          style={{
+            display:'inline-flex', alignItems:'center', gap:'6px',
+            width:'100%', justifyContent:'center',
+            padding:'8px 12px', borderRadius:'8px',
+            border:'1px solid rgba(9,160,157,.3)',
+            background:'rgba(9,160,157,.08)',
+            color:'#0EC4C1', fontSize:'12.5px', fontWeight:500,
+            fontFamily:'Geist, sans-serif', cursor:'pointer',
+            transition:'background .15s, border-color .15s',
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(9,160,157,.15)'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(9,160,157,.08)'; }}
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          Request a connector
+        </button>
+      </div>
+    </aside>
+  );
+}
+
+/* ── CONNECTOR TILE ── */
+function ConnectorTile({ c, index, onAskChat, onConnect }) {
+  const [imgFailed, setImgFailed] = useState(false);
+  const initials = c.name.split(' ').filter(w => !['&','the','-'].includes(w.toLowerCase())).slice(0,2).map(w => w[0]).join('').toUpperCase();
+
+  return (
+    <div className="connector-tile" style={{ animationDelay:`${Math.min(index,12) * 0.02}s` }}>
+      <div className="connector-face">
+        <div className="connector-logo">
+          {imgFailed ? (
+            <div className="fallback" style={{ background: c.color, color: '#fff', borderRadius: 6 }}>
+              {initials}
+            </div>
+          ) : (
+            <img
+              src={`https://logo.clearbit.com/${c.domain}`}
+              alt={c.name}
+              loading="lazy"
+              onError={() => setImgFailed(true)}
+            />
+          )}
+        </div>
+        <div className="connector-name" title={c.name}>{c.name}</div>
+      </div>
+
+      <div className="connector-overlay">
+        <button className="overlay-btn primary" onClick={(e) => { e.stopPropagation(); onAskChat(c); }}>
+          Open in a new chat
+        </button>
+        <button className="overlay-btn secondary" onClick={(e) => { e.stopPropagation(); onConnect(c); }}>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/>
+            <path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/>
+          </svg>
+          Connect
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ── CONNECTOR GRID ── */
+function ConnectorGrid({ items, onAskChat, onConnect }) {
+  if (items.length === 0) {
+    return (
+      <div style={{
+        padding:'40px 24px', textAlign:'center',
+        border:'1px dashed rgba(255,255,255,0.08)', borderRadius:'12px',
+        color:'#7FA0AC', fontSize:'14px',
+      }}>
+        No connectors match your search.
+      </div>
+    );
+  }
+  return (
+    <div className="connector-grid">
+      {items.map((c, i) => (
+        <ConnectorTile key={c.name} c={c} index={i} onAskChat={onAskChat} onConnect={onConnect} />
+      ))}
+    </div>
+  );
+}
+
+/* ── APP ── */
+function App() {
+  const [query, setQuery] = useState('');
+  const [category, setCategory] = useState('All');
+  const [assistantQuery, setAssistantQuery] = useState(null);
+
+  const q = query.trim().toLowerCase();
+  const filtered = CONNECTORS.filter(c =>
+    (category === 'All' || c.category === category) &&
+    (!q || c.name.toLowerCase().includes(q) || c.category.toLowerCase().includes(q))
+  );
+
+  const handleAskChat = (c) => {
+    const url = `Chat.html?connector=${encodeURIComponent(c.name)}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+  const handleConnect = (c) => {
+    setAssistantQuery(`Walk me through connecting ${c.name} to Insightis step by step.`);
+  };
+
+  const counts = CATEGORIES.reduce((acc, cat) => {
+    acc[cat] = cat === 'All' ? CONNECTORS.length : CONNECTORS.filter(c => c.category === cat).length;
+    return acc;
+  }, {});
+
+  const handleRequestConnector = () => {
+    setAssistantQuery('I want to request a new data connector. How do I submit the request and what info do you need?');
+  };
+
+  return (
+    <div style={{ paddingBottom:'100px' }}>
+      <Header />
+      <ConnectorsHero />
+      <div className="connectors-layout">
+        <ConnectorCategorySidebar
+          active={category}
+          setActive={setCategory}
+          counts={counts}
+          onRequestConnector={handleRequestConnector}
+        />
+        <div className="connectors-content">
+          <div className="connector-search fu2">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7FA0AC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+            </svg>
+            <input
+              type="text"
+              placeholder="Search 200+ connectors..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            {query && (
+              <button onClick={() => setQuery('')} style={{background:'none',border:'none',color:'#7FA0AC',cursor:'pointer',padding:'2px 6px',fontSize:'12px'}}>
+                Clear
+              </button>
+            )}
+          </div>
+          <ConnectorGrid items={filtered} onAskChat={handleAskChat} onConnect={handleConnect} />
+
+          {/* Bottom request-a-connector CTA (shown on mobile where sidebar is hidden, and as a reinforcement on desktop) */}
+          <div style={{
+            marginTop:'40px', padding:'24px',
+            border:'1px solid rgba(9,160,157,.18)',
+            borderRadius:'12px',
+            background:'linear-gradient(135deg, rgba(9,160,157,0.06), rgba(16,22,30,0.4))',
+            display:'flex', alignItems:'center', justifyContent:'space-between',
+            gap:'16px', flexWrap:'wrap',
+          }}>
+            <div>
+              <h3 style={{fontSize:'16px', fontWeight:500, color:'#E8F2F5', marginBottom:'4px', letterSpacing:'-.01em'}}>
+                Can't find your tool?
+              </h3>
+              <p style={{fontSize:'13.5px', color:'#7FA0AC', lineHeight:1.5}}>
+                Tell us what you use and we'll prioritize the connector.
+              </p>
+            </div>
+            <button
+              onClick={handleRequestConnector}
+              style={{
+                display:'inline-flex', alignItems:'center', gap:'8px',
+                padding:'10px 18px', borderRadius:'8px',
+                border:'none', background:'#07807E', color:'#fff',
+                fontSize:'13px', fontWeight:600, fontFamily:'Geist,sans-serif',
+                cursor:'pointer', transition:'background .15s',
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = '#09A09D'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = '#07807E'; }}
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+              Request a connector
+            </button>
+          </div>
+        </div>
+      </div>
+      <Footer />
+      <FloatingChat onSubmit={(q) => setAssistantQuery(q)} />
+      {assistantQuery && (
+        <AIAssistantPanel
+          query={assistantQuery}
+          onClose={() => setAssistantQuery(null)}
+        />
+      )}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+
+</body>
+</html>
