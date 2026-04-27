@@ -467,7 +467,7 @@ async function p1_runDemo(){
   rowCACel.style.transform = '';
   rowCACel.style.transition = '';
   document.getElementById('p1liveCount').textContent = '3';
-  document.getElementById('p1draftCount').textContent = '3';
+  document.getElementById('p1draftCount').textContent = '2';
   document.getElementById('p1rowCAC').classList.remove('highlighted','flash-success');
   let cacName = document.querySelector('#p1rowCAC .metric-name');
   cacName.classList.add('draft');
@@ -593,7 +593,7 @@ async function p1_runDemo(){
 
   // Update counters
   document.getElementById('p1liveCount').textContent = '4';
-  document.getElementById('p1draftCount').textContent = '2';
+  document.getElementById('p1draftCount').textContent = '1';
 
   // Fade in at new position
   requestAnimationFrame(() => {
