@@ -668,309 +668,82 @@
                         <div class="p2-leg"><span style="background:var(--ins-text-highlight)"></span>Meta</div>
                       </div>
                     </div>
-                    <button class="p2-save-btn" id="p3saveBtn">
-                      <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 2h6l2 2v6a1 1 0 01-1 1H2a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.3"/><path d="M4 12V7h4v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-                      Save as Report
-                    </button>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <!-- SCREEN B: reports list -->
-            <div class="p3-screen" id="p3screenB" style="display:none;opacity:0">
-              <div class="p3-reports-header">
-                <div class="p3-reports-title">Reports</div>
-                <div class="p3-search"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><circle cx="5" cy="5" r="3.5" stroke="var(--ins-text-inactive)" stroke-width="1.3"/><path d="M8 8l2 2" stroke="var(--ins-text-inactive)" stroke-width="1.3" stroke-linecap="round"/></svg><span style="color:var(--ins-text-inactive);font-size:11px">Search reports…</span></div>
-                <div class="p3-reports-meta"><span style="color:var(--ins-text-body);font-size:11px">35 reports</span></div>
-              </div>
-              <div class="p3-report-list">
-                <div class="p3-report-row p3-new-report" id="p3newReport">
-                  <div class="p3-report-info">
-                    <div class="p3-report-name">CAC by Channel — Last 30 Days</div>
-                    <div class="p3-report-desc">Cost of Acquisition breakdown by acquisition channel</div>
-                  </div>
-                  <div class="p3-report-meta"><div class="p3-avatar">RG</div><span style="font-size:10px;color:var(--ins-text-inactive)">just now</span></div>
-                </div>
-                <div class="p3-report-row">
-                  <div class="p3-report-info">
-                    <div class="p3-report-name" style="color:var(--ins-text-body)">SMB Churn Risk Analysis</div>
-                    <div class="p3-report-desc">Customer segmentation and retention strategy</div>
-                  </div>
-                  <div class="p3-report-meta"><div class="p3-avatar">RG</div><span style="font-size:10px;color:var(--ins-text-inactive)">6h ago</span></div>
-                </div>
-                <div class="p3-report-row">
-                  <div class="p3-report-info">
-                    <div class="p3-report-name" style="color:var(--ins-text-body)">Q4 Revenue Performance</div>
-                    <div class="p3-report-desc">Revenue breakdown by region and product category</div>
-                  </div>
-                  <div class="p3-report-meta"><div class="p3-avatar">MT</div><span style="font-size:10px;color:var(--ins-text-inactive)">1d ago</span></div>
-                </div>
-                <div class="p3-report-row">
-                  <div class="p3-report-info">
-                    <div class="p3-report-name" style="color:var(--ins-text-body)">Conversion Funnel Analysis</div>
-                    <div class="p3-report-desc">Daily performance across all funnel stages</div>
-                  </div>
-                  <div class="p3-report-meta"><div class="p3-avatar">SC</div><span style="font-size:10px;color:var(--ins-text-inactive)">2d ago</span></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- SCREEN C: report detail view -->
-            <div class="p3-screen" id="p3screenC" style="display:none;opacity:0">
-              <div class="p3-report-view">
-                <div class="p3-rv-header">
-                  <div>
-                    <div class="p3-rv-meta">Period: <strong>Last 30 days</strong> · Sources: <strong>Stripe, HubSpot</strong></div>
-                  </div>
-                  <div class="p3-rv-actions">
-                    <button class="p3-rv-btn" id="p3shareBtn">
-                      <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><circle cx="9" cy="2" r="1.5" stroke="currentColor" stroke-width="1.2"/><circle cx="9" cy="10" r="1.5" stroke="currentColor" stroke-width="1.2"/><circle cx="2" cy="6" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M7.5 2.8L3.5 5.3M3.5 6.7l4 2.5" stroke="currentColor" stroke-width="1.2"/></svg>
-                      Share
-                    </button>
-                    <button class="p3-rv-btn">
-                      <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 9h8M6 2v5M3.5 4.5L6 2l2.5 2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-                      Export
-                    </button>
-                  </div>
-                </div>
-                <!-- 4 metric cards -->
-                <div class="p3-metric-cards">
-                  <div class="p3-mc"><div class="p3-mc-lbl">Total CAC</div><div class="p3-mc-val">$87.65</div><div class="p3-mc-delta neutral">avg all channels</div></div>
-                  <div class="p3-mc"><div class="p3-mc-lbl">Google Ads</div><div class="p3-mc-val red">$135.67</div><div class="p3-mc-delta red">↑ +12% vs prior</div></div>
-                  <div class="p3-mc"><div class="p3-mc-lbl">Organic</div><div class="p3-mc-val green">$54.31</div><div class="p3-mc-delta green">↓ −8% vs prior</div></div>
-                  <div class="p3-mc"><div class="p3-mc-lbl">Meta</div><div class="p3-mc-val green">$75.45</div><div class="p3-mc-delta green">↓ −5% vs prior</div></div>
-                </div>
-                <!-- Line chart -->
-                <div class="p3-chart-box">
-                  <div style="font-size:10px;color:var(--ins-text-inactive);font-family:var(--ins-font-family-mono);margin-bottom:6px">CAC trend — last 30 days</div>
-                  <svg viewBox="0 0 300 60" preserveAspectRatio="none" style="width:100%;height:54px;display:block">
-                    <line x1="0" y1="15" x2="300" y2="15" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
-                    <line x1="0" y1="30" x2="300" y2="30" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
-                    <line x1="0" y1="45" x2="300" y2="45" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
-                    <polyline points="0,32 50,30 100,28 150,33 200,27 250,24 300,23" fill="none" stroke="rgba(200,220,230,.5)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-                    <polyline points="0,18 50,16 100,14 150,20 200,15 250,11 300,10" fill="none" stroke="var(--ins-status-error-fg)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-                    <polyline points="0,50 50,47 100,45 150,49 200,43 250,41 300,40" fill="none" stroke="var(--ins-status-success-fg)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-                    <polyline points="0,40 50,38 100,41 150,36 200,34 250,32 300,30" fill="none" stroke="var(--ins-text-highlight)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <div class="p3-legend-row">
-                    <div class="p2-leg"><span style="background:rgba(200,220,230,.5)"></span>Total</div>
-                    <div class="p2-leg"><span style="background:var(--ins-status-error-fg)"></span>Google Ads</div>
-                    <div class="p2-leg"><span style="background:var(--ins-status-success-fg)"></span>Organic</div>
-                    <div class="p2-leg"><span style="background:var(--ins-text-highlight)"></span>Meta</div>
-                  </div>
-                </div>
-                <!-- AI takeaways -->
-                <div class="p3-takeaways">
-                  <div class="p3-tk-header">
-                    <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1l1.2 2.4 2.8.4-2 2 .5 2.7L6 7.2 3.5 8.5l.5-2.7-2-2 2.8-.4L6 1z" stroke="var(--ins-text-highlight)" stroke-width="1.1" fill="rgba(10,152,150,.2)"/></svg>
-                    <span>AI Key Takeaways</span>
-                  </div>
-                  <div class="p3-tk-row"><strong>Google Ads</strong> CAC up 12% — bid competition increased. Consider reallocating budget to Organic channels this quarter.</div>
-                  <div class="p3-tk-row"><strong>Organic</strong> is the most efficient channel this month at $54.31, down 8% from prior period — content investment is compounding.</div>
-                  <div class="p3-tk-row"><strong>Meta</strong> performance improved 5% MoM driven by retargeting audience refresh. Maintaining efficiency below blended average.</div>
-                  <div class="p3-tk-row"><strong>Attention:</strong> Google Ads cost spike detected Oct 14–18 correlated with competitor campaign activity. Monitor bid strategy.</div>
-                  <div class="p3-tk-row"><strong>Trend:</strong> Blended CAC has been declining for 3 consecutive months — down from $103 in August to $87.65 now. Current trajectory hits $80 target by March.</div>
-                  <div class="p3-tk-row"><strong>Channel Mix:</strong> Organic now represents 34% of total acquisition volume, up from 21% in Q2. Increasing this share further will have compounding impact on blended CAC.</div>
-                  <div class="p3-tk-row"><strong>Recommendation:</strong> shift 15–20% of paid budget to content &amp; SEO to lower blended CAC below $80 target by Q2.</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- SCREEN D: share modal overlay -->
-            <div class="p3-modal-overlay" id="p3modal" style="display:none;opacity:0">
-              <div class="p3-modal">
-                <div class="p3-modal-header">
-                  <span class="p3-modal-title">Send via Email</span>
-                  <button class="p3-modal-close">✕</button>
-                </div>
-                <div class="p3-modal-field">
-                  <div class="p3-field-lbl">To</div>
-                  <div class="p3-field-input" id="p3toField">
-                    <div class="p3-tag-row" id="p3tagRow">
-                      <span class="p3-tag p3-tag-typing" id="p3tagTyping" style="display:none"><span class="p3-typed-email" id="p3typedEmail"></span><span class="p3-tag-x p3-tag-x-hide" id="p3tagX"> ×</span></span>
-                    </div>
-                    <div class="p3-add-recipient" id="p3addRecipient" style="display:none">Add recipient…</div>
-                  </div>
-                </div>
-                <div class="p3-modal-field">
-                  <div class="p3-field-lbl">Subject</div>
-                  <div class="p3-field-val">CAC by Channel — Last 30 Days</div>
-                </div>
-                <div class="p3-modal-field">
-                  <div class="p3-field-lbl">Message</div>
-                  <div class="p3-field-val p3-msg-val">
-                    <div style="margin-bottom:4px">Hi team,</div>
-                    <div style="margin-bottom:4px">I wanted to share this CAC breakdown for last month by acquisition channel. The data shows some interesting trends on Google Ads spend efficiency.</div>
-                    <div>Let me know your thoughts!</div>
-                  </div>
-                </div>
-                <div class="p3-attachment">
-                  <div class="p3-attach-icon">
-                    <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="2" y="1" width="10" height="12" rx="2" stroke="var(--ins-text-inactive)" stroke-width="1.2"/><path d="M4 5h6M4 7.5h6M4 10h4" stroke="var(--ins-text-inactive)" stroke-width="1.1" stroke-linecap="round"/></svg>
-                  </div>
-                  <span class="p3-attach-name">Insight: CAC by Channel — Last 30 Days</span>
-                  <span class="p3-attach-change">Change</span>
-                </div>
-                <div class="p3-modal-footer">
-                  <button class="p3-btn-cancel">Cancel</button>
-                  <button class="p3-btn-send" id="p3sendEmailBtn">Send Email</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- SUCCESS TOAST -->
-            <div class="p3-success-toast" id="p3successToast" style="display:none;opacity:0">
-              <svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M2 6l2.5 2.5L10 3" stroke="var(--ins-status-success-fg)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Report sent successfully
             </div>
 
           </div><!-- /aw -->
-          <!-- CURSOR outside .aw so not clipped -->
-          <svg id="p3cursor" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none;position:absolute;width:18px;height:18px;z-index:999;pointer-events:none;filter:drop-shadow(0 1px 3px rgba(0,0,0,.5))">
-            <path d="M2 2l9.5 5-4 1.4L5.8 13 2 2z" fill="white" stroke="#222" stroke-width=".7" stroke-linejoin="round"/>
-          </svg>
         </div><!-- /sc-panel p3 -->
 
         <!-- Panel 4 — Act on Insights -->
         <div class="sc-panel" id="p4">
           <div class="aw" id="p4aw" style="overflow:hidden;display:flex;flex-direction:column;position:relative">
-            <div class="aw-bar"><div class="aw-dots"><div class="aw-dot"></div><div class="aw-dot"></div><div class="aw-dot"></div></div><div class="aw-lbl">Insights</div></div>
+            <div class="aw-bar"><div class="aw-dots"><div class="aw-dot"></div><div class="aw-dot"></div><div class="aw-dot"></div></div><div class="aw-lbl">Audit Trail</div></div>
 
-            <!-- Screen A: Insights list -->
-            <div id="p4screenA" style="display:flex;flex-direction:column;flex:1;overflow:hidden">
-              <div class="p4-list-header">
-                <div class="p4-search"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><circle cx="5" cy="5" r="3.5" stroke="var(--ins-text-inactive)" stroke-width="1.2"/><path d="M8 8l2 2" stroke="var(--ins-text-inactive)" stroke-width="1.2" stroke-linecap="round"/></svg><span>Search insights…</span></div>
-                <div class="p4-list-meta">
-                  <span class="p4-count">35 insights</span><span class="p4-select-all">Select All</span>
-                  <div class="p4-list-actions">
-                    <span class="p4-la-btn"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><circle cx="13" cy="3" r="2" stroke="currentColor" stroke-width="1.4"/><circle cx="3" cy="8" r="2" stroke="currentColor" stroke-width="1.4"/><circle cx="13" cy="13" r="2" stroke="currentColor" stroke-width="1.4"/><path d="M5 7l6-3M5 9l6 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg> Share</span>
-                    <span class="p4-la-btn"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M8 2v8M5 8l3 3 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg> Download</span>
-                    <span class="p4-la-btn p4-la-delete"><svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 4h10M5 4V2.5h4V4M3 4l.7 7.5a1 1 0 001 .9h4.6a1 1 0 001-.9L11 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg> Delete</span>
+            <div class="p4at-body">
+              <!-- Question -->
+              <div class="cs-u"><div class="bubble-u">What's our CAC for last month?</div></div>
+
+              <!-- Answer with chart -->
+              <div class="cs-ai">
+                <div class="ai-badge">In</div>
+                <div class="bubble-ai p2-chart-bubble">
+                  <div style="font-size:12px;color:var(--ins-text-body);margin-bottom:8px">Total <span class="p4at-cac-token" id="p4cacToken">@cac</span> for Oct 1–31: <strong style="color:var(--ins-text-heading)">$87.65</strong>, up <strong style="color:var(--ins-status-error-fg)">+8.2%</strong> vs prior month.</div>
+                  <div class="p2-chart">
+                    <div class="p2-chart-title">CAC by Channel — Oct 2024</div>
+                    <div class="p2-cards">
+                      <div class="p2-card"><div class="p2-card-lbl">Total</div><div class="p2-card-val" style="color:var(--ins-text-heading)">$87.65</div></div>
+                      <div class="p2-card"><div class="p2-card-lbl">Google Ads</div><div class="p2-card-val" style="color:var(--ins-status-error-fg)">$135.67 ↑</div></div>
+                      <div class="p2-card"><div class="p2-card-lbl">Organic</div><div class="p2-card-val" style="color:var(--ins-status-success-fg)">$54.31 ↓</div></div>
+                      <div class="p2-card"><div class="p2-card-lbl">Meta</div><div class="p2-card-val" style="color:var(--ins-status-success-fg)">$75.45 ↓</div></div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="p4-list" id="p4list">
-                <div class="p4-insight-row" id="p4row0">
-                  <div class="p4-row-check"></div>
-                  <div class="p4-row-body">
-                    <div class="p4-row-title"><span class="p4-row-name">CAC Spike — Google Ads</span><span class="p4-badge p4-badge-cac">@cac</span><span class="p4-badge p4-badge-src">📊 Stripe</span></div>
-                    <div class="p4-row-desc">Google Ads CAC up 12% vs prior month. Organic outperforming — consider budget reallocation.</div>
-                  </div>
-                  <div class="p4-row-meta"><div class="p4-avatar-sm">RG</div><span class="p4-row-time">just now</span><span class="p4-dots">···</span></div>
+
+              <!-- Trust panel — collapsed by default -->
+              <div class="p4at-trust" id="p4trust">
+                <div class="p4at-trust-hd" id="p4trustHd">
+                  <span class="p4at-trust-icon">🛡️</span>
+                  <span class="p4at-trust-title">Why you can trust this</span>
+                  <span class="p4at-trust-toggle">▾</span>
                 </div>
-                <div class="p4-insight-row" id="p4row1">
-                  <div class="p4-row-check"></div>
-                  <div class="p4-row-body">
-                    <div class="p4-row-title"><span class="p4-row-name">SMB Churn Risk Analysis</span><span class="p4-badge p4-badge-rev">@Revenue</span><span class="p4-badge p4-badge-src">🗄 SQL Server</span></div>
-                    <div class="p4-row-desc">MRR increased 23% month-over-month, driven primarily by enterprise segment expansion.</div>
+                <div class="p4at-trust-body">
+                  <div class="p4at-row">
+                    <div class="p4at-row-lbl">Definition</div>
+                    <code class="p4at-formula" id="p4formula">@cac = SUM(ad_spend) / COUNT(new_customers)</code>
+                    <span class="p4at-cert">✓ Certified</span>
                   </div>
-                  <div class="p4-row-meta"><div class="p4-avatar-sm">RG</div><span class="p4-row-time">6h ago</span><span class="p4-dots">···</span></div>
-                </div>
-                <div class="p4-insight-row" id="p4row2">
-                  <div class="p4-row-check"></div>
-                  <div class="p4-row-body">
-                    <div class="p4-row-title"><span class="p4-row-name">Q4 Revenue Performance</span><span class="p4-badge p4-badge-rev">@Revenue</span><span class="p4-badge p4-badge-src">🗄 SQL Server</span></div>
-                    <div class="p4-row-desc">MRR increased 23% month-over-month, driven primarily by enterprise segment expansion.</div>
+                  <div class="p4at-row">
+                    <div class="p4at-row-lbl">Sources</div>
+                    <div class="p4at-sources">
+                      <span class="p4at-src" id="p4srcStripe">
+                        <span class="p4at-src-icon" style="background:#635BFF;color:#fff">S</span>
+                        Stripe.charges
+                        <span class="p4at-src-count">12,847 rows</span>
+                      </span>
+                      <span class="p4at-src" id="p4srcGA">
+                        <span class="p4at-src-icon" style="background:#4285F4;color:#fff">GA</span>
+                        Google Ads.spend_daily
+                        <span class="p4at-src-count">348 rows</span>
+                      </span>
+                    </div>
                   </div>
-                  <div class="p4-row-meta"><div class="p4-avatar-sm">MT</div><span class="p4-row-time">1d ago</span><span class="p4-dots">···</span></div>
-                </div>
-                <div class="p4-insight-row" id="p4row3">
-                  <div class="p4-row-check"></div>
-                  <div class="p4-row-body">
-                    <div class="p4-row-title"><span class="p4-row-name">Conversion Funnel Analysis</span><span class="p4-badge p4-badge-conv">@conv_rate</span><span class="p4-badge p4-badge-src">📊 Stripe</span></div>
-                    <div class="p4-row-desc">MRR increased 23% month-over-month, driven primarily by enterprise segment expansion.</div>
+                  <div class="p4at-row p4at-meta">
+                    <div><span class="p4at-meta-lbl">Period:</span> Oct 1–31, 2024</div>
+                    <div><span class="p4at-meta-lbl">Owner:</span> Sarah Chen · validated 2d ago</div>
                   </div>
-                  <div class="p4-row-meta"><div class="p4-avatar-sm">SC</div><span class="p4-row-time">2d ago</span><span class="p4-dots">···</span></div>
                 </div>
               </div>
             </div>
 
-            <!-- Screen B: Insight detail -->
-            <div id="p4screenB" style="display:none;flex-direction:column;flex:1;overflow:hidden">
-              <div class="p4-detail-header">
-                <div>
-                  <div class="p4-detail-title">CAC Spike — Google Ads <span class="p4-edit-icon">✎</span></div>
-                  <div class="p4-detail-meta">Period: <strong>Oct 1–31, 2024</strong> · Sources: <strong>Stripe, Google Ads</strong></div>
-                </div>
-                <div class="p4-detail-actions">
-                  <div class="p4-detail-btn"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><circle cx="13" cy="3" r="2" stroke="currentColor" stroke-width="1.4"/><circle cx="3" cy="8" r="2" stroke="currentColor" stroke-width="1.4"/><circle cx="13" cy="13" r="2" stroke="currentColor" stroke-width="1.4"/><path d="M5 7l6-3M5 9l6 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
-                  <div class="p4-detail-btn p4-slack-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M14.5 2a2.5 2.5 0 00-2.5 2.5V9h5V4.5A2.5 2.5 0 0014.5 2z" fill="#E01E5A"/><path d="M2 9.5A2.5 2.5 0 004.5 12H9V7H4.5A2.5 2.5 0 002 9.5z" fill="#36C5F0"/><path d="M22 14.5A2.5 2.5 0 0019.5 12H15v5h4.5A2.5 2.5 0 0022 14.5z" fill="#2EB67D"/><path d="M9.5 22A2.5 2.5 0 0012 19.5V15H7v4.5A2.5 2.5 0 009.5 22z" fill="#ECB22E"/></svg></div>
-                  <div class="p4-detail-btn p4-jira-btn" id="p4jiraBtn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 9.5l1.5 1.5L12 4.5l7.5 6.5L21 9.5 12 2z" fill="#2D72D2"/><path d="M12 7L5 13l1.5 1.5L12 10l5.5 4.5L19 13 12 7z" fill="#2D72D2" opacity=".7"/><path d="M12 12l-5 4 1.5 1.5L12 15.5l3.5 2 1.5-1.5L12 12z" fill="#2D72D2" opacity=".4"/></svg></div>
-                  <div class="p4-detail-btn-sep"></div>
-                  <div class="p4-detail-btn p4-del-btn"><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 4h10M5 4V2.5h4V4M3 4l.7 7.5a1 1 0 001 .9h4.6a1 1 0 001-.9L11 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
-                </div>
-              </div>
-              <div class="p4-detail-body" id="p4detailBody">
-                <div class="p4-summary-card">
-                  <div class="p4-summary-hd"><span class="p4-ai-dot"></span> Summary <span class="p4-summary-sub">Generated by AI based on validated trends</span></div>
-                  <div class="p4-summary-section"><div class="p4-ss-title">CAC Spike — Google Ads</div><div class="p4-ss-text">Google Ads cost-per-acquisition increased 12% month-over-month, reaching $135.67 vs $121.00 prior month. Organic channel continues to outperform at $54.31 CAC — 60% lower than paid.</div></div>
-                  <div class="p4-summary-section"><div class="p4-ss-title">Channel Breakdown</div><div class="p4-ss-text">Meta Ads holding steady at $75.45. Overall blended CAC rose to $87.65 (+8.2%). Google Ads now represents 42% of total acquisition spend with declining efficiency.</div></div>
-                  <div class="p4-summary-section"><div class="p4-ss-title">Attention Point</div><div class="p4-ss-text">Google Ads CPM increased 18% in Oct, correlating with Q4 seasonality and increased competition. This trend is likely to persist through November.</div></div>
-                  <div class="p4-summary-section"><div class="p4-ss-title">AI Recommendation</div><div class="p4-ss-text">Reallocate 15–20% of Google Ads budget to organic content and SEO initiatives. Organic channel has demonstrated scalable CAC at $54 — 3× more efficient than current paid average.</div></div>
-                </div>
-                <div class="p4-mc-row">
-                  <div class="p4-mini-card"><div class="p4-mc-lbl2">Total CAC</div><div class="p4-mc-val2">$87.65</div><div class="p4-mc-d2 p4-up">+8.2%</div></div>
-                  <div class="p4-mini-card"><div class="p4-mc-lbl2">Google Ads</div><div class="p4-mc-val2">$135.67</div><div class="p4-mc-d2 p4-up">+12.1%</div></div>
-                  <div class="p4-mini-card"><div class="p4-mc-lbl2">Organic</div><div class="p4-mc-val2">$54.31</div><div class="p4-mc-d2 p4-dn">−6.4%</div></div>
-                  <div class="p4-mini-card"><div class="p4-mc-lbl2">Meta Ads</div><div class="p4-mc-val2">$75.45</div><div class="p4-mc-d2 p4-dn">−2.1%</div></div>
-                </div>
-                <div class="p4-trends">
-                  <div class="p4-trends-title">Key Trends</div>
-                  <div class="p4-trend-block p4-trend-pos">
-                    <div class="p4-trend-label">Positive Trends</div>
-                    <div class="p4-trend-item">Organic CAC improved 6.4% driven by improved content strategy and SEO investments made in Q3.</div>
-                    <div class="p4-trend-item">Meta Ads showing stable efficiency with slight improvement despite increased Q4 competition.</div>
-                    <div class="p4-trend-item">Total lead volume up 18% — growth is accelerating even as blended CAC rises moderately.</div>
-                  </div>
-                  <div class="p4-trend-block p4-trend-neg">
-                    <div class="p4-trend-label">Areas for Attention</div>
-                    <div class="p4-trend-item">Google Ads CPM rose 18% in October — Q4 seasonality likely to sustain pressure through November.</div>
-                    <div class="p4-trend-item">Google Ads efficiency declining for 3rd consecutive month. Structural issue vs seasonal effect unclear.</div>
-                    <div class="p4-trend-item">Budget concentration risk: 42% of spend in single underperforming channel.</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Jira modal -->
-          <div class="p4-jira-overlay" id="p4jiraModal" style="display:none;opacity:0">
-            <div class="p4-jira-modal">
-              <div class="p4-jm-header">
-                <div style="display:flex;align-items:center;gap:8px"><div class="p4-jm-icon">J</div><span class="p4-jm-title">Create Issue</span></div>
-                <span class="p4-jm-close">✕</span>
-              </div>
-              <div class="p4-jm-row2">
-                <div class="p4-jm-field"><div class="p4-jm-lbl">Project</div><div class="p4-jm-select"><span class="p4-proj-icon">P</span> Growth Team (GRW) <span class="p4-chevron">▾</span></div></div>
-                <div class="p4-jm-field"><div class="p4-jm-lbl">Issue Type</div><div class="p4-jm-select"><span class="p4-bug-dot"></span> Task <span class="p4-chevron">▾</span></div></div>
-              </div>
-              <div class="p4-jm-field"><div class="p4-jm-lbl">Summary</div><div class="p4-jm-input" id="p4jmSummary"></div></div>
-              <div class="p4-jm-field"><div class="p4-jm-lbl">Description</div><div class="p4-jm-textarea">Google Ads CAC up 12% vs prior month ($135.67 vs $121.00). Organic at $54.31 — recommend reallocating 15–20% of Google budget to content &amp; SEO.<br><br>Key findings:<br>· Blended CAC: $87.65 (+8.2%)<br>· Google Ads: $135.67 (+12.1%)</div></div>
-              <div class="p4-jm-attach"><div class="p4-jm-attach-icon">📊</div><div><div style="font-size:10.5px;font-weight:500;color:var(--ins-text-heading)">CAC Spike — Google Ads</div><div style="font-size:9.5px;color:var(--ins-text-inactive)">Link will be attached to issue</div></div></div>
-              <div class="p4-jm-row2">
-                <div class="p4-jm-field"><div class="p4-jm-lbl">Assignee</div><div class="p4-jm-select"><span style="color:var(--ins-text-inactive)">👤</span> Unassigned <span class="p4-chevron">▾</span></div></div>
-                <div class="p4-jm-field"><div class="p4-jm-lbl">Priority</div><div class="p4-jm-select"><span style="color:var(--ins-color-amber-400)">↑</span> High <span class="p4-chevron">▾</span></div></div>
-              </div>
-              <div class="p4-jm-footer">
-                <button class="p4-jm-cancel">Cancel</button>
-                <button class="p4-jm-create" id="p4jmCreate">Create Issue</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Success toast -->
-          <div class="p4-success-toast" id="p4successToast" style="display:none;opacity:0">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l2.5 2.5L10 3" stroke="var(--ins-status-success-fg)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>GRW-47 created · Growth team notified</span>
-          </div>
-
-          <!-- Cursor -->
-          <div class="sc-cursor" id="p4cursor" style="display:none;position:absolute;z-index:999;pointer-events:none">
-            <svg width="18" height="18" viewBox="0 0 18 18"><path d="M2 2l10 4-4 2-2 4z" fill="white" stroke="#111" stroke-width="1"/></svg>
-          </div>
-        </div>
-      </div><!-- /sc-preview -->
+          </div><!-- /aw -->
+          <!-- Cursor outside .aw so not clipped -->
+          <svg id="p4cursor" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none;position:absolute;width:18px;height:18px;z-index:999;pointer-events:none;filter:drop-shadow(0 1px 3px rgba(0,0,0,.5))">
+            <path d="M2 2l9.5 5-4 1.4L5.8 13 2 2z" fill="white" stroke="#222" stroke-width=".7" stroke-linejoin="round"/>
+          </svg>
+        </div><!-- /sc-preview -->
 
       <!-- STEPS RIGHT -->
       <div class="sc-steps">
