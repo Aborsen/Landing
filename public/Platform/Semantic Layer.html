@@ -200,7 +200,7 @@ function Header() {
     'Memory & Storage': 'Memory & Storage.html',
     'For RevOps & BizOps': '../Solutions/RevOps BizOps.html',
     'For Founders & CEOs': '../Solutions/Founders CEOs.html',
-    'For Marketing Teams': '../Solutions/Marketing Teams.html',
+    'For CMOs & Marketers': '../Solutions/Marketing Teams.html',
     'For Product Teams': '../Solutions/Product Teams.html',
     'For Data & Analytics Teams': '../Solutions/Data Analytics Teams.html',
     'For Operations & Finance': '../Solutions/Operations Finance.html',
@@ -237,7 +237,7 @@ function Header() {
         { heading: 'BY ROLE', items: [
           { label: 'For RevOps & BizOps', desc: 'Revenue operations and business intelligence', icon: 'dollar' },
           { label: 'For Founders & CEOs', desc: 'Strategic KPIs and company health at a glance', icon: 'star' },
-          { label: 'For Marketing Teams', desc: 'Campaign analytics and cross-channel attribution', icon: 'pulse' },
+          { label: 'For CMOs & Marketers', desc: 'Campaign analytics and cross-channel attribution', icon: 'pulse' },
         ]},
         { heading: 'BY TEAM', items: [
           { label: 'For Product Teams', desc: 'Usage metrics and feature adoption tracking', icon: 'box' },
@@ -909,7 +909,7 @@ const CONNECTORS = {
     { name:'Board NPS',            abbr:'BNP', color:'#1f9e42', bg:'rgba(31,158,66,.12)',   desc:'Board satisfaction and alignment' },
     { name:'Valuation Multiple',   abbr:'VM',  color:'#5e6ad2', bg:'rgba(94,106,210,.12)',  desc:'Revenue multiple vs peer set' },
   ],
-  'Marketing Teams': [
+  'CMOs & Marketers': [
     { name:'CAC by Channel',       abbr:'CAC', color:'#f9ab00', bg:'rgba(249,171,0,.12)',   desc:'Acquisition cost by channel' },
     { name:'ROAS',                 abbr:'ROA', color:'#4285f4', bg:'rgba(66,133,244,.12)',  desc:'Revenue per dollar of ad spend' },
     { name:'MQL Conv. Rate',       abbr:'MQL', color:'#1877f2', bg:'rgba(24,119,242,.12)',  desc:'MQLs converting to pipeline' },
@@ -1591,7 +1591,7 @@ function Footer() {
     'Memory & Storage': 'Memory & Storage.html',
     'For RevOps & BizOps': '../Solutions/RevOps BizOps.html',
     'For Founders & CEOs': '../Solutions/Founders CEOs.html',
-    'For Marketing Teams': '../Solutions/Marketing Teams.html',
+    'For CMOs & Marketers': '../Solutions/Marketing Teams.html',
     'For Product Teams': '../Solutions/Product Teams.html',
     'For Data & Analytics Teams': '../Solutions/Data Analytics Teams.html',
     'For Operations & Finance': '../Solutions/Operations Finance.html',
@@ -1653,7 +1653,7 @@ function Footer() {
             <div>
               <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Solutions</h4>
               <ul className="flex flex-col gap-2.5">
-                {['For RevOps & BizOps', 'For Founders & CEOs', 'For Marketing Teams', 'For Product Teams', 'For Data & Analytics Teams', 'For Operations & Finance'].map(link => (
+                {['For RevOps & BizOps', 'For Founders & CEOs', 'For CMOs & Marketers', 'For Product Teams', 'For Data & Analytics Teams', 'For Operations & Finance'].map(link => (
                   <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
               </ul>
