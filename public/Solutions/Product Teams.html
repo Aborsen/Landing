@@ -140,13 +140,7 @@ section { position: relative; }
   background: rgba(255,255,255,.025);
   border: 1px solid rgba(255,255,255,.06);
   border-radius: 12px;
-  transition: all .18s ease;
   cursor: default;
-}
-.connector-card:hover {
-  background: rgba(255,255,255,.05);
-  border-color: rgba(255,255,255,.12);
-  transform: translateY(-1px);
 }
 .connector-icon {
   width: 36px; height: 36px;
@@ -185,7 +179,40 @@ section { position: relative; }
   [data-pain-grid] { grid-template-columns: 1fr !important; }
   [data-connectors-grid] { grid-template-columns: repeat(2,1fr) !important; }
   [data-compare-grid] { grid-template-columns: 1fr !important; }
+  [data-spotlight-grid] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  [data-spotlight-grid] > [data-spotlight-text] { order: 0 !important; }
+  [data-spotlight-grid] > [data-spotlight-visual] { order: 1 !important; }
+  [data-usecase-grid] { grid-template-columns: 1fr !important; }
+  [data-testimonials-grid] { grid-template-columns: 1fr !important; }
 }
+
+/* ── FAQ ── */
+.faq-row {
+  border-top: 1px solid rgba(255,255,255,.06);
+  transition: all .2s;
+}
+.faq-row:last-child { border-bottom: 1px solid rgba(255,255,255,.06); }
+.faq-q {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 22px 4px;
+  background: transparent; border: none;
+  color: #E8F2F5; font-size: 16px; font-weight: 500;
+  cursor: pointer; text-align: left;
+  font-family: 'Geist', sans-serif;
+  transition: color .15s;
+}
+.faq-q:hover { color: #0EC4C1; }
+.faq-q svg { transition: transform .25s ease; flex-shrink: 0; }
+.faq-q.open svg { transform: rotate(180deg); color: #0EC4C1; }
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height .3s ease;
+  color: #7FA0AC; font-size: 14.5px; line-height: 1.7;
+}
+.faq-a.open { max-height: 400px; padding: 0 4px 22px; }
 </style>
 </head>
 <body>
@@ -473,7 +500,7 @@ function Header() {
   );
 }
 
-/* ── CHART COMPONENTS ── */
+/* ── CHART COMPONENTS (verbatim from AI Chat.html) ── */
 function MiniBarChart({ data, color }) {
   const max = Math.max(...data);
   return (
@@ -494,7 +521,7 @@ function MiniBarChart({ data, color }) {
 function Hero() {
   return (
     <section style={{
-      padding:'120px 0 80px',
+      padding:'96px 0 56px',
       position:'relative',
       background:'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(9,160,157,.06) 0%, transparent 70%)',
     }}>
@@ -513,13 +540,13 @@ function Hero() {
             </div>
 
             <h1 className="fu1" style={{fontSize:'clamp(36px,4.5vw,58px)',fontWeight:500,letterSpacing:'-.03em',lineHeight:1.12,marginBottom:'20px'}}>
-              <span style={{color:'#E8F2F5'}}>"Usage insights on demand,"</span>
+              <span style={{color:'#E8F2F5'}}>"Stop guessing"</span>
               <br/>
-              <span style={{color:'#0EC4C1'}}>"without the data request."</span>
+              <span style={{color:'#0EC4C1'}}>"what users actually do."</span>
             </h1>
 
             <p className="fu2" style={{fontSize:'clamp(16px,1.2vw,18px)',color:'rgba(255,255,255,.65)',lineHeight:1.65,marginBottom:'28px',maxWidth:'480px'}}>
-              Stop waiting 2 weeks for a data pull every time you need feature adoption numbers. Ask any product metric in plain English — Insightis queries your event data and billing instantly.
+              Stop waiting two weeks for a data pull every time you need feature adoption, retention, or funnel numbers. Ask any product question in plain English — Insightis answers from your event data, billing, and CRM in seconds.
             </p>
 
             <div className="fu3" style={{display:'flex',gap:'12px',flexWrap:'wrap',marginBottom:'28px'}}>
@@ -548,63 +575,207 @@ function Hero() {
               </a>
             </div>
 
-            <div className="fu4" style={{display:'flex',gap:'20px',flexWrap:'wrap'}}>
-              {['Real-time feature usage','Cohort & retention data','No SQL required'].map((t,i) => (
-                <span key={i} style={{display:'flex',alignItems:'center',gap:'5px',fontSize:'12px',color:'#7FA0AC',fontFamily:'Geist Mono,monospace'}}>
-                  <span style={{color:'#09A09D'}}>✓</span>{t}
-                </span>
-              ))}
-            </div>
           </div>
 
-          {/* Right: static chat mock */}
-          <div className="fu2" style={{
-            background:'rgba(13,17,23,0.9)',
-            border:'1px solid rgba(255,255,255,0.08)',
-            borderRadius:'20px',
-            overflow:'hidden',
-            backdropFilter:'blur(20px)',
-            boxShadow:'0 24px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04)',
-          }}>
-            {/* Chat window chrome */}
-            <div style={{padding:'14px 18px',borderBottom:'1px solid rgba(255,255,255,0.06)',display:'flex',alignItems:'center',gap:'10px'}}>
-              <div style={{display:'flex',gap:'5px'}}>
-                {['#FF5F57','#FFBD2E','#28C840'].map((c,i) => (
-                  <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
+          {/* Right: product-flavored hero visual (static) */}
+          <div className="fu2" style={{position:'relative'}}>
+            {/* Ambient glow — lavender-leaning to differentiate from Analytics */}
+            <div style={{
+              position:'absolute', inset:'-60px',
+              background:'radial-gradient(circle at 25% 25%, rgba(167,139,250,.18) 0%, transparent 55%), radial-gradient(circle at 80% 80%, rgba(9,160,157,.12) 0%, transparent 50%)',
+              pointerEvents:'none',
+              filter:'blur(44px)',
+              zIndex:0,
+            }}/>
+
+            {/* Main panel */}
+            <div style={{
+              position:'relative',
+              background:'linear-gradient(135deg, rgba(13,17,23,0.95) 0%, rgba(15,20,28,0.92) 100%)',
+              border:'1px solid rgba(255,255,255,0.08)',
+              borderRadius:'24px',
+              padding:'24px',
+              backdropFilter:'blur(24px)',
+              WebkitBackdropFilter:'blur(24px)',
+              boxShadow:'0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.05)',
+              overflow:'hidden',
+              zIndex:1,
+            }}>
+              {/* Top gradient line — lavender accent */}
+              <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(167,139,250,.55),transparent)',zIndex:1}}/>
+
+              {/* Window chrome */}
+              <div style={{
+                margin:'-24px -24px 16px',
+                padding:'10px 14px',
+                borderBottom:'1px solid rgba(255,255,255,0.06)',
+                background:'rgba(255,255,255,0.015)',
+                display:'flex',
+                alignItems:'center',
+                position:'relative',
+              }}>
+                <div style={{display:'flex',gap:'6px'}}>
+                  <div style={{width:'10px',height:'10px',borderRadius:'50%',background:'#FF5F57'}}/>
+                  <div style={{width:'10px',height:'10px',borderRadius:'50%',background:'#FEBC2E'}}/>
+                  <div style={{width:'10px',height:'10px',borderRadius:'50%',background:'#28C840'}}/>
+                </div>
+                <span style={{
+                  position:'absolute',left:'50%',top:'50%',
+                  transform:'translate(-50%,-50%)',
+                  fontFamily:'Geist Mono,monospace',
+                  fontSize:'10.5px',
+                  color:'#7FA0AC',
+                  letterSpacing:'.08em',
+                  whiteSpace:'nowrap',
+                }}>Insightis — For Product Teams</span>
+              </div>
+
+              {/* Header */}
+              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'14px'}}>
+                <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
+                  <div style={{width:'6px',height:'6px',borderRadius:'50%',background:'#A78BFA',boxShadow:'0 0 8px rgba(167,139,250,.6)'}}/>
+                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10.5px',color:'#7FA0AC',letterSpacing:'.08em',textTransform:'uppercase'}}>Funnel · May cohort</span>
+                </div>
+                <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#A78BFA',padding:'3px 9px',borderRadius:'999px',background:'rgba(167,139,250,.1)',border:'1px solid rgba(167,139,250,.25)',letterSpacing:'.08em',textTransform:'uppercase'}}>cohort</span>
+              </div>
+
+              {/* Headline + caption */}
+              <h4 style={{fontSize:'17px',fontWeight:500,color:'#E8F2F5',marginBottom:'6px',letterSpacing:'-.015em',lineHeight:1.35}}>
+                Onboarding cliff at <span style={{color:'#A78BFA'}}>step 3</span>
+              </h4>
+              <p style={{fontSize:'12.5px',color:'#7FA0AC',lineHeight:1.6,marginBottom:'16px'}}>
+                <span style={{color:'#0EC4C1',fontFamily:'Geist Mono,monospace',fontSize:'11.5px'}}>workspace_created</span> dropped <span style={{color:'#F87171',fontWeight:500}}>−41%</span>. 87% on mobile. New invite flow shipped Tuesday.
+              </p>
+
+              {/* Funnel breakdown */}
+              <div style={{
+                background:'rgba(255,255,255,.018)',
+                border:'1px solid rgba(255,255,255,.05)',
+                borderRadius:'14px',
+                padding:'14px 14px 12px',
+                marginBottom:'14px',
+              }}>
+                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'12px'}}>
+                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#6E8D9A',letterSpacing:'.06em',textTransform:'uppercase'}}>activation funnel</span>
+                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#7FA0AC'}}>n = 12,840</span>
+                </div>
+                <div style={{display:'flex',flexDirection:'column',gap:'7px'}}>
+                  {[
+                    {label:'sign_up',           pct:100, val:'12,840', cliff:false},
+                    {label:'email_verified',    pct:92,  val:'11,816', cliff:false},
+                    {label:'workspace_created', pct:51,  val:'6,548',  cliff:true},
+                    {label:'first_invite',      pct:38,  val:'4,879',  cliff:false},
+                    {label:'activated',         pct:31,  val:'3,980',  cliff:false},
+                  ].map((s,i) => (
+                    <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
+                      <span style={{
+                        fontFamily:'Geist Mono,monospace',
+                        fontSize:'10px',
+                        color:s.cliff?'#F87171':'#7FA0AC',
+                        width:'112px',flexShrink:0,
+                        whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',
+                      }}>{s.label}</span>
+                      <div style={{flex:1,height:'14px',background:'rgba(255,255,255,.04)',borderRadius:'3px',overflow:'hidden',position:'relative'}}>
+                        <div style={{
+                          width:`${s.pct}%`,
+                          height:'100%',
+                          background:s.cliff
+                            ? 'linear-gradient(90deg, rgba(248,113,113,.45), rgba(248,113,113,.75))'
+                            : 'linear-gradient(90deg, rgba(14,196,193,.3), rgba(14,196,193,.6))',
+                          borderRadius:'3px',
+                        }}/>
+                      </div>
+                      <span style={{
+                        fontFamily:'Geist Mono,monospace',
+                        fontSize:'10.5px',
+                        color:s.cliff?'#F87171':'#C0D4DC',
+                        width:'34px',textAlign:'right',flexShrink:0,
+                      }}>{s.pct}%</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Metric tiles — product-relevant */}
+              <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'8px'}}>
+                {[
+                  {label:'Cliff step', val:'#3',       color:'#F87171'},
+                  {label:'Cohort',     val:'May new',  color:'#A78BFA'},
+                  {label:'Mobile',     val:'87%',      color:'#0EC4C1'},
+                ].map((m,i) => (
+                  <div key={i} style={{
+                    background:'rgba(255,255,255,.025)',
+                    border:'1px solid rgba(255,255,255,.06)',
+                    borderRadius:'10px',
+                    padding:'10px 12px',
+                  }}>
+                    <div style={{fontSize:'9.5px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'4px'}}>{m.label}</div>
+                    <div style={{fontSize:'14px',fontWeight:500,color:m.color,fontFamily:'Geist Mono,monospace',letterSpacing:'-.01em'}}>{m.val}</div>
+                  </div>
                 ))}
               </div>
-              <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'#6E8D9A',fontFamily:'Geist Mono, monospace'}}>
-                insightis — ai chat
-              </div>
-              <div style={{display:'flex',alignItems:'center',gap:5,padding:'3px 8px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'5px'}}>
-                <div style={{width:'5px',height:'5px',borderRadius:'50%',background:'#22C55E',boxShadow:'0 0 6px #22C55E'}}/>
-                <span style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'#0EC4C1',fontWeight:500}}>Gemini Pro</span>
+            </div>
+
+            {/* Floating top-right: Experiment running card (lavender — distinct from Analytics) */}
+            <div style={{
+              position:'absolute',
+              top:'-18px',
+              right:'-14px',
+              background:'linear-gradient(135deg, rgba(167,139,250,.22) 0%, rgba(13,17,23,0.95) 100%)',
+              border:'1px solid rgba(167,139,250,.4)',
+              borderRadius:'14px',
+              padding:'10px 14px',
+              boxShadow:'0 16px 40px rgba(167,139,250,0.18), 0 8px 24px rgba(0,0,0,0.5)',
+              backdropFilter:'blur(16px)',
+              WebkitBackdropFilter:'blur(16px)',
+              display:'flex',alignItems:'center',gap:'10px',
+              transform:'rotate(2.5deg)',
+              zIndex:2,
+            }}>
+              <div style={{
+                width:'8px',height:'8px',borderRadius:'50%',background:'#A78BFA',
+                flexShrink:0,
+              }}/>
+              <div>
+                <div style={{fontSize:'9.5px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase'}}>Experiment</div>
+                <div style={{fontSize:'12.5px',color:'#A78BFA',fontWeight:500,fontFamily:'Geist Mono,monospace',marginTop:'1px'}}>onboarding_v3</div>
               </div>
             </div>
 
-            {/* Messages */}
-            <div style={{padding:'18px',display:'flex',flexDirection:'column',gap:'10px',minHeight:'200px'}}>
-              <div className="chat-bubble-user">
-                Which features are most used by retained customers?
+            {/* Floating bottom-left: Cohort retention curve (sparkline — distinct from Analytics' bars) */}
+            <div style={{
+              position:'absolute',
+              bottom:'-22px',
+              left:'-18px',
+              background:'linear-gradient(135deg, rgba(9,160,157,.2) 0%, rgba(13,17,23,0.95) 100%)',
+              border:'1px solid rgba(9,160,157,.4)',
+              borderRadius:'14px',
+              padding:'12px 14px',
+              boxShadow:'0 16px 40px rgba(9,160,157,0.18), 0 8px 24px rgba(0,0,0,0.5)',
+              backdropFilter:'blur(16px)',
+              WebkitBackdropFilter:'blur(16px)',
+              transform:'rotate(-2deg)',
+              minWidth:'168px',
+              zIndex:2,
+            }}>
+              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'8px'}}>
+                <span style={{fontSize:'9.5px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase'}}>Retention</span>
+                <span style={{fontSize:'10.5px',color:'#0EC4C1',fontFamily:'Geist Mono,monospace',fontWeight:500}}>W12 · 28%</span>
               </div>
-              <div className="chat-bubble-ai">
-                Retained customers use Saved Reports 3.7× more than churned accounts. Slack Alerts adoption is 61% among 12-month users vs. 18% for churned. These are your two strongest activation signals.
-                <MiniBarChart data={[18, 40, 44, 61, 78]} color="#0EC4C1"/>
-              </div>
-            </div>
-
-            {/* Input bar */}
-            <div style={{padding:'12px 16px',borderTop:'1px solid rgba(255,255,255,0.06)',display:'flex',alignItems:'center',gap:'8px'}}>
-              <div style={{flex:1,background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.08)',borderRadius:'10px',padding:'9px 12px',fontSize:'13px',color:'#6E8D9A',fontFamily:'Geist,sans-serif'}}>
-                What product metric do you need answered?
-              </div>
-              <div style={{display:'flex',alignItems:'center',gap:'5px'}}>
-                <div style={{width:'28px',height:'28px',borderRadius:'7px',background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.08)',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer'}}>
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M14 10a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h1l2-2h2l2 2h1a2 2 0 012 2v4z" stroke="#6E8D9A" strokeWidth="1.3"/></svg>
-                </div>
-                <div style={{width:'28px',height:'28px',borderRadius:'7px',background:'linear-gradient(135deg,#09A09D,#07807E)',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer',boxShadow:'0 0 10px rgba(9,160,157,.3)'}}>
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                </div>
+              <svg viewBox="0 0 140 32" width="100%" height="28" preserveAspectRatio="none" style={{display:'block',marginBottom:'4px'}}>
+                <defs>
+                  <linearGradient id="retn-fill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#0EC4C1" stopOpacity="0.32"/>
+                    <stop offset="100%" stopColor="#0EC4C1" stopOpacity="0"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0,2 C20,12 40,18 60,22 C80,25 100,27 120,28 L140,28 L140,32 L0,32 Z" fill="url(#retn-fill)"/>
+                <path d="M0,2 C20,12 40,18 60,22 C80,25 100,27 120,28 L140,28" fill="none" stroke="#0EC4C1" strokeWidth="1.6" strokeLinecap="round"/>
+                <circle cx="0" cy="2" r="2" fill="#0EC4C1"/>
+                <circle cx="140" cy="28" r="2" fill="#0EC4C1"/>
+              </svg>
+              <div style={{display:'flex',justifyContent:'space-between',fontSize:'9px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',letterSpacing:'.04em'}}>
+                <span>W0</span><span>W4</span><span>W8</span><span>W12</span>
               </div>
             </div>
           </div>
@@ -618,34 +789,54 @@ function Hero() {
 function PainPoints() {
   const pains = [
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="#0EC4C1" strokeWidth="1.5"/><circle cx="12" cy="12" r="3" stroke="#0EC4C1" strokeWidth="1.5"/></svg>,
-      title: 'Feature adoption is a black box',
-      desc: 'You shipped a feature 3 months ago. Is anyone using it? You don\'t know without filing a data request and waiting two weeks for the answer.',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z" stroke="#0EC4C1" strokeWidth="1.5"/>
+        <path d="M9 8h6M9 12h6M9 16h4" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M12 4v4M9 6h6" stroke="#0EC4C1" strokeWidth="1.3" strokeLinecap="round" opacity=".5"/>
+      </svg>,
+      title: '90% of requests are repetitive',
+      desc: 'Your team spends most of its time answering the same questions from sales, marketing, and product — questions that should be self-serve but aren\'t.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><polyline points="16 18 22 12 16 6" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><polyline points="8 6 2 12 8 18" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
-      title: 'Retention analysis requires SQL',
-      desc: 'Understanding which features drive 90-day retention means writing complex SQL joins across event, user, and cohort tables. You\'re blocked without a data engineer.',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M8 3H5a2 2 0 0 0-2 2v3m6-5h6M8 3v18m8-18v18M16 3h3a2 2 0 0 1 2 2v3M2 9h20M2 15h20M2 21h3m16 0h3" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
+      </svg>,
+      title: 'Every team defines metrics differently',
+      desc: 'Marketing defines CAC one way. Finance defines it another. Without a governed Semantic Layer, every team has their own version of the truth.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><polyline points="17 18 23 18 23 12" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
-      title: 'Onboarding drop-off is hard to diagnose',
-      desc: 'You know users are churning before they activate. But which step causes the most abandonment, and why, requires a full analytics deep-dive.',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
+      </svg>,
+      title: 'Pipeline monitoring is reactive',
+      desc: 'You find out about data freshness issues and pipeline failures when a stakeholder complains that their dashboard is showing wrong numbers.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#0EC4C1" strokeWidth="1.5"/><polyline points="12 6 12 12 16 14" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
-      title: 'Time-to-value is impossible to measure quickly',
-      desc: 'Knowing how long it takes a new user to get their first \'aha moment\' requires correlating sign-up, event, and retention data together. Hours of work.',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="#0EC4C1" strokeWidth="1.5"/>
+        <path d="M7 9h10M7 13h6" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
+      </svg>,
+      title: 'Ad hoc SQL requests never stop',
+      desc: 'Every strategic question that can\'t be answered by an existing dashboard becomes an ad hoc SQL ticket. The backlog grows faster than it can be cleared.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#0EC4C1" strokeWidth="1.5"/><line x1="12" y1="8" x2="12" y2="12" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/><line x1="12" y1="16" x2="12.01" y2="16" stroke="#0EC4C1" strokeWidth="2" strokeLinecap="round"/></svg>,
-      title: 'Data requests slow down every sprint',
-      desc: 'Every product decision that needs data goes through the same bottleneck: write a ticket, wait for the analyst, get stale numbers, make a stale decision.',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="#0EC4C1" strokeWidth="1.5"/>
+        <line x1="12" y1="9" x2="12" y2="13" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
+        <line x1="12" y1="17" x2="12.01" y2="17" stroke="#0EC4C1" strokeWidth="2" strokeLinecap="round"/>
+      </svg>,
+      title: 'Schema drift breaks things silently',
+      desc: 'When an upstream source changes a column name, your downstream models break — and nobody notices until a key metric drops to zero.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M13.73 21a2 2 0 01-3.46 0" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
-      title: 'You can\'t detect activation problems in real time',
-      desc: 'When a new cohort\'s activation rate drops, you find out at the weekly review — too late to course-correct before the cohort churns.',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <rect x="2" y="12" width="4" height="9" rx="1" stroke="#0EC4C1" strokeWidth="1.5"/>
+        <rect x="9" y="7" width="4" height="14" rx="1" stroke="#0EC4C1" strokeWidth="1.5"/>
+        <rect x="16" y="3" width="4" height="18" rx="1" stroke="#0EC4C1" strokeWidth="1.5"/>
+      </svg>,
+      title: 'You can\'t show ROI on the data platform',
+      desc: 'Leadership asks what the data team delivered this quarter. You know you unblocked dozens of decisions, but quantifying that impact is nearly impossible.',
     },
   ];
 
@@ -658,7 +849,7 @@ function PainPoints() {
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>The Problem</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
-            Product decisions are running on stale data
+            Data teams spend 80% of time on reporting
           </h2>
           <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
             Sound familiar? These are the problems Insightis eliminates.
@@ -696,36 +887,12 @@ function PainPoints() {
 function RelevantIntegrations() {
   const connectors = [
     {
-      name:'Mixpanel', bg:'rgba(120,86,255,.12)', desc:'Product analytics',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="7" r="2.5" fill="#7856ff"/>
-        <circle cx="12" cy="17" r="2.5" fill="#7856ff"/>
-        <circle cx="7" cy="12" r="2.5" fill="#7856ff"/>
-        <circle cx="17" cy="12" r="2.5" fill="#7856ff"/>
-      </svg>,
-    },
-    {
-      name:'Amplitude', bg:'rgba(25,124,230,.12)', desc:'Behavioral data',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M3 17l4-8 4 10 3-6 2 4 5-12" stroke="#197ce6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>,
-    },
-    {
-      name:'Segment', bg:'rgba(82,189,149,.12)', desc:'Customer data platform',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="9" stroke="#52bd95" strokeWidth="1.5" fill="none"/>
-        <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5" stroke="#52bd95" strokeWidth="1.8" strokeLinecap="round"/>
-        <path d="M14 9l3-2" stroke="#52bd95" strokeWidth="1.6" strokeLinecap="round"/>
-        <path d="M14 15l3 2" stroke="#52bd95" strokeWidth="1.6" strokeLinecap="round"/>
-      </svg>,
-    },
-    {
       name:'PostgreSQL', bg:'rgba(51,103,145,.12)', desc:'Data warehouse',
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <ellipse cx="12" cy="6" rx="8" ry="3" stroke="#336791" strokeWidth="1.5" fill="#336791" opacity=".18"/>
-        <path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6" stroke="#336791" strokeWidth="1.5" fill="none"/>
-        <path d="M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" stroke="#336791" strokeWidth="1.5" fill="none"/>
-        <path d="M19 7c.63.55 1 1.21 1 1.9V18" stroke="#336791" strokeWidth="1.3" strokeLinecap="round" fill="none"/>
+        <ellipse cx="12" cy="5" rx="9" ry="3" stroke="#336791" strokeWidth="1.5" fill="#336791" fillOpacity=".15"/>
+        <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5" stroke="#336791" strokeWidth="1.5" fill="none"/>
+        <path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3" stroke="#336791" strokeWidth="1.2" fill="none"/>
+        <circle cx="18" cy="8" r="2.5" fill="#336791" fillOpacity=".6" stroke="#336791" strokeWidth="1"/>
       </svg>,
     },
     {
@@ -760,13 +927,34 @@ function RelevantIntegrations() {
       </svg>,
     },
     {
-      name:'Stripe', bg:'rgba(99,91,255,.12)', desc:'Billing & revenue',
+      name:'Databricks', bg:'rgba(228,23,63,.12)', desc:'Data lakehouse',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L22 8v8l-10 6L2 16V8L12 2z" fill="#e4173f" fillOpacity=".15" stroke="#e4173f" strokeWidth="1.5" strokeLinejoin="round"/>
+        <path d="M12 2v20M2 8l10 6 10-6" stroke="#e4173f" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>,
+    },
+    {
+      name:'Fivetran', bg:'rgba(0,115,230,.12)', desc:'Data pipelines',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <polygon points="12,2 20.66,7 20.66,17 12,22 3.34,17 3.34,7" stroke="#0073e6" strokeWidth="1.5" fill="none"/>
+      </svg>,
+    },
+    {
+      name:'Firebase', bg:'rgba(255,109,0,.12)', desc:'Mobile analytics',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M5.5 20L8 10l3.5 4L14 6l4.5 14H5.5z" fill="#ff6d00" fillOpacity=".3" stroke="#ff6d00" strokeWidth="1.3" strokeLinejoin="round"/>
+        <path d="M5.5 20L11 8l3 6" stroke="#ff9800" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+        <path d="M14 6l4.5 14" stroke="#ff6d00" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+      </svg>,
+    },
+    {
+      name:'Stripe', bg:'rgba(99,91,255,.12)', desc:'Billing data',
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
         <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z" fill="#635bff"/>
       </svg>,
     },
     {
-      name:'HubSpot', bg:'rgba(255,122,89,.12)', desc:'CRM & lifecycle',
+      name:'HubSpot', bg:'rgba(255,122,89,.12)', desc:'CRM data',
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
         <circle cx="12" cy="12" r="3" fill="#ff7a59"/>
         <line x1="12" y1="3.5" x2="12" y2="9" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/>
@@ -780,63 +968,61 @@ function RelevantIntegrations() {
       </svg>,
     },
     {
+      name:'Salesforce', bg:'rgba(0,161,224,.12)', desc:'CRM data',
+      icon: <svg width="22" height="16" viewBox="0 0 66 46" fill="none">
+        <path d="M27.5 5.8a13.2 13.2 0 0 1 9.7-4.3c5 0 9.4 2.8 11.7 6.9a14.6 14.6 0 0 1 6.7-1.6C62.7 6.8 69 13.1 69 21s-6.3 14.2-14.4 14.2H15C7.7 35.2 1.8 29.3 1.8 22c0-6.5 4.7-11.9 10.9-13.3a13.2 13.2 0 0 1 14.8-2.9z" fill="#00a1e0"/>
+      </svg>,
+    },
+    {
+      name:'Mixpanel', bg:'rgba(120,86,255,.12)', desc:'Event data',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="10" fill="#7856ff" opacity=".15"/>
+        <circle cx="8" cy="12" r="2.5" fill="#7856ff"/>
+        <circle cx="16" cy="12" r="2.5" fill="#7856ff"/>
+        <circle cx="12" cy="7" r="2.5" fill="#7856ff"/>
+        <circle cx="12" cy="17" r="2.5" fill="#7856ff"/>
+      </svg>,
+    },
+    {
+      name:'Amplitude', bg:'rgba(25,124,230,.12)', desc:'Behavioral data',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M3 17l4-8 4 10 3-6 2 4 5-12" stroke="#197ce6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>,
+    },
+    {
+      name:'Segment', bg:'rgba(82,189,149,.12)', desc:'Customer data',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="10" stroke="#52bd95" strokeWidth="1.5" fill="none"/>
+        <path d="M8 12a4 4 0 0 1 4-4 4 4 0 0 1 2.83 1.17" stroke="#52bd95" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M16 12a4 4 0 0 1-4 4 4 4 0 0 1-2.83-1.17" stroke="#52bd95" strokeWidth="1.5" strokeLinecap="round"/>
+        <circle cx="17" cy="9" r="1.5" fill="#52bd95"/>
+      </svg>,
+    },
+    {
+      name:'Looker', bg:'rgba(161,66,244,.12)', desc:'BI & dashboards',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <ellipse cx="12" cy="12" rx="9" ry="6" stroke="#a142f4" strokeWidth="1.5" fill="none"/>
+        <circle cx="12" cy="12" r="3" fill="#a142f4" fillOpacity=".4" stroke="#a142f4" strokeWidth="1.5"/>
+        <circle cx="12" cy="12" r="1.2" fill="#a142f4"/>
+      </svg>,
+    },
+    {
+      name:'Tableau', bg:'rgba(233,118,39,.12)', desc:'Data visualization',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="8" width="3.5" height="13" rx="1" fill="#e97627"/>
+        <rect x="8.5" y="4" width="3.5" height="17" rx="1" fill="#e97627" fillOpacity=".7"/>
+        <rect x="14" y="11" width="3.5" height="10" rx="1" fill="#e97627" fillOpacity=".5"/>
+        <rect x="19.5" y="6" width="2" height="15" rx="1" fill="#4e7ec2" fillOpacity=".6"/>
+      </svg>,
+    },
+    {
       name:'Intercom', bg:'rgba(40,110,241,.12)', desc:'Support & success',
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <rect x="2" y="2" width="20" height="20" rx="5" fill="#286ef1" opacity=".18"/>
+        <rect x="2" y="2" width="20" height="20" rx="5" fill="#286ef1" fillOpacity=".18"/>
+        <rect x="2" y="2" width="20" height="20" rx="5" stroke="#286ef1" strokeWidth="1.5" fill="none"/>
         <circle cx="8" cy="12" r="1.5" fill="#286ef1"/>
         <circle cx="12" cy="12" r="1.5" fill="#286ef1"/>
         <circle cx="16" cy="12" r="1.5" fill="#286ef1"/>
-        <rect x="2" y="2" width="20" height="20" rx="5" stroke="#286ef1" strokeWidth="1.5" fill="none"/>
-      </svg>,
-    },
-    {
-      name:'Firebase', bg:'rgba(255,109,0,.12)', desc:'Mobile analytics',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M5.5 20L8 10l3.5 4L14 6l4.5 14H5.5z" fill="#ff6d00" opacity=".3" stroke="#ff6d00" strokeWidth="1.3" strokeLinejoin="round"/>
-        <path d="M5.5 20L11 8l3 6" stroke="#ff9800" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-        <path d="M14 6l4.5 14" stroke="#ff6d00" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
-      </svg>,
-    },
-    {
-      name:'dbt', bg:'rgba(255,105,74,.12)', desc:'Data transforms',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M12 2 L22 19 L2 19 Z" fill="#ff694a" opacity=".2" stroke="#ff694a" strokeWidth="1.5" strokeLinejoin="round"/>
-        <circle cx="12" cy="14" r="3" fill="#ff694a"/>
-        <line x1="12" y1="2" x2="12" y2="11" stroke="#ff694a" strokeWidth="1.8" strokeLinecap="round"/>
-      </svg>,
-    },
-    {
-      name:'Databricks', bg:'rgba(228,23,63,.12)', desc:'Data lakehouse',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M12 2L22 8v8L12 22 2 16V8L12 2z" fill="#e4173f" opacity=".18" stroke="#e4173f" strokeWidth="1.5" strokeLinejoin="round"/>
-        <path d="M12 6l6 3.5v7L12 20 6 16.5v-7L12 6z" fill="#e4173f" opacity=".35"/>
-        <path d="M12 10l3 1.75v3.5L12 17l-3-1.75v-3.5L12 10z" fill="#e4173f"/>
-      </svg>,
-    },
-    {
-      name:'Google Analytics', bg:'rgba(227,116,0,.12)', desc:'Web analytics',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <rect x="2" y="13" width="5" height="9" rx="1" fill="#e37400"/>
-        <rect x="9.5" y="7" width="5" height="15" rx="1" fill="#fbbc04"/>
-        <rect x="17" y="2" width="5" height="20" rx="1" fill="#34a853"/>
-      </svg>,
-    },
-    {
-      name:'Notion', bg:'rgba(232,242,245,.04)', desc:'Docs & reports',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <rect x="4" y="2" width="16" height="20" rx="2" stroke="#E8F2F5" strokeWidth="1.3" opacity=".4" fill="none"/>
-        <line x1="8" y1="7" x2="16" y2="7" stroke="#E8F2F5" strokeWidth="1.2" strokeLinecap="round" opacity=".4"/>
-        <line x1="8" y1="11" x2="16" y2="11" stroke="#E8F2F5" strokeWidth="1.2" strokeLinecap="round" opacity=".4"/>
-        <line x1="8" y1="15" x2="13" y2="15" stroke="#E8F2F5" strokeWidth="1.2" strokeLinecap="round" opacity=".4"/>
-      </svg>,
-    },
-    {
-      name:'Slack', bg:'rgba(97,31,105,.12)', desc:'Team alerts',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <line x1="5" y1="3" x2="5" y2="21" stroke="#611f69" strokeWidth="2.5" strokeLinecap="round"/>
-        <line x1="19" y1="3" x2="19" y2="21" stroke="#611f69" strokeWidth="2.5" strokeLinecap="round"/>
-        <line x1="3" y1="8" x2="21" y2="8" stroke="#e01e5a" strokeWidth="2.5" strokeLinecap="round"/>
-        <line x1="3" y1="16" x2="21" y2="16" stroke="#36c5f0" strokeWidth="2.5" strokeLinecap="round"/>
       </svg>,
     },
   ];
@@ -847,13 +1033,13 @@ function RelevantIntegrations() {
         <div style={{textAlign:'center',marginBottom:'56px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
             <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Your Data Sources</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Your Product Stack</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
             Connects to every product data source
           </h2>
-          <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
-            Insightis connects your event data, billing, and CRM so you can see the full user journey.
+          <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'480px',margin:'0 auto',lineHeight:1.65}}>
+            Joins event analytics, warehouse, billing, and CRM so you can see the full user journey in one answer.
           </p>
         </div>
 
@@ -897,10 +1083,11 @@ function RelevantIntegrations() {
 /* ── METRICS ── */
 function Metrics() {
   const metrics = [
-    'DAU / MAU','Feature Adoption Rate','Time to Activate','D30 Retention','D90 Retention',
-    'NPS Score','Session Depth','Activation Rate','Cohort Retention','Onboarding Completion',
-    'Feature Stickiness','Power User %','Trial Conversion','In-App Event Rate','User Churn by Cohort',
-    'Breadth of Use','Time to Value','Signup to Active','Weekly Active Users','Feature Request Volume',
+    'Data Freshness','Pipeline Run Time','Model Coverage','Query Success Rate',
+    'Schema Drift Alerts','Lineage Coverage','Data Quality Score','SLA Compliance',
+    'Self-Serve Rate','Ticket Deflection','Query Volume','P95 Query Latency',
+    'Table Row Counts','Pipeline Failure Rate','Cost per Query','Data Utilization Rate',
+    'dbt Model Coverage','Sync Lag','Error Rate','Warehouse Spend',
   ];
 
   return (
@@ -912,7 +1099,7 @@ function Metrics() {
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Metrics That Matter</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
-            Every KPI a product team tracks
+            Every KPI a data team monitors
           </h2>
           <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
             Ask about any of these — or any metric you define — in plain English.
@@ -944,7 +1131,7 @@ function BeforeAfter() {
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>The Difference</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
-            Product work before vs. after Insightis
+            Data teams before vs. after Insightis
           </h2>
         </div>
 
@@ -957,12 +1144,12 @@ function BeforeAfter() {
             </div>
             <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'12px'}}>
               {[
-                'Feature adoption requires SQL + 2-week wait',
-                'Retention analysis blocked on data team',
-                'Onboarding drop-off hard to diagnose',
-                'Activation problems found at weekly review',
-                'Every product question needs a ticket',
-                'Can\'t correlate usage data with revenue',
+                'Team drowning in repetitive data requests',
+                'Each team has its own metric definitions',
+                'Pipeline failures found reactively',
+                'Ad hoc SQL queue never empties',
+                'Schema drift breaks models silently',
+                'Data ROI impossible to quantify',
               ].map((item,i) => (
                 <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'#7FA0AC',lineHeight:1.55}}>
                   <span style={{color:'#F87171',fontWeight:500,flexShrink:0}}>✕</span>
@@ -981,12 +1168,12 @@ function BeforeAfter() {
             </div>
             <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'12px'}}>
               {[
-                'Any feature metric available instantly',
-                'Retention cohorts in plain English',
-                'Drop-off steps identified in seconds',
-                'Activation anomalies surface in real time',
-                'Product questions answered self-serve',
-                'Usage-to-LTV correlation at your fingertips',
+                'Business users self-serve in plain English',
+                'One Semantic Layer governs all definitions',
+                'Anomalies surface before anyone complains',
+                'Complex questions answered without SQL',
+                'Schema changes flagged automatically',
+                'Data impact visible and measurable',
               ].map((item,i) => (
                 <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'#C0D4DC',lineHeight:1.55}}>
                   <span style={{color:'#0EC4C1',fontWeight:500,flexShrink:0}}>✓</span>
@@ -999,8 +1186,8 @@ function BeforeAfter() {
 
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
-            <span style={{fontSize:'40px',fontWeight:500,color:'#0EC4C1',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>2×</span>
-            <span style={{fontSize:'15px',color:'#7FA0AC',whiteSpace:'nowrap'}}>faster product decisions. Zero data request tickets.</span>
+            <span style={{fontSize:'40px',fontWeight:500,color:'#0EC4C1',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>4×</span>
+            <span style={{fontSize:'15px',color:'#7FA0AC',whiteSpace:'nowrap'}}>more time for real analysis. Self-serve deflects 80% of ad hoc requests.</span>
           </div>
         </div>
       </div>
@@ -1023,7 +1210,7 @@ function BottomCTA() {
         }}>
           <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
           <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',lineHeight:1.2,flexShrink:0}}>
-            Stop waiting on <span style={{color:'#07807E'}}>data requests.</span> Start shipping <span style={{color:'#07807E'}}> faster.</span>
+            Stop <span style={{color:'#07807E'}}>guessing.</span> Start <span style={{color:'#07807E'}}>shipping.</span>
           </h3>
           <div style={{
             display:'flex',alignItems:'center',
@@ -1034,7 +1221,7 @@ function BottomCTA() {
           }}>
             <input
               type="text"
-              placeholder="What product metric do you need answered?"
+              placeholder="What product question can Insightis answer for your team?"
               style={{
                 flex:1,background:'transparent',fontSize:'14px',color:'#fff',
                 padding:'12px 16px',outline:'none',border:'none',
@@ -1108,7 +1295,7 @@ function Footer() {
             <div>
               <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Platform</h4>
               <ul className="flex flex-col gap-2.5">
-                {['AI Chat', 'Integrations', 'Insights Engine', 'Semantic Layer', 'Reports', 'Memory & Storage'].map(link => (
+                {['AI Chat', 'Integrations', 'Insights Engine', 'Semantic Layer', 'Reports'].map(link => (
                   <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
               </ul>
@@ -1147,8 +1334,6 @@ function Footer() {
                   { label: 'About Devart', href: 'https://www.devart.com/company/' },
                   { label: 'Careers', href: 'https://www.devart.com/vacancies/' },
                   { label: 'Contacts', href: '../Company/Contacts.html' },
-                  { label: 'Success Stories', href: '../Company/Success Stories.html' },
-                  { label: 'Press & Media', href: '../Company/Press Media.html' },
                 ].map(link => (
                   <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
@@ -1186,16 +1371,785 @@ function Footer() {
   );
 }
 
+/* ── POSITIONING BAND ── */
+function Positioning() {
+  return (
+    <section style={{
+      padding:'56px 0 64px',
+      position:'relative',
+      background:'radial-gradient(ellipse 60% 60% at 50% 50%, rgba(9,160,157,.05) 0%, transparent 70%)',
+    }}>
+      <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px',textAlign:'center'}}>
+        <h2 style={{
+          fontSize:'clamp(26px,3.4vw,38px)',
+          fontWeight:500,
+          color:'#fff',
+          letterSpacing:'-.025em',
+          lineHeight:1.2,
+          marginBottom:'18px',
+        }}>
+          Stop being a <span style={{color:'#0EC4C1'}}>reporting service.</span> Start doing <span style={{color:'#0EC4C1'}}>real analysis.</span>
+        </h2>
+        <p style={{fontSize:'17px',color:'rgba(255,255,255,.6)',lineHeight:1.65,marginBottom:'28px'}}>
+          Sound familiar? These are the problems Insightis eliminates.
+        </p>
+        <a href="#spotlights" style={{
+          display:'inline-flex',alignItems:'center',gap:'8px',
+          padding:'10px 20px',borderRadius:'999px',
+          border:'1px solid rgba(255,255,255,.12)',
+          color:'#C0D4DC',fontSize:'14px',fontWeight:400,
+          textDecoration:'none',
+          background:'rgba(255,255,255,.03)',
+          transition:'all .2s',
+        }}>
+          See how it works
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14"/><path d="M19 12l-7 7-7-7"/></svg>
+        </a>
+      </div>
+    </section>
+  );
+}
+
+/* ── FEATURE SPOTLIGHT VISUALS ── */
+function SpotlightChat() {
+  return (
+    <div style={{
+      width:'100%',
+      background:'rgba(13,17,23,0.9)',
+      border:'1px solid rgba(255,255,255,0.08)',
+      borderRadius:'20px',
+      overflow:'hidden',
+      boxShadow:'0 24px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04)',
+      display:'flex',
+      flexDirection:'column',
+    }}>
+      <ChromeHeader label="self-serve · product" />
+      <div style={{padding:'22px 20px',display:'flex',flexDirection:'column',gap:'14px',flex:1,justifyContent:'center'}}>
+        {/* User question */}
+        <div style={{display:'flex',justifyContent:'flex-end'}}>
+          <div className="chat-bubble-user" style={{maxWidth:'82%'}}>
+            How's Saved Reports adoption across plans this quarter?
+          </div>
+        </div>
+
+        {/* AI reply */}
+        <div className="chat-bubble-ai">
+          <div style={{fontSize:'12.5px',lineHeight:1.6,marginBottom:'12px'}}>
+            Adoption climbed across every plan since the <span style={{color:'#0EC4C1',fontWeight:500}}>v2.4</span> ship in March. <span style={{color:'#0EC4C1',fontWeight:500}}>Pro</span> leads at 78% (+34pts QoQ); <span style={{color:'#F87171',fontWeight:500}}>Free</span> at 18% remains the soft spot. Strongest lift came from the Team plan after the in-app prompt rolled out.
+          </div>
+
+          {/* KPI blocks */}
+          <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'7px',marginBottom:'10px'}}>
+            {[
+              {label:'Pro',     val:'78%',   color:'#0EC4C1', sub:'best plan'},
+              {label:'QoQ lift',val:'+34pt', color:'#22C55E', sub:'avg across plans'},
+              {label:'Free',    val:'18%',   color:'#F87171', sub:'soft spot'},
+            ].map((k,i)=>(
+              <div key={i} style={{
+                background:'rgba(255,255,255,.03)',
+                border:'1px solid rgba(255,255,255,.06)',
+                borderRadius:'9px',
+                padding:'8px 10px',
+              }}>
+                <div style={{fontSize:'9px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'3px'}}>{k.label}</div>
+                <div style={{fontSize:'13.5px',fontWeight:500,color:k.color,fontFamily:'Geist Mono,monospace',letterSpacing:'-.01em',marginBottom:'2px'}}>{k.val}</div>
+                <div style={{fontSize:'9.5px',color:'#7FA0AC'}}>{k.sub}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Source line */}
+          <div style={{
+            display:'flex',alignItems:'center',gap:'6px',
+            paddingTop:'8px',
+            borderTop:'1px solid rgba(255,255,255,.05)',
+            fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#6E8D9A',
+          }}>
+            <span style={{letterSpacing:'.06em',textTransform:'uppercase'}}>Source</span>
+            <span style={{color:'#0EC4C1'}}>events.fct_feature_use</span>
+            <span>·</span>
+            <span style={{color:'#0EC4C1'}}>billing.fct_subscriptions</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ChromeHeader({ label }) {
+  return (
+    <div style={{padding:'14px 18px',borderBottom:'1px solid rgba(255,255,255,0.06)',display:'flex',alignItems:'center',gap:'10px',flexShrink:0,position:'relative',zIndex:1}}>
+      <div style={{display:'flex',gap:'5px'}}>
+        {['#FF5F57','#FFBD2E','#28C840'].map((c,i) => (
+          <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
+        ))}
+      </div>
+      <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'#6E8D9A',fontFamily:'Geist Mono, monospace'}}>
+        {label}
+      </div>
+    </div>
+  );
+}
+
+function SpotlightSemantic() {
+  const teams = [
+    {team:'Marketing', def:'trial signup',  color:'#FBBF24'},
+    {team:'CS',        def:'weekly login',  color:'#A78BFA'},
+    {team:'Product',   def:'core action',   color:'#F87171'},
+  ];
+  return (
+    <div style={{
+      width:'100%',
+      background:'rgba(13,17,23,0.9)',
+      border:'1px solid rgba(255,255,255,0.08)',
+      borderRadius:'20px',
+      overflow:'hidden',
+      boxShadow:'0 24px 80px rgba(0,0,0,0.5)',
+      display:'flex',
+      flexDirection:'column',
+    }}>
+      <ChromeHeader label="metric · active_user" />
+      <div style={{padding:'22px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
+        {/* Section eyebrow */}
+        <div style={{textAlign:'center',marginBottom:'12px'}}>
+          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#6E8D9A',letterSpacing:'.1em',textTransform:'uppercase'}}>three teams · three definitions</span>
+        </div>
+
+        {/* Three conflicting team definitions */}
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'7px',marginBottom:'12px'}}>
+          {teams.map((t,i)=>(
+            <div key={i} style={{
+              background:'rgba(255,255,255,.025)',
+              border:`1px solid ${t.color}33`,
+              borderRadius:'9px',
+              padding:'10px 8px',
+              textAlign:'center',
+            }}>
+              <div style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:t.color,letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'5px'}}>{t.team}</div>
+              <div style={{fontSize:'11.5px',color:'#C0D4DC'}}>{t.def}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Converging arrow */}
+        <div style={{display:'flex',justifyContent:'center',marginBottom:'10px'}}>
+          <svg width="28" height="20" viewBox="0 0 28 20" fill="none">
+            <path d="M4 1 L14 14 L24 1" stroke="rgba(14,196,193,.35)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M14 8 L14 18 M14 18 L10 14 M14 18 L18 14" stroke="#0EC4C1" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+
+        {/* The certified definition */}
+        <div style={{
+          background:'linear-gradient(135deg, rgba(9,160,157,.14) 0%, rgba(9,160,157,.05) 100%)',
+          border:'1px solid rgba(9,160,157,.4)',
+          borderRadius:'12px',
+          padding:'14px 14px',
+        }}>
+          <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'10px'}}>
+            <div style={{fontFamily:'Geist Mono,monospace',fontSize:'13.5px',color:'#E8F2F5',fontWeight:500}}>active_user</div>
+            <span style={{
+              display:'inline-flex',alignItems:'center',gap:'5px',
+              padding:'3px 9px',borderRadius:'999px',
+              background:'rgba(34,197,94,.08)',border:'1px solid rgba(34,197,94,.3)',
+              fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#22C55E',
+              letterSpacing:'.06em',textTransform:'uppercase',
+            }}>
+              <span style={{width:'5px',height:'5px',borderRadius:'50%',background:'#22C55E'}}/>
+              Certified · v2.4
+            </span>
+          </div>
+          <div style={{
+            fontFamily:'Geist Mono,monospace',
+            fontSize:'11.5px',
+            color:'#C0D4DC',
+            background:'rgba(0,0,0,.2)',
+            border:'1px solid rgba(255,255,255,.04)',
+            borderRadius:'7px',
+            padding:'9px 10px',
+            marginBottom:'10px',
+            lineHeight:1.5,
+          }}>
+            <span style={{color:'#7FA0AC'}}>users with</span> <span style={{color:'#0EC4C1'}}>core_action</span> <span style={{color:'#7FA0AC'}}>in 7d / new_signups</span>
+          </div>
+          <div style={{display:'flex',justifyContent:'space-between',gap:'10px',fontSize:'10.5px',color:'#C0D4DC'}}>
+            <span><span style={{color:'#6E8D9A',fontFamily:'Geist Mono,monospace',letterSpacing:'.06em',textTransform:'uppercase',fontSize:'9px',marginRight:'5px'}}>Owned</span>Product Analytics</span>
+            <span><span style={{color:'#6E8D9A',fontFamily:'Geist Mono,monospace',letterSpacing:'.06em',textTransform:'uppercase',fontSize:'9px',marginRight:'5px'}}>Used by</span>12 reports · 3 teams</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SpotlightAnomalies() {
+  const segments = [
+    {seg:'Mobile · iOS',     val:'−67%', color:'#F87171', bad:true},
+    {seg:'Mobile · Android', val:'−41%', color:'#F87171', bad:true},
+    {seg:'Web',              val:'−2%',  color:'#7FA0AC', bad:false},
+  ];
+  return (
+    <div style={{
+      width:'100%',
+      background:'rgba(13,17,23,0.9)',
+      border:'1px solid rgba(255,255,255,0.08)',
+      borderRadius:'20px',
+      overflow:'hidden',
+      boxShadow:'0 24px 80px rgba(0,0,0,0.5)',
+      display:'flex',
+      flexDirection:'column',
+    }}>
+      <ChromeHeader label="cohort · breakdown" />
+      <div style={{padding:'20px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
+        {/* User question */}
+        <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'12px'}}>
+          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#6E8D9A',letterSpacing:'.08em',textTransform:'uppercase'}}>asked</span>
+          <span style={{fontSize:'12.5px',color:'#C0D4DC'}}>"Which cohort is dragging activation?"</span>
+        </div>
+
+        {/* Multi-cohort line chart */}
+        <div style={{
+          background:'rgba(255,255,255,.018)',
+          border:'1px solid rgba(255,255,255,.05)',
+          borderRadius:'10px',
+          padding:'12px 12px 10px',
+          marginBottom:'12px',
+        }}>
+          <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'8px'}}>
+            <div style={{display:'flex',gap:'10px',fontFamily:'Geist Mono,monospace',fontSize:'9.5px',alignItems:'center'}}>
+              <span style={{color:'#A78BFA',display:'inline-flex',alignItems:'center',gap:'4px'}}><span style={{width:'10px',height:'2px',background:'#A78BFA',borderRadius:'1px'}}/>Apr</span>
+              <span style={{color:'#F87171',display:'inline-flex',alignItems:'center',gap:'4px'}}><span style={{width:'10px',height:'2px',background:'#F87171',borderRadius:'1px'}}/>May</span>
+              <span style={{color:'#0EC4C1',display:'inline-flex',alignItems:'center',gap:'4px'}}><span style={{width:'10px',height:'2px',background:'#0EC4C1',borderRadius:'1px'}}/>Jun</span>
+            </div>
+            <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#7FA0AC'}}>activation · D7</span>
+          </div>
+          <svg viewBox="0 0 280 60" width="100%" height="60" preserveAspectRatio="none" style={{display:'block'}}>
+            <line x1="0" y1="18" x2="280" y2="18" stroke="rgba(255,255,255,0.04)" strokeDasharray="2,3"/>
+            <line x1="0" y1="38" x2="280" y2="38" stroke="rgba(255,255,255,0.04)" strokeDasharray="2,3"/>
+            {/* Apr cohort - lavender, steady */}
+            <path d="M0,16 L40,15 L80,17 L120,16 L160,15 L200,16 L240,15 L280,16" fill="none" stroke="#A78BFA" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            {/* Jun cohort - teal, healthy */}
+            <path d="M0,20 L40,18 L80,17 L120,15 L160,14 L200,13 L240,12 L280,12" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            {/* May cohort - red, dropping */}
+            <path d="M0,18 L40,20 L80,22 L120,28 L160,38 L200,44 L240,48 L280,50" fill="none" stroke="#F87171" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <circle cx="280" cy="50" r="2.6" fill="#F87171"/>
+          </svg>
+        </div>
+
+        {/* Segment breakdown — pinpointing platform/segment */}
+        <div style={{display:'flex',flexDirection:'column',gap:'5px'}}>
+          {segments.map((r,i)=>(
+            <div key={i} style={{
+              display:'flex',alignItems:'center',gap:'10px',
+              padding:'7px 11px',
+              background:r.bad?'rgba(248,113,113,.05)':'rgba(255,255,255,.02)',
+              border:`1px solid ${r.bad?'rgba(248,113,113,.2)':'rgba(255,255,255,.05)'}`,
+              borderRadius:'8px',
+            }}>
+              <span style={{
+                width:'6px',height:'6px',borderRadius:'50%',
+                background:r.color,flexShrink:0,
+              }}/>
+              <span style={{fontSize:'11.5px',color:'#C0D4DC',flex:1,fontFamily:'Geist Mono,monospace'}}>{r.seg}</span>
+              <span style={{fontSize:'12px',fontWeight:500,color:r.color,fontFamily:'Geist Mono,monospace'}}>{r.val}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SpotlightStack() {
+  const sources = [
+    { name:'Mixpanel', kind:'events', color:'#7856ff', bg:'rgba(120,86,255,.12)',
+      icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="7" r="2.4" fill="#7856ff"/>
+        <circle cx="12" cy="17" r="2.4" fill="#7856ff"/>
+        <circle cx="7" cy="12" r="2.4" fill="#7856ff"/>
+        <circle cx="17" cy="12" r="2.4" fill="#7856ff"/>
+      </svg>},
+    { name:'Amplitude', kind:'events', color:'#197ce6', bg:'rgba(25,124,230,.12)',
+      icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <path d="M3 17l4-8 4 10 3-6 2 4 5-12" stroke="#197ce6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>},
+    { name:'Snowflake', kind:'warehouse', color:'#29b5e8', bg:'rgba(41,181,232,.12)',
+      icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <line x1="12" y1="2" x2="12" y2="22" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
+        <line x1="2" y1="7" x2="22" y2="17" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
+        <line x1="22" y1="7" x2="2" y2="17" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
+        <circle cx="12" cy="12" r="2.5" fill="#29b5e8"/>
+      </svg>},
+    { name:'Stripe', kind:'billing', color:'#635bff', bg:'rgba(99,91,255,.12)',
+      icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z" fill="#635bff"/>
+      </svg>},
+    { name:'Salesforce', kind:'crm', color:'#00a1e0', bg:'rgba(0,161,224,.12)',
+      icon:<svg width="20" height="18" viewBox="0 0 24 18" fill="none">
+        <path d="M9.5 3.4C10.4 2.5 11.6 2 12.9 2c1.7 0 3.2.9 4 2.3.7-.3 1.5-.5 2.3-.5 3 0 5.5 2.5 5.5 5.6 0 .5-.1 1-.2 1.5-.2.6-1.2.5-1.4-.1-.1-.2-.2-.4-.4-.5-.6-.5-1.5-.5-2.1.1-.4.4-.4 1 0 1.4.3.3.7.4 1.1.4.4 0 .8-.1 1.1-.4.4 1.6-.1 3.4-1.4 4.6-1.4 1.3-3.4 1.7-5.2 1-.7 1.3-2.1 2.2-3.7 2.2-.7 0-1.3-.2-1.9-.4-.8 1.1-2.1 1.8-3.6 1.8-1.6 0-3-.8-3.8-2-.4.1-.8.2-1.3.2-2.5 0-4.5-2-4.5-4.4 0-1.7 1-3.2 2.4-3.9-.1-.4-.1-.7-.1-1.1C-.1 6 1.6 4.3 3.7 4.3c1.2 0 2.3.6 3 1.5.6-.7 1.4-1.2 2.3-1.4.2-.4.4-.7.7-1z" fill="#00a1e0"/>
+      </svg>},
+  ];
+  return (
+    <div style={{
+      width:'100%',
+      background:'rgba(13,17,23,0.9)',
+      border:'1px solid rgba(255,255,255,0.08)',
+      borderRadius:'20px',
+      boxShadow:'0 24px 80px rgba(0,0,0,0.5)',
+      position:'relative',
+      overflow:'hidden',
+      display:'flex',
+      flexDirection:'column',
+    }}>
+      <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 55% 70% at 80% 50%, rgba(9,160,157,.10) 0%, transparent 70%)',pointerEvents:'none'}}/>
+      <ChromeHeader label="stack · flow" />
+      <div style={{padding:'20px 20px',flex:1,display:'flex',alignItems:'center',gap:'4px',position:'relative'}}>
+        {/* Left column: source tiles stacked vertically */}
+        <div style={{flex:'1 1 46%',display:'flex',flexDirection:'column',gap:'7px',position:'relative',zIndex:2}}>
+          <div style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:'#6E8D9A',letterSpacing:'.12em',textTransform:'uppercase',marginBottom:'2px'}}>your stack</div>
+          {sources.map((s,i) => (
+            <div key={i} style={{
+              display:'flex',alignItems:'center',gap:'10px',
+              padding:'7px 10px',
+              background:'rgba(255,255,255,.025)',
+              border:`1px solid ${s.color}33`,
+              borderRadius:'9px',
+              position:'relative',
+            }}>
+              <div style={{
+                width:'26px',height:'26px',borderRadius:'7px',
+                background:s.bg,
+                display:'flex',alignItems:'center',justifyContent:'center',
+                flexShrink:0,
+              }}>{s.icon}</div>
+              <div style={{minWidth:0,flex:1}}>
+                <div style={{fontSize:'11.5px',fontWeight:500,color:'#E8F2F5',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{s.name}</div>
+                <div style={{fontFamily:'Geist Mono,monospace',fontSize:'8.5px',color:'#6E8D9A',letterSpacing:'.08em',textTransform:'uppercase'}}>{s.kind}</div>
+              </div>
+              <div style={{
+                width:'7px',height:'7px',borderRadius:'50%',
+                background:s.color,opacity:.85,flexShrink:0,
+                boxShadow:`0 0 6px ${s.color}66`,
+              }}/>
+            </div>
+          ))}
+        </div>
+
+        {/* Middle column: SVG branch lines converging */}
+        <div style={{flex:'0 0 64px',alignSelf:'stretch',position:'relative',display:'flex',alignItems:'center',justifyContent:'center'}}>
+          <svg viewBox="0 0 64 280" preserveAspectRatio="none" width="100%" height="100%" style={{display:'block'}}>
+            <defs>
+              <linearGradient id="stack-flow" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%"  stopColor="#0EC4C1" stopOpacity="0.15"/>
+                <stop offset="60%" stopColor="#0EC4C1" stopOpacity="0.55"/>
+                <stop offset="100%" stopColor="#0EC4C1" stopOpacity="0.85"/>
+              </linearGradient>
+            </defs>
+            {/* 5 curved branches from each source row to a shared right-side convergence point */}
+            <path d="M0,40  C28,40  36,140 64,140" stroke="url(#stack-flow)" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
+            <path d="M0,90  C28,90  36,140 64,140" stroke="url(#stack-flow)" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
+            <path d="M0,140 L64,140" stroke="url(#stack-flow)" strokeWidth="1.6" fill="none" strokeLinecap="round"/>
+            <path d="M0,190 C28,190 36,140 64,140" stroke="url(#stack-flow)" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
+            <path d="M0,240 C28,240 36,140 64,140" stroke="url(#stack-flow)" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
+            {/* Convergence node */}
+            <circle cx="64" cy="140" r="6" fill="none" stroke="#0EC4C1" strokeWidth="1" opacity="0.4"/>
+            <circle cx="64" cy="140" r="3" fill="#0EC4C1"/>
+          </svg>
+        </div>
+
+        {/* Right column: Insightis Semantic Layer destination */}
+        <div style={{flex:'1 1 36%',position:'relative',zIndex:2}}>
+          <div style={{
+            background:'linear-gradient(135deg, rgba(9,160,157,.18) 0%, rgba(9,160,157,.06) 100%)',
+            border:'1px solid rgba(9,160,157,.45)',
+            borderRadius:'12px',
+            padding:'14px 12px',
+            display:'flex',flexDirection:'column',alignItems:'center',gap:'10px',
+            textAlign:'center',
+            boxShadow:'0 8px 24px rgba(9,160,157,.12), inset 0 1px 0 rgba(255,255,255,.05)',
+          }}>
+            <div style={{
+              width:'42px',height:'42px',borderRadius:'10px',
+              background:'rgba(9,160,157,.22)',
+              border:'1px solid rgba(9,160,157,.35)',
+              display:'flex',alignItems:'center',justifyContent:'center',
+            }}>
+              <svg width="22" height="22" viewBox="0 0 26 26" fill="none">
+                <path d="M25.5 10.4L21.7 12.7L25.5 15.1L12.7 22.8L0 15.1L3.8 12.7L0 10.4L5.7 6.9L7.6 8.1L3.8 10.4L12.7 15.8L21.7 10.4L17.8 8.1L19.8 6.9L25.5 10.4Z" fill="#0EC4C1"/>
+              </svg>
+            </div>
+            <div>
+              <div style={{fontSize:'13.5px',fontWeight:600,color:'#E8F2F5'}}>Insightis</div>
+              <div style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#6E8D9A',letterSpacing:'.08em',textTransform:'uppercase',marginTop:'2px'}}>Semantic Layer</div>
+            </div>
+            <span style={{
+              fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#0EC4C1',
+              padding:'3px 9px',borderRadius:'999px',
+              background:'rgba(9,160,157,.12)',border:'1px solid rgba(9,160,157,.3)',
+              letterSpacing:'.08em',textTransform:'uppercase',
+              whiteSpace:'nowrap',
+            }}>5 connected</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── FEATURE SPOTLIGHTS ── */
+function FeatureSpotlights() {
+  const spots = [
+    {
+      eyebrow:'Self-Serve',
+      title:'Skip the data ticket queue',
+      body:'Ask any product question in plain English — adoption, retention, funnel drop-off — and Insightis answers from your event, billing, and CRM data in seconds.',
+      bullets:['Plain-English questions across the product org','PMs unblock themselves without SQL'],
+      visual:<SpotlightChat />,
+    },
+    {
+      eyebrow:'Activation Metrics',
+      title:'One definition per metric',
+      body:'Marketing counts trials, CS counts logins, Product counts core actions. Define each metric once — owned, versioned, and used everywhere.',
+      bullets:['One certified definition per metric','Versioning, ownership, and lineage built in'],
+      visual:<SpotlightSemantic />,
+    },
+    {
+      eyebrow:'Cohort Anomaly Detection',
+      title:'Spot the breaking cohort early',
+      body:'Insightis scans every answer for the cohort, segment, or platform pulling a metric the wrong way — surfaced inline, not on a dashboard you forgot to open.',
+      bullets:['Outliers flagged inside every answer','Cohort and segment breakdowns automatically'],
+      visual:<SpotlightAnomalies />,
+    },
+    {
+      eyebrow:'Stack-Native',
+      title:'Plugs into your existing stack',
+      body:'Insightis runs on top of Mixpanel, Amplitude, your warehouse, Stripe, and Salesforce. No data movement, no parallel modeling, no extra pipeline.',
+      bullets:['Works with Mixpanel, Amplitude, Segment, Firebase','Joins event, billing, and CRM data automatically'],
+      visual:<SpotlightStack />,
+    },
+  ];
+
+  return (
+    <section id="spotlights" style={{padding:'80px 0 100px',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
+        <div style={{textAlign:'center',marginBottom:'72px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
+            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>How it works</span>
+          </div>
+          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
+            Built for the way product teams actually work
+          </h2>
+          <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'560px',margin:'0 auto',lineHeight:1.65}}>
+            Four capabilities that turn the data layer from a bottleneck into something you can ship against.
+          </p>
+        </div>
+
+        <div style={{display:'flex',flexDirection:'column',gap:'88px'}}>
+          {spots.map((s,i) => {
+            const reverse = i % 2 === 1;
+            return (
+              <div key={i} data-spotlight-grid style={{
+                display:'grid',
+                gridTemplateColumns:'1fr 1fr',
+                gap:'64px',
+                alignItems:'center',
+              }}>
+                <div data-spotlight-text style={{order: reverse ? 2 : 0}}>
+                  <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'18px'}}>
+                    <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
+                    <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>{s.eyebrow}</span>
+                  </div>
+                  <h3 style={{fontSize:'clamp(24px,2.6vw,34px)',fontWeight:500,color:'#fff',letterSpacing:'-.025em',lineHeight:1.18,marginBottom:'18px'}}>
+                    {s.title}
+                  </h3>
+                  <p style={{fontSize:'16px',color:'rgba(255,255,255,.62)',lineHeight:1.65,marginBottom:'22px'}}>
+                    {s.body}
+                  </p>
+                  <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px'}}>
+                    {s.bullets.map((b,bi) => (
+                      <li key={bi} style={{display:'flex',alignItems:'flex-start',gap:'10px',fontSize:'14px',color:'#C0D4DC',lineHeight:1.55}}>
+                        <span style={{color:'#0EC4C1',flexShrink:0,marginTop:'1px'}}>✓</span>
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div data-spotlight-visual style={{
+                  order: reverse ? 0 : 2,
+                  display:'flex',
+                  alignItems:'stretch',
+                  minHeight:'380px',
+                }}>
+                  {s.visual}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── USE CASES ── */
+function UseCases() {
+  const cases = [
+    {
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z" stroke="#0EC4C1" strokeWidth="1.5"/><path d="M9 8h6M9 12h6M9 16h4" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      title:'Feature adoption tracking',
+      desc:'Did anyone actually use that feature you shipped last quarter? Get adoption, depth-of-use, and stickiness numbers without filing a data request.',
+    },
+    {
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 3v18h18" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/><path d="M7 14l4-4 3 3 5-7" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      title:'Cohort & retention analysis',
+      desc:'Slice retention by signup channel, plan, persona, or cohort week — without writing complex SQL joins across event, user, and billing tables.',
+    },
+    {
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l3-9 4 18 3-9h4" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      title:'Onboarding funnel diagnosis',
+      desc:'Find the step where new users abandon, the segment where drop-off is worst, and the cause behind it — before the cohort fully churns.',
+    },
+    {
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#0EC4C1" strokeWidth="1.5"/><polyline points="12 6 12 12 16 14" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      title:'Time-to-value measurement',
+      desc:'How long does it take a new user to hit their aha moment? Correlate sign-up, event, and retention data instantly instead of building a one-off analysis.',
+    },
+    {
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 18l6-6 4 4 8-10" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><polyline points="14 6 21 6 21 13" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      title:'A/B test readouts on demand',
+      desc:'Get experiment readouts without waiting on the data team. Lift, confidence, and segment breakdowns from your event data in plain English.',
+    },
+    {
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="12" width="4" height="9" rx="1" stroke="#0EC4C1" strokeWidth="1.5"/><rect x="9" y="7" width="4" height="14" rx="1" stroke="#0EC4C1" strokeWidth="1.5"/><rect x="16" y="3" width="4" height="18" rx="1" stroke="#0EC4C1" strokeWidth="1.5"/></svg>,
+      title:'Roadmap impact reporting',
+      desc:'Tie the features you ship to the metrics that matter — activation, retention, expansion. Show exec stakeholders the impact in numbers, not anecdotes.',
+    },
+  ];
+
+  return (
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0D1117 0%,#0A0E13 100%)'}}>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
+        <div style={{marginBottom:'80px'}}>
+          <div style={{
+            position:'relative',borderRadius:'16px',
+            border:'1px solid rgba(30,30,48,1)',
+            padding:'32px 48px',overflow:'hidden',
+            display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'24px',
+            flexWrap:'wrap',
+            background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)',
+          }}>
+            <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
+            <div style={{flex:'1 1 360px',minWidth:0}}>
+              <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'8px'}}>
+                Ship faster with <span style={{color:'#07807E'}}>better data</span>.
+              </h3>
+              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.6}}>
+                Connect Mixpanel, your warehouse, and Stripe — and ask the next product question yourself.
+              </p>
+            </div>
+            <button style={{
+              display:'inline-flex',alignItems:'center',gap:'8px',
+              padding:'14px 26px',flexShrink:0,
+              fontSize:'14px',fontWeight:600,color:'#fff',
+              background:'linear-gradient(135deg,#07807E,#09A09D)',
+              borderRadius:'10px',border:'none',cursor:'pointer',
+              whiteSpace:'nowrap',
+              fontFamily:'Geist,sans-serif',
+              boxShadow:'0 8px 24px rgba(9,160,157,.25)',
+            }}>
+              Get started for free
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+        <div style={{textAlign:'center',marginBottom:'56px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
+            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Use cases</span>
+          </div>
+          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
+            What product teams use Insightis for
+          </h2>
+        </div>
+
+        <div data-usecase-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'14px'}}>
+          {cases.map((c,i) => (
+            <div key={i}
+              style={{
+                background:'rgba(13,17,23,.6)',
+                border:'1px solid rgba(255,255,255,.06)',
+                borderRadius:'16px',padding:'24px',
+                position:'relative',overflow:'hidden',
+                transition:'all .2s',
+              }}
+              onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
+              onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}
+            >
+              <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
+              <div style={{width:'38px',height:'38px',borderRadius:'10px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'14px'}}>
+                {c.icon}
+              </div>
+              <h3 style={{fontSize:'15px',fontWeight:600,color:'#E8F2F5',marginBottom:'6px'}}>{c.title}</h3>
+              <p style={{fontSize:'13.5px',color:'#7FA0AC',lineHeight:1.6}}>{c.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── TESTIMONIALS ── */
+function Testimonials() {
+  const items = [
+    {
+      quote:'In the first month we deflected ~70% of ad hoc SQL tickets. The team finally has time for real analysis instead of clearing a queue.',
+      name:'Maya Chen',
+      role:'Head of Data',
+      company:'Series-B SaaS',
+    },
+    {
+      quote:'Marketing and Finance had three different definitions of CAC. Insightis on top of our dbt models killed the debate — one metric, one owner, one source of truth.',
+      name:'Daniel Okafor',
+      role:'Senior Analytics Engineer',
+      company:'B2B Marketplace',
+    },
+    {
+      quote:'A schema change on Stripe used to mean a Slack-storm Monday morning. Now we see the alert and the affected dbt models before anyone notices the dashboard.',
+      name:'Priya Raman',
+      role:'Analytics Manager',
+      company:'Consumer Fintech',
+    },
+  ];
+
+  return (
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
+        <div style={{textAlign:'center',marginBottom:'56px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
+            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Stories</span>
+          </div>
+          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
+            Data teams who stopped firefighting
+          </h2>
+        </div>
+
+        <div data-testimonials-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'16px'}}>
+          {items.map((t,i) => (
+            <div key={i} style={{
+              background:'rgba(13,17,23,.6)',
+              border:'1px solid rgba(255,255,255,.06)',
+              borderRadius:'16px',
+              padding:'28px',
+              display:'flex',flexDirection:'column',
+              position:'relative',overflow:'hidden',
+              transition:'all .2s',
+            }}
+              onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';}}
+              onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';}}
+            >
+              <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.4),transparent)'}}/>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style={{marginBottom:'14px',opacity:.5}}>
+                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h2c1 0 2 .75 2 2v.5C8 19 6 19 3 19v2zm12 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h2c1 0 2 .75 2 2v.5c0 3.5-2 3.5-5 3.5v2z" fill="#0EC4C1"/>
+              </svg>
+              <p style={{fontSize:'15px',color:'#C0D4DC',lineHeight:1.6,marginBottom:'22px',flex:1}}>
+                {t.quote}
+              </p>
+              <div style={{paddingTop:'18px',borderTop:'1px solid rgba(255,255,255,.06)'}}>
+                <div style={{fontSize:'14px',color:'#E8F2F5',fontWeight:500}}>{t.name}</div>
+                <div style={{fontSize:'12px',color:'#7FA0AC',marginTop:'2px'}}>{t.role}</div>
+                <div style={{
+                  display:'inline-block',marginTop:'10px',
+                  padding:'3px 10px',borderRadius:'999px',
+                  background:'rgba(255,255,255,.03)',border:'1px solid rgba(255,255,255,.07)',
+                  fontSize:'10.5px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',
+                  letterSpacing:'.04em',textTransform:'uppercase',
+                }}>{t.company}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── FAQ ── */
+function FAQ() {
+  const [open, setOpen] = useState(0);
+  const items = [
+    {
+      q:'Does this replace Mixpanel or Amplitude?',
+      a:'No — Insightis sits on top of them. We connect to Mixpanel, Amplitude, Segment, Firebase, and your warehouse so you can ask cross-tool questions in plain English. The dashboards your team already built keep working; Insightis answers the long-tail questions that would otherwise turn into a data ticket.',
+    },
+    {
+      q:'How does it join event data with billing and CRM?',
+      a:'Insightis joins on the user/account identifiers you already use — typically email, account_id, or a Segment user_id. Once connected, you can ask questions like "What\'s 90-day retention by plan tier and signup source" without writing the join yourself.',
+    },
+    {
+      q:'Can PMs use it without learning SQL?',
+      a:'Yes — that\'s the whole point. Ask questions in plain English: "Which features did churned users stop using before cancelling?" Insightis writes the query, runs it against your event data, and explains the result. PMs unblock themselves; the data team stops being a ticket queue.',
+    },
+    {
+      q:'How does it handle activation, retention, and other product metrics?',
+      a:'Define each metric once at the semantic layer — what counts as activation, what counts as a retained user, how cohorts are formed. From then on every team uses the same definition. No more "marketing\'s active users vs. product\'s active users" debates.',
+    },
+    {
+      q:'Will this work with experiments and A/B test data?',
+      a:'Yes. Point Insightis at your experiment exposure events and the metrics you care about, and ask for the readout in plain English. You\'ll get lift, confidence, and segment breakdowns without waiting on a data team to write a one-off analysis.',
+    },
+    {
+      q:'How is security and PII handled?',
+      a:'Insightis respects your warehouse and source-tool permissions — every query runs as the connected role, so row-level and column-level security stay in force. No event data is copied out of your sources. SOC 2 Type II compliant.',
+    },
+  ];
+
+  return (
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0D1117 0%,#0A0E13 100%)'}}>
+      <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px'}}>
+        <div style={{textAlign:'center',marginBottom:'48px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
+            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>FAQ</span>
+          </div>
+          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
+            Questions product teams ask
+          </h2>
+        </div>
+
+        <div>
+          {items.map((it, i) => {
+            const isOpen = open === i;
+            return (
+              <div key={i} className="faq-row">
+                <button className={`faq-q${isOpen ? ' open' : ''}`} onClick={()=>setOpen(isOpen ? -1 : i)}>
+                  {it.q}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div className={`faq-a${isOpen ? ' open' : ''}`}>
+                  {it.a}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ── APP ── */
 function App() {
   return (
     <div>
       <Header />
       <Hero />
-      <PainPoints />
+      <FeatureSpotlights />
+      <UseCases />
       <RelevantIntegrations />
-      <Metrics />
-      <BeforeAfter />
+      <FAQ />
       <BottomCTA />
       <Footer />
     </div>

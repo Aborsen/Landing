@@ -31,13 +31,13 @@ body::before {
 body::after {
   content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 10% 5%, rgba(10,152,150,.09) 0%, transparent 70%),
-    radial-gradient(ellipse 70% 55% at 85% 0%, rgba(110,60,200,.07) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 60% at 75% 45%, rgba(20,80,200,.05) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 55% at 5% 55%, rgba(160,50,220,.045) 0%, transparent 65%),
-    radial-gradient(ellipse 65% 55% at 50% 90%, rgba(10,152,150,.07) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 45% at 95% 75%, rgba(50,90,240,.04) 0%, transparent 55%),
-    radial-gradient(ellipse 45% 40% at 35% 30%, rgba(200,60,180,.03) 0%, transparent 55%);
+    radial-gradient(ellipse 80% 60% at 10% 5%, rgba(10,152,150,.05) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 55% at 85% 0%, rgba(110,60,200,.04) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 60% at 75% 45%, rgba(20,80,200,.03) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 55% at 5% 55%, rgba(160,50,220,.025) 0%, transparent 65%),
+    radial-gradient(ellipse 65% 55% at 50% 90%, rgba(10,152,150,.04) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 45% at 95% 75%, rgba(50,90,240,.025) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 40% at 35% 30%, rgba(200,60,180,.02) 0%, transparent 55%);
 }
 
 /* ── ANIMATIONS ── */
@@ -404,7 +404,7 @@ function Footer() {
             <div>
               <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Platform</h4>
               <ul className="flex flex-col gap-2.5">
-                {['AI Chat', 'Integrations', 'Semantic Layer', 'AI Connect', 'Advanced Reports', 'Memory & Storage'].map(link => {
+                {['AI Chat', 'Integrations', 'Semantic Layer'].map(link => {
                   const isComingSoon = ['AI Connect', 'Advanced Reports', 'Memory & Storage'].includes(link);
                   const isNotClickable = ['AI Connect', 'Advanced Reports'].includes(link);
                   const badge = (
@@ -460,8 +460,6 @@ function Footer() {
                   { label: 'About Devart', href: 'https://www.devart.com/company/' },
                   { label: 'Careers', href: 'https://www.devart.com/vacancies/' },
                   { label: 'Contacts', href: '../Company/Contacts.html' },
-                  { label: 'Success Stories', href: '../Company/Success Stories.html' },
-                  { label: 'Press & Media', href: '../Company/Press Media.html' },
                 ].map(link => (
                   <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
@@ -509,8 +507,8 @@ function SupportHero({ search, setSearch }) {
         <div className="fu0" style={{
           display:'inline-flex', alignItems:'center', gap:'8px',
           padding:'6px 14px', borderRadius:'999px',
-          border:'1px solid rgba(34,197,94,.2)',
-          background:'rgba(34,197,94,.05)',
+          border:'1px solid rgba(255,255,255,.06)',
+          background:'rgba(255,255,255,.02)',
           fontSize:'12px', color:'#22C55E', fontWeight:500,
           marginBottom:'24px',
         }}>
@@ -542,7 +540,7 @@ function SupportHero({ search, setSearch }) {
 
         <div className="fu3" style={{
           display:'flex', alignItems:'center',
-          background:'rgba(255,255,255,.04)', border:'1px solid rgba(255,255,255,.08)',
+          background:'rgba(255,255,255,.025)', border:'1px solid rgba(255,255,255,.06)',
           borderRadius:'12px', padding:'4px', maxWidth:'580px', margin:'0 auto',
         }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6E8D9A" strokeWidth="2" style={{marginLeft:'14px',flexShrink:0}}>
@@ -571,20 +569,6 @@ function HelpTopics({ search }) {
     {
       title: 'Account & Billing',
       color: 'rgba(99,102,241,',
-      illustration: (
-        <svg width="100%" height="110" viewBox="0 0 400 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="g1a" x1="0" y1="0" x2="400" y2="0" gradientUnits="userSpaceOnUse"><stop stopColor="rgba(99,102,241,0)" /><stop offset=".5" stopColor="rgba(99,102,241,0.18)" /><stop offset="1" stopColor="rgba(99,102,241,0)" /></linearGradient></defs>
-          {[0,18,36,54,72,90,108].map((y,i) => <line key={i} x1="0" y1={y} x2="400" y2={y} stroke="rgba(99,102,241,0.07)" strokeWidth="1"/>)}
-          {[0,40,80,120,160,200,240,280,320,360,400].map((x,i) => <line key={i} x1={x} y1="0" x2={x} y2="110" stroke="rgba(99,102,241,0.07)" strokeWidth="1"/>)}
-          <rect x="0" y="0" width="400" height="110" fill="url(#g1a)"/>
-          <circle cx="200" cy="55" r="70" fill="none" stroke="rgba(99,102,241,0.12)" strokeWidth="1"/>
-          <circle cx="200" cy="55" r="45" fill="none" stroke="rgba(99,102,241,0.1)" strokeWidth="1"/>
-          <circle cx="200" cy="55" r="20" fill="rgba(99,102,241,0.12)" stroke="rgba(99,102,241,0.25)" strokeWidth="1"/>
-          <circle cx="200" cy="55" r="5" fill="rgba(99,102,241,0.6)"/>
-          <line x1="200" y1="10" x2="200" y2="100" stroke="rgba(99,102,241,0.08)" strokeWidth="1"/>
-          <line x1="155" y1="55" x2="245" y2="55" stroke="rgba(99,102,241,0.08)" strokeWidth="1"/>
-        </svg>
-      ),
       icon: (
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
@@ -596,17 +580,6 @@ function HelpTopics({ search }) {
     {
       title: 'Connecting Data Sources',
       color: 'rgba(20,168,185,',
-      illustration: (
-        <svg width="100%" height="110" viewBox="0 0 400 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="g2a" x1="0" y1="55" x2="400" y2="55" gradientUnits="userSpaceOnUse"><stop stopColor="rgba(20,168,185,0.15)"/><stop offset="1" stopColor="rgba(20,168,185,0)"/></linearGradient></defs>
-          {[0,1,2,3,4,5,6,7,8,9,10].map(i => <path key={i} d={`M0 ${i*14} Q100 ${i*14 + (i%2===0?18:-18)} 200 ${i*14} Q300 ${i*14 + (i%2===0?-18:18)} 400 ${i*14}`} stroke="rgba(20,168,185,0.09)" strokeWidth="1" fill="none"/>)}
-          <rect x="0" y="0" width="180" height="110" fill="url(#g2a)"/>
-          <line x1="0" y1="55" x2="400" y2="55" stroke="rgba(20,168,185,0.2)" strokeWidth="1" strokeDasharray="6 4"/>
-          <circle cx="80" cy="55" r="3" fill="rgba(20,168,185,0.6)"/>
-          <circle cx="200" cy="55" r="3" fill="rgba(20,168,185,0.6)"/>
-          <circle cx="320" cy="55" r="3" fill="rgba(20,168,185,0.6)"/>
-        </svg>
-      ),
       icon: (
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
@@ -618,17 +591,6 @@ function HelpTopics({ search }) {
     {
       title: 'AI Chat & Answers',
       color: 'rgba(14,196,193,',
-      illustration: (
-        <svg width="100%" height="110" viewBox="0 0 400 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs><radialGradient id="g3a" cx="50%" cy="50%" r="50%"><stop stopColor="rgba(14,196,193,0.15)"/><stop offset="1" stopColor="rgba(14,196,193,0)"/></radialGradient></defs>
-          <rect x="0" y="0" width="400" height="110" fill="url(#g3a)"/>
-          {[30,55,80].map((y,i) => <line key={i} x1="30" y1={y} x2="370" y2={y} stroke={`rgba(14,196,193,${0.06+i*0.04})`} strokeWidth="1"/>)}
-          {[0,1,2,3,4,5,6,7,8,9].map(i => <rect key={i} x={30+i*38} y="20" width="28" height="70" rx="2" fill={`rgba(14,196,193,${0.04+Math.sin(i)*0.04})`} stroke="rgba(14,196,193,0.08)" strokeWidth="1"/>)}
-          <polyline points="30,72 68,50 106,62 144,38 182,55 220,42 258,58 296,35 334,48 372,30" stroke="rgba(14,196,193,0.5)" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-          <circle cx="144" cy="38" r="3" fill="rgba(14,196,193,0.8)"/>
-          <circle cx="296" cy="35" r="3" fill="rgba(14,196,193,0.8)"/>
-        </svg>
-      ),
       icon: (
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
@@ -639,18 +601,6 @@ function HelpTopics({ search }) {
     {
       title: 'Semantic Layer',
       color: 'rgba(168,85,247,',
-      illustration: (
-        <svg width="100%" height="110" viewBox="0 0 400 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="g4a" x1="200" y1="0" x2="200" y2="110" gradientUnits="userSpaceOnUse"><stop stopColor="rgba(168,85,247,0.14)"/><stop offset="1" stopColor="rgba(168,85,247,0)"/></linearGradient></defs>
-          <rect x="0" y="0" width="400" height="110" fill="url(#g4a)"/>
-          {[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19].map(i=><line key={i} x1={i*22} y1="0" x2={i*22} y2="110" stroke="rgba(168,85,247,0.06)" strokeWidth="1"/>)}
-          {[0,1,2,3,4,5,6].map(i=><line key={i} x1="0" y1={i*18} x2="400" y2={i*18} stroke="rgba(168,85,247,0.06)" strokeWidth="1"/>)}
-          <polygon points="200,18 310,64 260,100 140,100 90,64" fill="rgba(168,85,247,0.07)" stroke="rgba(168,85,247,0.2)" strokeWidth="1"/>
-          <polygon points="200,35 272,65 248,88 152,88 128,65" fill="rgba(168,85,247,0.07)" stroke="rgba(168,85,247,0.15)" strokeWidth="1"/>
-          <polygon points="200,52 238,68 224,80 176,80 162,68" fill="rgba(168,85,247,0.1)" stroke="rgba(168,85,247,0.25)" strokeWidth="1"/>
-          <circle cx="200" cy="55" r="5" fill="rgba(168,85,247,0.65)"/>
-        </svg>
-      ),
       icon: (
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/>
@@ -663,17 +613,6 @@ function HelpTopics({ search }) {
     {
       title: 'Reports',
       color: 'rgba(251,146,60,',
-      illustration: (
-        <svg width="100%" height="110" viewBox="0 0 400 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="g5a" x1="0" y1="0" x2="400" y2="110" gradientUnits="userSpaceOnUse"><stop stopColor="rgba(251,146,60,0.12)"/><stop offset="1" stopColor="rgba(251,146,60,0)"/></linearGradient></defs>
-          <rect x="0" y="0" width="400" height="110" fill="url(#g5a)"/>
-          {[10,30,50,70,90].map((y,i)=><line key={i} x1="20" y1={y} x2="380" y2={y} stroke="rgba(251,146,60,0.08)" strokeWidth="1"/>)}
-          <polyline points="20,85 80,60 140,70 200,40 260,52 320,28 380,42" fill="rgba(251,146,60,0.08)" stroke="none"/>
-          <polygon points="20,110 20,85 80,60 140,70 200,40 260,52 320,28 380,42 380,110" fill="rgba(251,146,60,0.08)"/>
-          <polyline points="20,85 80,60 140,70 200,40 260,52 320,28 380,42" fill="none" stroke="rgba(251,146,60,0.55)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          {[[80,60],[200,40],[320,28]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r="4" fill="rgba(251,146,60,0.9)"/>)}
-        </svg>
-      ),
       icon: (
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -687,18 +626,6 @@ function HelpTopics({ search }) {
     {
       title: 'Security & Privacy',
       color: 'rgba(52,211,153,',
-      illustration: (
-        <svg width="100%" height="110" viewBox="0 0 400 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs><radialGradient id="g6a" cx="50%" cy="50%" r="60%"><stop stopColor="rgba(52,211,153,0.13)"/><stop offset="1" stopColor="rgba(52,211,153,0)"/></radialGradient></defs>
-          <rect x="0" y="0" width="400" height="110" fill="url(#g6a)"/>
-          {[90,70,50,30,15].map((r,i)=><circle key={i} cx="200" cy="55" r={r} fill="none" stroke={`rgba(52,211,153,${0.06+i*0.03})`} strokeWidth="1" strokeDasharray={i%2===0?"none":"5 4"}/>)}
-          <line x1="200" y1="0" x2="200" y2="110" stroke="rgba(52,211,153,0.07)" strokeWidth="1"/>
-          <line x1="110" y1="55" x2="290" y2="55" stroke="rgba(52,211,153,0.07)" strokeWidth="1"/>
-          <line x1="136" y1="18" x2="264" y2="92" stroke="rgba(52,211,153,0.05)" strokeWidth="1"/>
-          <line x1="264" y1="18" x2="136" y2="92" stroke="rgba(52,211,153,0.05)" strokeWidth="1"/>
-          <circle cx="200" cy="55" r="6" fill="rgba(52,211,153,0.7)"/>
-        </svg>
-      ),
       icon: (
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
@@ -727,60 +654,39 @@ function HelpTopics({ search }) {
       }}>
         {filteredTopics.map((topic, i) => (
           <div key={i} style={{
-            background:'rgba(13,17,23,.6)',
-            border: '1px solid rgba(255,255,255,.06)',
-            borderRadius:'16px',
+            background:'rgba(255,255,255,.02)',
+            border: '1px solid rgba(255,255,255,.05)',
+            borderRadius:'14px',
             overflow:'hidden',
             opacity: topic.visible ? 1 : 0,
             maxHeight: topic.visible ? '600px' : '0px',
-            transition:'opacity .3s ease, max-height .3s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease',
+            transition:'opacity .3s ease, max-height .3s ease, border-color .2s ease',
             cursor:'default',
+            padding:'20px',
           }}
-          onMouseEnter={e => {
-            const el = e.currentTarget;
-            el.style.borderColor = `${topic.color}0.45)`;
-            el.style.transform = 'translateY(-4px)';
-            el.style.boxShadow = `0 12px 32px ${topic.color}0.12)`;
-            const iconEl = el.querySelector('.topic-icon');
-            if (iconEl) { iconEl.style.transform = 'scale(1.12)'; iconEl.style.background = `${topic.color}0.18)`; }
-          }}
-          onMouseLeave={e => {
-            const el = e.currentTarget;
-            el.style.borderColor = 'rgba(255,255,255,.06)';
-            el.style.transform = 'translateY(0)';
-            el.style.boxShadow = 'none';
-            const iconEl = el.querySelector('.topic-icon');
-            if (iconEl) { iconEl.style.transform = 'scale(1)'; iconEl.style.background = `${topic.color}0.1)`; }
-          }}
+          onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,.12)'; }}
+          onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,.05)'; }}
           >
-            {/* Card illustration */}
-            <div style={{ position:'relative', height:'110px', overflow:'hidden', background: `${topic.color}0.04)` }}>
-              {topic.illustration}
-            </div>
-
-            <div style={{ padding:'20px 24px 24px' }}>
-
-            <div style={{ display:'flex', alignItems:'center', gap:'12px', marginBottom:'18px' }}>
-              <div className="topic-icon" style={{
-                width:'36px', height:'36px', borderRadius:'50%',
-                background:`${topic.color}0.1)`,
-                border:`1px solid ${topic.color}0.25)`,
-                color:`${topic.color}1)`,
+            <div style={{ display:'flex', alignItems:'center', gap:'12px', marginBottom:'16px' }}>
+              <div style={{
+                width:'32px', height:'32px', borderRadius:'10px',
+                background:`${topic.color}0.08)`,
+                border:`1px solid ${topic.color}0.18)`,
+                color:`${topic.color}0.95)`,
                 display:'flex', alignItems:'center', justifyContent:'center',
                 flexShrink:0,
-                transition:'transform .2s ease, background .2s ease',
               }}>
                 {topic.icon}
               </div>
-              <h3 style={{ fontSize:'15px', fontWeight:600, color:'#E8F2F5' }}>{topic.title}</h3>
+              <h3 style={{ fontSize:'14px', fontWeight:600, color:'#E8F2F5' }}>{topic.title}</h3>
             </div>
 
             <div style={{ display:'flex', flexDirection:'column', gap:'0px' }}>
               {topic.items.map((item, j) => (
                 <a key={j} href="#" style={{
                   display:'flex', alignItems:'center', justifyContent:'space-between',
-                  padding:'6px 0',
-                  borderBottom: j < topic.items.length - 1 ? '1px solid rgba(255,255,255,.03)' : 'none',
+                  padding:'5px 0',
+                  borderBottom: j < topic.items.length - 1 ? '1px solid rgba(255,255,255,.04)' : 'none',
                   fontSize:'13px', color:'#7FA0AC',
                   textDecoration:'none',
                   transition:'color .15s',
@@ -795,7 +701,6 @@ function HelpTopics({ search }) {
                 </a>
               ))}
             </div>
-            </div>{/* /padding wrapper */}
           </div>
         ))}
       </div>
@@ -1171,19 +1076,59 @@ function SupportStatus() {
   );
 }
 
-/* ── JOIN COMMUNITY ── */
-/* ── REPORT A BUG ── */
-function ReportBug() {
+/* ── CONTACT SUPPORT ── */
+function ContactSupport() {
+  const CATEGORIES = [
+    {
+      id: 'general', label: 'General Question', color: '#0EC4C1',
+      subjectPlaceholder: 'e.g. How do I export a report as PDF?',
+      descLabel: 'DETAILS', descPlaceholder: 'Any additional context...',
+      icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>,
+    },
+    {
+      id: 'bug', label: 'Report a Bug', color: '#EF4444',
+      subjectPlaceholder: 'e.g. Chart not loading on Reports page',
+      descLabel: 'STEPS TO REPRODUCE', descPlaceholder: '1. Go to Reports tab\n2. Click Export\n3. See error',
+      icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>,
+    },
+    {
+      id: 'billing', label: 'Billing & Account', color: '#818CF8',
+      subjectPlaceholder: 'e.g. I was charged twice this month',
+      descLabel: 'DETAILS', descPlaceholder: 'Any additional context...',
+      icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>,
+    },
+    {
+      id: 'connection', label: 'Data Connections', color: '#14A8B9',
+      subjectPlaceholder: 'e.g. My Salesforce connection keeps failing',
+      descLabel: 'DETAILS', descPlaceholder: 'Any additional context...',
+      icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>,
+    },
+    {
+      id: 'feature', label: 'Feature Request', color: '#F97316',
+      subjectPlaceholder: "e.g. I'd love to see scheduled email reports",
+      descLabel: 'TELL US MORE', descPlaceholder: 'Describe the feature and why it matters to you...',
+      icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
+    },
+    {
+      id: 'other', label: 'Other', color: '#6B7280',
+      subjectPlaceholder: 'e.g. Brief description of your request',
+      descLabel: 'DETAILS', descPlaceholder: 'Any additional context...',
+      icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>,
+    },
+  ];
+
   const [open, setOpen] = React.useState(false);
-  const [step, setStep] = React.useState('form'); // 'form' | 'done'
-  const [form, setForm] = React.useState({ title:'', desc:'', email:'' });
+  const [step, setStep] = React.useState('form');
+  const [form, setForm] = React.useState({ category: 'general', title: '', desc: '', email: '' });
   const [focused, setFocused] = React.useState(null);
   const [files, setFiles] = React.useState([]);
   const [dragOver, setDragOver] = React.useState(false);
   const fileRef = React.useRef(null);
 
+  const cat = CATEGORIES.find(c => c.id === form.category);
+
   const addFiles = (incoming) => {
-    const arr = Array.from(incoming).filter(f => f.size < 10 * 1024 * 1024); // 10 MB cap
+    const arr = Array.from(incoming).filter(f => f.size < 10 * 1024 * 1024);
     setFiles(prev => {
       const names = new Set(prev.map(f => f.name));
       return [...prev, ...arr.filter(f => !names.has(f.name))].slice(0, 5);
@@ -1192,107 +1137,107 @@ function ReportBug() {
   const removeFile = (name) => setFiles(f => f.filter(x => x.name !== name));
   const fmt = (b) => b < 1024 * 1024 ? `${(b/1024).toFixed(0)} KB` : `${(b/1024/1024).toFixed(1)} MB`;
 
-  const close = () => { setOpen(false); setTimeout(() => { setStep('form'); setForm({ title:'', desc:'', email:'' }); setFiles([]); }, 300); };
+  const close = () => {
+    setOpen(false);
+    setTimeout(() => { setStep('form'); setForm({ category: 'general', title: '', desc: '', email: '' }); setFiles([]); }, 300);
+  };
   const submit = () => { if (!form.title.trim()) return; setStep('done'); };
 
   const inputStyle = (field) => ({
-    width:'100%', boxSizing:'border-box',
-    background:'rgba(255,255,255,.04)',
+    width: '100%', boxSizing: 'border-box',
+    background: 'rgba(255,255,255,.04)',
     border: focused === field ? '1px solid rgba(9,160,157,.5)' : '1px solid rgba(255,255,255,.08)',
-    borderRadius:'10px',
-    padding:'10px 14px',
-    fontSize:'14px', color:'#E8F2F5',
-    fontFamily:'inherit', outline:'none',
-    transition:'border-color .2s',
-    resize:'none',
+    borderRadius: '10px',
+    padding: '10px 14px',
+    fontSize: '14px', color: '#E8F2F5',
+    fontFamily: 'inherit', outline: 'none',
+    transition: 'border-color .2s',
+    resize: 'none',
   });
 
   return (
     <>
-      {/* Banner */}
-      <section style={{ padding:'0 0 32px', position:'relative', zIndex:1 }}>
-        <div style={{ maxWidth:'1280px', margin:'0 auto', padding:'0 24px' }}>
+      {/* ── Banner ── */}
+      <section style={{ padding: '0 0 32px', position: 'relative', zIndex: 1 }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px' }}>
           <div style={{
-            display:'flex', alignItems:'center', justifyContent:'space-between', gap:'24px',
-            background:'rgba(239,68,68,0.05)',
-            border:'1px solid rgba(239,68,68,0.15)',
-            borderRadius:'14px',
-            padding:'18px 24px',
-            flexWrap:'wrap',
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px',
+            background: 'rgba(255,255,255,.02)',
+            border: '1px solid rgba(255,255,255,.06)',
+            borderRadius: '12px',
+            padding: '16px 20px',
+            flexWrap: 'wrap',
           }}>
-            {/* Left */}
-            <div style={{ display:'flex', alignItems:'center', gap:'16px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
               <div style={{
-                width:'36px', height:'36px', borderRadius:'10px', flexShrink:0,
-                background:'rgba(239,68,68,0.1)', border:'1px solid rgba(239,68,68,0.2)',
-                display:'flex', alignItems:'center', justifyContent:'center',
-                color:'rgba(239,68,68,0.8)',
+                width: '32px', height: '32px', borderRadius: '10px', flexShrink: 0,
+                background: 'rgba(14,196,193,0.08)', border: '1px solid rgba(14,196,193,0.2)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: '#0EC4C1',
               }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
-                  <line x1="12" y1="8" x2="12" y2="12"/>
-                  <line x1="12" y1="16" x2="12.01" y2="16"/>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                 </svg>
               </div>
               <div>
-                <div style={{ fontSize:'14px', fontWeight:600, color:'#E8F2F5', marginBottom:'2px' }}>Found something broken?</div>
-                <div style={{ fontSize:'13px', color:'#7FA0AC' }}>Help us improve — report a bug and our team will look into it.</div>
+                <div style={{ fontSize: '14px', fontWeight: 600, color: '#E8F2F5', marginBottom: '2px' }}>Still need help?</div>
+                <div style={{ fontSize: '13px', color: '#7FA0AC' }}>Our support team is here — reach out and we'll respond within 24 hours.</div>
               </div>
             </div>
-            {/* CTA */}
             <button
               onClick={() => setOpen(true)}
               style={{
-                padding:'9px 20px', borderRadius:'9px', flexShrink:0,
-                background:'rgba(239,68,68,0.1)', border:'1px solid rgba(239,68,68,0.25)',
-                color:'rgba(239,68,68,0.9)', fontSize:'13px', fontWeight:600,
-                fontFamily:'inherit', cursor:'pointer',
-                transition:'background .18s, border-color .18s',
+                padding: '9px 18px', borderRadius: '9px', flexShrink: 0,
+                background: 'rgba(14,196,193,0.08)', border: '1px solid rgba(14,196,193,0.2)',
+                color: '#0EC4C1', fontSize: '13px', fontWeight: 600,
+                fontFamily: 'inherit', cursor: 'pointer',
+                transition: 'background .18s, border-color .18s',
               }}
-              onMouseEnter={e => { e.currentTarget.style.background='rgba(239,68,68,0.18)'; e.currentTarget.style.borderColor='rgba(239,68,68,0.4)'; }}
-              onMouseLeave={e => { e.currentTarget.style.background='rgba(239,68,68,0.1)'; e.currentTarget.style.borderColor='rgba(239,68,68,0.25)'; }}
-            >Report a Bug →</button>
+              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(14,196,193,0.14)'; e.currentTarget.style.borderColor = 'rgba(14,196,193,0.35)'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(14,196,193,0.08)'; e.currentTarget.style.borderColor = 'rgba(14,196,193,0.2)'; }}
+            >Contact Support →</button>
           </div>
         </div>
       </section>
 
-      {/* Modal backdrop */}
+      {/* ── Modal ── */}
       {open && (
         <div
           onClick={close}
           style={{
-            position:'fixed', inset:0, zIndex:200,
-            background:'rgba(5,8,12,0.7)',
-            backdropFilter:'blur(4px)',
-            display:'flex', alignItems:'center', justifyContent:'center',
-            padding:'24px',
+            position: 'fixed', inset: 0, zIndex: 200,
+            background: 'rgba(5,8,12,0.75)',
+            backdropFilter: 'blur(4px)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: '24px',
+            overflowY: 'auto',
           }}
         >
-          {/* Modal card */}
           <div
             onClick={e => e.stopPropagation()}
             style={{
-              background:'#0D1117',
-              border:'1px solid rgba(255,255,255,.08)',
-              borderRadius:'18px',
-              width:'100%', maxWidth:'480px',
-              padding:'32px',
-              animation:'fadeUp .22s ease',
-              position:'relative',
+              background: '#0D1117',
+              border: '1px solid rgba(255,255,255,.08)',
+              borderRadius: '18px',
+              width: '100%', maxWidth: '520px',
+              padding: '32px',
+              animation: 'fadeUp .22s ease',
+              position: 'relative',
+              margin: 'auto',
             }}
           >
             {/* Close */}
             <button
               onClick={close}
               style={{
-                position:'absolute', top:'16px', right:'16px',
-                background:'none', border:'none', cursor:'pointer',
-                color:'#4A7A8A', padding:'4px',
-                display:'flex', alignItems:'center', justifyContent:'center',
-                borderRadius:'6px',
+                position: 'absolute', top: '16px', right: '16px',
+                background: 'none', border: 'none', cursor: 'pointer',
+                color: '#4A7A8A', padding: '4px',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                borderRadius: '6px',
               }}
-              onMouseEnter={e => e.currentTarget.style.color='#E8F2F5'}
-              onMouseLeave={e => e.currentTarget.style.color='#4A7A8A'}
+              onMouseEnter={e => e.currentTarget.style.color = '#E8F2F5'}
+              onMouseLeave={e => e.currentTarget.style.color = '#4A7A8A'}
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>
@@ -1300,64 +1245,99 @@ function ReportBug() {
             {step === 'form' ? (
               <>
                 {/* Header */}
-                <div style={{ display:'flex', alignItems:'center', gap:'12px', marginBottom:'24px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
                   <div style={{
-                    width:'38px', height:'38px', borderRadius:'10px', flexShrink:0,
-                    background:'rgba(239,68,68,0.1)', border:'1px solid rgba(239,68,68,0.2)',
-                    display:'flex', alignItems:'center', justifyContent:'center', color:'rgba(239,68,68,0.8)',
+                    width: '38px', height: '38px', borderRadius: '10px', flexShrink: 0,
+                    background: 'rgba(14,196,193,0.1)', border: '1px solid rgba(14,196,193,0.22)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0EC4C1',
                   }}>
                     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
-                      <line x1="12" y1="8" x2="12" y2="12"/>
-                      <line x1="12" y1="16" x2="12.01" y2="16"/>
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                     </svg>
                   </div>
                   <div>
-                    <div style={{ fontSize:'16px', fontWeight:700, color:'#E8F2F5' }}>Report a Bug</div>
-                    <div style={{ fontSize:'13px', color:'#7FA0AC', marginTop:'2px' }}>We'll look into it as soon as possible.</div>
+                    <div style={{ fontSize: '16px', fontWeight: 700, color: '#E8F2F5' }}>Contact Support</div>
+                    <div style={{ fontSize: '13px', color: '#7FA0AC', marginTop: '2px' }}>We'll get back to you as soon as possible.</div>
                   </div>
                 </div>
 
-                {/* Form fields */}
-                <div style={{ display:'flex', flexDirection:'column', gap:'14px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+
+                  {/* Category pills */}
                   <div>
-                    <label style={{ fontSize:'12px', fontWeight:600, color:'#9BBAC5', letterSpacing:'.04em', display:'block', marginBottom:'6px' }}>WHAT HAPPENED? *</label>
+                    <label style={{ fontSize: '12px', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '8px' }}>CATEGORY</label>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                      {CATEGORIES.map(c => {
+                        const active = form.category === c.id;
+                        return (
+                          <button
+                            key={c.id}
+                            onClick={() => setForm(f => ({ ...f, category: c.id, title: '', desc: '' }))}
+                            style={{
+                              display: 'inline-flex', alignItems: 'center', gap: '5px',
+                              padding: '5px 12px', borderRadius: '999px',
+                              background: active ? `rgba(${c.id === 'bug' ? '239,68,68' : c.id === 'billing' ? '129,140,248' : c.id === 'connection' ? '20,168,185' : c.id === 'feature' ? '249,115,22' : c.id === 'other' ? '107,114,128' : '14,196,193'},0.12)` : 'rgba(255,255,255,.04)',
+                              border: active ? `1px solid ${c.color}44` : '1px solid rgba(255,255,255,.07)',
+                              color: active ? c.color : '#7FA0AC',
+                              fontSize: '12px', fontWeight: active ? 600 : 400,
+                              fontFamily: 'inherit', cursor: 'pointer',
+                              transition: 'all .15s',
+                            }}
+                            onMouseEnter={e => { if (!active) { e.currentTarget.style.borderColor = 'rgba(255,255,255,.14)'; e.currentTarget.style.color = '#C8E6EA'; } }}
+                            onMouseLeave={e => { if (!active) { e.currentTarget.style.borderColor = 'rgba(255,255,255,.07)'; e.currentTarget.style.color = '#7FA0AC'; } }}
+                          >
+                            <span style={{ lineHeight: 0 }}>{c.icon}</span>
+                            {c.label}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Subject */}
+                  <div>
+                    <label style={{ fontSize: '12px', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '6px' }}>SUBJECT *</label>
                     <input
                       value={form.title}
-                      onChange={e => setForm(f => ({ ...f, title:e.target.value }))}
+                      onChange={e => setForm(f => ({ ...f, title: e.target.value }))}
                       onFocus={() => setFocused('title')}
                       onBlur={() => setFocused(null)}
-                      placeholder="e.g. Chart not loading on Reports page"
+                      placeholder={cat.subjectPlaceholder}
                       style={inputStyle('title')}
                     />
                   </div>
+
+                  {/* Description */}
                   <div>
-                    <label style={{ fontSize:'12px', fontWeight:600, color:'#9BBAC5', letterSpacing:'.04em', display:'block', marginBottom:'6px' }}>STEPS TO REPRODUCE</label>
+                    <label style={{ fontSize: '12px', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '6px' }}>{cat.descLabel}</label>
                     <textarea
                       rows={3}
                       value={form.desc}
-                      onChange={e => setForm(f => ({ ...f, desc:e.target.value }))}
+                      onChange={e => setForm(f => ({ ...f, desc: e.target.value }))}
                       onFocus={() => setFocused('desc')}
                       onBlur={() => setFocused(null)}
-                      placeholder="1. Go to Reports tab&#10;2. Click Export&#10;3. See error"
+                      placeholder={cat.descPlaceholder}
                       style={{ ...inputStyle('desc') }}
                     />
                   </div>
+
+                  {/* Email */}
                   <div>
-                    <label style={{ fontSize:'12px', fontWeight:600, color:'#9BBAC5', letterSpacing:'.04em', display:'block', marginBottom:'6px' }}>YOUR EMAIL <span style={{ color:'#4A7A8A', fontWeight:400 }}>(optional, for follow-up)</span></label>
+                    <label style={{ fontSize: '12px', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '6px' }}>YOUR EMAIL <span style={{ color: '#4A7A8A', fontWeight: 400 }}>(optional, for follow-up)</span></label>
                     <input
                       type="email"
                       value={form.email}
-                      onChange={e => setForm(f => ({ ...f, email:e.target.value }))}
+                      onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
                       onFocus={() => setFocused('email')}
                       onBlur={() => setFocused(null)}
                       placeholder="you@company.com"
                       style={inputStyle('email')}
                     />
                   </div>
-                  {/* Attach */}
+
+                  {/* Attachments */}
                   <div>
-                    <label style={{ fontSize:'12px', fontWeight:600, color:'#9BBAC5', letterSpacing:'.04em', display:'block', marginBottom:'6px' }}>ATTACHMENTS <span style={{ color:'#4A7A8A', fontWeight:400 }}>(up to 5 files, 10 MB each)</span></label>
+                    <label style={{ fontSize: '12px', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '6px' }}>ATTACHMENTS <span style={{ color: '#4A7A8A', fontWeight: 400 }}>(up to 5 files, 10 MB each)</span></label>
                     <div
                       onClick={() => fileRef.current?.click()}
                       onDragOver={e => { e.preventDefault(); setDragOver(true); }}
@@ -1365,43 +1345,42 @@ function ReportBug() {
                       onDrop={e => { e.preventDefault(); setDragOver(false); addFiles(e.dataTransfer.files); }}
                       style={{
                         border: dragOver ? '1px dashed rgba(9,160,157,.6)' : '1px dashed rgba(255,255,255,.12)',
-                        borderRadius:'10px', padding:'16px',
+                        borderRadius: '10px', padding: '16px',
                         background: dragOver ? 'rgba(9,160,157,.06)' : 'rgba(255,255,255,.02)',
-                        display:'flex', flexDirection:'column', alignItems:'center', gap:'6px',
-                        cursor:'pointer', transition:'border-color .18s, background .18s',
+                        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px',
+                        cursor: 'pointer', transition: 'border-color .18s, background .18s',
                       }}
-                      onMouseEnter={e => { if (!dragOver) e.currentTarget.style.borderColor='rgba(255,255,255,.22)'; }}
-                      onMouseLeave={e => { if (!dragOver) e.currentTarget.style.borderColor='rgba(255,255,255,.12)'; }}
+                      onMouseEnter={e => { if (!dragOver) e.currentTarget.style.borderColor = 'rgba(255,255,255,.22)'; }}
+                      onMouseLeave={e => { if (!dragOver) e.currentTarget.style.borderColor = 'rgba(255,255,255,.12)'; }}
                     >
-                      <input ref={fileRef} type="file" multiple style={{ display:'none' }} onChange={e => addFiles(e.target.files)} />
+                      <input ref={fileRef} type="file" multiple style={{ display: 'none' }} onChange={e => addFiles(e.target.files)} />
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4A7A8A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
                       </svg>
-                      <span style={{ fontSize:'13px', color:'#4A7A8A' }}>
+                      <span style={{ fontSize: '13px', color: '#4A7A8A' }}>
                         {dragOver ? 'Drop files here' : 'Click or drag files to attach'}
                       </span>
                     </div>
-                    {/* File list */}
                     {files.length > 0 && (
-                      <div style={{ display:'flex', flexDirection:'column', gap:'6px', marginTop:'8px' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginTop: '8px' }}>
                         {files.map(f => (
                           <div key={f.name} style={{
-                            display:'flex', alignItems:'center', justifyContent:'space-between', gap:'8px',
-                            background:'rgba(255,255,255,.04)', border:'1px solid rgba(255,255,255,.07)',
-                            borderRadius:'8px', padding:'7px 10px',
+                            display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px',
+                            background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.07)',
+                            borderRadius: '8px', padding: '7px 10px',
                           }}>
-                            <div style={{ display:'flex', alignItems:'center', gap:'8px', minWidth:0 }}>
-                              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4A7A8A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink:0 }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0 }}>
+                              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4A7A8A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
                                 <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/>
                               </svg>
-                              <span style={{ fontSize:'13px', color:'#9BBAC5', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{f.name}</span>
-                              <span style={{ fontSize:'11px', color:'#4A7A8A', flexShrink:0 }}>{fmt(f.size)}</span>
+                              <span style={{ fontSize: '13px', color: '#9BBAC5', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{f.name}</span>
+                              <span style={{ fontSize: '11px', color: '#4A7A8A', flexShrink: 0 }}>{fmt(f.size)}</span>
                             </div>
                             <button
                               onClick={() => removeFile(f.name)}
-                              style={{ background:'none', border:'none', cursor:'pointer', color:'#4A7A8A', padding:'2px', display:'flex', flexShrink:0 }}
-                              onMouseEnter={e => e.currentTarget.style.color='#EF4444'}
-                              onMouseLeave={e => e.currentTarget.style.color='#4A7A8A'}
+                              style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#4A7A8A', padding: '2px', display: 'flex', flexShrink: 0 }}
+                              onMouseEnter={e => e.currentTarget.style.color = '#EF4444'}
+                              onMouseLeave={e => e.currentTarget.style.color = '#4A7A8A'}
                             >
                               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                             </button>
@@ -1413,61 +1392,61 @@ function ReportBug() {
                 </div>
 
                 {/* Actions */}
-                <div style={{ display:'flex', gap:'10px', marginTop:'24px' }}>
+                <div style={{ display: 'flex', gap: '10px', marginTop: '24px' }}>
                   <button
                     onClick={close}
                     style={{
-                      flex:1, padding:'11px', borderRadius:'9px',
-                      background:'rgba(255,255,255,.05)', border:'1px solid rgba(255,255,255,.08)',
-                      color:'#7FA0AC', fontSize:'14px', fontWeight:500,
-                      fontFamily:'inherit', cursor:'pointer',
+                      flex: 1, padding: '11px', borderRadius: '9px',
+                      background: 'rgba(255,255,255,.05)', border: '1px solid rgba(255,255,255,.08)',
+                      color: '#7FA0AC', fontSize: '14px', fontWeight: 500,
+                      fontFamily: 'inherit', cursor: 'pointer',
                     }}
-                    onMouseEnter={e => e.currentTarget.style.background='rgba(255,255,255,.08)'}
-                    onMouseLeave={e => e.currentTarget.style.background='rgba(255,255,255,.05)'}
+                    onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,.08)'}
+                    onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,.05)'}
                   >Cancel</button>
                   <button
                     onClick={submit}
                     style={{
-                      flex:2, padding:'11px', borderRadius:'9px',
-                      background: form.title.trim() ? 'rgba(239,68,68,0.85)' : 'rgba(239,68,68,0.25)',
-                      border:'none',
-                      color: form.title.trim() ? '#fff' : 'rgba(239,68,68,0.5)',
-                      fontSize:'14px', fontWeight:600,
-                      fontFamily:'inherit', cursor: form.title.trim() ? 'pointer' : 'default',
-                      transition:'background .18s, color .18s',
+                      flex: 2, padding: '11px', borderRadius: '9px',
+                      background: form.title.trim() ? '#07807E' : 'rgba(9,160,157,.18)',
+                      border: 'none',
+                      color: form.title.trim() ? '#fff' : 'rgba(14,196,193,0.4)',
+                      fontSize: '14px', fontWeight: 600,
+                      fontFamily: 'inherit', cursor: form.title.trim() ? 'pointer' : 'default',
+                      transition: 'background .18s, color .18s',
                     }}
-                    onMouseEnter={e => { if (form.title.trim()) e.currentTarget.style.background='rgba(239,68,68,1)'; }}
-                    onMouseLeave={e => { if (form.title.trim()) e.currentTarget.style.background='rgba(239,68,68,0.85)'; }}
-                  >Submit Report</button>
+                    onMouseEnter={e => { if (form.title.trim()) e.currentTarget.style.background = '#09A09D'; }}
+                    onMouseLeave={e => { if (form.title.trim()) e.currentTarget.style.background = '#07807E'; }}
+                  >Submit Request</button>
                 </div>
               </>
             ) : (
-              /* Success state */
-              <div style={{ textAlign:'center', padding:'16px 0' }}>
+              /* Success */
+              <div style={{ textAlign: 'center', padding: '16px 0' }}>
                 <div style={{
-                  width:'52px', height:'52px', borderRadius:'50%',
-                  background:'rgba(34,197,94,0.1)', border:'1px solid rgba(34,197,94,0.25)',
-                  display:'flex', alignItems:'center', justifyContent:'center',
-                  margin:'0 auto 20px', color:'#22C55E',
+                  width: '52px', height: '52px', borderRadius: '50%',
+                  background: 'rgba(14,196,193,0.1)', border: '1px solid rgba(14,196,193,0.22)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  margin: '0 auto 20px', color: '#0EC4C1',
                 }}>
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12"/>
                   </svg>
                 </div>
-                <div style={{ fontSize:'17px', fontWeight:700, color:'#E8F2F5', marginBottom:'8px' }}>Bug report submitted</div>
-                <div style={{ fontSize:'14px', color:'#7FA0AC', lineHeight:1.6, marginBottom:'28px' }}>
-                  Thanks for taking the time to report this. Our team will investigate and follow up if needed.
+                <div style={{ fontSize: '17px', fontWeight: 700, color: '#E8F2F5', marginBottom: '8px' }}>Request submitted</div>
+                <div style={{ fontSize: '14px', color: '#7FA0AC', lineHeight: 1.6, marginBottom: '28px' }}>
+                  Thanks for reaching out. Our team will review your request and follow up shortly.
                 </div>
                 <button
                   onClick={close}
                   style={{
-                    padding:'10px 28px', borderRadius:'9px',
-                    background:'rgba(255,255,255,.06)', border:'1px solid rgba(255,255,255,.1)',
-                    color:'#E8F2F5', fontSize:'14px', fontWeight:500,
-                    fontFamily:'inherit', cursor:'pointer',
+                    padding: '10px 28px', borderRadius: '9px',
+                    background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.1)',
+                    color: '#E8F2F5', fontSize: '14px', fontWeight: 500,
+                    fontFamily: 'inherit', cursor: 'pointer',
                   }}
-                  onMouseEnter={e => e.currentTarget.style.background='rgba(255,255,255,.1)'}
-                  onMouseLeave={e => e.currentTarget.style.background='rgba(255,255,255,.06)'}
+                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,.1)'}
+                  onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,.06)'}
                 >Done</button>
               </div>
             )}
@@ -1475,286 +1454,6 @@ function ReportBug() {
         </div>
       )}
     </>
-  );
-}
-
-/* ── QUICK START VIDEOS ── */
-function QuickStartVideos() {
-  const videos = [
-    {
-      title: 'Getting Started in 5 Minutes',
-      duration: '5:12',
-      category: 'Setup',
-      color: 'rgba(14,196,193,',
-      thumb: (
-        <svg width="100%" height="100%" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" style={{position:'absolute',inset:0}}>
-          <rect width="320" height="180" fill="rgba(13,17,23,1)"/>
-          <circle cx="260" cy="30" r="90" fill="rgba(14,196,193,0.07)"/>
-          <circle cx="60" cy="150" r="70" fill="rgba(14,196,193,0.05)"/>
-          {[0,1,2,3,4,5,6,7,8].map(i=><line key={i} x1={i*40} y1="0" x2={i*40} y2="180" stroke="rgba(14,196,193,0.05)" strokeWidth="1"/>)}
-          {[0,1,2,3,4].map(i=><line key={i} x1="0" y1={i*45} x2="320" y2={i*45} stroke="rgba(14,196,193,0.05)" strokeWidth="1"/>)}
-          <polyline points="20,140 80,100 140,115 200,70 260,85 310,50" stroke="rgba(14,196,193,0.4)" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-          <circle cx="200" cy="70" r="4" fill="rgba(14,196,193,0.8)"/>
-        </svg>
-      ),
-    },
-    {
-      title: 'Connecting Your First Data Source',
-      duration: '8:34',
-      category: 'Integrations',
-      color: 'rgba(99,102,241,',
-      thumb: (
-        <svg width="100%" height="100%" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" style={{position:'absolute',inset:0}}>
-          <rect width="320" height="180" fill="rgba(13,17,23,1)"/>
-          <circle cx="160" cy="90" r="110" fill="none" stroke="rgba(99,102,241,0.07)" strokeWidth="1"/>
-          <circle cx="160" cy="90" r="75" fill="none" stroke="rgba(99,102,241,0.07)" strokeWidth="1"/>
-          <circle cx="160" cy="90" r="40" fill="rgba(99,102,241,0.08)" stroke="rgba(99,102,241,0.15)" strokeWidth="1"/>
-          {[[80,50],[240,50],[80,130],[240,130]].map(([x,y],i)=>(
-            <g key={i}>
-              <circle cx={x} cy={y} r="14" fill="rgba(99,102,241,0.1)" stroke="rgba(99,102,241,0.2)" strokeWidth="1"/>
-              <circle cx={x} cy={y} r="4" fill="rgba(99,102,241,0.6)"/>
-              <line x1={x > 160 ? x-14 : x+14} y1={y} x2={x > 160 ? 200 : 120} y2="90" stroke="rgba(99,102,241,0.2)" strokeWidth="1" strokeDasharray="4 3"/>
-            </g>
-          ))}
-          <circle cx="160" cy="90" r="7" fill="rgba(99,102,241,0.7)"/>
-        </svg>
-      ),
-    },
-    {
-      title: 'Building Your First AI Query',
-      duration: '6:48',
-      category: 'AI Chat',
-      color: 'rgba(168,85,247,',
-      thumb: (
-        <svg width="100%" height="100%" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" style={{position:'absolute',inset:0}}>
-          <rect width="320" height="180" fill="rgba(13,17,23,1)"/>
-          <circle cx="50" cy="50" r="80" fill="rgba(168,85,247,0.06)"/>
-          <circle cx="290" cy="140" r="70" fill="rgba(168,85,247,0.05)"/>
-          {[30,60,90,120,150].map((y,i)=><line key={i} x1="20" y1={y} x2="300" y2={y} stroke={`rgba(168,85,247,${0.04+i*0.015})`} strokeWidth="1"/>)}
-          {[0,1,2,3,4,5,6].map(i=><rect key={i} x={20+i*42} y={60+Math.sin(i*1.2)*30} width="28" height={50+Math.cos(i)*20} rx="3" fill={`rgba(168,85,247,${0.1+i*0.03})`} stroke="rgba(168,85,247,0.15)" strokeWidth="1"/>)}
-        </svg>
-      ),
-    },
-    {
-      title: 'Setting Up the Semantic Layer',
-      duration: '11:20',
-      category: 'Semantic Layer',
-      color: 'rgba(251,146,60,',
-      thumb: (
-        <svg width="100%" height="100%" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" style={{position:'absolute',inset:0}}>
-          <rect width="320" height="180" fill="rgba(13,17,23,1)"/>
-          <defs><linearGradient id="vg1" x1="160" y1="0" x2="160" y2="180" gradientUnits="userSpaceOnUse"><stop stopColor="rgba(251,146,60,0.12)"/><stop offset="1" stopColor="rgba(251,146,60,0)"/></linearGradient></defs>
-          <rect x="0" y="0" width="320" height="180" fill="url(#vg1)"/>
-          {[40,70,100,130].map((y,i)=>(
-            <g key={i}>
-              <ellipse cx="160" cy={y} rx={120-i*20} ry="12" fill={`rgba(251,146,60,${0.06+i*0.02})`} stroke={`rgba(251,146,60,${0.12+i*0.04})`} strokeWidth="1"/>
-            </g>
-          ))}
-          <line x1="160" y1="40" x2="160" y2="130" stroke="rgba(251,146,60,0.15)" strokeWidth="1"/>
-          <circle cx="160" cy="85" r="6" fill="rgba(251,146,60,0.7)"/>
-        </svg>
-      ),
-    },
-    {
-      title: 'Creating and Scheduling Reports',
-      duration: '7:55',
-      category: 'Reports',
-      color: 'rgba(52,211,153,',
-      thumb: (
-        <svg width="100%" height="100%" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" style={{position:'absolute',inset:0}}>
-          <rect width="320" height="180" fill="rgba(13,17,23,1)"/>
-          <defs><linearGradient id="vg2" x1="0" y1="90" x2="320" y2="90" gradientUnits="userSpaceOnUse"><stop stopColor="rgba(52,211,153,0.1)"/><stop offset="1" stopColor="rgba(52,211,153,0)"/></linearGradient></defs>
-          <rect x="0" y="0" width="320" height="180" fill="url(#vg2)"/>
-          {[30,60,90,120,150].map((y,i)=><line key={i} x1="20" y1={y} x2="300" y2={y} stroke="rgba(52,211,153,0.06)" strokeWidth="1"/>)}
-          <polygon points="160,130 300,160 160,160" fill="rgba(52,211,153,0.07)"/>
-          <polyline points="20,145 70,120 120,130 170,90 220,105 270,65 300,75" stroke="rgba(52,211,153,0.5)" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-          <polyline points="20,145 70,120 120,130 170,90 220,105 270,65 300,75 300,160 20,160" fill="rgba(52,211,153,0.07)" stroke="none"/>
-          {[[170,90],[270,65]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r="4" fill="rgba(52,211,153,0.85)"/>)}
-        </svg>
-      ),
-    },
-    {
-      title: 'Managing Users & Permissions',
-      duration: '4:30',
-      category: 'Security',
-      color: 'rgba(239,68,68,',
-      thumb: (
-        <svg width="100%" height="100%" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" style={{position:'absolute',inset:0}}>
-          <rect width="320" height="180" fill="rgba(13,17,23,1)"/>
-          <circle cx="160" cy="90" r="100" fill="none" stroke="rgba(239,68,68,0.06)" strokeWidth="1"/>
-          <circle cx="160" cy="90" r="68" fill="none" stroke="rgba(239,68,68,0.07)" strokeWidth="1"/>
-          <circle cx="160" cy="90" r="36" fill="rgba(239,68,68,0.07)" stroke="rgba(239,68,68,0.15)" strokeWidth="1"/>
-          {[0,60,120,180,240,300].map((deg,i)=>{
-            const rad = deg*Math.PI/180;
-            const x = 160 + 68*Math.cos(rad);
-            const y = 90 + 68*Math.sin(rad);
-            return <circle key={i} cx={x} cy={y} r="5" fill={`rgba(239,68,68,${0.3+i*0.1})`}/>;
-          })}
-          <circle cx="160" cy="90" r="8" fill="rgba(239,68,68,0.7)"/>
-        </svg>
-      ),
-    },
-  ];
-
-  const [hovered, setHovered] = React.useState(null);
-
-  return (
-    <section style={{ padding:'0 0 56px', position:'relative', zIndex:1 }}>
-      <div style={{ maxWidth:'1280px', margin:'0 auto', padding:'0 24px' }}>
-
-        {/* Header */}
-        <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'space-between', marginBottom:'24px', flexWrap:'wrap', gap:'12px' }}>
-          <div>
-            <div style={{ fontSize:'11px', fontWeight:600, letterSpacing:'.1em', color:'#4A7A8A', marginBottom:'6px' }}>QUICK START</div>
-            <h2 style={{ fontSize:'20px', fontWeight:700, color:'#E8F2F5', margin:0 }}>Video tutorials</h2>
-          </div>
-          <a href="#" style={{ fontSize:'13px', color:'#0EC4C1', textDecoration:'none', fontWeight:500, display:'flex', alignItems:'center', gap:'5px' }}
-            onMouseEnter={e => e.currentTarget.style.color='#2DD4D2'}
-            onMouseLeave={e => e.currentTarget.style.color='#0EC4C1'}
-          >
-            View all tutorials
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </div>
-
-        {/* Grid */}
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'16px' }}>
-          {videos.map((v, i) => (
-            <div key={i}
-              onMouseEnter={() => setHovered(i)}
-              onMouseLeave={() => setHovered(null)}
-              style={{
-                borderRadius:'14px', overflow:'hidden',
-                background:'rgba(13,17,23,.6)',
-                border: hovered === i ? `1px solid ${v.color}0.35)` : '1px solid rgba(255,255,255,.06)',
-                transform: hovered === i ? 'translateY(-3px)' : 'translateY(0)',
-                boxShadow: hovered === i ? `0 10px 28px ${v.color}0.1)` : 'none',
-                transition:'border-color .2s, transform .2s, box-shadow .2s',
-                cursor:'pointer',
-              }}
-            >
-              {/* Thumbnail */}
-              <div style={{ position:'relative', paddingTop:'56.25%' /* 16:9 */ }}>
-                {v.thumb}
-                {/* Duration badge */}
-                <div style={{
-                  position:'absolute', bottom:'8px', right:'8px',
-                  background:'rgba(5,8,12,0.85)', borderRadius:'5px',
-                  padding:'2px 7px', fontSize:'11px', fontWeight:600, color:'#E8F2F5',
-                  fontFamily:'Geist Mono, monospace',
-                }}>{v.duration}</div>
-                {/* Play button */}
-                <div style={{
-                  position:'absolute', inset:0,
-                  display:'flex', alignItems:'center', justifyContent:'center',
-                }}>
-                  <div style={{
-                    width:'40px', height:'40px', borderRadius:'50%',
-                    background: hovered === i ? `${v.color}0.9)` : 'rgba(255,255,255,0.12)',
-                    backdropFilter:'blur(4px)',
-                    display:'flex', alignItems:'center', justifyContent:'center',
-                    transform: hovered === i ? 'scale(1.1)' : 'scale(1)',
-                    transition:'background .2s, transform .2s',
-                  }}>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="white" style={{marginLeft:'2px'}}>
-                      <polygon points="5 3 19 12 5 21 5 3"/>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              {/* Info */}
-              <div style={{ padding:'12px 14px 14px' }}>
-                <div style={{
-                  fontSize:'11px', fontWeight:600, color:`${v.color}0.9)`,
-                  letterSpacing:'.06em', marginBottom:'5px',
-                }}>{v.category}</div>
-                <div style={{ fontSize:'13px', fontWeight:600, color:'#C8E6EA', lineHeight:1.4 }}>{v.title}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-      </div>
-    </section>
-  );
-}
-
-function JoinCommunity() {
-  return (
-    <section style={{ padding:'0 0 80px', position:'relative', zIndex:1 }}>
-      <div style={{ maxWidth:'1280px', margin:'0 auto', padding:'0 24px' }}>
-      <div style={{
-        background:'rgba(13,17,23,.6)',
-        border:'1px solid rgba(255,255,255,.06)',
-        borderRadius:'16px',
-        display:'flex', alignItems:'center', justifyContent:'space-between', gap:'32px',
-        position:'relative', overflow:'hidden',
-        flexWrap:'wrap',
-      }}>
-        {/* Top glow */}
-        <div style={{
-          position:'absolute', top:0, left:'30%', right:'30%', height:'1px',
-          background:'linear-gradient(90deg, transparent, rgba(9,160,157,.2), transparent)',
-        }} />
-
-        {/* Left: community image */}
-        <div style={{ position:'relative', width:'340px', height:'180px', flexShrink:0 }}>
-          <img
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=680&h=360&fit=crop&auto=format"
-            alt="Community"
-            style={{ width:'100%', height:'100%', objectFit:'cover', display:'block', opacity:.5 }}
-          />
-          <div style={{
-            position:'absolute', inset:0,
-            background:'linear-gradient(to right, rgba(13,17,23,0) 60%, rgba(13,17,23,.95) 100%)',
-          }} />
-          {/* Avatars overlay */}
-          <div style={{
-            position:'absolute', bottom:'16px', left:'16px',
-            display:'flex', alignItems:'center',
-          }}>
-            {['32','44','68','12','57'].map((n, i) => (
-              <img key={i} src={`https://i.pravatar.cc/40?img=${n}`} alt=""
-                style={{
-                  width:'28px', height:'28px', borderRadius:'50%', objectFit:'cover',
-                  border:'2px solid rgba(13,17,23,.8)',
-                  marginLeft: i === 0 ? '0' : '-8px',
-                  position:'relative', zIndex: 5 - i,
-                }}
-              />
-            ))}
-            <span style={{ fontSize:'12px', color:'#7FA0AC', marginLeft:'8px' }}>2,400+ members</span>
-          </div>
-        </div>
-
-        {/* Right: text + button */}
-        <div style={{ flex:'1', minWidth:'240px', padding:'32px 32px 32px 0' }}>
-          <p style={{ fontSize:'18px', fontWeight:600, color:'#E8F2F5', marginBottom:'8px', lineHeight:1.3 }}>
-            Join the{' '}
-            <span style={{ color:'#0EC4C1' }}>Insightis community.</span>
-          </p>
-          <p style={{ fontSize:'13px', color:'#7FA0AC', lineHeight:1.6, marginBottom:'20px' }}>
-            Ask questions, share tips, vote on features, and connect with other data-driven teams.
-          </p>
-          <a href="Community.html" style={{
-            display:'inline-flex', alignItems:'center', gap:'8px',
-            padding:'10px 22px', borderRadius:'999px',
-            background:'#07807E', color:'#fff',
-            fontSize:'13px', fontWeight:600, fontFamily:'Geist,sans-serif',
-            textDecoration:'none', transition:'background .2s',
-          }}
-          onMouseEnter={e => e.currentTarget.style.background = '#09A09D'}
-          onMouseLeave={e => e.currentTarget.style.background = '#07807E'}
-          >
-            Join Community
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-      </div>
-    </section>
   );
 }
 
@@ -1768,9 +1467,7 @@ function App() {
       <Header />
       <SupportHero search={search} setSearch={setSearch} />
       <HelpTopics search={search} />
-      <ReportBug />
-      <QuickStartVideos />
-      <JoinCommunity />
+      <ContactSupport />
       <Footer />
       <FloatingChat onSubmit={(q) => setAssistantQuery(q)} hidden={!!assistantQuery} />
       {assistantQuery && (

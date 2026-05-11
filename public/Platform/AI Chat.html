@@ -773,7 +773,7 @@ function TreemapChart({ items }) {
   const colors = ['#0EC4C1','#09A09D','#818CF8','#FBBF24','#F87171','#34D399','#60A5FA'];
   const sorted = [...items].sort((a,b) => b.value - a.value);
   const total = sorted.reduce((s,i) => s + i.value, 0);
-  const W = 860, H = 270, gap = 4;
+  const W = 860, H = 210, gap = 4;
   const leftW = Math.round((sorted[0].value / total) * W);
   const rest = sorted.slice(1);
   const restTotal = rest.reduce((s,i) => s + i.value, 0) || 1;
@@ -786,7 +786,7 @@ function TreemapChart({ items }) {
   });
   return (
     <div style={{margin:'12px 0'}}>
-      <svg viewBox={`0 0 ${W} ${H}`} style={{width:'100%',maxHeight:'280px'}}>
+      <svg viewBox={`0 0 ${W} ${H}`} style={{width:'100%',maxHeight:'220px'}}>
         {cells.map((c,i) => (
           <g key={i}>
             <rect x={c.x} y={c.y} width={c.w} height={c.h} fill={c.color} opacity=".78" rx="6"/>
@@ -823,7 +823,7 @@ function PieChart({ slices }) {
   });
   return (
     <div style={{display:'flex',alignItems:'center',gap:'32px',margin:'12px 0'}}>
-      <svg viewBox="0 0 180 180" style={{width:'240px',height:'240px',flexShrink:0}}>
+      <svg viewBox="0 0 180 180" style={{width:'200px',height:'200px',flexShrink:0}}>
         {paths.map((p,i) => <path key={i} d={p.d} fill={p.color} opacity=".85"/>)}
       </svg>
       <div style={{display:'flex',flexDirection:'column',gap:'14px',flex:1}}>
@@ -953,10 +953,10 @@ const GALLERY_DATA = {
   'RevOps & BizOps': {
     questions: [
       'Why did MRR drop last week?',
-      'Which deals are at risk of slipping this quarter?',
-      "What's our average sales cycle by deal size?",
-      'Which pipeline stage has the highest drop-off rate?',
-      'How is our CAC trending vs. 6 months ago?',
+      'Which deals risk slipping?',
+      'Sales cycle by deal size?',
+      'Highest pipeline drop-off?',
+      'CAC trend vs. 6 months ago?',
     ],
     replies: [
       {
@@ -1012,11 +1012,11 @@ const GALLERY_DATA = {
   },
   'Founders & CEOs': {
     questions: [
-      'What is our current ARR and growth trajectory?',
-      'Which customer segment is growing fastest?',
-      'How many months of runway do we have left?',
-      "What's our net revenue retention this quarter?",
-      'Which product line contributes most to gross margin?',
+      'ARR and growth trajectory?',
+      'Fastest-growing segment?',
+      'How much runway is left?',
+      'NRR this quarter?',
+      'Top product by gross margin?',
     ],
     replies: [
       {
@@ -1071,11 +1071,11 @@ const GALLERY_DATA = {
   },
   'CMOs & Marketers': {
     questions: [
-      'Which campaign drove the most qualified leads last month?',
-      "What's our blended CAC across all channels?",
-      'Which landing page has the highest conversion rate?',
-      'How is organic traffic trending vs. paid?',
-      "What's the MQL-to-SQL conversion rate by source?",
+      'Top campaign for MQLs?',
+      'Blended CAC by channel?',
+      'Top-converting landing page?',
+      'Organic vs. paid traffic trend?',
+      'MQL→SQL rate by source?',
     ],
     replies: [
       {
@@ -1130,11 +1130,11 @@ const GALLERY_DATA = {
   },
   'Product Teams': {
     questions: [
-      'What features are most used by retained customers?',
-      'Which cohort has the lowest 30-day activation rate?',
-      'How many users completed onboarding this week?',
-      "What's the average time-to-value for new signups?",
-      'Which feature requests appear most in support tickets?',
+      'Top features for retained users?',
+      'Lowest 30-day activation cohort?',
+      'Onboarding completed this week?',
+      'Average time-to-value?',
+      'Top feature requests in tickets?',
     ],
     replies: [
       {
@@ -1192,11 +1192,11 @@ const GALLERY_DATA = {
   },
   'Data & Analytics': {
     questions: [
-      "Are there any anomalies in yesterday's event data?",
-      'Which metrics deviated more than 2\u03c3 this week?',
-      "What's the data freshness status across all pipelines?",
-      'Which tables are queried most but updated least?',
-      'Is there a correlation between login frequency and LTV?',
+      "Anomalies in yesterday's data?",
+      'Metrics over 2\u03c3 this week?',
+      'Data freshness across pipelines?',
+      'Stale but heavily queried tables?',
+      'Login frequency vs. LTV?',
     ],
     replies: [
       {
@@ -1255,11 +1255,11 @@ const GALLERY_DATA = {
   },
   'Ops & Finance': {
     questions: [
-      "What's our current burn rate vs. budget?",
-      'Which vendors are past payment terms this month?',
-      'How does headcount cost break down by department?',
-      "What's the variance between forecasted and actual revenue?",
-      'Which cost centers are trending over budget?',
+      'Burn rate vs. budget?',
+      'Vendors past payment terms?',
+      'Headcount cost by department?',
+      'Forecast vs. actual revenue?',
+      'Cost centers over budget?',
     ],
     replies: [
       {
@@ -1416,19 +1416,13 @@ function QuestionsGallery() {
                     transition:'opacity .25s',
                     borderRadius:'0 2px 2px 0',
                   }}/>
-                  <div style={{display:'flex',alignItems:'center',gap:'10px'}}>
-                    <span style={{
-                      fontSize:'10px',fontFamily:'Geist Mono,monospace',
-                      color: i===activeQ?'rgba(9,160,157,.6)':'#6E8D9A',
-                      fontWeight:500,flexShrink:0,
-                    }}>{String(i+1).padStart(2,'0')}</span>
-                    <span style={{
-                      fontSize:'13px',fontWeight: i===activeQ?500:400,
-                      color: i===activeQ?'#E8F2F5':'#6E8D9A',
-                      lineHeight:1.45,
-                      transition:'color .18s, font-weight .18s',
-                    }}>{"\u201c"}{q}{"\u201d"}</span>
-                  </div>
+                  <span style={{
+                    fontSize:'13px',fontWeight: i===activeQ?500:400,
+                    color: i===activeQ?'#E8F2F5':'#6E8D9A',
+                    lineHeight:1.45,
+                    transition:'color .18s, font-weight .18s',
+                    whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',display:'block',
+                  }}>{q}</span>
                 </div>
               ))}
             </div>
@@ -1454,10 +1448,13 @@ function QuestionsGallery() {
               </div>
 
               {/* AI reply card */}
-              <div style={{
-                alignSelf:'flex-start', width:'100%',
+              <div data-ai-reply-card style={{
+                alignSelf:'stretch', width:'100%',
                 background:'rgba(255,255,255,.03)', border:'1px solid rgba(255,255,255,.07)',
                 borderRadius:'4px 16px 16px 16px', padding:'20px 24px',
+                flex:'1 1 auto', minHeight:0,
+                display:'flex', flexDirection:'column',
+                overflowY:'auto',
               }}>
                 {/* Header */}
                 <div style={{display:'flex',alignItems:'center',gap:'6px',marginBottom:'14px'}}>
@@ -1526,19 +1523,19 @@ function HowItWorks() {
   const steps = [
     {
       n:'01', title:'You ask',
-      desc:'Type any business question in plain English — the same way you would ask a colleague. No SQL, no dashboards, no waiting days for an analyst to respond. Any metric, any time frame, any segment — if you can say it, Insightis can answer it.',
+      desc:'Type any business question in plain English — the same way you would ask a colleague. No SQL, no dashboards, no analyst required.',
       example:'"Which channel has the best CAC this quarter?"',
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" stroke="#0EC4C1" strokeWidth="1.5" strokeLinejoin="round"/></svg>,
     },
     {
       n:'02', title:'AI Engine goes to work',
-      desc:'Insightis AI Engine reviews, validates, and analyzes your data across every connected source — applying your business logic to ensure every result is accurate, consistent, and grounded in real numbers.',
+      desc:'Insightis validates and analyzes data across every connected source, applying your business logic for accurate, grounded results.',
       example:'CRM + payments + product data → validated insight',
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="#0EC4C1" strokeWidth="1.5"/><path d="M8 21h8M12 17v4" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/></svg>,
     },
     {
       n:'03', title:'You get a precise answer',
-      desc:'An instant answer with visualization, contributing factors, and suggested follow-up questions. Ask deeper follow-ups right in the chat. Save any answer as a live report in one click — no BI tool required.',
+      desc:'Get an instant answer with visualization and suggested follow-ups. Save any answer as a live report in one click — no BI tool required.',
       example:'Answer + chart + "Why did this change?" suggestion',
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
     },
@@ -1557,29 +1554,58 @@ function HowItWorks() {
           </h2>
         </div>
 
-        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(300px, 1fr))',gap:'20px'}}>
+        {/* Horizontal stepper */}
+        <div data-steps-grid style={{display:'grid',gridTemplateColumns:`repeat(${steps.length}, 1fr)`,gap:'24px',position:'relative'}}>
           {steps.map((s,i) => (
-            <div key={i} className="spotlight-card" style={{
-              background:'rgba(13,17,23,.6)',
-              border:'1px solid rgba(255,255,255,.06)',
-              borderRadius:'16px',padding:'32px',
-              position:'relative',overflow:'hidden',
-              transition:'transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease',
-            }} onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-3px)';e.currentTarget.style.boxShadow='0 12px 40px rgba(9,160,157,0.08)'}} onMouseLeave={e=>{e.currentTarget.style.transform='';e.currentTarget.style.boxShadow=''}}>
-              {/* Top line accent */}
-              <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.4),transparent)'}}/>
-              {/* Number + Title on one line */}
-              <div style={{display:'flex',alignItems:'baseline',gap:'10px',marginBottom:'16px'}}>
-                <span style={{fontSize:'18px',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#0EC4C1',letterSpacing:'-0.02em',flexShrink:0}}>{s.n}.</span>
-                <h3 style={{fontSize:'18px',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#0EC4C1',letterSpacing:'-0.02em',margin:0,lineHeight:1.2}}>{s.title}</h3>
+            <div key={i} data-step-cell style={{position:'relative',display:'flex',flexDirection:'column',alignItems:'center',textAlign:'center',padding:'0 8px'}}>
+              {/* Connector line — to the right of every step except the last */}
+              {i < steps.length - 1 && (
+                <div data-step-connector style={{position:'absolute',top:'28px',left:'calc(50% + 36px)',right:'calc(-50% + 36px)',height:'1px',background:'linear-gradient(90deg, rgba(9,160,157,.45) 0%, rgba(9,160,157,.18) 100%)',zIndex:0}}/>
+              )}
+
+              {/* Numbered circle */}
+              <div style={{
+                position:'relative',zIndex:1,
+                width:'56px',height:'56px',borderRadius:'50%',
+                border:'1px solid rgba(9,160,157,.45)',
+                background:'radial-gradient(circle at 50% 30%, rgba(9,160,157,.18) 0%, rgba(13,17,23,.95) 75%)',
+                display:'flex',alignItems:'center',justifyContent:'center',
+                boxShadow:'0 0 28px rgba(9,160,157,.18), inset 0 1px 0 rgba(255,255,255,.05)',
+                marginBottom:'22px',
+              }}>
+                <span style={{fontSize:'18px',fontWeight:600,color:'#0EC4C1',fontFamily:"'Outfit', sans-serif",letterSpacing:'-.02em',fontVariantNumeric:'tabular-nums'}}>{s.n}</span>
               </div>
-              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.7,marginBottom:'18px',maxWidth:'45ch'}}>{s.desc}</p>
-              <div style={{padding:'10px 14px',background:'rgba(255,255,255,.03)',border:'1px solid rgba(255,255,255,.06)',borderRadius:'8px',fontSize:'12px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',fontStyle:'italic'}}>
+
+              {/* Title */}
+              <h3 style={{fontSize:'18px',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.02em',margin:'0 0 10px',lineHeight:1.2}}>
+                {s.title}
+              </h3>
+
+              {/* Description */}
+              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.7,margin:'0 0 16px',width:'100%',maxWidth:'320px'}}>
+                {s.desc}
+              </p>
+
+              {/* Example chip */}
+              <div style={{padding:'10px 14px',background:'rgba(255,255,255,.03)',border:'1px solid rgba(255,255,255,.06)',borderRadius:'8px',fontSize:'12px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',fontStyle:'italic',width:'100%',maxWidth:'320px',boxSizing:'border-box'}}>
                 {s.example}
               </div>
             </div>
           ))}
         </div>
+
+        {/* Mobile responsive overrides */}
+        <style>{`
+          @media (max-width: 768px) {
+            [data-steps-grid] {
+              grid-template-columns: 1fr !important;
+              gap: 32px !important;
+            }
+            [data-steps-grid] [data-step-connector] {
+              display: none !important;
+            }
+          }
+        `}</style>
       </div>
     </section>
   );
@@ -1652,6 +1678,51 @@ function AccuracyComparison() {
             <span style={{fontSize:'40px',fontWeight:500,color:'#0EC4C1',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>3×</span>
             <span style={{fontSize:'15px',color:'#7FA0AC',whiteSpace:'nowrap'}}>more accurate because it knows your data, not the internet's.</span>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── MID-PAGE CTA BANNER ── */
+function MidCTA() {
+  return (
+    <section style={{padding:'80px 0',position:'relative',overflow:'hidden'}}>
+      {/* Soft teal glow */}
+      <div style={{
+        position:'absolute',top:'50%',left:'50%',
+        transform:'translate(-50%,-50%)',
+        width:'700px',height:'420px',
+        background:'radial-gradient(ellipse, rgba(9,160,157,0.13) 0%, transparent 70%)',
+        pointerEvents:'none',
+      }}/>
+
+      <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px',position:'relative',textAlign:'center'}}>
+        <h2 style={{
+          fontSize:'clamp(22px,2.6vw,34px)',
+          fontWeight:500,
+          letterSpacing:'-.025em',
+          lineHeight:1.2,
+          marginBottom:'32px',
+          whiteSpace:'nowrap',
+        }}>
+          <span style={{color:'#E8F2F5'}}>Skip the analyst queue. </span>
+          <span style={{color:'#0EC4C1'}}>Start asking.</span>
+        </h2>
+        <div style={{display:'flex',justifyContent:'center'}}>
+          <a href="#" style={{
+            display:'inline-flex',alignItems:'center',gap:'10px',
+            padding:'16px 32px',borderRadius:'999px',
+            background:'linear-gradient(135deg,#09A09D,#07807E)',
+            color:'#fff',fontSize:'15px',fontWeight:500,
+            textDecoration:'none',
+            boxShadow:'0 0 32px rgba(9,160,157,.35), 0 8px 24px rgba(0,0,0,.4)',
+            transition:'all .2s',
+            letterSpacing:'.01em',
+          }}>
+            Get started for free
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </a>
         </div>
       </div>
     </section>
@@ -1770,7 +1841,7 @@ function Footer() {
             <div>
               <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Platform</h4>
               <ul className="flex flex-col gap-2.5">
-                {['AI Chat', 'Integrations', 'Semantic Layer', 'AI Connect', 'Advanced Reports', 'Memory & Storage'].map(link => {
+                {['AI Chat', 'Integrations', 'Semantic Layer'].map(link => {
                   const isComingSoon = ['AI Connect', 'Advanced Reports', 'Memory & Storage'].includes(link);
                   const isNotClickable = ['AI Connect', 'Advanced Reports'].includes(link);
                   const badge = (
@@ -1826,8 +1897,6 @@ function Footer() {
                   { label: 'About Devart', href: 'https://www.devart.com/company/' },
                   { label: 'Careers', href: 'https://www.devart.com/vacancies/' },
                   { label: 'Contacts', href: '../Company/Contacts.html' },
-                  { label: 'Success Stories', href: '../Company/Success Stories.html' },
-                  { label: 'Press & Media', href: '../Company/Press Media.html' },
                 ].map(link => (
                   <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
@@ -1959,9 +2028,16 @@ function ChatMockAnimation() {
     }}>
 
       {/* ── Header ── */}
-      <div style={{padding:'13px 18px', borderBottom:'1px solid rgba(255,255,255,0.07)', display:'flex', alignItems:'center', gap:'9px', background:'rgba(255,255,255,0.015)', flexShrink:0}}>
-        <InsightisIcon size={20}/>
-        <span style={{fontSize:'13.5px', fontWeight:500, color:'#E0EDF2', letterSpacing:'-0.01em'}}>insightis</span>
+      <div style={{padding:'13px 18px', borderBottom:'1px solid rgba(255,255,255,0.07)', display:'flex', alignItems:'center', gap:'10px', background:'rgba(255,255,255,0.015)', flexShrink:0}}>
+        <div style={{display:'flex', gap:'6px'}}>
+          {['#FF5F57','#FFBD2E','#28C840'].map((c,i) => (
+            <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
+          ))}
+        </div>
+        <div style={{flex:1, textAlign:'center', fontSize:'12px', color:'#6E8D9A', fontFamily:'Geist Mono, monospace', letterSpacing:'.02em'}}>
+          insightis — ai chat
+        </div>
+        <div style={{width:'46px'}}/>
       </div>
 
       {/* ── Messages ── */}
@@ -2133,7 +2209,7 @@ function Hero() {
   const [vis, setVis] = React.useState(false);
   useEffect(()=>{ const t = setTimeout(()=>setVis(true), 300); return ()=>clearTimeout(t); },[]);
   return (
-    <section style={{minHeight:'100dvh',display:'flex',alignItems:'center',position:'relative',overflow:'hidden',padding:'120px 0 80px'}}>
+    <section style={{display:'flex',alignItems:'flex-start',position:'relative',overflow:'hidden',padding:'120px 0 160px'}}>
       {/* Background glows */}
       <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 70% 60% at 72% 50%,rgba(9,160,157,0.09) 0%,transparent 70%)',pointerEvents:'none',zIndex:1}}/>
       <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 60% 50% at 20% 50%,rgba(59,31,94,0.12) 0%,transparent 70%)',pointerEvents:'none',zIndex:1}}/>
@@ -2207,6 +2283,7 @@ function App() {
           See plan: C:\Users\victorg\.claude\plans\snappy-rolling-hedgehog.md
       */}
       <HowItWorks />
+      <MidCTA />
       <QuestionsGallery />
       <AccuracyComparison />
       {/* TODO SEO [P1]: Insert <FAQ/> component here (between AccuracyComparison and BottomCTA).

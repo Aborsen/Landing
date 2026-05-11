@@ -91,13 +91,8 @@ section { position: relative; }
   background: rgba(255,255,255,.025);
   border: 1px solid rgba(255,255,255,.06);
   border-radius: 12px;
-  transition: all .18s ease;
   cursor: default;
-}
-.connector-card:hover {
-  background: rgba(255,255,255,.05);
-  border-color: rgba(255,255,255,.12);
-  transform: translateY(-1px);
+  position: relative;
 }
 .connector-icon {
   width: 36px; height: 36px;
@@ -460,18 +455,18 @@ function SemanticLayerMockAnimation() {
     'Certifying canonical metrics',
   ];
 
-  const STREAM_START   = 500;
-  const STREAM_STEP    = 340;
+  const STREAM_START   = 700;
+  const STREAM_STEP    = 500;
   const STREAM_END     = STREAM_START + RAW_METRICS.length * STREAM_STEP;
-  const RAW_COLLAPSE   = STREAM_END + 900;
-  const THINKING_START = RAW_COLLAPSE + 650;
-  const STEP_GAP       = 720;
-  const STEP_TIMES     = THINK_STEPS.map((_,i) => THINKING_START + 450 + i * STEP_GAP);
-  const THINK_DONE     = STEP_TIMES[STEP_TIMES.length - 1] + 800;
-  const THINK_COLLAPSE = THINK_DONE + 550;
-  const CERT_START     = THINK_COLLAPSE + 600;
-  const CERT_STEP      = 300;
-  const FINAL_STATE    = CERT_START + CERT_METRICS.length * CERT_STEP + 1000;
+  const RAW_COLLAPSE   = STREAM_END + 1300;
+  const THINKING_START = RAW_COLLAPSE + 900;
+  const STEP_GAP       = 1100;
+  const STEP_TIMES     = THINK_STEPS.map((_,i) => THINKING_START + 600 + i * STEP_GAP);
+  const THINK_DONE     = STEP_TIMES[STEP_TIMES.length - 1] + 1100;
+  const THINK_COLLAPSE = THINK_DONE + 750;
+  const CERT_START     = THINK_COLLAPSE + 800;
+  const CERT_STEP      = 450;
+  const FINAL_STATE    = CERT_START + CERT_METRICS.length * CERT_STEP + 1400;
 
   const startRef = useRef(null);
   const [tick, setTick] = React.useState(0);
@@ -524,14 +519,21 @@ function SemanticLayerMockAnimation() {
       overflow:'hidden',
       display:'flex',
       flexDirection:'column',
-      height:'560px',
+      height:'500px',
       boxShadow:'0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.06)',
     }}>
 
       {/* ── Header ── */}
-      <div style={{padding:'12px 18px', borderBottom:'1px solid rgba(255,255,255,0.07)', display:'flex', alignItems:'center', gap:'9px', background:'rgba(255,255,255,0.015)', flexShrink:0}}>
-        <InsightisIcon size={20}/>
-        <span style={{fontSize:'13.5px', fontWeight:500, color:'#E0EDF2', letterSpacing:'-0.01em'}}>insightis</span>
+      <div style={{padding:'12px 18px', borderBottom:'1px solid rgba(255,255,255,0.07)', display:'flex', alignItems:'center', gap:'10px', background:'rgba(255,255,255,0.015)', flexShrink:0}}>
+        <div style={{display:'flex', gap:'6px'}}>
+          {['#FF5F57','#FFBD2E','#28C840'].map((c,i) => (
+            <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
+          ))}
+        </div>
+        <div style={{flex:1, textAlign:'center', fontSize:'12px', color:'#6E8D9A', fontFamily:'Geist Mono, monospace', letterSpacing:'.02em'}}>
+          insightis — semantic layer
+        </div>
+        <div style={{width:'46px'}}/>
       </div>
 
       {/* ── Body: one screen at a time ── */}
@@ -722,19 +724,6 @@ function SemanticLayerMockAnimation() {
         </div>
       </div>
 
-      {/* ── Footer status bar ── */}
-      <div style={{padding:'9px 14px', borderTop:'1px solid rgba(255,255,255,0.06)', flexShrink:0, display:'flex', alignItems:'center', justifyContent:'space-between', background:'rgba(255,255,255,0.012)'}}>
-        <span style={{fontSize:'10.5px', color:'rgba(255,255,255,0.4)', fontFamily:'Geist Mono,monospace', letterSpacing:'0.02em'}}>
-          {showCertScreen
-            ? `${CERT_METRICS.length} metrics · 0 conflicts · 100% certified`
-            : (t >= THINKING_START
-                ? `processing ${shownRaw} inputs · resolving ${conflictCount} conflict${conflictCount===1?'':'s'}`
-                : `${shownRaw} raw inputs · scanning sources…`)}
-        </span>
-        <span style={{fontSize:'10.5px', color: showCertScreen ? 'rgba(14,196,193,0.8)' : 'rgba(255,255,255,0.4)', fontFamily:'Geist Mono,monospace', transition:'color .4s ease', fontWeight:500}}>
-          {showCertScreen ? '● synced' : '○ live'}
-        </span>
-      </div>
     </div>
   );
 }
@@ -744,7 +733,7 @@ function Hero() {
   useEffect(()=>{ const t = setTimeout(()=>setVis(true), 300); return ()=>clearTimeout(t); },[]);
 
   return (
-    <section style={{minHeight:'100dvh',display:'flex',alignItems:'center',position:'relative',overflow:'hidden',padding:'120px 0 80px'}}>
+    <section style={{display:'flex',alignItems:'flex-start',position:'relative',overflow:'hidden',padding:'120px 0 160px'}}>
       {/* Background glows */}
       <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 70% 60% at 72% 50%,rgba(9,160,157,0.09) 0%,transparent 70%)',pointerEvents:'none',zIndex:1}}/>
       <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 60% 50% at 20% 50%,rgba(59,31,94,0.12) 0%,transparent 70%)',pointerEvents:'none',zIndex:1}}/>
@@ -762,8 +751,8 @@ function Hero() {
             Insightis Semantic Layer — one definition, every team
           </p>
           <h1 style={{fontSize:'clamp(2.6rem,3.8vw,4.5rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'22px',textWrap:'balance'}}>
-            <span style={{color:'#FFFFFF'}}>Your teams have different numbers.</span><br/>
-            <span style={{color:'#0EC4C1'}}>Insightis gives them the right one.</span>
+            <span style={{color:'#FFFFFF'}}>One platform.</span><br/>
+            <span style={{color:'#0EC4C1'}}>Every team's numbers.</span>
           </h1>
           <p style={{fontSize:'clamp(16px,1.2vw,18px)',color:'rgba(255,255,255,.75)',lineHeight:1.7,marginBottom:'36px',maxWidth:'480px'}}>
             Your Semantic Layer certifies every metric once. Not generic guesses — your actual data, your exact logic.
@@ -827,36 +816,65 @@ function WhatItDoes() {
         <div style={{textAlign:'center',marginBottom:'64px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
             <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>What it does</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>How it works</span>
           </div>
           <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,textWrap:'balance'}}>
             One layer. Every metric. Always right.
           </h2>
         </div>
 
-        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(300px, 1fr))',gap:'20px'}}>
+        {/* Horizontal stepper */}
+        <div data-steps-grid style={{display:'grid',gridTemplateColumns:`repeat(${features.length}, 1fr)`,gap:'24px',position:'relative'}}>
           {features.map((s,i) => (
-            <div key={i} className="spotlight-card" style={{
-              background:'rgba(13,17,23,.6)',
-              border:'1px solid rgba(255,255,255,.06)',
-              borderRadius:'16px',padding:'32px',
-              position:'relative',overflow:'hidden',
-              transition:'transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease',
-            }} onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-3px)';e.currentTarget.style.boxShadow='0 12px 40px rgba(9,160,157,0.08)'}} onMouseLeave={e=>{e.currentTarget.style.transform='';e.currentTarget.style.boxShadow=''}}>
-              {/* Top line accent */}
-              <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.4),transparent)'}}/>
-              {/* Number + Title on one line */}
-              <div style={{display:'flex',alignItems:'baseline',gap:'10px',marginBottom:'16px'}}>
-                <span style={{fontSize:'18px',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#0EC4C1',letterSpacing:'-0.02em',flexShrink:0}}>{s.n}.</span>
-                <h3 style={{fontSize:'18px',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#0EC4C1',letterSpacing:'-0.02em',margin:0,lineHeight:1.2}}>{s.title}</h3>
+            <div key={i} data-step-cell style={{position:'relative',display:'flex',flexDirection:'column',alignItems:'center',textAlign:'center',padding:'0 8px'}}>
+              {/* Connector line — to the right of every step except the last */}
+              {i < features.length - 1 && (
+                <div data-step-connector style={{position:'absolute',top:'28px',left:'calc(50% + 36px)',right:'calc(-50% + 36px)',height:'1px',background:'linear-gradient(90deg, rgba(9,160,157,.45) 0%, rgba(9,160,157,.18) 100%)',zIndex:0}}/>
+              )}
+
+              {/* Numbered circle */}
+              <div style={{
+                position:'relative',zIndex:1,
+                width:'56px',height:'56px',borderRadius:'50%',
+                border:'1px solid rgba(9,160,157,.45)',
+                background:'radial-gradient(circle at 50% 30%, rgba(9,160,157,.18) 0%, rgba(13,17,23,.95) 75%)',
+                display:'flex',alignItems:'center',justifyContent:'center',
+                boxShadow:'0 0 28px rgba(9,160,157,.18), inset 0 1px 0 rgba(255,255,255,.05)',
+                marginBottom:'22px',
+              }}>
+                <span style={{fontSize:'18px',fontWeight:600,color:'#0EC4C1',fontFamily:"'Outfit', sans-serif",letterSpacing:'-.02em',fontVariantNumeric:'tabular-nums'}}>{s.n}</span>
               </div>
-              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.7,marginBottom:'18px',maxWidth:'45ch'}}>{s.desc}</p>
-              <div style={{padding:'10px 14px',background:'rgba(255,255,255,.03)',border:'1px solid rgba(255,255,255,.06)',borderRadius:'8px',fontSize:'12px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',fontStyle:'italic'}}>
+
+              {/* Title */}
+              <h3 style={{fontSize:'18px',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.02em',margin:'0 0 10px',lineHeight:1.2}}>
+                {s.title}
+              </h3>
+
+              {/* Description */}
+              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.7,margin:'0 0 16px',width:'100%',maxWidth:'320px'}}>
+                {s.desc}
+              </p>
+
+              {/* Example chip */}
+              <div style={{padding:'10px 14px',background:'rgba(255,255,255,.03)',border:'1px solid rgba(255,255,255,.06)',borderRadius:'8px',fontSize:'12px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',fontStyle:'italic',width:'100%',maxWidth:'320px',boxSizing:'border-box'}}>
                 {s.example}
               </div>
             </div>
           ))}
         </div>
+
+        {/* Mobile responsive overrides */}
+        <style>{`
+          @media (max-width: 768px) {
+            [data-steps-grid] {
+              grid-template-columns: 1fr !important;
+              gap: 32px !important;
+            }
+            [data-steps-grid] [data-step-connector] {
+              display: none !important;
+            }
+          }
+        `}</style>
       </div>
     </section>
   );
@@ -1002,20 +1020,24 @@ const CONNECTORS = {
 
 /* ── FEATURES SHOWCASE (V10 style) ── */
 const SHOWCASE_CSS = `
-.sc-wrap{display:grid;grid-template-columns:340px 1fr;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.07);box-shadow:0 4px 6px rgba(0,0,0,.5),0 32px 100px rgba(0,0,0,.6);height:520px;max-width:1060px;margin:0 auto;position:relative}
-.sc-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(10,152,150,.6),rgba(255,255,255,.1),rgba(10,152,150,.6),transparent);z-index:20;pointer-events:none}
-.sc-tabs{display:flex;flex-direction:column;background:rgba(10,14,19,.95);border-right:1px solid rgba(255,255,255,.05)}
-.sc-tab{flex:1;padding:0 28px;display:flex;flex-direction:column;justify-content:center;border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer;min-height:88px;transition:background .2s;position:relative}
-.sc-tab:last-child{border-bottom:none}
-.sc-tab::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:#0A9896;opacity:0;transition:opacity .25s;border-radius:0 2px 2px 0}
-.sc-tab.active::before{opacity:1}
-.sc-tab.active{background:rgba(7,128,126,.1)}
-.sc-tab:hover:not(.active){background:rgba(255,255,255,.025)}
-.sc-tab-label{font-size:14px;font-weight:600;color:rgba(255,255,255,.35);transition:color .2s;letter-spacing:-.02em}
-.sc-tab.active .sc-tab-label{color:#fff}
-.sc-tab-desc{font-size:11.5px;color:rgba(255,255,255,.4);margin-top:5px;line-height:1.5;max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .35s ease}
-.sc-tab.active .sc-tab-desc{max-height:48px;opacity:1;color:rgba(255,255,255,.5)}
-.sc-panel-wrap{position:relative;background:radial-gradient(ellipse 100% 80% at 30% 30%,rgba(10,152,150,.06) 0%,transparent 60%),rgba(10,14,19,.97);display:flex;align-items:center;justify-content:center;padding:28px;overflow:hidden;border-left:1px solid rgba(255,255,255,.04);height:520px}
+.sc-wrap{max-width:1060px;margin:0 auto;display:flex;flex-direction:column;gap:36px;position:relative}
+.sc-stepper{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;position:relative;padding:0 8px}
+.sc-step{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;background:transparent;border:none;color:inherit;padding:0 6px;font-family:inherit}
+.sc-step-connector{position:absolute;top:28px;left:calc(50% + 36px);right:calc(-50% + 36px);height:1px;background:linear-gradient(90deg,rgba(9,160,157,.45) 0%,rgba(9,160,157,.18) 100%);z-index:0}
+.sc-circle{position:relative;z-index:1;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:14px;border:1px solid rgba(9,160,157,.35);background:radial-gradient(circle at 50% 30%,rgba(9,160,157,.10) 0%,rgba(13,17,23,.95) 75%);box-shadow:0 0 18px rgba(9,160,157,.10), inset 0 1px 0 rgba(255,255,255,.05);transition:border-color .25s,box-shadow .25s,background .25s}
+.sc-step.active .sc-circle{border-color:rgba(9,160,157,.7);background:radial-gradient(circle at 50% 30%,rgba(9,160,157,.22) 0%,rgba(13,17,23,.95) 75%);box-shadow:0 0 28px rgba(9,160,157,.25), inset 0 1px 0 rgba(255,255,255,.06)}
+.sc-num{font-size:18px;font-weight:600;font-family:'Outfit',sans-serif;letter-spacing:-.02em;color:rgba(14,196,193,.55);font-variant-numeric:tabular-nums;transition:color .25s}
+.sc-step.active .sc-num{color:#0EC4C1}
+.sc-step-label{font-size:13.5px;font-weight:600;letter-spacing:-.01em;color:rgba(255,255,255,.45);margin-bottom:6px;transition:color .25s;line-height:1.25}
+.sc-step.active .sc-step-label{color:#fff}
+.sc-step-desc{font-size:11.5px;color:rgba(255,255,255,.4);line-height:1.5;max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .35s ease}
+.sc-step.active .sc-step-desc{max-height:60px;opacity:1;color:rgba(255,255,255,.55)}
+.sc-panel-wrap{position:relative;background:radial-gradient(ellipse 100% 80% at 30% 30%,rgba(10,152,150,.06) 0%,transparent 60%),rgba(10,14,19,.97);border-radius:16px;border:1px solid rgba(255,255,255,.07);box-shadow:0 4px 6px rgba(0,0,0,.5),0 32px 100px rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;padding:28px;overflow:hidden;height:520px}
+.sc-panel-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(10,152,150,.6),rgba(255,255,255,.1),rgba(10,152,150,.6),transparent);z-index:20;pointer-events:none}
+@media (max-width:768px){
+  .sc-stepper{grid-template-columns:1fr;gap:24px}
+  .sc-step-connector{display:none}
+}
 `;
 
 // ── PANEL 1: Metrics Catalog (table view) ──
@@ -1326,49 +1348,78 @@ function Panel5() {
 }
 
 const SHOWCASE_STEPS = [
-  { label:'Metrics Catalog',    desc:'All your team metrics in one place — with descriptions, sources and certification status.', panel: <Panel1/> },
-  { label:'AI Auto-Mapping',    desc:'Insightis AI automatically finds the right fields in your source and sets up mapping — no manual wiring.', panel: <Panel2/> },
-  { label:'Formula Metrics',    desc:'Calculate metrics automatically from existing ones. CAC = @Marketing_Spend + @Sales_Spend / @New_Customers.', panel: <Panel4/> },
-  { label:'Custom Metrics',     desc:'Add and configure any metric quickly — direct mapping or formula, no SQL or analysts needed.', panel: <Panel3/> },
-  { label:'Chat with @ Metrics',desc:'Ask in chat with a reference to a specific metric via @ for 100% accurate answers from certified data.', panel: <Panel5/> },
+  { n:'01', label:'Metrics Catalog',    desc:'All your team metrics in one place — with descriptions, sources and certification status.',                          example:'@CAC · @MRR · @Churn — defined once, used everywhere' },
+  { n:'02', label:'AI Auto-Mapping',    desc:'Insightis AI automatically finds the right fields in your source and sets up mapping — no manual wiring.',              example:'Stripe.amount → @Revenue (auto-mapped)' },
+  { n:'03', label:'Formula Metrics',    desc:'Calculate metrics automatically from existing ones. CAC = @Marketing_Spend + @Sales_Spend / @New_Customers.',            example:'@CAC = @Spend ÷ @New_Customers' },
+  { n:'04', label:'Custom Metrics',     desc:'Add and configure any metric quickly — direct mapping or formula, no SQL or analysts needed.',                            example:'Define & map any metric in minutes' },
+  { n:'05', label:'Chat with @ Metrics',desc:'Ask in chat with a reference to a specific metric via @ for 100% accurate answers from certified data.',                  example:'"@MRR by month" → certified answer' },
 ];
 function FeaturesShowcase() {
-  const [active, setActive] = React.useState(0);
-
   return (
-    <section style={{padding:'80px 0 100px',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
-      <style>{SHOWCASE_CSS}</style>
+    <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
       <div className="max-w-7xl mx-auto px-6">
-        <div style={{textAlign:'center',marginBottom:'48px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
+        <div style={{textAlign:'center',marginBottom:'64px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
             <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:600,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>How it works</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>How it works</span>
           </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,textWrap:'balance',marginBottom:'12px'}}>
+          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,textWrap:'balance'}}>
             Your Semantic Layer, fully in control
           </h2>
-          <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
-            From raw source to certified metric — set up in minutes, trusted by every team forever.
-          </p>
         </div>
 
-        <div className="sc-wrap">
-          {/* Left tabs */}
-          <div className="sc-tabs">
-            {SHOWCASE_STEPS.map((s,i) => (
-              <div key={i} className={`sc-tab${active===i?' active':''}`} onClick={()=>setActive(i)}>
-                <div className="sc-tab-label">{s.label}</div>
-                <div className="sc-tab-desc">{s.desc}</div>
+        {/* Horizontal stepper */}
+        <div data-steps-grid style={{display:'grid',gridTemplateColumns:`repeat(${SHOWCASE_STEPS.length}, 1fr)`,gap:'24px',position:'relative'}}>
+          {SHOWCASE_STEPS.map((s,i) => (
+            <div key={i} data-step-cell style={{position:'relative',display:'flex',flexDirection:'column',alignItems:'center',textAlign:'center',padding:'0 8px'}}>
+              {/* Connector line — to the right of every step except the last */}
+              {i < SHOWCASE_STEPS.length - 1 && (
+                <div data-step-connector style={{position:'absolute',top:'28px',left:'calc(50% + 36px)',right:'calc(-50% + 36px)',height:'1px',background:'linear-gradient(90deg, rgba(9,160,157,.45) 0%, rgba(9,160,157,.18) 100%)',zIndex:0}}/>
+              )}
+
+              {/* Numbered circle */}
+              <div style={{
+                position:'relative',zIndex:1,
+                width:'56px',height:'56px',borderRadius:'50%',
+                border:'1px solid rgba(9,160,157,.45)',
+                background:'radial-gradient(circle at 50% 30%, rgba(9,160,157,.18) 0%, rgba(13,17,23,.95) 75%)',
+                display:'flex',alignItems:'center',justifyContent:'center',
+                boxShadow:'0 0 28px rgba(9,160,157,.18), inset 0 1px 0 rgba(255,255,255,.05)',
+                marginBottom:'22px',
+              }}>
+                <span style={{fontSize:'18px',fontWeight:600,color:'#0EC4C1',fontFamily:"'Outfit', sans-serif",letterSpacing:'-.02em',fontVariantNumeric:'tabular-nums'}}>{s.n}</span>
               </div>
-            ))}
-          </div>
-          {/* Right panel */}
-          <div className="sc-panel-wrap">
-            <div key={active} style={{width:'100%',display:'flex',alignItems:'center',justifyContent:'center',animation:'slideUp .25s ease both'}}>
-              {SHOWCASE_STEPS[active].panel}
+
+              {/* Title */}
+              <h3 style={{fontSize:'18px',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.02em',margin:'0 0 10px',lineHeight:1.2}}>
+                {s.label}
+              </h3>
+
+              {/* Description */}
+              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.7,margin:'0 0 16px',width:'100%',maxWidth:'320px'}}>
+                {s.desc}
+              </p>
+
+              {/* Example chip */}
+              <div style={{padding:'10px 14px',background:'rgba(255,255,255,.03)',border:'1px solid rgba(255,255,255,.06)',borderRadius:'8px',fontSize:'12px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',fontStyle:'italic',width:'100%',maxWidth:'320px',boxSizing:'border-box'}}>
+                {s.example}
+              </div>
             </div>
-          </div>
+          ))}
         </div>
+
+        {/* Mobile responsive overrides */}
+        <style>{`
+          @media (max-width: 768px) {
+            [data-steps-grid] {
+              grid-template-columns: 1fr !important;
+              gap: 32px !important;
+            }
+            [data-steps-grid] [data-step-connector] {
+              display: none !important;
+            }
+          }
+        `}</style>
       </div>
     </section>
   );
@@ -1386,13 +1437,13 @@ function ConnectorGallery() {
         <div style={{textAlign:'center',marginBottom:'28px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
             <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:600,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Built for every team</span>
+            <span style={{fontSize:'10px',fontWeight:600,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Metrics catalog</span>
           </div>
           <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,textWrap:'balance',marginBottom:'12px'}}>
             Define, certify, and version your metrics
           </h2>
           <p style={{fontSize:'clamp(1rem,1.8vw,1.19rem)',color:'rgba(255,255,255,0.7)',maxWidth:'42rem',margin:'0 auto',lineHeight:1.7}}>
-            <strong style={{color:'#fff'}}>200+ certified metrics across RevOps, Finance, Marketing, Product, Data, and leadership.</strong> Browse metrics organized by the teams that rely on them most — every one defined once, versioned, and ready to query.
+            Every metric defined once, certified, and used by every team — across RevOps, Finance, and Marketing.
           </p>
         </div>
 
@@ -1412,19 +1463,10 @@ function ConnectorGallery() {
         </div>
 
         {/* Cards grid */}
-        <div key={activeCat} style={{
+        <div style={{
           display:'grid',
           gridTemplateColumns:'repeat(5,minmax(0,1fr))',
           gap:'10px',
-          animation:'fadeUp .3s cubic-bezier(0.34,1.56,0.64,1) both',
-        }}
-        onMouseMove={(e) => {
-          const cards = e.currentTarget.querySelectorAll('.connector-card');
-          cards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
-            card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
-          });
         }}>
           {CONNECTORS[activeCat].map((c, i) => (
             <div key={c.name} className="connector-card">
@@ -1443,7 +1485,7 @@ function ConnectorGallery() {
         {/* Footer note */}
         <div style={{textAlign:'center',marginTop:'32px'}}>
           <span style={{fontSize:'12.5px',color:'#8A9BA4',fontFamily:'Geist Mono,monospace'}}>
-            + 150 more certified metrics available ·{' '}
+            the only source of truth you need
           </span>
         </div>
       </div>
@@ -1515,6 +1557,51 @@ function BeforeAfter() {
   );
 }
 
+
+/* ── MID-PAGE CTA BANNER ── */
+function MidCTA() {
+  return (
+    <section style={{padding:'80px 0',position:'relative',overflow:'hidden'}}>
+      {/* Soft teal glow */}
+      <div style={{
+        position:'absolute',top:'50%',left:'50%',
+        transform:'translate(-50%,-50%)',
+        width:'700px',height:'420px',
+        background:'radial-gradient(ellipse, rgba(9,160,157,0.13) 0%, transparent 70%)',
+        pointerEvents:'none',
+      }}/>
+
+      <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px',position:'relative',textAlign:'center'}}>
+        <h2 style={{
+          fontSize:'clamp(22px,2.6vw,34px)',
+          fontWeight:500,
+          letterSpacing:'-.025em',
+          lineHeight:1.2,
+          marginBottom:'32px',
+          whiteSpace:'nowrap',
+        }}>
+          <span style={{color:'#E8F2F5'}}>Skip the metric debates. </span>
+          <span style={{color:'#0EC4C1'}}>Start asking.</span>
+        </h2>
+        <div style={{display:'flex',justifyContent:'center'}}>
+          <a href="#" style={{
+            display:'inline-flex',alignItems:'center',gap:'10px',
+            padding:'16px 32px',borderRadius:'999px',
+            background:'linear-gradient(135deg,#09A09D,#07807E)',
+            color:'#fff',fontSize:'15px',fontWeight:500,
+            textDecoration:'none',
+            boxShadow:'0 0 32px rgba(9,160,157,.35), 0 8px 24px rgba(0,0,0,.4)',
+            transition:'all .2s',
+            letterSpacing:'.01em',
+          }}>
+            Get started for free
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 /* ── BOTTOM CTA ── */
 function BottomCTA() {
@@ -1622,7 +1709,7 @@ function Footer() {
             <div>
               <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Platform</h4>
               <ul className="flex flex-col gap-2.5">
-                {['AI Chat', 'Integrations', 'Semantic Layer', 'AI Connect', 'Advanced Reports', 'Memory & Storage'].map(link => {
+                {['AI Chat', 'Integrations', 'Semantic Layer'].map(link => {
                   const isComingSoon = ['AI Connect', 'Advanced Reports', 'Memory & Storage'].includes(link);
                   const isNotClickable = ['AI Connect', 'Advanced Reports'].includes(link);
                   const badge = (
@@ -1678,8 +1765,6 @@ function Footer() {
                   { label: 'About Devart', href: 'https://www.devart.com/company/' },
                   { label: 'Careers', href: 'https://www.devart.com/vacancies/' },
                   { label: 'Contacts', href: '../Company/Contacts.html' },
-                  { label: 'Success Stories', href: '../Company/Success Stories.html' },
-                  { label: 'Press & Media', href: '../Company/Press Media.html' },
                 ].map(link => (
                   <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
@@ -1727,6 +1812,7 @@ function App() {
       <Header />
       <Hero />
       <WhatItDoes />
+      <MidCTA />
       <ConnectorGallery />
       <BeforeAfter />
       <BottomCTA />

@@ -140,13 +140,7 @@ section { position: relative; }
   background: rgba(255,255,255,.025);
   border: 1px solid rgba(255,255,255,.06);
   border-radius: 12px;
-  transition: all .18s ease;
   cursor: default;
-}
-.connector-card:hover {
-  background: rgba(255,255,255,.05);
-  border-color: rgba(255,255,255,.12);
-  transform: translateY(-1px);
 }
 .connector-icon {
   width: 36px; height: 36px;
@@ -185,7 +179,40 @@ section { position: relative; }
   [data-pain-grid] { grid-template-columns: 1fr !important; }
   [data-connectors-grid] { grid-template-columns: repeat(2,1fr) !important; }
   [data-compare-grid] { grid-template-columns: 1fr !important; }
+  [data-spotlight-grid] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  [data-spotlight-grid] > [data-spotlight-text] { order: 0 !important; }
+  [data-spotlight-grid] > [data-spotlight-visual] { order: 1 !important; }
+  [data-usecase-grid] { grid-template-columns: 1fr !important; }
+  [data-testimonials-grid] { grid-template-columns: 1fr !important; }
 }
+
+/* ── FAQ ── */
+.faq-row {
+  border-top: 1px solid rgba(255,255,255,.06);
+  transition: all .2s;
+}
+.faq-row:last-child { border-bottom: 1px solid rgba(255,255,255,.06); }
+.faq-q {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 22px 4px;
+  background: transparent; border: none;
+  color: #E8F2F5; font-size: 16px; font-weight: 500;
+  cursor: pointer; text-align: left;
+  font-family: 'Geist', sans-serif;
+  transition: color .15s;
+}
+.faq-q:hover { color: #0EC4C1; }
+.faq-q svg { transition: transform .25s ease; flex-shrink: 0; }
+.faq-q.open svg { transform: rotate(180deg); color: #0EC4C1; }
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height .3s ease;
+  color: #7FA0AC; font-size: 14.5px; line-height: 1.7;
+}
+.faq-a.open { max-height: 400px; padding: 0 4px 22px; }
 </style>
 </head>
 <body>
@@ -473,7 +500,7 @@ function Header() {
   );
 }
 
-/* ── CHART COMPONENTS ── */
+/* ── MINI BAR CHART ── */
 function MiniBarChart({ data, color }) {
   const max = Math.max(...data);
   return (
@@ -494,7 +521,7 @@ function MiniBarChart({ data, color }) {
 function Hero() {
   return (
     <section style={{
-      padding:'120px 0 80px',
+      padding:'96px 0 56px',
       position:'relative',
       background:'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(9,160,157,.06) 0%, transparent 70%)',
     }}>
@@ -513,13 +540,13 @@ function Hero() {
             </div>
 
             <h1 className="fu1" style={{fontSize:'clamp(36px,4.5vw,58px)',fontWeight:500,letterSpacing:'-.03em',lineHeight:1.12,marginBottom:'20px'}}>
-              <span style={{color:'#E8F2F5'}}>"Every cost and KPI,"</span>
+              <span style={{color:'#E8F2F5'}}>"Stop chasing numbers"</span>
               <br/>
-              <span style={{color:'#0EC4C1'}}>"without the spreadsheet maze."</span>
+              <span style={{color:'#0EC4C1'}}>"across spreadsheets."</span>
             </h1>
 
             <p className="fu2" style={{fontSize:'clamp(16px,1.2vw,18px)',color:'rgba(255,255,255,.65)',lineHeight:1.65,marginBottom:'28px',maxWidth:'480px'}}>
-              Stop chasing numbers across AP systems, HR platforms, and billing tools. Ask any operational or financial question in plain English — Insightis consolidates your cost data instantly.
+              Stop reconciling AP systems, HR platforms, and billing tools by hand. Ask any cost or finance question in plain English — Insightis consolidates spend across every system instantly.
             </p>
 
             <div className="fu3" style={{display:'flex',gap:'12px',flexWrap:'wrap',marginBottom:'28px'}}>
@@ -548,63 +575,250 @@ function Hero() {
               </a>
             </div>
 
-            <div className="fu4" style={{display:'flex',gap:'20px',flexWrap:'wrap'}}>
-              {['Real-time cost tracking','Budget vs. actual live','No SQL required'].map((t,i) => (
-                <span key={i} style={{display:'flex',alignItems:'center',gap:'5px',fontSize:'12px',color:'#7FA0AC',fontFamily:'Geist Mono,monospace'}}>
-                  <span style={{color:'#09A09D'}}>✓</span>{t}
-                </span>
-              ))}
-            </div>
           </div>
 
-          {/* Right: static chat mock */}
-          <div className="fu2" style={{
-            background:'rgba(13,17,23,0.9)',
-            border:'1px solid rgba(255,255,255,0.08)',
-            borderRadius:'20px',
-            overflow:'hidden',
-            backdropFilter:'blur(20px)',
-            boxShadow:'0 24px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04)',
-          }}>
-            {/* Chat window chrome */}
-            <div style={{padding:'14px 18px',borderBottom:'1px solid rgba(255,255,255,0.06)',display:'flex',alignItems:'center',gap:'10px'}}>
-              <div style={{display:'flex',gap:'5px'}}>
-                {['#FF5F57','#FFBD2E','#28C840'].map((c,i) => (
-                  <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
+          {/* Right: ops & finance hero visual (static) */}
+          <div className="fu2" style={{position:'relative'}}>
+            {/* Ambient glow — amber-leaning to differentiate from other persona pages */}
+            <div style={{
+              position:'absolute', inset:'-60px',
+              background:'radial-gradient(circle at 25% 30%, rgba(251,191,36,.16) 0%, transparent 55%), radial-gradient(circle at 80% 80%, rgba(9,160,157,.12) 0%, transparent 50%)',
+              pointerEvents:'none',
+              filter:'blur(44px)',
+              zIndex:0,
+            }}/>
+
+            {/* Main panel */}
+            <div style={{
+              position:'relative',
+              background:'linear-gradient(135deg, rgba(13,17,23,0.95) 0%, rgba(15,20,28,0.92) 100%)',
+              border:'1px solid rgba(255,255,255,0.08)',
+              borderRadius:'24px',
+              padding:'24px',
+              backdropFilter:'blur(24px)',
+              WebkitBackdropFilter:'blur(24px)',
+              boxShadow:'0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.05)',
+              overflow:'hidden',
+              zIndex:1,
+            }}>
+              {/* Top gradient line — amber accent */}
+              <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(251,191,36,.55),transparent)',zIndex:1}}/>
+
+              {/* Window chrome */}
+              <div style={{
+                margin:'-24px -24px 16px',
+                padding:'10px 14px',
+                borderBottom:'1px solid rgba(255,255,255,0.06)',
+                background:'rgba(255,255,255,0.015)',
+                display:'flex',
+                alignItems:'center',
+                position:'relative',
+              }}>
+                <div style={{display:'flex',gap:'6px'}}>
+                  <div style={{width:'10px',height:'10px',borderRadius:'50%',background:'#FF5F57'}}/>
+                  <div style={{width:'10px',height:'10px',borderRadius:'50%',background:'#FEBC2E'}}/>
+                  <div style={{width:'10px',height:'10px',borderRadius:'50%',background:'#28C840'}}/>
+                </div>
+                <span style={{
+                  position:'absolute',left:'50%',top:'50%',
+                  transform:'translate(-50%,-50%)',
+                  fontFamily:'Geist Mono,monospace',
+                  fontSize:'10.5px',
+                  color:'#7FA0AC',
+                  letterSpacing:'.08em',
+                  whiteSpace:'nowrap',
+                }}>Insightis — For Operations &amp; Finance</span>
+              </div>
+
+              {/* Header */}
+              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'14px'}}>
+                <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
+                  <div style={{width:'6px',height:'6px',borderRadius:'50%',background:'#FBBF24',boxShadow:'0 0 8px rgba(251,191,36,.6)'}}/>
+                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10.5px',color:'#7FA0AC',letterSpacing:'.08em',textTransform:'uppercase'}}>Q2 budget · MTD</span>
+                </div>
+                <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#FBBF24',padding:'3px 9px',borderRadius:'999px',background:'rgba(251,191,36,.1)',border:'1px solid rgba(251,191,36,.3)',letterSpacing:'.08em',textTransform:'uppercase'}}>variance</span>
+              </div>
+
+              {/* Headline + caption */}
+              <h4 style={{fontSize:'17px',fontWeight:500,color:'#E8F2F5',marginBottom:'6px',letterSpacing:'-.015em',lineHeight:1.35}}>
+                Cloud infra running <span style={{color:'#F87171'}}>+41%</span> over budget
+              </h4>
+              <p style={{fontSize:'12.5px',color:'#7FA0AC',lineHeight:1.6,marginBottom:'16px'}}>
+                Reconciled across <span style={{color:'#FBBF24',fontFamily:'Geist Mono,monospace',fontSize:'11.5px'}}>AP · HR · Billing</span> in real time. Two categories tracking past plan; rest on or under.
+              </p>
+
+              {/* Variance butterfly chart — bars pivot from a centered "plan" baseline */}
+              <div style={{
+                background:'rgba(255,255,255,.018)',
+                border:'1px solid rgba(255,255,255,.05)',
+                borderRadius:'14px',
+                padding:'14px 14px 12px',
+                marginBottom:'14px',
+              }}>
+                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'10px'}}>
+                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#6E8D9A',letterSpacing:'.06em',textTransform:'uppercase'}}>variance · vs plan</span>
+                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#7FA0AC'}}>Q2 · MTD</span>
+                </div>
+
+                {/* Axis header: −50% / plan / +50% */}
+                <div style={{display:'flex',alignItems:'center',gap:'10px',marginBottom:'6px'}}>
+                  <span style={{width:'92px',flexShrink:0}}/>
+                  <div style={{flex:1,display:'flex',justifyContent:'space-between'}}>
+                    <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:'#6E8D9A',letterSpacing:'.06em'}}>−50%</span>
+                    <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:'#FBBF24',letterSpacing:'.06em',fontWeight:500}}>plan</span>
+                    <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:'#6E8D9A',letterSpacing:'.06em'}}>+50%</span>
+                  </div>
+                  <span style={{width:'48px',flexShrink:0}}/>
+                </div>
+
+                <div style={{display:'flex',flexDirection:'column',gap:'7px'}}>
+                  {[
+                    {label:'Cloud Infra',  v:+41},
+                    {label:'Contractors',  v:+18},
+                    {label:'Salaries',     v:+1},
+                    {label:'SaaS',         v:-8},
+                    {label:'Travel',       v:-22},
+                  ].map((r,i) => {
+                    const cap = 50;
+                    const abs = Math.abs(r.v);
+                    const barPct = Math.min(abs, cap) / cap * 50; // % of full bar width to fill, max 50% (one half)
+                    const isOver = r.v > 1;
+                    const isUnder = r.v < -1;
+                    const isNeutral = !isOver && !isUnder;
+                    const labelColor = isOver ? '#F87171' : isNeutral ? '#C0D4DC' : '#7FA0AC';
+                    const valColor = isOver ? '#F87171' : isNeutral ? '#C0D4DC' : '#22C55E';
+                    return (
+                      <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
+                        <span style={{
+                          fontFamily:'Geist Mono,monospace',
+                          fontSize:'10px',
+                          color:labelColor,
+                          width:'92px',flexShrink:0,
+                          whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',
+                        }}>{r.label}</span>
+
+                        {/* Butterfly bar */}
+                        <div style={{flex:1,height:'14px',background:'rgba(255,255,255,.04)',borderRadius:'3px',position:'relative',overflow:'hidden'}}>
+                          {/* Center "plan" line */}
+                          <div style={{
+                            position:'absolute',
+                            top:'-2px',bottom:'-2px',
+                            left:'50%',
+                            width:'1px',
+                            background:'rgba(251,191,36,.7)',
+                          }}/>
+                          {/* Variance bar — pivots from center */}
+                          <div style={{
+                            position:'absolute',
+                            top:0,bottom:0,
+                            left: isOver ? '50%' : `${50 - barPct}%`,
+                            width: `${barPct}%`,
+                            background: isOver
+                              ? 'linear-gradient(90deg, rgba(248,113,113,.45), rgba(248,113,113,.8))'
+                              : isNeutral
+                                ? 'linear-gradient(90deg, rgba(192,212,220,.2), rgba(192,212,220,.32))'
+                                : 'linear-gradient(90deg, rgba(34,197,94,.55), rgba(34,197,94,.32))',
+                            borderRadius: isOver ? '0 3px 3px 0' : isUnder ? '3px 0 0 3px' : '3px',
+                          }}/>
+                        </div>
+
+                        <span style={{
+                          fontFamily:'Geist Mono,monospace',
+                          fontSize:'10.5px',
+                          color:valColor,
+                          width:'48px',textAlign:'right',flexShrink:0,
+                        }}>{r.v > 0 ? '+' : ''}{r.v}%</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Metric tiles — finance flavored */}
+              <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'8px'}}>
+                {[
+                  {label:'Overage',  val:'+$24K',  color:'#F87171'},
+                  {label:'Sources',  val:'AP·HR·Billing', color:'#FBBF24'},
+                  {label:'On plan',  val:'3 / 5',   color:'#22C55E'},
+                ].map((m,i) => (
+                  <div key={i} style={{
+                    background:'rgba(255,255,255,.025)',
+                    border:'1px solid rgba(255,255,255,.06)',
+                    borderRadius:'10px',
+                    padding:'10px 12px',
+                  }}>
+                    <div style={{fontSize:'9.5px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'4px'}}>{m.label}</div>
+                    <div style={{fontSize:m.val.length>8?'11.5px':'14px',fontWeight:500,color:m.color,fontFamily:'Geist Mono,monospace',letterSpacing:'-.01em'}}>{m.val}</div>
+                  </div>
                 ))}
               </div>
-              <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'#6E8D9A',fontFamily:'Geist Mono, monospace'}}>
-                insightis — ai chat
-              </div>
-              <div style={{display:'flex',alignItems:'center',gap:5,padding:'3px 8px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'5px'}}>
-                <div style={{width:'5px',height:'5px',borderRadius:'50%',background:'#22C55E',boxShadow:'0 0 6px #22C55E'}}/>
-                <span style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'#0EC4C1',fontWeight:500}}>Gemini Pro</span>
+            </div>
+
+            {/* Floating top-right: amber Over Budget card (distinct from green/lavender on other persona pages) */}
+            <div style={{
+              position:'absolute',
+              top:'-18px',
+              right:'-14px',
+              background:'linear-gradient(135deg, rgba(251,191,36,.22) 0%, rgba(13,17,23,0.95) 100%)',
+              border:'1px solid rgba(251,191,36,.4)',
+              borderRadius:'14px',
+              padding:'10px 14px',
+              boxShadow:'0 16px 40px rgba(251,191,36,0.18), 0 8px 24px rgba(0,0,0,0.5)',
+              backdropFilter:'blur(16px)',
+              WebkitBackdropFilter:'blur(16px)',
+              display:'flex',alignItems:'center',gap:'10px',
+              transform:'rotate(2.5deg)',
+              zIndex:2,
+            }}>
+              <div style={{
+                width:'8px',height:'8px',borderRadius:'50%',background:'#FBBF24',
+                flexShrink:0,
+              }}/>
+              <div>
+                <div style={{fontSize:'9.5px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase'}}>Over budget</div>
+                <div style={{fontSize:'12.5px',color:'#FBBF24',fontWeight:500,fontFamily:'Geist Mono,monospace',marginTop:'1px'}}>cloud_infra +$24K</div>
               </div>
             </div>
 
-            {/* Messages */}
-            <div style={{padding:'18px',display:'flex',flexDirection:'column',gap:'10px',minHeight:'200px'}}>
-              <div className="chat-bubble-user">
-                What's our current burn rate vs. budget?
+            {/* Floating bottom-left: Q2 close progress checklist (different from product retention curve) */}
+            <div style={{
+              position:'absolute',
+              bottom:'-22px',
+              left:'-18px',
+              background:'linear-gradient(135deg, rgba(9,160,157,.2) 0%, rgba(13,17,23,0.95) 100%)',
+              border:'1px solid rgba(9,160,157,.4)',
+              borderRadius:'14px',
+              padding:'12px 14px',
+              boxShadow:'0 16px 40px rgba(9,160,157,0.18), 0 8px 24px rgba(0,0,0,0.5)',
+              backdropFilter:'blur(16px)',
+              WebkitBackdropFilter:'blur(16px)',
+              transform:'rotate(-2deg)',
+              minWidth:'180px',
+              zIndex:2,
+            }}>
+              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'8px'}}>
+                <span style={{fontSize:'9.5px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase'}}>Q2 close</span>
+                <span style={{fontSize:'10.5px',color:'#0EC4C1',fontFamily:'Geist Mono,monospace',fontWeight:500}}>5 / 7 done</span>
               </div>
-              <div className="chat-bubble-ai">
-                Total burn is $187K this month vs. $178K budget — $9K over plan. Cloud infrastructure running at 141% of budget. Contractor spend added $13K unplanned this month.
-                <MiniBarChart data={[165, 171, 168, 174, 178, 180, 183, 187]} color="#F87171"/>
-              </div>
-            </div>
-
-            {/* Input bar */}
-            <div style={{padding:'12px 16px',borderTop:'1px solid rgba(255,255,255,0.06)',display:'flex',alignItems:'center',gap:'8px'}}>
-              <div style={{flex:1,background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.08)',borderRadius:'10px',padding:'9px 12px',fontSize:'13px',color:'#6E8D9A',fontFamily:'Geist,sans-serif'}}>
-                Ask anything about your costs…
-              </div>
-              <div style={{display:'flex',alignItems:'center',gap:'5px'}}>
-                <div style={{width:'28px',height:'28px',borderRadius:'7px',background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.08)',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer'}}>
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M14 10a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h1l2-2h2l2 2h1a2 2 0 012 2v4z" stroke="#6E8D9A" strokeWidth="1.3"/></svg>
-                </div>
-                <div style={{width:'28px',height:'28px',borderRadius:'7px',background:'linear-gradient(135deg,#09A09D,#07807E)',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer',boxShadow:'0 0 10px rgba(9,160,157,.3)'}}>
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                </div>
+              <div style={{display:'flex',flexDirection:'column',gap:'3px'}}>
+                {[
+                  {step:'AP reconciliation', done:true},
+                  {step:'Payroll posted',    done:true},
+                  {step:'Accruals booked',   done:true},
+                  {step:'Variance review',   done:false},
+                ].map((s,i)=>(
+                  <div key={i} style={{display:'flex',alignItems:'center',gap:'7px'}}>
+                    <div style={{
+                      width:'10px',height:'10px',borderRadius:'3px',
+                      background:s.done?'rgba(14,196,193,.18)':'rgba(255,255,255,.04)',
+                      border:`1px solid ${s.done?'rgba(14,196,193,.5)':'rgba(255,255,255,.1)'}`,
+                      display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,
+                    }}>
+                      {s.done && <svg width="6" height="6" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-4" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+                    </div>
+                    <span style={{fontSize:'10.5px',color:s.done?'#C0D4DC':'#7FA0AC',fontFamily:'Geist Mono,monospace'}}>{s.step}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -614,89 +828,621 @@ function Hero() {
   );
 }
 
-/* ── PAIN POINTS ── */
-function PainPoints() {
-  const pains = [
+/* ── FEATURE SPOTLIGHT VISUALS ── */
+function ChromeHeader({ label }) {
+  return (
+    <div style={{padding:'14px 18px',borderBottom:'1px solid rgba(255,255,255,0.06)',display:'flex',alignItems:'center',gap:'10px',flexShrink:0,position:'relative',zIndex:1}}>
+      <div style={{display:'flex',gap:'5px'}}>
+        {['#FF5F57','#FFBD2E','#28C840'].map((c,i) => (
+          <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
+        ))}
+      </div>
+      <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'#6E8D9A',fontFamily:'Geist Mono, monospace'}}>
+        {label}
+      </div>
+    </div>
+  );
+}
+
+function SpotlightChat() {
+  return (
+    <div style={{
+      width:'100%',
+      background:'rgba(13,17,23,0.9)',
+      border:'1px solid rgba(255,255,255,0.08)',
+      borderRadius:'20px',
+      overflow:'hidden',
+      boxShadow:'0 24px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04)',
+      display:'flex',
+      flexDirection:'column',
+    }}>
+      <ChromeHeader label="fp&a · inbox" />
+      <div style={{padding:'18px 20px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
+
+        {/* Inbox header */}
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'12px'}}>
+          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#6E8D9A',letterSpacing:'.1em',textTransform:'uppercase'}}>requests · today</span>
+          <span style={{
+            fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#22C55E',
+            padding:'2px 8px',borderRadius:'999px',
+            background:'rgba(34,197,94,.1)',border:'1px solid rgba(34,197,94,.3)',
+            letterSpacing:'.08em',textTransform:'uppercase',
+          }}>3 auto-answered</span>
+        </div>
+
+        {/* Expanded request: CFO */}
+        <div style={{
+          background:'linear-gradient(135deg, rgba(9,160,157,.08) 0%, rgba(9,160,157,.02) 100%)',
+          border:'1px solid rgba(9,160,157,.32)',
+          borderRadius:'11px',
+          padding:'12px 13px',
+          marginBottom:'8px',
+        }}>
+          <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'6px',gap:'8px'}}>
+            <div style={{display:'flex',alignItems:'center',gap:'8px',minWidth:0}}>
+              <div style={{
+                width:'22px',height:'22px',borderRadius:'50%',
+                background:'rgba(9,160,157,.22)',
+                border:'1px solid rgba(9,160,157,.4)',
+                display:'flex',alignItems:'center',justifyContent:'center',
+                fontFamily:'Geist Mono,monospace',fontSize:'9.5px',fontWeight:500,color:'#0EC4C1',
+                flexShrink:0,
+              }}>CF</div>
+              <span style={{fontSize:'11.5px',fontWeight:500,color:'#E8F2F5'}}>CFO</span>
+              <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#6E8D9A'}}>10:42</span>
+            </div>
+            <span style={{
+              fontFamily:'Geist Mono,monospace',fontSize:'9px',color:'#22C55E',
+              padding:'2px 7px',borderRadius:'999px',
+              background:'rgba(34,197,94,.08)',border:'1px solid rgba(34,197,94,.25)',
+              letterSpacing:'.06em',textTransform:'uppercase',whiteSpace:'nowrap',flexShrink:0,
+            }}>✓ 4s</span>
+          </div>
+
+          {/* Question */}
+          <div style={{fontSize:'12.5px',color:'#C0D4DC',marginBottom:'8px',lineHeight:1.5}}>
+            "Where are we vs plan this month?"
+          </div>
+
+          {/* Answer — single compact line */}
+          <div style={{
+            display:'flex',alignItems:'center',gap:'8px',
+            fontFamily:'Geist Mono,monospace',fontSize:'11.5px',
+            paddingTop:'8px',
+            borderTop:'1px dashed rgba(255,255,255,.06)',
+          }}>
+            <span style={{color:'#0EC4C1'}}>↳</span>
+            <span style={{color:'#E8F2F5'}}>$187K</span>
+            <span style={{color:'#6E8D9A'}}>vs</span>
+            <span style={{color:'#7FA0AC'}}>$178K plan</span>
+            <span style={{color:'#6E8D9A'}}>·</span>
+            <span style={{color:'#F87171',fontWeight:500}}>+$9K (cloud_infra)</span>
+          </div>
+        </div>
+
+        {/* Other auto-answered requests */}
+        {[
+          {who:'Head of Sales',  init:'HS', q:'Headcount cost by team Q2?',     when:'09:18', tone:'#A78BFA'},
+          {who:'COO',            init:'CO', q:'Contractor rollup since June?',   when:'08:55', tone:'#FBBF24'},
+        ].map((r,i)=>(
+          <div key={i} style={{
+            display:'flex',alignItems:'center',gap:'10px',
+            padding:'8px 11px',
+            background:'rgba(255,255,255,.02)',
+            border:'1px solid rgba(255,255,255,.05)',
+            borderRadius:'9px',
+            marginTop: i===0 ? '0' : '5px',
+          }}>
+            <div style={{
+              width:'22px',height:'22px',borderRadius:'50%',
+              background:`${r.tone}1a`,
+              border:`1px solid ${r.tone}55`,
+              display:'flex',alignItems:'center',justifyContent:'center',
+              fontFamily:'Geist Mono,monospace',fontSize:'9px',fontWeight:500,color:r.tone,
+              flexShrink:0,
+            }}>{r.init}</div>
+            <div style={{flex:1,minWidth:0}}>
+              <div style={{display:'flex',alignItems:'center',gap:'6px'}}>
+                <span style={{fontSize:'11px',fontWeight:500,color:'#C0D4DC',whiteSpace:'nowrap'}}>{r.who}</span>
+                <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:'#6E8D9A'}}>{r.when}</span>
+              </div>
+              <div style={{fontSize:'11px',color:'#7FA0AC',marginTop:'1px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>"{r.q}"</div>
+            </div>
+            <span style={{
+              fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#22C55E',flexShrink:0,
+            }}>✓</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SpotlightSemantic() {
+  const versions = [
+    {ver:'v3.2', state:'certified', owner:'FP&A',     when:'2 weeks ago',  note:'payroll + saas + infra (full stack)'},
+    {ver:'v3.0', state:'deprecated', owner:'FP&A',    when:'Q1 2026',       note:'missing infra spend'},
+    {ver:'v2.4', state:'deprecated', owner:'Finance', when:'Q4 2025',       note:'payroll + saas only'},
+    {ver:'v1.0', state:'deprecated', owner:'Marketing', when:'Q2 2025',     note:'CMO\'s spreadsheet definition'},
+  ];
+  return (
+    <div style={{
+      width:'100%',
+      background:'rgba(13,17,23,0.9)',
+      border:'1px solid rgba(255,255,255,0.08)',
+      borderRadius:'20px',
+      overflow:'hidden',
+      boxShadow:'0 24px 80px rgba(0,0,0,0.5)',
+      display:'flex',
+      flexDirection:'column',
+    }}>
+      <ChromeHeader label="metric · gross_burn_rate" />
+      <div style={{padding:'22px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
+        {/* Eyebrow */}
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'14px'}}>
+          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#6E8D9A',letterSpacing:'.1em',textTransform:'uppercase'}}>version history</span>
+          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#7FA0AC'}}>4 revisions</span>
+        </div>
+
+        {/* Vertical timeline */}
+        <div style={{position:'relative',paddingLeft:'22px'}}>
+          {/* Spine line */}
+          <div style={{
+            position:'absolute',
+            left:'7px',top:'8px',bottom:'8px',
+            width:'1px',
+            background:'linear-gradient(180deg, rgba(34,197,94,.5) 0%, rgba(255,255,255,.06) 30%, rgba(255,255,255,.06) 100%)',
+          }}/>
+
+          {versions.map((v,i)=>{
+            const isCertified = v.state === 'certified';
+            return (
+              <div key={i} style={{position:'relative',marginBottom:i<versions.length-1?'14px':'0'}}>
+                {/* Bullet */}
+                <div style={{
+                  position:'absolute',
+                  left:'-22px',top:'4px',
+                  width:'15px',height:'15px',borderRadius:'50%',
+                  background: isCertified ? 'rgba(34,197,94,.15)' : 'rgba(255,255,255,.04)',
+                  border: isCertified ? '2px solid #22C55E' : '1px solid rgba(255,255,255,.18)',
+                  boxShadow: isCertified ? '0 0 0 4px rgba(34,197,94,.08)' : 'none',
+                }}/>
+
+                {/* Card */}
+                <div style={{
+                  background: isCertified ? 'linear-gradient(135deg, rgba(34,197,94,.08) 0%, rgba(34,197,94,.02) 100%)' : 'rgba(255,255,255,.02)',
+                  border: isCertified ? '1px solid rgba(34,197,94,.32)' : '1px solid rgba(255,255,255,.06)',
+                  borderRadius:'9px',
+                  padding:'9px 12px',
+                  opacity: isCertified ? 1 : 0.66,
+                }}>
+                  <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:'10px',marginBottom:'3px'}}>
+                    <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
+                      <span style={{fontFamily:'Geist Mono,monospace',fontSize:'12px',fontWeight:500,color:'#E8F2F5'}}>{v.ver}</span>
+                      {isCertified && (
+                        <span style={{
+                          fontFamily:'Geist Mono,monospace',fontSize:'8.5px',color:'#22C55E',
+                          padding:'2px 7px',borderRadius:'999px',
+                          background:'rgba(34,197,94,.12)',border:'1px solid rgba(34,197,94,.4)',
+                          letterSpacing:'.1em',textTransform:'uppercase',fontWeight:500,
+                        }}>certified</span>
+                      )}
+                      {!isCertified && (
+                        <span style={{fontFamily:'Geist Mono,monospace',fontSize:'8.5px',color:'#7FA0AC',letterSpacing:'.1em',textTransform:'uppercase'}}>deprecated</span>
+                      )}
+                    </div>
+                    <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#6E8D9A',whiteSpace:'nowrap'}}>{v.owner} · {v.when}</span>
+                  </div>
+                  <div style={{
+                    fontSize:'11px',
+                    color:isCertified?'#C0D4DC':'#7FA0AC',
+                    fontFamily: isCertified ? 'Geist Mono,monospace' : 'inherit',
+                  }}>{v.note}</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SpotlightAnomalies() {
+  const items = [
+    {sev:'high', label:'Cloud Infra +$24K',     when:'Tue 14:32', why:'unplanned scale-up · compute', tag:'infra_spend'},
+    {sev:'med',  label:'Contractors +$13K',     when:'Mon 09:15', why:'new vendor · marketing ops',   tag:'contractor_spend'},
+    {sev:'med',  label:'SaaS auto-renew $8K',   when:'Sun 22:00', why:'expected · annual seat reset',  tag:'saas_spend'},
+    {sev:'ok',   label:'Payroll on plan',       when:'Today',     why:'matches Gusto run',              tag:'payroll'},
+  ];
+  const sevConfig = {
+    high: {color:'#F87171', bg:'rgba(248,113,113,.06)', border:'rgba(248,113,113,.28)', icon:'!', iconBg:'rgba(248,113,113,.18)', iconBorder:'#F87171'},
+    med:  {color:'#FBBF24', bg:'rgba(251,191,36,.05)',  border:'rgba(251,191,36,.25)',  icon:'!', iconBg:'rgba(251,191,36,.16)', iconBorder:'#FBBF24'},
+    ok:   {color:'#22C55E', bg:'rgba(255,255,255,.02)', border:'rgba(255,255,255,.05)', icon:'✓', iconBg:'rgba(34,197,94,.14)',  iconBorder:'rgba(34,197,94,.5)'},
+  };
+  return (
+    <div style={{
+      width:'100%',
+      background:'rgba(13,17,23,0.9)',
+      border:'1px solid rgba(255,255,255,0.08)',
+      borderRadius:'20px',
+      overflow:'hidden',
+      boxShadow:'0 24px 80px rgba(0,0,0,0.5)',
+      display:'flex',
+      flexDirection:'column',
+    }}>
+      <ChromeHeader label="watchlist · this week" />
+      <div style={{padding:'20px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
+        {/* Eyebrow row */}
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'12px'}}>
+          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#6E8D9A',letterSpacing:'.1em',textTransform:'uppercase'}}>flagged before close</span>
+          <div style={{display:'flex',gap:'10px',fontFamily:'Geist Mono,monospace',fontSize:'9.5px'}}>
+            <span style={{color:'#F87171'}}>● 1 high</span>
+            <span style={{color:'#FBBF24'}}>● 2 med</span>
+            <span style={{color:'#22C55E'}}>● 1 ok</span>
+          </div>
+        </div>
+
+        {/* List rows */}
+        <div style={{display:'flex',flexDirection:'column',gap:'6px'}}>
+          {items.map((it,i)=>{
+            const c = sevConfig[it.sev];
+            return (
+              <div key={i} style={{
+                display:'flex',alignItems:'center',gap:'10px',
+                padding:'8px 11px',
+                background:c.bg,
+                border:`1px solid ${c.border}`,
+                borderRadius:'9px',
+              }}>
+                {/* Severity icon */}
+                <div style={{
+                  width:'18px',height:'18px',borderRadius:'5px',
+                  background:c.iconBg,
+                  border:`1px solid ${c.iconBorder}`,
+                  display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,
+                  fontFamily:'Geist Mono,monospace',
+                  fontSize:'10px',fontWeight:600,
+                  color:c.color,
+                }}>{c.icon}</div>
+
+                {/* Body */}
+                <div style={{flex:1,minWidth:0}}>
+                  <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
+                    <span style={{fontSize:'12px',color:'#E8F2F5',fontWeight:500}}>{it.label}</span>
+                    <span style={{
+                      fontFamily:'Geist Mono,monospace',fontSize:'8.5px',
+                      color:'#6E8D9A',
+                      padding:'2px 6px',borderRadius:'4px',
+                      background:'rgba(255,255,255,.04)',
+                      letterSpacing:'.04em',
+                    }}>{it.tag}</span>
+                  </div>
+                  <div style={{fontSize:'10.5px',color:'#7FA0AC',marginTop:'2px'}}>{it.why}</div>
+                </div>
+
+                {/* Timestamp */}
+                <span style={{
+                  fontFamily:'Geist Mono,monospace',
+                  fontSize:'10px',color:'#6E8D9A',
+                  flexShrink:0,
+                  letterSpacing:'.04em',
+                }}>{it.when}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SpotlightStack() {
+  const trace = [
+    {label:'Payroll',     amt:'$98K', src:'Gusto',      detail:'142 entries',  owner:'HR',  ts:'06:30 UTC'},
+    {label:'SaaS spend',  amt:'$32K', src:'Ramp',       detail:'18 vendors',   owner:'IT',  ts:'06:30 UTC'},
+    {label:'Infra spend', amt:'$42K', src:'QuickBooks', detail:'24 line-items',owner:'Eng', ts:'06:30 UTC'},
+    {label:'Contractors', amt:'$15K', src:'QuickBooks', detail:'6 vendors',    owner:'Ops', ts:'06:30 UTC'},
+  ];
+  return (
+    <div style={{
+      width:'100%',
+      background:'rgba(13,17,23,0.9)',
+      border:'1px solid rgba(255,255,255,0.08)',
+      borderRadius:'20px',
+      overflow:'hidden',
+      boxShadow:'0 24px 80px rgba(0,0,0,0.5)',
+      display:'flex',
+      flexDirection:'column',
+    }}>
+      <ChromeHeader label="audit · gross_burn_rate" />
+      <div style={{padding:'20px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
+
+        {/* Headline KPI with audit stamp */}
+        <div style={{
+          background:'linear-gradient(135deg, rgba(9,160,157,.10) 0%, rgba(9,160,157,.02) 100%)',
+          border:'1px solid rgba(9,160,157,.32)',
+          borderRadius:'11px',
+          padding:'12px 14px',
+          marginBottom:'12px',
+          display:'flex',alignItems:'center',justifyContent:'space-between',gap:'12px',
+        }}>
+          <div style={{minWidth:0}}>
+            <div style={{display:'flex',alignItems:'baseline',gap:'10px'}}>
+              <span style={{fontFamily:'Geist Mono,monospace',fontSize:'22px',fontWeight:500,color:'#E8F2F5',letterSpacing:'-.01em'}}>$187K</span>
+              <span style={{fontFamily:'Geist Mono,monospace',fontSize:'11px',color:'#7FA0AC'}}>gross_burn · Q2 MTD</span>
+            </div>
+            <div style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#6E8D9A',letterSpacing:'.06em',textTransform:'uppercase',marginTop:'4px'}}>
+              FP&amp;A · v3.2 · 4 source systems
+            </div>
+          </div>
+          <span style={{
+            display:'inline-flex',alignItems:'center',gap:'5px',
+            padding:'4px 10px',borderRadius:'999px',
+            background:'rgba(34,197,94,.08)',border:'1px solid rgba(34,197,94,.3)',
+            fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#22C55E',
+            letterSpacing:'.08em',textTransform:'uppercase',whiteSpace:'nowrap',flexShrink:0,
+          }}>
+            <span style={{width:'5px',height:'5px',borderRadius:'50%',background:'#22C55E'}}/>
+            audit-ready
+          </span>
+        </div>
+
+        {/* Trace eyebrow */}
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'7px'}}>
+          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#6E8D9A',letterSpacing:'.1em',textTransform:'uppercase'}}>↳ trace to source</span>
+          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#7FA0AC'}}>4 components</span>
+        </div>
+
+        {/* Lineage rows */}
+        <div style={{position:'relative',paddingLeft:'14px'}}>
+          {/* Tree spine */}
+          <div style={{
+            position:'absolute',
+            left:'4px',top:'4px',bottom:'14px',
+            width:'1px',
+            background:'rgba(14,196,193,.25)',
+          }}/>
+
+          {trace.map((t,i)=>(
+            <div key={i} style={{position:'relative',marginBottom:i<trace.length-1?'5px':'0'}}>
+              {/* Branch tick */}
+              <div style={{
+                position:'absolute',
+                left:'-10px',top:'14px',
+                width:'10px',height:'1px',
+                background:'rgba(14,196,193,.32)',
+              }}/>
+              <div style={{
+                background:'rgba(255,255,255,.022)',
+                border:'1px solid rgba(255,255,255,.06)',
+                borderRadius:'8px',
+                padding:'8px 11px',
+                display:'flex',alignItems:'center',gap:'10px',
+              }}>
+                <span style={{fontSize:'11.5px',color:'#E8F2F5',fontWeight:500,minWidth:'92px',flexShrink:0}}>{t.label}</span>
+                <span style={{fontFamily:'Geist Mono,monospace',fontSize:'12px',color:'#0EC4C1',fontWeight:500,minWidth:'46px',flexShrink:0}}>{t.amt}</span>
+                <div style={{flex:1,minWidth:0,display:'flex',alignItems:'center',gap:'6px',fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#7FA0AC'}}>
+                  <span style={{
+                    color:'#FBBF24',
+                    padding:'1px 6px',borderRadius:'4px',
+                    background:'rgba(251,191,36,.08)',
+                    border:'1px solid rgba(251,191,36,.22)',
+                    letterSpacing:'.04em',
+                    flexShrink:0,
+                  }}>{t.src}</span>
+                  <span style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{t.detail} · {t.owner}</span>
+                </div>
+                <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:'#6E8D9A',whiteSpace:'nowrap',flexShrink:0,letterSpacing:'.04em'}}>{t.ts}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Audit footer */}
+        <div style={{
+          marginTop:'12px',
+          paddingTop:'10px',
+          borderTop:'1px dashed rgba(255,255,255,.06)',
+          display:'flex',alignItems:'center',justifyContent:'space-between',
+          fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#6E8D9A',
+          letterSpacing:'.04em',
+        }}>
+          <span style={{display:'inline-flex',alignItems:'center',gap:'6px'}}>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+            <span>SOX-ready trail</span>
+          </span>
+          <span>signed off by FP&amp;A · 06:42 UTC</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── FEATURE SPOTLIGHTS ── */
+function FeatureSpotlights() {
+  const spots = [
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="3" width="18" height="18" rx="2" stroke="#0EC4C1" strokeWidth="1.5"/>
-        <path d="M7 8h2 M7 12h2 M7 16h2 M11 8h6 M11 12h6 M11 16h4" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>,
-      title: 'Budget vs. actuals takes days to reconcile',
-      desc: "Getting an accurate view requires pulling from QuickBooks, HR systems, and expense tools, then manually reconciling in Excel. By Wednesday, Monday's decisions are made blind.",
+      eyebrow:'Self-Serve',
+      title:'Skip the FP&A queue',
+      body:'Ask any cost or budget question in plain English and get an answer grounded in your real ledger — no spreadsheet maze, no waiting on FP&A.',
+      bullets:['Plain-English questions across budget, payroll, and spend','CFO and ops leads finally self-serve'],
+      visual:<SpotlightChat />,
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="#0EC4C1" strokeWidth="1.5"/>
-        <line x1="12" y1="9" x2="12" y2="13" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="12" y1="17" x2="12.01" y2="17" stroke="#0EC4C1" strokeWidth="2" strokeLinecap="round"/>
-      </svg>,
-      title: 'Cost overruns are discovered too late',
-      desc: "By the time you notice a department has blown its budget, half the month is gone and the damage is done. Reactive cost management is expensive.",
+      eyebrow:'Unified Cost Model',
+      title:'One source of truth for finance',
+      body:'Marketing defines cost-per-lead one way, Finance defines burn another. Every metric — burn, margin, headcount — gets one certified definition.',
+      bullets:['One certified definition per finance metric','Versioning, ownership, and lineage built in'],
+      visual:<SpotlightSemantic />,
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <line x1="4" y1="6" x2="20" y2="6" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="4" y1="10" x2="20" y2="10" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="4" y1="14" x2="14" y2="14" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="4" y1="18" x2="11" y2="18" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>,
-      title: 'Vendor payment tracking is manual',
-      desc: "Tracking which vendors are past payment terms, which invoices are outstanding, and which SaaS contracts auto-renew requires a dedicated spreadsheet nobody trusts.",
+      eyebrow:'Variance & Anomaly Detection',
+      title:'Spot overruns before month-end',
+      body:'Insightis scans every spend answer for variance, one-time charges, and regime shifts — overruns surface inline, not after the close.',
+      bullets:['Budget overruns flagged inside every answer','Unusual vendor or contractor spend called out'],
+      visual:<SpotlightAnomalies />,
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <circle cx="9" cy="7" r="3" stroke="#0EC4C1" strokeWidth="1.5"/>
-        <path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M21 21v-2a4 4 0 0 0-3-3.85" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>,
-      title: 'Headcount cost analysis is a project',
-      desc: "Getting a breakdown of fully-loaded headcount cost by department, team, or role means pulling from HR, payroll, and benefits platforms manually. A day of work.",
-    },
-    {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" stroke="#0EC4C1" strokeWidth="1.5" strokeLinejoin="round"/>
-        <line x1="9" y1="10" x2="9.01" y2="10" stroke="#0EC4C1" strokeWidth="2" strokeLinecap="round"/>
-        <line x1="12" y1="10" x2="12.01" y2="10" stroke="#0EC4C1" strokeWidth="2" strokeLinecap="round"/>
-        <line x1="15" y1="10" x2="15.01" y2="10" stroke="#0EC4C1" strokeWidth="2" strokeLinecap="round"/>
-      </svg>,
-      title: 'Finance questions come without warning',
-      desc: "When the CEO asks 'What's our gross margin this quarter?' in a meeting, you need the answer in seconds — not after an hour in Xero and a call with the accountant.",
-    },
-    {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <polyline points="17 6 23 6 23 12" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>,
-      title: 'Forecasting is based on stale data',
-      desc: "Revenue and cost forecasts are updated monthly at best, meaning decisions made mid-quarter are based on numbers that are already outdated by weeks.",
+      eyebrow:'Audit-Ready',
+      title:'Every number ships with its receipt',
+      body:'Every figure links back to the underlying transactions, owners, and timestamps — auditors and finance share the same trail without an extra reconciliation pass.',
+      bullets:['Full lineage from KPI down to source transaction','Owner, timestamp, and version stamped on every figure'],
+      visual:<SpotlightStack />,
     },
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
+    <section id="spotlights" style={{padding:'80px 0 100px',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'56px'}}>
+        <div style={{textAlign:'center',marginBottom:'72px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
             <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>The Problem</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>How it works</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
-            Finance runs on last month's numbers
+            Built for the way finance teams actually work
           </h2>
-          <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
-            Sound familiar? These are the problems Insightis eliminates.
+          <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'560px',margin:'0 auto',lineHeight:1.65}}>
+            Four capabilities that turn finance from a spreadsheet pipeline into a real-time control function.
           </p>
         </div>
 
-        <div data-pain-grid style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:'16px'}}>
-          {pains.map((p,i) => (
+        <div style={{display:'flex',flexDirection:'column',gap:'88px'}}>
+          {spots.map((s,i) => {
+            const reverse = i % 2 === 1;
+            return (
+              <div key={i} data-spotlight-grid style={{
+                display:'grid',
+                gridTemplateColumns:'1fr 1fr',
+                gap:'64px',
+                alignItems:'center',
+              }}>
+                <div data-spotlight-text style={{order: reverse ? 2 : 0}}>
+                  <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'18px'}}>
+                    <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
+                    <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>{s.eyebrow}</span>
+                  </div>
+                  <h3 style={{fontSize:'clamp(24px,2.6vw,34px)',fontWeight:500,color:'#fff',letterSpacing:'-.025em',lineHeight:1.18,marginBottom:'18px'}}>
+                    {s.title}
+                  </h3>
+                  <p style={{fontSize:'16px',color:'rgba(255,255,255,.62)',lineHeight:1.65,marginBottom:'22px'}}>
+                    {s.body}
+                  </p>
+                  <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px'}}>
+                    {s.bullets.map((b,bi) => (
+                      <li key={bi} style={{display:'flex',alignItems:'flex-start',gap:'10px',fontSize:'14px',color:'#C0D4DC',lineHeight:1.55}}>
+                        <span style={{color:'#0EC4C1',flexShrink:0,marginTop:'1px'}}>✓</span>
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div data-spotlight-visual style={{
+                  order: reverse ? 0 : 2,
+                  display:'flex',
+                  alignItems:'stretch',
+                  minHeight:'380px',
+                }}>
+                  {s.visual}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── USE CASES ── */
+function UseCases() {
+  const cases = [
+    {
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 3v18h18" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/><path d="M7 14l4-4 4 4 5-6" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      title:'Live budget vs. actuals',
+      desc:'Live budget vs. actuals available anytime — no more waiting until Wednesday for Monday\'s numbers. Every department, every line item, real-time.',
+    },
+    {
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m6-5h6M8 3v18m8-18v18M16 3h3a2 2 0 0 1 2 2v3M2 9h20M2 15h20M2 21h3m16 0h3" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      title:'Governed cost definitions',
+      desc:'One unified cost model governs every metric — burn rate, gross margin, COGS — owned and versioned by Finance. No more arguments about whose number is right.',
+    },
+    {
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      title:'Proactive overrun alerts',
+      desc:'Overspend flagged before it compounds. The moment a department or vendor breaks plan, you know — not three weeks later when the bill hits.',
+    },
+    {
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="#0EC4C1" strokeWidth="1.5"/><path d="M7 9h10M7 13h6" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      title:'Ad hoc finance analysis without Excel',
+      desc:'Any finance question answered instantly — gross margin by product, fully-loaded cost by team, runway under different burn scenarios. No more pivot-table archaeology.',
+    },
+    {
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="14" rx="2" stroke="#0EC4C1" strokeWidth="1.5"/><line x1="3" y1="10" x2="21" y2="10" stroke="#0EC4C1" strokeWidth="1.5"/><line x1="8" y1="3" x2="8" y2="9" stroke="#0EC4C1" strokeWidth="1.5"/><line x1="16" y1="3" x2="16" y2="9" stroke="#0EC4C1" strokeWidth="1.5"/></svg>,
+      title:'Vendor &amp; SaaS contract tracking',
+      desc:'Vendor obligations tracked automatically — past-due invoices, auto-renewing SaaS contracts, unused licenses. Stop discovering them on a renewal email.',
+    },
+    {
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/><circle cx="9" cy="7" r="4" stroke="#0EC4C1" strokeWidth="1.5"/><path d="M22 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      title:'Fully-loaded headcount cost in seconds',
+      desc:'Fully-loaded cost by team in seconds — pulling from HR, payroll, and benefits automatically. The kind of answer that used to take a day, before the CEO asked again.',
+    },
+  ];
+
+  return (
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0D1117 0%,#0A0E13 100%)'}}>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
+        <div style={{marginBottom:'80px'}}>
+          <div style={{
+            position:'relative',borderRadius:'16px',
+            border:'1px solid rgba(30,30,48,1)',
+            padding:'32px 48px',overflow:'hidden',
+            display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'24px',
+            flexWrap:'wrap',
+            background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)',
+          }}>
+            <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
+            <div style={{flex:'1 1 360px',minWidth:0}}>
+              <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'8px'}}>
+                See it on <span style={{color:'#07807E'}}>your own ledger</span>.
+              </h3>
+              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.6}}>
+                Connect QuickBooks or Xero and ask Insightis the cost question that always takes too long to answer.
+              </p>
+            </div>
+            <button style={{
+              display:'inline-flex',alignItems:'center',gap:'8px',
+              padding:'14px 26px',flexShrink:0,
+              fontSize:'14px',fontWeight:600,color:'#fff',
+              background:'linear-gradient(135deg,#07807E,#09A09D)',
+              borderRadius:'10px',border:'none',cursor:'pointer',
+              whiteSpace:'nowrap',
+              fontFamily:'Geist,sans-serif',
+              boxShadow:'0 8px 24px rgba(9,160,157,.25)',
+            }}>
+              Get started for free
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+        <div style={{textAlign:'center',marginBottom:'56px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
+            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Use cases</span>
+          </div>
+          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
+            What ops &amp; finance teams use Insightis for
+          </h2>
+        </div>
+
+        <div data-usecase-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'14px'}}>
+          {cases.map((c,i) => (
             <div key={i}
               style={{
                 background:'rgba(13,17,23,.6)',
                 border:'1px solid rgba(255,255,255,.06)',
-                borderRadius:'16px',padding:'28px',
+                borderRadius:'16px',padding:'24px',
                 position:'relative',overflow:'hidden',
                 transition:'all .2s',
               }}
@@ -704,11 +1450,11 @@ function PainPoints() {
               onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}
             >
               <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
-              <div style={{width:'40px',height:'40px',borderRadius:'10px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'16px'}}>
-                {p.icon}
+              <div style={{width:'38px',height:'38px',borderRadius:'10px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'14px'}}>
+                {c.icon}
               </div>
-              <h3 style={{fontSize:'16px',fontWeight:600,color:'#E8F2F5',marginBottom:'8px'}}>{p.title}</h3>
-              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.65}}>{p.desc}</p>
+              <h3 style={{fontSize:'15px',fontWeight:600,color:'#E8F2F5',marginBottom:'6px'}}>{c.title}</h3>
+              <p style={{fontSize:'13.5px',color:'#7FA0AC',lineHeight:1.6}}>{c.desc}</p>
             </div>
           ))}
         </div>
@@ -786,7 +1532,10 @@ function RelevantIntegrations() {
     {
       name:'PostgreSQL', bg:'rgba(51,103,145,.12)', desc:'Data warehouse',
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M17.128 0a10.134 10.134 0 0 0-2.755.403C13.434.238 12.465.17 11.467.235 9.797.291 8.201.859 6.912 1.82A9.947 9.947 0 0 0 4.892 4.21c-.772 1.116-1.20 2.407-1.238 3.724-.039 1.318.328 2.662 1.049 3.853.558.923 1.36 1.753 2.376 2.358.086.918.196 1.876.338 2.768.142.887.317 1.762.564 2.449.124.343.266.656.433.914.168.258.393.498.691.627.309.133.659.112.966-.068.276-.163.487-.44.668-.777.398-.738.635-1.779.753-2.984.02-.197.037-.4.052-.606.257.063.517.119.779.162.012.002.023.003.035.005.055.008.11.016.166.022.194.023.388.04.581.05.375.021.748.019 1.115-.014.017.196.034.386.055.57.118 1.205.355 2.246.753 2.984.181.337.392.614.668.777.307.18.657.201.966.068.298-.129.523-.369.691-.627.167-.258.309-.571.433-.914.247-.687.422-1.562.564-2.449.14-.885.249-1.835.336-2.748 1.014-.607 1.814-1.437 2.372-2.363.722-1.191 1.089-2.535 1.05-3.853-.039-1.318-.465-2.609-1.238-3.724A9.932 9.932 0 0 0 17.986 1.82C17.408.982 17.128 0 17.128 0z" fill="#336791"/>
+        <ellipse cx="12" cy="5" rx="9" ry="3" stroke="#336791" strokeWidth="1.5" fill="#336791" fillOpacity=".15"/>
+        <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5" stroke="#336791" strokeWidth="1.5" fill="none"/>
+        <path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3" stroke="#336791" strokeWidth="1.2" fill="none"/>
+        <circle cx="18" cy="8" r="2.5" fill="#336791" fillOpacity=".6" stroke="#336791" strokeWidth="1"/>
       </svg>,
     },
     {
@@ -868,13 +1617,13 @@ function RelevantIntegrations() {
         <div style={{textAlign:'center',marginBottom:'56px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
             <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Your Data Sources</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Your Finance Stack</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
-            Connects to every ops and finance tool
+            Works with every accounting, payroll, and billing tool
           </h2>
           <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
-            From your accounting platform to your payroll system — all synced in real time.
+            Insightis integrates with your accounting, billing, payroll, and warehouse stack.
           </p>
         </div>
 
@@ -915,114 +1664,64 @@ function RelevantIntegrations() {
   );
 }
 
-/* ── METRICS ── */
-function Metrics() {
-  const metrics = [
-    'Gross Burn Rate','Net Burn Rate','Headcount Cost','Budget vs. Actual','DSO',
-    'Operating Margin','Cash Conversion Cycle','Gross Margin','EBITDA','Cost per Employee',
-    'Vendor Spend','T&E Budget','AP Aging','Revenue Forecast Accuracy','COGS',
-    'Free Cash Flow','Contractor Spend','SaaS Spend','Departmental Burn','Payroll as % of Revenue',
+/* ── FAQ ── */
+function FAQ() {
+  const [open, setOpen] = useState(0);
+  const items = [
+    {
+      q:'Does Insightis replace QuickBooks or Xero, or sit on top?',
+      a:'It sits on top. Insightis reads your accounting, payroll, billing, and warehouse data in place — no shadow ledger, no parallel chart of accounts. QuickBooks or Xero stays your system of record, owned by Finance.',
+    },
+    {
+      q:'What happens when teams have conflicting metric definitions?',
+      a:'Definitions are resolved at the unified cost model, not in the spreadsheet. Each metric — burn rate, gross margin, fully-loaded headcount cost — has one certified version, an owner, and a version history. When someone asks for "burn" in chat, Insightis answers using the governed definition and links to the source.',
+    },
+    {
+      q:'How does it handle late-arriving journals and month-end close adjustments?',
+      a:'Insightis re-reads your ledger continuously, so accruals, reclasses, and late-arriving journals flow through automatically. Numbers update as your close progresses — no manual refresh, no stale reports sitting in Drive.',
+    },
+    {
+      q:'Will this coexist with our existing FP&A or BI tool (Mosaic, Cube, Looker)?',
+      a:'Yes. Most teams keep their FP&A or BI tool for the curated board and forecast deck, and use Insightis for the long-tail finance questions that would otherwise become a Slack thread or another spreadsheet. Both can read the same unified cost model.',
+    },
+    {
+      q:'How long does implementation take?',
+      a:'Most finance teams are answering real questions within a week — connect QuickBooks or Xero plus your payroll and billing tools, register your top 10–20 metrics in the cost model, and start asking. Broader rollout to ops and department leads typically follows in the second or third week.',
+    },
+    {
+      q:'How is security and access handled?',
+      a:'Insightis respects the permissions in your source systems and warehouse — every query runs as the connected role, so role-level and column-level security stays in force. No financial data is moved out of your warehouse, and full audit trails are preserved.',
+    },
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#101620 0%,#0A0E13 100%)'}}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0D1117 0%,#0A0E13 100%)'}}>
+      <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'48px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
             <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Metrics That Matter</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>FAQ</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
-            Every KPI an ops and finance team needs
-          </h2>
-          <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
-            Ask about any of these — or any metric you define — in plain English.
-          </p>
-        </div>
-
-        <div style={{display:'flex',flexWrap:'wrap',gap:'10px',justifyContent:'center',marginBottom:'28px'}}>
-          {metrics.map((m,i) => (
-            <span key={i} className="metric-pill">{m}</span>
-          ))}
-        </div>
-
-        <p style={{textAlign:'center',fontSize:'13px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',fontStyle:'italic'}}>
-          These are just examples — ask about any metric in plain English.
-        </p>
-      </div>
-    </section>
-  );
-}
-
-/* ── BEFORE / AFTER ── */
-function BeforeAfter() {
-  return (
-    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'52px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>The Difference</span>
-          </div>
-          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
-            Ops &amp; Finance before vs. after Insightis
+            Questions ops &amp; finance teams ask
           </h2>
         </div>
 
-        <div data-compare-grid style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'12px'}}>
-          {/* Before */}
-          <div style={{background:'rgba(248,113,113,.04)',border:'1px solid rgba(248,113,113,.15)',borderRadius:'16px',padding:'28px'}}>
-            <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'20px'}}>
-              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#F87171'}}/>
-              <span style={{fontSize:'13px',fontWeight:600,color:'#F87171'}}>Before Insightis</span>
-            </div>
-            <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'12px'}}>
-              {[
-                'Budget vs. actuals takes 3+ days to build',
-                'Cost overruns discovered mid-month',
-                'Vendor tracking lives in a manual spreadsheet',
-                'Headcount cost analysis takes a full day',
-                'Finance questions go unanswered in meetings',
-                'Forecasts updated monthly at best',
-              ].map((item,i) => (
-                <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'#7FA0AC',lineHeight:1.55}}>
-                  <span style={{color:'#F87171',fontWeight:500,flexShrink:0}}>✕</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* After */}
-          <div style={{background:'rgba(9,160,157,.05)',border:'1px solid rgba(9,160,157,.25)',borderRadius:'16px',padding:'28px',position:'relative'}}>
-            <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.6),transparent)',borderRadius:'16px 16px 0 0'}}/>
-            <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'20px'}}>
-              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#0EC4C1',boxShadow:'0 0 8px #0EC4C1'}}/>
-              <span style={{fontSize:'13px',fontWeight:600,color:'#0EC4C1'}}>With Insightis</span>
-            </div>
-            <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'12px'}}>
-              {[
-                'Live budget vs. actuals available any time',
-                'Overspend flagged before it compounds',
-                'Vendor obligations tracked automatically',
-                'Fully-loaded cost by team in seconds',
-                'Any finance question answered instantly',
-                'Forecasts always based on real-time data',
-              ].map((item,i) => (
-                <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'#C0D4DC',lineHeight:1.55}}>
-                  <span style={{color:'#0EC4C1',fontWeight:500,flexShrink:0}}>✓</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <div style={{textAlign:'center',marginTop:'36px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
-            <span style={{fontSize:'40px',fontWeight:500,color:'#0EC4C1',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>3×</span>
-            <span style={{fontSize:'15px',color:'#7FA0AC',whiteSpace:'nowrap'}}>faster financial reporting. Zero spreadsheet reconciliation.</span>
-          </div>
+        <div>
+          {items.map((it, i) => {
+            const isOpen = open === i;
+            return (
+              <div key={i} className="faq-row">
+                <button className={`faq-q${isOpen ? ' open' : ''}`} onClick={()=>setOpen(isOpen ? -1 : i)}>
+                  {it.q}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div className={`faq-a${isOpen ? ' open' : ''}`}>
+                  {it.a}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -1055,7 +1754,7 @@ function BottomCTA() {
           }}>
             <input
               type="text"
-              placeholder="What cost or finance question do you need answered?"
+              placeholder="What cost or finance question can Insightis answer for your team?"
               style={{
                 flex:1,background:'transparent',fontSize:'14px',color:'#fff',
                 padding:'12px 16px',outline:'none',border:'none',
@@ -1129,7 +1828,7 @@ function Footer() {
             <div>
               <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Platform</h4>
               <ul className="flex flex-col gap-2.5">
-                {['AI Chat', 'Integrations', 'Insights Engine', 'Semantic Layer', 'Reports', 'Memory & Storage'].map(link => (
+                {['AI Chat', 'Integrations', 'Insights Engine', 'Semantic Layer', 'Reports'].map(link => (
                   <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
               </ul>
@@ -1168,8 +1867,6 @@ function Footer() {
                   { label: 'About Devart', href: 'https://www.devart.com/company/' },
                   { label: 'Careers', href: 'https://www.devart.com/vacancies/' },
                   { label: 'Contacts', href: '../Company/Contacts.html' },
-                  { label: 'Success Stories', href: '../Company/Success Stories.html' },
-                  { label: 'Press & Media', href: '../Company/Press Media.html' },
                 ].map(link => (
                   <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
@@ -1213,10 +1910,10 @@ function App() {
     <div>
       <Header />
       <Hero />
-      <PainPoints />
+      <FeatureSpotlights />
+      <UseCases />
       <RelevantIntegrations />
-      <Metrics />
-      <BeforeAfter />
+      <FAQ />
       <BottomCTA />
       <Footer />
     </div>

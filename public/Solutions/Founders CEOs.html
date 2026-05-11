@@ -48,6 +48,9 @@ body::after {
 @keyframes slideUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
 @keyframes pulse  { 0%,100%{opacity:.4;transform:scale(.85)} 50%{opacity:1;transform:scale(1)} }
 @keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+@keyframes marquee-left { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.marquee-left { animation: marquee-left 40s linear infinite; }
+.marquee-container:hover .marquee-left { animation-play-state: paused; }
 
 .fu0 { animation: fadeUp .7s ease both; }
 .fu1 { animation: fadeUp .7s ease .1s both; }
@@ -185,6 +188,9 @@ section { position: relative; }
   [data-pain-grid] { grid-template-columns: 1fr !important; }
   [data-connectors-grid] { grid-template-columns: repeat(2,1fr) !important; }
   [data-compare-grid] { grid-template-columns: 1fr !important; }
+  [data-howit-grid] { grid-template-columns: 1fr !important; }
+  [data-cases-grid] { grid-template-columns: 1fr !important; }
+  [data-vs-grid] { grid-template-columns: 1fr !important; }
 }
 </style>
 </head>
@@ -490,127 +496,551 @@ function MiniBarChart({ data, color }) {
   );
 }
 
+function TreemapChart({ items }) {
+  const colors = ['#0EC4C1','#09A09D','#818CF8','#FBBF24','#F87171','#34D399','#60A5FA'];
+  const sorted = [...items].sort((a,b) => b.value - a.value);
+  const total = sorted.reduce((s,i) => s + i.value, 0);
+  const W = 860, H = 270, gap = 4;
+  const leftW = Math.round((sorted[0].value / total) * W);
+  const rest = sorted.slice(1);
+  const restTotal = rest.reduce((s,i) => s + i.value, 0) || 1;
+  const cells = [{ x:0, y:0, w:leftW - gap, h:H, item:sorted[0], color:sorted[0].color || colors[0] }];
+  let y = 0;
+  rest.forEach((item, i) => {
+    const h = Math.round((item.value / restTotal) * H);
+    cells.push({ x:leftW, y, w:W - leftW, h:h - gap, item, color:item.color || colors[i+1] });
+    y += h;
+  });
+  return (
+    <div style={{margin:'12px 0'}}>
+      <svg viewBox={`0 0 ${W} ${H}`} style={{width:'100%',maxHeight:'280px'}}>
+        {cells.map((c,i) => (
+          <g key={i}>
+            <rect x={c.x} y={c.y} width={c.w} height={c.h} fill={c.color} opacity=".78" rx="6"/>
+            <text x={c.x+c.w/2} y={c.y+c.h/2-(c.h>60?16:0)} textAnchor="middle" dominantBaseline="middle"
+              style={{fontSize:c.w>200?'12px':'11px',fill:'rgba(255,255,255,.8)',fontFamily:'Geist Mono,monospace'}}>
+              {c.item.label}
+            </text>
+            {c.h>60 && <text x={c.x+c.w/2} y={c.y+c.h/2+18} textAnchor="middle" dominantBaseline="middle"
+              style={{fontSize:'20px',fill:'#fff',fontFamily:'Geist Mono,monospace',fontWeight:500}}>
+              {c.item.display}
+            </text>}
+          </g>
+        ))}
+      </svg>
+    </div>
+  );
+}
+
+function PieChart({ slices }) {
+  const total = slices.reduce((s, d) => s + Math.abs(d.value), 0);
+  const colors = ['#0EC4C1','#09A09D','#F87171','#FBBF24','#818CF8','#34D399'];
+  let angle = -Math.PI / 2;
+  const cx = 90, cy = 90, r = 75, ri = 38;
+  const paths = slices.map((s, i) => {
+    const sweep = (Math.abs(s.value) / total) * 2 * Math.PI;
+    const x1 = cx + r * Math.cos(angle), y1 = cy + r * Math.sin(angle);
+    const x2 = cx + r * Math.cos(angle + sweep), y2 = cy + r * Math.sin(angle + sweep);
+    const xi1 = cx + ri * Math.cos(angle), yi1 = cy + ri * Math.sin(angle);
+    const xi2 = cx + ri * Math.cos(angle + sweep), yi2 = cy + ri * Math.sin(angle + sweep);
+    const large = sweep > Math.PI ? 1 : 0;
+    const d = `M${x1},${y1} A${r},${r} 0 ${large},1 ${x2},${y2} L${xi2},${yi2} A${ri},${ri} 0 ${large},0 ${xi1},${yi1} Z`;
+    angle += sweep;
+    return { d, color: s.color || colors[i % colors.length], label: s.label, pct: Math.round((Math.abs(s.value)/total)*100) };
+  });
+  return (
+    <div style={{display:'flex',alignItems:'center',gap:'32px',margin:'12px 0'}}>
+      <svg viewBox="0 0 180 180" style={{width:'240px',height:'240px',flexShrink:0}}>
+        {paths.map((p,i) => <path key={i} d={p.d} fill={p.color} opacity=".85"/>)}
+      </svg>
+      <div style={{display:'flex',flexDirection:'column',gap:'14px',flex:1}}>
+        {paths.map((p,i) => (
+          <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
+            <div style={{width:'12px',height:'12px',borderRadius:'3px',background:p.color,flexShrink:0}}/>
+            <span style={{fontSize:'14px',color:'#7FA0AC',fontFamily:'Geist Mono,monospace',flex:1}}>{p.label}</span>
+            <span style={{fontSize:'14px',color:'#E8F2F5',fontFamily:'Geist Mono,monospace',fontWeight:500}}>{p.pct}%</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function HorizontalBarChart({ bars }) {
+  const maxVal = Math.max(...bars.map(b => Math.abs(b.value)));
+  return (
+    <div style={{display:'flex',flexDirection:'column',gap:'10px',margin:'12px 0'}}>
+      {bars.map((b,i) => (
+        <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
+          <span style={{fontSize:'12px',color:'#7FA0AC',fontFamily:'Geist Mono,monospace',minWidth:'180px',textAlign:'right',flexShrink:0}}>{b.label}</span>
+          <div style={{flex:1,background:'rgba(255,255,255,.04)',borderRadius:'4px',height:'22px',position:'relative',overflow:'hidden'}}>
+            <div style={{
+              width:`${(Math.abs(b.value)/maxVal)*100}%`,
+              height:'100%',borderRadius:'4px',
+              background: b.color || (b.value < 0 ? 'rgba(220,80,80,.7)' : 'rgba(9,160,157,.6)'),
+            }}/>
+          </div>
+          <span style={{fontSize:'12px',fontFamily:'Geist Mono,monospace',color: b.value < 0 ? '#E06060' : '#0EC4C1',minWidth:'60px',flexShrink:0}}>{b.display}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function LineChart({ points, labels }) {
+  const max = Math.max(...points);
+  const min = Math.min(...points) * 0.9;
+  const range = max - min || 1;
+  const w = 420, h = 120, px = 30, py = 10;
+  const chartW = w - px*2, chartH = h - py*2;
+  const coords = points.map((v,i) => ({
+    x: px + (i / (points.length-1)) * chartW,
+    y: py + chartH - ((v - min) / range) * chartH,
+  }));
+  const line = coords.map((c,i) => `${i===0?'M':'L'}${c.x},${c.y}`).join(' ');
+  const area = line + ` L${coords[coords.length-1].x},${h-py} L${coords[0].x},${h-py} Z`;
+  return (
+    <div style={{margin:'12px 0'}}>
+      <svg viewBox={`0 0 ${w} ${h}`} style={{width:'100%',height:'auto'}}>
+        <defs><linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#09A09D" stopOpacity=".25"/><stop offset="100%" stopColor="#09A09D" stopOpacity=".02"/></linearGradient></defs>
+        {[0,.25,.5,.75,1].map(f => <line key={f} x1={px} y1={py+chartH*f} x2={w-px} y2={py+chartH*f} stroke="rgba(255,255,255,.05)" strokeWidth="1"/>)}
+        <path d={area} fill="url(#areaFill)"/>
+        <path d={line} fill="none" stroke="#0EC4C1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        {coords.map((c,i) => <circle key={i} cx={c.x} cy={c.y} r="3" fill="#0EC4C1" stroke="#0A0E13" strokeWidth="1.5"/>)}
+        {labels && labels.map((l,i) => <text key={i} x={coords[i].x} y={h-1} textAnchor="middle" style={{fontSize:'9px',fill:'#6E8D9A',fontFamily:'Geist Mono,monospace'}}>{l}</text>)}
+      </svg>
+    </div>
+  );
+}
+
+/* ── REVOPS Q&A DATA (verbatim from AI Chat.html GALLERY_DATA['RevOps & BizOps']) ── */
+const REVOPS_QA = {
+  questions: [
+    'Why did MRR drop last week?',
+    'Which deals are at risk of slipping this quarter?',
+    "What's our average sales cycle by deal size?",
+    'Which pipeline stage has the highest drop-off rate?',
+    'How is our CAC trending vs. 6 months ago?',
+  ],
+  replies: [
+    {
+      type: 'graph', chart: 'horizontalBar',
+      chartData: [
+        { label:'Trial expiry (activation)', value:-740, display:'-$740' },
+        { label:'Pro → Starter downgrade', value:-260, display:'-$260' },
+        { label:'Low engagement churn', value:-240, display:'-$240' },
+        { label:'Annual → Monthly switch', value:-180, display:'-$180' },
+        { label:'Seat count reduction', value:-120, display:'-$120' },
+        { label:'Late payment write-off', value:-80, display:'-$80' },
+      ],
+      caption: "Trial expiry without activation drove 60% of last week's $1,240 MRR drop. Six distinct causes identified.",
+      action: 'Trigger a re-engagement sequence for accounts with <5 logins in the last 14 days',
+    },
+    {
+      type: 'graph', chart: 'treemap',
+      chartData: [
+        { label:'NovaCorp', value:52, display:'$52K', color:'#F87171' },
+        { label:'AlphaBase', value:38, display:'$38K', color:'#FBBF24' },
+        { label:'Meridian', value:31, display:'$31K', color:'#F87171' },
+        { label:'Quell Inc.', value:28, display:'$28K', color:'#FBBF24' },
+        { label:'Vertexio', value:22, display:'$22K', color:'#818CF8' },
+        { label:'Others', value:13, display:'$13K', color:'#6E8D9A' },
+      ],
+      caption: '7 deals totalling $184K at risk of slipping past Q2. NovaCorp ($52K) untouched for 21 days.',
+      action: 'Schedule executive business reviews for the top 3 at-risk deals before end of week',
+    },
+    {
+      type: 'paragraph',
+      text: "Average sales cycle is 18 days for small deals (<$5K), 34 days for mid-market ($5K–$20K), and 67 days for enterprise ($20K+). Enterprise deals take 3.7× longer — the proposal-to-legal handoff is the single biggest drag, accounting for 28 of those 67 days on average. This quarter, mid-market cycles improved by 4 days vs. Q4, driven by the mutual action plan template adopted in January. Enterprise cycles remain flat. Deals re-engaged within 5 business days of proposal stall close at 68% — that rate drops to 31% after 10 days. Accelerating the legal handoff phase alone could unlock an estimated $140K in deals currently sitting idle.",
+      action: 'Build a 2-touch mid-market sequence targeting legal sign-off to cut 5–7 days from the cycle',
+    },
+    {
+      type: 'graph', chart: 'pie',
+      chartData: [
+        { label:'Prospect → MQL drop-off', value:71, color:'#F87171' },
+        { label:'MQL → SQL drop-off', value:38, color:'#FBBF24' },
+        { label:'SQL → Proposal drop-off', value:22, color:'#818CF8' },
+        { label:'Proposal → Closed Won drop-off', value:14, color:'#34D399' },
+      ],
+      caption: '71% of prospects never qualify — improving lead scoring at the top of funnel unlocks the most pipeline without additional spend.',
+      action: 'Refine ICP scoring criteria in HubSpot to filter low-intent leads at the MQL stage',
+    },
+    {
+      type: 'graph', chart: 'line',
+      chartData: [410, 395, 378, 355, 338, 322],
+      chartLabels: ['Oct','Nov','Dec','Jan','Feb','Mar'],
+      caption: 'CAC has dropped $88 over 6 months — PLG improvements and better lead quality are compounding each other.',
+      action: 'Double down on PLG onboarding investment to sustain the downward CAC trend into Q3',
+    },
+  ],
+};
+
 /* ── HERO ── */
+function FoundersHeroIllustration() {
+  const cohorts = [
+    { label: "Q1 '25", v: [100, 94, 88, 82, 78, 74] },
+    { label: "Q2 '25", v: [100, 95, 90, 84, 80, null] },
+    { label: "Q3 '25", v: [100, 96, 91, 86, null, null] },
+    { label: "Q4 '25", v: [100, 97, 93, null, null, null] },
+    { label: "Q1 '26", v: [100, null, null, null, null, null] },
+  ];
+  const months = ['M0', 'M1', 'M3', 'M6', 'M9', 'M12'];
+  const cellW = 65, cellH = 26, gapX = 4, gapY = 6;
+  const xStart = 140, yStart = 168;
+
+  const cellFill = (v) => {
+    if (v == null) return 'rgba(255,255,255,0.04)';
+    if (v >= 95) return 'rgba(14,196,193,0.85)';
+    if (v >= 85) return 'rgba(14,196,193,0.6)';
+    if (v >= 75) return 'rgba(14,196,193,0.38)';
+    return 'rgba(14,196,193,0.22)';
+  };
+
+  return (
+    <svg viewBox="0 0 620 540" width="100%" style={{maxWidth:'580px',height:'auto',display:'block',filter:'drop-shadow(0 30px 60px rgba(0,0,0,0.55))'}} aria-hidden="true">
+      <defs>
+        <linearGradient id="ro_cardBg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#10171E"/>
+          <stop offset="100%" stopColor="#0A0E13"/>
+        </linearGradient>
+        <radialGradient id="ro_glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#0EC4C1" stopOpacity="0.18"/>
+          <stop offset="100%" stopColor="#0EC4C1" stopOpacity="0"/>
+        </radialGradient>
+      </defs>
+
+      {/* Soft glow behind */}
+      <ellipse cx="310" cy="270" rx="290" ry="200" fill="url(#ro_glow)"/>
+
+      {/* Main dashboard card */}
+      <g>
+        <rect x="50" y="40" width="520" height="400" rx="18" fill="url(#ro_cardBg)" stroke="rgba(255,255,255,0.08)" strokeWidth="1"/>
+
+        {/* Header strip */}
+        <rect x="50" y="40" width="520" height="44" rx="18" fill="rgba(255,255,255,0.025)"/>
+        <rect x="50" y="68" width="520" height="16" fill="rgba(255,255,255,0.025)"/>
+        <line x1="50" y1="84" x2="570" y2="84" stroke="rgba(255,255,255,0.06)" strokeWidth="1"/>
+        <circle cx="70" cy="62" r="4" fill="#FF5F57" opacity="0.55"/>
+        <circle cx="84" cy="62" r="4" fill="#FFBD2E" opacity="0.55"/>
+        <circle cx="98" cy="62" r="4" fill="#28C840" opacity="0.55"/>
+        <text x="310" y="66" textAnchor="middle" fontFamily="Geist Mono, monospace" fontSize="11" fill="#7FA0AC">Company health · Live</text>
+        <rect x="478" y="55" width="76" height="18" rx="5" fill="rgba(9,160,157,0.12)" stroke="rgba(9,160,157,0.35)" strokeWidth="0.5"/>
+        <circle cx="488" cy="64" r="2.5" fill="#22C55E"/>
+        <text x="496" y="67" fontFamily="Geist Mono, monospace" fontSize="9" fill="#0EC4C1" fontWeight="500">AI active</text>
+
+        {/* Section title row */}
+        <text x="68" y="112" fontFamily="Geist Mono,monospace" fontSize="10" fill="#7FA0AC" letterSpacing="1.5">COHORT RETENTION</text>
+        <text x="552" y="112" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="#0EC4C1" letterSpacing="1">▲ Net retention 112%</text>
+
+        {/* Column headers */}
+        {months.map((m, j) => (
+          <text key={m}
+            x={xStart + j * (cellW + gapX) + cellW / 2}
+            y="142"
+            textAnchor="middle"
+            fontFamily="Geist Mono,monospace"
+            fontSize="10"
+            fill="#6E8D9A"
+            fontWeight="500"
+          >{m}</text>
+        ))}
+
+        {/* Cohort rows */}
+        {cohorts.map((c, i) => (
+          <g key={c.label}>
+            <text
+              x="124"
+              y={yStart + i * (cellH + gapY) + cellH / 2 + 4}
+              textAnchor="end"
+              fontFamily="Geist Mono,monospace"
+              fontSize="10"
+              fill="#7FA0AC"
+              fontWeight="500"
+            >{c.label}</text>
+            {c.v.map((val, j) => (
+              <g key={j}>
+                <rect
+                  x={xStart + j * (cellW + gapX)}
+                  y={yStart + i * (cellH + gapY)}
+                  width={cellW}
+                  height={cellH}
+                  rx="4"
+                  fill={cellFill(val)}
+                />
+                {val != null && (
+                  <text
+                    x={xStart + j * (cellW + gapX) + cellW / 2}
+                    y={yStart + i * (cellH + gapY) + cellH / 2 + 4}
+                    textAnchor="middle"
+                    fontFamily="Geist Mono,monospace"
+                    fontSize="10"
+                    fill={val >= 85 ? '#0A0E13' : '#E8F2F5'}
+                    fontWeight="600"
+                  >{val}%</text>
+                )}
+              </g>
+            ))}
+          </g>
+        ))}
+
+        {/* Summary line */}
+        <text x="68" y="412" fontFamily="Geist Mono,monospace" fontSize="9" fill="#7FA0AC" letterSpacing="1">142 customers · 5 cohorts · M0–M12 retention</text>
+      </g>
+
+      {/* Floating donut card — bottom-left, partially overlapping */}
+      <g transform="translate(14, 358)">
+        <rect x="0" y="0" width="180" height="158" rx="14" fill="rgba(15,20,25,0.97)" stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
+        <text x="14" y="24" fontFamily="Geist Mono,monospace" fontSize="9" fill="#7FA0AC" letterSpacing="1.5">REVENUE BY SEGMENT</text>
+
+        {/* Donut */}
+        <g transform="translate(46, 92) rotate(-90)">
+          <circle r="22" fill="none" stroke="#0EC4C1" strokeWidth="14" strokeDasharray="69.12 138.23" strokeDashoffset="0"/>
+          <circle r="22" fill="none" stroke="#34D399" strokeWidth="14" strokeDasharray="41.47 138.23" strokeDashoffset="-69.12"/>
+          <circle r="22" fill="none" stroke="#7FA0AC" strokeWidth="14" strokeDasharray="27.65 138.23" strokeDashoffset="-110.59"/>
+        </g>
+        {/* Donut center */}
+        <text x="46" y="89" textAnchor="middle" fontFamily="Geist Mono,monospace" fontSize="8" fill="#7FA0AC">ARR</text>
+        <text x="46" y="103" textAnchor="middle" fontFamily="Geist,sans-serif" fontSize="12" fontWeight="600" fill="#E8F2F5">$24M</text>
+
+        {/* Legend */}
+        <g transform="translate(86, 56)">
+          <circle cx="0" cy="0" r="3" fill="#0EC4C1"/>
+          <text x="9" y="3" fontFamily="Geist Mono,monospace" fontSize="9" fill="#E8F2F5">Enterprise</text>
+          <text x="84" y="3" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="#7FA0AC">50%</text>
+
+          <circle cx="0" cy="22" r="3" fill="#34D399"/>
+          <text x="9" y="25" fontFamily="Geist Mono,monospace" fontSize="9" fill="#E8F2F5">Mid-market</text>
+          <text x="84" y="25" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="#7FA0AC">30%</text>
+
+          <circle cx="0" cy="44" r="3" fill="#7FA0AC"/>
+          <text x="9" y="47" fontFamily="Geist Mono,monospace" fontSize="9" fill="#E8F2F5">SMB</text>
+          <text x="84" y="47" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="#7FA0AC">20%</text>
+        </g>
+
+        {/* Footer */}
+        <text x="14" y="146" fontFamily="Geist Mono,monospace" fontSize="8" fill="#7FA0AC">ACV $42K · 142 customers</text>
+      </g>
+
+      {/* Floating AI insight card — bottom-right, partially overlapping */}
+      <g transform="translate(390,420)">
+        <rect x="0" y="0" width="220" height="84" rx="14" fill="rgba(15,20,25,0.97)" stroke="rgba(9,160,157,0.45)" strokeWidth="1"/>
+        <rect x="0" y="0" width="3" height="84" rx="1.5" fill="#0EC4C1"/>
+        <g transform="translate(16,16)">
+          <rect x="0" y="0" width="22" height="22" rx="6" fill="rgba(9,160,157,0.18)" stroke="rgba(9,160,157,0.4)" strokeWidth="0.5"/>
+          <text x="11" y="16" textAnchor="middle" fontFamily="Geist Mono,monospace" fontSize="10" fontWeight="600" fill="#0EC4C1">AI</text>
+        </g>
+        <text x="48" y="26" fontFamily="Geist Mono,monospace" fontSize="9" fill="#0EC4C1" fontWeight="500" letterSpacing="1">INSIGHT · LIVE</text>
+        <text x="48" y="46" fontFamily="Geist,sans-serif" fontSize="12" fill="#E8F2F5" fontWeight="500">Q3 cohort retains 12 pp</text>
+        <text x="48" y="62" fontFamily="Geist,sans-serif" fontSize="12" fill="#E8F2F5" fontWeight="500">better — onboarding wins.</text>
+        <text x="48" y="78" fontFamily="Geist Mono,monospace" fontSize="9" fill="#7FA0AC">Enterprise mix +8 pp →</text>
+      </g>
+    </svg>
+  );
+}
+
 function Hero() {
   return (
-    <section style={{
-      padding:'120px 0 80px',
-      position:'relative',
-      background:'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(9,160,157,.06) 0%, transparent 70%)',
-    }}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
+    <section style={{padding:'120px 0 80px',position:'relative',overflow:'hidden'}}>
+      {/* Decorative glows */}
+      <div style={{
+        position:'absolute',top:'-180px',right:'-120px',
+        width:'520px',height:'520px',borderRadius:'50%',
+        background:'radial-gradient(circle, rgba(9,160,157,0.14) 0%, transparent 70%)',
+        pointerEvents:'none',
+      }}/>
+      <div style={{
+        position:'absolute',bottom:'-200px',left:'-100px',
+        width:'400px',height:'400px',borderRadius:'50%',
+        background:'radial-gradient(circle, rgba(14,196,193,0.07) 0%, transparent 70%)',
+        pointerEvents:'none',
+      }}/>
+
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px',position:'relative'}}>
         <div data-hero-grid style={{
           display:'grid',
-          gridTemplateColumns:'1fr 1fr',
-          gap:'64px',
+          gridTemplateColumns:'1.05fr 1fr',
+          gap:'56px',
           alignItems:'center',
         }}>
-          {/* Left: text */}
-          <div>
-            <div className="fu0" style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'20px'}}>
-              <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-              <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>For Founders &amp; CEOs</span>
-            </div>
-
-            <h1 className="fu1" style={{fontSize:'clamp(36px,4.5vw,58px)',fontWeight:500,letterSpacing:'-.03em',lineHeight:1.12,marginBottom:'20px'}}>
-              <span style={{color:'#E8F2F5'}}>"Company health at a glance,"</span>
-              <br/>
-              <span style={{color:'#0EC4C1'}}>"not a three-day prep."</span>
-            </h1>
-
-            <p className="fu2" style={{fontSize:'clamp(16px,1.2vw,18px)',color:'rgba(255,255,255,.65)',lineHeight:1.65,marginBottom:'28px',maxWidth:'480px'}}>
-              Stop waiting for your ops team to build the board deck. Ask any strategic KPI in plain English — Insightis pulls your ARR, burn, runway, and NRR instantly.
-            </p>
-
-            <div className="fu3" style={{display:'flex',gap:'12px',flexWrap:'wrap',marginBottom:'28px'}}>
-              <a href="#" style={{
-                display:'inline-flex',alignItems:'center',gap:'8px',
-                padding:'12px 24px',borderRadius:'999px',
-                background:'linear-gradient(135deg,#09A09D,#07807E)',
-                color:'#fff',fontSize:'14px',fontWeight:500,
-                textDecoration:'none',
-                boxShadow:'0 0 24px rgba(9,160,157,.3)',
-                transition:'all .2s',
+            {/* Left: text */}
+            <div>
+              <h1 className="fu0" style={{
+                fontSize:'clamp(40px,5.2vw,68px)',
+                fontWeight:500,
+                letterSpacing:'-.035em',
+                lineHeight:1.05,
+                marginBottom:'24px',
               }}>
-                Start for Free
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-              </a>
-              <a href="#" style={{
-                display:'inline-flex',alignItems:'center',gap:'8px',
-                padding:'12px 24px',borderRadius:'999px',
-                border:'1px solid rgba(255,255,255,.12)',
-                color:'#C0D4DC',fontSize:'14px',fontWeight:400,
-                textDecoration:'none',
-                background:'rgba(255,255,255,.03)',
-                transition:'all .2s',
+                <span style={{color:'#E8F2F5'}}>AI analytics for </span>
+                <span style={{color:'#0EC4C1'}}>Founders &amp; CEOs</span>
+              </h1>
+
+              <p className="fu2" style={{
+                fontSize:'clamp(16px,1.25vw,19px)',
+                color:'rgba(255,255,255,.68)',
+                lineHeight:1.6,
+                marginBottom:'36px',
+                maxWidth:'520px',
               }}>
-                See how it works
-              </a>
-            </div>
+                Strategic answers in seconds, not days. Ask any company question in plain English — runway, ARR growth, NRR, burn — and walk into your next board meeting with live numbers, not last week's deck.
+              </p>
 
-            <div className="fu4" style={{display:'flex',gap:'20px',flexWrap:'wrap'}}>
-              {['✓ Real-time ARR & runway','✓ Board-ready metrics','✓ No analyst needed'].map((t,i) => (
-                <span key={i} style={{display:'flex',alignItems:'center',gap:'5px',fontSize:'12px',color:'#7FA0AC',fontFamily:'Geist Mono,monospace'}}>
-                  <span style={{color:'#09A09D'}}>{t.slice(0,1)}</span>{t.slice(1)}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Right: static chat mock */}
-          <div className="fu2" style={{
-            background:'rgba(13,17,23,0.9)',
-            border:'1px solid rgba(255,255,255,0.08)',
-            borderRadius:'20px',
-            overflow:'hidden',
-            backdropFilter:'blur(20px)',
-            boxShadow:'0 24px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04)',
-          }}>
-            {/* Chat window chrome */}
-            <div style={{padding:'14px 18px',borderBottom:'1px solid rgba(255,255,255,0.06)',display:'flex',alignItems:'center',gap:'10px'}}>
-              <div style={{display:'flex',gap:'5px'}}>
-                {['#FF5F57','#FFBD2E','#28C840'].map((c,i) => (
-                  <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
-                ))}
-              </div>
-              <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'#6E8D9A',fontFamily:'Geist Mono, monospace'}}>
-                insightis — ai chat
-              </div>
-              <div style={{display:'flex',alignItems:'center',gap:5,padding:'3px 8px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'5px'}}>
-                <div style={{width:'5px',height:'5px',borderRadius:'50%',background:'#22C55E',boxShadow:'0 0 6px #22C55E'}}/>
-                <span style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'#0EC4C1',fontWeight:500}}>Gemini Pro</span>
+              <div className="fu3">
+                <a href="#" style={{
+                  display:'inline-flex',alignItems:'center',gap:'10px',
+                  padding:'16px 32px',borderRadius:'999px',
+                  background:'linear-gradient(135deg,#09A09D,#07807E)',
+                  color:'#fff',fontSize:'15px',fontWeight:500,
+                  textDecoration:'none',
+                  boxShadow:'0 0 32px rgba(9,160,157,.35), 0 8px 24px rgba(0,0,0,.4)',
+                  transition:'all .2s',
+                  letterSpacing:'.01em',
+                }}>
+                  Start free
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                </a>
               </div>
             </div>
 
-            {/* Messages */}
-            <div style={{padding:'18px',display:'flex',flexDirection:'column',gap:'10px',minHeight:'200px'}}>
-              <div className="chat-bubble-user">
-                What's our current runway and burn rate?
-              </div>
-              <div className="chat-bubble-ai">
-                You have 22.5 months of runway at $187K/month burn. $4.2M in the bank. Payroll is 60% of total spend at $112K/month — the primary lever if burn needs to reduce.
-                <MiniBarChart data={[112, 118, 124, 131, 139, 147, 158, 187]} color="#F87171"/>
-              </div>
-            </div>
-
-            {/* Input bar */}
-            <div style={{padding:'12px 16px',borderTop:'1px solid rgba(255,255,255,0.06)',display:'flex',alignItems:'center',gap:'8px'}}>
-              <div style={{flex:1,background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.08)',borderRadius:'10px',padding:'9px 12px',fontSize:'13px',color:'#6E8D9A',fontFamily:'Geist,sans-serif'}}>
-                Ask anything about your revenue…
-              </div>
-              <div style={{display:'flex',alignItems:'center',gap:'5px'}}>
-                <div style={{width:'28px',height:'28px',borderRadius:'7px',background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.08)',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer'}}>
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M14 10a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h1l2-2h2l2 2h1a2 2 0 012 2v4z" stroke="#6E8D9A" strokeWidth="1.3"/></svg>
-                </div>
-                <div style={{width:'28px',height:'28px',borderRadius:'7px',background:'linear-gradient(135deg,#09A09D,#07807E)',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer',boxShadow:'0 0 10px rgba(9,160,157,.3)'}}>
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                </div>
-              </div>
-            </div>
+          {/* Right: static SVG illustration */}
+          <div className="fu2" style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+            <FoundersHeroIllustration/>
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+/* ── INTEGRATIONS STRIP (marquee) ── */
+function IntegrationsStrip() {
+  const logos = [
+    { name:'HubSpot', icon:(
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="3" fill="#ff7a59"/>
+        <line x1="12" y1="3.5" x2="12" y2="9" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/>
+        <line x1="12" y1="15" x2="12" y2="20.5" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/>
+        <line x1="3.5" y1="12" x2="9" y2="12" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/>
+        <line x1="15" y1="12" x2="20.5" y2="12" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/>
+      </svg>
+    )},
+    { name:'Salesforce', icon:(
+      <svg width="18" height="13" viewBox="0 0 66 46" fill="none">
+        <path d="M27.5 5.8a13.2 13.2 0 0 1 9.7-4.3c5 0 9.4 2.8 11.7 6.9a14.6 14.6 0 0 1 6.7-1.6C62.7 6.8 69 13.1 69 21s-6.3 14.2-14.4 14.2H15C7.7 35.2 1.8 29.3 1.8 22c0-6.5 4.7-11.9 10.9-13.3a13.2 13.2 0 0 1 14.8-2.9z" fill="#00a1e0"/>
+      </svg>
+    )},
+    { name:'Stripe', icon:(
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z" fill="#635bff"/>
+      </svg>
+    )},
+    { name:'Pipedrive', icon:(
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" fill="#26b950"/>
+      </svg>
+    )},
+    { name:'Chargebee', icon:(
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="10" stroke="#f9ab00" strokeWidth="2"/>
+        <path d="M15.5 8.5A5 5 0 1 0 15.5 15.5" stroke="#f9ab00" strokeWidth="2" strokeLinecap="round"/>
+      </svg>
+    )},
+    { name:'PostgreSQL', icon:(
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <ellipse cx="12" cy="12" rx="9" ry="8" stroke="#336791" strokeWidth="1.8" fill="none"/>
+        <path d="M8 8c1.5-1 3-1 4.5-.5M16 8.5c0 3-1 5.5-2 7.5" stroke="#336791" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+      </svg>
+    )},
+    { name:'BigQuery', icon:(
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#4285f4"/>
+        <path d="M2 17l10 5 10-5" stroke="#34a853" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+        <path d="M2 12l10 5 10-5" stroke="#fbbc04" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+      </svg>
+    )},
+    { name:'Snowflake', icon:(
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <line x1="12" y1="2" x2="12" y2="22" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
+        <line x1="2" y1="7" x2="22" y2="17" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
+        <line x1="22" y1="7" x2="2" y2="17" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
+        <circle cx="12" cy="12" r="2.4" fill="#29b5e8"/>
+      </svg>
+    )},
+    { name:'Mixpanel', icon:(
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="10" fill="#7856ff" opacity=".15"/>
+        <circle cx="8" cy="12" r="2.2" fill="#7856ff"/>
+        <circle cx="16" cy="12" r="2.2" fill="#7856ff"/>
+        <circle cx="12" cy="7.5" r="2.2" fill="#7856ff"/>
+        <circle cx="12" cy="16.5" r="2.2" fill="#7856ff"/>
+      </svg>
+    )},
+    { name:'Amplitude', icon:(
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d="M3 17l4-8 4 10 3-6 2 4 5-12" stroke="#197ce6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    )},
+    { name:'Google Analytics', icon:(
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <rect x="2" y="13" width="5" height="9" rx="1" fill="#e37400"/>
+        <rect x="9.5" y="7" width="5" height="15" rx="1" fill="#fbbc04"/>
+        <rect x="17" y="2" width="5" height="20" rx="1" fill="#34a853"/>
+      </svg>
+    )},
+    { name:'Intercom', icon:(
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <rect x="2" y="2" width="20" height="20" rx="5" fill="#286ef1" opacity=".18" stroke="#286ef1" strokeWidth="1.5"/>
+        <circle cx="8" cy="12" r="1.4" fill="#286ef1"/>
+        <circle cx="12" cy="12" r="1.4" fill="#286ef1"/>
+        <circle cx="16" cy="12" r="1.4" fill="#286ef1"/>
+      </svg>
+    )},
+  ];
+  const loop = [...logos, ...logos];
+
+  return (
+    <div style={{
+      width:'100%',
+      borderTop:'1px solid rgba(255,255,255,0.06)',
+      borderBottom:'1px solid rgba(255,255,255,0.06)',
+      background:'rgba(255,255,255,0.02)',
+      padding:'18px 0',
+      position:'relative',
+      zIndex:5,
+    }}>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px',display:'flex',alignItems:'center',gap:'24px'}}>
+        <span style={{
+          fontSize:'10px',fontWeight:500,
+          textTransform:'uppercase',letterSpacing:'.14em',
+          color:'#7FA0AC',
+          fontFamily:'Geist Mono,monospace',
+          whiteSpace:'nowrap',flexShrink:0,
+        }}>
+          200+ Integrations
+        </span>
+        <div className="marquee-container" style={{
+          flex:1,overflow:'hidden',
+          maskImage:'linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)',
+          WebkitMaskImage:'linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)',
+        }}>
+          <div className="marquee-left" style={{display:'flex',gap:'10px',width:'max-content'}}>
+            {loop.map((l,i) => (
+              <div key={i} style={{
+                display:'flex',alignItems:'center',gap:'8px',
+                padding:'7px 14px',
+                background:'rgba(13,17,23,0.6)',
+                border:'1px solid rgba(255,255,255,0.06)',
+                borderRadius:'999px',
+                flexShrink:0,whiteSpace:'nowrap',
+              }}>
+                <span style={{display:'flex',alignItems:'center',justifyContent:'center'}}>{l.icon}</span>
+                <span style={{fontSize:'12px',color:'#A8BCC4',fontWeight:500,fontFamily:'Geist,sans-serif'}}>{l.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -618,54 +1048,48 @@ function Hero() {
 function PainPoints() {
   const pains = [
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="18" rx="2" stroke="#0EC4C1" strokeWidth="1.5"/><polyline points="8 21 8 12 12 17 16 12 16 21" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
-      title: 'Board prep takes a full week',
-      desc: "Building the board deck means chasing numbers from 4 teams, reconciling 3 spreadsheets, and manually updating every chart. Every quarter, the same pain.",
+      title: 'Board prep eats your week',
+      desc: 'Pulling ARR, runway, NRR, and burn for the deck means stitching exports from finance, ops, and sales — by Sunday they\'re already stale.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="#0EC4C1" strokeWidth="1.5"/><line x1="12" y1="9" x2="12" y2="13" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/><line x1="12" y1="17" x2="12.01" y2="17" stroke="#0EC4C1" strokeWidth="2" strokeLinecap="round"/></svg>,
-      title: 'ARR numbers differ by source',
-      desc: "Finance has one ARR figure. Sales has another. The investor update has a third. Nobody agrees because every team calculates it differently.",
+      title: 'Numbers never agree across teams',
+      desc: 'Finance says $4.2M. RevOps says $4.4M. The deck rounds to $4.3M — every team calculates ARR a slightly different way, and you sign off on all three.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="#0EC4C1" strokeWidth="1.5"/><circle cx="12" cy="12" r="3" stroke="#0EC4C1" strokeWidth="1.5"/></svg>,
-      title: 'No real-time view of company health',
-      desc: "You find out churn spiked three weeks after it happened, when the monthly report finally lands. By then, the window to act is closed.",
+      title: 'Strategic questions wait for days',
+      desc: 'When an investor asks why NRR slipped 3 points, you need the answer in the call — not after a Jira ticket and a tired analyst.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#0EC4C1" strokeWidth="1.5"/><polyline points="12 6 12 12 16 14" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
-      title: 'Strategic questions wait days for answers',
-      desc: "'What's our NRR by segment?' goes into a Jira ticket. You get the answer — stale — on Friday afternoon. Too late to act Monday.",
+      title: 'No live picture of company health',
+      desc: 'Dashboards refresh weekly at best. Between updates the board, finance, and you all guess at what\'s happening.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><polyline points="17 6 23 6 23 12" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
-      title: 'Forecasting requires analyst time',
-      desc: "Revenue forecasting is a manual process that pulls your data team away from strategic work to build models in Excel once a quarter.",
+      title: 'Forecasting always needs an analyst',
+      desc: 'Building a credible 12-month plan means cornering an analyst, defending the assumptions, and waiting two weeks. The model lands already out of date.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="6" height="6" rx="1" stroke="#0EC4C1" strokeWidth="1.5"/><rect x="16" y="3" width="6" height="6" rx="1" stroke="#0EC4C1" strokeWidth="1.5"/><rect x="2" y="15" width="6" height="6" rx="1" stroke="#0EC4C1" strokeWidth="1.5"/><rect x="16" y="15" width="6" height="6" rx="1" stroke="#0EC4C1" strokeWidth="1.5"/><line x1="8" y1="6" x2="16" y2="6" stroke="#0EC4C1" strokeWidth="1.5"/><line x1="8" y1="18" x2="16" y2="18" stroke="#0EC4C1" strokeWidth="1.5"/><line x1="12" y1="6" x2="12" y2="18" stroke="#0EC4C1" strokeWidth="1.5"/></svg>,
-      title: "Can't correlate signals across the business",
-      desc: "Is the churn spike linked to the pricing change? Is the CAC increase tied to a channel shift? These cross-source questions have no easy answer.",
+      title: 'Cohort signals get lost in tabs',
+      desc: 'Retention curves, magic number, CAC payback — they live in five spreadsheets and BI tools. The pattern is buried.',
     },
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
+    <section style={{padding:'120px 0 100px',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'56px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>The Problem</span>
+        <div style={{textAlign:'center',marginBottom:'64px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(248,113,113,.08)',border:'1px solid rgba(248,113,113,.22)',borderRadius:'999px',marginBottom:'16px'}}>
+            <span style={{color:'#F87171',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#F87171',fontFamily:'Geist Mono,monospace'}}>The Problem</span>
           </div>
-          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
+          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
             Founders fly blind between board meetings
           </h2>
-          <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
+          <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'480px',margin:'0 auto',lineHeight:1.65}}>
             Sound familiar? These are the problems Insightis eliminates.
           </p>
         </div>
 
-        <div data-pain-grid style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:'16px'}}>
+        <div data-pain-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'20px'}}>
           {pains.map((p,i) => (
             <div key={i}
               style={{
@@ -673,140 +1097,86 @@ function PainPoints() {
                 border:'1px solid rgba(255,255,255,.06)',
                 borderRadius:'16px',padding:'28px',
                 position:'relative',overflow:'hidden',
-                transition:'all .2s',
               }}
-              onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-              onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}
             >
-              <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
-              <div style={{width:'40px',height:'40px',borderRadius:'10px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'16px'}}>
-                {p.icon}
+              {/* Top line accent */}
+              <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(248,113,113,.45),transparent)'}}/>
+
+              {/* Indicator + title */}
+              <div style={{display:'flex',alignItems:'center',gap:'12px',marginBottom:'12px'}}>
+                <div style={{
+                  width:'30px',height:'30px',borderRadius:'50%',
+                  border:'1px solid rgba(248,113,113,.4)',
+                  background:'radial-gradient(circle at 50% 30%, rgba(248,113,113,.18) 0%, rgba(13,17,23,.95) 75%)',
+                  display:'flex',alignItems:'center',justifyContent:'center',
+                  flexShrink:0,
+                  boxShadow:'0 0 16px rgba(248,113,113,.18), inset 0 1px 0 rgba(255,255,255,.05)',
+                }}>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#F87171" strokeWidth="2.5" strokeLinecap="round"/></svg>
+                </div>
+                <h3 style={{fontSize:'16px',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#E8F2F5',letterSpacing:'-.01em',margin:0,lineHeight:1.3}}>{p.title}</h3>
               </div>
-              <h3 style={{fontSize:'16px',fontWeight:600,color:'#E8F2F5',marginBottom:'8px'}}>{p.title}</h3>
-              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.65}}>{p.desc}</p>
+              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.7,margin:0}}>{p.desc}</p>
             </div>
           ))}
         </div>
+
+        {/* Responsive overrides */}
+        <style>{`
+          @media (max-width: 1024px) {
+            [data-pain-grid] {
+              grid-template-columns: repeat(2, 1fr) !important;
+            }
+          }
+          @media (max-width: 640px) {
+            [data-pain-grid] {
+              grid-template-columns: 1fr !important;
+            }
+          }
+        `}</style>
       </div>
     </section>
   );
 }
 
-/* ── RELEVANT INTEGRATIONS ── */
-function RelevantIntegrations() {
-  const connectors = [
-    {
-      name:'Stripe', bg:'rgba(99,91,255,.12)', desc:'Billing & revenue',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z" fill="#635bff"/></svg>,
-    },
-    {
-      name:'Chargebee', bg:'rgba(249,171,0,.12)', desc:'Subscription mgmt',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#f9ab00" strokeWidth="2"/><path d="M15.5 8.5A5 5 0 1 0 15.5 15.5" stroke="#f9ab00" strokeWidth="2" strokeLinecap="round"/></svg>,
-    },
-    {
-      name:'HubSpot', bg:'rgba(255,122,89,.12)', desc:'CRM & pipeline',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" fill="#ff7a59"/><line x1="12" y1="3.5" x2="12" y2="9" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/><line x1="12" y1="15" x2="12" y2="20.5" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/><line x1="3.5" y1="12" x2="9" y2="12" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/><line x1="15" y1="12" x2="20.5" y2="12" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/><circle cx="12" cy="3.5" r="1.8" fill="#ff7a59"/><circle cx="12" cy="20.5" r="1.8" fill="#ff7a59"/><circle cx="3.5" cy="12" r="1.8" fill="#ff7a59"/><circle cx="20.5" cy="12" r="1.8" fill="#ff7a59"/></svg>,
-    },
-    {
-      name:'Salesforce', bg:'rgba(0,161,224,.12)', desc:'CRM & accounts',
-      icon: <svg width="22" height="14" viewBox="0 0 88 52" fill="#00a1e0"><path d="M36 7.8a17.5 17.5 0 0 1 12.9-5.7c6.7 0 12.5 3.7 15.5 9.2a19.4 19.4 0 0 1 8.9-2.2C83.6 9.1 92 17.5 92 28s-8.4 18.9-18.7 18.9H20C9.5 46.9 1 38.4 1 28c0-8.7 6.2-15.9 14.4-17.7A17.5 17.5 0 0 1 36 7.8z"/></svg>,
-    },
-    {
-      name:'PostgreSQL', bg:'rgba(51,103,145,.12)', desc:'Data warehouse',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24"><path d="M17.128 0a10.134 10.134 0 0 0-2.755.403C13.434.238 12.465.17 11.467.235 9.797.291 8.201.859 6.912 1.82A9.947 9.947 0 0 0 4.892 4.21c-.772 1.116-1.20 2.407-1.238 3.724-.039 1.318.328 2.662 1.049 3.853.558.923 1.36 1.753 2.376 2.358.086.918.196 1.876.338 2.768.142.887.317 1.762.564 2.449.124.343.266.656.433.914.168.258.393.498.691.627.309.133.659.112.966-.068.276-.163.487-.44.668-.777.398-.738.635-1.779.753-2.984.02-.197.037-.4.052-.606.257.063.517.119.779.162l.035.005.166.022c.194.023.388.04.581.05.375.021.748.019 1.115-.014.017.196.034.386.055.57.118 1.205.355 2.246.753 2.984.181.337.392.614.668.777.307.18.657.201.966.068.298-.129.523-.369.691-.627.167-.258.309-.571.433-.914.247-.687.422-1.562.564-2.449.14-.885.249-1.835.336-2.748 1.014-.607 1.814-1.437 2.372-2.363.722-1.191 1.089-2.535 1.05-3.853-.039-1.318-.465-2.609-1.238-3.724A9.932 9.932 0 0 0 17.986 1.82C17.408.982 17.128 0 17.128 0z" fill="#336791"/></svg>,
-    },
-    {
-      name:'BigQuery', bg:'rgba(66,133,244,.12)', desc:'Cloud analytics',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" fill="#4285f4"/><path d="M2 17l10 5 10-5" stroke="#34a853" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M2 12l10 5 10-5" stroke="#fbbc04" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>,
-    },
-    {
-      name:'Snowflake', bg:'rgba(41,181,232,.12)', desc:'Data platform',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><line x1="12" y1="2" x2="12" y2="22" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/><line x1="2" y1="7" x2="22" y2="17" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/><line x1="22" y1="7" x2="2" y2="17" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/><circle cx="12" cy="12" r="2.5" fill="#29b5e8"/></svg>,
-    },
-    {
-      name:'Redshift', bg:'rgba(140,79,255,.12)', desc:'Data warehouse',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="7" rx="9" ry="3" stroke="#8c4fff" strokeWidth="1.5" fill="#8c4fff" opacity=".15"/><path d="M3 7v5c0 1.66 4.03 3 9 3s9-1.34 9-3V7" stroke="#8c4fff" strokeWidth="1.5" fill="none"/><path d="M3 12v5c0 1.66 4.03 3 9 3s9-1.34 9-3v-5" stroke="#8c4fff" strokeWidth="1.5" fill="none"/></svg>,
-    },
-    {
-      name:'QuickBooks', bg:'rgba(44,160,28,.12)', desc:'Accounting',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#2ca01c" opacity=".15" stroke="#2ca01c" strokeWidth="1.5"/><path d="M8 8h4a3 3 0 0 1 0 6H9v2H7V8h1zm1 5h3a1.5 1.5 0 0 0 0-3H9v3z" fill="#2ca01c"/></svg>,
-    },
-    {
-      name:'Xero', bg:'rgba(19,181,234,.12)', desc:'Accounting',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#13b5ea" opacity=".15" stroke="#13b5ea" strokeWidth="1.5"/><path d="M7.5 8.5l9 7M16.5 8.5l-9 7" stroke="#13b5ea" strokeWidth="2" strokeLinecap="round"/></svg>,
-    },
-    {
-      name:'Mixpanel', bg:'rgba(120,86,255,.12)', desc:'Product analytics',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7856ff" opacity=".15"/><circle cx="8" cy="12" r="2.5" fill="#7856ff"/><circle cx="16" cy="12" r="2.5" fill="#7856ff"/><circle cx="12" cy="7" r="2.5" fill="#7856ff"/><circle cx="12" cy="17" r="2.5" fill="#7856ff"/></svg>,
-    },
-    {
-      name:'Amplitude', bg:'rgba(25,124,230,.12)', desc:'User analytics',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 17l4-8 4 10 3-6 2 4 5-12" stroke="#197ce6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>,
-    },
-    {
-      name:'Google Sheets', bg:'rgba(15,157,88,.12)', desc:'Spreadsheet data',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="2" width="13" height="16" rx="1.5" fill="#0f9d58" opacity=".2" stroke="#0f9d58" strokeWidth="1.5"/><path d="M16 2l5 5v15a1 1 0 0 1-1 1H5" stroke="#0f9d58" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/><line x1="3" y1="10" x2="16" y2="10" stroke="#0f9d58" strokeWidth="1.2"/><line x1="3" y1="14" x2="16" y2="14" stroke="#0f9d58" strokeWidth="1.2"/><line x1="9" y1="6" x2="9" y2="18" stroke="#0f9d58" strokeWidth="1.2"/></svg>,
-    },
-    {
-      name:'Intercom', bg:'rgba(40,110,241,.12)', desc:'Customer success',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" fill="#286ef1" opacity=".18"/><circle cx="8" cy="12" r="1.5" fill="#286ef1"/><circle cx="12" cy="12" r="1.5" fill="#286ef1"/><circle cx="16" cy="12" r="1.5" fill="#286ef1"/><rect x="2" y="2" width="20" height="20" rx="5" stroke="#286ef1" strokeWidth="1.5" fill="none"/></svg>,
-    },
-    {
-      name:'dbt', bg:'rgba(255,105,74,.12)', desc:'Data transforms',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2 L22 19 L2 19 Z" fill="#ff694a" opacity=".2" stroke="#ff694a" strokeWidth="1.5" strokeLinejoin="round"/><circle cx="12" cy="14" r="3" fill="#ff694a"/><line x1="12" y1="2" x2="12" y2="11" stroke="#ff694a" strokeWidth="1.8" strokeLinecap="round"/></svg>,
-    },
-    {
-      name:'Notion', bg:'rgba(255,255,255,.06)', desc:'Reports & docs',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="2" width="18" height="20" rx="2" stroke="#E8F2F5" strokeWidth="1.5" opacity=".5"/><path d="M7 7h6M7 12h8M7 17h5" stroke="#E8F2F5" strokeWidth="1.5" strokeLinecap="round" opacity=".5"/></svg>,
-    },
-  ];
-
+/* ── MID CTA ── */
+function MidCTA() {
   return (
-    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0D1117 0%,#101620 100%)'}}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'56px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Your Data Sources</span>
-          </div>
-          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
-            Connects to every tool a founder relies on
-          </h2>
-          <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
-            From your billing system to your CRM to your data warehouse — all in one place.
-          </p>
-        </div>
+    <section style={{padding:'80px 0',position:'relative',overflow:'hidden'}}>
+      {/* Soft teal glow */}
+      <div style={{
+        position:'absolute',top:'50%',left:'50%',
+        transform:'translate(-50%,-50%)',
+        width:'700px',height:'420px',
+        background:'radial-gradient(ellipse, rgba(9,160,157,0.13) 0%, transparent 70%)',
+        pointerEvents:'none',
+      }}/>
 
-        <div data-connectors-grid style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'10px',marginBottom:'32px'}}>
-          {connectors.map((c,i) => (
-            <div key={i} className="connector-card">
-              <div className="connector-icon" style={{background:c.bg, display:'flex', alignItems:'center', justifyContent:'center'}}>
-                {c.icon}
-              </div>
-              <div>
-                <div style={{fontSize:'13px',fontWeight:500,color:'#E8F2F5'}}>{c.name}</div>
-                <div style={{fontSize:'11px',color:'#6E8D9A',marginTop:'2px'}}>{c.desc}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div style={{textAlign:'center'}}>
+      <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px',position:'relative',textAlign:'center'}}>
+        <h2 style={{
+          fontSize:'clamp(22px,2.6vw,34px)',
+          fontWeight:500,
+          letterSpacing:'-.025em',
+          lineHeight:1.2,
+          marginBottom:'32px',
+          whiteSpace:'nowrap',
+        }}>
+          <span style={{color:'#E8F2F5'}}>Skip the board prep marathon. </span>
+          <span style={{color:'#0EC4C1'}}>Start asking.</span>
+        </h2>
+        <div style={{display:'flex',justifyContent:'center'}}>
           <a href="#" style={{
-            display:'inline-flex',alignItems:'center',gap:'6px',
-            fontSize:'13px',color:'#7FA0AC',
+            display:'inline-flex',alignItems:'center',gap:'10px',
+            padding:'16px 32px',borderRadius:'999px',
+            background:'linear-gradient(135deg,#09A09D,#07807E)',
+            color:'#fff',fontSize:'15px',fontWeight:500,
             textDecoration:'none',
-            border:'1px solid rgba(255,255,255,.07)',
-            borderRadius:'999px',
-            padding:'8px 20px',
-            background:'rgba(255,255,255,.02)',
-            transition:'all .15s',
-          }}
-          onMouseEnter={e=>{e.currentTarget.style.color='#0EC4C1';e.currentTarget.style.borderColor='rgba(9,160,157,.3)';}}
-          onMouseLeave={e=>{e.currentTarget.style.color='#7FA0AC';e.currentTarget.style.borderColor='rgba(255,255,255,.07)';}}
-          >
-            See all 200+ integrations
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            boxShadow:'0 0 32px rgba(9,160,157,.35), 0 8px 24px rgba(0,0,0,.4)',
+            transition:'all .2s',
+            letterSpacing:'.01em',
+          }}>
+            Get started for free
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
           </a>
         </div>
       </div>
@@ -814,39 +1184,111 @@ function RelevantIntegrations() {
   );
 }
 
-/* ── METRICS ── */
-function Metrics() {
-  const metrics = [
-    'ARR','MRR','Burn Rate','Runway','NRR','Gross Margin','LTV:CAC Ratio','CAC',
-    'ARR Growth Rate','Gross Churn','New ARR','Expansion ARR','Quick Ratio','Rule of 40',
-    'Payback Period','Revenue per Employee','Headcount Cost','Cash Position','Operating Margin','EBITDA',
+/* ── HOW INSIGHTIS HELPS ── */
+/* ── QUESTIONS FOR REVOPS ── */
+/* ── HOW IT WORKS ── */
+function HowItWorks() {
+  const steps = [
+    {
+      n: '01',
+      title: 'Plug in your entire revenue stack',
+      desc: 'Pull in CRM, billing, accounting, and your warehouse in one click. Every source stays in sync — no late-night CSV exports.',
+      example: 'CRM + Billing → in sync',
+    },
+    {
+      n: '02',
+      title: 'Settle the math once and for all',
+      desc: 'Lock in ARR, NRR, Runway, and Burn Multiple in a semantic layer. Finance, the board, and you read the same number.',
+      example: 'ARR + NRR → one source',
+    },
+    {
+      n: '03',
+      title: 'Strategic answers, fast',
+      desc: 'Type the question on your mind and Insightis returns a chart with sources cited. No analyst, no waiting.',
+      example: '"How much runway?" → 18 mos',
+    },
+    {
+      n: '04',
+      title: 'Present with confidence',
+      desc: 'Walk into board meetings with live numbers — not month-old slides. Answer deep-dive questions on the spot.',
+      example: 'Board Q&A → answered live',
+    },
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#101620 0%,#0A0E13 100%)'}}>
+    <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,#0D1117 0%,#101620 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'48px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
+        <div style={{textAlign:'center',marginBottom:'64px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
             <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Metrics That Matter</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>The Solution</span>
           </div>
-          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
-            Every KPI a founder needs to know
+          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
+            Wire it in. Lock it down. Run the company.
           </h2>
-          <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
-            Ask about any of these — or any metric you define — in plain English.
+          <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'640px',margin:'0 auto',lineHeight:1.65}}>
+            Three steps from scattered systems to numbers fit for the boardroom.
           </p>
         </div>
 
-        <div style={{display:'flex',flexWrap:'wrap',gap:'10px',justifyContent:'center',marginBottom:'28px'}}>
-          {metrics.map((m,i) => (
-            <span key={i} className="metric-pill">{m}</span>
+        {/* Horizontal stepper */}
+        <div data-steps-grid style={{display:'grid',gridTemplateColumns:`repeat(${steps.length}, 1fr)`,gap:'24px',position:'relative'}}>
+          {steps.map((s,i) => (
+            <div key={i} data-step-cell style={{position:'relative',display:'flex',flexDirection:'column',alignItems:'center',textAlign:'center',padding:'0 8px'}}>
+              {/* Connector line — to the right of every step except the last */}
+              {i < steps.length - 1 && (
+                <div data-step-connector style={{position:'absolute',top:'28px',left:'calc(50% + 36px)',right:'calc(-50% + 36px)',height:'1px',background:'linear-gradient(90deg, rgba(9,160,157,.45) 0%, rgba(9,160,157,.18) 100%)',zIndex:0}}/>
+              )}
+
+              {/* Numbered circle */}
+              <div style={{
+                position:'relative',zIndex:1,
+                width:'56px',height:'56px',borderRadius:'50%',
+                border:'1px solid rgba(9,160,157,.45)',
+                background:'radial-gradient(circle at 50% 30%, rgba(9,160,157,.18) 0%, rgba(13,17,23,.95) 75%)',
+                display:'flex',alignItems:'center',justifyContent:'center',
+                boxShadow:'0 0 28px rgba(9,160,157,.18), inset 0 1px 0 rgba(255,255,255,.05)',
+                marginBottom:'22px',
+              }}>
+                <span style={{fontSize:'18px',fontWeight:600,color:'#0EC4C1',fontFamily:"'Outfit', sans-serif",letterSpacing:'-.02em',fontVariantNumeric:'tabular-nums'}}>{s.n}</span>
+              </div>
+
+              {/* Title */}
+              <h3 style={{fontSize:'18px',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.02em',margin:'0 0 10px',lineHeight:1.2}}>
+                {s.title}
+              </h3>
+
+              {/* Description */}
+              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.7,margin:'0 0 16px',width:'100%',maxWidth:'360px'}}>
+                {s.desc}
+              </p>
+
+              {/* Example chip */}
+              <div style={{padding:'10px 14px',background:'rgba(255,255,255,.03)',border:'1px solid rgba(255,255,255,.06)',borderRadius:'8px',fontSize:'12px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',fontStyle:'italic',width:'100%',maxWidth:'360px',boxSizing:'border-box'}}>
+                {s.example}
+              </div>
+            </div>
           ))}
         </div>
 
-        <p style={{textAlign:'center',fontSize:'13px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',fontStyle:'italic'}}>
-          These are just examples — ask about any metric in plain English.
-        </p>
+        {/* Mobile responsive overrides */}
+        <style>{`
+          @media (max-width: 1024px) {
+            [data-steps-grid] {
+              grid-template-columns: repeat(2, 1fr) !important;
+              gap: 40px 24px !important;
+            }
+            [data-steps-grid] [data-step-connector] {
+              display: none !important;
+            }
+          }
+          @media (max-width: 640px) {
+            [data-steps-grid] {
+              grid-template-columns: 1fr !important;
+              gap: 32px !important;
+            }
+          }
+        `}</style>
       </div>
     </section>
   );
@@ -860,11 +1302,14 @@ function BeforeAfter() {
         <div style={{textAlign:'center',marginBottom:'52px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
             <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>The Difference</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>The old way VS Insightis</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
-            Before vs. after Insightis
+            Two ways to run the company
           </h2>
+          <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'640px',margin:'0 auto',lineHeight:1.65}}>
+            Same metrics, two operating speeds — only one keeps pace with the board.
+          </p>
         </div>
 
         <div data-compare-grid style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'12px'}}>
@@ -876,12 +1321,12 @@ function BeforeAfter() {
             </div>
             <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'12px'}}>
               {[
-                'Board prep takes 5 full days to complete',
-                'ARR numbers differ across every team',
-                'Churn discovered weeks after it happens',
-                'Strategic questions wait for analyst time',
-                'No live view between board meetings',
-                'Runway calculated once per quarter',
+                'Building the board deck eats five business days',
+                'Every deck cites a different ARR',
+                'Forecasts only refresh at quarter close',
+                'Every strategic ask sits in the analyst queue',
+                'Investors are reading numbers from the last close',
+                'Cohort signals hide across five BI tools',
               ].map((item,i) => (
                 <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'#7FA0AC',lineHeight:1.55}}>
                   <span style={{color:'#F87171',fontWeight:500,flexShrink:0}}>✕</span>
@@ -900,12 +1345,12 @@ function BeforeAfter() {
             </div>
             <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'12px'}}>
               {[
-                'Board deck auto-generates from live data',
-                'One certified number everywhere',
-                'Anomalies surface in real time',
-                'Any strategic question answered instantly',
-                'Always-on company health dashboard',
-                'Runway always accurate, always current',
+                'Boardroom-ready answers in seconds',
+                'One agreed ARR every team trusts',
+                'Forecasts built on live company data',
+                'Strategic asks answered in the meeting itself',
+                'Investor numbers refreshed this morning',
+                'Cohort patterns surface from a single ask',
               ].map((item,i) => (
                 <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'#C0D4DC',lineHeight:1.55}}>
                   <span style={{color:'#0EC4C1',fontWeight:500,flexShrink:0}}>✓</span>
@@ -918,9 +1363,97 @@ function BeforeAfter() {
 
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
-            <span style={{fontSize:'40px',fontWeight:500,color:'#0EC4C1',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>5×</span>
-            <span style={{fontSize:'15px',color:'#7FA0AC',whiteSpace:'nowrap'}}>faster board prep. Every metric certified and live.</span>
+            <span style={{fontSize:'40px',fontWeight:500,color:'#0EC4C1',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>X7</span>
+            <span style={{fontSize:'15px',color:'#7FA0AC',whiteSpace:'nowrap'}}>faster strategic answers. Zero analyst handoffs.</span>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── FAQ ── */
+function FAQ() {
+  const items = [
+    {
+      q: 'How accurate are the numbers compared to what finance reports?',
+      a: 'Identical. Insightis pulls from the same source-of-truth systems your finance team uses — your warehouse, your billing system, your CRM. The numbers reconcile down to the cent, and every answer cites the source so anyone can trace it back.',
+    },
+    {
+      q: 'Can investors and the board see the same data we see?',
+      a: 'Yes. Generate a board-ready link from any chart with view-only access, or export a static snapshot for the deck. Live links update in real time when new data arrives, so the board always sees the freshest read — never last month\'s numbers.',
+    },
+    {
+      q: 'How does Insightis fit alongside our finance team and existing tools?',
+      a: 'Insightis amplifies finance, it does not replace it. The team continues to own metric definitions in the semantic layer; you and the rest of the company query against those certified definitions. Everyone reads the same number, every time.',
+    },
+    {
+      q: 'Can we trust the AI for board-level decisions?',
+      a: 'Every answer shows its work — the underlying SQL, the data sources, and the time range. Nothing is generated from public benchmarks; only your real numbers. If an answer surprises you, the trace back to source is one click away.',
+    },
+    {
+      q: 'What happens to our metric definitions as we scale or pivot?',
+      a: 'The semantic layer is versioned. When ARR definition changes — say, after acquiring a new product line — historical answers reflect both old and new definitions. No more retroactive number changes that confuse the board between meetings.',
+    },
+    {
+      q: 'What\'s the security and compliance posture for sharing financials?',
+      a: 'SOC 2 Type II, encryption at rest and in transit, single sign-on with MFA, granular role-based access. Your data never leaves your warehouse — Insightis queries on top of it. Audit logs track every view and every share.',
+    },
+  ];
+  const [openIdx, setOpenIdx] = React.useState(0);
+
+  return (
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0D1117 0%,#101620 100%)'}}>
+      <div style={{maxWidth:'880px',margin:'0 auto',padding:'0 24px'}}>
+        <div style={{textAlign:'center',marginBottom:'52px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
+            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>FAQ</span>
+          </div>
+          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
+            What founders and CEOs ask first
+          </h2>
+          <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'560px',margin:'0 auto',lineHeight:1.65}}>
+            Six things on every founder’s mind before bringing Insightis into the boardroom.
+          </p>
+        </div>
+
+        <div style={{display:'flex',flexDirection:'column',gap:'8px'}}>
+          {items.map((item, i) => {
+            const isOpen = openIdx === i;
+            return (
+              <div key={i} style={{
+                background:'rgba(13,17,23,.6)',
+                border:`1px solid ${isOpen?'rgba(9,160,157,.3)':'rgba(255,255,255,.06)'}`,
+                borderRadius:'12px',
+                overflow:'hidden',
+                transition:'border-color .2s',
+              }}>
+                <button onClick={() => setOpenIdx(isOpen ? -1 : i)} style={{
+                  width:'100%',padding:'18px 24px',
+                  background:'transparent',border:'none',
+                  color:'#E8F2F5',fontSize:'16px',fontWeight:500,
+                  textAlign:'left',cursor:'pointer',
+                  display:'flex',justifyContent:'space-between',alignItems:'center',gap:'16px',
+                  fontFamily:'Geist,sans-serif',letterSpacing:'-.005em',
+                }}>
+                  <span>{item.q}</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={isOpen?'#0EC4C1':'#7FA0AC'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0,transform:isOpen?'rotate(180deg)':'rotate(0)',transition:'transform .25s'}}>
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </button>
+                {isOpen && (
+                  <div style={{
+                    padding:'0 24px 20px 24px',
+                    fontSize:'14px',color:'#7FA0AC',
+                    lineHeight:1.7,
+                  }}>
+                    {item.a}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -942,7 +1475,7 @@ function BottomCTA() {
         }}>
           <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
           <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',lineHeight:1.2,flexShrink:0}}>
-            <span style={{color:'#07807E'}}>Stop preparing</span> data. <span style={{color:'#07807E'}}>Start presenting</span> answers.
+            Stop building <span style={{color:'#07807E'}}>reports.</span> Start getting <span style={{color:'#07807E'}}>answers.</span>
           </h3>
           <div style={{
             display:'flex',alignItems:'center',
@@ -953,7 +1486,7 @@ function BottomCTA() {
           }}>
             <input
               type="text"
-              placeholder="What company metric do you need right now?"
+              placeholder="What company question do you need answered?"
               style={{
                 flex:1,background:'transparent',fontSize:'14px',color:'#fff',
                 padding:'12px 16px',outline:'none',border:'none',
@@ -1027,7 +1560,7 @@ function Footer() {
             <div>
               <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Platform</h4>
               <ul className="flex flex-col gap-2.5">
-                {['AI Chat', 'Integrations', 'Insights Engine', 'Semantic Layer', 'Reports', 'Memory & Storage'].map(link => (
+                {['AI Chat', 'Integrations', 'Insights Engine', 'Semantic Layer', 'Reports'].map(link => (
                   <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
               </ul>
@@ -1066,8 +1599,6 @@ function Footer() {
                   { label: 'About Devart', href: 'https://www.devart.com/company/' },
                   { label: 'Careers', href: 'https://www.devart.com/vacancies/' },
                   { label: 'Contacts', href: '../Company/Contacts.html' },
-                  { label: 'Success Stories', href: '../Company/Success Stories.html' },
-                  { label: 'Press & Media', href: '../Company/Press Media.html' },
                 ].map(link => (
                   <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
@@ -1111,10 +1642,12 @@ function App() {
     <div>
       <Header />
       <Hero />
+      <IntegrationsStrip />
       <PainPoints />
-      <RelevantIntegrations />
-      <Metrics />
+      <HowItWorks />
+      <MidCTA />
       <BeforeAfter />
+      <FAQ />
       <BottomCTA />
       <Footer />
     </div>
