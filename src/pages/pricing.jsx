@@ -552,7 +552,7 @@ function PricingCards() {
                 )}
                 <h3 style={{fontSize:'22px',fontWeight:600,color:'#fff',marginBottom:'4px',letterSpacing:'-0.02em'}}>{plan.name}</h3>
                 <p style={{fontSize:'13px',color:'rgba(255,255,255,0.55)',marginBottom:'24px'}}>{plan.tag}</p>
-                <div style={{marginBottom:'24px',minHeight:'72px'}}>
+                <div style={{marginBottom:'24px',minHeight:'104px'}}>
                   {plan.price === 0 ? (
                     <div>
                       <span style={{fontSize:'40px',fontWeight:500,color:'#fff',letterSpacing:'-0.03em'}}>$0</span>
@@ -626,7 +626,6 @@ function FeatureComparison() {
       title: 'Data connections',
       rows: [
         { label:'Data connectors',          values:['Up to 3', 'Unlimited', 'Unlimited'] },
-        { label:'Real-time sync',           values:['24hr refresh', '1hr refresh', '15min refresh'] },
         { label:'Data upload (CSV, Excel)', values:[true, true, true] },
       ]
     },
@@ -635,7 +634,6 @@ function FeatureComparison() {
       rows: [
         { label:'Metric definitions',       values:['Read-only', 'Full access', 'Full access'] },
         { label:'Custom metrics',           values:[false, true, true] },
-        { label:'Cross-source joins',       values:[false, true, true] },
         { label:'Auto-certification',       values:[false, true, true] },
       ]
     },
@@ -644,9 +642,7 @@ function FeatureComparison() {
       rows: [
         { label:'Support',                  values:['Community', 'Priority email', 'Email + live chat'] },
         { label:'SLA',                      values:[false, false, '99.5%'] },
-        { label:'SOC 2 Type II',            values:[true, true, true] },
         { label:'Data encryption',          values:[true, true, true] },
-        { label:'API access',               values:[false, false, true] },
       ]
     },
   ];
