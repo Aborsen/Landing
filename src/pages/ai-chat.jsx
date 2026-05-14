@@ -1665,6 +1665,30 @@ function InsightisIcon({size=20}) {
 }
 
 function ChatMockAnimation() {
+  // Defer animation rendering until after hydration. The SSR pass and the
+  // first client render both emit an empty chat-window shell, which keeps
+  // hydration safe (no diff possible). The full animated content fades in
+  // after mount.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+  if (!mounted) {
+    return (
+      <div style={{
+        borderRadius:'16px',
+        border:'1px solid rgba(255,255,255,0.09)',
+        background:'#0C1117',
+        overflow:'hidden',
+        display:'flex',
+        flexDirection:'column',
+        height:'500px',
+        boxShadow:'0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.06)',
+      }} aria-hidden="true"/>
+    );
+  }
+  return <ChatMockAnimationInner/>;
+}
+
+function ChatMockAnimationInner() {
   const QUESTION = "Why our MRR dropped?";
   const REPLY_LINE1 = "MRR dropped $1,240 from 3 churned accounts.";
   const REPLY_LINE2 = "Main driver: trial expiry without activation.";
