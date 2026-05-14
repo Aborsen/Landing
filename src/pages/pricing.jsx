@@ -618,15 +618,17 @@ function FeatureComparison() {
     {
       title: 'AI & Analytics',
       rows: [
-        { label:'AI tokens',                values:['500 / mo', '5,000 / mo', '25,000 / mo'] },
-        { label:'AI Chat',                  values:[true, true, true] },
+        { label:'AI Chat',                          values:[true, true, true] },
+        { label:'Insightis AI model',               values:[true, true, true] },
+        { label:'AI tokens',                        values:['500 / mo', '5,000 / mo', '25,000 / mo'] },
       ]
     },
     {
       title: 'Data connections',
       rows: [
-        { label:'Data connectors',          values:['Up to 3', 'Unlimited', 'Unlimited'] },
-        { label:'Data upload (CSV, Excel)', values:[true, true, true] },
+        { label:'Data connectors',                  values:['Up to 3', 'Unlimited', 'Unlimited'] },
+        { label:'Several sources at the same time', values:[false, true, true] },
+        { label:'Data upload (CSV, Excel)',         values:[true, true, true] },
       ]
     },
     {
