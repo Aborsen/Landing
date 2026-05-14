@@ -316,10 +316,10 @@ function BrandTile({name, slug, domain, color, size=22}) {
   const hex = color.replace('#','').toLowerCase();
   const sources = [
     slug && !SIMPLEICONS_BAD.has(slug) ? `https://cdn.simpleicons.org/${slug}/${hex}` : null,
-    domain ? `https://logo.clearbit.com/${domain}?size=256` : null,
+    domain ? `https://logo.clearbit.com/${domain}?size=512` : null,
   ].filter(Boolean);
-  const imgSize = Math.round(size * 0.62);
-  const fallbackSize = Math.round(size * 0.52);
+  const imgSize = Math.round(size * 0.72);
+  const fallbackSize = Math.round(size * 0.6);
   return (
     <span style={{
       width:`${size}px`,height:`${size}px`,borderRadius: size >= 28 ? '8px' : '6px',
@@ -374,7 +374,7 @@ function ConnectionChatAnimation() {
     if (!el) return;
     let W = el.clientWidth;
     let H = el.clientHeight;
-    const cardW = 140, cardH = 44;
+    const cardW = 150, cardH = 52;
     const centerBoxX = 90, centerBoxY = 90;
 
     const recalc = () => { W = el.clientWidth; H = el.clientHeight; };
@@ -570,7 +570,7 @@ function ConnectionChatAnimation() {
           willChange:'transform',
           zIndex:5,
         }}>
-          <BrandTile name={s.name} slug={s.slug} domain={s.domain} color={s.color} size={32}/>
+          <BrandTile name={s.name} slug={s.slug} domain={s.domain} color={s.color} size={40}/>
           <div style={{display:'flex', flexDirection:'column', gap:'1px'}}>
             <span style={{fontSize:'13px', fontWeight:600, color:'#FFFFFF', letterSpacing:'-0.01em', whiteSpace:'nowrap', lineHeight:1.2}}>{s.name}</span>
             <span style={{fontSize:'11px', fontWeight:400, color:'#7A8A9A', letterSpacing:'-0.005em', whiteSpace:'nowrap', lineHeight:1.2}}>{s.desc}</span>
