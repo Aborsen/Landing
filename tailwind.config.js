@@ -1,5 +1,16 @@
 export default {
-  content: ['./index.html', './src/**/*.{jsx,js}'],
+  content: [
+    './index.html',
+    './src/**/*.{jsx,js}',
+    './Platform/**/*.html',
+    './Solutions/**/*.html',
+    './Pricing.html',
+    './Resources/**/*.html',
+    './Company/**/*.html',
+    './Security/**/*.html',
+    './blog/**/*.html',
+    './docs/**/*.html',
+  ],
   theme: {
     extend: {
       colors: {

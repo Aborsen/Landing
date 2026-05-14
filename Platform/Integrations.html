@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="/assets/responsive.css">
+<title>Data Integrations for AI Analytics — Insightis</title>
+<meta name="description" content="Connect 200+ CRMs, warehouses, ads, and product tools to Insightis and query every source in plain English — no SQL, no pipelines, live in minutes.">
+<meta name="keywords" content="insightis integrations, data integrations, AI analytics connectors, CRM integration, data warehouse integration, semantic layer">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Insightis">
+<meta name="publisher" content="Devart">
+<link rel="canonical" href="https://insightis.ai/platform/integrations/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Data Integrations for AI Analytics — Insightis">
+<meta property="og:description" content="Connect 200+ CRMs, warehouses, ads, and product tools and query every source in plain English.">
+<meta property="og:url" content="https://insightis.ai/platform/integrations/">
+<!-- TODO SEO [P1]: Create and upload OG image asset at https://insightis.ai/og/integrations.png (1200x630). -->
+<meta property="og:image" content="https://insightis.ai/og/integrations.png">
+<meta property="og:site_name" content="Insightis">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Insightisai">
+<meta name="twitter:title" content="Data Integrations for AI Analytics — Insightis">
+<meta name="twitter:description" content="Connect 200+ CRMs, warehouses, ads, and product tools and query every source in plain English.">
+<meta name="twitter:image" content="https://insightis.ai/og/integrations.png">
+
+<!-- JSON-LD: SoftwareApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Insightis",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "description": "AI analytics platform that connects 200+ data sources and answers business questions in plain English.",
+  "url": "https://insightis.ai/platform/integrations/",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@type": "Organization", "name": "Devart", "url": "https://www.devart.com/" }
+}
+</script>
+
+<!-- JSON-LD: BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://insightis.ai/" },
+    { "@type": "ListItem", "position": 2, "name": "Platform", "item": "https://insightis.ai/platform/" },
+    { "@type": "ListItem", "position": 3, "name": "Integrations", "item": "https://insightis.ai/platform/integrations/" }
+  ]
+}
+</script>
+
+<!-- JSON-LD: FAQPage (mirrors the on-page FAQ section further below) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long does it take to connect a data source to Insightis?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Most connectors go live in under five minutes. You authenticate with OAuth or an API key, pick the objects you want, and Insightis starts syncing immediately. Connections are read-only, SOC 2 secured, and refreshed continuously — no engineering work or pipeline maintenance required." }
+    },
+    {
+      "@type": "Question",
+      "name": "Which data sources does Insightis integrate with?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Insightis supports 200+ connectors across CRMs (HubSpot, Salesforce, Pipedrive), warehouses (Snowflake, BigQuery, Redshift), ad platforms (Google Ads, Meta, LinkedIn), product analytics (Mixpanel, Amplitude, PostHog), finance (Stripe, QuickBooks, NetSuite) and ops tools (Jira, Linear, Slack). New connectors are added monthly based on customer demand." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need SQL or a data engineer to use Insightis integrations?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Insightis' semantic layer maps every connected source to certified business metrics — MRR, CAC, NRR, WAU — so your team asks questions in plain English and gets a precise answer. SQL is optional for power users, never a requirement for daily use." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my data secure once it's connected?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. All connectors are read-only and authenticated via OAuth or scoped API keys. Insightis is SOC 2 Type II compliant, encrypts data in transit and at rest, and never writes back to your source systems. You can revoke a connection at any time from the admin panel." }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens when fields or metrics conflict across sources?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The semantic layer resolves conflicts automatically. It reconciles naming (deal vs opportunity), time zones, currencies, and duplicate records so the answer stays consistent whether the question starts in Stripe, HubSpot, or Snowflake. Certified metrics are versioned, so changes are auditable." }
+    }
+  ]
+}
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1/dist/fonts/geist-sans/style.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1/dist/fonts/geist-mono/style.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script crossorigin src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Geist', sans-serif; background: #0A0E13; color: #E8F2F5; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+h1, h2, h3 { font-family: 'Outfit', sans-serif; letter-spacing: -0.04em; line-height: 1.05; text-wrap: balance; }
+p { text-wrap: pretty; }
+body::before {
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity:.4;mix-blend-mode:overlay;
+}
+body::after {
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 5%, rgba(10,152,150,.09) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 55% at 85% 0%, rgba(110,60,200,.07) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 60% at 75% 45%, rgba(20,80,200,.05) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 55% at 5% 55%, rgba(160,50,220,.045) 0%, transparent 65%),
+    radial-gradient(ellipse 65% 55% at 50% 90%, rgba(10,152,150,.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 45% at 95% 75%, rgba(50,90,240,.04) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 40% at 35% 30%, rgba(200,60,180,.03) 0%, transparent 55%);
+}
+:root { --mint:#0A9896; --mint-lt:#0EC4C1; --fm:'Geist Mono',monospace; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+@keyframes slideUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+@keyframes pulse { 0%,100%{opacity:.4;transform:scale(.85)} 50%{opacity:1;transform:scale(1)} }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes spin { to{transform:rotate(360deg)} }
+@keyframes floatGlow { 0%,100%{opacity:.55} 50%{opacity:1} }
+@keyframes dash { to{stroke-dashoffset:-24} }
+@keyframes chaosFloat {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-4px); }
+  100% { transform: translateY(2px); }
+}
+@keyframes corePulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(7,128,126,0.20), 0 0 60px rgba(7,128,126,0.10); }
+  50%      { box-shadow: 0 0 30px rgba(7,128,126,0.40), 0 0 80px rgba(7,128,126,0.20); }
+}
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .hero-grid .hero-anim { max-width: 560px; margin: 0 auto; width: 100%; }
+}
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+.connector-card { display:flex; align-items:center; gap:12px; padding:14px 16px; background:rgba(255,255,255,.025); border:1px solid rgba(255,255,255,.06); border-radius:12px; cursor:default; position:relative; }
+.connector-icon { width:36px; height:36px; border-radius:9px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:10px; font-weight:700; font-family:'Geist Mono',monospace; letter-spacing:-.02em; }
+
+/* ── ENHANCED STYLES ── */
+.text-gradient { background:linear-gradient(135deg, #fff 30%, #0EC4C1 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.cta-btn { transition:all 0.25s cubic-bezier(0.34,1.56,0.64,1); }
+.cta-btn:hover { transform:translateY(-1px); box-shadow:0 4px 20px rgba(9,160,157,0.3); }
+.cta-btn:active { transform:translateY(1px) scale(0.98); }
+.spotlight-card { position:relative; overflow:hidden; transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease; }
+.spotlight-card::before { content:''; position:absolute; inset:0; border-radius:inherit; padding:1px; background:radial-gradient(600px circle at var(--mouse-x,50%) var(--mouse-y,50%), rgba(14,196,193,0.12), transparent 40%); -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none; }
+.spotlight-card:hover { transform:translateY(-3px); box-shadow:0 12px 40px rgba(9,160,157,0.08); }
+[data-mono] { font-variant-numeric:tabular-nums; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="module" src="/src/pages/integrations.jsx"></script>
+<script defer src="/assets/header-scroll.js"></script>
+</body>
+</html>
