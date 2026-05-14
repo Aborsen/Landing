@@ -1384,7 +1384,6 @@ function App() {
   const [selectedTeams, setSelectedTeams] = useState(() => new Set());
   const [query, setQuery] = useState('');
   const [searchFocused, setSearchFocused] = useState(false);
-  const [assistantQuery, setAssistantQuery] = useState(null);
 
   const toggleTeam = (team) => setSelectedTeams(prev => {
     const next = new Set(prev);
@@ -1470,13 +1469,6 @@ function App() {
       <BottomCTA />
             </main>
       <Footer />
-      <FloatingChat onSubmit={(q) => setAssistantQuery(q)} />
-      {assistantQuery && (
-        <AIAssistantPanel
-          query={assistantQuery}
-          onClose={() => setAssistantQuery(null)}
-        />
-      )}
     </div>
   );
 }

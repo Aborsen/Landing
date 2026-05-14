@@ -50,6 +50,7 @@ function mdToPage(raw) {
       id: slugifyHeading(heading),
       heading,
       html: marked.parse(rest),
+      markdown: rest.trim(),
     };
   });
   return {
@@ -942,10 +943,20 @@ function PageFeedback() {
 }
 
 /* ── DOCS CONTENT ── */
-function CopyPageButton({ title }) {
+function CopyPageButton({ page }) {
   const [copied, setCopied] = React.useState(false);
   const handleCopy = () => {
-    const text = `${window.location.href} — ${title}`;
+    // Rebuild the full page as Markdown from the structured data.
+    const parts = [];
+    if (page.breadcrumb && page.breadcrumb.length) parts.push(`> ${page.breadcrumb.join(' › ')}`);
+    if (page.title) parts.push(`# ${page.title}`);
+    if (page.description) parts.push(page.description);
+    for (const s of page.sections || []) {
+      parts.push(`## ${s.heading}`);
+      if (s.markdown) parts.push(s.markdown);
+      else if (s.content) parts.push(s.content);
+    }
+    const text = parts.join('\n\n');
     navigator.clipboard.writeText(text).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -1012,7 +1023,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
         }}>
           {page.title}
         </h1>
-        <CopyPageButton title={page.title} />
+        <CopyPageButton page={page} />
       </div>
 
       {/* Description */}
