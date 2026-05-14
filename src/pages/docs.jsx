@@ -1,6 +1,56 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import ReactDOM from 'react-dom/client';
+import { marked } from 'marked';
 import '../app.css';
+
+import aiChatMd from '../../docs/content/ai-chat.md?raw';
+import metricsMd from '../../docs/content/metrics.md?raw';
+import dataConnectorsMd from '../../docs/content/data-connectors.md?raw';
+import copyrightsMd from '../../docs/content/copyrights.md?raw';
+import dataStorageMd from '../../docs/content/data-storage.md?raw';
+
+function slugifyHeading(s) {
+  return s.toLowerCase().trim()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-');
+}
+
+function parseFrontmatter(raw) {
+  const m = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+  if (!m) return { meta: {}, body: raw };
+  const meta = {};
+  m[1].split(/\r?\n/).forEach(line => {
+    const eq = line.indexOf(':');
+    if (eq > 0) {
+      const k = line.slice(0, eq).trim();
+      meta[k] = line.slice(eq + 1).trim();
+    }
+  });
+  return { meta, body: m[2] };
+}
+
+function mdToPage(raw) {
+  const { meta, body } = parseFrontmatter(raw);
+  const parts = body.split(/^## /m).map(p => p).filter(p => p.trim().length);
+  const sections = parts.map(part => {
+    const nl = part.indexOf('\n');
+    const heading = (nl > -1 ? part.slice(0, nl) : part).trim();
+    const rest = nl > -1 ? part.slice(nl + 1) : '';
+    return {
+      id: slugifyHeading(heading),
+      heading,
+      html: marked.parse(rest),
+    };
+  });
+  return {
+    breadcrumb: (meta.breadcrumb || '').split('/').map(s => s.trim()).filter(Boolean),
+    title: meta.title || '',
+    description: meta.description || '',
+    toc: sections.map(s => ({ id: s.id, label: s.heading })),
+    sections,
+  };
+}
 
 /* ── HEADER ── */
 function MenuIcon({ size = 24, color = "#fff" }) {
@@ -456,6 +506,7 @@ const SIDEBAR_NAV = [
   {
     section: 'AI Chat',
     items: [
+      { id: 'ai-chat-overview', label: 'AI Chat Overview' },
       { id: 'ai-chat-how', label: 'How AI Chat Works' },
       { id: 'effective-questions', label: 'Writing Effective Questions' },
       { id: 'charts-viz', label: 'Understanding Charts & Visualizations' },
@@ -466,6 +517,7 @@ const SIDEBAR_NAV = [
   {
     section: 'Integrations',
     items: [
+      { id: 'data-connectors', label: 'Data Connectors' },
       { id: 'data-sources', label: 'Supported Data Sources' },
       { id: 'hubspot', label: 'Connecting HubSpot' },
       { id: 'stripe', label: 'Connecting Stripe' },
@@ -476,6 +528,7 @@ const SIDEBAR_NAV = [
   {
     section: 'Semantic Layer',
     items: [
+      { id: 'metrics', label: 'Metrics' },
       { id: 'what-semantic', label: 'What is the Semantic Layer?' },
       { id: 'custom-metrics', label: 'Defining Custom Metrics' },
       { id: 'certification', label: 'Metric Certification' },
@@ -510,6 +563,8 @@ const SIDEBAR_NAV = [
       { id: 'video-tutorials', label: 'Video Tutorials' },
       { id: 'glossary', label: 'Glossary' },
       { id: 'support-policy', label: 'Support Policy' },
+      { id: 'copyrights', label: 'Copyrights' },
+      { id: 'data-storage', label: 'Data Storage' },
     ],
   },
 ];
@@ -557,6 +612,11 @@ const PAGES = {
       next: { id: 'creating-account', label: 'Creating Your Account', section: 'Getting Started' },
     },
   },
+  'ai-chat-overview': mdToPage(aiChatMd),
+  'metrics':          mdToPage(metricsMd),
+  'data-connectors':  mdToPage(dataConnectorsMd),
+  'copyrights':       mdToPage(copyrightsMd),
+  'data-storage':     mdToPage(dataStorageMd),
 };
 
 /* ── DOCS TABS ── */
@@ -1083,9 +1143,16 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
             >
               {section.heading}
             </h2>
-            <p style={{ fontSize:'15px', color:'#7FA0AC', lineHeight:1.8 }}>
-              {section.content}
-            </p>
+            {section.html ? (
+              <div
+                className="doc-section-body"
+                dangerouslySetInnerHTML={{ __html: section.html }}
+              />
+            ) : (
+              <p style={{ fontSize:'15px', color:'#7FA0AC', lineHeight:1.8 }}>
+                {section.content}
+              </p>
+            )}
           </div>
         ))}
       </div>
