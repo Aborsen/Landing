@@ -8,6 +8,15 @@ import metricsMd from '../../docs/content/metrics.md?raw';
 import dataConnectorsMd from '../../docs/content/data-connectors.md?raw';
 import copyrightsMd from '../../docs/content/copyrights.md?raw';
 import dataStorageMd from '../../docs/content/data-storage.md?raw';
+import welcomeMd from '../../docs/content/welcome.md?raw';
+import createAccountMd from '../../docs/content/create-an-account.md?raw';
+import plansCreditsMd from '../../docs/content/plans-and-credits.md?raw';
+import promptingBestPracticesMd from '../../docs/content/prompting-best-practices.md?raw';
+import quickStartMd from '../../docs/content/quick-start.md?raw';
+import aiModelMd from '../../docs/content/ai-model.md?raw';
+import managingAccountMd from '../../docs/content/managing-your-account.md?raw';
+import securityMd from '../../docs/content/security.md?raw';
+import paymentsBillingMd from '../../docs/content/payments-billing.md?raw';
 
 function slugifyHeading(s) {
   return s.toLowerCase().trim()
@@ -493,38 +502,56 @@ const DOC_TABS = [
 
 const SIDEBAR_NAV = [
   {
-    section: 'AI Chat',
+    section: 'Getting started',
     items: [
-      { id: 'ai-chat-overview', label: 'AI Chat Overview' },
+      { id: 'welcome', label: 'Welcome to Insightis' },
+      { id: 'create-an-account', label: 'Create an account' },
+      { id: 'plans-and-credits', label: 'Plans and credits' },
+      { id: 'prompting-best-practices', label: 'Prompting best practices' },
+      { id: 'quick-start', label: 'Quick start' },
     ],
   },
   {
-    section: 'Integrations',
+    section: 'Insightis Workspace',
     items: [
+      { id: 'ai-chat-overview', label: 'AI Chat' },
       { id: 'data-connectors', label: 'Data Connectors' },
-    ],
-  },
-  {
-    section: 'Semantic Layer',
-    items: [
       { id: 'metrics', label: 'Metrics' },
     ],
   },
   {
     section: 'Reference',
     items: [
+      { id: 'ai-model', label: 'AI Model' },
       { id: 'copyrights', label: 'Copyrights' },
       { id: 'data-storage', label: 'Data Storage' },
+    ],
+  },
+  {
+    section: 'Account',
+    items: [
+      { id: 'managing-your-account', label: 'Managing Your Account' },
+      { id: 'security', label: 'Security' },
+      { id: 'payments-billing', label: 'Payments & Billing' },
     ],
   },
 ];
 
 const PAGES = {
-  'ai-chat-overview': mdToPage(aiChatMd),
-  'metrics':          mdToPage(metricsMd),
-  'data-connectors':  mdToPage(dataConnectorsMd),
-  'copyrights':       mdToPage(copyrightsMd),
-  'data-storage':     mdToPage(dataStorageMd),
+  'welcome':                  mdToPage(welcomeMd),
+  'create-an-account':        mdToPage(createAccountMd),
+  'plans-and-credits':        mdToPage(plansCreditsMd),
+  'prompting-best-practices': mdToPage(promptingBestPracticesMd),
+  'quick-start':              mdToPage(quickStartMd),
+  'ai-chat-overview':         mdToPage(aiChatMd),
+  'data-connectors':          mdToPage(dataConnectorsMd),
+  'metrics':                  mdToPage(metricsMd),
+  'ai-model':                 mdToPage(aiModelMd),
+  'copyrights':               mdToPage(copyrightsMd),
+  'data-storage':             mdToPage(dataStorageMd),
+  'managing-your-account':    mdToPage(managingAccountMd),
+  'security':                 mdToPage(securityMd),
+  'payments-billing':         mdToPage(paymentsBillingMd),
 };
 
 /* ── DOCS TABS ── */
@@ -1445,13 +1472,13 @@ function AIAssistantPanel({ query, onClose }) {
 
 function App() {
   const [activeTab, setActiveTab] = useState('introduction');
-  const [activePage, setActivePage] = useState('ai-chat-overview');
-  const [expandedSections, setExpandedSections] = useState({ 'AI Chat': true });
+  const [activePage, setActivePage] = useState('welcome');
+  const [expandedSections, setExpandedSections] = useState({ 'Getting started': true });
   const [sidebarSearch, setSidebarSearch] = useState('');
   const [activeSection, setActiveSection] = useState('');
   const [assistantQuery, setAssistantQuery] = useState(null);
 
-  const currentPage = PAGES[activePage] || PAGES['ai-chat-overview'];
+  const currentPage = PAGES[activePage] || PAGES['welcome'];
 
   useEffect(() => {
     setActiveSection('');
