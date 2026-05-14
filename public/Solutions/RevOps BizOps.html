@@ -260,9 +260,7 @@ function Header() {
   const linkUrls = {
     'AI Chat': '../Platform/AI Chat.html',
     'Integrations': '../Platform/Integrations.html',
-    'Insights Engine': '../Platform/Insights Engine.html',
     'Semantic Layer': '../Platform/Semantic Layer.html',
-    'Reports': '../Platform/Reports.html',
     'Memory & Storage': '../Platform/Memory & Storage.html',
     'For RevOps & BizOps': 'RevOps BizOps.html',
     'For Founders & CEOs': 'Founders CEOs.html',
@@ -274,13 +272,13 @@ function Header() {
     'Documentation': '../docs/',
     'Blog': '../blog/',
     'Support Center': '../Resources/Contact Support.html',
-    'Community': '../Resources/Community.html',
     'Roadmap': '../Resources/Roadmap.html',
+    'Prompt Library': '../Resources/Prompt Library.html',
+    'Data Connectors': '../Resources/Connectors.html',
     'About Insightis': '../Company/About Insightis.html',
     'Contacts': '../Company/Contacts.html',
     'Success Stories': '../Company/Success Stories.html',
     'Press & Media': '../Company/Press Media.html',
-    'Video Tutorials': 'https://www.youtube.com/@InsightisAI',
   };
 
   const dropdowns = {
@@ -289,11 +287,11 @@ function Header() {
         { heading: 'PRODUCT', items: [
           { label: 'AI Chat', desc: 'Ask anything about your data', icon: 'chat' },
           { label: 'Integrations', desc: 'Connect 200+ sources', icon: 'link' },
-          { label: 'Insights Engine', desc: 'Automated insights from your data', icon: 'pulse' },
+          { label: 'Semantic Layer', desc: 'One trusted source of truth', icon: 'bars' },
         ]},
         { heading: 'FEATURES', items: [
-          { label: 'Semantic Layer', desc: 'One trusted source of truth', icon: 'bars' },
-          { label: 'Reports', desc: 'Save and share answers with your team', icon: 'file' },
+          { label: 'AI Connect', desc: 'Bring Insightis to your favorite AI tools', icon: 'pulse', comingSoon: true, notClickable: true },
+          { label: 'Advanced Reports', desc: 'Rich, interactive reporting', icon: 'file', comingSoon: true, notClickable: true },
           { label: 'Memory & Storage', desc: 'Your business context, always remembered', icon: 'box', comingSoon: true },
         ]},
       ]
@@ -316,13 +314,13 @@ function Header() {
       sections: [
         { heading: 'LEARN', items: [
           { label: 'Documentation', desc: 'Setup guides and API reference', icon: 'file' },
-          { label: 'Video Tutorials', desc: 'Step-by-step walkthroughs', icon: 'play', external: true },
+          { label: 'Prompt Library', desc: 'Ready-made prompts for your data', icon: 'play' },
           { label: 'Blog', desc: 'Data analytics tips and product updates', icon: 'rss' },
         ]},
         { heading: 'CONNECT', items: [
           { label: 'Support Center', desc: 'Get help from our team', icon: 'support' },
           { label: 'Roadmap', desc: 'Follow product development in real time', icon: 'map' },
-          { label: 'Community', desc: 'Join our community', icon: 'grid' },
+          { label: 'Data Connectors', desc: 'Browse all supported data sources', icon: 'grid' },
         ]},
       ]
     }
@@ -792,7 +790,6 @@ function RevOpsHeroIllustration() {
       {/* Floating AI insight card — bottom-right, partially overlapping */}
       <g transform="translate(390,420)">
         <rect x="0" y="0" width="220" height="84" rx="14" fill="rgba(15,20,25,0.97)" stroke="rgba(9,160,157,0.45)" strokeWidth="1"/>
-        <rect x="0" y="0" width="3" height="84" rx="1.5" fill="#0EC4C1"/>
         <g transform="translate(16,16)">
           <rect x="0" y="0" width="22" height="22" rx="6" fill="rgba(9,160,157,0.18)" stroke="rgba(9,160,157,0.4)" strokeWidth="0.5"/>
           <text x="11" y="16" textAnchor="middle" fontFamily="Geist Mono,monospace" fontSize="10" fontWeight="600" fill="#0EC4C1">AI</text>
@@ -1498,9 +1495,7 @@ function Footer() {
   const linkUrls = {
     'AI Chat': '../Platform/AI Chat.html',
     'Integrations': '../Platform/Integrations.html',
-    'Insights Engine': '../Platform/Insights Engine.html',
     'Semantic Layer': '../Platform/Semantic Layer.html',
-    'Reports': '../Platform/Reports.html',
     'Memory & Storage': '../Platform/Memory & Storage.html',
     'For RevOps & BizOps': 'RevOps BizOps.html',
     'For Founders & CEOs': 'Founders CEOs.html',
@@ -1508,6 +1503,12 @@ function Footer() {
     'For Product Teams': 'Product Teams.html',
     'For Data & Analytics Teams': 'Data Analytics Teams.html',
     'For Operations & Finance': 'Operations Finance.html',
+    'Documentation': '../docs/',
+    'Blog': '../blog/',
+    'Support Center': '../Resources/Contact Support.html',
+    'Roadmap': '../Resources/Roadmap.html',
+    'Prompt Library': '../Resources/Prompt Library.html',
+    'Data Connectors': '../Resources/Connectors.html',
   };
   return (
     <footer className="pt-16 pb-8 border-t border-[#1E1E30]">
@@ -1528,9 +1529,30 @@ function Footer() {
             <div>
               <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Platform</h4>
               <ul className="flex flex-col gap-2.5">
-                {['AI Chat', 'Integrations', 'Insights Engine', 'Semantic Layer', 'Reports'].map(link => (
-                  <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
-                ))}
+                {['AI Chat', 'Integrations', 'Semantic Layer', 'AI Connect', 'Advanced Reports', 'Memory & Storage'].map(link => {
+                  const isComingSoon = ['AI Connect', 'Advanced Reports', 'Memory & Storage'].includes(link);
+                  const isNotClickable = ['AI Connect', 'Advanced Reports'].includes(link);
+                  const badge = (
+                    <span style={{fontSize:'10px', fontWeight:500, letterSpacing:'0.04em', padding:'1px 6px', borderRadius:'4px', background:'rgba(10,152,150,0.12)', border:'1px solid rgba(10,152,150,0.3)', color:'#0EC4C1', whiteSpace:'nowrap'}}>Coming Soon</span>
+                  );
+                  if (isComingSoon) {
+                    return (
+                      <li key={link}>
+                        <span className="flex items-center gap-2 whitespace-nowrap">
+                          {isNotClickable ? (
+                            <span className="text-sm text-[#A0A0B8]" style={{cursor:'default'}}>{link}</span>
+                          ) : (
+                            <a href={linkUrls[link] || '#'} className="text-sm text-[#A0A0B8] hover:text-white transition-colors">{link}</a>
+                          )}
+                          {badge}
+                        </span>
+                      </li>
+                    );
+                  }
+                  return (
+                    <li key={link}><a href={linkUrls[link] || '#'} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}</a></li>
+                  );
+                })}
               </ul>
             </div>
 
@@ -1553,8 +1575,8 @@ function Footer() {
             <div>
               <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Resources</h4>
               <ul className="flex flex-col gap-2.5">
-                {['Documentation', 'Video Tutorials', 'Blog', 'Support Center', 'Roadmap', 'Community'].map(link => (
-                  <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                {['Documentation', 'Prompt Library', 'Blog', 'Support Center', 'Roadmap', 'Data Connectors'].map(link => (
+                  <li key={link}><a href={linkUrls[link] || '#'} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}</a></li>
                 ))}
               </ul>
             </div>
