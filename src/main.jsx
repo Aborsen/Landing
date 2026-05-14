@@ -968,12 +968,12 @@ function HowItWorks() {
 // ─── TESTIMONIALS ───
 function Testimonials() {
   const testimonials = [
-    { quote: "Insightis transformed how we make decisions. The AI insights are incredibly accurate — we now move 3x faster on strategic calls.", name: "Sarah Chen", role: "VP of Analytics · Meridian Health", initials: "SC" },
-    { quote: "We cut analysis time by 80%. Natural language queries make complex data accessible to every team member, not just data scientists.", name: "Michael Torres", role: "CTO · Arcline Logistics", initials: "MT" },
-    { quote: "Automated insights caught revenue trends we'd have missed for months. It's like having a senior data scientist available around the clock.", name: "Emily Watson", role: "CEO · Brightpath Ventures", initials: "EW" },
-    { quote: "Setup integrations took under an hour. ROI was immediate — we found a $200K cost saving in the first week alone.", name: "James Park", role: "Head of Finance · Crestview Capital", initials: "JP" },
-    { quote: "Our marketing team loves natural language queries. They pull data without filing tickets to engineering.", name: "Priya Sharma", role: "CMO · Vantage Media Group", initials: "PS" },
-    { quote: "Enterprise-grade security with startup speed. Passed our SOC 2 audit with zero issues. The compliance tooling alone is worth it.", name: "David Kim", role: "CISO · Ledgerpoint Financial", initials: "DK" },
+    { quote: "Insightis transformed how we make decisions. The AI insights are incredibly accurate — we now move 3x faster on strategic calls.", name: "Sarah Chen", role: "VP of Analytics · Meridian Health", initials: "SC", avatar: "https://randomuser.me/api/portraits/women/44.jpg" },
+    { quote: "We cut analysis time by 80%. Natural language queries make complex data accessible to every team member, not just data scientists.", name: "Michael Torres", role: "CTO · Arcline Logistics", initials: "MT", avatar: "https://randomuser.me/api/portraits/men/32.jpg" },
+    { quote: "Automated insights caught revenue trends we'd have missed for months. It's like having a senior data scientist available around the clock.", name: "Emily Watson", role: "CEO · Brightpath Ventures", initials: "EW", avatar: "https://randomuser.me/api/portraits/women/68.jpg" },
+    { quote: "Setup integrations took under an hour. ROI was immediate — we found a $200K cost saving in the first week alone.", name: "James Park", role: "Head of Finance · Crestview Capital", initials: "JP", avatar: "https://randomuser.me/api/portraits/men/77.jpg" },
+    { quote: "Our marketing team loves natural language queries. They pull data without filing tickets to engineering.", name: "Priya Sharma", role: "CMO · Vantage Media Group", initials: "PS", avatar: "https://randomuser.me/api/portraits/women/26.jpg" },
+    { quote: "Enterprise-grade security with startup speed. Passed our SOC 2 audit with zero issues. The compliance tooling alone is worth it.", name: "David Kim", role: "CISO · Ledgerpoint Financial", initials: "DK", avatar: "https://randomuser.me/api/portraits/men/53.jpg" },
   ];
 
   const stats = [
@@ -1007,7 +1007,10 @@ function Testimonials() {
                 </div>
                 <p className="text-sm text-[var(--ins-text-inactive)] leading-relaxed mb-6">"{t.quote}"</p>
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-semibold text-white" style={{background:'linear-gradient(135deg, var(--ins-text-highlight), var(--ins-color-teal-650))', border:'2px solid rgba(255,255,255,0.1)'}}>{t.initials}</div>
+                  {t.avatar ? (
+                    <img src={t.avatar} alt={t.name} width="36" height="36" loading="lazy" className="w-9 h-9 rounded-full flex-shrink-0 object-cover" style={{border:'2px solid rgba(255,255,255,0.1)'}} onError={(e) => { e.currentTarget.style.display='none'; e.currentTarget.nextSibling.style.display='flex'; }} />
+                  ) : null}
+                  <div className="w-9 h-9 rounded-full flex-shrink-0 items-center justify-center text-xs font-semibold text-white" style={{background:'linear-gradient(135deg, var(--ins-text-highlight), var(--ins-color-teal-650))', border:'2px solid rgba(255,255,255,0.1)', display: t.avatar ? 'none' : 'flex'}}>{t.initials}</div>
                   <div>
                     <p className="text-sm font-medium text-white">{t.name}</p>
                     <p className="text-xs text-[var(--ins-text-inactive)]">{t.role}</p>
