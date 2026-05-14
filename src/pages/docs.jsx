@@ -493,76 +493,26 @@ const DOC_TABS = [
 
 const SIDEBAR_NAV = [
   {
-    section: 'Getting Started',
-    items: [
-      { id: 'welcome', label: 'Welcome to Insightis' },
-      { id: 'quick-start', label: 'Quick Start Guide' },
-      { id: 'creating-account', label: 'Creating Your Account' },
-      { id: 'first-data-source', label: 'Connecting Your First Data Source' },
-      { id: 'first-query', label: 'Your First AI Chat Query' },
-      { id: 'understanding-answers', label: 'Understanding Your Answers' },
-    ],
-  },
-  {
     section: 'AI Chat',
     items: [
       { id: 'ai-chat-overview', label: 'AI Chat Overview' },
-      { id: 'ai-chat-how', label: 'How AI Chat Works' },
-      { id: 'effective-questions', label: 'Writing Effective Questions' },
-      { id: 'charts-viz', label: 'Understanding Charts & Visualizations' },
-      { id: 'saving-sharing', label: 'Saving & Sharing Answers' },
-      { id: 'follow-up', label: 'Follow-up Questions & Context' },
     ],
   },
   {
     section: 'Integrations',
     items: [
       { id: 'data-connectors', label: 'Data Connectors' },
-      { id: 'data-sources', label: 'Supported Data Sources' },
-      { id: 'hubspot', label: 'Connecting HubSpot' },
-      { id: 'stripe', label: 'Connecting Stripe' },
-      { id: 'postgresql', label: 'Connecting PostgreSQL' },
-      { id: 'troubleshoot', label: 'Troubleshooting Connections' },
     ],
   },
   {
     section: 'Semantic Layer',
     items: [
       { id: 'metrics', label: 'Metrics' },
-      { id: 'what-semantic', label: 'What is the Semantic Layer?' },
-      { id: 'custom-metrics', label: 'Defining Custom Metrics' },
-      { id: 'certification', label: 'Metric Certification' },
-      { id: 'cross-source', label: 'Cross-Source Joins' },
-      { id: 'formula-metrics', label: 'Formula Metrics' },
-    ],
-  },
-  {
-    section: 'Insights Engine',
-    items: [
-      { id: 'engine-how', label: 'How the Engine Works' },
-      { id: 'query-pipeline', label: 'Query Processing Pipeline' },
-      { id: 'confidence', label: 'Confidence & Accuracy Scores' },
-      { id: 'caching', label: 'Caching & Performance' },
-      { id: 'explainability', label: 'Explainability & Audit Trail' },
-    ],
-  },
-  {
-    section: 'Reports',
-    items: [
-      { id: 'create-report', label: 'Creating a Report' },
-      { id: 'scheduling', label: 'Scheduling & Automation' },
-      { id: 'sharing', label: 'Sharing & Permissions' },
-      { id: 'embedding', label: 'Embedding Reports' },
-      { id: 'export', label: 'Export Formats & Options' },
     ],
   },
   {
     section: 'Reference',
     items: [
-      { id: 'faq', label: 'FAQ' },
-      { id: 'video-tutorials', label: 'Video Tutorials' },
-      { id: 'glossary', label: 'Glossary' },
-      { id: 'support-policy', label: 'Support Policy' },
       { id: 'copyrights', label: 'Copyrights' },
       { id: 'data-storage', label: 'Data Storage' },
     ],
@@ -570,48 +520,6 @@ const SIDEBAR_NAV = [
 ];
 
 const PAGES = {
-  'welcome': {
-    breadcrumb: ['Docs', 'Getting Started', 'Welcome to Insightis'],
-    title: 'Welcome to Insightis',
-    description: 'Insightis is an AI-powered analytics workspace that lets you ask questions about your business data in plain language — and get instant, reliable answers. No SQL, no dashboards, no waiting.',
-    videoTitle: 'AI Analytics for everyone.',
-    toc: [
-      { id: 'why-insightis', label: 'Why use Insightis' },
-      { id: 'who-for', label: 'Who Insightis is for' },
-      { id: 'what-you-can-build', label: 'What you can build' },
-      { id: 'how-it-works', label: 'How it works' },
-      { id: 'next-steps', label: 'Next steps' },
-    ],
-    sections: [
-      { id: 'why-insightis', heading: 'Why use Insightis', content: 'Most analytics tools require you to know SQL, build dashboards, or wait for a data analyst. Insightis changes that. Ask a question like "What was our MRR last quarter by region?" and get a chart, a number, and an explanation — in seconds. Insightis connects directly to your databases, CRMs, and SaaS tools, understands your business context, and delivers answers you can trust.' },
-      { id: 'who-for', heading: 'Who Insightis is for', content: 'Insightis is built for teams that need answers fast — without depending on engineering. Revenue operations leaders, founders, product managers, and marketing teams use Insightis to explore data, monitor KPIs, and make decisions with confidence. Data teams use it to define metrics once and share them across the organization.' },
-      { id: 'what-you-can-build', heading: 'What you can build', content: 'With Insightis you can connect 200+ data sources, define your key metrics in the Semantic Layer, ask questions in natural language via AI Chat, save and share reports with your team, set up automated reports on a schedule, and embed insights directly into your workflows.' },
-      { id: 'how-it-works', heading: 'How it works', content: 'When you ask a question, Insightis routes it through the Insights Engine: your question is parsed, matched against your semantic definitions, translated into an optimized query, and executed against your data. The result is formatted as a chart or table, with a natural language explanation of what it means for your business.' },
-      { id: 'next-steps', heading: 'Next steps', content: 'Ready to get started? Follow the Quick Start Guide to connect your first data source and ask your first question in under 5 minutes. If you have questions along the way, use AI Chat or reach out to our support team.' },
-    ],
-    prevNext: { next: { id: 'quick-start', label: 'Quick Start Guide', section: 'Getting Started' } },
-  },
-  'quick-start': {
-    breadcrumb: ['Docs', 'Getting Started', 'Quick Start Guide'],
-    title: 'Quick Start Guide',
-    description: 'Get up and running with Insightis in under 5 minutes. Connect a data source, define your first metric, and ask your first question.',
-    toc: [
-      { id: 'step1', label: 'Step 1: Create your account' },
-      { id: 'step2', label: 'Step 2: Connect a data source' },
-      { id: 'step3', label: 'Step 3: Ask your first question' },
-      { id: 'step4', label: 'Step 4: Save your answer' },
-    ],
-    sections: [
-      { id: 'step1', heading: 'Step 1: Create your account', content: 'Sign up at insightis.ai with your work email. You can also invite your team members during onboarding or later from Settings → Team.' },
-      { id: 'step2', heading: 'Step 2: Connect a data source', content: 'Go to Integrations and click Add Source. Choose from 200+ connectors including HubSpot, Stripe, PostgreSQL, BigQuery, and more. Follow the connection wizard — most sources are live in under 2 minutes.' },
-      { id: 'step3', heading: 'Step 3: Ask your first question', content: 'Open AI Chat and type a question in plain English. Try "What was our total revenue last month?" or "Show me our top 10 customers by ARR." Insightis will respond with a chart, a number, and a written explanation.' },
-      { id: 'step4', heading: 'Step 4: Save your answer', content: 'Click Save Report to add the answer to your Reports library. You can share it with teammates, set up a schedule, or embed it in another tool.' },
-    ],
-    prevNext: {
-      prev: { id: 'welcome', label: 'Welcome to Insightis', section: 'Getting Started' },
-      next: { id: 'creating-account', label: 'Creating Your Account', section: 'Getting Started' },
-    },
-  },
   'ai-chat-overview': mdToPage(aiChatMd),
   'metrics':          mdToPage(metricsMd),
   'data-connectors':  mdToPage(dataConnectorsMd),
@@ -1537,13 +1445,13 @@ function AIAssistantPanel({ query, onClose }) {
 
 function App() {
   const [activeTab, setActiveTab] = useState('introduction');
-  const [activePage, setActivePage] = useState('welcome');
-  const [expandedSections, setExpandedSections] = useState({ 'Getting Started': true });
+  const [activePage, setActivePage] = useState('ai-chat-overview');
+  const [expandedSections, setExpandedSections] = useState({ 'AI Chat': true });
   const [sidebarSearch, setSidebarSearch] = useState('');
   const [activeSection, setActiveSection] = useState('');
   const [assistantQuery, setAssistantQuery] = useState(null);
 
-  const currentPage = PAGES[activePage] || PAGES['welcome'];
+  const currentPage = PAGES[activePage] || PAGES['ai-chat-overview'];
 
   useEffect(() => {
     setActiveSection('');
