@@ -1445,8 +1445,6 @@ function Footer() {
                   { label: 'About Devart', href: 'https://www.devart.com/company/' },
                   { label: 'Careers', href: 'https://www.devart.com/vacancies/' },
                   { label: 'Contacts', href: 'Company/Contacts.html' },
-                  { label: 'Success Stories', href: 'Company/Success Stories.html' },
-                  { label: 'Press & Media', href: 'Company/Press Media.html' },
                 ].map(link => (
                   <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}

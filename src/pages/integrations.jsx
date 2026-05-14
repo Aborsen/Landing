@@ -1171,36 +1171,15 @@ function Footer() {
 
           <div className="md:ml-auto grid grid-cols-2 gap-8 md:flex md:flex-row md:gap-16">
             <div>
-              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Platform</h3>
+              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Platform</h4>
               <ul className="flex flex-col gap-2.5">
-                {['AI Chat', 'Integrations', 'Semantic Layer'].map(link => {
-                  const isComingSoon = ['AI Connect', 'Advanced Reports', 'Memory & Storage'].includes(link);
-                  const isNotClickable = ['AI Connect', 'Advanced Reports'].includes(link);
-                  const badge = (
-                    <span style={{fontSize:'10px', fontWeight:500, letterSpacing:'0.04em', padding:'1px 6px', borderRadius:'4px', background:'rgba(10,152,150,0.12)', border:'1px solid rgba(10,152,150,0.3)', color:'#0EC4C1', whiteSpace:'nowrap'}}>Coming Soon</span>
-                  );
-                  if (isComingSoon) {
-                    return (
-                      <li key={link}>
-                        <span className="flex items-center gap-2 whitespace-nowrap">
-                          {isNotClickable ? (
-                            <span className="text-sm text-[#A0A0B8]" style={{cursor:'default'}}>{link}</span>
-                          ) : (
-                            <a href={linkUrls[link] || '#'} className="text-sm text-[#A0A0B8] hover:text-white transition-colors">{link}</a>
-                          )}
-                          {badge}
-                        </span>
-                      </li>
-                    );
-                  }
-                  return (
-                    <li key={link}><a href={linkUrls[link] || '#'} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}</a></li>
-                  );
-                })}
+                {['AI Chat', 'Integrations', 'Semantic Layer'].map(link => (
+                  <li key={link}><a href={linkUrls[link] || '#'} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}</a></li>
+                ))}
               </ul>
             </div>
             <div>
-              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Solutions</h3>
+              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Solutions</h4>
               <ul className="flex flex-col gap-2.5">
                 {['For RevOps & BizOps', 'For Founders & CEOs', 'For CMOs & Marketers', 'For Product Teams', 'For Data & Analytics Teams', 'For Operations & Finance'].map(link => (
                   <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
@@ -1208,7 +1187,7 @@ function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Resources</h3>
+              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Resources</h4>
               <ul className="flex flex-col gap-2.5">
                 {['Documentation', 'Prompt Library', 'Blog', 'Support Center', 'Roadmap', 'Data Connectors'].map(link => (
                   <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
@@ -1216,7 +1195,7 @@ function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Company</h3>
+              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Company</h4>
               <ul className="flex flex-col gap-2.5">
                 {[
                   { label: 'About Insightis', href: '../Company/About Insightis.html' },
@@ -1229,7 +1208,7 @@ function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Legal</h3>
+              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Legal</h4>
               <ul className="flex flex-col gap-2.5">
                 {[
                   { label: 'Privacy', href: '../Security/Privacy.html' },
