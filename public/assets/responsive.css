@@ -159,13 +159,23 @@
    =========================================================== */
 @media (max-width: 768px) {
   /* Architecture ("The Semantic Intelligence Layer") mobile fallback:
-     keep the diagram visible on mobile with chaos icons + engine +
-     output cards stacked vertically. Animations come from the JSX
-     (chaosFloat, corePulse, animated stream particles). */
+     drop the diagram (chaos icons + wires + stream + engine + divider)
+     and show ONLY the 5 output cards as text blocks. Within the
+     `.lg:hidden flex flex-col items-center` wrapper, every direct child
+     that is NOT the grid of output cards is hidden. */
+  section .lg\:hidden.flex.flex-col.items-center > :not(.grid) {
+    display: none !important;
+  }
+  /* Make sure the cards span full width with comfortable left-aligned text */
+  section .lg\:hidden.flex.flex-col.items-center > .grid {
+    width: 100% !important;
+    text-align: left !important;
+  }
 
   /* Left-align Architecture section header on mobile.
      The heading wrapper has the `arch-heading` className applied in JSX. */
   .arch-heading { text-align: left !important; }
+  .arch-heading p { max-width: 100% !important; }
 
   /* HowItWorks — hide the animated showcase, the JSX renders a text-only
      fallback on mobile. */
