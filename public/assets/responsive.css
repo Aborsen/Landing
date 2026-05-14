@@ -1,0 +1,119 @@
+/* ===========================================================
+   FOUC guard — hide static SEO fallback from humans
+   (crawlers still see the <article> in DOM, so SEO is intact)
+   =========================================================== */
+#root > article,
+#root > section[aria-label] { display: none !important; }
+
+#root::before {
+  content: '';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #0EC4C1;
+  transform: translate(-50%, -50%);
+  animation: rootLoad 1.1s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 9999;
+}
+@keyframes rootLoad {
+  0%, 100% { opacity: .25; transform: translate(-50%, -50%) scale(.85); }
+  50%      { opacity: 1;   transform: translate(-50%, -50%) scale(1.15); }
+}
+/* Once React mounts a real component into #root, hide the skeleton */
+#root:has(> div)::before { display: none; }
+
+/* ===========================================================
+   Reduced-motion users — short-circuit all animations
+   =========================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===========================================================
+   Mobile responsiveness — tablet + phone (≤ 768px)
+   =========================================================== */
+@media (max-width: 768px) {
+  /* Hero grids: single column, tighter gap, less side padding */
+  .hero-grid,
+  [data-hero-grid] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* Constrain any explicit-pixel-width hero anim card */
+  .hero-anim,
+  .hero-anim > div {
+    max-width: 100% !important;
+  }
+  /* Shrink the tall (500px) animation cards used on Integrations / Semantic Layer / Chat hero */
+  .hero-anim > div[style*="height:'500px'"],
+  .hero-anim > div[style*="height: 500px"],
+  .hero-anim > div[style*="height:500px"] {
+    height: 380px !important;
+  }
+
+  /* Solutions hero right-side visual panel (was minHeight: 540px) */
+  [data-hero-grid] > div[style*="minHeight:'540px'"] > div,
+  [data-hero-grid] > div[style*="minHeight: 540px"] > div,
+  [data-hero-grid] [style*="minHeight:'540px'"],
+  [data-hero-grid] [style*="minHeight: 540px"] {
+    min-height: auto !important;
+  }
+
+  /* FeatureSpotlights (was height: 440px on the visual wrapper) */
+  [data-spotlight-grid] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  [data-spotlight-grid] > [data-spotlight-visual] {
+    height: auto !important;
+    min-height: 320px !important;
+  }
+  [data-spotlight-grid] > [data-spotlight-text] { order: 0 !important; }
+  [data-spotlight-grid] > [data-spotlight-visual] { order: 1 !important; }
+
+  /* Generic two-column → one-column for content grids */
+  [style*="gridTemplateColumns:'1fr 1fr'"],
+  [style*="gridTemplateColumns: '1fr 1fr'"],
+  [style*="gridTemplateColumns:'1.05fr 1fr'"],
+  [style*="gridTemplateColumns: '1.05fr 1fr'"],
+  [style*="gridTemplateColumns:'minmax(0,1fr) minmax(0,1fr)'"],
+  [style*="gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)'"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Generic section side padding */
+  section { padding-left: 16px !important; padding-right: 16px !important; }
+}
+
+/* ===========================================================
+   Phone-only typography clamp (≤ 640px)
+   =========================================================== */
+@media (max-width: 640px) {
+  h1 {
+    font-size: clamp(1.85rem, 8vw, 2.6rem) !important;
+    line-height: 1.1 !important;
+  }
+  h2 {
+    font-size: clamp(1.5rem, 6vw, 2.2rem) !important;
+    line-height: 1.15 !important;
+  }
+  /* Tight uppercase eyebrows would crunch on phones — clamp them */
+  p[style*="letterSpacing"][style*="0.14em"],
+  p[style*="letterSpacing"][style*="0.12em"],
+  span[style*="letterSpacing"][style*=".12em"],
+  span[style*="letterSpacing"][style*=".14em"] {
+    font-size: 10px !important;
+  }
+  /* Hero CTAs stack full-width on phones */
+  .cta-btn { width: auto; }
+}
