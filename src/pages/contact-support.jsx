@@ -1395,7 +1395,7 @@ function App() {
   const [assistantQuery, setAssistantQuery] = useState(null);
 
   return (
-    <div style={{ paddingBottom:'100px' }}>
+    <div>
       <Header />
       <SupportHero search={search} setSearch={setSearch} />
       <HelpTopics search={search} />

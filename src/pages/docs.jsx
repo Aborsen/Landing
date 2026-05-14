@@ -1496,7 +1496,7 @@ function App() {
   }, []);
 
   return (
-    <div style={{ paddingBottom:'100px' }}>
+    <div>
       <Header />
       <div style={{ maxWidth:'1240px', width:'calc(100% - 32px)', margin:'0 auto' }}>
       <div className="docs-layout">

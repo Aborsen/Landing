@@ -1173,7 +1173,7 @@ function App() {
   };
 
   return (
-    <div style={{ paddingBottom:'100px' }}>
+    <div>
       <Header />
       <ConnectorsHero />
       <div className="connectors-layout">
