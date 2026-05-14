@@ -743,33 +743,83 @@ function Hero() {
 // ─── ARCH OUTPUT CARDS ───
 // ─── ARCH RIGHT — stream + cards fully synced ───
 function ArchRight({ outputs }) {
-  // Animation removed — all cards always shown in their "lit" steady state.
+  const STREAM_MS  = 2400;  // stream travel time
+  const STEP_MS    = 180;   // between card waves
+  const HOLD_MS    = 1200;  // cards stay lit
+  const PAUSE_MS   = 1800;  // pause before next cycle
+  const CYCLE = STREAM_MS + STEP_MS * 2 + HOLD_MS + PAUSE_MS;
+
+  const [streaming, setStreaming] = React.useState(false);
+  const [litCards,  setLitCards]  = React.useState([]);
+  const waves = [[2], [1, 3], [0, 4]];
+
+  React.useEffect(() => {
+    let timeouts = [];
+
+    function runCycle() {
+      setStreaming(false);
+      setLitCards([]);
+
+      // Start stream on next tick so transition triggers
+      const t0 = setTimeout(() => setStreaming(true), 50);
+      timeouts.push(t0);
+
+      // Light up cards exactly when stream finishes
+      waves.forEach((wave, wi) => {
+        const t = setTimeout(() => {
+          setLitCards(prev => [...new Set([...prev, ...wave])]);
+        }, STREAM_MS + wi * STEP_MS);
+        timeouts.push(t);
+      });
+
+      // Fade all cards
+      const fadeAt = STREAM_MS + (waves.length - 1) * STEP_MS + HOLD_MS;
+      const tFade = setTimeout(() => setLitCards([]), fadeAt);
+      timeouts.push(tFade);
+    }
+
+    runCycle();
+    const interval = setInterval(runCycle, CYCLE);
+    return () => { timeouts.forEach(clearTimeout); clearInterval(interval); };
+  }, []);
+
   return (
     <div style={{ display: 'contents' }}>
-      {/* Stream connector (static gradient line) */}
+      {/* Stream connector */}
       <div className="relative flex items-center" style={{ height: '32px', overflow: 'hidden' }}>
-        <div style={{
-          position: 'relative',
-          width: '100%',
-          height: '1px',
-          background: 'linear-gradient(90deg, rgba(9,160,157,0.15) 0%, var(--ins-color-teal-400) 60%, rgba(19,212,209,0.4) 100%)',
-        }}/>
+        <div style={{ position: 'relative', width: '100%', height: '1px', background: 'rgba(7,128,126,0.15)' }}>
+          <div style={{
+            position: 'absolute',
+            top: '-0.5px',
+            width: '40px',
+            height: '1px',
+            borderRadius: '1px',
+            background: 'linear-gradient(90deg, rgba(9,160,157,0) 0%, var(--ins-color-teal-400) 60%, #13D4D1 100%)',
+            left: streaming ? 'calc(100% + 40px)' : '-40px',
+            transition: streaming ? `left ${STREAM_MS}ms linear` : 'none',
+          }}/>
+        </div>
       </div>
 
-      {/* Output cards — all rendered in their default (un-lit) state */}
+      {/* Output cards */}
       <div className="flex flex-col justify-between" style={{ alignSelf: 'stretch' }}>
-        {outputs.map((o) => (
-          <div key={o.title} className="flex items-center gap-3 px-4 py-3.5 rounded-card" style={{
-            border: '1px solid var(--ins-border-default)',
-            background: 'var(--ins-surface-card)',
-          }}>
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{background: 'rgba(7,128,126,0.15)', border: '1px solid rgba(7,128,126,0.3)'}}>{o.icon}</div>
-            <div>
-              <p className="text-sm font-medium text-white">{o.title}</p>
-              <p className="text-xs text-[var(--ins-text-inactive)]">{o.desc}</p>
+        {outputs.map((o, i) => {
+          const isLit = litCards.includes(i);
+          return (
+            <div key={o.title} className="flex items-center gap-3 px-4 py-3.5 rounded-card" style={{
+              border: `1px solid ${isLit ? 'rgba(9,160,157,0.5)' : 'var(--ins-border-default)'}`,
+              background: isLit ? 'rgba(7,128,126,0.08)' : 'var(--ins-surface-card)',
+              boxShadow: isLit ? '0 0 16px rgba(9,160,157,0.15), inset 0 0 20px rgba(9,160,157,0.05)' : 'none',
+              transition: 'all 0.2s ease',
+            }}>
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{background: 'rgba(7,128,126,0.15)', border: '1px solid rgba(7,128,126,0.3)'}}>{o.icon}</div>
+              <div>
+                <p className="text-sm font-medium text-white">{o.title}</p>
+                <p className="text-xs text-[var(--ins-text-inactive)]">{o.desc}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
@@ -877,25 +927,47 @@ function Architecture() {
                   border: '1px solid var(--ins-border-default)',
                   boxShadow: 'var(--ins-shadow-sm)',
                   opacity: item.opacity,
+                  animation: `chaosFloat ${4 + (i % 3) * 1.5}s ease-in-out ${i * 0.5}s infinite alternate`,
                 }}>
                   <ConnectorIcon name={item.name} size={30} />
                 </div>
               ))}
             </div>
 
-            {/* Left connector — static gradient lines (animation removed) */}
+            {/* Left connector — chaos to order stream */}
             <div className="relative overflow-hidden flex items-center" style={{ height: '32px' }}>
               <svg className="w-full h-full" viewBox="0 0 100 32" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0,5 Q15,2 30,10 Q50,18 70,16 Q85,15 100,16" stroke="#FF6B6B" strokeWidth="0.5" fill="none" opacity="0.35"/>
-                <path d="M0,12 Q20,20 35,14 Q55,8 75,16 Q90,16 100,16" stroke="#FF9900" strokeWidth="0.5" fill="none" opacity="0.4"/>
-                <path d="M0,22 Q25,28 40,20 Q55,12 70,16 Q85,16 100,16" stroke="#635BFF" strokeWidth="0.5" fill="none" opacity="0.3"/>
-                <path d="M0,28 Q20,15 40,18 Q60,20 75,16 Q90,16 100,16" stroke="#4285F4" strokeWidth="0.5" fill="none" opacity="0.35"/>
+                <path d="M0,5 Q15,2 30,10 Q50,18 70,16 Q85,15 100,16" stroke="#FF6B6B" strokeWidth="0.5" fill="none" opacity="0.4">
+                  <animate attributeName="opacity" values="0.2;0.5;0.2" dur="6.23s" repeatCount="indefinite"/>
+                </path>
+                <path d="M0,12 Q20,20 35,14 Q55,8 75,16 Q90,16 100,16" stroke="#FF9900" strokeWidth="0.5" fill="none" opacity="0.4">
+                  <animate attributeName="opacity" values="0.3;0.5;0.3" dur="5.2s" repeatCount="indefinite"/>
+                </path>
+                <path d="M0,22 Q25,28 40,20 Q55,12 70,16 Q85,16 100,16" stroke="#635BFF" strokeWidth="0.5" fill="none" opacity="0.3">
+                  <animate attributeName="opacity" values="0.2;0.4;0.2" dur="7.28s" repeatCount="indefinite"/>
+                </path>
+                <path d="M0,28 Q20,15 40,18 Q60,20 75,16 Q90,16 100,16" stroke="#4285F4" strokeWidth="0.5" fill="none" opacity="0.3">
+                  <animate attributeName="opacity" values="0.3;0.5;0.3" dur="5.82s" repeatCount="indefinite"/>
+                </path>
+                {/* Flowing particles — 4 total */}
+                <circle r="1.2" fill="#FF6B6B" opacity="0.7">
+                  <animateMotion dur="4.15s" repeatCount="indefinite" path="M0,5 Q15,2 30,10 Q50,18 70,16 Q85,15 100,16"/>
+                </circle>
+                <circle r="1.2" fill="#FF9900" opacity="0.6">
+                  <animateMotion dur="5.2s" repeatCount="indefinite" path="M0,12 Q20,20 35,14 Q55,8 75,16 Q90,16 100,16"/>
+                </circle>
+                <circle r="1.2" fill="#635BFF" opacity="0.65">
+                  <animateMotion dur="4.62s" repeatCount="indefinite" begin="1.23s" path="M0,22 Q25,28 40,20 Q55,12 70,16 Q85,16 100,16"/>
+                </circle>
+                <circle r="1.2" fill="#4285F4" opacity="0.6">
+                  <animateMotion dur="5.54s" repeatCount="indefinite" begin="2.15s" path="M0,28 Q20,15 40,18 Q60,20 75,16 Q90,16 100,16"/>
+                </circle>
               </svg>
             </div>
 
             {/* Center core engine */}
             <div className="flex flex-col items-center justify-center">
-              <div className="w-36 h-36 rounded-2xl flex flex-col items-center justify-center gap-3" style={{ border: '1px solid rgba(7,128,126,0.5)', background: 'linear-gradient(135deg, rgba(7,128,126,0.25), rgba(7,128,126,0.08))' }}>
+              <div className="w-36 h-36 rounded-2xl flex flex-col items-center justify-center gap-3" style={{ border: '1px solid rgba(7,128,126,0.5)', background: 'linear-gradient(135deg, rgba(7,128,126,0.25), rgba(7,128,126,0.08))', animation: 'corePulse 3s ease-in-out infinite' }}>
                 <GridIcon size={36} color="var(--ins-color-teal-500)" />
                 <span className="text-[13px] font-medium text-[var(--ins-color-teal-500)] text-center leading-tight">Insightis<br/>Semantic AI</span>
               </div>
@@ -923,7 +995,7 @@ function Architecture() {
 
             <div className="w-px h-8 bg-gradient-to-b from-transparent via-[var(--ins-color-teal-600)]/40 to-transparent"></div>
 
-            <div className="w-24 h-24 rounded-2xl flex flex-col items-center justify-center gap-1.5" style={{ border: '1px solid rgba(7,128,126,0.5)', background: 'linear-gradient(135deg, rgba(7,128,126,0.25), rgba(7,128,126,0.08))' }}>
+            <div className="w-24 h-24 rounded-2xl flex flex-col items-center justify-center gap-1.5" style={{ border: '1px solid rgba(7,128,126,0.5)', background: 'linear-gradient(135deg, rgba(7,128,126,0.25), rgba(7,128,126,0.08))', animation: 'corePulse 3s ease-in-out infinite' }}>
               <GridIcon size={24} color="var(--ins-color-teal-500)" />
               <span className="text-[10px] font-medium text-[var(--ins-color-teal-500)] text-center leading-tight">Semantic AI</span>
             </div>
