@@ -1722,7 +1722,6 @@ function ChatMockAnimation() {
 
   return (
     <div style={{
-      opacity: windowOpacity,
       borderRadius: '16px',
       border: '1px solid rgba(255,255,255,0.09)',
       background: '#0C1117',
@@ -1924,9 +1923,6 @@ function Hero() {
 
         {/* LEFT: Text */}
         <div style={{
-          opacity: vis ? 1 : 0,
-          transform: vis ? 'translateY(0)' : 'translateY(20px)',
-          transition: 'opacity 1s cubic-bezier(0.34,1.56,0.64,1) .3s, transform 1s cubic-bezier(0.34,1.56,0.64,1) .3s',
           height: '500px',
           display: 'flex',
           flexDirection: 'column',
@@ -1962,11 +1958,7 @@ function Hero() {
         </div>
 
         {/* RIGHT: Chat animation */}
-        <div style={{
-          opacity: vis ? 1 : 0,
-          transform: vis ? 'translateY(0)' : 'translateY(16px)',
-          transition: 'opacity .8s ease .2s, transform .8s ease .2s',
-        }}>
+        <div>
           <ChatMockAnimation/>
         </div>
 

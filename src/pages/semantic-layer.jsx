@@ -401,7 +401,6 @@ function SemanticLayerMockAnimation() {
 
   return (
     <div style={{
-      opacity: windowOpacity,
       borderRadius:'16px',
       border:'1px solid rgba(255,255,255,0.09)',
       background:'#0C1117',
@@ -631,9 +630,6 @@ function Hero() {
 
         {/* LEFT: Text */}
         <div style={{
-          opacity: vis ? 1 : 0,
-          transform: vis ? 'translateY(0)' : 'translateY(20px)',
-          transition: 'opacity 1s cubic-bezier(0.34,1.56,0.64,1) .3s, transform 1s cubic-bezier(0.34,1.56,0.64,1) .3s',
           display:'flex', flexDirection:'column', justifyContent:'center', padding:'24px 0',
         }}>
           <p style={{fontSize:'11px',fontWeight:500,letterSpacing:'.14em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace',marginBottom:'14px'}}>
@@ -665,11 +661,7 @@ function Hero() {
         </div>
 
         {/* RIGHT: Semantic Layer animation */}
-        <div style={{
-          opacity: vis ? 1 : 0,
-          transform: vis ? 'translateY(0)' : 'translateY(16px)',
-          transition: 'opacity .8s ease .2s, transform .8s ease .2s',
-        }}>
+        <div>
           <SemanticLayerMockAnimation/>
         </div>
 
