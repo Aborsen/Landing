@@ -1263,16 +1263,16 @@ function FeatureSpotlights() {
   const spots = [
     {
       eyebrow:'Self-Serve',
-      title:'Skip the FP&A queue',
-      body:'Ask any cost or budget question in plain English and get an answer grounded in your real ledger — no spreadsheet maze, no waiting on FP&A.',
-      bullets:['Plain-English questions across budget, payroll, and spend','CFO and ops leads finally self-serve'],
+      title:'Finance answers on demand',
+      body:'Type any cost or budget question conversationally and get an answer rooted in your real ledger — no spreadsheet maze, no FP&A wait.',
+      bullets:['Conversational answers across budget, payroll, and spend','CFO and ops leads finally self-serve'],
       visual:<SpotlightChat />,
     },
     {
       eyebrow:'Unified Cost Model',
-      title:'One source of truth for finance',
-      body:'Marketing defines cost-per-lead one way, Finance defines burn another. Every metric — burn, margin, headcount — gets one certified definition.',
-      bullets:['One certified definition per finance metric','Versioning, ownership, and lineage built in'],
+      title:'Every metric has one definition',
+      body:'Marketing and Finance often define the same metric differently. Insightis aligns burn, margin, and headcount under a single agreed definition.',
+      bullets:['Burn, margin, headcount agreed across teams','Versioning, ownership, and lineage built in'],
       visual:<SpotlightSemantic />,
     },
     {
@@ -1284,8 +1284,8 @@ function FeatureSpotlights() {
     },
     {
       eyebrow:'Audit-Ready',
-      title:'Every number ships with its receipt',
-      body:'Every figure links back to the underlying transactions, owners, and timestamps — auditors and finance share the same trail without an extra reconciliation pass.',
+      title:'Audit-ready answers, all in one place',
+      body:'Every figure carries its transactions, owners, and timestamps in one place — auditors and finance see the same trail without a reconciliation pass.',
       bullets:['Full lineage from KPI down to source transaction','Owner, timestamp, and version stamped on every figure'],
       visual:<SpotlightStack />,
     },
@@ -1341,7 +1341,7 @@ function FeatureSpotlights() {
                   order: reverse ? 0 : 2,
                   display:'flex',
                   alignItems:'stretch',
-                  minHeight:'380px',
+                  height:'440px',
                 }}>
                   {s.visual}
                 </div>
