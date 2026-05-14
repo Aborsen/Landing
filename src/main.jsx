@@ -280,7 +280,7 @@ function Header() {
       }}>
       <div ref={navRef} style={{
         position:'relative',
-        maxWidth:'1280px', width:'calc(100% - 48px)',
+        maxWidth:'1240px', width:'calc(100% - 32px)',
         margin:'0 auto',
         padding:'12px 0 0',
       }}>
@@ -290,7 +290,7 @@ function Header() {
           backdropFilter:'blur(20px)', WebkitBackdropFilter:'blur(20px)',
           border:'1px solid rgba(255,255,255,0.08)',
           borderRadius: mobileOpen ? '24px 24px 0 0' : '50px',
-          boxShadow:'0 4px 24px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2)',
+          boxShadow:'inset 0 1px 0 rgba(255,255,255,0.06), 0 4px 24px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2)',
           padding:'0 8px 0 24px',
           transition:'border-radius 0.25s ease, box-shadow 0.3s ease',
         }}>
