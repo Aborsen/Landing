@@ -360,40 +360,8 @@ const DS_ICON = {
   'linkedin':          (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#0A66C2"><path d="M4 4h4v16H4zM10 9h4v2a4 4 0 0 1 7 3v6h-4v-5a2 2 0 0 0-4 0v5h-3z"/><circle cx="6" cy="5" r="2"/></svg>,
   'workday':           (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#0875E1"><path d="M3 8h2l2 8 2-6h2l2 6 2-8h2l-3 10h-3l-1-4-1 4H7z"/></svg>,
 };
-function DataSourceIcon({ id, size = 12 }) {
-  const render = DS_ICON[id];
-  return (
-    <span className="ds-icon-wrap" title={id}>
-      {render ? render(size) : <span style={{fontSize:'9px',color:'#5E8290'}}>•</span>}
-    </span>
-  );
-}
 
 /* ── TAXONOMIES ── */
-const DATA_SOURCES = [
-  { id:'redshift',         name:'Amazon Redshift' },
-  { id:'asana',            name:'Asana' },
-  { id:'azure',            name:'Azure Data Lake' },
-  { id:'databricks',       name:'Databricks' },
-  { id:'dynamics',         name:'Dynamics 365' },
-  { id:'freshdesk',        name:'Freshdesk' },
-  { id:'google-ads',       name:'Google Ads' },
-  { id:'google-analytics', name:'Google Analytics' },
-  { id:'bigquery',         name:'Google BigQuery' },
-  { id:'google-drive',     name:'Google Drive' },
-  { id:'google-sheets',    name:'Google Sheets' },
-  { id:'hubspot',          name:'HubSpot' },
-  { id:'jira',             name:'Jira' },
-  { id:'linkedin',         name:'LinkedIn' },
-  { id:'netsuite',         name:'NetSuite' },
-  { id:'pipedrive',        name:'Pipedrive' },
-  { id:'salesforce',       name:'Salesforce' },
-  { id:'slack',            name:'Slack' },
-  { id:'snowflake',        name:'Snowflake' },
-  { id:'workday',          name:'Workday' },
-  { id:'zendesk',          name:'Zendesk' },
-  { id:'zoho',             name:'Zoho CRM' },
-];
 
 const TEAMS = [
   'Account Management','Accounting','BDR Managers','Business Analytics',
@@ -404,73 +372,336 @@ const TEAMS = [
 ];
 
 const PROMPTS = [
-  { title:'Analyze Web Traffic for Closed Won Opportunities',
-    teams:['Product Marketing','Marketing'],
-    sources:['salesforce','google-analytics'],
-    prompt:'Take all Closed-Won opportunities from the last 90 days in Salesforce. For each account, pull matching web traffic sessions from Google Analytics (match by company domain). Summarize: (1) which pages correlated with deals closing, (2) average number of sessions before close, (3) top acquisition channels. Output as a ranked table plus three insights I can share with marketing leadership.' },
-  { title:'Analyze Support Cases to Build a Product Roadmap',
-    teams:['Product Management'],
-    sources:['zendesk','jira','hubspot','salesforce'],
-    prompt:'Pull all support cases from Zendesk in the last quarter. Cluster them by theme (feature request, bug, confusion). For each cluster, cross-reference against open Jira tickets. Rank clusters by customer-impact × ARR (pull ARR from HubSpot/Salesforce). Output a roadmap recommendation with top 10 themes, owning product area, and estimated effort.' },
-  { title:'Sales Execution and Deal Portfolio Management',
-    teams:['Sales Execution','Sales Directors','Sales Leadership','Sales Reps'],
-    sources:['salesforce','hubspot','slack'],
-    prompt:'For every active deal >$25k, pull: stage, last activity date, rep, forecast category, and competitive notes. Flag deals that: (a) have been in the same stage >21 days, (b) have no activity in the last 7 days, (c) are forecast to close this quarter but missing next steps. Post a Slack digest to #sales-leadership with the top 15 at-risk deals.' },
-  { title:'Database Table Mapping and Relationship Discovery',
-    teams:['Data Analytics','Product Management','Marketing','Sales Ops'],
-    sources:['snowflake','bigquery'],
-    prompt:'Scan the Snowflake/BigQuery warehouse. For every table with more than 1,000 rows, infer primary keys and foreign-key relationships from column names, data profiles, and join cardinality. Output an ER diagram plus a markdown glossary: table name, purpose, owning team, estimated row count, refresh cadence, and known downstream consumers.' },
-  { title:'Community Developer Advocate Identification',
-    teams:['Developer Marketing','Customer Success'],
-    sources:['hubspot','jira','slack','salesforce','linkedin'],
-    prompt:'Find potential developer advocates: users who (1) have filed 3+ high-quality Jira issues, (2) are active in #community Slack, (3) work at accounts with ≥$50k ARR in Salesforce/HubSpot, (4) have public technical presence on LinkedIn. Rank by engagement score and output a short dossier per candidate with recommended outreach hook.' },
-  { title:'Competitive Win/Loss Analysis by Quarter',
-    teams:['Product Marketing','Sales Leadership','Revenue Operations'],
-    sources:['salesforce','hubspot'],
-    prompt:'For every Closed-Won and Closed-Lost opportunity this quarter, extract the primary competitor from Salesforce/HubSpot notes. Compute win rate by competitor, average deal size when won vs. lost against them, and the most common objection. Output: quarterly win/loss scorecard with three action items for enablement.' },
-  { title:'Pipeline Velocity by Source',
-    teams:['Revenue Operations','Sales Directors','Marketing'],
-    sources:['salesforce','hubspot','google-ads','linkedin'],
-    prompt:'Calculate pipeline velocity (# opps × win rate × avg deal size ÷ sales cycle length) by lead source over the last two quarters. Segment inbound vs outbound, and within inbound by channel (Google Ads, LinkedIn, organic, referral). Highlight the source with the best velocity improvement and propose a budget reallocation.' },
-  { title:'MRR Drift Reconciliation across Stripe & NetSuite',
-    teams:['Accounting','Revenue Operations','Business Intelligence'],
-    sources:['netsuite','snowflake','salesforce'],
-    prompt:'Compare MRR as reported by billing (NetSuite/warehouse) vs. MRR as reported by Salesforce Opportunity stages. For every customer where the two numbers differ by more than $500/month, output: customer, Stripe MRR, Salesforce MRR, delta, suspected cause (failed charge, unbilled upsell, churn not recorded). Cap the output at 50 rows sorted by delta.' },
-  { title:'Support Ticket Deflection Opportunities',
+  { title:'Renewal Risk Forecasting',
+    teams:['Account Management','Customer Success'],
+    prompt:'For every account with a renewal due in the next 120 days, pull product usage trend (last 90 days vs prior 90), executive-sponsor activity, open support ticket severity, ARR, and contract terms. Score renewal risk 0-100 using a weighted model (40% usage, 25% support, 20% sponsor, 15% contract). Output the top 30 at-risk accounts with the two strongest negative signals, suggested save play, and the AM who owns the relationship.' },
+  { title:'Expansion Opportunity Heatmap',
+    teams:['Account Management'],
+    prompt:'Across the AM book of business, identify accounts where product usage has grown >40% QoQ but no expansion conversation has been logged. For each, compute available headroom (licensed seats vs active users, feature-tier ceiling, adjacent products with zero usage). Output a ranked expansion target list with estimated upsell ARR and the trigger event to reference in outreach.' },
+  { title:'Account Health Dashboard',
+    teams:['Account Management','Customer Success'],
+    prompt:'Build a quarterly account-health dashboard for every Enterprise account. Inputs: weekly active users, daily active users, feature breadth, NPS, support ticket volume, exec-sponsor engagement, payment history, expansion vs contraction ARR. Output a 4-quadrant grid (Healthy/Growing, At-Risk/Recoverable, Champion, Detractor) with each account placed once, plus a sentence explaining the placement.' },
+  { title:'QBR Data Pack Generator',
+    teams:['Account Management'],
+    prompt:'For the next QBR, pull a 12-page data pack for the account: ARR history, seat utilization, feature adoption vs cohort, top 5 product wins, top 3 friction points (cross-referenced support tickets), executive-stakeholder activity, peer benchmark (anonymized), open opportunities, and recommended next 90-day milestones. Format as slide-ready bullets, not paragraphs.' },
+  { title:'Stakeholder Engagement Map',
+    teams:['Account Management'],
+    prompt:'For the top 25 accounts by ARR, map every known stakeholder: role, persona (champion / decision maker / blocker / unknown), last touch date, last touch type (email / meeting / event), and current engagement level. Highlight accounts with single-thread risk (only one engaged contact) and propose the next stakeholder to multi-thread into.' },
+  { title:'Adoption Plateau Detection',
+    teams:['Account Management','Customer Success','Product Management'],
+    prompt:'Find every account whose product usage has flatlined or declined for 6+ weeks. For each, segment by current adoption depth (Activated / Habituated / Champion). Output the accounts where a one-feature reveal or workflow nudge has historically restored growth in similar cohorts, with the specific play to run and the AM to brief.' },
+  { title:'Monthly Close Progress Tracker',
+    teams:['Accounting'],
+    prompt:'For the current close, list every task in the close checklist with: owner, planned completion day (1-10), actual completion day, blockers, and any related journal-entry status. Flag tasks more than one day late and tasks with the same owner overloading the same day. Output a Gantt-style table and a top-3 list of items to expedite to hit a 5-day close.' },
+  { title:'AR Aging Risk Analysis',
+    teams:['Accounting','Revenue Operations'],
+    prompt:'Pull AR aged 30/60/90/120+ days. For each invoice >90 days, attach: customer name, balance, last touch date, last response, days since last payment of any size, customer credit history, and any ongoing renewal discussion. Output a collections priority list with predicted recovery probability (High/Med/Low) and the recommended next action per account.' },
+  { title:'ASC 606 Revenue Recognition Audit',
+    teams:['Accounting'],
+    prompt:'For every contract booked this quarter, validate the revenue recognition schedule: identify performance obligations, allocate transaction price, confirm timing (point-in-time vs over time), and reconcile against billing schedule. Flag contracts where the recognized amount diverges from expected by more than $500 or one period. Output a remediation list grouped by root cause.' },
+  { title:'Expense Category Drift Alert',
+    teams:['Accounting','Business Analytics'],
+    prompt:'Compare each expense category this month vs the trailing 6-month average, segmented by department. Flag categories with >20% drift in either direction. For upward drift, attach the top 5 contributing transactions; for downward drift, check whether expected expenses simply have not yet been booked. Output a one-line variance note per category for the close packet.' },
+  { title:'Cash Flow 13-Week Forecast',
+    teams:['Accounting','Business Analytics'],
+    prompt:'Build a 13-week cash flow forecast: expected receipts from open AR with collection-probability weighting, expected billings from booked contracts, planned outflows from AP and payroll, and one-time items. Output the weekly cash position with a low/expected/high band and a list of weeks where the bottom of the band falls below the minimum operating threshold.' },
+  { title:'Bank Reconciliation Anomaly Sweep',
+    teams:['Accounting'],
+    prompt:'Reconcile every bank account against the ledger for the last 60 days. List unmatched transactions, duplicate postings, unusual round-number transfers, and any payment that breaks a typical vendor cadence. For each anomaly, propose an explanation (timing diff, missed entry, possible error) and the journal entry needed to clear it.' },
+  { title:'BDR Activity Scorecard',
+    teams:['BDR Managers'],
+    prompt:'For every BDR on the team, produce a weekly scorecard: dials, connect rate, conversations, meetings booked, meetings held, meetings advanced to opportunity, and average response time to inbound. Compare each metric to team median and to the rep\'s own trailing 4-week baseline. Output a coaching focus per rep (one strength to reinforce, one gap to close).' },
+  { title:'Outbound Sequence Performance',
+    teams:['BDR Managers','Marketing'],
+    prompt:'For every active outbound sequence, compute reply rate, positive reply rate, meeting-booked rate, and unsubscribe rate by step. Segment by persona and account tier. Highlight sequences with low step-1 open rates (subject line problem) vs high open but low reply (body problem) vs strong reply but low meeting-set (qualifier problem). Recommend 3 changes to test next.' },
+  { title:'Top Accounts to Pursue This Week',
+    teams:['BDR Managers'],
+    prompt:'From the target account list, identify the 25 accounts with the strongest intent signals this week: 6sense surge, content engagement, hiring activity in relevant roles, recent funding, competitor displacement triggers, or warm intros available. Output the list with the strongest signal per account and the recommended BDR sequence template to launch tomorrow.' },
+  { title:'Meeting-Set Quality Scoring',
+    teams:['BDR Managers','Sales Directors'],
+    prompt:'For meetings set by BDRs in the last 60 days, compute: AE acceptance rate, AE meeting-held rate, opportunity-creation rate, and average opportunity ARR. Score each BDR\'s meeting-set quality. Identify BDRs whose volume is healthy but quality lags, and the most common reason their meetings get rejected (wrong persona, wrong fit, wrong stage).' },
+  { title:'BDR Ramp Cohort Comparison',
+    teams:['BDR Managers'],
+    prompt:'For every BDR hired in the last 9 months, plot weekly activity, meetings set, and opportunities-sourced against the team cohort baseline by tenure. Flag reps trending below P25 at any milestone (week 4, 8, 12, 16). For each flagged rep, recommend which ramp milestone needs coaching and the team peer who excelled at that same week.' },
+  { title:'Outbound vs Inbound Pipeline Contribution',
+    teams:['BDR Managers','Marketing'],
+    prompt:'Quarter-to-date, split pipeline created by source: BDR outbound, inbound marketing, partner-sourced, AE-self-sourced. For each source, show count, total ARR, win rate, sales cycle length, and ACV. Compare to the prior two quarters. Identify whether the BDR team\'s contribution is rising or falling and propose two adjustments to the territory plan.' },
+  { title:'Weekly KPI Executive Snapshot',
+    teams:['Business Analytics','Sales Leadership'],
+    prompt:'Every Monday 7am, generate a 1-page exec snapshot: bookings WoW and QTD vs plan, pipeline coverage, churned ARR, new logos, NPS, weekly active users, monthly active users, and gross margin. For each metric, show value, vs-plan delta, and trend arrow. Add three sentences of context explaining the biggest movers since last week. Cap at 250 words total.' },
+  { title:'Department Spend vs Budget',
+    teams:['Business Analytics','Accounting'],
+    prompt:'Pull actual spend by department vs budget for the current quarter. Identify the three departments most over/under, decompose the variance by spend category (headcount, software, marketing programs, services, T&E), and flag any department on pace to exceed the full-year budget. Output a one-line action note per department for the CFO review.' },
+  { title:'Signup Cohort Behavior Analysis',
+    teams:['Business Analytics','Product Management'],
+    prompt:'For users who signed up in each of the last 6 months, plot day-1, day-7, day-30, and day-90 retention. Identify the cohort with the best 90-day retention and the cohort with the worst. Compare their acquisition channels, persona mix, and feature-first-touch. Output the three actions most likely to make later cohorts look like the best one.' },
+  { title:'North Star Metric Breakdown',
+    teams:['Business Analytics'],
+    prompt:'Decompose the company north-star metric (Weekly Active Teams) into its 4 input drivers: new teams activated, dormant teams revived, teams retained, teams expanded. For each driver, show contribution to last quarter\'s movement, current run-rate vs target, and the leading indicator that moves it. Output a single chart and 3 bullet takeaways.' },
+  { title:'Funnel Conversion by Segment',
+    teams:['Business Analytics','Marketing'],
+    prompt:'Build the full marketing-to-revenue funnel (Visitor → MQL → SQL → Opportunity → Closed Won) for the last 90 days, segmented by company size, industry, and acquisition channel. Show absolute counts, stage-to-stage conversion rates, and median time-in-stage. Highlight the segment+channel combinations where conversion is significantly above or below average, with an explanation hypothesis.' },
+  { title:'YoY Growth Attribution',
+    teams:['Business Analytics','Sales Leadership'],
+    prompt:'Compare this quarter\'s ARR vs the same quarter last year. Attribute the delta across: net-new logos, expansion, contraction, churn, and pricing changes. Within net-new, attribute further to channel (inbound, outbound, partner, paid). Output a waterfall chart, a one-line takeaway, and the channel/motion you would double down on next quarter.' },
+  { title:'Partner-Sourced Pipeline Tracker',
+    teams:['Business Development'],
+    prompt:'For every partner-sourced opportunity in the last two quarters, pull partner name, source channel (referral, marketplace, co-marketing), opportunity stage, ARR, win rate, and sales-cycle length. Compare partner-sourced metrics to direct-sourced. Rank partners by sourced ARR and by win-rate improvement. Output the top 5 partners to invest more in and the bottom 5 to deprioritize.' },
+  { title:'Co-Sell Opportunity Identification',
+    teams:['Business Development'],
+    prompt:'Cross-reference our active opportunities with the partner ecosystem: which open deals have a strategic partner already engaged at the same account, and which target accounts on our open pipeline have a partner with an existing footprint? Output a co-sell action list ranked by deal value × partner-fit score, with the recommended partner contact and play to run.' },
+  { title:'Strategic Account Whitespace Map',
+    teams:['Business Development'],
+    prompt:'For each of the top 50 strategic accounts, list: our footprint (products owned, ARR, users), product whitespace (modules unsold), the org-chart whitespace (departments not engaged), and the partner whitespace (partners already in the account we have not engaged). Output a one-page whitespace summary per account with the single biggest unlock opportunity highlighted.' },
+  { title:'Competitive Partner Activity Monitor',
+    teams:['Business Development','Product Marketing'],
+    prompt:'Monitor public signals from competitor-partner relationships in the last 90 days: joint announcements, integrations launched, marketplace listings added, co-marketing assets. For each, assess threat level (Low / Medium / High) to our partner motion and recommend a defensive or offensive countermove. Output a competitive briefing pack for the BD team.' },
+  { title:'Channel Partner Enablement Scorecard',
+    teams:['Business Development'],
+    prompt:'For every active channel partner, score enablement health: trained reps, certifications, demo environments active, last training touch, pipeline registered in last 90 days, and average deal-cycle when they are involved. Identify partners who are well-enabled but underproducing, and partners who are producing despite low enablement (urgent training opportunity).' },
+  { title:'Partnership ROI by Program',
+    teams:['Business Development','Business Analytics'],
+    prompt:'For each named partnership program (referral, technology, reseller, OEM), compute total investment (people, marketing dollars, integration eng-time), total sourced ARR, and ROI multiple. Compare against trailing 4-quarter average. Output a ranked program scorecard and recommend one program to expand and one to consolidate or close.' },
+  { title:'Report Usage and Adoption Audit',
+    teams:['Business Intelligence','Data Analytics'],
+    prompt:'For every Looker/Tableau dashboard in production, pull: weekly viewers, monthly viewers, last view date, average view duration, and bounce rate. Identify dashboards with zero viewers in the last 90 days (deprecation candidates), dashboards with high traffic but short dwell time (potential redesign), and the top 10 most-used dashboards (protect from changes).' },
+  { title:'Data Quality Scorecard by Source',
+    teams:['Business Intelligence','Data Analytics'],
+    prompt:'For each connected data source, compute: row freshness (median lag between source event and warehouse), null rate on critical fields, schema drift events in last 30 days, duplicate-record rate, and downstream-report breakage incidents. Output a quality scorecard with red/yellow/green per source and a top-3 list of sources that need attention this sprint.' },
+  { title:'Self-Service Dashboard Inventory',
+    teams:['Business Intelligence'],
+    prompt:'Inventory every self-service dashboard across the company. For each, capture: owner, business unit, primary audience, last edit, certification status (Certified / Draft / Legacy), and number of distinct queries it triggers. Surface dashboards owned by departed employees, dashboards labeled "Draft" but with >50 weekly views, and duplicates measuring the same metric.' },
+  { title:'Slow-Running Query Identification',
+    teams:['Business Intelligence','Data Analytics'],
+    prompt:'In the warehouse, find the top 25 slowest queries from the last 7 days by total compute time × frequency. For each, identify the dashboard/report that runs it, the table scan pattern, and whether a missing index, missing partition, or unused JOIN is the likely cause. Output a remediation backlog ordered by estimated compute savings.' },
+  { title:'Cross-System Metric Reconciliation',
+    teams:['Business Intelligence','Revenue Operations'],
+    prompt:'Reconcile ARR/MRR as reported by Salesforce, NetSuite/Stripe, and the warehouse. For every account where the three numbers differ by more than $500/month, output: account name, each source\'s number, the delta, and the suspected cause (failed charge, unbilled upsell, stage timing, contract not yet activated). Sort by delta and cap at 50 rows.' },
+  { title:'Stakeholder Report Request Triage',
+    teams:['Business Intelligence'],
+    prompt:'Across all BI tickets in the queue, classify by request type (new dashboard, dashboard fix, ad-hoc analysis, data access, training). Score each ticket by business value (requester level × downstream decision impact) and effort. Output a 2x2 triage grid (Quick Wins / Strategic / Slog / Backlog) with the top 5 to start this sprint.' },
+  { title:'NPS Theme Cluster Analysis',
     teams:['Customer Success','Product Management'],
-    sources:['zendesk','freshdesk'],
-    prompt:'Identify the top 20 support topics by ticket volume in the last 60 days. For each, estimate effort to resolve with a KB article, in-product tooltip, or feature fix. Rank by (volume × avg handle time) ÷ estimated fix effort. Output a prioritized deflection backlog with owner suggestions.' },
-  { title:'Churn Risk Scoring from Product + CRM Signals',
-    teams:['Customer Success','Account Management','Revenue Operations'],
-    sources:['salesforce','hubspot','snowflake','zendesk'],
-    prompt:'For every customer with a renewal in the next 90 days, score churn risk 0–100 based on: product usage decline, open support tickets, days since last exec touchpoint, NPS, and expansion-vs-contraction ARR trend. Output: top 30 at-risk accounts with the two strongest risk signals and a suggested play.' },
-  { title:'Campaign Attribution Deep-Dive',
-    teams:['Marketing','Product Marketing'],
-    sources:['hubspot','google-ads','linkedin','salesforce'],
-    prompt:'For the top 5 paid campaigns this quarter (Google Ads, LinkedIn Ads), trace every touchpoint from first-click through to Closed-Won opportunity in Salesforce. Compute CAC, payback period, and assisted revenue using a linear multi-touch model. Output a campaign scorecard and recommend which two to scale and which to cut.' },
-  { title:'Exec Weekly Revenue Narrative',
-    teams:['Revenue Operations','Sales Leadership','Business Analytics'],
-    sources:['salesforce','hubspot','snowflake'],
-    prompt:'Every Monday 8am, generate a 1-page exec narrative: (1) bookings vs plan, WoW and QTD, (2) pipeline coverage by stage, (3) three biggest deal movements, (4) three pipeline risks, (5) what changed since last week. Keep it under 250 words, human tone, no filler.' },
-  { title:'New-Hire Ramp Tracker',
-    teams:['Sales Leadership','Sales Directors','BDR Managers'],
-    sources:['salesforce','hubspot','slack'],
-    prompt:'For every rep hired in the last 6 months, track: activities per week, first meeting booked, first opportunity created, first Closed-Won, and quota attainment by month-of-tenure. Compare against the cohort baseline. Flag reps trending below P25 and suggest which ramp milestone to coach.' },
-  { title:'Renewal Forecast Confidence',
-    teams:['Account Management','Customer Success','Revenue Operations'],
-    sources:['salesforce','hubspot','zendesk'],
-    prompt:'For every renewal in the current quarter, output a confidence score: Commit / Best Case / Pipeline / Omit. Base it on CSM sentiment notes, product usage, support ticket severity, and last exec touchpoint. Include a short rationale line per account. Sort by ARR descending.' },
-  { title:'Data Source Freshness Audit',
+    prompt:'Pull all NPS responses from the last quarter (detractors, passives, promoters separately). Cluster open-text comments into themes. For each theme, show: count, average score, customer segment most affected, and a representative verbatim quote. Output the top 5 detractor themes with a CS-led action plan and the top 3 promoter themes to lean into for case studies.' },
+  { title:'Onboarding Milestone Tracking',
+    teams:['Customer Success'],
+    prompt:'For every account in onboarding, track progress against the 7 standard onboarding milestones (kickoff complete, data connected, first metric defined, first dashboard shared, team invited, first AI Chat answer, first scheduled report). Flag accounts stuck on any milestone >7 days and accounts that hit "fully onboarded" but show no usage week 2.' },
+  { title:'CSM Book-of-Business Workload',
+    teams:['Customer Success'],
+    prompt:'For each CSM, compute: number of accounts owned, total ARR managed, number of accounts in onboarding, number flagged at-risk, number due to renew in next 60 days, and weighted-workload score (account count × tier weight). Identify CSMs who are over-allocated and accounts that should be rebalanced. Recommend a new allocation plan.' },
+  { title:'Adoption Gap Analysis',
+    teams:['Customer Success','Product Management'],
+    prompt:'For each customer segment, compare actual feature adoption against the segment\'s success profile (features that correlate with renewal). Identify the 3 features with the largest adoption gap. For each, list the accounts that have not adopted, their ARR, and an estimated revenue-at-risk if non-adoption continues. Recommend a campaign and the play per gap.' },
+  { title:'Save Play Eligibility List',
+    teams:['Customer Success','Account Management'],
+    prompt:'For every account flagged at-risk this quarter, evaluate eligibility for each save play (training boost, exec sponsor intro, custom integration, discount-and-extend, executive air cover). Score each play by fit (history with this segment), capacity (effort needed), and ROI (ARR saved per hour). Recommend the single best play per account with the talking points.' },
+  { title:'Health Score Model Tuning',
+    teams:['Customer Success','Data Analytics'],
+    prompt:'Back-test the current health score model against the last 12 months of renewals: at score X, what fraction actually renewed? Compute lift, precision, and recall by score band. Identify the most over- and under-weighted input signals. Recommend a new weighting and show the projected improvement in early at-risk detection (lead time before churn).' },
+  { title:'Customer Segmentation Model',
+    teams:['Data Analytics','Marketing'],
+    prompt:'Build an unsupervised customer segmentation using: ARR tier, industry, company size, product mix, usage depth, and tenure. Aim for 5-7 clusters that maximize within-cluster similarity. For each cluster, output: persona summary, top 3 features used, top 3 features unused, average expansion rate, churn rate, and the marketing/CS play that best fits.' },
+  { title:'Metric Anomaly Detection Sweep',
     teams:['Data Analytics','Business Intelligence'],
-    sources:['snowflake','bigquery','salesforce','hubspot','google-analytics'],
-    prompt:'Audit every connected data source: last successful sync, rows ingested in last 24h, deviation from 7-day baseline, and any error rate. Output a status board with red/yellow/green per source and a top-3 list of sources that need attention today.' },
+    prompt:'For every metric on the executive dashboard, run an anomaly check against its trailing 90-day baseline (z-score >2.5 or moving-average breach). Output a daily anomaly report: metric name, current value, expected band, deviation magnitude, and a hypothesis (data pipeline issue / true business change / seasonal effect). Rank by business impact.' },
+  { title:'Causal Impact of Marketing Campaigns',
+    teams:['Data Analytics','Marketing'],
+    prompt:'For each major paid campaign in the last 90 days, build a causal impact model using a synthetic control group (matched non-targeted accounts). Compute the lift in pipeline-created and conversion-rate attributable to the campaign vs the control. Output a per-campaign causal scorecard and recommend which two to scale, which to cut, and which need a longer measurement window.' },
+  { title:'Predictive Churn Risk Model',
+    teams:['Data Analytics','Customer Success'],
+    prompt:'Build a churn-prediction model using: product usage trends, support ticket volume and sentiment, executive engagement frequency, payment history, NPS, and account-tenure. Output: 30/60/90-day churn probability per account, the top three features driving each prediction (SHAP-style), and the segments where the model performs best vs worst.' },
+  { title:'Cohort Retention Curve Generator',
+    teams:['Data Analytics','Product Management'],
+    prompt:'For each signup cohort in the last 12 months, plot a retention curve out to week 26. Compare cohorts on the same chart and identify cohorts that broke the trend (better or worse than expected). Cross-reference with product releases, marketing campaigns, and pricing changes to propose a causal story for the inflection.' },
+  { title:'A/B Test Statistical Significance',
+    teams:['Data Analytics','Product Management'],
+    prompt:'For every currently-running A/B test, compute: sample size per arm, observed lift on the primary metric, current p-value, minimum-detectable-effect, and estimated days remaining to reach significance. Flag tests that have already crossed significance (recommend ship/kill), tests likely to be underpowered (recommend extend or abandon), and tests with concerning guardrail-metric movement.' },
+  { title:'Developer Community Engagement Scorecard',
+    teams:['Developer Marketing'],
+    prompt:'Across GitHub, Slack, Discord, and forum, compute weekly: new community members, returning members, questions asked, questions answered (by us vs by community), average response time, and sentiment. Identify the top 10 most-active community members of the quarter and recommend each for an MVP/advocate program with a personalized outreach hook.' },
+  { title:'Docs Search Analytics',
+    teams:['Developer Marketing','Product Marketing'],
+    prompt:'Pull docs-site search queries from the last 30 days. Identify: top 20 successful searches (high click-through to articles), top 20 zero-result searches (content gap), and top 20 searches followed by a support ticket within 24 hours (docs not solving the problem). Output a docs roadmap with the article to write or improve for each high-impact gap.' },
+  { title:'SDK Adoption Metrics',
+    teams:['Developer Marketing'],
+    prompt:'For each SDK (JS, Python, Go, Ruby), compute: weekly active integrations, npm/pip/etc download trend, GitHub stars trend, version distribution across active integrations, and percentage of integrations stuck on outdated versions. Identify SDKs where the version skew indicates a breaking-change problem and recommend the next migration nudge.' },
+  { title:'GitHub Activity to ARR Correlation',
+    teams:['Developer Marketing','Sales Leadership'],
+    prompt:'Cross-reference GitHub org activity (commits, PRs, issues filed against our SDKs) with CRM ARR. Identify accounts whose engineers are highly active on our repos but whose ARR has flatlined (expansion opportunity), and accounts where engineering activity dropped sharply (early churn signal). Output a joint list for the AE/AM team with the suggested play per account.' },
+  { title:'Developer Event ROI Analysis',
+    teams:['Developer Marketing'],
+    prompt:'For each developer event sponsored in the last 12 months (conference booth, hackathon, meetup, talk), compute attributed signups, attributed activations, attributed accounts created, attributed pipeline ARR, and total cost (sponsorship, travel, swag, content production). Output a ranked event scorecard and recommend the 3 events to sponsor again and the 2 to drop.' },
+  { title:'Community Bug to PR Conversion',
+    teams:['Developer Marketing'],
+    prompt:'For every bug or feature request opened by a community member on GitHub in the last 6 months, track whether it was: ignored, acknowledged by us, fixed by us, fixed by the community (PR merged), or still open. Compute the community-PR conversion rate, average time-to-merge, and identify community members whose PRs are accepted at >80% rate (advocate candidates).' },
+  { title:'Multi-Touch Attribution Deep-Dive',
+    teams:['Marketing','Revenue Operations'],
+    prompt:'For every Closed-Won opportunity this quarter, trace every recorded marketing touchpoint from first-click to close (paid, organic, content, events, webinars, email). Apply a linear, time-decay, and W-shape attribution model in parallel and show the credit distribution by channel under each. Highlight the model where the channel mix changes most and discuss why.' },
+  { title:'Content Engagement by Persona',
+    teams:['Marketing','Product Marketing'],
+    prompt:'For every long-form content asset published in the last 90 days, segment readers by inferred persona (job title + industry). Compute by-persona time-on-page, scroll depth, asset shares, and downstream conversion. Identify the top 3 underperforming assets for the biggest persona (revenue ops) and the top 3 high-performing assets to replicate.' },
+  { title:'SEO Performance by Intent Cluster',
+    teams:['Marketing'],
+    prompt:'Cluster every keyword we rank on by search intent (informational, transactional, navigational, comparison). For each cluster, show: number of keywords ranking, average position, total clicks, total impressions, and click-through rate. Identify the cluster with the best CTR but worst average position (highest-ROI improvement opportunity) and propose 5 page-level optimizations.' },
+  { title:'Webinar to MQL Conversion',
+    teams:['Marketing'],
+    prompt:'For every webinar in the last 12 months, compute: registrants, attendees, attendance rate, MQL conversion rate (within 7/30/90 days), SQL conversion, and downstream pipeline ARR. Compare to the benchmark for the topic category. Identify the topic/format combination that consistently outperforms and recommend the next three webinars to schedule.' },
+  { title:'ABM Target Account Engagement Score',
+    teams:['Marketing','Sales Directors'],
+    prompt:'For every target account in the ABM program, compute an engagement score from: known-account web sessions, content downloads, event interactions, LinkedIn ad engagement, and meeting requests. Bucket into Cold / Warming / Engaged / Active. Output the accounts that moved up at least one bucket this month and the recommended sales play per bucket transition.' },
+  { title:'Email Campaign Performance Benchmark',
+    teams:['Marketing'],
+    prompt:'Across the last 50 marketing emails sent, compute open rate, click rate, click-to-open ratio, unsubscribe rate, and downstream MQL conversion. Segment by campaign type (nurture, product update, event invite, content promotion). Identify the subject-line patterns and send-time windows that consistently outperform and recommend the next test to run.' },
+  { title:'Feature Adoption by Segment',
+    teams:['Product Management'],
+    prompt:'For each major feature shipped in the last 12 months, compute: percentage of accounts that have ever used it, percentage that use it weekly, time-to-first-use from feature availability, and adoption rate by segment (size, industry, persona). Identify features with low adoption in a target segment that should adopt them, and recommend a PMM/CS play to drive adoption.' },
+  { title:'Friction Point Identification',
+    teams:['Product Management'],
+    prompt:'For each step in the core product workflow, compute completion rate, time-to-complete, and rage-click/back-button signals. Identify the three steps where users drop off most. Cross-reference with support tickets and session-replay clusters to attach a probable cause. Output a friction-removal backlog ranked by user impact × estimated effort.' },
+  { title:'Backlog Prioritization by Customer Impact',
+    teams:['Product Management'],
+    prompt:'Across the open Jira backlog, score each item by: number of customer requests linked, total ARR of requesting accounts, severity of related support tickets, and strategic-fit (label-based). Output a re-ranked top 50 backlog with the new score, the previous rank, and a one-line justification for each item that moved up or down by 10+ places.' },
+  { title:'Beta Cohort Behavior Analysis',
+    teams:['Product Management'],
+    prompt:'For the current beta feature, compare beta cohort behavior to a matched control cohort: feature usage, broader product engagement, support ticket rate, NPS shift, and renewal intent (from CSM notes). Determine whether the beta is having a positive, neutral, or negative effect on adjacent metrics and recommend ship/iterate/kill with the supporting evidence.' },
+  { title:'Feature Request Consolidation',
+    teams:['Product Management','Customer Success'],
+    prompt:'Across Zendesk, Intercom, sales calls (Gong), and the product feedback portal, cluster every feature request from the last 90 days. For each cluster, show: total request count, unique-account count, total ARR of requesting accounts, and a 1-line synthesized request. Output the top 20 clusters with a recommended PM-disposition (plan / explore / decline) and rationale.' },
+  { title:'Core Loop Engagement Drill',
+    teams:['Product Management','Data Analytics'],
+    prompt:'For the core product loop (ask question → see answer → save / share / iterate), compute the loop-completion rate per user per week. Segment by tenure, plan, and team-size. Identify the user segment whose loop-completion is highest (model behavior) and the segment whose drop-off is steepest. Recommend the product change most likely to lift the weak segment.' },
+  { title:'Launch Performance Scorecard',
+    teams:['Product Marketing','Marketing'],
+    prompt:'For the most recent launch, compile a 30-60-90 day scorecard: press pickups, social engagement, traffic to the launch page, demo requests, sales-team-flagged opportunities, feature activation rate, and qualitative customer feedback. Compare against the launch goals defined pre-launch. Output what worked, what missed, and three changes to bake into the next launch playbook.' },
+  { title:'Win/Loss Themes by Quarter',
+    teams:['Product Marketing','Sales Leadership'],
+    prompt:'For every Closed-Won and Closed-Lost opportunity this quarter, extract: primary win or loss reason from the CRM, competitor (if any), and customer quote (if available from notes or Gong). Cluster into themes. Output the top 5 win themes and top 5 loss themes with the count, average deal size, and the action item for product, sales, or messaging.' },
+  { title:'Positioning Effectiveness by Segment',
+    teams:['Product Marketing'],
+    prompt:'For each customer segment (startup, mid-market, enterprise), compare what we say (positioning page, sales decks, ad copy) to what customers actually buy us for (Closed-Won win-reason notes, NPS promoter quotes). Score positioning-to-reality fit per segment. Identify the segment with the biggest mismatch and propose three messaging changes to test.' },
+  { title:'Competitive Feature Gap Analysis',
+    teams:['Product Marketing'],
+    prompt:'For each of the top 3 competitors, build a feature parity matrix against our product across 30 capability areas. Score each cell: better / parity / worse / not-applicable. Cross-reference with deal-loss reasons to identify the gaps that actually cost us deals (vs gaps customers do not care about). Output the 5 gaps PM should close first.' },
+  { title:'Customer Story Candidate Identification',
+    teams:['Product Marketing','Customer Success'],
+    prompt:'Identify customers who would make great case studies. Filter by: NPS score 9 or 10, expansion ARR in last year, recognizable brand or compelling persona, public-PR willingness flag in CRM, and at least one quantifiable outcome (cost savings, time savings, revenue lift). Output a ranked list of 15 candidates with the story angle for each and the CSM to recruit them.' },
+  { title:'Sales Enablement Asset Usage',
+    teams:['Product Marketing','Sales Leadership'],
+    prompt:'For every sales asset (deck, one-pager, ROI calculator, demo video, battle card), compute: total downloads in last 90 days, downloads per active rep, attachment to opportunities (where used), and Closed-Won rate on deals where the asset was used vs not used. Identify the top 5 assets to promote and 5 to retire.' },
+  { title:'Pipeline Coverage Forecast',
+    teams:['Revenue Operations','Sales Leadership'],
+    prompt:'For the current quarter, compute pipeline coverage by segment (mid-market vs enterprise): open pipeline ÷ remaining quota. Compare against the segment\'s historical win rate to project a confidence-weighted forecast. Highlight segments where coverage is below 3x and propose the top 3 pipeline-generation moves to close the gap by end-of-month.' },
+  { title:'Deal Stage Conversion Benchmarks',
+    teams:['Revenue Operations'],
+    prompt:'For every deal closed in the last 4 quarters, compute the conversion rate stage-by-stage and the median time spent in each stage. Segment by deal size band and segment. Identify the stage where conversion has the highest variance across reps (biggest coaching opportunity) and the stage where deals decay if they sit too long (biggest process opportunity).' },
+  { title:'Territory Rebalancing Recommendations',
+    teams:['Revenue Operations','Sales Ops'],
+    prompt:'For each territory, compute: account count, total addressable ARR, current pipeline coverage, rep capacity (activities completed vs target), and YTD attainment. Identify territories that are over-served (rep coasting) and under-served (no rep capacity). Propose a rebalancing plan with the specific accounts to move and the projected attainment improvement.' },
+  { title:'Quota Attainment Forecasting',
+    teams:['Revenue Operations','Sales Leadership'],
+    prompt:'For every rep on quota, forecast end-of-quarter attainment using: current commit, current best-case, average historical commit-to-close conversion, days remaining, and weighted pipeline. Output a rep-level forecast (Likely / Stretch / At-Risk), the team-level roll-up, and the gap to plan. Flag reps trending under 60% as the highest-leverage coaching priority.' },
+  { title:'CRM Data Hygiene Audit',
+    teams:['Revenue Operations','Sales Ops'],
+    prompt:'Across Salesforce/HubSpot/Zoho, audit data hygiene: opportunities with missing close date, opportunities >$100k with no next-step, contacts without an account, accounts with no owner, duplicate accounts (by domain), and stale activity (>30 days, deal stage past Discovery). Output a hygiene scorecard by team with the top 5 fixes ranked by impact.' },
+  { title:'Forecast Accuracy by Segment',
+    teams:['Revenue Operations','Sales Leadership'],
+    prompt:'For each segment and each rep, compare the forecast committed at week 1 of the quarter vs actual closed at end-of-quarter, for the last 4 quarters. Compute average over/under-call by rep and segment. Identify segments where commit accuracy is systemically off (under-calling vs over-calling) and recommend the forecast process fix per pattern.' },
+  { title:'Rep Performance Quarterly Ranking',
+    teams:['Sales Directors'],
+    prompt:'Rank every rep on the team this quarter by: total bookings, win rate, average deal size, sales-cycle length, activities per week, and pipeline created. Normalize by territory difficulty. Output a single composite score, the top 3 performers, the bottom 3 (with the gating issue per rep), and one specific coaching focus for the middle quartile.' },
+  { title:'Deal Review Preparation Pack',
+    teams:['Sales Directors'],
+    prompt:'For tomorrow\'s deal review, prepare a 1-page brief on the top 10 deals: account, stage, ARR, days in stage, last activity, last-recorded customer sentiment from Gong, competitive context, two open questions for the rep, and one action the director should approve or block. Surface the deals where the call summary contradicts the CRM stage.' },
+  { title:'Coaching Opportunity Identification',
+    teams:['Sales Directors'],
+    prompt:'Across the team\'s call recordings (Gong) and email threads (Outreach) from the last 30 days, identify the three most-frequent missed-skills patterns: weak discovery questions, premature pricing reveal, no multi-thread ask, weak close. For each, name the reps who exhibit it most and propose a specific micro-coaching exercise per rep.' },
+  { title:'Team-Level Forecast Roll-Up',
+    teams:['Sales Directors'],
+    prompt:'Roll up every rep\'s forecast (Commit / Best Case / Pipeline) into a team-level view. Compute the team commit, team best-case, and the gap-to-plan. Highlight the three deals whose stage change would most move the team forecast and the two reps whose forecast confidence is historically lowest (so weight their commits accordingly).' },
+  { title:'Win Rate by Stage by Rep',
+    teams:['Sales Directors'],
+    prompt:'For each rep on the team, compute win rate at each pipeline stage over the last 4 quarters. Compare to the team median. Identify the rep+stage combinations where the rep is materially below median (highest-leverage coaching) and the rep+stage combinations where the rep is materially above (skills to extract and teach the rest of the team).' },
+  { title:'Activity-to-Pipeline Ratio per Rep',
+    teams:['Sales Directors'],
+    prompt:'For each rep, compute the ratio of activities (calls, emails, meetings) per dollar of pipeline created in the last 90 days. Compare against team baseline. Identify reps with high activity but low pipeline yield (effectiveness gap) vs low activity but reasonable yield (capacity for more) and propose the coaching or quota assignment that matches.' },
+  { title:'Deal Next-Step Prioritization',
+    teams:['Sales Execution','Sales Reps'],
+    prompt:'For every open opportunity this week, output the single highest-leverage next step: who to contact, what to ask or offer, and the deadline. Rank the list by deal value × stage-progression probability. Flag deals where the next step has been "send proposal" for >5 days (likely silence after pricing — needs a different move).' },
+  { title:'Stalled Deal Re-Engagement Plan',
+    teams:['Sales Execution'],
+    prompt:'For every opportunity with no activity in 14+ days, classify the silence cause from the last interaction: pricing pushback, technical question pending, champion moved roles, exec sponsor unavailable, or competitive shootout. For each cause, recommend a specific re-engagement message and the appropriate sender (rep, manager, exec sponsor).' },
+  { title:'Multi-Thread Coverage Analysis',
+    teams:['Sales Execution'],
+    prompt:'For every active deal >$50k, count the number of unique contacts engaged in the last 30 days and their roles (champion, decision maker, end user, finance, security, IT, exec sponsor). Flag deals with fewer than 3 contacts or missing decision-maker engagement. Recommend the next stakeholder to introduce per deal.' },
+  { title:'Buying Committee Map',
+    teams:['Sales Execution'],
+    prompt:'For each active enterprise opportunity, infer the buying committee from CRM contacts, LinkedIn, and recent call mentions. Place each member on a 2x2: influence (high/low) × stance (champion/neutral/blocker). Identify the missing committee role (most likely Finance or Security) and the play to engage them before the next deal stage.' },
+  { title:'Mutual Action Plan Progress',
+    teams:['Sales Execution'],
+    prompt:'For every deal with a Mutual Action Plan attached, compute milestone completion percentage, milestones blocked, milestones slipped, and the rep-vs-customer responsibility balance. Flag plans where the rep is doing >70% of the work (champion not really bought in) and plans behind by >5 days. Recommend the executive air cover or escalation per case.' },
+  { title:'Competitive Deal Positioning Brief',
+    teams:['Sales Execution'],
+    prompt:'For every active deal where a competitor is mentioned in CRM notes or Gong transcripts, identify the competitor and the customer\'s evaluation criteria. Pull our historical win-rate vs that competitor at that deal size, the top 3 winning differentiators, and the top 3 reasons we lose. Output a deal-specific positioning brief for the AE.' },
+  { title:'Quarterly Business Review Data Pack',
+    teams:['Sales Leadership'],
+    prompt:'Prepare the QBR data pack for the leadership team: total bookings vs plan, pipeline coverage, segment-level performance, rep ranking, win-rate trends, sales-cycle trends, win/loss themes, top 10 deals to watch, and the three biggest risks to next quarter. Format as a slide-ready 12-page deck with one chart and one takeaway per slide.' },
+  { title:'Plan-to-Actual Variance Analysis',
+    teams:['Sales Leadership'],
+    prompt:'For the current quarter, compute plan-to-actual variance by: segment, geography, product line, rep, and channel. For every variance >10%, attribute to the dominant cause (pipeline gap, win-rate gap, deal-size gap, cycle-length gap). Output the top three variance drivers, the dollar magnitude, and the recovery move to make in the next 30 days.' },
+  { title:'Productivity per Rep Trend',
+    teams:['Sales Leadership'],
+    prompt:'Plot productivity per rep (bookings ÷ headcount) over the last 8 quarters, segmented by tenure band. Identify the inflection where productivity tends to plateau and the tenure where productivity starts to decline (flight risk). Propose the headcount, enablement, or compensation change that addresses the dominant trend.' },
+  { title:'Segment-Level Pipeline Strategy',
+    teams:['Sales Leadership'],
+    prompt:'For each segment (SMB, mid-market, enterprise), assess: pipeline-to-plan ratio, average deal size trend, win-rate trend, and channel mix. Identify the segment with the strongest momentum (where to invest more pipeline-gen) and the segment that is decaying (where to investigate the cause). Recommend an investment-rebalancing move.' },
+  { title:'Compensation Plan Effectiveness',
+    teams:['Sales Leadership','Sales Ops'],
+    prompt:'For each comp plan component (base, commission rate, accelerators, SPIFFs), compute: cost as a percentage of bookings, behavior change attributable to it, and rep satisfaction signal. Identify the components driving the most desired behavior per dollar and the components with high cost but no measurable behavior change. Recommend two changes for next year\'s plan.' },
+  { title:'Headcount Investment ROI',
+    teams:['Sales Leadership'],
+    prompt:'For every new sales hire in the last 18 months, compute time-to-ramp, time-to-first-deal, time-to-quota, cumulative bookings, and ROI vs fully-loaded cost. Segment by source (referral, recruiter, internal transfer). Identify the source that produces the best-yielding hires and recommend the next 6 hires to prioritize by role.' },
+  { title:'Territory Load Balance Audit',
+    teams:['Sales Ops','Revenue Operations'],
+    prompt:'For every territory, compute: total addressable ARR, account count, named-account count, open pipeline, and current rep capacity vs target activity volume. Identify the top 3 territories that are under-resourced and the bottom 3 that are over-resourced. Propose a specific account-move plan with the dollar-yield projection per move.' },
+  { title:'Comp Plan Back-Test',
+    teams:['Sales Ops'],
+    prompt:'Take the proposed comp plan for next year and back-test it against the last 4 quarters of actual rep performance. For each rep, compute what they would have earned under the new plan vs the current plan, and the behavior shift the new plan would have incentivized. Identify reps who win/lose and propose plan tweaks to avoid unintended consequences.' },
+  { title:'SPIFF Effectiveness Analysis',
+    teams:['Sales Ops'],
+    prompt:'For every SPIFF run in the last 12 months, compute: bookings during the SPIFF window vs the trailing 4-week baseline, attribution of bookings to the SPIFF\'s targeted product or segment, cost of payouts, and behavior persistence after the SPIFF ended. Identify the SPIFF formats that produce lasting behavior change vs one-time spikes.' },
+  { title:'Lead Routing Audit',
+    teams:['Sales Ops','Marketing'],
+    prompt:'Audit the lead-routing rules: median time-to-claim by source, percentage of leads with no first-touch in 24h, mis-routes (lead handed to a rep whose territory does not own the account), and unowned/queue leads. Identify the three rule changes that would have improved time-to-claim by >50% in the last 30 days.' },
+  { title:'Forecast Call Accuracy Trend',
+    teams:['Sales Ops','Revenue Operations'],
+    prompt:'For every forecast call in the last 6 quarters, compare week-1 commit, week-8 commit, and actual final. Compute per-rep over-call and under-call rates. Identify reps whose commits are systematically optimistic (need pressure-testing) vs sandbaggers (need to be unblocked). Output a forecast-confidence scorecard for the leadership team.' },
+  { title:'Pipeline Waterfall Report',
+    teams:['Sales Ops','Revenue Operations'],
+    prompt:'Build the quarterly pipeline waterfall: starting pipeline, new pipeline created, pipeline progressed in, pipeline progressed out, pipeline pushed to next quarter, pipeline lost, pipeline won. Segment by source and rep. Output the waterfall chart, the largest contributor to net pipeline change, and the three opportunities most likely to slip if no action is taken.' },
+  { title:'Today\'s Priority Action List',
+    teams:['Sales Reps'],
+    prompt:'For my book this morning, output the top 10 actions to take today, ranked by impact: deals that need a next step before they stall, leads that just hit a high-intent trigger, accounts whose champion just changed roles, and follow-ups overdue from last week. Include one suggested message template per action.' },
+  { title:'My Deal-by-Deal Mini Forecast',
+    teams:['Sales Reps'],
+    prompt:'For every deal in my open pipeline, compute my own confidence-weighted forecast: stage probability × ARR × my-rep-specific historical conversion-by-stage. Show me the gap to quota and the three deals whose progression would most close that gap. Recommend the next move per deal in plain English.' },
+  { title:'Prospect Research Dossier',
+    teams:['Sales Reps'],
+    prompt:'For the prospect I am meeting tomorrow, build a 1-page dossier: company size, recent funding, hiring signals, tech stack, recent product launches or pivots, my personal connections, LinkedIn activity, role-specific pain points, and three opening questions I can ask. Pull from public web, LinkedIn, and any prior CRM history.' },
+  { title:'Outreach Personalization Hooks',
+    teams:['Sales Reps'],
+    prompt:'For the 25 contacts on this week\'s outbound list, find one strong personalization hook each: recent job change, recent podcast appearance, public LinkedIn post in my topic area, mutual connection, or referenced article. Output the hook plus a one-line opening message I can paste into the sequence.' },
+  { title:'Email Response Rate Analysis',
+    teams:['Sales Reps'],
+    prompt:'For my outbound emails in the last 60 days, compute: open rate, reply rate, positive-reply rate, and meeting-booked rate by subject-line pattern, send time, and persona. Identify the two patterns that consistently outperform for me personally (not the team average) and the two templates I should retire.' },
+  { title:'Time-Allocation Self Report',
+    teams:['Sales Reps'],
+    prompt:'For the last 4 weeks, classify every recorded activity into selling time (calls, meetings, prep), CRM/admin time, internal meetings, and pipeline-generation. Compute the percentages and compare to the top-performer baseline on the team. Identify the single time-allocation shift most likely to move me up one performance quartile.' },
 ];
 
 /* ── PROMPT LIBRARY SIDEBAR ── */
-function PromptLibrarySidebar({ selectedTeams, toggleTeam, selectedSources, toggleSource, clearAll }) {
+function PromptLibrarySidebar({ selectedTeams, toggleTeam, clearAll }) {
   const [openTeams, setOpenTeams] = useState(true);
-  const [openSources, setOpenSources] = useState(true);
-  const total = selectedTeams.size + selectedSources.size;
+  const total = selectedTeams.size;
 
   const groupHeader = (label, open, setOpen) => (
     <button
@@ -546,22 +777,6 @@ function PromptLibrarySidebar({ selectedTeams, toggleTeam, selectedSources, togg
         )}
       </div>
 
-      {/* Data Sources second */}
-      <div style={{ marginBottom:'10px' }}>
-        {groupHeader('Data Sources', openSources, setOpenSources)}
-        {openSources && (
-          <div style={{ padding:'2px 0 8px' }}>
-            {DATA_SOURCES.map(src =>
-              checkboxItem(
-                src.name,
-                selectedSources.has(src.id),
-                () => toggleSource(src.id),
-                <span style={{ flexShrink:0, display:'inline-flex' }}><DataSourceIcon id={src.id} size={12}/></span>
-              )
-            )}
-          </div>
-        )}
-      </div>
     </aside>
   );
 }
@@ -589,9 +804,6 @@ function PromptCard({ entry, index }) {
           </h3>
           <div style={{ display:'flex', flexWrap:'wrap', gap:'6px', marginBottom:'10px' }}>
             {entry.teams.map(t => <span key={t} className="team-pill">{t}</span>)}
-          </div>
-          <div style={{ display:'flex', flexWrap:'wrap', gap:'6px', alignItems:'center' }}>
-            {entry.sources.map(s => <DataSourceIcon key={s} id={s} size={11}/>)}
           </div>
         </div>
         <button
@@ -1170,7 +1382,6 @@ function AIAssistantPanel({ query, onClose }) {
 /* ── APP ── */
 function App() {
   const [selectedTeams, setSelectedTeams] = useState(() => new Set());
-  const [selectedSources, setSelectedSources] = useState(() => new Set());
   const [query, setQuery] = useState('');
   const [searchFocused, setSearchFocused] = useState(false);
   const [assistantQuery, setAssistantQuery] = useState(null);
@@ -1180,23 +1391,16 @@ function App() {
     if (next.has(team)) next.delete(team); else next.add(team);
     return next;
   });
-  const toggleSource = (id) => setSelectedSources(prev => {
-    const next = new Set(prev);
-    if (next.has(id)) next.delete(id); else next.add(id);
-    return next;
-  });
-  const clearAll = () => { setSelectedTeams(new Set()); setSelectedSources(new Set()); setQuery(''); };
+  const clearAll = () => { setSelectedTeams(new Set()); setQuery(''); };
 
   const q = query.trim().toLowerCase();
   const filtered = PROMPTS.filter(p => {
     if (selectedTeams.size && !p.teams.some(t => selectedTeams.has(t))) return false;
-    if (selectedSources.size && !p.sources.some(s => selectedSources.has(s))) return false;
     if (!q) return true;
     return (
       p.title.toLowerCase().includes(q) ||
       p.prompt.toLowerCase().includes(q) ||
-      p.teams.some(t => t.toLowerCase().includes(q)) ||
-      p.sources.some(s => s.toLowerCase().includes(q))
+      p.teams.some(t => t.toLowerCase().includes(q))
     );
   });
 
@@ -1209,8 +1413,6 @@ function App() {
         <PromptLibrarySidebar
           selectedTeams={selectedTeams}
           toggleTeam={toggleTeam}
-          selectedSources={selectedSources}
-          toggleSource={toggleSource}
           clearAll={clearAll}
         />
         <div className="prompt-content">
