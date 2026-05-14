@@ -1357,30 +1357,9 @@ function Footer() {
             <div>
               <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Platform</h4>
               <ul className="flex flex-col gap-2.5">
-                {['AI Chat', 'Integrations', 'Semantic Layer', 'AI Connect', 'Advanced Reports', 'Memory & Storage'].map(link => {
-                  const isComingSoon = ['AI Connect', 'Advanced Reports', 'Memory & Storage'].includes(link);
-                  const isNotClickable = ['AI Connect', 'Advanced Reports'].includes(link);
-                  const badge = (
-                    <span style={{fontSize:'10px', fontWeight:500, letterSpacing:'0.04em', padding:'1px 6px', borderRadius:'4px', background:'rgba(10,152,150,0.12)', border:'1px solid rgba(10,152,150,0.3)', color:'#0EC4C1', whiteSpace:'nowrap'}}>Coming Soon</span>
-                  );
-                  if (isComingSoon) {
-                    return (
-                      <li key={link}>
-                        <span className="flex items-center gap-2 whitespace-nowrap">
-                          {isNotClickable ? (
-                            <span className="text-sm text-[#A0A0B8]" style={{cursor:'default'}}>{link}</span>
-                          ) : (
-                            <a href={linkUrls[link] || '#'} className="text-sm text-[#A0A0B8] hover:text-white transition-colors">{link}</a>
-                          )}
-                          {badge}
-                        </span>
-                      </li>
-                    );
-                  }
-                  return (
-                    <li key={link}><a href={linkUrls[link] || '#'} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}</a></li>
-                  );
-                })}
+                {['AI Chat', 'Integrations', 'Semantic Layer'].map(link => (
+                  <li key={link}><a href={linkUrls[link] || '#'} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}</a></li>
+                ))}
               </ul>
             </div>
 
