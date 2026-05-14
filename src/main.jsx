@@ -879,12 +879,25 @@ function Architecture() {
     { d: 'M77,90 Q90,70 100,54' },   // AWS → right
   ];
 
+  const ClockIcon = ({ size = 16, color = 'var(--ins-color-teal-500)' }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M12 7v5l3 2"/>
+    </svg>
+  );
+  const WandIcon = ({ size = 16, color = 'var(--ins-color-teal-500)' }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M15 4l-1 2-2 1 2 1 1 2 1-2 2-1-2-1z"/>
+      <path d="M9 11l-6 9 9-6"/>
+      <path d="M14 9l1 1"/>
+    </svg>
+  );
   const outputs = [
     { icon: <ZapIcon size={16} color="var(--ins-color-teal-500)" />, title: 'Answers in Seconds', desc: 'X3 accuracy' },
     { icon: <LayersIcon size={16} color="var(--ins-color-teal-500)" />, title: 'Semantic Layer', desc: 'One Trusted Source of Data' },
-    { icon: <BrainIcon size={16} color="var(--ins-color-teal-500)" />, title: 'AI Powered Insights', desc: 'Deep dive in your data' },
-    { icon: <BellIcon size={16} color="var(--ins-color-teal-500)" />, title: 'Proactive Signals', desc: 'Auto-detected' },
-    { icon: <UsersIcon size={16} color="var(--ins-color-teal-500)" />, title: 'Collaborative Analytics', desc: 'Work with Your Team' },
+    { icon: <LinkIcon size={16} color="var(--ins-color-teal-500)" />, title: '200+ Data Connectors', desc: 'Plug into any source' },
+    { icon: <WandIcon size={16} color="var(--ins-color-teal-500)" />, title: 'No-Code Setup', desc: 'Live in minutes, not months' },
+    { icon: <ClockIcon size={16} color="var(--ins-color-teal-500)" />, title: 'Real-Time Info', desc: 'Always up to date' },
   ];
 
   return (
