@@ -351,7 +351,7 @@ function ConnectionChatAnimation() {
   const SOURCES = [
     {name:'HubSpot',    slug:'hubspot',        domain:'hubspot.com',    color:'#FF7A59', desc:'CRM'},
     {name:'Stripe',     slug:'stripe',         domain:'stripe.com',     color:'#635BFF', desc:'Payments'},
-    {name:'Salesforce', slug:'salesforce',     domain:'salesforce.com', color:'#00A1E0', desc:'CRM'},
+    {name:'Zoho CRM',   slug:'zoho',           domain:'zoho.com',       color:'#E42527', desc:'CRM'},
     {name:'PostgreSQL', slug:'postgresql',     domain:'postgresql.org', color:'#4169E1', desc:'Database'},
     {name:'BigQuery',   slug:'googlebigquery', domain:null,             color:'#669DF6', desc:'Warehouse'},
     {name:'Snowflake',  slug:'snowflake',      domain:'snowflake.com',  color:'#29B5E8', desc:'Warehouse'},
