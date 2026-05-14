@@ -1,207 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="stylesheet" href="/assets/responsive.css">
-<title>For RevOps &amp; BizOps — Insightis</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Geist', sans-serif;
-  background: #0A0E13;
-  color: #E8F2F5;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-body::before {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  opacity: .4; mix-blend-mode: overlay;
-}
-
-body::after {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 10% 5%, rgba(10,152,150,.09) 0%, transparent 70%),
-    radial-gradient(ellipse 70% 55% at 85% 0%, rgba(110,60,200,.07) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 60% at 75% 45%, rgba(20,80,200,.05) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 55% at 5% 55%, rgba(160,50,220,.045) 0%, transparent 65%),
-    radial-gradient(ellipse 65% 55% at 50% 90%, rgba(10,152,150,.07) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 45% at 95% 75%, rgba(50,90,240,.04) 0%, transparent 55%),
-    radial-gradient(ellipse 45% 40% at 35% 30%, rgba(200,60,180,.03) 0%, transparent 55%);
-}
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-@keyframes fadeIn { from{opacity:0} to{opacity:1} }
-@keyframes typing { from{width:0} to{width:100%} }
-@keyframes blink  { 0%,100%{opacity:1} 50%{opacity:0} }
-@keyframes slideUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
-@keyframes pulse  { 0%,100%{opacity:.4;transform:scale(.85)} 50%{opacity:1;transform:scale(1)} }
-@keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
-@keyframes marquee-left { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-.marquee-left { animation: marquee-left 40s linear infinite; }
-.marquee-container:hover .marquee-left { animation-play-state: paused; }
-
-.fu0 { animation: fadeUp .7s ease both; }
-.fu1 { animation: fadeUp .7s ease .1s both; }
-.fu2 { animation: fadeUp .7s ease .2s both; }
-.fu3 { animation: fadeUp .7s ease .35s both; }
-.fu4 { animation: fadeUp .7s ease .5s both; }
-
-/* ── CHAT MOCK ── */
-.chat-bubble-user {
-  background: rgba(9,160,157,0.12);
-  border: 1px solid rgba(9,160,157,0.25);
-  border-radius: 16px 16px 4px 16px;
-  padding: 10px 14px;
-  font-size: 13.5px;
-  color: #E8F2F5;
-  align-self: flex-end;
-  max-width: 85%;
-}
-.chat-bubble-ai {
-  background: rgba(255,255,255,0.038);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 4px 16px 16px 16px;
-  padding: 12px 14px;
-  font-size: 13.5px;
-  color: #C0D4DC;
-  align-self: flex-start;
-  max-width: 95%;
-  line-height: 1.6;
-}
-
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
-
-/* ── SECTION SPACING ── */
-section { position: relative; }
-
-/* ── COMPARISON CARDS ── */
-.compare-card {
-  border-radius: 16px;
-  padding: 28px;
-  flex: 1;
-}
-
-/* ── QUESTION PILL ── */
-.q-pill {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 8px 14px; border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.07);
-  background: rgba(255,255,255,0.03);
-  font-size: 13px; color: #7FA0AC;
-  cursor: pointer; transition: all .15s;
-  white-space: nowrap;
-}
-.q-pill:hover {
-  border-color: rgba(9,160,157,0.4);
-  color: #E8F2F5;
-  background: rgba(9,160,157,0.06);
-}
-.q-pill.active {
-  border-color: rgba(9,160,157,0.5);
-  color: #0EC4C1;
-  background: rgba(9,160,157,0.08);
-}
-
-/* ── METRIC PILL ── */
-.metric-pill {
-  padding: 8px 16px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.07);
-  background: rgba(255,255,255,.03);
-  font-size: 13px;
-  color: #7FA0AC;
-  font-family: 'Geist Mono', monospace;
-  cursor: default;
-  transition: all .15s;
-}
-.metric-pill:hover {
-  border-color: rgba(9,160,157,.4);
-  color: #0EC4C1;
-  background: rgba(9,160,157,.06);
-}
-
-/* ── CONNECTOR CARD ── */
-.connector-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
-  background: rgba(255,255,255,.025);
-  border: 1px solid rgba(255,255,255,.06);
-  border-radius: 12px;
-  transition: all .18s ease;
-  cursor: default;
-}
-.connector-card:hover {
-  background: rgba(255,255,255,.05);
-  border-color: rgba(255,255,255,.12);
-  transform: translateY(-1px);
-}
-.connector-icon {
-  width: 36px; height: 36px;
-  border-radius: 9px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  font-size: 10px; font-weight: 500;
-  font-family: 'Geist Mono', monospace;
-  letter-spacing: -.02em;
-}
-
-@media (max-width: 768px) {
-  [data-hero-grid] { grid-template-columns: 1fr !important; }
-  [data-gallery-grid] {
-    grid-template-columns: 1fr !important;
-    min-height: auto !important;
-  }
-  [data-gallery-left] {
-    flex-direction: row !important;
-    overflow-x: auto !important;
-    border-right: none !important;
-    border-bottom: 1px solid rgba(255,255,255,.05) !important;
-    padding: 12px !important;
-    gap: 8px !important;
-  }
-  [data-gallery-left] > div { flex-direction: row !important; gap: 8px !important; }
-  [data-gallery-left] > div > div {
-    flex: none !important;
-    padding: 8px 14px !important;
-    border-bottom: none !important;
-    border-radius: 999px !important;
-    border: 1px solid rgba(255,255,255,.08) !important;
-    white-space: nowrap !important;
-  }
-  [data-steps-grid] { grid-template-columns: 1fr !important; }
-  [data-pain-grid] { grid-template-columns: 1fr !important; }
-  [data-connectors-grid] { grid-template-columns: repeat(2,1fr) !important; }
-  [data-compare-grid] { grid-template-columns: 1fr !important; }
-  [data-howit-grid] { grid-template-columns: 1fr !important; }
-  [data-cases-grid] { grid-template-columns: 1fr !important; }
-  [data-vs-grid] { grid-template-columns: 1fr !important; }
-}
-</style>
-</head>
-<body>
-
-<div id="root"></div>
-
-<script type="text/babel">
-const { useState, useEffect, useRef } = React;
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import ReactDOM from 'react-dom/client';
+import '../app.css';
 
 /* ── HEADER ── */
 function MenuIcon({ size = 24, color = "#fff" }) {
@@ -695,25 +494,47 @@ const REVOPS_QA = {
 };
 
 /* ── HERO ── */
-function RevOpsHeroIllustration() {
+function MarketingHeroIllustration() {
+  // Funnel data — 5 stages with widths decreasing for the iconic funnel shape
+  const funnel = [
+    { label: 'Visits', value: '124K',  width: 460, fill: 0.85, conv: null },
+    { label: 'Leads',  value: '8.2K',  width: 360, fill: 0.7,  conv: '↓ 6.6% lead capture' },
+    { label: 'MQLs',   value: '2.4K',  width: 270, fill: 0.55, conv: '↓ 29% qualified' },
+    { label: 'SQLs',   value: '980',   width: 190, fill: 0.4,  conv: '↓ 41% sales-accepted' },
+    { label: 'Won',    value: '312',   width: 120, fill: 0.25, conv: '↓ 32% close rate' },
+  ];
+  const barH = 32;
+
+  // Sparkline KPI data (8 weeks each)
+  const sparklines = [
+    { label: 'CAC',  data: [218, 215, 212, 205, 198, 192, 188, 182], cur: '$182', delta: '−16%', color: '#34D399' },
+    { label: 'ROAS', data: [4.8, 4.9, 5.1, 5.4, 5.6, 5.9, 6.2, 6.4],  cur: '6.4×', delta: '+33%', color: '#34D399' },
+    { label: 'MQLs', data: [1820, 1950, 2080, 2150, 2240, 2310, 2360, 2400], cur: '2.4K', delta: '+32%', color: '#34D399' },
+  ];
+
+  const sparkPath = (data, x0, y0, w, h) => {
+    const min = Math.min(...data);
+    const max = Math.max(...data);
+    const range = max - min || 1;
+    return data.map((v, i) => {
+      const x = x0 + (i / (data.length - 1)) * w;
+      const y = y0 + h - ((v - min) / range) * h;
+      return `${i === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)}`;
+    }).join(' ');
+  };
+  const sparkLast = (data, y0, h) => {
+    const min = Math.min(...data);
+    const max = Math.max(...data);
+    const range = max - min || 1;
+    return y0 + h - ((data[data.length - 1] - min) / range) * h;
+  };
+
   return (
     <svg viewBox="0 0 620 540" width="100%" style={{maxWidth:'580px',height:'auto',display:'block',filter:'drop-shadow(0 30px 60px rgba(0,0,0,0.55))'}} aria-hidden="true">
       <defs>
         <linearGradient id="ro_cardBg" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#10171E"/>
           <stop offset="100%" stopColor="#0A0E13"/>
-        </linearGradient>
-        <linearGradient id="ro_kpiBg" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#1A2128" stopOpacity="0.95"/>
-          <stop offset="100%" stopColor="#0F1419" stopOpacity="0.95"/>
-        </linearGradient>
-        <linearGradient id="ro_chartFill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#0EC4C1" stopOpacity="0.45"/>
-          <stop offset="100%" stopColor="#0EC4C1" stopOpacity="0"/>
-        </linearGradient>
-        <linearGradient id="ro_chartStroke" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#0EC4C1"/>
-          <stop offset="100%" stopColor="#34D399"/>
         </linearGradient>
         <radialGradient id="ro_glow" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="#0EC4C1" stopOpacity="0.18"/>
@@ -735,77 +556,115 @@ function RevOpsHeroIllustration() {
         <circle cx="70" cy="62" r="4" fill="#FF5F57" opacity="0.55"/>
         <circle cx="84" cy="62" r="4" fill="#FFBD2E" opacity="0.55"/>
         <circle cx="98" cy="62" r="4" fill="#28C840" opacity="0.55"/>
-        <text x="310" y="66" textAnchor="middle" fontFamily="Geist Mono, monospace" fontSize="11" fill="#7FA0AC">Revenue overview · Last 30 days</text>
-        {/* AI active badge */}
+        <text x="310" y="66" textAnchor="middle" fontFamily="Geist Mono, monospace" fontSize="11" fill="#7FA0AC">Marketing performance · Live</text>
         <rect x="478" y="55" width="76" height="18" rx="5" fill="rgba(9,160,157,0.12)" stroke="rgba(9,160,157,0.35)" strokeWidth="0.5"/>
         <circle cx="488" cy="64" r="2.5" fill="#22C55E"/>
         <text x="496" y="67" fontFamily="Geist Mono, monospace" fontSize="9" fill="#0EC4C1" fontWeight="500">AI active</text>
 
-        {/* KPI tiles */}
-        <g>
-          <rect x="68" y="100" width="156" height="86" rx="11" fill="url(#ro_kpiBg)" stroke="rgba(255,255,255,0.06)"/>
-          <text x="84" y="124" fontFamily="Geist Mono,monospace" fontSize="9" fill="#7FA0AC" letterSpacing="1.5">ARR</text>
-          <text x="84" y="156" fontFamily="Geist,sans-serif" fontSize="24" fill="#E8F2F5" fontWeight="600">$4.2M</text>
-          <path d="M84 173 L88 168 L92 173" stroke="#34D399" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-          <text x="98" y="175" fontFamily="Geist Mono,monospace" fontSize="10" fill="#34D399" fontWeight="500">+12.4%</text>
+        {/* Section title row */}
+        <text x="68" y="112" fontFamily="Geist Mono,monospace" fontSize="10" fill="#7FA0AC" letterSpacing="1.5">CONVERSION FUNNEL · LAST 90 DAYS</text>
+        <text x="552" y="112" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="#0EC4C1" letterSpacing="1">▲ Pipeline +28%</text>
 
-          <rect x="232" y="100" width="156" height="86" rx="11" fill="url(#ro_kpiBg)" stroke="rgba(255,255,255,0.06)"/>
-          <text x="248" y="124" fontFamily="Geist Mono,monospace" fontSize="9" fill="#7FA0AC" letterSpacing="1.5">PIPELINE</text>
-          <text x="248" y="156" fontFamily="Geist,sans-serif" fontSize="24" fill="#E8F2F5" fontWeight="600">$8.7M</text>
-          <path d="M248 173 L252 168 L256 173" stroke="#34D399" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-          <text x="262" y="175" fontFamily="Geist Mono,monospace" fontSize="10" fill="#34D399" fontWeight="500">+8.2%</text>
+        {/* Funnel bars */}
+        {funnel.map((stage, i) => {
+          const barY = 144 + i * (barH + 16);
+          const barX = 310 - stage.width / 2;
+          const textColor = stage.fill >= 0.55 ? '#0A0E13' : '#E8F2F5';
+          return (
+            <g key={i}>
+              <rect x={barX} y={barY} width={stage.width} height={barH} rx="5" fill={`rgba(14,196,193,${stage.fill})`}/>
+              {/* Right-anchored "Stage · Value" */}
+              <text
+                x={barX + stage.width - 14}
+                y={barY + barH / 2 + 4}
+                textAnchor="end"
+                fontFamily="Geist,sans-serif"
+                fontSize="13"
+                fontWeight="600"
+                fill={textColor}
+              >
+                {stage.label} · {stage.value}
+              </text>
+              {/* Conversion arrow text below bar (centered, uses next stage's conv) */}
+              {i < funnel.length - 1 && funnel[i + 1].conv && (
+                <text
+                  x="310"
+                  y={barY + barH + 13}
+                  textAnchor="middle"
+                  fontFamily="Geist Mono,monospace"
+                  fontSize="9"
+                  fill="#7FA0AC"
+                >
+                  {funnel[i + 1].conv}
+                </text>
+              )}
+            </g>
+          );
+        })}
 
-          <rect x="396" y="100" width="156" height="86" rx="11" fill="url(#ro_kpiBg)" stroke="rgba(255,255,255,0.06)"/>
-          <text x="412" y="124" fontFamily="Geist Mono,monospace" fontSize="9" fill="#7FA0AC" letterSpacing="1.5">WIN RATE</text>
-          <text x="412" y="156" fontFamily="Geist,sans-serif" fontSize="24" fill="#E8F2F5" fontWeight="600">32.4%</text>
-          <path d="M412 168 L416 173 L420 168" stroke="#F87171" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-          <text x="426" y="175" fontFamily="Geist Mono,monospace" fontSize="10" fill="#F87171" fontWeight="500">-1.8%</text>
-        </g>
-
-        {/* Revenue trend label */}
-        <text x="68" y="218" fontFamily="Geist Mono,monospace" fontSize="10" fill="#7FA0AC" letterSpacing="1.5">REVENUE TREND</text>
-        <text x="552" y="218" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="#0EC4C1" letterSpacing="1">▲ TRENDING UP</text>
-
-        {/* Grid lines */}
-        <line x1="68" y1="246" x2="552" y2="246" stroke="rgba(255,255,255,0.04)"/>
-        <line x1="68" y1="296" x2="552" y2="296" stroke="rgba(255,255,255,0.04)"/>
-        <line x1="68" y1="346" x2="552" y2="346" stroke="rgba(255,255,255,0.04)"/>
-        <line x1="68" y1="396" x2="552" y2="396" stroke="rgba(255,255,255,0.06)"/>
-
-        {/* Chart fill */}
-        <path d="M 68 380 L 122 360 L 176 350 L 230 320 L 284 312 L 338 290 L 392 278 L 446 258 L 500 238 L 552 220 L 552 396 L 68 396 Z" fill="url(#ro_chartFill)"/>
-        {/* Chart line */}
-        <path d="M 68 380 L 122 360 L 176 350 L 230 320 L 284 312 L 338 290 L 392 278 L 446 258 L 500 238 L 552 220" stroke="url(#ro_chartStroke)" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-        {/* Data points */}
-        <g fill="#0EC4C1" stroke="#0A0E13" strokeWidth="1.5">
-          <circle cx="68" cy="380" r="3"/>
-          <circle cx="122" cy="360" r="3"/>
-          <circle cx="176" cy="350" r="3"/>
-          <circle cx="230" cy="320" r="3"/>
-          <circle cx="284" cy="312" r="3"/>
-          <circle cx="338" cy="290" r="3"/>
-          <circle cx="392" cy="278" r="3"/>
-          <circle cx="446" cy="258" r="3"/>
-          <circle cx="500" cy="238" r="3"/>
-        </g>
-        {/* Highlight latest */}
-        <circle cx="552" cy="220" r="9" fill="#0EC4C1" opacity="0.18"/>
-        <circle cx="552" cy="220" r="4.5" fill="#0EC4C1" stroke="#0A0E13" strokeWidth="2"/>
+        {/* Footer summary */}
+        <text x="552" y="412" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="#7FA0AC" letterSpacing="1">5 stages · 0.25% top-to-won · 32-day cycle</text>
       </g>
 
-      {/* Floating funnel card — bottom-left, partially overlapping */}
-      <g transform="translate(20,360)">
-        <rect x="0" y="0" width="138" height="138" rx="14" fill="rgba(15,20,25,0.97)" stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
-        <text x="16" y="24" fontFamily="Geist Mono,monospace" fontSize="9" fill="#7FA0AC" letterSpacing="1.5">PIPELINE FUNNEL</text>
-        <rect x="16" y="36" width="106" height="16" rx="3" fill="rgba(14,196,193,0.85)"/>
-        <rect x="24" y="58" width="90" height="16" rx="3" fill="rgba(14,196,193,0.62)"/>
-        <rect x="34" y="80" width="68" height="16" rx="3" fill="rgba(14,196,193,0.4)"/>
-        <rect x="46" y="102" width="40" height="16" rx="3" fill="rgba(14,196,193,0.22)"/>
-        <text x="118" y="48" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="#E8F2F5" fontWeight="500">2,400</text>
-        <text x="110" y="70" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="#E8F2F5" fontWeight="500">980</text>
-        <text x="98" y="92" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="#C0D4DC" fontWeight="500">412</text>
-        <text x="82" y="114" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="#C0D4DC" fontWeight="500">133</text>
-        <text x="16" y="130" fontFamily="Geist Mono,monospace" fontSize="8" fill="#7FA0AC">Conversion · 5.5%</text>
+      {/* Floating sparkline KPI card — bottom-left, partially overlapping */}
+      <g transform="translate(14, 358)">
+        <rect x="0" y="0" width="200" height="158" rx="14" fill="rgba(15,20,25,0.97)" stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
+        <text x="14" y="22" fontFamily="Geist Mono,monospace" fontSize="9" fill="#7FA0AC" letterSpacing="1.5">KPI TRENDS · 8 WEEKS</text>
+
+        {sparklines.map((s, i) => {
+          const rowY = 36 + i * 36;
+          const sparkX = 56;
+          const sparkY = rowY;
+          const sparkW = 90;
+          const sparkH = 22;
+          return (
+            <g key={s.label}>
+              <text
+                x="14"
+                y={rowY + 14}
+                fontFamily="Geist Mono,monospace"
+                fontSize="9"
+                fontWeight="600"
+                fill="#E8F2F5"
+                letterSpacing="1"
+              >{s.label}</text>
+              <path
+                d={sparkPath(s.data, sparkX, sparkY, sparkW, sparkH)}
+                stroke="#0EC4C1"
+                strokeWidth="1.5"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <circle
+                cx={sparkX + sparkW}
+                cy={sparkLast(s.data, sparkY, sparkH)}
+                r="2.5"
+                fill="#0EC4C1"
+              />
+              <text
+                x="186"
+                y={rowY + 10}
+                textAnchor="end"
+                fontFamily="Geist Mono,monospace"
+                fontSize="9"
+                fontWeight="600"
+                fill="#E8F2F5"
+              >{s.cur}</text>
+              <text
+                x="186"
+                y={rowY + 22}
+                textAnchor="end"
+                fontFamily="Geist Mono,monospace"
+                fontSize="8"
+                fill={s.color}
+              >{s.delta}</text>
+            </g>
+          );
+        })}
+
+        {/* Footer */}
+        <text x="14" y="148" fontFamily="Geist Mono,monospace" fontSize="8" fill="#7FA0AC">All trending in your favor</text>
       </g>
 
       {/* Floating AI insight card — bottom-right, partially overlapping */}
@@ -816,9 +675,9 @@ function RevOpsHeroIllustration() {
           <text x="11" y="16" textAnchor="middle" fontFamily="Geist Mono,monospace" fontSize="10" fontWeight="600" fill="#0EC4C1">AI</text>
         </g>
         <text x="48" y="26" fontFamily="Geist Mono,monospace" fontSize="9" fill="#0EC4C1" fontWeight="500" letterSpacing="1">INSIGHT · LIVE</text>
-        <text x="48" y="46" fontFamily="Geist,sans-serif" fontSize="12" fill="#E8F2F5" fontWeight="500">Enterprise pipeline grew</text>
-        <text x="48" y="62" fontFamily="Geist,sans-serif" fontSize="12" fill="#E8F2F5" fontWeight="500">23% this quarter.</text>
-        <text x="48" y="78" fontFamily="Geist Mono,monospace" fontSize="9" fill="#7FA0AC">2 churn risks flagged →</text>
+        <text x="48" y="46" fontFamily="Geist,sans-serif" fontSize="12" fill="#E8F2F5" fontWeight="500">Lead capture hit 6.6% —</text>
+        <text x="48" y="62" fontFamily="Geist,sans-serif" fontSize="12" fill="#E8F2F5" fontWeight="500">top of funnel widening.</text>
+        <text x="48" y="78" fontFamily="Geist Mono,monospace" fontSize="9" fill="#7FA0AC">CAC −16% · ROAS +33% →</text>
       </g>
     </svg>
   );
@@ -858,7 +717,7 @@ function Hero() {
                 marginBottom:'24px',
               }}>
                 <span style={{color:'#E8F2F5'}}>AI analytics for </span>
-                <span style={{color:'#0EC4C1'}}>RevOps &amp; BizOps</span>
+                <span style={{color:'#0EC4C1'}}>CMOs &amp; Marketers</span>
               </h1>
 
               <p className="fu2" style={{
@@ -868,7 +727,7 @@ function Hero() {
                 marginBottom:'36px',
                 maxWidth:'520px',
               }}>
-                Ask revenue questions in plain English. Insightis answers instantly from your CRM, billing, and product data — no SQL, no dashboards to build.
+                Live answers about every campaign, channel, and dollar of spend. Ask in plain English — ROAS, CAC, attribution, funnel — and stop running the team off Monday-morning data dumps.
               </p>
 
               <div className="fu3">
@@ -890,7 +749,7 @@ function Hero() {
 
           {/* Right: static SVG illustration */}
           <div className="fu2" style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-            <RevOpsHeroIllustration/>
+            <MarketingHeroIllustration/>
           </div>
         </div>
       </div>
@@ -1034,28 +893,28 @@ function IntegrationsStrip() {
 function PainPoints() {
   const pains = [
     {
-      title: 'Pipeline visibility takes days',
-      desc: 'Pulling Salesforce, cross-referencing Stripe, reconciling in spreadsheets — by the time the report is done, the data is stale.',
+      title: 'Attribution lives in three tools',
+      desc: 'Google Analytics, the ads platforms, and the CRM each report a different number. Every Monday review starts with deciding which one to trust this week.',
     },
     {
-      title: 'Revenue metrics never match',
-      desc: 'Marketing says MRR is $48K. Finance says $46.5K. The board says $47.2K — nobody agrees because every team calculates it differently.',
+      title: 'ROAS dashboards refresh weekly',
+      desc: 'Spend decisions get made on data that\'s four to seven days old. By the time a campaign tanks, most of the budget is already burnt.',
     },
     {
-      title: 'Forecasting is pure guesswork',
-      desc: 'Without real-time pipeline data correlated with historical close rates, revenue forecasts become quarterly guesses — not data-driven calls.',
+      title: 'Funnel breaks are invisible',
+      desc: 'MQL → SQL drop-offs only surface in the monthly QBR. By then the lost pipeline is already a hole in next quarter\'s number — and nobody saw it forming.',
     },
     {
-      title: 'Cross-source analysis is impossible',
-      desc: 'Correlating CRM with billing and product usage requires SQL, an analyst, and a two-week turnaround — by then the question has moved on.',
+      title: 'Pipeline credit gets fought over',
+      desc: 'Sales says marketing took the leads. Marketing says sales fumbled them. Nobody can prove either side because the attribution model lives in a slide deck.',
     },
     {
-      title: 'Reports are always out of date',
-      desc: 'By the time a dashboard is built and shared, the data has shifted. Static reports create a false sense of confidence in the room.',
+      title: 'Campaign learnings come too late',
+      desc: 'By the time the analyst pulls cohort lift for the Q3 campaign, Q4 has already kicked off — repeating mistakes nobody had time to surface in time.',
     },
     {
-      title: 'Leadership questions go unanswered',
-      desc: 'When the CEO asks "Why did churn spike?" you need the answer in seconds — not after a Jira ticket and a tired weekend analyst.',
+      title: 'CAC creep shows up at quarter-end',
+      desc: 'Channel-level CAC drift hides under blended numbers until close. The board asks why CAC is up 30% — and the answer takes a week.',
     },
   ];
 
@@ -1068,7 +927,7 @@ function PainPoints() {
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#F87171',fontFamily:'Geist Mono,monospace'}}>The Problem</span>
           </div>
           <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
-            RevOps is drowning in manual work
+            Marketing decisions wait on the data team
           </h2>
           <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'480px',margin:'0 auto',lineHeight:1.65}}>
             Sound familiar? These are the problems Insightis eliminates.
@@ -1147,7 +1006,7 @@ function MidCTA() {
           marginBottom:'32px',
           whiteSpace:'nowrap',
         }}>
-          <span style={{color:'#E8F2F5'}}>Stop reconciling spreadsheets. </span>
+          <span style={{color:'#E8F2F5'}}>Skip the Monday review. </span>
           <span style={{color:'#0EC4C1'}}>Start asking.</span>
         </h2>
         <div style={{display:'flex',justifyContent:'center'}}>
@@ -1177,27 +1036,27 @@ function HowItWorks() {
   const steps = [
     {
       n: '01',
-      title: 'Connect every revenue source',
-      desc: 'Salesforce, HubSpot, Stripe, warehouse — wire them in once. Insightis keeps everything in sync, no ETL needed.',
-      example: 'Salesforce + Stripe → unified',
+      title: 'Stitch every channel together',
+      desc: 'Pipe every ad platform, GA4, HubSpot, and CRM into one live feed. Spend and revenue stay reconciled without engineering.',
+      example: 'Google Ads + Meta → live feed',
     },
     {
       n: '02',
-      title: 'Certify the metrics that matter',
-      desc: 'Define MRR, Win Rate, CAC once. Trust them everywhere. The semantic layer ends the spreadsheet debate forever.',
-      example: 'MRR + CAC → certified ✓',
+      title: 'Lock in one attribution model',
+      desc: 'Encode CAC, ROAS, attribution, and funnel stages in a shared layer. Every team pulls the same number — every time.',
+      example: 'ROAS + CAC → one model',
     },
     {
       n: '03',
-      title: 'Ask anything in plain English',
-      desc: 'Type a revenue question, get a live chart with sources cited. Drop it into Slack — no analyst queue.',
-      example: '"Why did MRR drop?" → @MRR −$1.2K',
+      title: 'Ship answers in seconds',
+      desc: 'Type a campaign question. Insightis renders a live chart with sources cited. No analyst, no dashboard wait.',
+      example: '"Best ROAS?" → LinkedIn 6.3×',
     },
     {
       n: '04',
-      title: 'Run pipeline reviews on live data',
-      desc: 'Show up to QBRs and forecast calls with charts that update in the room. Argue strategy, not whose number is correct.',
-      example: 'QBR deck → live, no rebuild',
+      title: 'Reallocate spend the same day',
+      desc: 'Spot a tanking channel mid-campaign? Shift budget the same day. Catch a breakout? Double down on it.',
+      example: 'Meta CAC ↑ → shift to LinkedIn',
     },
   ];
 
@@ -1210,10 +1069,10 @@ function HowItWorks() {
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>The Solution</span>
           </div>
           <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
-            Connect data. Certify metrics. Ask anything.
+            Wire channels. Anchor metrics. Steer spend.
           </h2>
           <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'640px',margin:'0 auto',lineHeight:1.65}}>
-            Three steps from raw revenue data to answers your team can act on.
+            Three moves from disconnected channel data to live decisions on every dollar.
           </p>
         </div>
 
@@ -1291,10 +1150,10 @@ function BeforeAfter() {
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>The old way VS Insightis</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
-            Pipeline reviews at the speed of standup
+            Campaign answers at the speed of the spend
           </h2>
           <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'640px',margin:'0 auto',lineHeight:1.65}}>
-            Trade two-day SQL pulls for live charts in seconds — no analyst tax.
+            Trade weekly performance reviews for live attribution — react before the budget is gone.
           </p>
         </div>
 
@@ -1307,12 +1166,12 @@ function BeforeAfter() {
             </div>
             <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'12px'}}>
               {[
-                'Pipeline reports take 2–3 days to build',
-                'Revenue metrics differ between teams',
-                'Forecast accuracy under 70%',
-                'Cross-source analysis requires SQL + analyst',
-                'Board deck prep takes a full week',
-                'Questions get answered next sprint',
+                'Performance reports take all morning to build',
+                'Attribution depends on which tool you trust',
+                'Channel ROAS lives in five spreadsheets',
+                'MQL → SQL handoff settled by Slack argument',
+                'Budget reallocations wait for the Monday review',
+                'CAC anomalies surface at month-end close',
               ].map((item,i) => (
                 <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'#7FA0AC',lineHeight:1.55}}>
                   <span style={{color:'#F87171',fontWeight:500,flexShrink:0}}>✕</span>
@@ -1331,12 +1190,12 @@ function BeforeAfter() {
             </div>
             <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'12px'}}>
               {[
-                'Pipeline data available in seconds',
-                'One certified number for every metric',
-                'Forecast grounded in real-time data',
-                'Cross-source insights in plain English',
-                'Board-ready reports auto-generate',
-                'Any question answered instantly',
+                'Live performance the moment the spend lands',
+                'One unified attribution model everyone trusts',
+                'Channel ROAS surfaced in a single ask',
+                'MQL → SQL settled by data, not a Slack thread',
+                'Budget moves the day the signal hits',
+                'CAC drift flagged the same day it happens',
               ].map((item,i) => (
                 <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'#C0D4DC',lineHeight:1.55}}>
                   <span style={{color:'#0EC4C1',fontWeight:500,flexShrink:0}}>✓</span>
@@ -1350,7 +1209,7 @@ function BeforeAfter() {
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
             <span style={{fontSize:'40px',fontWeight:500,color:'#0EC4C1',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>5×</span>
-            <span style={{fontSize:'15px',color:'#7FA0AC',whiteSpace:'nowrap'}}>faster revenue reporting. Zero spreadsheet wrangling.</span>
+            <span style={{fontSize:'15px',color:'#7FA0AC',whiteSpace:'nowrap'}}>faster campaign answers. Zero data-team handoffs.</span>
           </div>
         </div>
       </div>
@@ -1362,28 +1221,28 @@ function BeforeAfter() {
 function FAQ() {
   const items = [
     {
-      q: 'How does Insightis handle our existing Salesforce custom fields?',
-      a: 'Insightis maps every custom field, picklist, and formula in your Salesforce org during the initial sync. Custom-defined revenue and pipeline fields show up alongside standard ones — and you can reference them by name in any plain-English question.',
+      q: 'How does Insightis handle multi-touch attribution?',
+      a: 'Insightis supports first-touch, last-touch, linear, time-decay, and custom-weight attribution models — applied consistently across every channel. Define the model once in the semantic layer; every question respects it from then on.',
     },
     {
-      q: 'Can we define our own metrics, or are we stuck with the defaults?',
-      a: 'You can define any metric in the semantic layer. Set a custom Pipeline Coverage formula, your own win-rate logic, or a stage-conversion definition unique to your business. Once defined, Insightis uses your version every time the metric is referenced.',
+      q: 'Will it work with our existing Google Ads, Meta, and LinkedIn setup?',
+      a: 'Yes. Native connectors for Google Ads, Meta, LinkedIn, TikTok, and 200+ other ad platforms. Spend, impressions, clicks, and conversions sync automatically — no UTM-tagging gymnastics or manual exports required.',
     },
     {
-      q: 'How fresh is the data — and how often does it sync?',
-      a: 'Real-time for streaming sources like Stripe, webhooks, and event pipelines. Pull-based sources (CRM, warehouse) sync every 5 minutes by default and can be tuned down to once per minute on enterprise plans.',
+      q: 'How quickly can it surface a CAC anomaly across channels?',
+      a: 'Same day. Insightis flags channel-level CAC drift the moment it crosses your defined threshold — by Slack, email, or in the AI Chat insights feed. No more month-end surprises buried under blended numbers.',
     },
     {
-      q: 'Does Insightis replace our existing BI tools like Looker or Tableau?',
-      a: 'Not necessarily. Most teams use Insightis for ad-hoc questions and quick answers, while keeping Looker for governed dashboards. Insightis can read from the same warehouse models, so there\'s no duplicate data layer to maintain.',
+      q: 'Does this replace our existing analytics stack (GA4, Adobe, Mixpanel)?',
+      a: 'No, it sits on top. Insightis reads from your existing analytics tools and unifies them with CRM and billing data — so you can ask "how many MQLs from paid social converted to paying customers?" in a single question.',
     },
     {
-      q: 'How long is the typical setup for a RevOps team?',
-      a: 'Most teams are running real questions within an afternoon. Salesforce and Stripe connect in minutes; defining your first dozen metrics in the semantic layer takes another hour or two if you want a polished, fully-certified setup.',
+      q: 'What about marketing data privacy and PII?',
+      a: 'PII fields can be masked, hashed, or excluded from queries via field-level access controls. SOC 2 Type II certified, GDPR-aligned, with full audit logs on every query and share. Your data never leaves your warehouse.',
     },
     {
-      q: 'Where does our pipeline data live — and how is it secured?',
-      a: 'Your data stays in your warehouse. Insightis runs queries on top via secure read-only connectors, with SOC 2 Type II, single sign-on, and row-level access controls. Nothing leaves your environment unless you explicitly share it.',
+      q: 'How long until our marketing team uses it daily?',
+      a: 'Most marketing teams have campaigns wired up and are asking real questions within a day. Setting up custom attribution models takes another half-day if your business needs go beyond the first-touch and last-touch defaults.',
     },
   ];
   const [openIdx, setOpenIdx] = React.useState(0);
@@ -1397,10 +1256,10 @@ function FAQ() {
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>FAQ</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
-            Common questions from RevOps leads
+            Questions every CMO asks first
           </h2>
           <p style={{fontSize:'16px',color:'rgba(255,255,255,.5)',maxWidth:'560px',margin:'0 auto',lineHeight:1.65}}>
-            Everything you need to know before plugging Insightis into your revenue stack.
+            What attribution, integrations, and time-to-value look like once Insightis is in the marketing stack.
           </p>
         </div>
 
@@ -1472,7 +1331,7 @@ function BottomCTA() {
           }}>
             <input
               type="text"
-              placeholder="What revenue question do you need answered?"
+              placeholder="What campaign question do you need answered?"
               style={{
                 flex:1,background:'transparent',fontSize:'14px',color:'#fff',
                 padding:'12px 16px',outline:'none',border:'none',
@@ -1666,7 +1525,3 @@ function App() {
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-</script>
-<script defer src="/assets/header-scroll.js"></script>
-</body>
-</html>
