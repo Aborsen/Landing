@@ -138,7 +138,7 @@ function Header() {
       }}>
       <div ref={navRef} style={{
         position:'relative',
-        maxWidth:'1280px', width:'calc(100% - 48px)',
+        maxWidth:'1240px', width:'calc(100% - 32px)',
         margin:'0 auto',
         padding:'12px 0 0',
       }}>
