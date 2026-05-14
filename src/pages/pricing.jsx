@@ -474,107 +474,64 @@ function PricingHero() {
   );
 }
 
-/* ── BILLING TOGGLE ── */
-function BillingToggle({billing, setBilling}) {
-  return (
-    <section style={{padding:'12px 0 24px',textAlign:'center'}}>
-      <div style={{display:'inline-flex',alignItems:'center',padding:'4px',background:'rgba(255,255,255,0.03)',border:'1px solid rgba(255,255,255,0.08)',borderRadius:'999px'}}>
-        {['monthly','annual'].map(opt => {
-          const active = billing === opt;
-          return (
-            <button key={opt} onClick={() => setBilling(opt)} style={{
-              padding:'8px 22px',borderRadius:'999px',
-              fontSize:'13px',fontWeight:500,cursor:'pointer',fontFamily:'Geist,sans-serif',
-              border:'none',
-              background: active ? 'linear-gradient(135deg,#09A09D,#07807E)' : 'transparent',
-              color: active ? '#fff' : '#7FA0AC',
-              transition:'all .2s',
-            }}>
-              {opt === 'monthly' ? 'Monthly' : 'Annual'}
-              {opt === 'annual' && (
-                <span style={{marginLeft:'8px',fontSize:'10px',padding:'2px 7px',borderRadius:'4px',background: active ? 'rgba(255,255,255,0.15)' : 'rgba(9,160,157,0.12)',color: active ? '#fff' : '#0EC4C1',fontWeight:500,letterSpacing:'.04em'}}>Save 20%</span>
-              )}
-            </button>
-          );
-        })}
-      </div>
-    </section>
-  );
-}
-
 /* ── PRICING CARDS ── */
-function PricingCards({billing}) {
+function PricingCards() {
   const plans = [
     {
       name:'Free',
       tag:'For getting started',
-      priceMonthly:0,priceAnnual:0,
+      price:0,
       cta:'Start for free',
       ctaStyle:'outline',
       features:[
         '1 user',
-        '3 data sources',
-        '50 AI Chat queries / month',
+        '500 AI tokens / month',
+        'Up to 3 data connectors',
+        '24-hour data refresh',
         'Community support',
-        'Basic Semantic Layer',
+      ],
+    },
+    {
+      name:'Starter',
+      tag:'For small teams',
+      price:19.99,
+      cta:'Start free trial',
+      ctaStyle:'outline',
+      features:[
+        'Up to 5 users',
+        '5,000 AI tokens / month',
+        'Unlimited data connectors',
+        '1-hour data refresh',
+        'Custom semantic layer',
+        'Priority email support',
       ],
     },
     {
       name:'Pro',
-      tag:'For small teams',
-      priceMonthly:49,priceAnnual:39,
+      tag:'For growing teams',
+      price:39.99,
+      originalPrice:79.99,
+      discount:'50% OFF',
       cta:'Start free trial',
       ctaStyle:'primary',
       highlight:true,
       features:[
-        'Up to 5 users',
-        '15 data sources',
-        'Unlimited AI Chat queries',
-        'Email support',
-        'Custom Semantic Layer',
-        'Saved reports & dashboards',
-      ],
-    },
-    {
-      name:'Team',
-      tag:'For growing companies',
-      priceMonthly:149,priceAnnual:119,
-      cta:'Start free trial',
-      ctaStyle:'outline',
-      features:[
-        'Up to 20 users',
-        'Unlimited data sources',
-        'Unlimited AI Chat queries',
-        'Priority support',
-        'Advanced governance',
-        'Versioned metric definitions',
-        'Slack & Teams integration',
-      ],
-    },
-    {
-      name:'Enterprise',
-      tag:'For organizations',
-      priceMonthly:null,priceAnnual:null,
-      cta:'Talk to sales',
-      ctaStyle:'outline',
-      features:[
         'Unlimited users',
-        'Unlimited data sources',
-        'SSO + SCIM provisioning',
-        'Dedicated success manager',
-        'Custom SLAs and contracts',
-        'On-prem & VPC deployment',
-        'SOC 2 Type II + HIPAA',
+        '25,000 AI tokens / month',
+        'Unlimited data connectors',
+        '15-minute data refresh',
+        'Full semantic-layer governance',
+        'API access + 99.5% SLA',
+        'Email + live-chat support',
       ],
     },
   ];
 
   return (
     <section style={{padding:'24px 0 80px'}}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div data-pricing-grid style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'20px'}}>
+      <div style={{maxWidth:'1100px',margin:'0 auto',padding:'0 24px'}}>
+        <div data-pricing-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'20px'}}>
           {plans.map((plan,i) => {
-            const price = billing === 'annual' ? plan.priceAnnual : plan.priceMonthly;
             const isHighlight = plan.highlight;
             return (
               <div key={plan.name} className={`fu${i}`} style={{
@@ -593,25 +550,30 @@ function PricingCards({billing}) {
                 )}
                 <h3 style={{fontSize:'22px',fontWeight:600,color:'#fff',marginBottom:'4px',letterSpacing:'-0.02em'}}>{plan.name}</h3>
                 <p style={{fontSize:'13px',color:'rgba(255,255,255,0.55)',marginBottom:'24px'}}>{plan.tag}</p>
-                <div style={{marginBottom:'24px',minHeight:'58px'}}>
-                  {price === null ? (
-                    <div style={{fontSize:'30px',fontWeight:500,color:'#fff'}}>Custom</div>
-                  ) : price === 0 ? (
+                <div style={{marginBottom:'24px',minHeight:'72px'}}>
+                  {plan.price === 0 ? (
                     <div>
                       <span style={{fontSize:'40px',fontWeight:500,color:'#fff',letterSpacing:'-0.03em'}}>$0</span>
                       <span style={{fontSize:'14px',color:'rgba(255,255,255,0.5)',marginLeft:'6px'}}>forever</span>
                     </div>
                   ) : (
-                    <div className="price-animate" key={billing}>
-                      <span style={{fontSize:'40px',fontWeight:500,color:'#fff',letterSpacing:'-0.03em'}}>${price}</span>
-                      <span style={{fontSize:'14px',color:'rgba(255,255,255,0.5)',marginLeft:'6px'}}>/ user / month</span>
-                      {billing === 'annual' && (
-                        <div style={{fontSize:'11px',color:'#0EC4C1',marginTop:'4px',fontFamily:'Geist Mono,monospace'}}>billed annually</div>
+                    <div>
+                      <div style={{display:'flex',alignItems:'baseline',gap:'10px',flexWrap:'wrap'}}>
+                        <span style={{fontSize:'40px',fontWeight:500,color:'#fff',letterSpacing:'-0.03em'}}>${plan.price}</span>
+                        {plan.originalPrice && (
+                          <span style={{fontSize:'18px',color:'rgba(255,255,255,0.35)',textDecoration:'line-through'}}>${plan.originalPrice}</span>
+                        )}
+                      </div>
+                      <div style={{fontSize:'13px',color:'rgba(255,255,255,0.5)',marginTop:'2px'}}>per user / month</div>
+                      {plan.discount && (
+                        <div style={{marginTop:'6px',display:'inline-flex',alignItems:'center',gap:'5px',padding:'2px 8px',background:'rgba(9,160,157,0.12)',border:'1px solid rgba(9,160,157,0.35)',borderRadius:'4px',fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'#0EC4C1',fontWeight:600,letterSpacing:'.04em'}}>
+                          {plan.discount}
+                        </div>
                       )}
                     </div>
                   )}
                 </div>
-                <a href={plan.cta === 'Talk to sales' ? 'Company/Contacts.html' : '#'} style={{
+                <a href="#" style={{
                   display:'inline-flex',alignItems:'center',justifyContent:'center',gap:'7px',
                   padding:'12px 20px',borderRadius:'999px',
                   fontSize:'14px',fontWeight:500,
@@ -639,11 +601,8 @@ function PricingCards({billing}) {
           })}
         </div>
         <style>{`
-          @media (max-width: 1024px) {
-            [data-pricing-grid] { grid-template-columns: repeat(2, 1fr) !important; }
-          }
-          @media (max-width: 640px) {
-            [data-pricing-grid] { grid-template-columns: 1fr !important; }
+          @media (max-width: 900px) {
+            [data-pricing-grid] { grid-template-columns: 1fr !important; max-width: 480px; margin: 0 auto; }
           }
         `}</style>
       </div>
@@ -653,20 +612,45 @@ function PricingCards({billing}) {
 
 /* ── FEATURE COMPARISON ── */
 function FeatureComparison() {
-  const rows = [
-    { label:'Users',                                values:['1', 'Up to 5', 'Up to 20', 'Unlimited'] },
-    { label:'Data sources',                         values:['3', '15', 'Unlimited', 'Unlimited'] },
-    { label:'AI Chat queries / month',              values:['50', 'Unlimited', 'Unlimited', 'Unlimited'] },
-    { label:'Semantic Layer',                       values:['Basic', 'Custom', 'Custom + Versioning', 'Enterprise'] },
-    { label:'Saved reports & dashboards',           values:[false, true, true, true] },
-    { label:'Slack & Teams integration',            values:[false, false, true, true] },
-    { label:'SSO + SCIM',                           values:[false, false, false, true] },
-    { label:'Dedicated success manager',            values:[false, false, false, true] },
-    { label:'SOC 2 Type II + HIPAA',                values:[true, true, true, true] },
-    { label:'On-prem & VPC deployment',             values:[false, false, false, true] },
+  const sections = [
+    {
+      title: 'AI & Analytics',
+      rows: [
+        { label:'AI tokens',                values:['500 / mo', '5,000 / mo', '25,000 / mo'] },
+        { label:'AI Chat',                  values:[true, true, true] },
+      ]
+    },
+    {
+      title: 'Data connections',
+      rows: [
+        { label:'Data connectors',          values:['Up to 3', 'Unlimited', 'Unlimited'] },
+        { label:'Real-time sync',           values:['24hr refresh', '1hr refresh', '15min refresh'] },
+        { label:'Data upload (CSV, Excel)', values:[true, true, true] },
+      ]
+    },
+    {
+      title: 'Semantic Layer',
+      rows: [
+        { label:'Metric definitions',       values:['Read-only', 'Full access', 'Full access'] },
+        { label:'Custom metrics',           values:[false, true, true] },
+        { label:'Cross-source joins',       values:[false, true, true] },
+        { label:'Auto-certification',       values:[false, true, true] },
+      ]
+    },
+    {
+      title: 'Support & security',
+      rows: [
+        { label:'Support',                  values:['Community', 'Priority email', 'Email + live chat'] },
+        { label:'SLA',                      values:[false, false, '99.5%'] },
+        { label:'SOC 2 Type II',            values:[true, true, true] },
+        { label:'Data encryption',          values:[true, true, true] },
+        { label:'API access',               values:[false, false, true] },
+      ]
+    },
   ];
   const Check = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>;
   const Dash = () => <span style={{color:'rgba(255,255,255,0.18)'}}>—</span>;
+  const cols = '1.6fr 1fr 1fr 1fr';
   return (
     <section style={{padding:'80px 0 60px'}}>
       <div style={{maxWidth:'1100px',margin:'0 auto',padding:'0 24px'}}>
@@ -675,27 +659,59 @@ function FeatureComparison() {
           <p style={{fontSize:'15px',color:'rgba(255,255,255,.55)'}}>Everything you get on every plan.</p>
         </div>
         <div data-compare-wrap style={{border:'1px solid rgba(255,255,255,0.08)',borderRadius:'16px',overflow:'hidden',background:'rgba(13,17,23,0.5)'}}>
-          <div style={{display:'grid',gridTemplateColumns:'1.6fr 1fr 1fr 1fr 1fr',padding:'18px 20px',background:'rgba(255,255,255,0.025)',borderBottom:'1px solid rgba(255,255,255,0.06)'}}>
+          {/* Column headers */}
+          <div style={{display:'grid',gridTemplateColumns:cols,padding:'18px 20px',background:'rgba(255,255,255,0.025)',borderBottom:'1px solid rgba(255,255,255,0.06)'}}>
             <span style={{fontSize:'12px',fontWeight:500,letterSpacing:'.08em',textTransform:'uppercase',color:'rgba(255,255,255,0.5)',fontFamily:'Geist Mono,monospace'}}>Feature</span>
-            {['Free','Pro','Team','Enterprise'].map(p => (
+            {['Free','Starter','Pro'].map(p => (
               <span key={p} style={{textAlign:'center',fontSize:'13px',fontWeight:600,color:'#fff'}}>{p}</span>
             ))}
           </div>
-          {rows.map((row,i) => (
-            <div key={i} style={{display:'grid',gridTemplateColumns:'1.6fr 1fr 1fr 1fr 1fr',padding:'14px 20px',borderBottom: i < rows.length-1 ? '1px solid rgba(255,255,255,0.04)' : 'none',alignItems:'center'}}>
-              <span style={{fontSize:'14px',color:'#C0D4DC'}}>{row.label}</span>
-              {row.values.map((v,vi) => (
-                <span key={vi} style={{display:'flex',justifyContent:'center',alignItems:'center',fontSize:'13.5px',color:'#C0D4DC'}}>
-                  {v === true ? <Check /> : v === false ? <Dash /> : v}
-                </span>
+          {/* Sectioned rows */}
+          {sections.map((section, si) => (
+            <div key={si}>
+              {/* Section heading row */}
+              <div style={{padding:'14px 20px 10px',background:'rgba(255,255,255,0.015)',borderTop: si > 0 ? '1px solid rgba(255,255,255,0.06)' : 'none'}}>
+                <span style={{fontSize:'11px',fontWeight:600,letterSpacing:'.12em',textTransform:'uppercase',color:'#0EC4C1',fontFamily:'Geist Mono,monospace'}}>{section.title}</span>
+              </div>
+              {/* Feature rows */}
+              {section.rows.map((row, ri) => (
+                <div key={ri} style={{display:'grid',gridTemplateColumns:cols,padding:'12px 20px',borderTop:'1px solid rgba(255,255,255,0.04)',alignItems:'center'}}>
+                  <span style={{fontSize:'14px',color:'#C0D4DC'}}>{row.label}</span>
+                  {row.values.map((v, vi) => (
+                    <span key={vi} style={{display:'flex',justifyContent:'center',alignItems:'center',fontSize:'13.5px',color:'#C0D4DC'}}>
+                      {v === true ? <Check /> : v === false ? <Dash /> : v}
+                    </span>
+                  ))}
+                </div>
               ))}
             </div>
           ))}
+          {/* Choose-your-plan footer */}
+          <div style={{display:'grid',gridTemplateColumns:cols,padding:'18px 20px',background:'rgba(255,255,255,0.025)',borderTop:'1px solid rgba(255,255,255,0.06)',alignItems:'center'}}>
+            <span style={{fontSize:'13px',color:'rgba(255,255,255,0.55)'}}>Choose your plan</span>
+            {[
+              { label:'Start for Free',   primary:false },
+              { label:'Start Free Trial', primary:false },
+              { label:'Start Free Trial', primary:true  },
+            ].map((cta, i) => (
+              <div key={i} style={{display:'flex',justifyContent:'center'}}>
+                <a href="#" style={{
+                  display:'inline-flex',alignItems:'center',gap:'6px',
+                  padding:'9px 16px',borderRadius:'999px',
+                  fontSize:'13px',fontWeight:500,
+                  textDecoration:'none',
+                  background: cta.primary ? 'linear-gradient(135deg,#09A09D,#07807E)' : 'transparent',
+                  color: cta.primary ? '#fff' : '#0EC4C1',
+                  border: cta.primary ? 'none' : '1px solid rgba(9,160,157,0.4)',
+                }}>{cta.label}</a>
+              </div>
+            ))}
+          </div>
         </div>
         <style>{`
           @media (max-width: 768px) {
             [data-compare-wrap] { font-size: 12px; }
-            [data-compare-wrap] > div { grid-template-columns: 1.4fr repeat(4, 1fr) !important; padding: 12px 10px !important; }
+            [data-compare-wrap] > div > div { padding: 11px 12px !important; }
           }
         `}</style>
       </div>
@@ -766,13 +782,11 @@ function BottomCTA() {
 }
 
 function App() {
-  const [billing, setBilling] = useState('annual');
   return (
     <div>
       <Header />
       <PricingHero />
-      <BillingToggle billing={billing} setBilling={setBilling} />
-      <PricingCards billing={billing} />
+      <PricingCards />
       <FeatureComparison />
       <FAQ />
       <BottomCTA />
