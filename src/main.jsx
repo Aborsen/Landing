@@ -993,30 +993,83 @@ function Architecture() {
 
           {/* Mobile/tablet layout */}
           <div className="lg:hidden flex flex-col items-center gap-6">
-            <div className="relative w-full h-[200px]">
-              {chaosSwarm.map((item, i) => (
-                <div key={'mob-chaos'+i} className="absolute w-10 h-10 rounded-xl bg-[var(--ins-surface-card)]/80 border border-[var(--ins-border-default)] flex items-center justify-center" style={{
-                  top: item.top,
-                  left: item.left,
-                  transform: `rotate(${item.rotate}deg)`,
-                  opacity: item.opacity,
-                  animation: `chaosFloat ${4 + (i % 3) * 1.5}s ease-in-out ${i * 0.5}s infinite alternate`,
-                }}>
-                  <ConnectorIcon name={item.name} size={18} />
+            {(() => {
+              // Mobile-friendly chaos positions: 3 rows × 2 col, offset for visual interest.
+              const mobileSwarm = [
+                { name: 'Slack',      top: '4%',  left: '8%'  },
+                { name: 'Snowflake',  top: '4%',  left: '68%' },
+                { name: 'PostgreSQL', top: '38%', left: '-2%' },
+                { name: 'BigQuery',   top: '38%', left: '74%' },
+                { name: 'HubSpot',    top: '70%', left: '16%' },
+                { name: 'AWS',        top: '70%', left: '58%' },
+              ];
+              // Dashed-line connection paths between approximate icon centers (viewBox 0 0 100 100).
+              const mobileLines = [
+                'M14,12 L74,12',          // Slack → Snowflake
+                'M14,12 L4,46',           // Slack → PostgreSQL
+                'M14,12 L24,78',          // Slack → HubSpot
+                'M74,12 L80,46',          // Snowflake → BigQuery
+                'M74,12 L66,78',          // Snowflake → AWS
+                'M4,46 L80,46',           // PostgreSQL → BigQuery
+                'M4,46 L24,78',           // PostgreSQL → HubSpot
+                'M80,46 L66,78',          // BigQuery → AWS
+                'M24,78 L66,78',          // HubSpot → AWS
+                'M4,46 L66,78',           // PostgreSQL → AWS (diagonal)
+                'M80,46 L24,78',          // BigQuery → HubSpot (diagonal)
+              ];
+              return (
+                <div className="relative w-full" style={{height:'260px'}}>
+                  <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    {mobileLines.map((d, i) => (
+                      <path key={'ml'+i} d={d} stroke="#2A3A4A" strokeWidth="0.35" fill="none" strokeDasharray="1.5,1.5" opacity="0.7"/>
+                    ))}
+                  </svg>
+                  {mobileSwarm.map((item, i) => (
+                    <div key={'mob-chaos'+i} className="absolute w-11 h-11 rounded-xl bg-[var(--ins-surface-card)]/90 border border-[var(--ins-border-default)] flex items-center justify-center" style={{
+                      top: item.top,
+                      left: item.left,
+                      boxShadow: 'var(--ins-shadow-sm)',
+                      animation: `chaosFloat ${4 + (i % 3) * 1.5}s ease-in-out ${i * 0.5}s infinite alternate`,
+                    }}>
+                      <ConnectorIcon name={item.name} size={20} />
+                    </div>
+                  ))}
                 </div>
-              ))}
+              );
+            })()}
+
+            {/* Downward stream — animated multicolor flow into the engine */}
+            <div className="relative" style={{width:'40px', height:'56px'}}>
+              <svg width="40" height="56" viewBox="0 0 40 56" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8,0 Q12,18 20,28 Q24,40 12,56" stroke="#FF6B6B" strokeWidth="0.6" fill="none" opacity="0.4">
+                  <animate attributeName="opacity" values="0.2;0.5;0.2" dur="6.23s" repeatCount="indefinite"/>
+                </path>
+                <path d="M20,0 Q14,16 24,30 Q28,42 20,56" stroke="#FF9900" strokeWidth="0.6" fill="none" opacity="0.4">
+                  <animate attributeName="opacity" values="0.3;0.5;0.3" dur="5.2s" repeatCount="indefinite"/>
+                </path>
+                <path d="M32,0 Q28,18 18,30 Q12,42 28,56" stroke="#635BFF" strokeWidth="0.6" fill="none" opacity="0.3">
+                  <animate attributeName="opacity" values="0.2;0.4;0.2" dur="7.28s" repeatCount="indefinite"/>
+                </path>
+                <circle r="1.4" fill="#FF6B6B" opacity="0.8">
+                  <animateMotion dur="4.15s" repeatCount="indefinite" path="M8,0 Q12,18 20,28 Q24,40 12,56"/>
+                </circle>
+                <circle r="1.4" fill="#FF9900" opacity="0.7">
+                  <animateMotion dur="5.2s" repeatCount="indefinite" path="M20,0 Q14,16 24,30 Q28,42 20,56"/>
+                </circle>
+                <circle r="1.4" fill="#635BFF" opacity="0.7">
+                  <animateMotion dur="4.62s" repeatCount="indefinite" begin="1.23s" path="M32,0 Q28,18 18,30 Q12,42 28,56"/>
+                </circle>
+              </svg>
             </div>
 
-            <div className="w-px h-8 bg-gradient-to-b from-transparent via-[var(--ins-color-teal-600)]/40 to-transparent"></div>
-
-            <div className="w-24 h-24 rounded-2xl flex flex-col items-center justify-center gap-1.5" style={{ border: '1px solid rgba(7,128,126,0.5)', background: 'linear-gradient(135deg, rgba(7,128,126,0.25), rgba(7,128,126,0.08))', animation: 'corePulse 3s ease-in-out infinite' }}>
-              <GridIcon size={24} color="var(--ins-color-teal-500)" />
-              <span className="text-[10px] font-medium text-[var(--ins-color-teal-500)] text-center leading-tight">Semantic AI</span>
+            <div className="w-28 h-28 rounded-2xl flex flex-col items-center justify-center gap-2" style={{ border: '1px solid rgba(7,128,126,0.5)', background: 'linear-gradient(135deg, rgba(7,128,126,0.25), rgba(7,128,126,0.08))', animation: 'corePulse 3s ease-in-out infinite' }}>
+              <GridIcon size={28} color="var(--ins-color-teal-500)" />
+              <span className="text-[11px] font-medium text-[var(--ins-color-teal-500)] text-center leading-tight">Insightis<br/>Semantic AI</span>
             </div>
 
-            <div className="w-px h-8 bg-gradient-to-b from-transparent via-[var(--ins-color-teal-600)]/40 to-transparent"></div>
+            <div className="w-px h-8 bg-gradient-to-b from-[var(--ins-color-teal-600)]/40 via-[var(--ins-color-teal-600)]/40 to-transparent"></div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+            <div className="grid grid-cols-1 gap-3 w-full">
               {outputs.map(o => (
                 <div key={o.title} className="flex items-center gap-3 px-4 py-3 bg-[var(--ins-surface-card)] border border-[var(--ins-border-default)] rounded-card">
                   <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{background: 'rgba(7,128,126,0.15)', border: '1px solid rgba(7,128,126,0.3)'}}>{o.icon}</div>

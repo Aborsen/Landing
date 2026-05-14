@@ -161,7 +161,23 @@
   /* Architecture ("The Semantic Intelligence Layer") mobile fallback:
      keep the diagram visible on mobile with chaos icons + engine +
      output cards stacked vertically. Animations come from the JSX
-     (chaosFloat, corePulse). */
+     (chaosFloat, corePulse, animated stream particles). */
+
+  /* Left-align the Architecture section heading + description on mobile.
+     The desktop variant is `text-center mb-16`. Override on mobile so
+     the user can read it more naturally on a narrow viewport. */
+  section h2.text-4xl + p,
+  section .text-center:has(> h2.text-4xl) {
+    text-align: left !important;
+  }
+  /* Specifically the Architecture section heading + eyebrow + description */
+  section:has(.lg\:hidden.flex.flex-col.items-center) > .max-w-7xl > div:first-child {
+    text-align: left !important;
+  }
+  section:has(.lg\:hidden.flex.flex-col.items-center) > .max-w-7xl > div:first-child > div:first-child {
+    /* The teal "✦ ARCHITECTURE" pill — keep its inline-flex layout */
+    display: inline-flex !important;
+  }
 
   /* HowItWorks — hide the animated showcase, the JSX renders a text-only
      fallback on mobile. */
