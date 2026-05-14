@@ -957,8 +957,38 @@ function HowItWorks() {
       if (window.initShowcase) window.initShowcase();
     });
   }, []);
+  const steps = [
+    { n: '01', title: 'Connect your data', desc: 'OAuth or API key. Most connectors live in under 5 minutes — read-only and SOC 2 secured.' },
+    { n: '02', title: 'Configure the Semantic Layer', desc: 'Map your fields to certified metrics — MRR, CAC, NRR, WAU. One trusted truth across every source.' },
+    { n: '03', title: 'Ask in plain English', desc: 'Your team asks questions. Insightis queries the right sources and returns precise answers in seconds.' },
+    { n: '04', title: 'Get instant insights', desc: 'Charts, contributing factors, and follow-up suggestions — saved as live reports in one click.' },
+    { n: '05', title: 'Share with your team', desc: 'Publish answers to Slack, dashboards, or Teams. Every figure stays linked to its source.' },
+  ];
   return (
     <section id="how-it-works" style={{padding:'100px 0', background:'linear-gradient(180deg,var(--ins-color-gray-900) 0%,var(--ins-color-gray-900) 100%)', position:'relative'}}>
+      {/* Mobile / reduced-motion text-only summary — hidden on desktop via responsive.css */}
+      <div className="how-it-works-text-only" style={{display:'none', maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
+        <div style={{textAlign:'center', marginBottom:'40px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
+            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>How it works</span>
+          </div>
+          <h2 style={{fontSize:'clamp(1.8rem,6vw,2.4rem)',fontWeight:500,color:'#fff',letterSpacing:'-.02em',lineHeight:1.15}}>From your stack to a precise answer</h2>
+        </div>
+        <ol style={{listStyle:'none',padding:0,margin:0,display:'flex',flexDirection:'column',gap:'18px'}}>
+          {steps.map(s => (
+            <li key={s.n} style={{display:'flex',gap:'14px',alignItems:'flex-start'}}>
+              <span style={{flexShrink:0,width:'36px',height:'36px',borderRadius:'50%',border:'1px solid rgba(9,160,157,.4)',background:'rgba(9,160,157,.08)',display:'flex',alignItems:'center',justifyContent:'center',fontFamily:'Geist Mono,monospace',fontSize:'13px',fontWeight:500,color:'#0EC4C1'}}>{s.n}</span>
+              <div>
+                <p style={{fontSize:'15px',fontWeight:600,color:'#fff',marginBottom:'4px',lineHeight:1.3}}>{s.title}</p>
+                <p style={{fontSize:'13.5px',color:'rgba(255,255,255,.6)',lineHeight:1.55}}>{s.desc}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      {/* Desktop animated showcase — hidden on mobile via responsive.css */}
       <div id="showcase-mount" ref={mountRef} />
     </section>
   );

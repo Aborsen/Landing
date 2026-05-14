@@ -145,36 +145,43 @@
    Home page — phone-only simplifications (≤ 768px)
    =========================================================== */
 @media (max-width: 768px) {
-  /* Hide the chaotic-connectors mobile fallback block on the Architecture
-     ("The Semantic Intelligence Layer") section so users see just the engine
-     and outputs, no connectors image. The desktop diagram is hidden anyway
-     (lg:grid). Mobile fallback uses a wrapping div with className
-     "lg:hidden flex flex-col items-center gap-6". We target the first
-     inner div (the relative h-32 chaos icons area). */
-  section .lg\:hidden.flex.flex-col.items-center > div.relative.h-32 { display: none !important; }
-  /* Hide the small connector dot/separator immediately above the engine on mobile */
-  section .lg\:hidden.flex.flex-col.items-center > div.relative.h-32 + div { display: none !important; }
+  /* Architecture ("The Semantic Intelligence Layer") section — on mobile,
+     hide the entire visual diagram (chaotic connectors, separator lines,
+     engine box, and output cards). Only the heading + description remain,
+     matching the user's "text only" request. The mobile fallback wrapping
+     div has className "lg:hidden flex flex-col items-center gap-6". */
+  section > .max-w-7xl .lg\:hidden.flex.flex-col.items-center {
+    display: none !important;
+  }
 
-  /* BottomCTA — drop the "What info are you looking for?" input on mobile,
-     leave just the headline. */
-  section input[aria-label="What info are you looking for?"],
-  section input[placeholder="What info are you looking for?"] { display: none !important; }
-  section input[aria-label="What info are you looking for?"] + button,
-  section input[placeholder="What info are you looking for?"] + button { display: none !important; }
-  /* The wrapper around the input + button — hide as well */
-  section:has(input[placeholder="What info are you looking for?"]) > div > div > div:has(> input[placeholder="What info are you looking for?"]) { display: none !important; }
+  /* HowItWorks — hide the animated showcase, the JSX renders a text-only
+     fallback on mobile. */
+  #showcase-mount { display: none !important; }
+  .how-it-works-text-only { display: block !important; }
 
-  /* HowItWorks animated showcase — kill its animations + interactive demos,
-     leaving DOM intact. (The container animates step transitions and embeds
-     animated cursor demos; on phones it's confusing.) */
-  #showcase-mount * { animation: none !important; transition: none !important; }
-  /* Force the showcase to render all step text content with a simple stacked
-     layout rather than its absolutely-positioned animated stages. */
-  #showcase-mount [data-step], #showcase-mount .step, #showcase-mount .stage {
-    position: static !important;
-    transform: none !important;
-    opacity: 1 !important;
-    height: auto !important;
+  /* Force-center the home Hero text + chat mockup. The Hero h1 has
+     `text-align: center` from Tailwind, but inherited padding/margin from
+     parent flex containers can drift the visible center. These rules
+     ensure equal padding-left/right and explicit centering. */
+  section > .relative.z-10.max-w-7xl,
+  section .max-w-7xl.mx-auto.px-6.text-center {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  /* Home Hero section — kill the `items-center justify-center` flex
+     alignment quirks on small viewports and just block-flow the content. */
+  section.flex.flex-col.items-center.justify-center {
+    align-items: stretch !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  section.flex.flex-col.items-center.justify-center > .relative.z-10 {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
   }
 }
 
