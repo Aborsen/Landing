@@ -748,22 +748,25 @@ function PromptLibrarySidebar({ selectedTeams, toggleTeam, clearAll }) {
 
   return (
     <aside className="prompt-sidebar-col">
-      {total > 0 && (
-        <div style={{ padding:'0 16px 14px' }}>
-          <button
-            onClick={clearAll}
-            style={{
-              fontSize:'11.5px', fontFamily:'Geist,sans-serif',
-              background:'rgba(9,160,157,.08)', color:'#0EC4C1',
-              border:'1px solid rgba(9,160,157,.25)',
-              borderRadius:'6px', padding:'5px 10px', cursor:'pointer',
-              display:'inline-flex', alignItems:'center', gap:'6px',
-            }}
-          >
-            Clear filters ({total})
-          </button>
-        </div>
-      )}
+      {/* Reserve fixed-height slot so the Teams list does not shift when a filter is selected */}
+      <div style={{ padding:'0 16px 14px', minHeight:'42px' }}>
+        <button
+          onClick={clearAll}
+          aria-hidden={total === 0}
+          tabIndex={total === 0 ? -1 : 0}
+          style={{
+            fontSize:'11.5px', fontFamily:'Geist,sans-serif',
+            background:'rgba(9,160,157,.08)', color:'#0EC4C1',
+            border:'1px solid rgba(9,160,157,.25)',
+            borderRadius:'6px', padding:'5px 10px', cursor:'pointer',
+            display:'inline-flex', alignItems:'center', gap:'6px',
+            visibility: total > 0 ? 'visible' : 'hidden',
+            pointerEvents: total > 0 ? 'auto' : 'none',
+          }}
+        >
+          Clear filters ({total})
+        </button>
+      </div>
 
       {/* Teams first */}
       <div style={{ marginBottom:'10px' }}>
