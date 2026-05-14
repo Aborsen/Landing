@@ -1,60 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="stylesheet" href="/assets/responsive.css">
-<title>Security — Insightis</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Geist', sans-serif;
-  background: #0A0E13;
-  color: #E8F2F5;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-body::before {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  opacity: .4; mix-blend-mode: overlay;
-}
-body::after {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 10% 5%, rgba(10,152,150,.09) 0%, transparent 70%),
-    radial-gradient(ellipse 70% 55% at 85% 0%, rgba(110,60,200,.07) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 60% at 75% 45%, rgba(20,80,200,.05) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 55% at 5% 55%, rgba(160,50,220,.045) 0%, transparent 65%),
-    radial-gradient(ellipse 65% 55% at 50% 90%, rgba(10,152,150,.07) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 45% at 95% 75%, rgba(50,90,240,.04) 0%, transparent 55%),
-    radial-gradient(ellipse 45% 40% at 35% 30%, rgba(200,60,180,.03) 0%, transparent 55%);
-}
-@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-@keyframes fadeIn { from{opacity:0} to{opacity:1} }
-@keyframes slideUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
-.fu0 { animation: fadeUp .7s ease both; }
-.fu1 { animation: fadeUp .7s ease .1s both; }
-.fu2 { animation: fadeUp .7s ease .2s both; }
-.fu3 { animation: fadeUp .7s ease .35s both; }
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
-section { position: relative; }
-</style>
-</head>
-<body>
-<div id="root"></div>
-<script type="text/babel">
-const { useState, useEffect, useRef } = React;
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import ReactDOM from 'react-dom/client';
+import '../app.css';
 
 /* ── HEADER ── */
 function MenuIcon({ size = 24, color = "#fff" }) {
@@ -287,286 +233,286 @@ function Header() {
   );
 }
 
-/* ── SECURITY CONTENT ── */
-function SecurityContent() {
-  const [openFaq, setOpenFaq] = useState(null);
-
-  const securityCards = [
-    {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><rect x="10" y="11" width="4" height="5" rx="1"/><path d="M12 11V9a2 2 0 1 1 4 0"/></svg>,
-      title: 'Data Encryption',
-      desc: 'AES-256 encryption at rest, TLS 1.3 in transit, and fully encrypted backups. Your data is protected at every stage of the pipeline.',
-    },
-    {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>,
-      title: 'Infrastructure Security',
-      desc: 'Cloud-hosted on enterprise infrastructure with network isolation, web application firewalls, and DDoS protection built in.',
-    },
-    {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>,
-      title: 'Access Controls',
-      desc: 'Role-based access control, SSO/SAML integration, multi-factor authentication, and least-privilege access policies across the platform.',
-    },
-    {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/></svg>,
-      title: 'Application Security',
-      desc: 'Regular security audits, automated dependency scanning, secure SDLC practices, and code reviews on every release.',
-    },
-    {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>,
-      title: 'Continuous Monitoring',
-      desc: '24/7 infrastructure and application monitoring, anomaly detection, and real-time alerting for security events.',
-    },
-    {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><path d="M12 14v4"/><path d="M12 14a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><path d="M20 6H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z"/></svg>,
-      title: 'Vulnerability Management',
-      desc: 'Regular penetration testing, automated vulnerability scanning, and a responsible disclosure program for external researchers.',
-    },
-    {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12l8.58 3.91a2 2 0 0 0 1.66 0L21 12"/><path d="M2 17l8.58 3.91a2 2 0 0 0 1.66 0L21 17"/></svg>,
-      title: 'Data Isolation',
-      desc: 'Tenant data is logically and physically isolated. Environment separation ensures no cross-contamination between accounts.',
-    },
-    {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>,
-      title: 'Incident Response',
-      desc: 'Documented incident response plan with 24-hour customer notification, thorough post-incident reviews, and continuous improvement.',
-    },
-    {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
-      title: 'Employee Security',
-      desc: 'Background checks for all team members, mandatory security training, and least-privilege internal access controls.',
-    },
+/* ── PRIVACY CONTENT ── */
+function PrivacyContent() {
+  const [activeSection, setActiveSection] = useState('introduction');
+  const sections = [
+    { id: 'introduction', title: 'Introduction' },
+    { id: 'information-we-collect', title: 'Information We Collect' },
+    { id: 'how-we-use', title: 'How We Use Your Information' },
+    { id: 'data-sharing', title: 'Data Sharing and Disclosure' },
+    { id: 'integrations', title: 'Data Connected Through Integrations' },
+    { id: 'cookies', title: 'Cookies and Tracking Technologies' },
+    { id: 'data-retention', title: 'Data Retention' },
+    { id: 'data-security', title: 'Data Security' },
+    { id: 'your-rights', title: 'Your Rights and Choices' },
+    { id: 'childrens-privacy', title: "Children's Privacy" },
+    { id: 'international-transfers', title: 'International Data Transfers' },
+    { id: 'changes', title: 'Changes to This Policy' },
+    { id: 'contact', title: 'Contact Us' },
   ];
-
-  const complianceCards = [
-    {
-      icon: <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M24 44s16-8 16-20V10l-16-6-16 6v14c0 12 16 20 16 20z"/><path d="M18 24l4 4 8-8"/></svg>,
-      title: 'SOC 2 Type II',
-      desc: 'Audited annually for security, availability, and confidentiality controls.',
-    },
-    {
-      icon: <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="24" cy="24" r="16"/><path d="M16 18h16v12H16z"/><circle cx="24" cy="24" r="3"/><path d="M15 24h-3"/><path d="M36 24h-3"/><path d="M24 15v-3"/><path d="M24 36v-3"/></svg>,
-      title: 'GDPR',
-      desc: 'Full compliance with EU data protection regulations and privacy requirements.',
-    },
-    {
-      icon: <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="10" y="6" width="28" height="36" rx="2"/><path d="M18 14h12"/><path d="M18 20h12"/><path d="M18 26h8"/><circle cx="24" cy="34" r="3"/><path d="M21 34l3 3 3-3"/></svg>,
-      title: 'ISO 27001',
-      desc: 'Certified information security management system with continuous improvement.',
-    },
-  ];
-
-  const promises = [
-    'Your connected data is never used to train AI models',
-    'You retain full ownership of all data and generated insights',
-    'Data is processed in-region with a transparent subprocessor list',
-    'Full data export and deletion available at any time',
-    'Customer data isolated at the application and infrastructure level',
-  ];
-
-  const faqs = [
-    {
-      q: 'Where is my data stored?',
-      a: 'Your data is stored in secure, SOC 2-compliant cloud infrastructure. We use regionally distributed data centers to ensure low latency and compliance with data residency requirements. All data is encrypted at rest using AES-256 and in transit using TLS 1.3.',
-    },
-    {
-      q: 'Is my data used to train AI models?',
-      a: 'No. Your connected data is never used to train, fine-tune, or improve any AI models. Your data is only used to generate insights for your workspace. We maintain strict data boundaries between customers and AI model providers.',
-    },
-    {
-      q: 'How is tenant data isolated?',
-      a: 'Each customer workspace is logically isolated at the application and database level. We enforce strict access controls, separate encryption keys per tenant, and ensure no data can leak between accounts. Infrastructure is segmented to prevent cross-tenant access.',
-    },
-    {
-      q: 'What happens when I connect a data source?',
-      a: 'When you connect a data source, Insightis establishes a secure, encrypted connection using OAuth or API keys. We only read the data necessary to generate insights and never modify your source data. Credentials are encrypted and stored separately from application data.',
-    },
-    {
-      q: 'Can I export or delete my data?',
-      a: 'Yes. You can export all your data and generated insights at any time from your workspace settings. You can also request full data deletion, which removes all your data from our systems within 30 days, including backups.',
-    },
-    {
-      q: 'Do you support SSO and SAML?',
-      a: 'Yes. Insightis supports Single Sign-On (SSO) via SAML 2.0 and OIDC for enterprise customers. We also support multi-factor authentication (MFA) and integrate with major identity providers including Okta, Azure AD, and Google Workspace.',
-    },
-    {
-      q: 'How do you handle security incidents?',
-      a: 'We have a documented incident response plan that includes detection, containment, eradication, and recovery procedures. Affected customers are notified within 24 hours of a confirmed incident. We conduct thorough post-incident reviews and publish transparency reports.',
-    },
-    {
-      q: 'What compliance certifications do you hold?',
-      a: 'Insightis maintains SOC 2 Type II certification, GDPR compliance, and ISO 27001 certification. We undergo annual third-party audits and continuously monitor our compliance posture. Additional certifications are available upon request.',
-    },
-  ];
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => { entries.forEach(e => { if (e.isIntersecting) setActiveSection(e.target.id); }); },
+      { rootMargin: '-10% 0px -80% 0px', threshold: 0 }
+    );
+    sections.forEach(s => { const el = document.getElementById(s.id); if (el) observer.observe(el); });
+    return () => observer.disconnect();
+  }, []);
+  const sectionStyle = { marginTop: '48px', scrollMarginTop: '100px' };
+  const h2Style = { fontSize: '20px', fontWeight: 600, color: '#E8F2F5', marginBottom: '16px' };
+  const pStyle = { fontSize: '15px', color: 'rgba(255,255,255,.55)', lineHeight: 1.8, marginBottom: '16px' };
+  const ulStyle = { paddingLeft: '24px', listStyleType: 'disc', color: 'rgba(255,255,255,.55)', display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '16px', fontSize: '15px', lineHeight: 1.8 };
 
   return (
-    <>
-      {/* Hero Section */}
-      <section style={{padding:'120px 0 60px', position:'relative'}}>
-        <div style={{position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:'100%', height:'100%', background:'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(9,160,157,.06) 0%, transparent 70%)', pointerEvents:'none'}}/>
-        <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', textAlign:'center', position:'relative'}}>
-          <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'20px'}}>
-            <span style={{color:'#09A09D', fontSize:'12px'}}>&#x2726;</span>
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Security</span>
-          </div>
-          <h1 className="fu1" style={{fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'20px'}}>
-            Secure by design
+    <section style={{ position: 'relative' }}>
+      {/* Hero */}
+      <div style={{ padding: '120px 0 60px' }}>
+        <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
+          <h1 className="fu1" style={{ fontSize: 'clamp(32px,5vw,48px)', fontWeight: 500, letterSpacing: '-.02em', lineHeight: 1.15 }}>
+            Privacy Policy
           </h1>
-          <p className="fu2" style={{fontSize:'17px', color:'rgba(255,255,255,.5)', maxWidth:'640px', margin:'0 auto', lineHeight:1.65}}>
-            Your data stays yours. Insightis is built with enterprise-grade security at every layer — from encryption and access controls to compliance certifications and continuous monitoring.
+          <p className="fu2" style={{ fontSize: '14px', color: 'rgba(255,255,255,.4)', marginTop: '12px' }}>
+            Effective Date: April 6, 2026
           </p>
-          <div className="fu3" style={{display:'flex', justifyContent:'center', gap:'12px', marginTop:'32px', flexWrap:'wrap'}}>
-            <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'12px 28px', fontSize:'14px', fontWeight:600, color:'#fff', background:'#07807E', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
-              onMouseEnter={e=>e.currentTarget.style.background='#09A09D'}
-              onMouseLeave={e=>e.currentTarget.style.background='#07807E'}>
-              Contact Security Team
-            </a>
-            <a href="Privacy.html" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'12px 28px', fontSize:'14px', fontWeight:600, color:'#E8F2F5', border:'1px solid rgba(255,255,255,.15)', borderRadius:'999px', textDecoration:'none', transition:'border-color .2s'}}
-              onMouseEnter={e=>e.currentTarget.style.borderColor='rgba(255,255,255,.35)'}
-              onMouseLeave={e=>e.currentTarget.style.borderColor='rgba(255,255,255,.15)'}>
-              View Privacy Policy
-            </a>
-          </div>
+          <p className="fu3" style={{ fontSize: '15px', color: 'rgba(255,255,255,.55)', lineHeight: 1.8, marginTop: '32px' }}>
+            At Insightis, a product by Devart, we are committed to protecting your privacy and ensuring the security of the personal information you share with us. This Privacy Policy describes how we collect, use, disclose, and safeguard your data when you use the Insightis AI analytics workspace, our website, and related services.
+          </p>
         </div>
-      </section>
+      </div>
 
-      {/* Security Controls Grid */}
-      <section style={{padding:'80px 0'}}>
-        <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-          <div style={{textAlign:'center', marginBottom:'56px'}}>
-            <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
-              <span style={{color:'#09A09D', fontSize:'12px'}}>&#x2726;</span>
-              <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Enterprise Security</span>
-            </div>
-            <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>Built-in security at every layer</h2>
-          </div>
-          <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))', gap:'16px'}}>
-            {securityCards.map((v, i) => (
-              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)', borderRadius:'16px', padding:'28px', position:'relative', overflow:'hidden', transition:'all .2s'}}
-                onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-                onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
-                <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
-                <div style={{width:'40px', height:'40px', borderRadius:'10px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'16px'}}>
-                  {v.icon}
-                </div>
-                <h3 style={{fontSize:'17px', fontWeight:600, color:'#E8F2F5', marginBottom:'8px'}}>{v.title}</h3>
-                <p style={{fontSize:'14px', color:'#7FA0AC', lineHeight:1.65}}>{v.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Two-column: TOC + Content */}
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px 100px', display: 'flex', gap: '56px', alignItems: 'flex-start' }}>
 
-      {/* Compliance Section */}
-      <section style={{padding:'80px 0'}}>
-        <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-          <div style={{textAlign:'center', marginBottom:'56px'}}>
-            <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
-              <span style={{color:'#09A09D', fontSize:'12px'}}>&#x2726;</span>
-              <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Compliance</span>
-            </div>
-            <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>Industry-standard certifications</h2>
-          </div>
-          <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))', gap:'16px', maxWidth:'960px', margin:'0 auto'}}>
-            {complianceCards.map((c, i) => (
-              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)', borderRadius:'16px', padding:'36px 28px', position:'relative', overflow:'hidden', textAlign:'center', transition:'all .2s'}}
-                onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-                onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
-                <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
-                <div style={{display:'flex', justifyContent:'center', marginBottom:'20px'}}>
-                  {c.icon}
-                </div>
-                <h3 style={{fontSize:'17px', fontWeight:600, color:'#E8F2F5', marginBottom:'8px'}}>{c.title}</h3>
-                <p style={{fontSize:'14px', color:'#7FA0AC', lineHeight:1.65}}>{c.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Your Data Promise */}
-      <section style={{padding:'80px 0'}}>
-        <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-          <div style={{textAlign:'center', marginBottom:'56px'}}>
-            <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
-              <span style={{color:'#09A09D', fontSize:'12px'}}>&#x2726;</span>
-              <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Data Protection</span>
-            </div>
-            <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>Your data, your rules</h2>
-          </div>
-          <div style={{maxWidth:'720px', margin:'0 auto'}}>
-            <div style={{background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)', borderRadius:'16px', padding:'36px', position:'relative', overflow:'hidden'}}>
-              <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
-              <div style={{display:'flex', flexDirection:'column', gap:'20px'}}>
-                {promises.map((p, i) => (
-                  <div key={i} style={{display:'flex', alignItems:'flex-start', gap:'14px'}}>
-                    <div style={{flexShrink:0, marginTop:'2px'}}>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    </div>
-                    <p style={{fontSize:'15px', color:'#C0D4DC', lineHeight:1.6}}>{p}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section style={{padding:'80px 0'}}>
-        <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-          <div style={{textAlign:'center', marginBottom:'56px'}}>
-            <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>Frequently asked questions</h2>
-          </div>
-          <div style={{maxWidth:'760px', margin:'0 auto', display:'flex', flexDirection:'column', gap:'8px'}}>
-            {faqs.map((faq, i) => (
-              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)', borderRadius:'12px', overflow:'hidden', transition:'all .2s'}}>
-                <button
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  style={{width:'100%', display:'flex', alignItems:'center', justifyContent:'space-between', padding:'18px 24px', background:'transparent', border:'none', cursor:'pointer', textAlign:'left'}}
-                >
-                  <span style={{fontSize:'15px', fontWeight:500, color:'#E8F2F5'}}>{faq.q}</span>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7FA0AC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0, marginLeft:'16px', transition:'transform .25s', transform: openFaq === i ? 'rotate(180deg)' : 'rotate(0deg)'}}>
-                    <polyline points="6 9 12 15 18 9"/>
-                  </svg>
-                </button>
-                {openFaq === i && (
-                  <div style={{padding:'0 24px 18px'}}>
-                    <p style={{fontSize:'14px', color:'#7FA0AC', lineHeight:1.7}}>{faq.a}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact CTA */}
-      <section style={{padding:'80px 0 100px'}}>
-        <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-          <div style={{background:'rgba(9,160,157,.04)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'24px', padding:'64px 32px', textAlign:'center', position:'relative', overflow:'hidden'}}>
-            <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.4),transparent)'}}/>
-            <div style={{position:'absolute', inset:0, background:'radial-gradient(ellipse 50% 60% at 50% 0%, rgba(9,160,157,.08) 0%, transparent 70%)', pointerEvents:'none'}}/>
-            <div style={{position:'relative'}}>
-              <h3 style={{fontSize:'clamp(24px,3.5vw,36px)', fontWeight:500, color:'#fff', letterSpacing:'-.02em', marginBottom:'16px'}}>
-                Have security questions?
-              </h3>
-              <p style={{fontSize:'16px', color:'rgba(255,255,255,.5)', maxWidth:'520px', margin:'0 auto 32px', lineHeight:1.65}}>
-                Our security team is here to help with assessments, compliance documentation, and custom security requirements.
-              </p>
-              <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'14px 32px', fontSize:'14px', fontWeight:600, color:'#fff', background:'#07807E', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
-                onMouseEnter={e=>e.currentTarget.style.background='#09A09D'}
-                onMouseLeave={e=>e.currentTarget.style.background='#07807E'}>
-                Contact Security Team
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        {/* Sticky TOC */}
+        <div className="hidden md:block" style={{ width: '200px', flexShrink: 0, position: 'sticky', top: '90px' }}>
+          <p style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '.12em', textTransform: 'uppercase', color: '#7878A8', marginBottom: '16px' }}>On this page</p>
+          <nav style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+            {sections.map(s => (
+              <a key={s.id} href={`#${s.id}`} style={{ fontSize: '13px', color: activeSection === s.id ? '#0EC4C1' : 'rgba(255,255,255,.4)', padding: '5px 0 5px 12px', borderLeft: `2px solid ${activeSection === s.id ? '#07807E' : 'rgba(255,255,255,.08)'}`, transition: 'all .15s', textDecoration: 'none', display: 'block', lineHeight: 1.5 }}>
+                {s.title}
               </a>
-              <p style={{fontSize:'13px', color:'rgba(255,255,255,.35)', marginTop:'16px'}}>security@insightis.ai</p>
-            </div>
-          </div>
+            ))}
+          </nav>
         </div>
-      </section>
-    </>
+
+        {/* Content */}
+        <div style={{ flex: 1, minWidth: 0 }}>
+
+        {/* 1. Introduction */}
+        <div id="introduction" style={sectionStyle}>
+          <h2 style={h2Style}>1. Introduction</h2>
+          <p style={pStyle}>
+            Insightis is an AI-powered analytics workspace developed by Devart that enables teams to connect their data sources, ask questions in natural language, and receive instant, accurate insights. We understand that by using our platform, you entrust us with sensitive business data, and we take that responsibility seriously.
+          </p>
+          <p style={pStyle}>
+            This Privacy Policy applies to all users of the Insightis platform, including our website at insightis.ai, the Insightis web application, APIs, and any related services. By accessing or using Insightis, you agree to the practices described in this policy.
+          </p>
+        </div>
+
+        {/* 2. Information We Collect */}
+        <div id="information-we-collect" style={sectionStyle}>
+          <h2 style={h2Style}>2. Information We Collect</h2>
+          <p style={pStyle}>
+            We collect information in several ways depending on how you interact with Insightis:
+          </p>
+          <p style={{ ...pStyle, fontWeight: 500, color: '#E8F2F5', marginBottom: '8px' }}>Account Information</p>
+          <ul style={ulStyle}>
+            <li>Name, email address, and company name when you create an account</li>
+            <li>Billing information and payment details for paid plans</li>
+            <li>Profile preferences and notification settings</li>
+          </ul>
+          <p style={{ ...pStyle, fontWeight: 500, color: '#E8F2F5', marginBottom: '8px' }}>Usage Data</p>
+          <ul style={ulStyle}>
+            <li>Analytics queries and natural language questions you submit</li>
+            <li>Reports you create, save, and share within the platform</li>
+            <li>Feature usage patterns and interaction logs</li>
+            <li>Session duration, pages visited, and navigation paths</li>
+          </ul>
+          <p style={{ ...pStyle, fontWeight: 500, color: '#E8F2F5', marginBottom: '8px' }}>Data Source Connections</p>
+          <ul style={ulStyle}>
+            <li>Connection credentials and authentication tokens for your integrated data sources (databases, CRMs, spreadsheets, etc.)</li>
+            <li>Metadata about your connected data sources, including schema information, table names, and column definitions</li>
+            <li>Query results and aggregated data retrieved through your integrations</li>
+          </ul>
+          <p style={{ ...pStyle, fontWeight: 500, color: '#E8F2F5', marginBottom: '8px' }}>Device and Technical Information</p>
+          <ul style={ulStyle}>
+            <li>IP address, browser type and version, operating system</li>
+            <li>Device identifiers and screen resolution</li>
+            <li>Referring URLs and search terms used to find our service</li>
+          </ul>
+        </div>
+
+        {/* 3. How We Use Your Information */}
+        <div id="how-we-use" style={sectionStyle}>
+          <h2 style={h2Style}>3. How We Use Your Information</h2>
+          <p style={pStyle}>
+            We use the information we collect for the following purposes:
+          </p>
+          <ul style={ulStyle}>
+            <li><strong style={{ color: '#E8F2F5' }}>Provide and operate the service:</strong> To process your analytics queries, generate insights, run reports, and deliver the core Insightis experience.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>AI-powered analytics:</strong> To power our Insights Engine and AI Chat features, translating your natural language questions into accurate data queries through our Semantic Layer.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Improve and optimize:</strong> To understand how users interact with our platform, identify areas for improvement, and develop new features.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Security and fraud prevention:</strong> To detect, prevent, and address technical issues, unauthorized access, and fraudulent activity.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Communications:</strong> To send you service-related notices, product updates, security alerts, and, with your consent, marketing communications.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Legal compliance:</strong> To comply with applicable laws, regulations, and legal processes.</li>
+          </ul>
+        </div>
+
+        {/* 4. Data Sharing and Disclosure */}
+        <div id="data-sharing" style={sectionStyle}>
+          <h2 style={h2Style}>4. Data Sharing and Disclosure</h2>
+          <p style={pStyle}>
+            We do not sell your personal data. We may share information in the following limited circumstances:
+          </p>
+          <ul style={ulStyle}>
+            <li><strong style={{ color: '#E8F2F5' }}>Service providers:</strong> We work with trusted third-party vendors who assist us in operating our platform, processing payments, hosting infrastructure, and providing customer support. These providers are contractually obligated to protect your data and may only use it for the purposes we specify.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Legal requirements:</strong> We may disclose information if required by law, regulation, legal process, or governmental request, or when we believe disclosure is necessary to protect our rights, your safety, or the safety of others.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Business transfers:</strong> In the event of a merger, acquisition, reorganization, or sale of assets, your information may be transferred as part of that transaction. We will notify you of any such change and any choices you may have regarding your data.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>With your consent:</strong> We may share information with third parties when you have given us explicit permission to do so.</li>
+          </ul>
+        </div>
+
+        {/* 5. Data Connected Through Integrations */}
+        <div id="integrations" style={sectionStyle}>
+          <h2 style={h2Style}>5. Data Connected Through Integrations</h2>
+          <p style={pStyle}>
+            Insightis connects to over 200 data sources, including databases (PostgreSQL, MySQL, SQL Server, BigQuery, Snowflake, and others), CRMs (Salesforce, HubSpot), spreadsheets (Google Sheets, Excel), marketing platforms, and more. We want to be transparent about how we handle this data:
+          </p>
+          <ul style={ulStyle}>
+            <li><strong style={{ color: '#E8F2F5' }}>Processed for analytics only:</strong> Data retrieved from your connected sources is used solely to answer your queries and generate insights within the Insightis platform. We do not use your connected data for any other purpose.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Not used for AI model training:</strong> Your business data from connected integrations is never used to train, fine-tune, or improve our AI models or any third-party AI models. Your data remains yours.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Minimal data retention:</strong> Query results are cached temporarily to improve performance. We do not permanently store raw data from your connected sources unless you explicitly save a report or insight.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Credential security:</strong> Connection credentials and authentication tokens are encrypted at rest and in transit. They are stored separately from other account data with additional access controls.</li>
+          </ul>
+        </div>
+
+        {/* 6. Cookies and Tracking Technologies */}
+        <div id="cookies" style={sectionStyle}>
+          <h2 style={h2Style}>6. Cookies and Tracking Technologies</h2>
+          <p style={pStyle}>
+            We use cookies and similar tracking technologies to operate and improve our service, remember your preferences, understand usage patterns, and deliver relevant content. These include:
+          </p>
+          <ul style={ulStyle}>
+            <li><strong style={{ color: '#E8F2F5' }}>Essential cookies:</strong> Required for the platform to function properly, including authentication, session management, and security features.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Analytics cookies:</strong> Help us understand how visitors interact with our website and application so we can improve the user experience.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Preference cookies:</strong> Remember your settings, language preferences, and other customization choices.</li>
+          </ul>
+          <p style={pStyle}>
+            You can manage your cookie preferences at any time through our <a href="Cookie Settings.html" style={{ color: '#0EC4C1', textDecoration: 'underline' }}>Cookie Settings</a> page. Most browsers also allow you to control cookies through their settings.
+          </p>
+        </div>
+
+        {/* 7. Data Retention */}
+        <div id="data-retention" style={sectionStyle}>
+          <h2 style={h2Style}>7. Data Retention</h2>
+          <p style={pStyle}>
+            We retain your personal information for as long as your account is active or as needed to provide you with our services. Specific retention periods include:
+          </p>
+          <ul style={ulStyle}>
+            <li><strong style={{ color: '#E8F2F5' }}>Account data:</strong> Retained for the duration of your account and for up to 30 days after account closure to allow for reactivation.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Usage logs:</strong> Retained for up to 12 months for analytics and security purposes, then anonymized or deleted.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Saved reports and insights:</strong> Retained until you delete them or close your account.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Cached query results:</strong> Automatically purged within 24 hours unless saved as a report.</li>
+          </ul>
+          <p style={pStyle}>
+            Upon account closure, we will delete or anonymize your personal data within 30 days, except where we are required to retain it for legal or regulatory reasons. You may request immediate deletion by contacting our support team.
+          </p>
+        </div>
+
+        {/* 8. Data Security */}
+        <div id="data-security" style={sectionStyle}>
+          <h2 style={h2Style}>8. Data Security</h2>
+          <p style={pStyle}>
+            We implement industry-standard technical and organizational measures to protect your data, including:
+          </p>
+          <ul style={ulStyle}>
+            <li><strong style={{ color: '#E8F2F5' }}>Encryption:</strong> All data is encrypted in transit using TLS 1.2+ and at rest using AES-256 encryption.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Access controls:</strong> Role-based access control (RBAC), multi-factor authentication (MFA), and the principle of least privilege govern access to systems and data.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Infrastructure security:</strong> Our platform is hosted on enterprise-grade cloud infrastructure with SOC 2 Type II certified providers.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Regular audits:</strong> We conduct regular security assessments, penetration testing, and vulnerability scanning.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Incident response:</strong> We maintain a documented incident response plan and will notify affected users within 72 hours of a confirmed data breach.</li>
+          </ul>
+          <p style={pStyle}>
+            For more details about our security practices, please visit our <a href="Security.html" style={{ color: '#0EC4C1', textDecoration: 'underline' }}>Security</a> page.
+          </p>
+        </div>
+
+        {/* 9. Your Rights and Choices */}
+        <div id="your-rights" style={sectionStyle}>
+          <h2 style={h2Style}>9. Your Rights and Choices</h2>
+          <p style={pStyle}>
+            Depending on your location, you may have the following rights regarding your personal data:
+          </p>
+          <ul style={ulStyle}>
+            <li><strong style={{ color: '#E8F2F5' }}>Access:</strong> Request a copy of the personal data we hold about you.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Correction:</strong> Request that we correct inaccurate or incomplete personal data.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Deletion:</strong> Request that we delete your personal data, subject to certain legal exceptions.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Data portability:</strong> Request a machine-readable copy of your data to transfer to another service.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Opt-out:</strong> Unsubscribe from marketing communications at any time using the link in our emails or through your account settings.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Restrict processing:</strong> Request that we limit how we use your data in certain circumstances.</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Withdraw consent:</strong> Where processing is based on consent, you may withdraw it at any time without affecting the lawfulness of prior processing.</li>
+          </ul>
+          <p style={pStyle}>
+            To exercise any of these rights, please contact us at <a href="mailto:privacy@insightis.ai" style={{ color: '#0EC4C1', textDecoration: 'underline' }}>privacy@insightis.ai</a>. We will respond to your request within 30 days.
+          </p>
+        </div>
+
+        {/* 10. Children's Privacy */}
+        <div id="childrens-privacy" style={sectionStyle}>
+          <h2 style={h2Style}>10. Children's Privacy</h2>
+          <p style={pStyle}>
+            Insightis is not intended for use by individuals under the age of 16. We do not knowingly collect personal information from children under 16. If we become aware that we have inadvertently collected personal data from a child under 16, we will take steps to delete that information as promptly as possible. If you believe a child under 16 has provided us with personal data, please contact us at <a href="mailto:privacy@insightis.ai" style={{ color: '#0EC4C1', textDecoration: 'underline' }}>privacy@insightis.ai</a>.
+          </p>
+        </div>
+
+        {/* 11. International Data Transfers */}
+        <div id="international-transfers" style={sectionStyle}>
+          <h2 style={h2Style}>11. International Data Transfers</h2>
+          <p style={pStyle}>
+            Insightis is operated by Devart, and your data may be processed in countries outside your country of residence, including in the European Union and the United States. When we transfer personal data across borders, we implement appropriate safeguards to ensure your data remains protected, including:
+          </p>
+          <ul style={ulStyle}>
+            <li>Standard Contractual Clauses (SCCs) approved by the European Commission</li>
+            <li>Data Processing Agreements with all sub-processors</li>
+            <li>Compliance with applicable data protection frameworks, including GDPR</li>
+          </ul>
+          <p style={pStyle}>
+            We ensure that any international transfer of personal data is subject to appropriate safeguards and that your rights under applicable data protection laws are maintained regardless of where your data is processed.
+          </p>
+        </div>
+
+        {/* 12. Changes to This Policy */}
+        <div id="changes" style={sectionStyle}>
+          <h2 style={h2Style}>12. Changes to This Policy</h2>
+          <p style={pStyle}>
+            We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors. When we make material changes, we will notify you by posting the updated policy on our website with a revised effective date and, where required, by sending you an email notification.
+          </p>
+          <p style={pStyle}>
+            We encourage you to review this page periodically to stay informed about how we protect your data. Your continued use of Insightis after changes are posted constitutes your acceptance of the updated policy.
+          </p>
+        </div>
+
+        {/* 13. Contact Us */}
+        <div id="contact" style={sectionStyle}>
+          <h2 style={h2Style}>13. Contact Us</h2>
+          <p style={pStyle}>
+            If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:
+          </p>
+          <ul style={{ ...ulStyle, listStyleType: 'none', paddingLeft: 0 }}>
+            <li><strong style={{ color: '#E8F2F5' }}>Email:</strong> <a href="mailto:privacy@insightis.ai" style={{ color: '#0EC4C1', textDecoration: 'underline' }}>privacy@insightis.ai</a></li>
+            <li><strong style={{ color: '#E8F2F5' }}>Company:</strong> Devart, the developer of Insightis</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Address:</strong> 3422 Old Capitol Trl, Wilmington, Delaware, USA 19808</li>
+            <li><strong style={{ color: '#E8F2F5' }}>Support:</strong> <a href="../Resources/Contact Support.html" style={{ color: '#0EC4C1', textDecoration: 'underline' }}>Contact Support</a></li>
+          </ul>
+          <p style={pStyle}>
+            For EU residents, you also have the right to lodge a complaint with your local data protection authority if you believe your data has been processed in violation of applicable law.
+          </p>
+        </div>
+
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -598,13 +544,6 @@ function Footer() {
     'For Product Teams': '../Solutions/Product Teams.html',
     'For Data & Analytics Teams': '../Solutions/Data Analytics Teams.html',
     'For Operations & Finance': '../Solutions/Operations Finance.html',
-    'Documentation': '../docs/',
-    'Video Tutorials': 'https://www.youtube.com/@InsightisAI',
-    'Blog': '../blog/',
-    'Support Center': '../Resources/Contact Support.html',
-    'Roadmap': '../Resources/Roadmap.html',
-    'Community': '../Resources/Community.html',
-    'Roadmap': '../Resources/Roadmap.html',
   };
   return (
     <footer className="pt-16 pb-8 border-t border-[#1E1E30]">
@@ -689,14 +628,9 @@ function App() {
   return (
     <div>
       <Header />
-      <SecurityContent />
+      <PrivacyContent />
       <Footer />
     </div>
   );
 }
-
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-</script>
-<script defer src="/assets/header-scroll.js"></script>
-</body>
-</html>

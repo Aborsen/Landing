@@ -1,60 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="stylesheet" href="/assets/responsive.css">
-<title>Cookie Settings — Insightis</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Geist', sans-serif;
-  background: #0A0E13;
-  color: #E8F2F5;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-body::before {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  opacity: .4; mix-blend-mode: overlay;
-}
-body::after {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 10% 5%, rgba(10,152,150,.09) 0%, transparent 70%),
-    radial-gradient(ellipse 70% 55% at 85% 0%, rgba(110,60,200,.07) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 60% at 75% 45%, rgba(20,80,200,.05) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 55% at 5% 55%, rgba(160,50,220,.045) 0%, transparent 65%),
-    radial-gradient(ellipse 65% 55% at 50% 90%, rgba(10,152,150,.07) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 45% at 95% 75%, rgba(50,90,240,.04) 0%, transparent 55%),
-    radial-gradient(ellipse 45% 40% at 35% 30%, rgba(200,60,180,.03) 0%, transparent 55%);
-}
-@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-@keyframes fadeIn { from{opacity:0} to{opacity:1} }
-@keyframes slideUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
-.fu0 { animation: fadeUp .7s ease both; }
-.fu1 { animation: fadeUp .7s ease .1s both; }
-.fu2 { animation: fadeUp .7s ease .2s both; }
-.fu3 { animation: fadeUp .7s ease .35s both; }
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
-section { position: relative; }
-</style>
-</head>
-<body>
-<div id="root"></div>
-<script type="text/babel">
-const { useState, useEffect, useRef } = React;
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import ReactDOM from 'react-dom/client';
+import '../app.css';
 
 /* ── HEADER ── */
 function MenuIcon({ size = 24, color = "#fff" }) {
@@ -287,256 +233,290 @@ function Header() {
   );
 }
 
-/* ── TOGGLE SWITCH ── */
-function ToggleSwitch({ enabled, onChange, disabled = false }) {
-  return (
-    <button
-      onClick={() => !disabled && onChange(!enabled)}
-      style={{
-        width: '44px', height: '24px', borderRadius: '12px',
-        background: enabled ? '#07807E' : 'rgba(255,255,255,.15)',
-        border: 'none', cursor: disabled ? 'not-allowed' : 'pointer',
-        position: 'relative', transition: 'background 0.2s',
-        opacity: disabled ? 0.6 : 1,
-        flexShrink: 0,
-      }}
-    >
-      <div style={{
-        width: '18px', height: '18px', borderRadius: '50%',
-        background: '#fff', position: 'absolute', top: '3px',
-        left: enabled ? '23px' : '3px', transition: 'left 0.2s',
-        boxShadow: '0 1px 3px rgba(0,0,0,.3)',
-      }} />
-    </button>
-  );
-}
+/* ── SECURITY CONTENT ── */
+function SecurityContent() {
+  const [openFaq, setOpenFaq] = useState(null);
 
-/* ── COOKIE CONTENT ── */
-function CookieContent() {
-  const [cookies, setCookies] = useState({
-    analytics: true,
-    functional: true,
-    marketing: false,
-  });
-
-  const [saved, setSaved] = useState(false);
-
-  const handleSave = () => {
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2500);
-  };
-
-  const categories = [
+  const securityCards = [
     {
-      key: 'essential',
-      title: 'Essential Cookies',
-      description: 'Required for the website to function properly. These cookies enable core functionality such as security, session management, and accessibility. They cannot be disabled.',
-      alwaysActive: true,
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><rect x="10" y="11" width="4" height="5" rx="1"/><path d="M12 11V9a2 2 0 1 1 4 0"/></svg>,
+      title: 'Data Encryption',
+      desc: 'AES-256 encryption at rest, TLS 1.3 in transit, and fully encrypted backups. Your data is protected at every stage of the pipeline.',
     },
     {
-      key: 'analytics',
-      title: 'Analytics Cookies',
-      description: 'Help us understand how visitors interact with our website by collecting and reporting information anonymously. This helps us improve our website and services.',
-      examples: 'Google Analytics, Mixpanel',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>,
+      title: 'Infrastructure Security',
+      desc: 'Cloud-hosted on enterprise infrastructure with network isolation, web application firewalls, and DDoS protection built in.',
     },
     {
-      key: 'functional',
-      title: 'Functional Cookies',
-      description: 'Enable enhanced functionality and personalization, such as remembering your preferences, language settings, and customized content. Disabling these may limit some features.',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>,
+      title: 'Access Controls',
+      desc: 'Role-based access control, SSO/SAML integration, multi-factor authentication, and least-privilege access policies across the platform.',
     },
     {
-      key: 'marketing',
-      title: 'Marketing Cookies',
-      description: 'Used to track visitors across websites to display relevant advertisements. These cookies help measure the effectiveness of advertising campaigns.',
-      examples: 'Meta Pixel, Google Ads, LinkedIn Insight',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/></svg>,
+      title: 'Application Security',
+      desc: 'Regular security audits, automated dependency scanning, secure SDLC practices, and code reviews on every release.',
+    },
+    {
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>,
+      title: 'Continuous Monitoring',
+      desc: '24/7 infrastructure and application monitoring, anomaly detection, and real-time alerting for security events.',
+    },
+    {
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><path d="M12 14v4"/><path d="M12 14a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><path d="M20 6H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z"/></svg>,
+      title: 'Vulnerability Management',
+      desc: 'Regular penetration testing, automated vulnerability scanning, and a responsible disclosure program for external researchers.',
+    },
+    {
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12l8.58 3.91a2 2 0 0 0 1.66 0L21 12"/><path d="M2 17l8.58 3.91a2 2 0 0 0 1.66 0L21 17"/></svg>,
+      title: 'Data Isolation',
+      desc: 'Tenant data is logically and physically isolated. Environment separation ensures no cross-contamination between accounts.',
+    },
+    {
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>,
+      title: 'Incident Response',
+      desc: 'Documented incident response plan with 24-hour customer notification, thorough post-incident reviews, and continuous improvement.',
+    },
+    {
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
+      title: 'Employee Security',
+      desc: 'Background checks for all team members, mandatory security training, and least-privilege internal access controls.',
     },
   ];
 
-  const cookieTable = [
-    { name: '_ga', provider: 'Google Analytics', purpose: 'Analytics', duration: '2 years' },
-    { name: '_ga_*', provider: 'Google Analytics', purpose: 'Analytics', duration: '2 years' },
-    { name: '_gid', provider: 'Google Analytics', purpose: 'Analytics', duration: '24 hours' },
-    { name: 'mp_*', provider: 'Mixpanel', purpose: 'Analytics', duration: '1 year' },
-    { name: '_insightis_session', provider: 'Insightis', purpose: 'Essential', duration: 'Session' },
-    { name: '_insightis_csrf', provider: 'Insightis', purpose: 'Essential', duration: 'Session' },
-    { name: '_insightis_prefs', provider: 'Insightis', purpose: 'Functional', duration: '1 year' },
-    { name: '_insightis_lang', provider: 'Insightis', purpose: 'Functional', duration: '1 year' },
-    { name: '_fbp', provider: 'Meta', purpose: 'Marketing', duration: '3 months' },
-    { name: '_gcl_au', provider: 'Google Ads', purpose: 'Marketing', duration: '3 months' },
-    { name: 'li_sugr', provider: 'LinkedIn', purpose: 'Marketing', duration: '3 months' },
+  const complianceCards = [
+    {
+      icon: <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M24 44s16-8 16-20V10l-16-6-16 6v14c0 12 16 20 16 20z"/><path d="M18 24l4 4 8-8"/></svg>,
+      title: 'SOC 2 Type II',
+      desc: 'Audited annually for security, availability, and confidentiality controls.',
+    },
+    {
+      icon: <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="24" cy="24" r="16"/><path d="M16 18h16v12H16z"/><circle cx="24" cy="24" r="3"/><path d="M15 24h-3"/><path d="M36 24h-3"/><path d="M24 15v-3"/><path d="M24 36v-3"/></svg>,
+      title: 'GDPR',
+      desc: 'Full compliance with EU data protection regulations and privacy requirements.',
+    },
+    {
+      icon: <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="10" y="6" width="28" height="36" rx="2"/><path d="M18 14h12"/><path d="M18 20h12"/><path d="M18 26h8"/><circle cx="24" cy="34" r="3"/><path d="M21 34l3 3 3-3"/></svg>,
+      title: 'ISO 27001',
+      desc: 'Certified information security management system with continuous improvement.',
+    },
   ];
 
-  const sectionStyle = {
-    marginBottom: '40px',
-  };
-  const headingStyle = {
-    fontSize: '20px', fontWeight: 600, color: '#E8F2F5', marginBottom: '12px', letterSpacing: '-.01em',
-  };
-  const paraStyle = {
-    fontSize: '15px', color: 'rgba(255,255,255,.55)', lineHeight: 1.8,
-  };
+  const promises = [
+    'Your connected data is never used to train AI models',
+    'You retain full ownership of all data and generated insights',
+    'Data is processed in-region with a transparent subprocessor list',
+    'Full data export and deletion available at any time',
+    'Customer data isolated at the application and infrastructure level',
+  ];
+
+  const faqs = [
+    {
+      q: 'Where is my data stored?',
+      a: 'Your data is stored in secure, SOC 2-compliant cloud infrastructure. We use regionally distributed data centers to ensure low latency and compliance with data residency requirements. All data is encrypted at rest using AES-256 and in transit using TLS 1.3.',
+    },
+    {
+      q: 'Is my data used to train AI models?',
+      a: 'No. Your connected data is never used to train, fine-tune, or improve any AI models. Your data is only used to generate insights for your workspace. We maintain strict data boundaries between customers and AI model providers.',
+    },
+    {
+      q: 'How is tenant data isolated?',
+      a: 'Each customer workspace is logically isolated at the application and database level. We enforce strict access controls, separate encryption keys per tenant, and ensure no data can leak between accounts. Infrastructure is segmented to prevent cross-tenant access.',
+    },
+    {
+      q: 'What happens when I connect a data source?',
+      a: 'When you connect a data source, Insightis establishes a secure, encrypted connection using OAuth or API keys. We only read the data necessary to generate insights and never modify your source data. Credentials are encrypted and stored separately from application data.',
+    },
+    {
+      q: 'Can I export or delete my data?',
+      a: 'Yes. You can export all your data and generated insights at any time from your workspace settings. You can also request full data deletion, which removes all your data from our systems within 30 days, including backups.',
+    },
+    {
+      q: 'Do you support SSO and SAML?',
+      a: 'Yes. Insightis supports Single Sign-On (SSO) via SAML 2.0 and OIDC for enterprise customers. We also support multi-factor authentication (MFA) and integrate with major identity providers including Okta, Azure AD, and Google Workspace.',
+    },
+    {
+      q: 'How do you handle security incidents?',
+      a: 'We have a documented incident response plan that includes detection, containment, eradication, and recovery procedures. Affected customers are notified within 24 hours of a confirmed incident. We conduct thorough post-incident reviews and publish transparency reports.',
+    },
+    {
+      q: 'What compliance certifications do you hold?',
+      a: 'Insightis maintains SOC 2 Type II certification, GDPR compliance, and ISO 27001 certification. We undergo annual third-party audits and continuously monitor our compliance posture. Additional certifications are available upon request.',
+    },
+  ];
 
   return (
     <>
-      {/* Hero */}
+      {/* Hero Section */}
       <section style={{padding:'120px 0 60px', position:'relative'}}>
-        <div style={{maxWidth:'800px', margin:'0 auto', padding:'0 24px', textAlign:'center', position:'relative'}}>
-          <h1 className="fu1" style={{fontSize:'clamp(32px,5vw,48px)', fontWeight:500, letterSpacing:'-.02em', lineHeight:1.15}}>
-            Cookie Settings
+        <div style={{position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:'100%', height:'100%', background:'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(9,160,157,.06) 0%, transparent 70%)', pointerEvents:'none'}}/>
+        <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', textAlign:'center', position:'relative'}}>
+          <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'20px'}}>
+            <span style={{color:'#09A09D', fontSize:'12px'}}>&#x2726;</span>
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Security</span>
+          </div>
+          <h1 className="fu1" style={{fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'20px'}}>
+            Secure by design
           </h1>
-          <p className="fu2" style={{fontSize:'15px', color:'rgba(255,255,255,.55)', lineHeight:1.8, marginTop:'16px', maxWidth:'640px', margin:'16px auto 0'}}>
-            We use cookies to enhance your experience, analyze site traffic, and personalize content. You can manage your cookie preferences below.
+          <p className="fu2" style={{fontSize:'17px', color:'rgba(255,255,255,.5)', maxWidth:'640px', margin:'0 auto', lineHeight:1.65}}>
+            Your data stays yours. Insightis is built with enterprise-grade security at every layer — from encryption and access controls to compliance certifications and continuous monitoring.
           </p>
+          <div className="fu3" style={{display:'flex', justifyContent:'center', gap:'12px', marginTop:'32px', flexWrap:'wrap'}}>
+            <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'12px 28px', fontSize:'14px', fontWeight:600, color:'#fff', background:'#07807E', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
+              onMouseEnter={e=>e.currentTarget.style.background='#09A09D'}
+              onMouseLeave={e=>e.currentTarget.style.background='#07807E'}>
+              Contact Security Team
+            </a>
+            <a href="Privacy.html" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'12px 28px', fontSize:'14px', fontWeight:600, color:'#E8F2F5', border:'1px solid rgba(255,255,255,.15)', borderRadius:'999px', textDecoration:'none', transition:'border-color .2s'}}
+              onMouseEnter={e=>e.currentTarget.style.borderColor='rgba(255,255,255,.35)'}
+              onMouseLeave={e=>e.currentTarget.style.borderColor='rgba(255,255,255,.15)'}>
+              View Privacy Policy
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* Cookie Categories */}
-      <section style={{paddingBottom:'40px', position:'relative'}}>
-        <div style={{maxWidth:'800px', margin:'0 auto', padding:'0 24px'}}>
-          {categories.map((cat, i) => (
-            <div key={cat.key} className={`fu${Math.min(i+1, 3)}`} style={{
-              background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)',
-              borderRadius:'16px', padding:'24px', marginBottom:'16px',
-            }}>
-              <div style={{display:'flex', alignItems:'flex-start', gap:'20px'}}>
-                <div style={{flex:1}}>
-                  <div style={{fontSize:'16px', fontWeight:600, color:'#E8F2F5'}}>{cat.title}</div>
-                  <div style={{fontSize:'14px', color:'#7FA0AC', lineHeight:1.6, marginTop:'4px'}}>{cat.description}</div>
-                  {cat.examples && (
-                    <div style={{fontSize:'13px', color:'rgba(255,255,255,.35)', marginTop:'8px'}}>Examples: {cat.examples}</div>
-                  )}
+      {/* Security Controls Grid */}
+      <section style={{padding:'80px 0'}}>
+        <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
+          <div style={{textAlign:'center', marginBottom:'56px'}}>
+            <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
+              <span style={{color:'#09A09D', fontSize:'12px'}}>&#x2726;</span>
+              <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Enterprise Security</span>
+            </div>
+            <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>Built-in security at every layer</h2>
+          </div>
+          <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))', gap:'16px'}}>
+            {securityCards.map((v, i) => (
+              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)', borderRadius:'16px', padding:'28px', position:'relative', overflow:'hidden', transition:'all .2s'}}
+                onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
+                onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
+                <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
+                <div style={{width:'40px', height:'40px', borderRadius:'10px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'16px'}}>
+                  {v.icon}
                 </div>
-                <div style={{display:'flex', alignItems:'center', gap:'10px', paddingTop:'2px'}}>
-                  {cat.alwaysActive ? (
-                    <>
-                      <span style={{fontSize:'12px', fontWeight:500, color:'#0EC4C1', whiteSpace:'nowrap'}}>Always Active</span>
-                      <ToggleSwitch enabled={true} onChange={() => {}} disabled={true} />
-                    </>
-                  ) : (
-                    <ToggleSwitch
-                      enabled={cookies[cat.key]}
-                      onChange={(val) => setCookies(prev => ({...prev, [cat.key]: val}))}
-                    />
-                  )}
+                <h3 style={{fontSize:'17px', fontWeight:600, color:'#E8F2F5', marginBottom:'8px'}}>{v.title}</h3>
+                <p style={{fontSize:'14px', color:'#7FA0AC', lineHeight:1.65}}>{v.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Compliance Section */}
+      <section style={{padding:'80px 0'}}>
+        <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
+          <div style={{textAlign:'center', marginBottom:'56px'}}>
+            <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
+              <span style={{color:'#09A09D', fontSize:'12px'}}>&#x2726;</span>
+              <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Compliance</span>
+            </div>
+            <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>Industry-standard certifications</h2>
+          </div>
+          <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))', gap:'16px', maxWidth:'960px', margin:'0 auto'}}>
+            {complianceCards.map((c, i) => (
+              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)', borderRadius:'16px', padding:'36px 28px', position:'relative', overflow:'hidden', textAlign:'center', transition:'all .2s'}}
+                onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
+                onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
+                <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
+                <div style={{display:'flex', justifyContent:'center', marginBottom:'20px'}}>
+                  {c.icon}
                 </div>
+                <h3 style={{fontSize:'17px', fontWeight:600, color:'#E8F2F5', marginBottom:'8px'}}>{c.title}</h3>
+                <p style={{fontSize:'14px', color:'#7FA0AC', lineHeight:1.65}}>{c.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Your Data Promise */}
+      <section style={{padding:'80px 0'}}>
+        <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
+          <div style={{textAlign:'center', marginBottom:'56px'}}>
+            <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
+              <span style={{color:'#09A09D', fontSize:'12px'}}>&#x2726;</span>
+              <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Data Protection</span>
+            </div>
+            <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>Your data, your rules</h2>
+          </div>
+          <div style={{maxWidth:'720px', margin:'0 auto'}}>
+            <div style={{background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)', borderRadius:'16px', padding:'36px', position:'relative', overflow:'hidden'}}>
+              <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
+              <div style={{display:'flex', flexDirection:'column', gap:'20px'}}>
+                {promises.map((p, i) => (
+                  <div key={i} style={{display:'flex', alignItems:'flex-start', gap:'14px'}}>
+                    <div style={{flexShrink:0, marginTop:'2px'}}>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <p style={{fontSize:'15px', color:'#C0D4DC', lineHeight:1.6}}>{p}</p>
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
-
-          {/* Save Button */}
-          <div style={{textAlign:'center', marginTop:'32px', marginBottom:'60px'}}>
-            <button
-              onClick={handleSave}
-              style={{
-                display:'inline-flex', alignItems:'center', gap:'8px',
-                padding:'12px 32px', fontSize:'15px', fontWeight:600,
-                color:'#fff', background:'#07807E', borderRadius:'50px',
-                border:'none', cursor:'pointer', transition:'background 0.2s',
-                fontFamily:'Geist,sans-serif',
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.background = '#09A09D'}
-              onMouseLeave={(e) => e.currentTarget.style.background = '#07807E'}
-            >
-              {saved ? 'Preferences Saved!' : 'Save Preferences'}
-            </button>
           </div>
         </div>
       </section>
 
-      {/* Additional Information */}
-      <section style={{paddingBottom:'100px', position:'relative'}}>
-        <div style={{maxWidth:'800px', margin:'0 auto', padding:'0 24px'}}>
-
-          {/* What Are Cookies? */}
-          <div style={sectionStyle}>
-            <h2 style={headingStyle}>What Are Cookies?</h2>
-            <p style={paraStyle}>
-              Cookies are small text files that are placed on your device when you visit a website. They are widely used to make websites work more efficiently, provide a better user experience, and supply information to the site owners. Cookies can be "session" cookies, which are deleted when you close your browser, or "persistent" cookies, which remain on your device for a set period or until you manually delete them. Similar technologies such as web beacons, pixels, and local storage may also be used for comparable purposes.
-            </p>
+      {/* FAQ Section */}
+      <section style={{padding:'80px 0'}}>
+        <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
+          <div style={{textAlign:'center', marginBottom:'56px'}}>
+            <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>Frequently asked questions</h2>
           </div>
-
-          {/* Third-Party Cookies */}
-          <div style={sectionStyle}>
-            <h2 style={headingStyle}>Third-Party Cookies</h2>
-            <p style={paraStyle}>
-              In addition to our own cookies, we may use cookies set by third-party services to help us understand how our website is used, measure the effectiveness of our marketing, and deliver relevant advertising. These third parties include Google Analytics for traffic analysis, Mixpanel for product analytics, and advertising platforms such as Meta and LinkedIn. Each third-party provider has its own privacy policy governing the data collected through its cookies.
-            </p>
+          <div style={{maxWidth:'760px', margin:'0 auto', display:'flex', flexDirection:'column', gap:'8px'}}>
+            {faqs.map((faq, i) => (
+              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)', borderRadius:'12px', overflow:'hidden', transition:'all .2s'}}>
+                <button
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  style={{width:'100%', display:'flex', alignItems:'center', justifyContent:'space-between', padding:'18px 24px', background:'transparent', border:'none', cursor:'pointer', textAlign:'left'}}
+                >
+                  <span style={{fontSize:'15px', fontWeight:500, color:'#E8F2F5'}}>{faq.q}</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7FA0AC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0, marginLeft:'16px', transition:'transform .25s', transform: openFaq === i ? 'rotate(180deg)' : 'rotate(0deg)'}}>
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </button>
+                {openFaq === i && (
+                  <div style={{padding:'0 24px 18px'}}>
+                    <p style={{fontSize:'14px', color:'#7FA0AC', lineHeight:1.7}}>{faq.a}</p>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
+        </div>
+      </section>
 
-          {/* Managing Cookies in Your Browser */}
-          <div style={sectionStyle}>
-            <h2 style={headingStyle}>Managing Cookies in Your Browser</h2>
-            <p style={paraStyle}>
-              Most web browsers allow you to control cookies through their settings. Below are links and instructions for the most common browsers:
-            </p>
-            <ul style={{...paraStyle, paddingLeft:'24px', marginTop:'12px'}}>
-              <li style={{marginBottom:'8px'}}><strong style={{color:'#E8F2F5'}}>Google Chrome:</strong> Settings &gt; Privacy and security &gt; Cookies and other site data</li>
-              <li style={{marginBottom:'8px'}}><strong style={{color:'#E8F2F5'}}>Mozilla Firefox:</strong> Settings &gt; Privacy &amp; Security &gt; Cookies and Site Data</li>
-              <li style={{marginBottom:'8px'}}><strong style={{color:'#E8F2F5'}}>Safari:</strong> Preferences &gt; Privacy &gt; Manage Website Data</li>
-              <li style={{marginBottom:'8px'}}><strong style={{color:'#E8F2F5'}}>Microsoft Edge:</strong> Settings &gt; Cookies and site permissions &gt; Manage and delete cookies and site data</li>
-            </ul>
-            <p style={{...paraStyle, marginTop:'12px'}}>
-              Please note that blocking all cookies may affect the functionality of this and other websites. Some features may not work as intended if cookies are disabled.
-            </p>
-          </div>
-
-          {/* Cookie List Table */}
-          <div style={sectionStyle}>
-            <h2 style={headingStyle}>Cookie List</h2>
-            <p style={{...paraStyle, marginBottom:'16px'}}>
-              The following table lists the cookies used on our website, their provider, purpose, and duration.
-            </p>
-            <div style={{overflowX:'auto', borderRadius:'12px', border:'1px solid rgba(255,255,255,.06)'}}>
-              <table style={{width:'100%', borderCollapse:'collapse', fontSize:'14px'}}>
-                <thead>
-                  <tr style={{background:'rgba(255,255,255,.04)'}}>
-                    <th style={{padding:'12px 16px', textAlign:'left', color:'#E8F2F5', fontWeight:600, borderBottom:'1px solid rgba(255,255,255,.06)', whiteSpace:'nowrap'}}>Cookie Name</th>
-                    <th style={{padding:'12px 16px', textAlign:'left', color:'#E8F2F5', fontWeight:600, borderBottom:'1px solid rgba(255,255,255,.06)', whiteSpace:'nowrap'}}>Provider</th>
-                    <th style={{padding:'12px 16px', textAlign:'left', color:'#E8F2F5', fontWeight:600, borderBottom:'1px solid rgba(255,255,255,.06)', whiteSpace:'nowrap'}}>Purpose</th>
-                    <th style={{padding:'12px 16px', textAlign:'left', color:'#E8F2F5', fontWeight:600, borderBottom:'1px solid rgba(255,255,255,.06)', whiteSpace:'nowrap'}}>Duration</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {cookieTable.map((row, i) => (
-                    <tr key={i} style={{background: i % 2 === 1 ? 'rgba(255,255,255,.02)' : 'transparent'}}>
-                      <td style={{padding:'10px 16px', color:'#0EC4C1', fontFamily:'Geist Mono, monospace', fontSize:'13px', borderBottom:'1px solid rgba(255,255,255,.04)'}}>{row.name}</td>
-                      <td style={{padding:'10px 16px', color:'#7FA0AC', borderBottom:'1px solid rgba(255,255,255,.04)'}}>{row.provider}</td>
-                      <td style={{padding:'10px 16px', color:'#7FA0AC', borderBottom:'1px solid rgba(255,255,255,.04)'}}>{row.purpose}</td>
-                      <td style={{padding:'10px 16px', color:'#7FA0AC', borderBottom:'1px solid rgba(255,255,255,.04)', whiteSpace:'nowrap'}}>{row.duration}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+      {/* Contact CTA */}
+      <section style={{padding:'80px 0 100px'}}>
+        <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
+          <div style={{background:'rgba(9,160,157,.04)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'24px', padding:'64px 32px', textAlign:'center', position:'relative', overflow:'hidden'}}>
+            <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.4),transparent)'}}/>
+            <div style={{position:'absolute', inset:0, background:'radial-gradient(ellipse 50% 60% at 50% 0%, rgba(9,160,157,.08) 0%, transparent 70%)', pointerEvents:'none'}}/>
+            <div style={{position:'relative'}}>
+              <h3 style={{fontSize:'clamp(24px,3.5vw,36px)', fontWeight:500, color:'#fff', letterSpacing:'-.02em', marginBottom:'16px'}}>
+                Have security questions?
+              </h3>
+              <p style={{fontSize:'16px', color:'rgba(255,255,255,.5)', maxWidth:'520px', margin:'0 auto 32px', lineHeight:1.65}}>
+                Our security team is here to help with assessments, compliance documentation, and custom security requirements.
+              </p>
+              <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'14px 32px', fontSize:'14px', fontWeight:600, color:'#fff', background:'#07807E', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
+                onMouseEnter={e=>e.currentTarget.style.background='#09A09D'}
+                onMouseLeave={e=>e.currentTarget.style.background='#07807E'}>
+                Contact Security Team
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              </a>
+              <p style={{fontSize:'13px', color:'rgba(255,255,255,.35)', marginTop:'16px'}}>security@insightis.ai</p>
             </div>
           </div>
-
-          {/* Changes to Cookie Policy */}
-          <div style={sectionStyle}>
-            <h2 style={headingStyle}>Changes to Cookie Policy</h2>
-            <p style={paraStyle}>
-              We may update this Cookie Settings page from time to time to reflect changes in the cookies we use or for other operational, legal, or regulatory reasons. We encourage you to revisit this page periodically to stay informed about our use of cookies and related technologies. The date at the bottom of this page indicates when it was last updated.
-            </p>
-          </div>
-
-          {/* Contact Us */}
-          <div style={sectionStyle}>
-            <h2 style={headingStyle}>Contact Us</h2>
-            <p style={paraStyle}>
-              If you have any questions about our use of cookies or this Cookie Settings page, please contact us at{' '}
-              <a href="mailto:privacy@insightis.ai" style={{color:'#0EC4C1', textDecoration:'none'}}>privacy@insightis.ai</a>.
-              You can also review our full <a href="Privacy.html" style={{color:'#0EC4C1', textDecoration:'none'}}>Privacy Policy</a> for more information about how we handle your data.
-            </p>
-          </div>
-
-          <p style={{fontSize:'13px', color:'rgba(255,255,255,.3)', marginTop:'20px'}}>Last updated: April 2026</p>
-
         </div>
       </section>
     </>
   );
 }
 
-/* ── SOCIAL ICONS ── */
+/* ── FOOTER ── */
 function TwitterXIcon({ size = 16, color = "#A0A0B8" }) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill={color}><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>;
 }
@@ -550,7 +530,6 @@ function TikTokIcon({ size = 16, color = "#A0A0B8" }) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill={color}><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.43v-7.15a8.16 8.16 0 005.58 2.17v-3.4a4.85 4.85 0 01-1-.16l.01-.02V6.69h.99z"/></svg>;
 }
 
-/* ── FOOTER ── */
 function Footer() {
   const linkUrls = {
     'AI Chat': '../Platform/AI Chat.html',
@@ -566,11 +545,12 @@ function Footer() {
     'For Data & Analytics Teams': '../Solutions/Data Analytics Teams.html',
     'For Operations & Finance': '../Solutions/Operations Finance.html',
     'Documentation': '../docs/',
+    'Video Tutorials': 'https://www.youtube.com/@InsightisAI',
     'Blog': '../blog/',
     'Support Center': '../Resources/Contact Support.html',
+    'Roadmap': '../Resources/Roadmap.html',
     'Community': '../Resources/Community.html',
     'Roadmap': '../Resources/Roadmap.html',
-    'Video Tutorials': 'https://www.youtube.com/@InsightisAI',
   };
   return (
     <footer className="pt-16 pb-8 border-t border-[#1E1E30]">
@@ -655,14 +635,10 @@ function App() {
   return (
     <div>
       <Header />
-      <CookieContent />
+      <SecurityContent />
       <Footer />
     </div>
   );
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-</script>
-<script defer src="/assets/header-scroll.js"></script>
-</body>
-</html>

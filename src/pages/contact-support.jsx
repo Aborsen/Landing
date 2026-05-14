@@ -1,134 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="stylesheet" href="/assets/responsive.css">
-<title>Documentation — Insightis</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Geist', sans-serif;
-  background: #0A0E13;
-  color: #E8F2F5;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-body::before {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  opacity: .4; mix-blend-mode: overlay;
-}
-
-body::after {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 10% 5%, rgba(10,152,150,.09) 0%, transparent 70%),
-    radial-gradient(ellipse 70% 55% at 85% 0%, rgba(110,60,200,.07) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 60% at 75% 45%, rgba(20,80,200,.05) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 55% at 5% 55%, rgba(160,50,220,.045) 0%, transparent 65%),
-    radial-gradient(ellipse 65% 55% at 50% 90%, rgba(10,152,150,.07) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 45% at 95% 75%, rgba(50,90,240,.04) 0%, transparent 55%),
-    radial-gradient(ellipse 45% 40% at 35% 30%, rgba(200,60,180,.03) 0%, transparent 55%);
-}
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-@keyframes fadeIn { from{opacity:0} to{opacity:1} }
-@keyframes slideInRight { from{opacity:0;transform:translateX(24px)} to{opacity:1;transform:translateX(0)} }
-@keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:1} }
-
-.fu0 { animation: fadeUp .7s ease both; }
-.fu1 { animation: fadeUp .7s ease .1s both; }
-.fu2 { animation: fadeUp .7s ease .2s both; }
-.fu3 { animation: fadeUp .7s ease .35s both; }
-.fu4 { animation: fadeUp .7s ease .5s both; }
-
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
-
-/* ── SECTION SPACING ── */
-section { position: relative; }
-
-/* ── DOCS TABS BAR ── */
-.docs-tabs-bar {
-  position: sticky;
-  top: 68px;
-  z-index: 40;
-  background: rgba(10,14,19,0.95);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255,255,255,0.055);
-}
-
-/* ── DOCS 3-COLUMN LAYOUT ── */
-.docs-layout {
-  display: grid;
-  grid-template-columns: 240px 1fr 160px;
-  align-items: start;
-  position: relative;
-  z-index: 1;
-}
-
-/* ── DOCS SIDEBAR (LEFT) ── */
-.docs-sidebar-col {
-  position: sticky;
-  top: 72px;
-  max-height: calc(100vh - 72px);
-  overflow-y: auto;
-  border-right: 1px solid rgba(255,255,255,0.055);
-  padding: 24px 0;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.docs-sidebar-col::-webkit-scrollbar { display: none; }
-
-/* ── DOCS TOC (RIGHT) ── */
-.docs-toc-col {
-  position: sticky;
-  top: 72px;
-  max-height: calc(100vh - 72px);
-  overflow-y: auto;
-  border-left: 1px solid rgba(255,255,255,0.055);
-  padding: 28px 8px 28px 16px;
-}
-.docs-toc-col::-webkit-scrollbar { width: 3px; }
-
-/* ── DOCS CONTENT (CENTER) ── */
-.docs-content-col {
-  padding: 40px 48px 80px;
-  min-width: 0;
-}
-
-/* ── RESPONSIVE ── */
-@media (max-width: 1100px) {
-  .docs-layout { grid-template-columns: 220px 1fr; }
-  .docs-toc-col { display: none; }
-}
-@media (max-width: 768px) {
-  .docs-layout { grid-template-columns: 1fr; }
-  .docs-sidebar-col { display: none; }
-  .docs-content-col { padding: 24px 20px 60px; }
-}
-</style>
-</head>
-<body>
-
-<div id="root"></div>
-
-<script type="text/babel">
-const { useState, useEffect, useRef } = React;
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import ReactDOM from 'react-dom/client';
+import '../app.css';
 
 /* ── HEADER ── */
 function MenuIcon({ size = 24, color = "#fff" }) {
@@ -197,12 +69,12 @@ function Header() {
     'For Product Teams': '../Solutions/Product Teams.html',
     'For Data & Analytics Teams': '../Solutions/Data Analytics Teams.html',
     'For Operations & Finance': '../Solutions/Operations Finance.html',
-    'Documentation': '#',
+    'Documentation': '../docs/',
     'Blog': '../blog/',
-    'Support Center': '../Resources/Contact Support.html',
-    'Roadmap': '../Resources/Roadmap.html',
-    'Prompt Library': '../Resources/Prompt Library.html',
-    'Data Connectors': '../Resources/Connectors.html',
+    'Support Center': 'Contact Support.html',
+    'Roadmap': 'Roadmap.html',
+    'Prompt Library': 'Prompt Library.html',
+    'Data Connectors': 'Connectors.html',
     'Pricing': '../Pricing.html',
     'About Insightis': '../Company/About Insightis.html',
     'Contacts': '../Company/Contacts.html',
@@ -458,12 +330,12 @@ function Footer() {
     'For Product Teams': '../Solutions/Product Teams.html',
     'For Data & Analytics Teams': '../Solutions/Data Analytics Teams.html',
     'For Operations & Finance': '../Solutions/Operations Finance.html',
-    'Documentation': '#',
+    'Documentation': '../docs/',
     'Blog': '../blog/',
-    'Support Center': '../Resources/Contact Support.html',
-    'Roadmap': '../Resources/Roadmap.html',
-    'Prompt Library': '../Resources/Prompt Library.html',
-    'Data Connectors': '../Resources/Connectors.html',
+    'Support Center': 'Contact Support.html',
+    'Roadmap': 'Roadmap.html',
+    'Prompt Library': 'Prompt Library.html',
+    'Data Connectors': 'Connectors.html',
   };
   return (
     <footer className="pt-16 pb-8 border-t border-[#1E1E30]">
@@ -580,727 +452,235 @@ function Footer() {
   );
 }
 
-
-/* ── DATA ── */
-const DOC_TABS = [
-  { id: 'introduction', label: 'Introduction' },
-  { id: 'features', label: 'Features' },
-  { id: 'integrations', label: 'Integrations' },
-  { id: 'tips', label: 'Tips & Tricks' },
-  { id: 'changelog', label: 'Changelog' },
-];
-
-const SIDEBAR_NAV = [
-  {
-    section: 'Getting Started',
-    items: [
-      { id: 'welcome', label: 'Welcome to Insightis' },
-      { id: 'quick-start', label: 'Quick Start Guide' },
-      { id: 'creating-account', label: 'Creating Your Account' },
-      { id: 'first-data-source', label: 'Connecting Your First Data Source' },
-      { id: 'first-query', label: 'Your First AI Chat Query' },
-      { id: 'understanding-answers', label: 'Understanding Your Answers' },
-    ],
-  },
-  {
-    section: 'AI Chat',
-    items: [
-      { id: 'ai-chat-how', label: 'How AI Chat Works' },
-      { id: 'effective-questions', label: 'Writing Effective Questions' },
-      { id: 'charts-viz', label: 'Understanding Charts & Visualizations' },
-      { id: 'saving-sharing', label: 'Saving & Sharing Answers' },
-      { id: 'follow-up', label: 'Follow-up Questions & Context' },
-    ],
-  },
-  {
-    section: 'Integrations',
-    items: [
-      { id: 'data-sources', label: 'Supported Data Sources' },
-      { id: 'hubspot', label: 'Connecting HubSpot' },
-      { id: 'stripe', label: 'Connecting Stripe' },
-      { id: 'postgresql', label: 'Connecting PostgreSQL' },
-      { id: 'troubleshoot', label: 'Troubleshooting Connections' },
-    ],
-  },
-  {
-    section: 'Semantic Layer',
-    items: [
-      { id: 'what-semantic', label: 'What is the Semantic Layer?' },
-      { id: 'custom-metrics', label: 'Defining Custom Metrics' },
-      { id: 'certification', label: 'Metric Certification' },
-      { id: 'cross-source', label: 'Cross-Source Joins' },
-      { id: 'formula-metrics', label: 'Formula Metrics' },
-    ],
-  },
-  {
-    section: 'Insights Engine',
-    items: [
-      { id: 'engine-how', label: 'How the Engine Works' },
-      { id: 'query-pipeline', label: 'Query Processing Pipeline' },
-      { id: 'confidence', label: 'Confidence & Accuracy Scores' },
-      { id: 'caching', label: 'Caching & Performance' },
-      { id: 'explainability', label: 'Explainability & Audit Trail' },
-    ],
-  },
-  {
-    section: 'Reports',
-    items: [
-      { id: 'create-report', label: 'Creating a Report' },
-      { id: 'scheduling', label: 'Scheduling & Automation' },
-      { id: 'sharing', label: 'Sharing & Permissions' },
-      { id: 'embedding', label: 'Embedding Reports' },
-      { id: 'export', label: 'Export Formats & Options' },
-    ],
-  },
-  {
-    section: 'Reference',
-    items: [
-      { id: 'faq', label: 'FAQ' },
-      { id: 'video-tutorials', label: 'Video Tutorials' },
-      { id: 'glossary', label: 'Glossary' },
-      { id: 'support-policy', label: 'Support Policy' },
-    ],
-  },
-];
-
-const PAGES = {
-  'welcome': {
-    breadcrumb: ['Docs', 'Getting Started', 'Welcome to Insightis'],
-    title: 'Welcome to Insightis',
-    description: 'Insightis is an AI-powered analytics workspace that lets you ask questions about your business data in plain language — and get instant, reliable answers. No SQL, no dashboards, no waiting.',
-    videoTitle: 'AI Analytics for everyone.',
-    toc: [
-      { id: 'why-insightis', label: 'Why use Insightis' },
-      { id: 'who-for', label: 'Who Insightis is for' },
-      { id: 'what-you-can-build', label: 'What you can build' },
-      { id: 'how-it-works', label: 'How it works' },
-      { id: 'next-steps', label: 'Next steps' },
-    ],
-    sections: [
-      { id: 'why-insightis', heading: 'Why use Insightis', content: 'Most analytics tools require you to know SQL, build dashboards, or wait for a data analyst. Insightis changes that. Ask a question like "What was our MRR last quarter by region?" and get a chart, a number, and an explanation — in seconds. Insightis connects directly to your databases, CRMs, and SaaS tools, understands your business context, and delivers answers you can trust.' },
-      { id: 'who-for', heading: 'Who Insightis is for', content: 'Insightis is built for teams that need answers fast — without depending on engineering. Revenue operations leaders, founders, product managers, and marketing teams use Insightis to explore data, monitor KPIs, and make decisions with confidence. Data teams use it to define metrics once and share them across the organization.' },
-      { id: 'what-you-can-build', heading: 'What you can build', content: 'With Insightis you can connect 200+ data sources, define your key metrics in the Semantic Layer, ask questions in natural language via AI Chat, save and share reports with your team, set up automated reports on a schedule, and embed insights directly into your workflows.' },
-      { id: 'how-it-works', heading: 'How it works', content: 'When you ask a question, Insightis routes it through the Insights Engine: your question is parsed, matched against your semantic definitions, translated into an optimized query, and executed against your data. The result is formatted as a chart or table, with a natural language explanation of what it means for your business.' },
-      { id: 'next-steps', heading: 'Next steps', content: 'Ready to get started? Follow the Quick Start Guide to connect your first data source and ask your first question in under 5 minutes. If you have questions along the way, use AI Chat or reach out to our support team.' },
-    ],
-    prevNext: { next: { id: 'quick-start', label: 'Quick Start Guide', section: 'Getting Started' } },
-  },
-  'quick-start': {
-    breadcrumb: ['Docs', 'Getting Started', 'Quick Start Guide'],
-    title: 'Quick Start Guide',
-    description: 'Get up and running with Insightis in under 5 minutes. Connect a data source, define your first metric, and ask your first question.',
-    toc: [
-      { id: 'step1', label: 'Step 1: Create your account' },
-      { id: 'step2', label: 'Step 2: Connect a data source' },
-      { id: 'step3', label: 'Step 3: Ask your first question' },
-      { id: 'step4', label: 'Step 4: Save your answer' },
-    ],
-    sections: [
-      { id: 'step1', heading: 'Step 1: Create your account', content: 'Sign up at insightis.ai with your work email. You can also invite your team members during onboarding or later from Settings → Team.' },
-      { id: 'step2', heading: 'Step 2: Connect a data source', content: 'Go to Integrations and click Add Source. Choose from 200+ connectors including HubSpot, Stripe, PostgreSQL, BigQuery, and more. Follow the connection wizard — most sources are live in under 2 minutes.' },
-      { id: 'step3', heading: 'Step 3: Ask your first question', content: 'Open AI Chat and type a question in plain English. Try "What was our total revenue last month?" or "Show me our top 10 customers by ARR." Insightis will respond with a chart, a number, and a written explanation.' },
-      { id: 'step4', heading: 'Step 4: Save your answer', content: 'Click Save Report to add the answer to your Reports library. You can share it with teammates, set up a schedule, or embed it in another tool.' },
-    ],
-    prevNext: {
-      prev: { id: 'welcome', label: 'Welcome to Insightis', section: 'Getting Started' },
-      next: { id: 'creating-account', label: 'Creating Your Account', section: 'Getting Started' },
-    },
-  },
-};
-
-/* ── DOCS TABS ── */
-function DocsTabs({ activeTab, setActiveTab }) {
+/* ── SUPPORT HERO ── */
+function SupportHero({ search, setSearch }) {
   return (
-    <div className="docs-tabs-bar">
-      <div style={{ maxWidth:'1440px', margin:'0 auto', overflowX:'auto' }}>
-        <div style={{ display:'flex', alignItems:'center', padding:'0 24px', gap:'0' }}>
-          {DOC_TABS.map(tab => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              style={{
-                padding:'12px 18px',
-                fontSize:'13.5px',
-                fontWeight: activeTab === tab.id ? 500 : 400,
-                color: activeTab === tab.id ? '#E8F2F5' : '#7FA0AC',
-                background: 'transparent',
-                border: 'none',
-                borderBottom: activeTab === tab.id ? '2px solid #0A9896' : '2px solid transparent',
-                cursor: 'pointer',
-                transition: 'color 0.15s, border-color 0.15s',
-                whiteSpace: 'nowrap',
-                fontFamily: 'Geist,sans-serif',
-                marginBottom: '-1px',
-              }}
-              onMouseEnter={(e) => { if (activeTab !== tab.id) e.currentTarget.style.color = '#E8F2F5'; }}
-              onMouseLeave={(e) => { if (activeTab !== tab.id) e.currentTarget.style.color = '#7FA0AC'; }}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-
-/* ── DOCS SIDEBAR ── */
-function DocsSidebar({ activePage, setActivePage, expandedSections, setExpandedSections, sidebarSearch, setSidebarSearch }) {
-  const q = sidebarSearch.toLowerCase().trim();
-
-  const toggleSection = (section) => {
-    setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }));
-  };
-
-  const filteredNav = SIDEBAR_NAV.map(group => ({
-    ...group,
-    items: q ? group.items.filter(item => item.label.toLowerCase().includes(q)) : group.items,
-  })).filter(group => !q || group.items.length > 0);
-
-  return (
-    <div className="docs-sidebar-col">
-      {/* Search */}
-      <div style={{ padding:'0 16px 20px' }}>
-        <div style={{
-          display:'flex', alignItems:'center', gap:'8px',
-          background:'rgba(255,255,255,0.04)',
-          border:'1px solid rgba(255,255,255,0.08)',
-          borderRadius:'8px',
-          padding:'7px 10px',
+    <section style={{ padding:'120px 0 60px', textAlign:'center', position:'relative', zIndex:1 }}>
+      <div style={{ maxWidth:'1280px', margin:'0 auto', padding:'0 24px' }}><div style={{ maxWidth:'720px', margin:'0 auto' }}>
+        <div className="fu0" style={{
+          display:'inline-flex', alignItems:'center', gap:'8px',
+          padding:'6px 14px', borderRadius:'999px',
+          border:'1px solid rgba(255,255,255,.06)',
+          background:'rgba(255,255,255,.02)',
+          fontSize:'12px', color:'#22C55E', fontWeight:500,
+          marginBottom:'24px',
         }}>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5E8290" strokeWidth="2" style={{flexShrink:0}}>
+          <div style={{
+            width:'7px', height:'7px', borderRadius:'50%',
+            background:'#22C55E',
+            boxShadow:'0 0 6px #22C55E',
+            animation:'statusPulse 2s ease infinite',
+            flexShrink:0,
+          }} />
+          <span style={{ fontFamily:'Geist Mono, monospace' }}>All systems operational</span>
+          <span style={{ color:'#7FA0AC', fontWeight:400 }}>· Last checked: 2 minutes ago</span>
+        </div>
+
+        <h1 className="fu1" style={{
+          fontSize:'clamp(32px,5vw,52px)', fontWeight:700,
+          lineHeight:1.1, letterSpacing:'-0.03em',
+          marginBottom:'16px',
+        }}>
+          How can we help?
+        </h1>
+
+        <p className="fu2" style={{
+          fontSize:'17px', color:'#7FA0AC', lineHeight:1.6,
+          maxWidth:'520px', margin:'0 auto 32px',
+        }}>
+          Search our help resources or reach out to the support team directly.
+        </p>
+
+        <div className="fu3" style={{
+          display:'flex', alignItems:'center',
+          background:'rgba(255,255,255,.025)', border:'1px solid rgba(255,255,255,.06)',
+          borderRadius:'12px', padding:'4px', maxWidth:'580px', margin:'0 auto',
+        }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6E8D9A" strokeWidth="2" style={{marginLeft:'14px',flexShrink:0}}>
             <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
           </svg>
           <input
-            placeholder="Search..."
-            value={sidebarSearch}
-            onChange={(e) => setSidebarSearch(e.target.value)}
+            placeholder="Search help topics..."
+            onChange={e => setSearch(e.target.value)}
+            value={search}
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
-              fontSize:'13px', color:'#E8F2F5', fontFamily:'Geist,sans-serif',
+              padding:'12px 14px', fontSize:'15px', color:'#E8F2F5', fontFamily:'Geist,sans-serif',
             }}
           />
         </div>
-      </div>
-
-      {/* Nav sections */}
-      {filteredNav.map((group) => (
-        <div key={group.section} style={{ marginBottom:'4px' }}>
-          <button
-            onClick={() => toggleSection(group.section)}
-            style={{
-              display:'flex', alignItems:'center', justifyContent:'space-between',
-              width:'100%', padding:'6px 16px',
-              background:'transparent', border:'none', cursor:'pointer',
-              color:'#5E8290', fontSize:'11px', fontWeight:600,
-              textTransform:'uppercase', letterSpacing:'0.08em',
-              fontFamily:'Geist,sans-serif',
-            }}
-          >
-            {group.section}
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-              style={{ transition:'transform 0.15s', transform: (expandedSections[group.section] || q) ? 'rotate(180deg)' : 'rotate(0deg)', flexShrink:0 }}>
-              <polyline points="6 9 12 15 18 9"/>
-            </svg>
-          </button>
-
-          {(expandedSections[group.section] || q) && (
-            <div style={{ padding:'2px 0 8px' }}>
-              {group.items.map(item => (
-                <button
-                  key={item.id}
-                  onClick={() => setActivePage(item.id)}
-                  style={{
-                    display:'block', width:'100%', textAlign:'left',
-                    padding:'6px 16px 6px 20px',
-                    background: activePage === item.id ? 'rgba(10,152,150,0.08)' : 'transparent',
-                    border:'none',
-                    borderLeft: activePage === item.id ? '2px solid #0A9896' : '2px solid transparent',
-                    color: activePage === item.id ? '#E8F2F5' : '#7FA0AC',
-                    fontSize:'13px', cursor:'pointer',
-                    transition:'all 0.15s',
-                    fontFamily:'Geist,sans-serif',
-                    lineHeight: 1.5,
-                  }}
-                  onMouseEnter={(e) => { if (activePage !== item.id) { e.currentTarget.style.color = '#E8F2F5'; e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; }}}
-                  onMouseLeave={(e) => { if (activePage !== item.id) { e.currentTarget.style.color = '#7FA0AC'; e.currentTarget.style.background = 'transparent'; }}}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
+      </div></div>
+    </section>
   );
 }
 
+/* ── HELP TOPICS ── */
+function HelpTopics({ search }) {
+  const q = search.toLowerCase().trim();
 
-/* ── DOCS TOC ── */
-function DocsTOC({ toc, activeSection, setActiveSection }) {
-  if (!toc || !toc.length) return <div className="docs-toc-col" />;
-  return (
-    <div className="docs-toc-col">
-      <p style={{
-        fontSize:'11px', fontWeight:600, color:'#5E8290',
-        textTransform:'uppercase', letterSpacing:'0.08em',
-        marginBottom:'14px',
-      }}>
-        On this page
-      </p>
-      <div style={{ display:'flex', flexDirection:'column', gap:'1px' }}>
-        {toc.map(item => (
-          <a
-            key={item.id}
-            href={`#${item.id}`}
-            onClick={(e) => {
-              e.preventDefault();
-              setActiveSection(item.id);
-              const el = document.getElementById(item.id);
-              if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
-            }}
-            style={{
-              display:'block',
-              padding:'5px 0 5px 12px',
-              fontSize:'13px',
-              color: activeSection === item.id ? '#0EC4C1' : '#5E8290',
-              borderLeft: activeSection === item.id ? '2px solid #0A9896' : '2px solid transparent',
-              textDecoration:'none',
-              transition:'color 0.15s, border-color 0.15s',
-              lineHeight:1.5,
-            }}
-            onMouseEnter={(e) => { if (activeSection !== item.id) e.currentTarget.style.color = '#7FA0AC'; }}
-            onMouseLeave={(e) => { if (activeSection !== item.id) e.currentTarget.style.color = '#5E8290'; }}
-          >
-            {item.label}
-          </a>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-
-/* ── DOCS ASK QUESTION ── */
-function DocsAskQuestion() {
-  const [question, setQuestion] = useState('');
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    window.location.href = '../Platform/AI Chat.html';
-  };
-  return (
-    <div style={{
-      padding:'24px',
-      background:'rgba(255,255,255,0.025)',
-      border:'1px solid rgba(255,255,255,0.07)',
-      borderRadius:'12px',
-    }}>
-      <p style={{ fontSize:'13px', color:'#5E8290', marginBottom:'12px', fontWeight:500 }}>
-        Didn't find what you were looking for?
-      </p>
-      <form onSubmit={handleSubmit} style={{
-        display:'flex', alignItems:'center', gap:'8px',
-        background:'rgba(255,255,255,0.04)',
-        border:'1px solid rgba(255,255,255,0.08)',
-        borderRadius:'10px',
-        padding:'4px 4px 4px 14px',
-      }}>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7FA0AC" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
+  const topics = [
+    {
+      title: 'Account & Billing',
+      color: 'rgba(99,102,241,',
+      icon: (
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      ),
+      items: ['Reset my password','Change my plan','Update billing information','Cancel my subscription','Request an invoice'],
+    },
+    {
+      title: 'Connecting Data Sources',
+      color: 'rgba(20,168,185,',
+      icon: (
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+        </svg>
+      ),
+      items: ['My connection failed','Authentication errors','Data not syncing','Supported data sources','Request a new connector'],
+    },
+    {
+      title: 'AI Chat & Answers',
+      color: 'rgba(14,196,193,',
+      icon: (
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
         </svg>
-        <input
-          placeholder="Ask a question..."
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
-          style={{
-            flex:1, background:'transparent', border:'none', outline:'none',
-            fontSize:'14px', color:'#E8F2F5', fontFamily:'Geist,sans-serif',
-            padding:'9px 4px',
-          }}
-        />
-        <button type="submit" style={{
-          padding:'8px 18px', borderRadius:'7px',
-          background:'linear-gradient(135deg,#0EC4C1 0%,#0A9896 100%)',
-          color:'#fff', fontSize:'13px', fontWeight:500,
-          border:'none', cursor:'pointer', fontFamily:'Geist,sans-serif',
-          flexShrink:0,
-        }}>
-          Ask AI
-        </button>
-      </form>
-    </div>
-  );
-}
+      ),
+      items: ['My answer seems wrong','AI doesn\'t understand my question','Charts not displaying','Export not working','Token usage questions'],
+    },
+    {
+      title: 'Semantic Layer',
+      color: 'rgba(168,85,247,',
+      icon: (
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/>
+          <path d="M2 12l8.58 3.91a2 2 0 0 0 1.66 0L21 12"/>
+          <path d="M2 17l8.58 3.91a2 2 0 0 0 1.66 0L21 17"/>
+        </svg>
+      ),
+      items: ['Metric definition errors','Cross-source join issues','Certification failed','Formula not calculating','Duplicate metric names'],
+    },
+    {
+      title: 'Reports',
+      color: 'rgba(251,146,60,',
+      icon: (
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="8" y1="13" x2="16" y2="13"/>
+          <line x1="8" y1="17" x2="12" y2="17"/>
+        </svg>
+      ),
+      items: ['Schedule a report','Export formats','Share with team','Report not generating','Edit saved reports'],
+    },
+    {
+      title: 'Security & Privacy',
+      color: 'rgba(52,211,153,',
+      icon: (
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      ),
+      items: ['SSO setup (Enterprise)','Data retention questions','Export my data','Delete my account','Compliance documentation'],
+    },
+  ];
 
-
-/* ── PAGE FEEDBACK ── */
-function PageFeedback() {
-  const [vote, setVote] = React.useState(null); // null | 'up' | 'down'
-  const [showForm, setShowForm] = React.useState(false);
-  const [submitted, setSubmitted] = React.useState(false);
-  const [text, setText] = React.useState('');
-  const [focused, setFocused] = React.useState(false);
-
-  const handleVote = (v) => {
-    setVote(v);
-    setShowForm(true);
-    setSubmitted(false);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setShowForm(false);
-  };
-
-  const handleSkip = () => {
-    setShowForm(false);
-  };
-
-  const prompts = {
-    up: { label: 'What did you like?', placeholder: 'Tell us what was helpful…' },
-    down: { label: 'What can we improve?', placeholder: 'Tell us what was missing or unclear…' },
-  };
+  const filteredTopics = topics.map(topic => {
+    if (!q) return { ...topic, visible: true };
+    const titleMatch = topic.title.toLowerCase().includes(q);
+    if (titleMatch) return { ...topic, visible: true };
+    const matchingItems = topic.items.filter(item => item.toLowerCase().includes(q));
+    if (matchingItems.length > 0) return { ...topic, items: matchingItems, visible: true };
+    return { ...topic, visible: false };
+  });
 
   return (
-    <div style={{
-      marginTop:'48px', marginBottom:'8px',
-      paddingTop:'32px',
-      borderTop:'1px solid rgba(255,255,255,0.055)',
-    }}>
-      {submitted ? (
-        <div style={{ display:'flex', alignItems:'center', gap:'8px' }}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="20 6 9 17 4 12"/>
-          </svg>
-          <span style={{ fontSize:'13px', color:'#5E8290' }}>Thanks for your feedback!</span>
-        </div>
-      ) : (
-        <>
-          <div style={{ display:'flex', alignItems:'center', gap:'12px' }}>
-            <span style={{ fontSize:'13px', color:'#5E8290' }}>Was this page helpful?</span>
-            <div style={{ display:'flex', gap:'6px' }}>
-              <button
-                onClick={() => handleVote('up')}
-                style={{
-                  display:'flex', alignItems:'center', gap:'5px',
-                  padding:'5px 12px', borderRadius:'6px',
-                  background: vote === 'up' ? 'rgba(14,196,193,0.15)' : 'rgba(255,255,255,0.04)',
-                  border: vote === 'up' ? '1px solid rgba(14,196,193,0.4)' : '1px solid rgba(255,255,255,0.08)',
-                  color: vote === 'up' ? '#0EC4C1' : '#5E8290',
-                  cursor:'pointer', fontSize:'12px', fontFamily:'Geist,sans-serif',
-                  transition:'all .15s',
-                }}
-                onMouseEnter={e => { if (vote !== 'up') { e.currentTarget.style.background='rgba(255,255,255,0.07)'; e.currentTarget.style.color='#7FA0AC'; }}}
-                onMouseLeave={e => { if (vote !== 'up') { e.currentTarget.style.background='rgba(255,255,255,0.04)'; e.currentTarget.style.color='#5E8290'; }}}
-              >
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/>
-                  <path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
-                </svg>
-                Yes
-              </button>
-              <button
-                onClick={() => handleVote('down')}
-                style={{
-                  display:'flex', alignItems:'center', gap:'5px',
-                  padding:'5px 12px', borderRadius:'6px',
-                  background: vote === 'down' ? 'rgba(220,80,80,0.12)' : 'rgba(255,255,255,0.04)',
-                  border: vote === 'down' ? '1px solid rgba(220,80,80,0.35)' : '1px solid rgba(255,255,255,0.08)',
-                  color: vote === 'down' ? '#E07070' : '#5E8290',
-                  cursor:'pointer', fontSize:'12px', fontFamily:'Geist,sans-serif',
-                  transition:'all .15s',
-                }}
-                onMouseEnter={e => { if (vote !== 'down') { e.currentTarget.style.background='rgba(255,255,255,0.07)'; e.currentTarget.style.color='#7FA0AC'; }}}
-                onMouseLeave={e => { if (vote !== 'down') { e.currentTarget.style.background='rgba(255,255,255,0.04)'; e.currentTarget.style.color='#5E8290'; }}}
-              >
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/>
-                  <path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/>
-                </svg>
-                No
-              </button>
-            </div>
-          </div>
-
-          {showForm && vote && (
-            <div style={{
-              marginTop:'16px',
-              padding:'18px 20px',
-              background:'rgba(255,255,255,0.03)',
-              border:'1px solid rgba(255,255,255,0.07)',
-              borderRadius:'10px',
-              animation:'fadeUp .2s ease',
-            }}>
-              <form onSubmit={handleSubmit}>
-                <label style={{ display:'block', fontSize:'13px', color:'#7FA0AC', fontWeight:500, marginBottom:'10px' }}>
-                  {prompts[vote].label}
-                </label>
-                <textarea
-                  value={text}
-                  onChange={e => setText(e.target.value)}
-                  onFocus={() => setFocused(true)}
-                  onBlur={() => setFocused(false)}
-                  placeholder={prompts[vote].placeholder}
-                  rows={3}
-                  style={{
-                    width:'100%', resize:'vertical',
-                    background:'rgba(255,255,255,0.04)',
-                    border: focused ? '1px solid rgba(9,160,157,.4)' : '1px solid rgba(255,255,255,0.08)',
-                    borderRadius:'8px', padding:'10px 12px',
-                    fontSize:'13px', color:'#E8F2F5', lineHeight:1.6,
-                    fontFamily:'Geist,sans-serif',
-                    outline:'none', transition:'border-color .2s',
-                    boxSizing:'border-box',
-                  }}
-                />
-                <div style={{ display:'flex', gap:'8px', marginTop:'10px', justifyContent:'flex-end' }}>
-                  <button type="button" onClick={handleSkip} style={{
-                    padding:'6px 14px', borderRadius:'6px',
-                    background:'transparent', border:'1px solid rgba(255,255,255,0.08)',
-                    color:'#5E8290', fontSize:'12px', cursor:'pointer',
-                    fontFamily:'Geist,sans-serif', transition:'color .15s',
-                  }}
-                  onMouseEnter={e => e.currentTarget.style.color='#7FA0AC'}
-                  onMouseLeave={e => e.currentTarget.style.color='#5E8290'}
-                  >
-                    Skip
-                  </button>
-                  <button type="submit" style={{
-                    padding:'6px 16px', borderRadius:'6px',
-                    background:'#07807E', border:'none',
-                    color:'#fff', fontSize:'12px', fontWeight:500,
-                    cursor:'pointer', fontFamily:'Geist,sans-serif',
-                    transition:'background .15s',
-                  }}
-                  onMouseEnter={e => e.currentTarget.style.background='#09A09D'}
-                  onMouseLeave={e => e.currentTarget.style.background='#07807E'}
-                  >
-                    Send feedback
-                  </button>
-                </div>
-              </form>
-            </div>
-          )}
-        </>
-      )}
-    </div>
-  );
-}
-
-/* ── DOCS CONTENT ── */
-function CopyPageButton({ title }) {
-  const [copied, setCopied] = React.useState(false);
-  const handleCopy = () => {
-    const text = `${window.location.href} — ${title}`;
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
-  };
-  return (
-    <button
-      onClick={handleCopy}
-      title="Copy link to this page"
-      style={{
-        display:'inline-flex', alignItems:'center', gap:'5px',
-        padding:'5px 10px', borderRadius:'6px',
-        background: copied ? 'rgba(9,160,157,.15)' : 'rgba(255,255,255,.05)',
-        border: copied ? '1px solid rgba(9,160,157,.35)' : '1px solid rgba(255,255,255,.08)',
-        color: copied ? '#0EC4C1' : '#5E8290',
-        fontSize:'12px', fontWeight:500, cursor:'pointer',
-        fontFamily:'inherit', flexShrink:0,
-        transition:'all .15s',
-      }}
-      onMouseEnter={(e) => { if (!copied) { e.currentTarget.style.background='rgba(255,255,255,.08)'; e.currentTarget.style.color='#7FA0AC'; }}}
-      onMouseLeave={(e) => { if (!copied) { e.currentTarget.style.background='rgba(255,255,255,.05)'; e.currentTarget.style.color='#5E8290'; }}}
-    >
-      {copied ? (
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-      ) : (
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-      )}
-      {copied ? 'Copied!' : 'Copy page'}
-    </button>
-  );
-}
-
-function DocsContent({ page, activePage, setActivePage, activeSection, setActiveSection }) {
-  useEffect(() => {
-    const headings = document.querySelectorAll('.doc-section-heading');
-    if (!headings.length) return;
-    const observer = new IntersectionObserver(
-      (entries) => { entries.forEach(entry => { if (entry.isIntersecting) setActiveSection(entry.target.id); }); },
-      { rootMargin: '-120px 0px -60% 0px' }
-    );
-    headings.forEach(h => observer.observe(h));
-    return () => observer.disconnect();
-  }, [activePage]);
-
-  if (!page) return <div className="docs-content-col" />;
-
-  return (
-    <div className="docs-content-col">
-      {/* Breadcrumb */}
-      <div style={{ display:'flex', alignItems:'center', gap:'6px', marginBottom:'28px', flexWrap:'wrap' }}>
-        {page.breadcrumb.map((crumb, i) => (
-          <React.Fragment key={i}>
-            {i > 0 && <span style={{ color:'#3A5260', fontSize:'13px' }}>/</span>}
-            <span style={{ fontSize:'13px', color: i === page.breadcrumb.length - 1 ? '#7FA0AC' : '#5E8290' }}>{crumb}</span>
-          </React.Fragment>
-        ))}
-      </div>
-
-      {/* Title */}
-      <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'16px' }}>
-        <h1 style={{
-          fontSize:'32px', fontWeight:700, letterSpacing:'-0.02em',
-          color:'#E8F2F5', lineHeight:1.2, margin:0,
-        }}>
-          {page.title}
-        </h1>
-        <CopyPageButton title={page.title} />
-      </div>
-
-      {/* Description */}
-      <p style={{
-        fontSize:'16px', color:'#7FA0AC', lineHeight:1.75,
-        marginBottom:'36px',
+    <section style={{ padding:'0 0 80px', position:'relative', zIndex:1 }}>
+      <div style={{
+        maxWidth:'1280px', margin:'0 auto', padding:'0 24px',
+        display:'grid',
+        gridTemplateColumns:'repeat(3, 1fr)',
+        gap:'20px',
       }}>
-        {page.description}
-      </p>
-
-      {/* Video placeholder */}
-      {page.videoTitle && (
-        <div style={{
-          position:'relative', borderRadius:'14px', overflow:'hidden',
-          border:'1px solid rgba(255,255,255,0.08)',
-          background:'#0A0E13',
-          backgroundImage:'url("https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80")',
-          backgroundSize:'cover', backgroundPosition:'center',
-          marginBottom:'52px', aspectRatio:'16/9',
-          display:'flex', alignItems:'center', justifyContent:'center', flexDirection:'column', gap:'16px',
-        }}>
-          {/* Dark overlay */}
-          <div style={{ position:'absolute', inset:0, background:'rgba(5,10,16,0.55)' }}/>
-          <div style={{
-            position:'absolute', top:0, left:0, right:0, zIndex:1,
-            display:'flex', alignItems:'center', gap:'12px',
-            padding:'14px 18px',
-            background:'rgba(0,0,0,0.5)', backdropFilter:'blur(8px)',
-          }}>
-            <div style={{
-              width:'32px', height:'32px', borderRadius:'8px',
-              background:'linear-gradient(135deg,#0EC4C1,#0A9896)',
-              display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0,
-            }}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
-                <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/>
-              </svg>
+        {filteredTopics.map((topic, i) => (
+          <div key={i} style={{
+            background:'rgba(255,255,255,.02)',
+            border: '1px solid rgba(255,255,255,.05)',
+            borderRadius:'14px',
+            overflow:'hidden',
+            opacity: topic.visible ? 1 : 0,
+            maxHeight: topic.visible ? '600px' : '0px',
+            transition:'opacity .3s ease, max-height .3s ease, border-color .2s ease',
+            cursor:'default',
+            padding:'20px',
+          }}
+          onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,.12)'; }}
+          onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,.05)'; }}
+          >
+            <div style={{ display:'flex', alignItems:'center', gap:'12px', marginBottom:'16px' }}>
+              <div style={{
+                width:'32px', height:'32px', borderRadius:'10px',
+                background:`${topic.color}0.08)`,
+                border:`1px solid ${topic.color}0.18)`,
+                color:`${topic.color}0.95)`,
+                display:'flex', alignItems:'center', justifyContent:'center',
+                flexShrink:0,
+              }}>
+                {topic.icon}
+              </div>
+              <h3 style={{ fontSize:'14px', fontWeight:600, color:'#E8F2F5' }}>{topic.title}</h3>
             </div>
-            <span style={{ fontSize:'13px', fontWeight:500, color:'#E8F2F5' }}>{page.videoTitle}</span>
-          </div>
-          <div style={{
-            width:'64px', height:'64px', borderRadius:'50%', position:'relative', zIndex:1,
-            background:'rgba(255,255,255,0.15)',
-            border:'1px solid rgba(255,255,255,0.3)',
-            display:'flex', alignItems:'center', justifyContent:'center', cursor:'pointer',
-            backdropFilter:'blur(4px)',
-          }}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="white" style={{marginLeft:'3px'}}>
-              <polygon points="5 3 19 12 5 21 5 3"/>
-            </svg>
-          </div>
-          <span style={{ fontSize:'13px', color:'rgba(255,255,255,0.5)', position:'relative', zIndex:1 }}>Watch on YouTube</span>
-        </div>
-      )}
 
-      {/* Content sections */}
-      <div>
-        {page.sections.map((section) => (
-          <div key={section.id} style={{ marginBottom:'40px' }}>
-            <h2
-              id={section.id}
-              className="doc-section-heading"
-              style={{
-                fontSize:'21px', fontWeight:600, color:'#E8F2F5',
-                letterSpacing:'-0.01em', marginBottom:'12px',
-                scrollMarginTop:'140px',
-              }}
-            >
-              {section.heading}
-            </h2>
-            <p style={{ fontSize:'15px', color:'#7FA0AC', lineHeight:1.8 }}>
-              {section.content}
-            </p>
+            <div style={{ display:'flex', flexDirection:'column', gap:'0px' }}>
+              {topic.items.map((item, j) => (
+                <a key={j} href="#" style={{
+                  display:'flex', alignItems:'center', justifyContent:'space-between',
+                  padding:'5px 0',
+                  borderBottom: j < topic.items.length - 1 ? '1px solid rgba(255,255,255,.04)' : 'none',
+                  fontSize:'13px', color:'#7FA0AC',
+                  textDecoration:'none',
+                  transition:'color .15s',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.color = '#0EC4C1'; }}
+                onMouseLeave={e => { e.currentTarget.style.color = '#7FA0AC'; }}
+                >
+                  <span>{item}</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink:0, opacity:.5 }}>
+                    <polyline points="9 18 15 12 9 6"/>
+                  </svg>
+                </a>
+              ))}
+            </div>
           </div>
         ))}
       </div>
 
-      {/* Page Feedback */}
-      <PageFeedback key={activePage} />
-
-      {/* Prev / Next */}
-      {page.prevNext && (
-        <div style={{
-          display:'flex', gap:'12px', marginTop:'48px',
-          borderTop:'1px solid rgba(255,255,255,0.055)',
-          paddingTop:'32px', marginBottom:'36px',
-        }}>
-          {page.prevNext.prev && (
-            <button
-              onClick={() => setActivePage(page.prevNext.prev.id)}
-              style={{
-                flex:1, display:'flex', flexDirection:'column', alignItems:'flex-start', gap:'4px',
-                padding:'16px 20px', borderRadius:'10px',
-                background:'rgba(255,255,255,0.03)',
-                border:'1px solid rgba(255,255,255,0.07)',
-                cursor:'pointer', transition:'border-color 0.15s', fontFamily:'Geist,sans-serif',
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(10,152,150,0.3)'}
-              onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'}
-            >
-              <span style={{ fontSize:'11px', color:'#5E8290', fontWeight:500 }}>← Previous</span>
-              <span style={{ fontSize:'13px', color:'#E8F2F5', fontWeight:500 }}>{page.prevNext.prev.label}</span>
-              <span style={{ fontSize:'11px', color:'#5E8290' }}>{page.prevNext.prev.section}</span>
-            </button>
-          )}
-          {page.prevNext.next && (
-            <button
-              onClick={() => setActivePage(page.prevNext.next.id)}
-              style={{
-                flex:1, display:'flex', flexDirection:'column', alignItems:'flex-end', gap:'4px',
-                padding:'16px 20px', borderRadius:'10px',
-                background:'rgba(255,255,255,0.03)',
-                border:'1px solid rgba(255,255,255,0.07)',
-                cursor:'pointer', transition:'border-color 0.15s', fontFamily:'Geist,sans-serif',
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(10,152,150,0.3)'}
-              onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'}
-            >
-              <span style={{ fontSize:'11px', color:'#5E8290', fontWeight:500 }}>Next →</span>
-              <span style={{ fontSize:'13px', color:'#E8F2F5', fontWeight:500 }}>{page.prevNext.next.label}</span>
-              <span style={{ fontSize:'11px', color:'#5E8290' }}>{page.prevNext.next.section}</span>
-            </button>
-          )}
-        </div>
-      )}
-
-    </div>
+      <style>{`
+        @media (max-width: 900px) {
+          section > div[style*="grid"] {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+        @media (max-width: 600px) {
+          section > div[style*="grid"] {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
+    </section>
   );
 }
 
+/* ── FLOATING CHAT ── */
+function FloatingChat({ onSubmit, hidden }) {
+  const [value, setValue] = useState('');
+  const [focused, setFocused] = useState(false);
+  const [visible, setVisible] = useState(true);
 
-/* ── APP ── */
-/* ── FLOATING CHAT BAR ── */
-function FloatingChat({ onSubmit }) {
-  const [value, setValue] = React.useState('');
-  const [focused, setFocused] = React.useState(false);
-  const [visible, setVisible] = React.useState(true);
-
-  React.useEffect(() => {
+  useEffect(() => {
     const footer = document.querySelector('footer');
     if (!footer) return;
     const observer = new IntersectionObserver(
@@ -1321,9 +701,9 @@ function FloatingChat({ onSubmit }) {
     <div style={{
       position:'fixed', bottom:0, left:0, right:0,
       zIndex:100,
-      opacity: visible ? 1 : 0,
+      opacity: visible && !hidden ? 1 : 0,
       pointerEvents: 'none',
-      transform: visible ? 'translateY(0)' : 'translateY(12px)',
+      transform: visible && !hidden ? 'translateY(0)' : 'translateY(12px)',
       transition: 'opacity .25s, transform .25s',
     }}>
       <div style={{
@@ -1394,27 +774,27 @@ function AssistantResponseText({ text }) {
 }
 
 function AIAssistantPanel({ query, onClose }) {
-  const [phase, setPhase] = React.useState('searching'); // searching | reading | done
-  const [input, setInput] = React.useState('');
-  const [inputFocused, setInputFocused] = React.useState(false);
-  const [messages, setMessages] = React.useState([{ role:'user', text: query }]);
-  const [copied, setCopied] = React.useState(false);
-  const bottomRef = React.useRef(null);
+  const [phase, setPhase] = useState('searching');
+  const [input, setInput] = useState('');
+  const [inputFocused, setInputFocused] = useState(false);
+  const [messages, setMessages] = useState([{ role:'user', text: query }]);
+  const [copied, setCopied] = useState(false);
+  const bottomRef = useRef(null);
 
   const SAMPLE_RESPONSE = {
     searchTerms: query.toLowerCase().split(' ').filter(w => w.length > 2).slice(0, 3).join(', ') || 'insightis',
-    intro: '**Insightis** is an AI-powered analytics workspace that lets you ask questions about your business data in plain language — and get instant, reliable answers. No SQL, no dashboards, no waiting.',
+    intro: '**Insightis** support is here to help. Based on your question, here is what we found in our knowledge base.',
     bullets: [
-      { bold: 'AI Chat', text: ' — ask anything about your data and get answers in seconds' },
-      { bold: 'Semantic Layer', text: ' — define your metrics once, use them everywhere with one trusted source of truth' },
-      { bold: '200+ Integrations', text: ' — connect your databases, CRMs, and SaaS tools directly' },
-      { bold: 'Reports', text: ' — save and share insights with your team on a schedule' },
+      { bold: 'Help Center', text: ' — browse common topics like billing, connections, and AI chat' },
+      { bold: 'Email Support', text: ' — reach us at support@insightis.io for detailed assistance' },
+      { bold: 'Documentation', text: ' — step-by-step guides for setup, integrations, and features' },
+      { bold: 'Community', text: ' — connect with other Insightis users for tips and best practices' },
     ],
-    outro: 'Think of it as your personal data analyst — always available, always accurate, no technical skills required.',
-    links: ['Quick Start Guide', 'Connecting Your First Data Source', 'AI Chat Overview'],
+    outro: 'If you need more specific help, feel free to ask a follow-up question or contact our support team directly.',
+    links: ['Getting Started Guide', 'Troubleshooting Connections', 'AI Chat Best Practices'],
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const t1 = setTimeout(() => setPhase('reading'), 800);
     const t2 = setTimeout(() => {
       setPhase('done');
@@ -1423,7 +803,7 @@ function AIAssistantPanel({ query, onClose }) {
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior:'smooth' });
   }, [messages, phase]);
 
@@ -1475,21 +855,19 @@ function AIAssistantPanel({ query, onClose }) {
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
           </svg>
-          <span style={{ fontSize:'13px', fontWeight:600, color:'#E8F2F5' }}>Assistant</span>
+          <span style={{ fontSize:'13px', fontWeight:600, color:'#E8F2F5' }}>AI Assistant</span>
         </div>
-        <div style={{ display:'flex', gap:'2px' }}>
-          <button onClick={onClose} style={{
-            background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
-            color:'#5E8290', transition:'color .15s', display:'flex',
-          }}
-          onMouseEnter={e => e.currentTarget.style.color = '#E8F2F5'}
-          onMouseLeave={e => e.currentTarget.style.color = '#5E8290'}
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-            </svg>
-          </button>
-        </div>
+        <button onClick={onClose} style={{
+          background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
+          color:'#5E8290', transition:'color .15s', display:'flex',
+        }}
+        onMouseEnter={e => e.currentTarget.style.color = '#E8F2F5'}
+        onMouseLeave={e => e.currentTarget.style.color = '#5E8290'}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
       </div>
 
       {/* Messages */}
@@ -1560,7 +938,7 @@ function AIAssistantPanel({ query, onClose }) {
           <div style={{ display:'flex', flexDirection:'column', gap:'6px' }}>
             <div style={{ display:'flex', alignItems:'center', gap:'6px', fontSize:'12px', color:'#3A6070' }}>
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ animation:'pulse 1.2s ease infinite' }}><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              {phase === 'searching' ? 'Searching docs…' : 'Reading file…'}
+              {phase === 'searching' ? 'Searching docs...' : 'Reading file...'}
             </div>
             <div style={{ display:'flex', gap:'5px', paddingTop:'4px' }}>
               {[0,1,2].map(i => (
@@ -1617,62 +995,434 @@ function AIAssistantPanel({ query, onClose }) {
   );
 }
 
+/* ── SUPPORT STATUS ── */
+function SupportStatus() {
+  return (
+    <div style={{
+      background:'rgba(34,197,94,.04)',
+      borderTop:'1px solid rgba(34,197,94,.15)',
+      borderBottom:'1px solid rgba(34,197,94,.15)',
+      padding:'16px 24px',
+      position:'relative', zIndex:1,
+    }}>
+      <div style={{
+        maxWidth:'1280px', margin:'0 auto',
+        display:'flex', alignItems:'center', justifyContent:'center',
+        gap:'12px', flexWrap:'wrap',
+      }}>
+        <div style={{
+          width:'8px', height:'8px', borderRadius:'50%',
+          background:'#22C55E',
+          boxShadow:'0 0 8px #22C55E',
+          animation:'statusPulse 2s ease infinite',
+          flexShrink:0,
+        }} />
+        <span style={{
+          fontSize:'13px', color:'#22C55E',
+          fontFamily:'Geist Mono, monospace',
+        }}>All systems operational</span>
+        <span style={{
+          fontSize:'11px', color:'#6E8D9A',
+        }}>Last checked: 2 minutes ago</span>
+      </div>
+    </div>
+  );
+}
+
+/* ── CONTACT SUPPORT ── */
+function ContactSupport() {
+  const CATEGORIES = [
+    {
+      id: 'general', label: 'General Question', color: '#0EC4C1',
+      subjectPlaceholder: 'e.g. How do I export a report as PDF?',
+      descLabel: 'DETAILS', descPlaceholder: 'Any additional context...',
+      icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>,
+    },
+    {
+      id: 'bug', label: 'Report a Bug', color: '#EF4444',
+      subjectPlaceholder: 'e.g. Chart not loading on Reports page',
+      descLabel: 'STEPS TO REPRODUCE', descPlaceholder: '1. Go to Reports tab\n2. Click Export\n3. See error',
+      icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>,
+    },
+    {
+      id: 'billing', label: 'Billing & Account', color: '#818CF8',
+      subjectPlaceholder: 'e.g. I was charged twice this month',
+      descLabel: 'DETAILS', descPlaceholder: 'Any additional context...',
+      icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>,
+    },
+    {
+      id: 'connection', label: 'Data Connections', color: '#14A8B9',
+      subjectPlaceholder: 'e.g. My Salesforce connection keeps failing',
+      descLabel: 'DETAILS', descPlaceholder: 'Any additional context...',
+      icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>,
+    },
+    {
+      id: 'feature', label: 'Feature Request', color: '#F97316',
+      subjectPlaceholder: "e.g. I'd love to see scheduled email reports",
+      descLabel: 'TELL US MORE', descPlaceholder: 'Describe the feature and why it matters to you...',
+      icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
+    },
+    {
+      id: 'other', label: 'Other', color: '#6B7280',
+      subjectPlaceholder: 'e.g. Brief description of your request',
+      descLabel: 'DETAILS', descPlaceholder: 'Any additional context...',
+      icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>,
+    },
+  ];
+
+  const [open, setOpen] = React.useState(false);
+  const [step, setStep] = React.useState('form');
+  const [form, setForm] = React.useState({ category: 'general', title: '', desc: '', email: '' });
+  const [focused, setFocused] = React.useState(null);
+  const [files, setFiles] = React.useState([]);
+  const [dragOver, setDragOver] = React.useState(false);
+  const fileRef = React.useRef(null);
+
+  const cat = CATEGORIES.find(c => c.id === form.category);
+
+  const addFiles = (incoming) => {
+    const arr = Array.from(incoming).filter(f => f.size < 10 * 1024 * 1024);
+    setFiles(prev => {
+      const names = new Set(prev.map(f => f.name));
+      return [...prev, ...arr.filter(f => !names.has(f.name))].slice(0, 5);
+    });
+  };
+  const removeFile = (name) => setFiles(f => f.filter(x => x.name !== name));
+  const fmt = (b) => b < 1024 * 1024 ? `${(b/1024).toFixed(0)} KB` : `${(b/1024/1024).toFixed(1)} MB`;
+
+  const close = () => {
+    setOpen(false);
+    setTimeout(() => { setStep('form'); setForm({ category: 'general', title: '', desc: '', email: '' }); setFiles([]); }, 300);
+  };
+  const submit = () => { if (!form.title.trim()) return; setStep('done'); };
+
+  const inputStyle = (field) => ({
+    width: '100%', boxSizing: 'border-box',
+    background: 'rgba(255,255,255,.04)',
+    border: focused === field ? '1px solid rgba(9,160,157,.5)' : '1px solid rgba(255,255,255,.08)',
+    borderRadius: '10px',
+    padding: '10px 14px',
+    fontSize: '14px', color: '#E8F2F5',
+    fontFamily: 'inherit', outline: 'none',
+    transition: 'border-color .2s',
+    resize: 'none',
+  });
+
+  return (
+    <>
+      {/* ── Banner ── */}
+      <section style={{ padding: '0 0 32px', position: 'relative', zIndex: 1 }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px' }}>
+          <div style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px',
+            background: 'rgba(255,255,255,.02)',
+            border: '1px solid rgba(255,255,255,.06)',
+            borderRadius: '12px',
+            padding: '16px 20px',
+            flexWrap: 'wrap',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+              <div style={{
+                width: '32px', height: '32px', borderRadius: '10px', flexShrink: 0,
+                background: 'rgba(14,196,193,0.08)', border: '1px solid rgba(14,196,193,0.2)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: '#0EC4C1',
+              }}>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+              </div>
+              <div>
+                <div style={{ fontSize: '14px', fontWeight: 600, color: '#E8F2F5', marginBottom: '2px' }}>Still need help?</div>
+                <div style={{ fontSize: '13px', color: '#7FA0AC' }}>Our support team is here — reach out and we'll respond within 24 hours.</div>
+              </div>
+            </div>
+            <button
+              onClick={() => setOpen(true)}
+              style={{
+                padding: '9px 18px', borderRadius: '9px', flexShrink: 0,
+                background: 'rgba(14,196,193,0.08)', border: '1px solid rgba(14,196,193,0.2)',
+                color: '#0EC4C1', fontSize: '13px', fontWeight: 600,
+                fontFamily: 'inherit', cursor: 'pointer',
+                transition: 'background .18s, border-color .18s',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(14,196,193,0.14)'; e.currentTarget.style.borderColor = 'rgba(14,196,193,0.35)'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(14,196,193,0.08)'; e.currentTarget.style.borderColor = 'rgba(14,196,193,0.2)'; }}
+            >Contact Support →</button>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Modal ── */}
+      {open && (
+        <div
+          onClick={close}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 200,
+            background: 'rgba(5,8,12,0.75)',
+            backdropFilter: 'blur(4px)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: '24px',
+            overflowY: 'auto',
+          }}
+        >
+          <div
+            onClick={e => e.stopPropagation()}
+            style={{
+              background: '#0D1117',
+              border: '1px solid rgba(255,255,255,.08)',
+              borderRadius: '18px',
+              width: '100%', maxWidth: '520px',
+              padding: '32px',
+              animation: 'fadeUp .22s ease',
+              position: 'relative',
+              margin: 'auto',
+            }}
+          >
+            {/* Close */}
+            <button
+              onClick={close}
+              style={{
+                position: 'absolute', top: '16px', right: '16px',
+                background: 'none', border: 'none', cursor: 'pointer',
+                color: '#4A7A8A', padding: '4px',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                borderRadius: '6px',
+              }}
+              onMouseEnter={e => e.currentTarget.style.color = '#E8F2F5'}
+              onMouseLeave={e => e.currentTarget.style.color = '#4A7A8A'}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+
+            {step === 'form' ? (
+              <>
+                {/* Header */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
+                  <div style={{
+                    width: '38px', height: '38px', borderRadius: '10px', flexShrink: 0,
+                    background: 'rgba(14,196,193,0.1)', border: '1px solid rgba(14,196,193,0.22)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0EC4C1',
+                  }}>
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div style={{ fontSize: '16px', fontWeight: 700, color: '#E8F2F5' }}>Contact Support</div>
+                    <div style={{ fontSize: '13px', color: '#7FA0AC', marginTop: '2px' }}>We'll get back to you as soon as possible.</div>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+
+                  {/* Category pills */}
+                  <div>
+                    <label style={{ fontSize: '12px', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '8px' }}>CATEGORY</label>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                      {CATEGORIES.map(c => {
+                        const active = form.category === c.id;
+                        return (
+                          <button
+                            key={c.id}
+                            onClick={() => setForm(f => ({ ...f, category: c.id, title: '', desc: '' }))}
+                            style={{
+                              display: 'inline-flex', alignItems: 'center', gap: '5px',
+                              padding: '5px 12px', borderRadius: '999px',
+                              background: active ? `rgba(${c.id === 'bug' ? '239,68,68' : c.id === 'billing' ? '129,140,248' : c.id === 'connection' ? '20,168,185' : c.id === 'feature' ? '249,115,22' : c.id === 'other' ? '107,114,128' : '14,196,193'},0.12)` : 'rgba(255,255,255,.04)',
+                              border: active ? `1px solid ${c.color}44` : '1px solid rgba(255,255,255,.07)',
+                              color: active ? c.color : '#7FA0AC',
+                              fontSize: '12px', fontWeight: active ? 600 : 400,
+                              fontFamily: 'inherit', cursor: 'pointer',
+                              transition: 'all .15s',
+                            }}
+                            onMouseEnter={e => { if (!active) { e.currentTarget.style.borderColor = 'rgba(255,255,255,.14)'; e.currentTarget.style.color = '#C8E6EA'; } }}
+                            onMouseLeave={e => { if (!active) { e.currentTarget.style.borderColor = 'rgba(255,255,255,.07)'; e.currentTarget.style.color = '#7FA0AC'; } }}
+                          >
+                            <span style={{ lineHeight: 0 }}>{c.icon}</span>
+                            {c.label}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Subject */}
+                  <div>
+                    <label style={{ fontSize: '12px', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '6px' }}>SUBJECT *</label>
+                    <input
+                      value={form.title}
+                      onChange={e => setForm(f => ({ ...f, title: e.target.value }))}
+                      onFocus={() => setFocused('title')}
+                      onBlur={() => setFocused(null)}
+                      placeholder={cat.subjectPlaceholder}
+                      style={inputStyle('title')}
+                    />
+                  </div>
+
+                  {/* Description */}
+                  <div>
+                    <label style={{ fontSize: '12px', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '6px' }}>{cat.descLabel}</label>
+                    <textarea
+                      rows={3}
+                      value={form.desc}
+                      onChange={e => setForm(f => ({ ...f, desc: e.target.value }))}
+                      onFocus={() => setFocused('desc')}
+                      onBlur={() => setFocused(null)}
+                      placeholder={cat.descPlaceholder}
+                      style={{ ...inputStyle('desc') }}
+                    />
+                  </div>
+
+                  {/* Email */}
+                  <div>
+                    <label style={{ fontSize: '12px', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '6px' }}>YOUR EMAIL <span style={{ color: '#4A7A8A', fontWeight: 400 }}>(optional, for follow-up)</span></label>
+                    <input
+                      type="email"
+                      value={form.email}
+                      onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                      onFocus={() => setFocused('email')}
+                      onBlur={() => setFocused(null)}
+                      placeholder="you@company.com"
+                      style={inputStyle('email')}
+                    />
+                  </div>
+
+                  {/* Attachments */}
+                  <div>
+                    <label style={{ fontSize: '12px', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '6px' }}>ATTACHMENTS <span style={{ color: '#4A7A8A', fontWeight: 400 }}>(up to 5 files, 10 MB each)</span></label>
+                    <div
+                      onClick={() => fileRef.current?.click()}
+                      onDragOver={e => { e.preventDefault(); setDragOver(true); }}
+                      onDragLeave={() => setDragOver(false)}
+                      onDrop={e => { e.preventDefault(); setDragOver(false); addFiles(e.dataTransfer.files); }}
+                      style={{
+                        border: dragOver ? '1px dashed rgba(9,160,157,.6)' : '1px dashed rgba(255,255,255,.12)',
+                        borderRadius: '10px', padding: '16px',
+                        background: dragOver ? 'rgba(9,160,157,.06)' : 'rgba(255,255,255,.02)',
+                        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px',
+                        cursor: 'pointer', transition: 'border-color .18s, background .18s',
+                      }}
+                      onMouseEnter={e => { if (!dragOver) e.currentTarget.style.borderColor = 'rgba(255,255,255,.22)'; }}
+                      onMouseLeave={e => { if (!dragOver) e.currentTarget.style.borderColor = 'rgba(255,255,255,.12)'; }}
+                    >
+                      <input ref={fileRef} type="file" multiple style={{ display: 'none' }} onChange={e => addFiles(e.target.files)} />
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4A7A8A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+                      </svg>
+                      <span style={{ fontSize: '13px', color: '#4A7A8A' }}>
+                        {dragOver ? 'Drop files here' : 'Click or drag files to attach'}
+                      </span>
+                    </div>
+                    {files.length > 0 && (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginTop: '8px' }}>
+                        {files.map(f => (
+                          <div key={f.name} style={{
+                            display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px',
+                            background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.07)',
+                            borderRadius: '8px', padding: '7px 10px',
+                          }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0 }}>
+                              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4A7A8A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                                <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/>
+                              </svg>
+                              <span style={{ fontSize: '13px', color: '#9BBAC5', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{f.name}</span>
+                              <span style={{ fontSize: '11px', color: '#4A7A8A', flexShrink: 0 }}>{fmt(f.size)}</span>
+                            </div>
+                            <button
+                              onClick={() => removeFile(f.name)}
+                              style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#4A7A8A', padding: '2px', display: 'flex', flexShrink: 0 }}
+                              onMouseEnter={e => e.currentTarget.style.color = '#EF4444'}
+                              onMouseLeave={e => e.currentTarget.style.color = '#4A7A8A'}
+                            >
+                              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div style={{ display: 'flex', gap: '10px', marginTop: '24px' }}>
+                  <button
+                    onClick={close}
+                    style={{
+                      flex: 1, padding: '11px', borderRadius: '9px',
+                      background: 'rgba(255,255,255,.05)', border: '1px solid rgba(255,255,255,.08)',
+                      color: '#7FA0AC', fontSize: '14px', fontWeight: 500,
+                      fontFamily: 'inherit', cursor: 'pointer',
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,.08)'}
+                    onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,.05)'}
+                  >Cancel</button>
+                  <button
+                    onClick={submit}
+                    style={{
+                      flex: 2, padding: '11px', borderRadius: '9px',
+                      background: form.title.trim() ? '#07807E' : 'rgba(9,160,157,.18)',
+                      border: 'none',
+                      color: form.title.trim() ? '#fff' : 'rgba(14,196,193,0.4)',
+                      fontSize: '14px', fontWeight: 600,
+                      fontFamily: 'inherit', cursor: form.title.trim() ? 'pointer' : 'default',
+                      transition: 'background .18s, color .18s',
+                    }}
+                    onMouseEnter={e => { if (form.title.trim()) e.currentTarget.style.background = '#09A09D'; }}
+                    onMouseLeave={e => { if (form.title.trim()) e.currentTarget.style.background = '#07807E'; }}
+                  >Submit Request</button>
+                </div>
+              </>
+            ) : (
+              /* Success */
+              <div style={{ textAlign: 'center', padding: '16px 0' }}>
+                <div style={{
+                  width: '52px', height: '52px', borderRadius: '50%',
+                  background: 'rgba(14,196,193,0.1)', border: '1px solid rgba(14,196,193,0.22)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  margin: '0 auto 20px', color: '#0EC4C1',
+                }}>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </div>
+                <div style={{ fontSize: '17px', fontWeight: 700, color: '#E8F2F5', marginBottom: '8px' }}>Request submitted</div>
+                <div style={{ fontSize: '14px', color: '#7FA0AC', lineHeight: 1.6, marginBottom: '28px' }}>
+                  Thanks for reaching out. Our team will review your request and follow up shortly.
+                </div>
+                <button
+                  onClick={close}
+                  style={{
+                    padding: '10px 28px', borderRadius: '9px',
+                    background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.1)',
+                    color: '#E8F2F5', fontSize: '14px', fontWeight: 500,
+                    fontFamily: 'inherit', cursor: 'pointer',
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,.1)'}
+                  onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,.06)'}
+                >Done</button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+/* ── APP ── */
 function App() {
-  const [activeTab, setActiveTab] = useState('introduction');
-  const [activePage, setActivePage] = useState('welcome');
-  const [expandedSections, setExpandedSections] = useState({ 'Getting Started': true });
-  const [sidebarSearch, setSidebarSearch] = useState('');
-  const [activeSection, setActiveSection] = useState('');
+  const [search, setSearch] = useState('');
   const [assistantQuery, setAssistantQuery] = useState(null);
-
-  const currentPage = PAGES[activePage] || PAGES['welcome'];
-
-  useEffect(() => {
-    setActiveSection('');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [activePage]);
-
-  useEffect(() => {
-    const handleKey = (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-        e.preventDefault();
-        const input = document.querySelector('.docs-sidebar-col input');
-        if (input) input.focus();
-      }
-    };
-    document.addEventListener('keydown', handleKey);
-    return () => document.removeEventListener('keydown', handleKey);
-  }, []);
 
   return (
     <div style={{ paddingBottom:'100px' }}>
       <Header />
-      <div style={{ maxWidth:'1240px', width:'calc(100% - 32px)', margin:'0 auto' }}>
-      <div className="docs-layout">
-        <DocsSidebar
-          activePage={activePage}
-          setActivePage={(id) => { setActivePage(id); setSidebarSearch(''); }}
-          expandedSections={expandedSections}
-          setExpandedSections={setExpandedSections}
-          sidebarSearch={sidebarSearch}
-          setSidebarSearch={setSidebarSearch}
-        />
-        <DocsContent
-          page={currentPage}
-          activePage={activePage}
-          setActivePage={setActivePage}
-          activeSection={activeSection}
-          setActiveSection={setActiveSection}
-        />
-        <DocsTOC
-          toc={currentPage.toc || []}
-          activeSection={activeSection}
-          setActiveSection={setActiveSection}
-        />
-      </div>
-      </div>
+      <SupportHero search={search} setSearch={setSearch} />
+      <HelpTopics search={search} />
+      <ContactSupport />
       <Footer />
-      <FloatingChat onSubmit={(q) => setAssistantQuery(q)} />
+      <FloatingChat onSubmit={(q) => setAssistantQuery(q)} hidden={!!assistantQuery} />
       {assistantQuery && (
         <AIAssistantPanel
           query={assistantQuery}
@@ -1684,8 +1434,3 @@ function App() {
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-</script>
-
-<script defer src="/assets/header-scroll.js"></script>
-</body>
-</html>

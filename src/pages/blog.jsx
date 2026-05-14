@@ -1,99 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="stylesheet" href="/assets/responsive.css">
-<title>Pricing — Insightis</title>
-<link rel="preload" href="Design%20system/design-system/assets/fonts/Geist-Variable.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="preload" href="Design%20system/design-system/assets/fonts/GeistMono-Variable.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="stylesheet" href="Design%20system/design-system/assets/tokens.css">
-<link rel="stylesheet" href="Design%20system/design-system/assets/base.css">
-<link rel="stylesheet" href="Design%20system/design-system/assets/components.css">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          base:             'var(--ins-surface-page)',
-          card:             'var(--ins-surface-card)',
-          'card-border':    'var(--ins-border-default)',
-          teal:             { DEFAULT: 'var(--ins-button-primary-bg)',
-                              hover:   'var(--ins-button-primary-bg-hover)' },
-          'text-primary':   'var(--ins-text-heading)',
-          'text-secondary': 'var(--ins-text-body)',
-          'text-muted':     'var(--ins-text-inactive)',
-          success:          'var(--ins-status-success-fg)',
-          danger:           'var(--ins-status-error-fg)',
-          warning:          'var(--ins-status-warning-fg)',
-        },
-        fontFamily: { body: ['Geist', 'system-ui', 'sans-serif'] },
-        borderRadius: { card: 'var(--ins-radius-card)',
-                        btn:  'var(--ins-radius-lg)',
-                        pill: 'var(--ins-radius-pill)' },
-      }
-    }
-  }
-</script>
-<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<style>
-/* Page-specific atmosphere on top of DS base.css (which handles reset + body + fonts). */
-body { overflow-x: hidden; }
-
-body::before {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  opacity: .4; mix-blend-mode: overlay;
-}
-
-body::after {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 10% 5%, var(--ins-color-teal-a-08) 0%, transparent 70%),
-    radial-gradient(ellipse 70% 55% at 85% 0%, rgba(110,60,200,.07) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 60% at 75% 45%, rgba(20,80,200,.05) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 55% at 5% 55%, rgba(160,50,220,.045) 0%, transparent 65%),
-    radial-gradient(ellipse 65% 55% at 50% 90%, var(--ins-color-teal-a-08) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 45% at 95% 75%, rgba(50,90,240,.04) 0%, transparent 55%),
-    radial-gradient(ellipse 45% 40% at 35% 30%, rgba(200,60,180,.03) 0%, transparent 55%);
-}
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp { from{opacity:0;transform:translateY(var(--ins-size-5))} to{opacity:1;transform:translateY(0)} }
-@keyframes fadeIn { from{opacity:0} to{opacity:1} }
-@keyframes slideUp { from{opacity:0;transform:translateY(var(--ins-size-3))} to{opacity:1;transform:translateY(0)} }
-@keyframes pulse  { 0%,100%{opacity:.4;transform:scale(.85)} 50%{opacity:1;transform:scale(1)} }
-@keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
-
-.fu0 { animation: fadeUp .7s ease both; }
-.fu1 { animation: fadeUp .7s ease .1s both; }
-.fu2 { animation: fadeUp .7s ease .2s both; }
-.fu3 { animation: fadeUp .7s ease .35s both; }
-.fu4 { animation: fadeUp .7s ease .5s both; }
-
-section { position: relative; }
-
-/* ── PRICE TRANSITION ── */
-.price-animate {
-  transition: opacity var(--ins-duration-slow) var(--ins-easing-standard),
-              transform var(--ins-duration-slow) var(--ins-easing-standard);
-}
-.price-animate-exit {
-  opacity: 0;
-  transform: translateY(-6px);
-}
-</style>
-</head>
-<body>
-
-<div id="root"></div>
-
-<script type="text/babel">
-const { useState, useEffect, useRef } = React;
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import ReactDOM from 'react-dom/client';
+import '../app.css';
 
 /* ── HEADER ── */
 function MenuIcon({ size = 24, color = "#fff" }) {
@@ -152,27 +59,29 @@ function Header() {
   }
 
   const linkUrls = {
-    'AI Chat': 'Platform/AI Chat.html',
-    'Integrations': 'Platform/Integrations.html',
-    'Semantic Layer': 'Platform/Semantic Layer.html',
-    'Memory & Storage': 'Platform/Memory & Storage.html',
-    'For RevOps & BizOps': 'Solutions/RevOps BizOps.html',
-    'For Founders & CEOs': 'Solutions/Founders CEOs.html',
-    'For CMOs & Marketers': 'Solutions/Marketing Teams.html',
-    'For Product Teams': 'Solutions/Product Teams.html',
-    'For Data & Analytics Teams': 'Solutions/Data Analytics Teams.html',
-    'For Operations & Finance': 'Solutions/Operations Finance.html',
-    'Documentation': 'docs/',
-    'Blog': 'blog/',
-    'Support Center': 'Resources/Contact Support.html',
-    'Roadmap': 'Resources/Roadmap.html',
-    'Prompt Library': 'Resources/Prompt Library.html',
-    'Data Connectors': 'Resources/Connectors.html',
-    'Pricing': 'Pricing.html',
-    'About Insightis': 'Company/About Insightis.html',
-    'Contacts': 'Company/Contacts.html',
-    'Success Stories': 'Company/Success Stories.html',
-    'Press & Media': 'Company/Press Media.html',
+    'AI Chat': '../Platform/AI Chat.html',
+    'Integrations': '../Platform/Integrations.html',
+    'Insights Engine': '../Platform/Insights Engine.html',
+    'Semantic Layer': '../Platform/Semantic Layer.html',
+    'Reports': '../Platform/Reports.html',
+    'Memory & Storage': '../Platform/Memory & Storage.html',
+    'For RevOps & BizOps': '../Solutions/RevOps BizOps.html',
+    'For Founders & CEOs': '../Solutions/Founders CEOs.html',
+    'For CMOs & Marketers': '../Solutions/Marketing Teams.html',
+    'For Product Teams': '../Solutions/Product Teams.html',
+    'For Data & Analytics Teams': '../Solutions/Data Analytics Teams.html',
+    'For Operations & Finance': '../Solutions/Operations Finance.html',
+    'Documentation': 'Documentation.html',
+    'Blog': 'Blog.html',
+    'Support Center': 'Contact Support.html',
+    'Community': 'Community.html',
+    'Roadmap': 'Roadmap.html',
+    'Pricing': '../Pricing.html',
+    'About Insightis': '../Company/About Insightis.html',
+    'Contacts': '../Company/Contacts.html',
+    'Success Stories': '../Company/Success Stories.html',
+    'Press & Media': '../Company/Press Media.html',
+    'Video Tutorials': 'https://www.youtube.com/@InsightisAI',
   };
 
   const dropdowns = {
@@ -181,11 +90,11 @@ function Header() {
         { heading: 'PRODUCT', items: [
           { label: 'AI Chat', desc: 'Ask anything about your data', icon: 'chat' },
           { label: 'Integrations', desc: 'Connect 200+ sources', icon: 'link' },
-          { label: 'Semantic Layer', desc: 'One trusted source of truth', icon: 'bars' },
+          { label: 'Insights Engine', desc: 'Automated insights from your data', icon: 'pulse' },
         ]},
         { heading: 'FEATURES', items: [
-          { label: 'AI Connect', desc: 'Bring Insightis to your favorite AI tools', icon: 'pulse', comingSoon: true, notClickable: true },
-          { label: 'Advanced Reports', desc: 'Rich, interactive reporting', icon: 'file', comingSoon: true, notClickable: true },
+          { label: 'Semantic Layer', desc: 'One trusted source of truth', icon: 'bars' },
+          { label: 'Reports', desc: 'Save and share answers with your team', icon: 'file' },
           { label: 'Memory & Storage', desc: 'Your business context, always remembered', icon: 'box', comingSoon: true },
         ]},
       ]
@@ -208,13 +117,13 @@ function Header() {
       sections: [
         { heading: 'LEARN', items: [
           { label: 'Documentation', desc: 'Setup guides and API reference', icon: 'file' },
-          { label: 'Prompt Library', desc: 'Ready-made prompts for your data', icon: 'play' },
+          { label: 'Video Tutorials', desc: 'Step-by-step walkthroughs', icon: 'play', external: true },
           { label: 'Blog', desc: 'Data analytics tips and product updates', icon: 'rss' },
         ]},
         { heading: 'CONNECT', items: [
           { label: 'Support Center', desc: 'Get help from our team', icon: 'support' },
           { label: 'Roadmap', desc: 'Follow product development in real time', icon: 'map' },
-          { label: 'Data Connectors', desc: 'Browse all supported data sources', icon: 'grid' },
+          { label: 'Community', desc: 'Join our community', icon: 'grid' },
         ]},
       ]
     }
@@ -231,7 +140,7 @@ function Header() {
       }}>
       <div ref={navRef} style={{
         position:'relative',
-        maxWidth:'1280px', width:'calc(100% - 48px)',
+        maxWidth:'1240px', width:'calc(100% - 32px)',
         margin:'0 auto',
         padding:'12px 0 0',
       }}>
@@ -246,7 +155,7 @@ function Header() {
           transition:'border-radius 0.25s ease, box-shadow 0.3s ease',
         }}>
           <div style={{width:'100%'}} className="flex items-center justify-between">
-            <a href="index.html" className="flex items-center gap-2.5 flex-shrink-0">
+            <a href="../index.html" className="flex items-center gap-2.5 flex-shrink-0">
               <svg width="111" height="26" viewBox="0 0 111 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7"><g clipPath="url(#clip0_2673_16536)"><path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="#1498B9"/><path d="M33.2746 17.5261V5.60823H35.5859V17.5261H33.2746Z" fill="white"/><path d="M38.2797 17.5261V8.0821H40.1758L40.1216 10.9713H40.4466C40.6152 10.261 40.8379 9.67717 41.1148 9.21971C41.4037 8.76226 41.7708 8.41917 42.2163 8.19044C42.6617 7.96171 43.1793 7.84735 43.7692 7.84735C44.8406 7.84735 45.6532 8.22656 46.207 8.98497C46.7728 9.74338 47.0557 10.9171 47.0557 12.5062V17.5261H44.7624V12.7409C44.7624 11.7177 44.6059 10.9713 44.2929 10.5018C43.9919 10.0203 43.5405 9.77949 42.9386 9.77949C42.433 9.77949 42.0056 9.94201 41.6565 10.267C41.3074 10.58 41.0365 11.0014 40.8439 11.5311C40.6633 12.0487 40.567 12.6205 40.555 13.2465V17.5261H38.2797Z" fill="white"/><path d="M53.1255 17.7609C52.4875 17.7609 51.9096 17.6947 51.392 17.5622C50.8864 17.4419 50.453 17.2673 50.0918 17.0386C49.7307 16.7978 49.4418 16.5149 49.2251 16.1899C49.0084 15.8528 48.876 15.4796 48.8278 15.0703L50.6155 14.4022C50.6396 14.7152 50.76 14.9981 50.9767 15.2509C51.1933 15.4917 51.4943 15.6843 51.8795 15.8287C52.2647 15.9732 52.7282 16.0454 53.2699 16.0454C53.8719 16.0454 54.3353 15.9551 54.6604 15.7746C54.9974 15.5819 55.166 15.3111 55.166 14.962C55.166 14.7092 55.0757 14.5105 54.8951 14.3661C54.7145 14.2096 54.4497 14.0832 54.1006 13.9869C53.7635 13.8785 53.3542 13.7762 52.8727 13.6799C52.4273 13.5836 51.9758 13.4752 51.5184 13.3549C51.073 13.2224 50.6576 13.0539 50.2724 12.8493C49.8992 12.6326 49.5922 12.3557 49.3515 12.0186C49.1228 11.6695 49.0084 11.2301 49.0084 10.7004C49.0084 10.1226 49.1589 9.623 49.4598 9.20166C49.7728 8.78032 50.2182 8.44926 50.7961 8.2085C51.386 7.96773 52.0962 7.84735 52.9269 7.84735C53.7093 7.84735 54.3835 7.9557 54.9493 8.17238C55.5271 8.38907 55.9966 8.70207 56.3578 9.11137C56.7189 9.50863 56.9476 9.98415 57.0439 10.5379L55.166 11.1338C55.1299 10.7967 55.0155 10.5138 54.8229 10.2851C54.6303 10.0443 54.3714 9.86376 54.0464 9.74338C53.7214 9.623 53.3422 9.56281 52.9088 9.56281C52.355 9.56281 51.9217 9.65911 51.6087 9.85172C51.2957 10.0443 51.1392 10.3032 51.1392 10.6282C51.1392 10.893 51.2355 11.1037 51.4281 11.2602C51.6327 11.4167 51.9096 11.5431 52.2587 11.6394C52.6199 11.7357 53.0292 11.832 53.4866 11.9283C53.9682 12.0246 54.4316 12.139 54.8771 12.2714C55.3345 12.3918 55.7438 12.5543 56.105 12.759C56.4661 12.9636 56.755 13.2345 56.9717 13.5716C57.1884 13.8966 57.2967 14.3179 57.2967 14.8356C57.2967 15.4616 57.1282 15.9973 56.7911 16.4427C56.4541 16.8761 55.9725 17.2071 55.3465 17.4358C54.7326 17.6525 53.9922 17.7609 53.1255 17.7609Z" fill="white"/><path d="M59.2115 17.5261V8.0821H61.4868V17.5261H59.2115ZM60.3492 6.60139C59.8917 6.60139 59.5366 6.50508 59.2838 6.31247C59.043 6.10782 58.9226 5.8189 58.9226 5.44571C58.9226 5.07253 59.043 4.78963 59.2838 4.59702C59.5366 4.39236 59.8917 4.29004 60.3492 4.29004C60.8307 4.29004 61.1918 4.38635 61.4326 4.57896C61.6734 4.77157 61.7937 5.06049 61.7937 5.44571C61.7937 5.8189 61.6673 6.10782 61.4145 6.31247C61.1738 6.50508 60.8186 6.60139 60.3492 6.60139Z" fill="white"/><path d="M67.709 20.7765C66.6857 20.7765 65.843 20.6982 65.1809 20.5417C64.5309 20.3852 64.0493 20.1505 63.7363 19.8375C63.4233 19.5245 63.2668 19.1393 63.2668 18.6818C63.2668 18.128 63.4835 17.6766 63.9169 17.3275C64.3623 16.9663 65.0184 16.7436 65.8852 16.6594V16.2982C65.2351 16.3103 64.7415 16.2441 64.4045 16.0996C64.0674 15.9431 63.8988 15.6963 63.8988 15.3592C63.8988 15.0342 64.0614 14.7453 64.3864 14.4925C64.7235 14.2397 65.2772 14.029 66.0477 13.8605V13.4993C65.3133 13.4632 64.7415 13.2345 64.3322 12.8131C63.9229 12.3798 63.7183 11.82 63.7183 11.1338C63.7183 10.5198 63.8868 9.97813 64.2239 9.50863C64.561 9.03914 65.0545 8.67197 65.7046 8.40713C66.3667 8.13025 67.1672 7.99181 68.1062 7.99181H72.7831V9.79755L69.8217 9.36417V9.76144C70.5681 9.88182 71.1158 10.0925 71.4649 10.3934C71.8261 10.6944 72.0066 11.1037 72.0066 11.6214C72.0066 12.1149 71.8501 12.5543 71.5371 12.9395C71.2241 13.3127 70.7667 13.6077 70.1648 13.8244C69.5749 14.029 68.8586 14.1313 68.0159 14.1313C67.8594 14.1313 67.6909 14.1253 67.5103 14.1133C67.3298 14.1012 67.0469 14.0711 66.6616 14.023C66.4088 14.2036 66.2042 14.3661 66.0477 14.5105C65.8912 14.643 65.8129 14.7694 65.8129 14.8897C65.8129 14.986 65.8731 15.0703 65.9935 15.1425C66.1139 15.2027 66.2704 15.2449 66.463 15.2689C66.6556 15.293 66.8422 15.3051 67.0228 15.3051H69.5328C69.7735 15.3051 70.0805 15.3231 70.4537 15.3592C70.8389 15.3954 71.2181 15.4917 71.5913 15.6482C71.9765 15.8047 72.2955 16.0514 72.5484 16.3885C72.8132 16.7256 72.9456 17.2011 72.9456 17.815C72.9456 18.5012 72.747 19.061 72.3497 19.4944C71.9645 19.9398 71.3806 20.2648 70.5982 20.4695C69.8277 20.6741 68.8646 20.7765 67.709 20.7765ZM67.9076 18.9346C68.654 18.9346 69.2499 18.8925 69.6953 18.8082C70.1407 18.7239 70.4597 18.5855 70.6523 18.3929C70.8449 18.2123 70.9412 17.9776 70.9412 17.6886C70.9412 17.4238 70.8811 17.2192 70.7607 17.0747C70.6403 16.9182 70.4838 16.8098 70.2912 16.7497C70.1106 16.6895 69.924 16.6534 69.7314 16.6413C69.5388 16.6293 69.3763 16.6233 69.2438 16.6233H67.0228C66.4449 16.7075 66.0356 16.87 65.7949 17.1108C65.5662 17.3516 65.4518 17.6164 65.4518 17.9053C65.4518 18.1943 65.5481 18.4109 65.7407 18.5554C65.9333 18.7119 66.2102 18.8142 66.5713 18.8624C66.9445 18.9105 67.3899 18.9346 67.9076 18.9346ZM67.9618 12.8854C68.5878 12.8854 69.0633 12.7409 69.3883 12.452C69.7133 12.151 69.8759 11.7598 69.8759 11.2783C69.8759 10.7606 69.7073 10.3393 69.3702 10.0142C69.0452 9.67717 68.5697 9.50863 67.9437 9.50863C67.3177 9.50863 66.8302 9.67115 66.4811 9.99618C66.144 10.3212 65.9755 10.7365 65.9755 11.2421C65.9755 11.5672 66.0477 11.8561 66.1921 12.1089C66.3486 12.3497 66.5713 12.5423 66.8603 12.6867C67.1612 12.8192 67.5284 12.8854 67.9618 12.8854Z" fill="white"/><path d="M74.7825 17.5261V4.70536H77.0758V7.64872C77.0758 7.90152 77.0638 8.16035 77.0397 8.42519C77.0277 8.69003 77.0036 8.96089 76.9675 9.23777C76.9314 9.51465 76.8892 9.79153 76.8411 10.0684C76.805 10.3453 76.7628 10.6222 76.7147 10.8991H77.0939C77.2624 10.249 77.4791 9.70125 77.7439 9.25583C78.0088 8.79837 78.3459 8.44926 78.7552 8.2085C79.1765 7.96773 79.6881 7.84735 80.29 7.84735C81.3855 7.84735 82.2041 8.23258 82.7459 9.00303C83.2876 9.76144 83.5584 10.9171 83.5584 12.47V17.5261H81.2651V12.7951C81.2651 11.7598 81.1087 10.9954 80.7957 10.5018C80.4947 10.0082 80.0372 9.76144 79.4233 9.76144C78.9177 9.76144 78.4963 9.91793 78.1593 10.2309C77.8222 10.5319 77.5634 10.9352 77.3828 11.4408C77.2022 11.9464 77.0939 12.5182 77.0578 13.1562V17.5261H74.7825Z" fill="white"/><path d="M89.2495 17.7428C88.2503 17.7428 87.516 17.478 87.0465 16.9483C86.577 16.4066 86.3422 15.5699 86.3422 14.4383V9.9059H84.9518L84.9879 8.10015H85.9089C86.258 8.10015 86.5168 8.04598 86.6853 7.93764C86.8539 7.82929 86.9562 7.63668 86.9923 7.3598L87.209 5.98744H88.5272V8.0821H91.0191V9.97813H88.5272V14.348C88.5272 14.7934 88.6295 15.1185 88.8342 15.3231C89.0509 15.5278 89.3699 15.6301 89.7912 15.6301C90.0199 15.6301 90.2426 15.606 90.4593 15.5579C90.6881 15.4977 90.8987 15.4014 91.0913 15.2689V17.4358C90.7182 17.5562 90.3751 17.6345 90.0621 17.6706C89.7611 17.7187 89.4903 17.7428 89.2495 17.7428Z" fill="white"/><path d="M92.9634 17.5261V8.0821H95.2386V17.5261H92.9634ZM94.101 6.60139C93.6436 6.60139 93.2884 6.50508 93.0356 6.31247C92.7949 6.10782 92.6745 5.8189 92.6745 5.44571C92.6745 5.07253 92.7949 4.78963 93.0356 4.59702C93.2884 4.39236 93.6436 4.29004 94.101 4.29004C94.5825 4.29004 94.9437 4.38635 95.1845 4.57896C95.4252 4.77157 95.5456 5.06049 95.5456 5.44571C95.5456 5.8189 95.4192 6.10782 95.1664 6.31247C94.9256 6.50508 94.5705 6.60139 94.101 6.60139Z" fill="white"/><path d="M101.461 17.7609C100.823 17.7609 100.245 17.6947 99.7273 17.5622C99.2217 17.4419 98.7883 17.2673 98.4272 17.0386C98.066 16.7978 97.7771 16.5149 97.5604 16.1899C97.3437 15.8528 97.2113 15.4796 97.1632 15.0703L98.9508 14.4022C98.9749 14.7152 99.0953 14.9981 99.312 15.2509C99.5287 15.4917 99.8296 15.6843 100.215 15.8287C100.6 15.9732 101.064 16.0454 101.605 16.0454C102.207 16.0454 102.671 15.9551 102.996 15.7746C103.333 15.5819 103.501 15.3111 103.501 14.962C103.501 14.7092 103.411 14.5105 103.23 14.3661C103.05 14.2096 102.785 14.0832 102.436 13.9869C102.099 13.8785 101.69 13.7762 101.208 13.6799C100.763 13.5836 100.311 13.4752 99.8537 13.3549C99.4083 13.2224 98.993 13.0539 98.6077 12.8493C98.2346 12.6326 97.9276 12.3557 97.6868 12.0186C97.4581 11.6695 97.3437 11.2301 97.3437 10.7004C97.3437 10.1226 97.4942 9.623 97.7952 9.20166C98.1082 8.78032 98.5536 8.44926 99.1314 8.2085C99.7213 7.96773 100.432 7.84735 101.262 7.84735C102.045 7.84735 102.719 7.9557 103.285 8.17238C103.862 8.38907 104.332 8.70207 104.693 9.11137C105.054 9.50863 105.283 9.98415 105.379 10.5379L103.501 11.1338C103.465 10.7967 103.351 10.5138 103.158 10.2851C102.966 10.0443 102.707 9.86376 102.382 9.74338C102.057 9.623 101.678 9.56281 101.244 9.56281C100.69 9.56281 100.257 9.65911 99.944 9.85172C99.631 10.0443 99.4745 10.3032 99.4745 10.6282C99.4745 10.893 99.5708 11.1037 99.7634 11.2602C99.9681 11.4167 100.245 11.5431 100.594 11.6394C100.955 11.7357 101.365 11.832 101.822 11.9283C102.303 12.0246 102.767 12.139 103.212 12.2714C103.67 12.3918 104.079 12.5543 104.44 12.759C104.801 12.9636 105.09 13.2345 105.307 13.5716C105.524 13.8966 105.632 14.3179 105.632 14.8356C105.632 15.4616 105.464 15.9973 105.126 16.4427C104.789 16.8761 104.308 17.2071 103.682 17.4358C103.068 17.6525 102.328 17.7609 101.461 17.7609Z" fill="white"/></g><defs><clipPath id="clip0_2673_16536"><rect width="111" height="25.4928" fill="white"/></clipPath></defs></svg>
             </a>
 
@@ -302,8 +211,9 @@ function Header() {
                   <div key={si} style={{flex:'1'}}>
                     <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-[#A0A0B8] mb-4 px-3">{section.heading}</p>
                     <div className="flex flex-col gap-0.5">
-                      {section.items.map((item, ii) => {
-                        const inner = (<>
+                      {section.items.map((item, ii) => (
+                        <a key={ii} href={linkUrls[item.label] || '#'} {...(item.external ? {target:'_blank', rel:'noopener noreferrer'} : {})} onClick={() => setActiveDropdown(null)}
+                          className="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-white/[0.05] transition-colors group">
                           {item.icon && (
                             <div style={{
                               flexShrink:0, marginTop:'2px',
@@ -319,21 +229,15 @@ function Header() {
                           )}
                           <div className="flex flex-col">
                             <span className="flex items-center gap-2">
-                              <span className={`text-sm font-medium text-white transition-colors ${item.notClickable ? '' : 'group-hover:text-[#0EC4C1]'}`}>{item.label}{item.external && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</span>
+                              <span className="text-sm font-medium text-white group-hover:text-[#0EC4C1] transition-colors">{item.label}{item.external && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</span>
                               {item.comingSoon && (
                                 <span style={{fontSize:'10px', fontWeight:500, letterSpacing:'0.04em', padding:'1px 6px', borderRadius:'4px', background:'rgba(10,152,150,0.12)', border:'1px solid rgba(10,152,150,0.3)', color:'#0EC4C1', whiteSpace:'nowrap'}}>Coming Soon</span>
                               )}
                             </span>
                             <span className="text-xs text-[#A0A0B8] mt-0.5 leading-relaxed">{item.desc}</span>
                           </div>
-                        </>);
-                        return item.notClickable ? (
-                          <div key={ii} className="flex items-start gap-3 px-3 py-2.5 rounded-xl group" style={{cursor:'default'}}>{inner}</div>
-                        ) : (
-                          <a key={ii} href={linkUrls[item.label] || '#'} {...(item.external ? {target:'_blank', rel:'noopener noreferrer'} : {})} onClick={() => setActiveDropdown(null)}
-                            className="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-white/[0.05] transition-colors group">{inner}</a>
-                        );
-                      })}
+                        </a>
+                      ))}
                     </div>
                   </div>
                 ))}
@@ -395,6 +299,233 @@ function Header() {
   );
 }
 
+/* ── INSIGHTIS LOGO MARK SVG ── */
+function InsightisLogoMark({ size = 60, opacity = 1 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" style={{opacity}}>
+      <path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="#0EC4C1"/>
+    </svg>
+  );
+}
+
+/* ── BLOG HERO ── */
+function BlogHero() {
+  return (
+    <section style={{padding:'120px 0 60px', textAlign:'center', position:'relative'}}>
+      <div style={{maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
+        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid rgba(255,255,255,.07)', background:'rgba(255,255,255,.03)', fontSize:'12px', color:'#7FA0AC', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
+          ✦ BLOG
+        </div>
+        <h1 className="fu1" style={{fontSize:'clamp(36px,5vw,56px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'#E8F2F5', marginBottom:'20px'}}>
+          Insights about insights.
+        </h1>
+        <p className="fu2" style={{fontSize:'17px', color:'#7FA0AC', lineHeight:1.6, maxWidth:'540px', margin:'0 auto'}}>
+          Data analytics tips, product updates, and deep dives into how teams are using AI to replace spreadsheet chaos.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* ── FEATURED POST ── */
+function FeaturedPost() {
+  return (
+    <section style={{padding:'0 0 60px'}}>
+      <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
+        <div style={{
+          position:'relative',
+          background:'rgba(255,255,255,.03)',
+          border:'1px solid rgba(255,255,255,.07)',
+          borderRadius:'16px',
+          padding:'0',
+          overflow:'hidden',
+        }}>
+          {/* Top glow line */}
+          <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
+
+          <div style={{display:'flex', flexWrap:'wrap'}}>
+            {/* Left: Text content (60%) */}
+            <div style={{flex:'1 1 340px', padding:'36px 40px', display:'flex', flexDirection:'column', justifyContent:'center', gap:'16px'}}>
+              <div>
+                <span style={{fontSize:'11px', padding:'4px 10px', borderRadius:'999px', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.25)', color:'#0EC4C1', fontWeight:500, letterSpacing:'0.04em'}}>Product Update</span>
+              </div>
+              <h2 style={{fontSize:'24px', fontWeight:500, color:'#E8F2F5', lineHeight:1.35, letterSpacing:'-.02em'}}>
+                Introducing Insights Engine: From Surface Answers to Root Causes
+              </h2>
+              <p style={{fontSize:'14px', color:'#7FA0AC', lineHeight:1.6}}>
+                AI Chat gives you the what. Insights Engine tells you the why. Today we're launching the deep analysis layer that connects dots across your entire data ecosystem.
+              </p>
+              <div style={{fontSize:'12px', color:'#6E8D9A', fontFamily:"'Geist Mono', monospace"}}>
+                Apr 1, 2026 &middot; 6 min read
+              </div>
+              <a href="#" style={{fontSize:'14px', color:'#0EC4C1', textDecoration:'none', fontWeight:500, marginTop:'4px'}}>
+                Read Article &rarr;
+              </a>
+            </div>
+
+            {/* Right: Featured image */}
+            <div style={{flex:'0 0 40%', minHeight:'280px', overflow:'hidden', borderLeft:'1px solid rgba(9,160,157,.15)'}}>
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=560&fit=crop" alt="" style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── CATEGORY FILTER ── */
+function CategoryFilter({ activeCategory, setActiveCategory }) {
+  const categories = ['All', 'Product Updates', 'Guides & Tutorials', 'Data Analytics', 'Customer Stories', 'Engineering'];
+
+  return (
+    <section style={{padding:'0 0 40px'}}>
+      <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
+        <div style={{display:'flex', justifyContent:'center', gap:'8px', flexWrap:'wrap', overflowX:'auto'}}>
+          {categories.map(cat => (
+            <button
+              key={cat}
+              className={`q-pill ${activeCategory === cat ? 'active' : ''}`}
+              onClick={() => setActiveCategory(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── BLOG GRID ── */
+const ARTICLES = [
+  { title: 'Introducing Insights Engine: From Surface Answers to Root Causes', category: 'Product Updates', date: 'Apr 1, 2026', readTime: '6 min', excerpt: 'AI Chat gives you the what. Insights Engine tells you the why. Launching the deep analysis layer for your data ecosystem.', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=320&fit=crop' },
+  { title: 'How to Write Better Questions for AI Chat', category: 'Guides & Tutorials', date: 'Mar 28, 2026', readTime: '4 min', excerpt: 'Get more accurate, actionable answers by structuring your queries with context, constraints, and clarity.', image: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&h=320&fit=crop' },
+  { title: "Why Your MRR Numbers Don't Match (And How to Fix It)", category: 'Data Analytics', date: 'Mar 22, 2026', readTime: '8 min', excerpt: 'The three most common reasons your monthly recurring revenue looks different across tools, and a framework to reconcile them.', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=320&fit=crop' },
+  { title: 'What is a Semantic Layer? A Non-Technical Explanation', category: 'Guides & Tutorials', date: 'Mar 15, 2026', readTime: '5 min', excerpt: 'Think of it as a universal translator between your messy data and the clean metrics your team actually needs.', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=320&fit=crop' },
+  { title: 'How a Series A SaaS Replaced Looker with Insightis', category: 'Customer Stories', date: 'Mar 10, 2026', readTime: '7 min', excerpt: 'A 40-person team cut their analytics stack cost by 60% and got answers 10x faster. Here is their playbook.', image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=320&fit=crop' },
+  { title: 'Building the Memory System: How Insightis Learns Your Business', category: 'Engineering', date: 'Mar 5, 2026', readTime: '10 min', excerpt: 'A deep dive into the architecture behind contextual memory, entity resolution, and persistent business knowledge.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=320&fit=crop' },
+  { title: '5 Revenue Metrics Every RevOps Team Should Track Weekly', category: 'Data Analytics', date: 'Feb 28, 2026', readTime: '6 min', excerpt: 'Pipeline velocity, net revenue retention, and three more KPIs that separate guessing from knowing.', image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=320&fit=crop' },
+  { title: 'New: 50 More Data Source Connectors', category: 'Product Updates', date: 'Feb 20, 2026', readTime: '3 min', excerpt: 'From Notion to NetSuite, we just made it easier to plug in the tools your team already uses every day.', image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=320&fit=crop' },
+  { title: 'The Future of Business Intelligence is Conversational', category: 'Data Analytics', date: 'Feb 14, 2026', readTime: '9 min', excerpt: 'Dashboards were built for an era of patience. AI chat is built for an era of speed. Here is what changes.', image: 'https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=600&h=320&fit=crop' },
+];
+
+function BlogGrid({ activeCategory }) {
+  const filtered = activeCategory === 'All'
+    ? ARTICLES
+    : ARTICLES.filter(a => a.category === activeCategory);
+
+  return (
+    <section style={{padding:'0 0 20px'}}>
+      <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
+        <div className="blog-grid">
+          {filtered.map((article, i) => (
+            <a href="#" key={article.title} className="blog-card blog-fade-in" style={{animationDelay:`${i * 0.05}s`}}>
+              {/* Article image */}
+              <div style={{height:'160px', background:'rgba(255,255,255,.03)', borderBottom:'1px solid rgba(255,255,255,.04)', overflow:'hidden'}}>
+                <img src={article.image} alt="" style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}} />
+              </div>
+              {/* Content */}
+              <div style={{padding:'20px', display:'flex', flexDirection:'column', flex:1}}>
+                <div style={{marginBottom:'10px'}}>
+                  <span style={{fontSize:'10px', padding:'3px 8px', borderRadius:'999px', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.25)', color:'#0EC4C1', fontWeight:500, letterSpacing:'0.04em'}}>{article.category}</span>
+                </div>
+                <h3 style={{fontSize:'16px', fontWeight:500, color:'#E8F2F5', lineHeight:1.4, marginBottom:'8px', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:2, WebkitBoxOrient:'vertical'}}>
+                  {article.title}
+                </h3>
+                <p style={{fontSize:'13px', color:'#7FA0AC', lineHeight:1.5, marginBottom:'12px', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:2, WebkitBoxOrient:'vertical'}}>
+                  {article.excerpt}
+                </p>
+                <div style={{fontSize:'11px', color:'#6E8D9A', fontFamily:"'Geist Mono', monospace", marginTop:'auto'}}>
+                  {article.date} &middot; {article.readTime} read
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── LOAD MORE ── */
+function LoadMore() {
+  return (
+    <div style={{padding:'40px 0 60px', textAlign:'center'}}>
+      <button style={{
+        border:'1px solid rgba(255,255,255,.1)',
+        background:'transparent',
+        color:'#7FA0AC',
+        borderRadius:'999px',
+        padding:'11px 24px',
+        fontSize:'14px',
+        cursor:'pointer',
+        fontFamily:"'Geist', sans-serif",
+        transition:'all .2s',
+      }}
+        onMouseEnter={e => e.target.style.color = '#fff'}
+        onMouseLeave={e => e.target.style.color = '#7FA0AC'}
+      >
+        Load More Articles
+      </button>
+    </div>
+  );
+}
+
+/* ── BOTTOM CTA ── */
+function BottomCTA() {
+  return (
+    <section style={{paddingTop:'32px',paddingBottom:'64px',position:'relative'}}>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
+        <div style={{
+          position:'relative',borderRadius:'16px',
+          border:'1px solid rgba(30,30,48,1)',
+          padding:'32px 48px',overflow:'hidden',
+          display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'24px',
+          flexWrap:'wrap',
+          background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)',
+        }}>
+          {/* Top shimmer */}
+          <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
+
+          <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',lineHeight:1.2,flexShrink:0}}>
+            Stop reading about <span style={{color:'#0EC4C1'}}>analytics.</span> Start doing it.
+          </h3>
+
+          <div style={{
+            display:'flex',alignItems:'center',
+            width:'100%',maxWidth:'420px',
+            background:'#0D0D1A',border:'1px solid rgba(46,46,64,1)',
+            borderRadius:'12px',overflow:'hidden',
+            flexShrink:0,
+          }}>
+            <input
+              type="text"
+              placeholder="Enter your work email"
+              style={{
+                flex:1,background:'transparent',fontSize:'14px',color:'#fff',
+                padding:'12px 16px',outline:'none',border:'none',
+                fontFamily:'Geist,sans-serif',minWidth:0,
+              }}
+            />
+            <button style={{
+              display:'inline-flex',alignItems:'center',gap:'8px',
+              padding:'10px 20px',margin:'4px',
+              fontSize:'13px',fontWeight:500,color:'#fff',
+              background:'linear-gradient(135deg,#07807E,#09A09D)',
+              borderRadius:'8px',border:'none',cursor:'pointer',
+              whiteSpace:'nowrap',flexShrink:0,
+              fontFamily:'Geist,sans-serif',
+            }}>
+              Start for Free
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 /* ── FOOTER ── */
 
@@ -413,30 +544,42 @@ function TikTokIcon({ size = 16, color = "#A0A0B8" }) {
 
 function Footer() {
   const linkUrls = {
-    'AI Chat': 'Platform/AI Chat.html',
-    'Integrations': 'Platform/Integrations.html',
-    'Semantic Layer': 'Platform/Semantic Layer.html',
-    'Memory & Storage': 'Platform/Memory & Storage.html',
-    'For RevOps & BizOps': 'Solutions/RevOps BizOps.html',
-    'For Founders & CEOs': 'Solutions/Founders CEOs.html',
-    'For CMOs & Marketers': 'Solutions/Marketing Teams.html',
-    'For Product Teams': 'Solutions/Product Teams.html',
-    'For Data & Analytics Teams': 'Solutions/Data Analytics Teams.html',
-    'For Operations & Finance': 'Solutions/Operations Finance.html',
-    'Documentation': 'docs/',
-    'Blog': 'blog/',
-    'Support Center': 'Resources/Contact Support.html',
-    'Roadmap': 'Resources/Roadmap.html',
-    'Prompt Library': 'Resources/Prompt Library.html',
-    'Data Connectors': 'Resources/Connectors.html',
+    'AI Chat': '../Platform/AI Chat.html',
+    'Integrations': '../Platform/Integrations.html',
+    'Insights Engine': '../Platform/Insights Engine.html',
+    'Semantic Layer': '../Platform/Semantic Layer.html',
+    'Reports': '../Platform/Reports.html',
+    'Memory & Storage': '../Platform/Memory & Storage.html',
+    'For RevOps & BizOps': '../Solutions/RevOps BizOps.html',
+    'For Founders & CEOs': '../Solutions/Founders CEOs.html',
+    'For CMOs & Marketers': '../Solutions/Marketing Teams.html',
+    'For Product Teams': '../Solutions/Product Teams.html',
+    'For Data & Analytics Teams': '../Solutions/Data Analytics Teams.html',
+    'For Operations & Finance': '../Solutions/Operations Finance.html',
+    'Documentation': 'Documentation.html',
+    'Blog': 'Blog.html',
+    'Support Center': 'Contact Support.html',
+    'Community': 'Community.html',
+    'Roadmap': 'Roadmap.html',
   };
+
+  const resourceLinkUrls = {
+    'Documentation': 'Documentation.html',
+    'Video Tutorials': '#',
+    'Blog': 'Blog.html',
+    'Support Center': 'Contact Support.html',
+    'Roadmap': '#',
+    'Community': 'Community.html',
+    'Roadmap': 'Roadmap.html',
+  };
+
   return (
     <footer className="pt-16 pb-8 border-t border-[#1E1E30]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row gap-10 md:gap-16 mb-14 items-start">
           {/* Brand */}
           <div className="shrink-0 md:max-w-[220px]">
-            <a href="index.html" className="flex items-center gap-2.5 mb-4">
+            <a href="../index.html" className="flex items-center gap-2.5 mb-4">
               <svg width="111" height="26" viewBox="0 0 111 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7"><g clipPath="url(#clip0_footer)"><path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="#1498B9"/><path d="M33.2746 17.5261V5.60823H35.5859V17.5261H33.2746Z" fill="white"/><path d="M38.2797 17.5261V8.0821H40.1758L40.1216 10.9713H40.4466C40.6152 10.261 40.8379 9.67717 41.1148 9.21971C41.4037 8.76226 41.7708 8.41917 42.2163 8.19044C42.6617 7.96171 43.1793 7.84735 43.7692 7.84735C44.8406 7.84735 45.6532 8.22656 46.207 8.98497C46.7728 9.74338 47.0557 10.9171 47.0557 12.5062V17.5261H44.7624V12.7409C44.7624 11.7177 44.6059 10.9713 44.2929 10.5018C43.9919 10.0203 43.5405 9.77949 42.9386 9.77949C42.433 9.77949 42.0056 9.94201 41.6565 10.267C41.3074 10.58 41.0365 11.0014 40.8439 11.5311C40.6633 12.0487 40.567 12.6205 40.555 13.2465V17.5261H38.2797Z" fill="white"/><path d="M53.1255 17.7609C52.4875 17.7609 51.9096 17.6947 51.392 17.5622C50.8864 17.4419 50.453 17.2673 50.0918 17.0386C49.7307 16.7978 49.4418 16.5149 49.2251 16.1899C49.0084 15.8528 48.876 15.4796 48.8278 15.0703L50.6155 14.4022C50.6396 14.7152 50.76 14.9981 50.9767 15.2509C51.1933 15.4917 51.4943 15.6843 51.8795 15.8287C52.2647 15.9732 52.7282 16.0454 53.2699 16.0454C53.8719 16.0454 54.3353 15.9551 54.6604 15.7746C54.9974 15.5819 55.166 15.3111 55.166 14.962C55.166 14.7092 55.0757 14.5105 54.8951 14.3661C54.7145 14.2096 54.4497 14.0832 54.1006 13.9869C53.7635 13.8785 53.3542 13.7762 52.8727 13.6799C52.4273 13.5836 51.9758 13.4752 51.5184 13.3549C51.073 13.2224 50.6576 13.0539 50.2724 12.8493C49.8992 12.6326 49.5922 12.3557 49.3515 12.0186C49.1228 11.6695 49.0084 11.2301 49.0084 10.7004C49.0084 10.1226 49.1589 9.623 49.4598 9.20166C49.7728 8.78032 50.2182 8.44926 50.7961 8.2085C51.386 7.96773 52.0962 7.84735 52.9269 7.84735C53.7093 7.84735 54.3835 7.9557 54.9493 8.17238C55.5271 8.38907 55.9966 8.70207 56.3578 9.11137C56.7189 9.50863 56.9476 9.98415 57.0439 10.5379L55.166 11.1338C55.1299 10.7967 55.0155 10.5138 54.8229 10.2851C54.6303 10.0443 54.3714 9.86376 54.0464 9.74338C53.7214 9.623 53.3422 9.56281 52.9088 9.56281C52.355 9.56281 51.9217 9.65911 51.6087 9.85172C51.2957 10.0443 51.1392 10.3032 51.1392 10.6282C51.1392 10.893 51.2355 11.1037 51.4281 11.2602C51.6327 11.4167 51.9096 11.5431 52.2587 11.6394C52.6199 11.7357 53.0292 11.832 53.4866 11.9283C53.9682 12.0246 54.4316 12.139 54.8771 12.2714C55.3345 12.3918 55.7438 12.5543 56.105 12.759C56.4661 12.9636 56.755 13.2345 56.9717 13.5716C57.1884 13.8966 57.2967 14.3179 57.2967 14.8356C57.2967 15.4616 57.1282 15.9973 56.7911 16.4427C56.4541 16.8761 55.9725 17.2071 55.3465 17.4358C54.7326 17.6525 53.9922 17.7609 53.1255 17.7609Z" fill="white"/><path d="M59.2115 17.5261V8.0821H61.4868V17.5261H59.2115ZM60.3492 6.60139C59.8917 6.60139 59.5366 6.50508 59.2838 6.31247C59.043 6.10782 58.9226 5.8189 58.9226 5.44571C58.9226 5.07253 59.043 4.78963 59.2838 4.59702C59.5366 4.39236 59.8917 4.29004 60.3492 4.29004C60.8307 4.29004 61.1918 4.38635 61.4326 4.57896C61.6734 4.77157 61.7937 5.06049 61.7937 5.44571C61.7937 5.8189 61.6673 6.10782 61.4145 6.31247C61.1738 6.50508 60.8186 6.60139 60.3492 6.60139Z" fill="white"/><path d="M67.709 20.7765C66.6857 20.7765 65.843 20.6982 65.1809 20.5417C64.5309 20.3852 64.0493 20.1505 63.7363 19.8375C63.4233 19.5245 63.2668 19.1393 63.2668 18.6818C63.2668 18.128 63.4835 17.6766 63.9169 17.3275C64.3623 16.9663 65.0184 16.7436 65.8852 16.6594V16.2982C65.2351 16.3103 64.7415 16.2441 64.4045 16.0996C64.0674 15.9431 63.8988 15.6963 63.8988 15.3592C63.8988 15.0342 64.0614 14.7453 64.3864 14.4925C64.7235 14.2397 65.2772 14.029 66.0477 13.8605V13.4993C65.3133 13.4632 64.7415 13.2345 64.3322 12.8131C63.9229 12.3798 63.7183 11.82 63.7183 11.1338C63.7183 10.5198 63.8868 9.97813 64.2239 9.50863C64.561 9.03914 65.0545 8.67197 65.7046 8.40713C66.3667 8.13025 67.1672 7.99181 68.1062 7.99181H72.7831V9.79755L69.8217 9.36417V9.76144C70.5681 9.88182 71.1158 10.0925 71.4649 10.3934C71.8261 10.6944 72.0066 11.1037 72.0066 11.6214C72.0066 12.1149 71.8501 12.5543 71.5371 12.9395C71.2241 13.3127 70.7667 13.6077 70.1648 13.8244C69.5749 14.029 68.8586 14.1313 68.0159 14.1313C67.8594 14.1313 67.6909 14.1253 67.5103 14.1133C67.3298 14.1012 67.0469 14.0711 66.6616 14.023C66.4088 14.2036 66.2042 14.3661 66.0477 14.5105C65.8912 14.643 65.8129 14.7694 65.8129 14.8897C65.8129 14.986 65.8731 15.0703 65.9935 15.1425C66.1139 15.2027 66.2704 15.2449 66.463 15.2689C66.6556 15.293 66.8422 15.3051 67.0228 15.3051H69.5328C69.7735 15.3051 70.0805 15.3231 70.4537 15.3592C70.8389 15.3954 71.2181 15.4917 71.5913 15.6482C71.9765 15.8047 72.2955 16.0514 72.5484 16.3885C72.8132 16.7256 72.9456 17.2011 72.9456 17.815C72.9456 18.5012 72.747 19.061 72.3497 19.4944C71.9645 19.9398 71.3806 20.2648 70.5982 20.4695C69.8277 20.6741 68.8646 20.7765 67.709 20.7765ZM67.9076 18.9346C68.654 18.9346 69.2499 18.8925 69.6953 18.8082C70.1407 18.7239 70.4597 18.5855 70.6523 18.3929C70.8449 18.2123 70.9412 17.9776 70.9412 17.6886C70.9412 17.4238 70.8811 17.2192 70.7607 17.0747C70.6403 16.9182 70.4838 16.8098 70.2912 16.7497C70.1106 16.6895 69.924 16.6534 69.7314 16.6413C69.5388 16.6293 69.3763 16.6233 69.2438 16.6233H67.0228C66.4449 16.7075 66.0356 16.87 65.7949 17.1108C65.5662 17.3516 65.4518 17.6164 65.4518 17.9053C65.4518 18.1943 65.5481 18.4109 65.7407 18.5554C65.9333 18.7119 66.2102 18.8142 66.5713 18.8624C66.9445 18.9105 67.3899 18.9346 67.9076 18.9346ZM67.9618 12.8854C68.5878 12.8854 69.0633 12.7409 69.3883 12.452C69.7133 12.151 69.8759 11.7598 69.8759 11.2783C69.8759 10.7606 69.7073 10.3393 69.3702 10.0142C69.0452 9.67717 68.5697 9.50863 67.9437 9.50863C67.3177 9.50863 66.8302 9.67115 66.4811 9.99618C66.144 10.3212 65.9755 10.7365 65.9755 11.2421C65.9755 11.5672 66.0477 11.8561 66.1921 12.1089C66.3486 12.3497 66.5713 12.5423 66.8603 12.6867C67.1612 12.8192 67.5284 12.8854 67.9618 12.8854Z" fill="white"/><path d="M74.7825 17.5261V4.70536H77.0758V7.64872C77.0758 7.90152 77.0638 8.16035 77.0397 8.42519C77.0277 8.69003 77.0036 8.96089 76.9675 9.23777C76.9314 9.51465 76.8892 9.79153 76.8411 10.0684C76.805 10.3453 76.7628 10.6222 76.7147 10.8991H77.0939C77.2624 10.249 77.4791 9.70125 77.7439 9.25583C78.0088 8.79837 78.3459 8.44926 78.7552 8.2085C79.1765 7.96773 79.6881 7.84735 80.29 7.84735C81.3855 7.84735 82.2041 8.23258 82.7459 9.00303C83.2876 9.76144 83.5584 10.9171 83.5584 12.47V17.5261H81.2651V12.7951C81.2651 11.7598 81.1087 10.9954 80.7957 10.5018C80.4947 10.0082 80.0372 9.76144 79.4233 9.76144C78.9177 9.76144 78.4963 9.91793 78.1593 10.2309C77.8222 10.5319 77.5634 10.9352 77.3828 11.4408C77.2022 11.9464 77.0939 12.5182 77.0578 13.1562V17.5261H74.7825Z" fill="white"/><path d="M89.2495 17.7428C88.2503 17.7428 87.516 17.478 87.0465 16.9483C86.577 16.4066 86.3422 15.5699 86.3422 14.4383V9.9059H84.9518L84.9879 8.10015H85.9089C86.258 8.10015 86.5168 8.04598 86.6853 7.93764C86.8539 7.82929 86.9562 7.63668 86.9923 7.3598L87.209 5.98744H88.5272V8.0821H91.0191V9.97813H88.5272V14.348C88.5272 14.7934 88.6295 15.1185 88.8342 15.3231C89.0509 15.5278 89.3699 15.6301 89.7912 15.6301C90.0199 15.6301 90.2426 15.606 90.4593 15.5579C90.6881 15.4977 90.8987 15.4014 91.0913 15.2689V17.4358C90.7182 17.5562 90.3751 17.6345 90.0621 17.6706C89.7611 17.7187 89.4903 17.7428 89.2495 17.7428Z" fill="white"/><path d="M92.9634 17.5261V8.0821H95.2386V17.5261H92.9634ZM94.101 6.60139C93.6436 6.60139 93.2884 6.50508 93.0356 6.31247C92.7949 6.10782 92.6745 5.8189 92.6745 5.44571C92.6745 5.07253 92.7949 4.78963 93.0356 4.59702C93.2884 4.39236 93.6436 4.29004 94.101 4.29004C94.5825 4.29004 94.9437 4.38635 95.1845 4.57896C95.4252 4.77157 95.5456 5.06049 95.5456 5.44571C95.5456 5.8189 95.4192 6.10782 95.1664 6.31247C94.9256 6.50508 94.5705 6.60139 94.101 6.60139Z" fill="white"/><path d="M101.461 17.7609C100.823 17.7609 100.245 17.6947 99.7273 17.5622C99.2217 17.4419 98.7883 17.2673 98.4272 17.0386C98.066 16.7978 97.7771 16.5149 97.5604 16.1899C97.3437 15.8528 97.2113 15.4796 97.1632 15.0703L98.9508 14.4022C98.9749 14.7152 99.0953 14.9981 99.312 15.2509C99.5287 15.4917 99.8296 15.6843 100.215 15.8287C100.6 15.9732 101.064 16.0454 101.605 16.0454C102.207 16.0454 102.671 15.9551 102.996 15.7746C103.333 15.5819 103.501 15.3111 103.501 14.962C103.501 14.7092 103.411 14.5105 103.23 14.3661C103.05 14.2096 102.785 14.0832 102.436 13.9869C102.099 13.8785 101.69 13.7762 101.208 13.6799C100.763 13.5836 100.311 13.4752 99.8537 13.3549C99.4083 13.2224 98.993 13.0539 98.6077 12.8493C98.2346 12.6326 97.9276 12.3557 97.6868 12.0186C97.4581 11.6695 97.3437 11.2301 97.3437 10.7004C97.3437 10.1226 97.4942 9.623 97.7952 9.20166C98.1082 8.78032 98.5536 8.44926 99.1314 8.2085C99.7213 7.96773 100.432 7.84735 101.262 7.84735C102.045 7.84735 102.719 7.9557 103.285 8.17238C103.862 8.38907 104.332 8.70207 104.693 9.11137C105.054 9.50863 105.283 9.98415 105.379 10.5379L103.501 11.1338C103.465 10.7967 103.351 10.5138 103.158 10.2851C102.966 10.0443 102.707 9.86376 102.382 9.74338C102.057 9.623 101.678 9.56281 101.244 9.56281C100.69 9.56281 100.257 9.65911 99.944 9.85172C99.631 10.0443 99.4745 10.3032 99.4745 10.6282C99.4745 10.893 99.5708 11.1037 99.7634 11.2602C99.9681 11.4167 100.245 11.5431 100.594 11.6394C100.955 11.7357 101.365 11.832 101.822 11.9283C102.303 12.0246 102.767 12.139 103.212 12.2714C103.67 12.3918 104.079 12.5543 104.44 12.759C104.801 12.9636 105.09 13.2345 105.307 13.5716C105.524 13.8966 105.632 14.3179 105.632 14.8356C105.632 15.4616 105.464 15.9973 105.126 16.4427C104.789 16.8761 104.308 17.2071 103.682 17.4358C103.068 17.6525 102.328 17.7609 101.461 17.7609Z" fill="white"/></g><defs><clipPath id="clip0_footer"><rect width="111" height="25.4928" fill="white"/></clipPath></defs></svg>
             </a>
             <p className="text-xs font-medium text-[#09A09D] uppercase tracking-wider mb-2">AI Analytics Workspace for instant insights</p>
@@ -450,30 +593,9 @@ function Footer() {
             <div>
               <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Platform</h4>
               <ul className="flex flex-col gap-2.5">
-                {['AI Chat', 'Integrations', 'Semantic Layer'].map(link => {
-                  const isComingSoon = ['AI Connect', 'Advanced Reports', 'Memory & Storage'].includes(link);
-                  const isNotClickable = ['AI Connect', 'Advanced Reports'].includes(link);
-                  const badge = (
-                    <span style={{fontSize:'10px', fontWeight:500, letterSpacing:'0.04em', padding:'1px 6px', borderRadius:'4px', background:'rgba(10,152,150,0.12)', border:'1px solid rgba(10,152,150,0.3)', color:'#0EC4C1', whiteSpace:'nowrap'}}>Coming Soon</span>
-                  );
-                  if (isComingSoon) {
-                    return (
-                      <li key={link}>
-                        <span className="flex items-center gap-2 whitespace-nowrap">
-                          {isNotClickable ? (
-                            <span className="text-sm text-[#A0A0B8]" style={{cursor:'default'}}>{link}</span>
-                          ) : (
-                            <a href={linkUrls[link] || '#'} className="text-sm text-[#A0A0B8] hover:text-white transition-colors">{link}</a>
-                          )}
-                          {badge}
-                        </span>
-                      </li>
-                    );
-                  }
-                  return (
-                    <li key={link}><a href={linkUrls[link] || '#'} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}</a></li>
-                  );
-                })}
+                {['AI Chat', 'Integrations', 'Insights Engine', 'Semantic Layer', 'Reports'].map(link => (
+                  <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                ))}
               </ul>
             </div>
 
@@ -491,8 +613,8 @@ function Footer() {
             <div>
               <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Resources</h4>
               <ul className="flex flex-col gap-2.5">
-                {['Documentation', 'Prompt Library', 'Blog', 'Support Center', 'Roadmap', 'Data Connectors'].map(link => (
-                  <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                {['Documentation', 'Video Tutorials', 'Blog', 'Support Center', 'Roadmap', 'Community'].map(link => (
+                  <li key={link}><a href={resourceLinkUrls[link] || '#'} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}</a></li>
                 ))}
               </ul>
             </div>
@@ -502,10 +624,10 @@ function Footer() {
               <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Company</h4>
               <ul className="flex flex-col gap-2.5">
                 {[
-                  { label: 'About Insightis', href: 'Company/About Insightis.html' },
+                  { label: 'About Insightis', href: '../Company/About Insightis.html' },
                   { label: 'About Devart', href: 'https://www.devart.com/company/' },
                   { label: 'Careers', href: 'https://www.devart.com/vacancies/' },
-                  { label: 'Contacts', href: 'Company/Contacts.html' },
+                  { label: 'Contacts', href: '../Company/Contacts.html' },
                 ].map(link => (
                   <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
@@ -517,10 +639,10 @@ function Footer() {
               <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Legal</h4>
               <ul className="flex flex-col gap-2.5">
                 {[
-                  { label: 'Privacy', href: 'Security/Privacy.html' },
-                  { label: 'Terms', href: 'Security/Terms.html' },
-                  { label: 'Security', href: 'Security/Security.html' },
-                  { label: 'Cookie Settings', href: 'Security/Cookie Settings.html' },
+                  { label: 'Privacy', href: '../Security/Privacy.html' },
+                  { label: 'Terms', href: '../Security/Terms.html' },
+                  { label: 'Security', href: '../Security/Security.html' },
+                  { label: 'Cookie Settings', href: '../Security/Cookie Settings.html' },
                 ].map(link => (
                   <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
@@ -546,328 +668,17 @@ function Footer() {
 }
 
 /* ── APP ── */
-/* ── PRICING HERO ── */
-function PricingHero() {
-  return (
-    <section style={{padding:'120px 0 40px',position:'relative',textAlign:'center'}}>
-      <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px',position:'relative'}}>
-        <div className="fu0" style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'18px'}}>
-          <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-          <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Pricing</span>
-        </div>
-        <h1 className="fu1" style={{fontSize:'clamp(36px,4.8vw,62px)',fontWeight:500,letterSpacing:'-.03em',lineHeight:1.08,marginBottom:'20px'}}>
-          <span style={{color:'#E8F2F5'}}>Simple pricing. </span>
-          <span style={{color:'#0EC4C1'}}>Powerful insights.</span>
-        </h1>
-        <p className="fu2" style={{fontSize:'clamp(16px,1.4vw,19px)',color:'rgba(255,255,255,.65)',lineHeight:1.65,maxWidth:'620px',margin:'0 auto'}}>
-          Start free. Scale as your team grows. Every plan includes the Semantic Layer, AI Chat, and 200+ connectors.
-        </p>
-      </div>
-    </section>
-  );
-}
-
-/* ── BILLING TOGGLE ── */
-function BillingToggle({billing, setBilling}) {
-  return (
-    <section style={{padding:'12px 0 24px',textAlign:'center'}}>
-      <div style={{display:'inline-flex',alignItems:'center',padding:'4px',background:'rgba(255,255,255,0.03)',border:'1px solid rgba(255,255,255,0.08)',borderRadius:'999px'}}>
-        {['monthly','annual'].map(opt => {
-          const active = billing === opt;
-          return (
-            <button key={opt} onClick={() => setBilling(opt)} style={{
-              padding:'8px 22px',borderRadius:'999px',
-              fontSize:'13px',fontWeight:500,cursor:'pointer',fontFamily:'Geist,sans-serif',
-              border:'none',
-              background: active ? 'linear-gradient(135deg,#09A09D,#07807E)' : 'transparent',
-              color: active ? '#fff' : '#7FA0AC',
-              transition:'all .2s',
-            }}>
-              {opt === 'monthly' ? 'Monthly' : 'Annual'}
-              {opt === 'annual' && (
-                <span style={{marginLeft:'8px',fontSize:'10px',padding:'2px 7px',borderRadius:'4px',background: active ? 'rgba(255,255,255,0.15)' : 'rgba(9,160,157,0.12)',color: active ? '#fff' : '#0EC4C1',fontWeight:500,letterSpacing:'.04em'}}>Save 20%</span>
-              )}
-            </button>
-          );
-        })}
-      </div>
-    </section>
-  );
-}
-
-/* ── PRICING CARDS ── */
-function PricingCards({billing}) {
-  const plans = [
-    {
-      name:'Free',
-      tag:'For getting started',
-      priceMonthly:0,priceAnnual:0,
-      cta:'Start for free',
-      ctaStyle:'outline',
-      features:[
-        '1 user',
-        '3 data sources',
-        '50 AI Chat queries / month',
-        'Community support',
-        'Basic Semantic Layer',
-      ],
-    },
-    {
-      name:'Pro',
-      tag:'For small teams',
-      priceMonthly:49,priceAnnual:39,
-      cta:'Start free trial',
-      ctaStyle:'primary',
-      highlight:true,
-      features:[
-        'Up to 5 users',
-        '15 data sources',
-        'Unlimited AI Chat queries',
-        'Email support',
-        'Custom Semantic Layer',
-        'Saved reports & dashboards',
-      ],
-    },
-    {
-      name:'Team',
-      tag:'For growing companies',
-      priceMonthly:149,priceAnnual:119,
-      cta:'Start free trial',
-      ctaStyle:'outline',
-      features:[
-        'Up to 20 users',
-        'Unlimited data sources',
-        'Unlimited AI Chat queries',
-        'Priority support',
-        'Advanced governance',
-        'Versioned metric definitions',
-        'Slack & Teams integration',
-      ],
-    },
-    {
-      name:'Enterprise',
-      tag:'For organizations',
-      priceMonthly:null,priceAnnual:null,
-      cta:'Talk to sales',
-      ctaStyle:'outline',
-      features:[
-        'Unlimited users',
-        'Unlimited data sources',
-        'SSO + SCIM provisioning',
-        'Dedicated success manager',
-        'Custom SLAs and contracts',
-        'On-prem & VPC deployment',
-        'SOC 2 Type II + HIPAA',
-      ],
-    },
-  ];
-
-  return (
-    <section style={{padding:'24px 0 80px'}}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div data-pricing-grid style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'20px'}}>
-          {plans.map((plan,i) => {
-            const price = billing === 'annual' ? plan.priceAnnual : plan.priceMonthly;
-            const isHighlight = plan.highlight;
-            return (
-              <div key={plan.name} className={`fu${i}`} style={{
-                position:'relative',
-                background: isHighlight ? 'linear-gradient(180deg, rgba(9,160,157,0.06) 0%, rgba(13,17,23,0.9) 100%)' : 'rgba(13,17,23,0.7)',
-                border: isHighlight ? '1px solid rgba(9,160,157,0.5)' : '1px solid rgba(255,255,255,0.08)',
-                borderRadius:'18px',
-                padding:'28px 22px',
-                display:'flex',flexDirection:'column',
-                boxShadow: isHighlight ? '0 8px 32px rgba(9,160,157,0.08)' : 'none',
-              }}>
-                {isHighlight && (
-                  <div style={{position:'absolute',top:0,left:'50%',transform:'translate(-50%,-50%)',padding:'4px 12px',background:'linear-gradient(135deg,#09A09D,#07807E)',color:'#fff',fontSize:'11px',fontWeight:500,letterSpacing:'.05em',borderRadius:'999px',textTransform:'uppercase'}}>
-                    Most popular
-                  </div>
-                )}
-                <h3 style={{fontSize:'22px',fontWeight:600,color:'#fff',marginBottom:'4px',letterSpacing:'-0.02em'}}>{plan.name}</h3>
-                <p style={{fontSize:'13px',color:'rgba(255,255,255,0.55)',marginBottom:'24px'}}>{plan.tag}</p>
-                <div style={{marginBottom:'24px',minHeight:'58px'}}>
-                  {price === null ? (
-                    <div style={{fontSize:'30px',fontWeight:500,color:'#fff'}}>Custom</div>
-                  ) : price === 0 ? (
-                    <div>
-                      <span style={{fontSize:'40px',fontWeight:500,color:'#fff',letterSpacing:'-0.03em'}}>$0</span>
-                      <span style={{fontSize:'14px',color:'rgba(255,255,255,0.5)',marginLeft:'6px'}}>forever</span>
-                    </div>
-                  ) : (
-                    <div className="price-animate" key={billing}>
-                      <span style={{fontSize:'40px',fontWeight:500,color:'#fff',letterSpacing:'-0.03em'}}>${price}</span>
-                      <span style={{fontSize:'14px',color:'rgba(255,255,255,0.5)',marginLeft:'6px'}}>/ user / month</span>
-                      {billing === 'annual' && (
-                        <div style={{fontSize:'11px',color:'#0EC4C1',marginTop:'4px',fontFamily:'Geist Mono,monospace'}}>billed annually</div>
-                      )}
-                    </div>
-                  )}
-                </div>
-                <a href={plan.cta === 'Talk to sales' ? 'Company/Contacts.html' : '#'} style={{
-                  display:'inline-flex',alignItems:'center',justifyContent:'center',gap:'7px',
-                  padding:'12px 20px',borderRadius:'999px',
-                  fontSize:'14px',fontWeight:500,
-                  textDecoration:'none',
-                  marginBottom:'24px',
-                  background: plan.ctaStyle === 'primary' ? 'linear-gradient(135deg,#09A09D,#07807E)' : 'transparent',
-                  color: plan.ctaStyle === 'primary' ? '#fff' : '#0EC4C1',
-                  border: plan.ctaStyle === 'primary' ? 'none' : '1px solid rgba(9,160,157,0.4)',
-                  boxShadow: plan.ctaStyle === 'primary' ? '0 0 24px rgba(9,160,157,0.25)' : 'none',
-                  transition:'all .2s',
-                }}>
-                  {plan.cta}
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-                </a>
-                <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px',padding:0,margin:0}}>
-                  {plan.features.map((f,fi) => (
-                    <li key={fi} style={{display:'flex',alignItems:'flex-start',gap:'9px',fontSize:'13.5px',color:'#C0D4DC',lineHeight:1.55}}>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0,marginTop:'3px'}}><polyline points="20 6 9 17 4 12"/></svg>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
-        </div>
-        <style>{`
-          @media (max-width: 1024px) {
-            [data-pricing-grid] { grid-template-columns: repeat(2, 1fr) !important; }
-          }
-          @media (max-width: 640px) {
-            [data-pricing-grid] { grid-template-columns: 1fr !important; }
-          }
-        `}</style>
-      </div>
-    </section>
-  );
-}
-
-/* ── FEATURE COMPARISON ── */
-function FeatureComparison() {
-  const rows = [
-    { label:'Users',                                values:['1', 'Up to 5', 'Up to 20', 'Unlimited'] },
-    { label:'Data sources',                         values:['3', '15', 'Unlimited', 'Unlimited'] },
-    { label:'AI Chat queries / month',              values:['50', 'Unlimited', 'Unlimited', 'Unlimited'] },
-    { label:'Semantic Layer',                       values:['Basic', 'Custom', 'Custom + Versioning', 'Enterprise'] },
-    { label:'Saved reports & dashboards',           values:[false, true, true, true] },
-    { label:'Slack & Teams integration',            values:[false, false, true, true] },
-    { label:'SSO + SCIM',                           values:[false, false, false, true] },
-    { label:'Dedicated success manager',            values:[false, false, false, true] },
-    { label:'SOC 2 Type II + HIPAA',                values:[true, true, true, true] },
-    { label:'On-prem & VPC deployment',             values:[false, false, false, true] },
-  ];
-  const Check = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>;
-  const Dash = () => <span style={{color:'rgba(255,255,255,0.18)'}}>—</span>;
-  return (
-    <section style={{padding:'80px 0 60px'}}>
-      <div style={{maxWidth:'1100px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'48px'}}>
-          <h2 style={{fontSize:'clamp(26px,3.4vw,38px)',fontWeight:500,color:'#fff',letterSpacing:'-.025em',marginBottom:'10px'}}>Compare features</h2>
-          <p style={{fontSize:'15px',color:'rgba(255,255,255,.55)'}}>Everything you get on every plan.</p>
-        </div>
-        <div data-compare-wrap style={{border:'1px solid rgba(255,255,255,0.08)',borderRadius:'16px',overflow:'hidden',background:'rgba(13,17,23,0.5)'}}>
-          <div style={{display:'grid',gridTemplateColumns:'1.6fr 1fr 1fr 1fr 1fr',padding:'18px 20px',background:'rgba(255,255,255,0.025)',borderBottom:'1px solid rgba(255,255,255,0.06)'}}>
-            <span style={{fontSize:'12px',fontWeight:500,letterSpacing:'.08em',textTransform:'uppercase',color:'rgba(255,255,255,0.5)',fontFamily:'Geist Mono,monospace'}}>Feature</span>
-            {['Free','Pro','Team','Enterprise'].map(p => (
-              <span key={p} style={{textAlign:'center',fontSize:'13px',fontWeight:600,color:'#fff'}}>{p}</span>
-            ))}
-          </div>
-          {rows.map((row,i) => (
-            <div key={i} style={{display:'grid',gridTemplateColumns:'1.6fr 1fr 1fr 1fr 1fr',padding:'14px 20px',borderBottom: i < rows.length-1 ? '1px solid rgba(255,255,255,0.04)' : 'none',alignItems:'center'}}>
-              <span style={{fontSize:'14px',color:'#C0D4DC'}}>{row.label}</span>
-              {row.values.map((v,vi) => (
-                <span key={vi} style={{display:'flex',justifyContent:'center',alignItems:'center',fontSize:'13.5px',color:'#C0D4DC'}}>
-                  {v === true ? <Check /> : v === false ? <Dash /> : v}
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-        <style>{`
-          @media (max-width: 768px) {
-            [data-compare-wrap] { font-size: 12px; }
-            [data-compare-wrap] > div { grid-template-columns: 1.4fr repeat(4, 1fr) !important; padding: 12px 10px !important; }
-          }
-        `}</style>
-      </div>
-    </section>
-  );
-}
-
-/* ── FAQ ── */
-function FAQ() {
-  const items = [
-    { q:'Can I switch plans later?',
-      a:'Yes — upgrades take effect immediately, downgrades at the start of your next billing cycle. You can also pause or cancel anytime from the admin panel.' },
-    { q:'Do you offer a free trial of paid plans?',
-      a:'Pro and Team include a 14-day free trial — no card required. Stay on the free plan as long as you like.' },
-    { q:'What does "data source" mean?',
-      a:'A connected system — Stripe, HubSpot, Postgres, BigQuery, etc. Connectors authenticate via OAuth or read-only API keys and sync continuously.' },
-    { q:'Is my data secure?',
-      a:'Insightis is SOC 2 Type II and HIPAA-ready. All connections are read-only, all traffic is TLS-encrypted, and your data never leaves your warehouse on Enterprise plans.' },
-    { q:'How does annual billing work?',
-      a:'Pay for 12 months up front, save 20% per seat. Invoices and ACH/wire transfer available on Team and Enterprise.' },
-    { q:'Can I bring my own LLM?',
-      a:'On Enterprise plans you can route AI Chat through OpenAI, Anthropic, Azure OpenAI, or your own VPC-hosted model.' },
-  ];
-  return (
-    <section style={{padding:'60px 0 80px'}}>
-      <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'40px'}}>
-          <h2 style={{fontSize:'clamp(26px,3.4vw,38px)',fontWeight:500,color:'#fff',letterSpacing:'-.025em',marginBottom:'10px'}}>Frequently asked questions</h2>
-        </div>
-        <div style={{display:'flex',flexDirection:'column',gap:'10px'}}>
-          {items.map((item,i) => (
-            <details key={i} style={{background:'rgba(13,17,23,0.6)',border:'1px solid rgba(255,255,255,0.07)',borderRadius:'12px',padding:'14px 18px'}}>
-              <summary style={{cursor:'pointer',fontSize:'15px',fontWeight:500,color:'#E8F2F5',listStyle:'none',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                <span>{item.q}</span>
-                <span style={{color:'#0EC4C1',fontSize:'16px',marginLeft:'12px'}}>+</span>
-              </summary>
-              <p style={{marginTop:'12px',fontSize:'14px',color:'rgba(255,255,255,0.65)',lineHeight:1.65}}>{item.a}</p>
-            </details>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── BOTTOM CTA ── */
-function BottomCTA() {
-  return (
-    <section style={{padding:'80px 0 100px',position:'relative',overflow:'hidden'}}>
-      <div style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:'700px',height:'420px',background:'radial-gradient(ellipse, rgba(9,160,157,0.13) 0%, transparent 70%)',pointerEvents:'none'}}/>
-      <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px',position:'relative',textAlign:'center'}}>
-        <h2 style={{fontSize:'clamp(22px,2.6vw,34px)',fontWeight:500,letterSpacing:'-.025em',lineHeight:1.2,marginBottom:'28px'}}>
-          <span style={{color:'#E8F2F5'}}>Start free. </span>
-          <span style={{color:'#0EC4C1'}}>Upgrade when you're ready.</span>
-        </h2>
-        <div style={{display:'flex',justifyContent:'center',gap:'12px',flexWrap:'wrap'}}>
-          <a href="#" style={{display:'inline-flex',alignItems:'center',gap:'10px',padding:'15px 28px',borderRadius:'999px',background:'linear-gradient(135deg,#09A09D,#07807E)',color:'#fff',fontSize:'15px',fontWeight:500,textDecoration:'none',boxShadow:'0 0 32px rgba(9,160,157,.35), 0 8px 24px rgba(0,0,0,.4)'}}>
-            Get started for free
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="Company/Contacts.html" style={{display:'inline-flex',alignItems:'center',gap:'8px',padding:'15px 26px',borderRadius:'999px',background:'rgba(255,255,255,0.02)',color:'#C0D4DC',fontSize:'15px',fontWeight:500,textDecoration:'none',border:'1px solid rgba(255,255,255,0.12)'}}>
-            Talk to sales
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function App() {
-  const [billing, setBilling] = useState('annual');
+  const [activeCategory, setActiveCategory] = useState('All');
+
   return (
     <div>
       <Header />
-      <PricingHero />
-      <BillingToggle billing={billing} setBilling={setBilling} />
-      <PricingCards billing={billing} />
-      <FeatureComparison />
-      <FAQ />
+      <BlogHero />
+      <FeaturedPost />
+      <CategoryFilter activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
+      <BlogGrid activeCategory={activeCategory} />
+      <LoadMore />
       <BottomCTA />
       <Footer />
     </div>
@@ -875,7 +686,3 @@ function App() {
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-</script>
-<script defer src="/assets/header-scroll.js"></script>
-</body>
-</html>

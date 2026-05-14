@@ -1,169 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="stylesheet" href="/assets/responsive.css">
-<title>Roadmap — Insightis</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Geist', sans-serif;
-  background: #0A0E13;
-  color: #E8F2F5;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import ReactDOM from 'react-dom/client';
+import '../app.css';
 
-body::before {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  opacity: .4; mix-blend-mode: overlay;
-}
-
-body::after {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 10% 5%, rgba(10,152,150,.09) 0%, transparent 70%),
-    radial-gradient(ellipse 70% 55% at 85% 0%, rgba(110,60,200,.07) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 60% at 75% 45%, rgba(20,80,200,.05) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 55% at 5% 55%, rgba(160,50,220,.045) 0%, transparent 65%),
-    radial-gradient(ellipse 65% 55% at 50% 90%, rgba(10,152,150,.07) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 45% at 95% 75%, rgba(50,90,240,.04) 0%, transparent 55%),
-    radial-gradient(ellipse 45% 40% at 35% 30%, rgba(200,60,180,.03) 0%, transparent 55%);
-}
-
-@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-@keyframes fadeIn { from{opacity:0} to{opacity:1} }
-@keyframes slideUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
-@keyframes pulse  { 0%,100%{opacity:.4;transform:scale(.85)} 50%{opacity:1;transform:scale(1)} }
-@keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
-@keyframes glow { 0%,100%{opacity:.6} 50%{opacity:1} }
-@keyframes drawBranch { from{stroke-dashoffset:600} to{stroke-dashoffset:0} }
-@keyframes nodeAppear { from{opacity:0} to{opacity:1} }
-@keyframes labelAppear { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
-@keyframes fadeInBg    { from{opacity:0} to{opacity:1} }
-@keyframes modalSlideUp{ from{opacity:0;transform:translateY(24px) scale(.97)} to{opacity:1;transform:translateY(0) scale(1)} }
-
-.fu0 { animation: fadeUp .7s ease both; }
-.fu1 { animation: fadeUp .7s ease .1s both; }
-.fu2 { animation: fadeUp .7s ease .2s both; }
-.fu3 { animation: fadeUp .7s ease .35s both; }
-.fu4 { animation: fadeUp .7s ease .5s both; }
-
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
-
-section { position: relative; }
-
-.q-pill {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 8px 14px; border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.07);
-  background: rgba(255,255,255,0.03);
-  font-size: 13px; color: #7FA0AC;
-  cursor: pointer; transition: all .15s;
-  white-space: nowrap;
-}
-.q-pill:hover {
-  border-color: rgba(9,160,157,0.4);
-  color: #E8F2F5;
-  background: rgba(9,160,157,0.06);
-}
-.q-pill.active {
-  border-color: rgba(9,160,157,0.5);
-  color: #0EC4C1;
-  background: rgba(9,160,157,0.08);
-}
-
-.roadmap-card {
-  background: rgba(13,17,23,.65);
-  border: 1px solid rgba(255,255,255,.06);
-  border-radius: 12px;
-  padding: 16px 18px;
-  transition: border-color .2s, transform .2s;
-  position: relative;
-  overflow: hidden;
-}
-.roadmap-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--card-glow, rgba(9,160,157,.2)), transparent);
-}
-.roadmap-card:hover {
-  border-color: rgba(255,255,255,.12);
-  transform: translateY(-1px);
-}
-
-.upvote-btn {
-  display: inline-flex; align-items: center; gap: 5px;
-  padding: 4px 9px; border-radius: 6px;
-  border: 1px solid rgba(255,255,255,.08);
-  background: rgba(255,255,255,.04);
-  font-size: 11px; font-family: 'Geist Mono', monospace;
-  color: #7FA0AC; cursor: pointer;
-  transition: all .15s; white-space: nowrap; flex-shrink: 0;
-}
-.upvote-btn:hover {
-  border-color: rgba(9,160,157,.35);
-  color: #0EC4C1;
-  background: rgba(9,160,157,.06);
-}
-.upvote-btn.voted {
-  border-color: rgba(9,160,157,.45);
-  color: #0EC4C1;
-  background: rgba(9,160,157,.1);
-}
-
-.col-header {
-  display: flex; align-items: center; gap: 8px;
-  margin-bottom: 14px; padding-bottom: 12px;
-  border-bottom: 1px solid rgba(255,255,255,.05);
-}
-
-@media (max-width: 900px) {
-  .kanban-grid { grid-template-columns: 1fr 1fr !important; }
-}
-@media (max-width: 600px) {
-  .kanban-grid { grid-template-columns: 1fr !important; }
-  .filter-row { flex-wrap: wrap !important; }
-}
-
-.tree-branch {
-  stroke-dasharray: 600;
-  stroke-dashoffset: 600;
-  animation: drawBranch 1.2s ease forwards;
-}
-.tree-node {
-  opacity: 0;
-  animation: nodeAppear .5s ease forwards;
-}
-.tree-label {
-  opacity: 0;
-  animation: labelAppear .5s ease forwards;
-}
-@media (max-width: 500px) {
-  .tree-label { display: none; }
-}
-</style>
-</head>
-<body>
-
-<div id="root"></div>
-
-<script type="text/babel">
-const { useState, useEffect, useRef } = React;
-
-/* ── ICONS ── */
+/* ── HEADER ── */
 function MenuIcon({ size = 24, color = "#fff" }) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>;
 }
@@ -463,6 +302,407 @@ function Header() {
   );
 }
 
+/* ── INSIGHTIS LOGO MARK SVG ── */
+function InsightisLogoMark({ size = 60, opacity = 1 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" style={{opacity}}>
+      <path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="#0EC4C1"/>
+    </svg>
+  );
+}
+
+/* ── PROMPT LIBRARY HERO ── */
+function PromptLibraryHero() {
+  return (
+    <section style={{padding:'80px 0 40px', textAlign:'center', position:'relative'}}>
+      <div style={{maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
+        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid rgba(255,255,255,.07)', background:'rgba(255,255,255,.03)', fontSize:'12px', color:'#7FA0AC', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
+          ✦ PROMPT LIBRARY
+        </div>
+        <h1 className="fu1" style={{fontSize:'clamp(36px,5vw,56px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'#E8F2F5', marginBottom:'20px'}}>
+          Prompts for every team.
+        </h1>
+        <p className="fu2" style={{fontSize:'17px', color:'#7FA0AC', lineHeight:1.6, maxWidth:'560px', margin:'0 auto'}}>
+          Curated prompt templates for analytics, ops, and go-to-market teams — connected to the tools you already use.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* ── DATA SOURCE ICONS (inline SVG marks) ── */
+const DS_ICON = {
+  'salesforce':        (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#00A1E0"><path d="M10.5 5.5A4.5 4.5 0 0 0 7 8a3 3 0 0 0-1 5.83A4 4 0 0 0 10 19a4 4 0 0 0 3.87-3 3.5 3.5 0 0 0 5-4A4.5 4.5 0 0 0 14.5 6.5 4.48 4.48 0 0 0 10.5 5.5z"/></svg>,
+  'hubspot':           (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#FF7A59"><circle cx="17" cy="12" r="4"/><path d="M16 6V3h2v3z"/><circle cx="7" cy="7" r="2"/><path d="M7 9v10h2V9z"/></svg>,
+  'snowflake':         (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#29B5E8"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/><circle cx="12" cy="12" r="2.5"/></svg>,
+  'bigquery':          (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#4285F4"><circle cx="12" cy="12" r="8" fill="none" stroke="#4285F4" strokeWidth="2"/><path d="M16 16l4 4" stroke="#4285F4" strokeWidth="2" strokeLinecap="round"/></svg>,
+  'google-analytics':  (s=12)=><svg width={s} height={s} viewBox="0 0 24 24"><rect x="16" y="4" width="4" height="16" rx="2" fill="#F9AB00"/><rect x="10" y="10" width="4" height="10" rx="2" fill="#E37400"/><circle cx="6" cy="18" r="2" fill="#E37400"/></svg>,
+  'google-ads':        (s=12)=><svg width={s} height={s} viewBox="0 0 24 24"><path d="M10 4L4 14l6 4 6-10z" fill="#4285F4"/><circle cx="16" cy="17" r="3" fill="#34A853"/><path d="M14 4l-4 10 4 4 6-10z" fill="#FBBC04"/></svg>,
+  'google-sheets':     (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#0F9D58"><path d="M6 2h8l4 4v16H6z"/><path d="M14 2v4h4" fill="#0B8043"/><path d="M8 11h8v1H8zm0 3h8v1H8zm0 3h8v1H8z" fill="#fff"/></svg>,
+  'google-drive':      (s=12)=><svg width={s} height={s} viewBox="0 0 24 24"><path d="M7 4l-5 9 3 5 5-9z" fill="#0F9D58"/><path d="M17 4H7l5 9h10z" fill="#FFCA28"/><path d="M22 13H12l-3 5h10z" fill="#4285F4"/></svg>,
+  'slack':             (s=12)=><svg width={s} height={s} viewBox="0 0 24 24"><rect x="10" y="2" width="3" height="12" rx="1.5" fill="#E01E5A"/><rect x="2" y="10" width="12" height="3" rx="1.5" fill="#36C5F0"/><rect x="14" y="10" width="8" height="3" rx="1.5" fill="#2EB67D"/><rect x="10" y="14" width="3" height="8" rx="1.5" fill="#ECB22E"/></svg>,
+  'jira':              (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#0052CC"><path d="M11 2L2 11l9 9 9-9zM11 8l6 6-6 6-6-6z" fillOpacity=".8"/></svg>,
+  'pipedrive':         (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#000"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 8h4a3 3 0 0 1 0 6H10v4H8z" fill="#fff"/></svg>,
+  'zoho':              (s=12)=><svg width={s} height={s} viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="#2098D1" strokeWidth="2"/><path d="M7 10h10M7 14h7" stroke="#E8BE2E" strokeWidth="2" strokeLinecap="round"/></svg>,
+  'netsuite':          (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#1A1A1A"><rect x="3" y="3" width="18" height="18" rx="2"/><text x="12" y="15" textAnchor="middle" fontSize="8" fontWeight="700" fill="#F58220" fontFamily="Arial">N</text></svg>,
+  'dynamics':          (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#002050"><path d="M3 4l9 2v12l-9 2zM13 7l8-2v14l-8-2z"/></svg>,
+  'redshift':          (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#8C4FFF"><path d="M4 6l8-3 8 3v12l-8 3-8-3z" fillOpacity=".9"/><path d="M12 3v18" stroke="#fff" strokeWidth="1"/></svg>,
+  'databricks':        (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#FF3621"><path d="M4 7l8 4 8-4v3l-8 4-8-4zm0 6l8 4 8-4v3l-8 4-8-4z"/></svg>,
+  'azure':             (s=12)=><svg width={s} height={s} viewBox="0 0 24 24"><path d="M13 4l8 16H8l5-8-3-2z" fill="#0078D4"/><path d="M3 20l6-12h4l-5 8 3 4z" fill="#5EA0EF"/></svg>,
+  'asana':             (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#F06A6A"><circle cx="12" cy="7" r="3"/><circle cx="7" cy="16" r="3"/><circle cx="17" cy="16" r="3"/></svg>,
+  'freshdesk':         (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#25C16F"><circle cx="12" cy="12" r="9"/><path d="M8 12a4 4 0 0 1 8 0v4H8z" fill="#fff"/></svg>,
+  'zendesk':           (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#03363D"><path d="M3 5h8v14zm10 14c0-4 4-7 8-7V5H13z"/></svg>,
+  'linkedin':          (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#0A66C2"><path d="M4 4h4v16H4zM10 9h4v2a4 4 0 0 1 7 3v6h-4v-5a2 2 0 0 0-4 0v5h-3z"/><circle cx="6" cy="5" r="2"/></svg>,
+  'workday':           (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#0875E1"><path d="M3 8h2l2 8 2-6h2l2 6 2-8h2l-3 10h-3l-1-4-1 4H7z"/></svg>,
+};
+function DataSourceIcon({ id, size = 12 }) {
+  const render = DS_ICON[id];
+  return (
+    <span className="ds-icon-wrap" title={id}>
+      {render ? render(size) : <span style={{fontSize:'9px',color:'#5E8290'}}>•</span>}
+    </span>
+  );
+}
+
+/* ── TAXONOMIES ── */
+const DATA_SOURCES = [
+  { id:'redshift',         name:'Amazon Redshift' },
+  { id:'asana',            name:'Asana' },
+  { id:'azure',            name:'Azure Data Lake' },
+  { id:'databricks',       name:'Databricks' },
+  { id:'dynamics',         name:'Dynamics 365' },
+  { id:'freshdesk',        name:'Freshdesk' },
+  { id:'google-ads',       name:'Google Ads' },
+  { id:'google-analytics', name:'Google Analytics' },
+  { id:'bigquery',         name:'Google BigQuery' },
+  { id:'google-drive',     name:'Google Drive' },
+  { id:'google-sheets',    name:'Google Sheets' },
+  { id:'hubspot',          name:'HubSpot' },
+  { id:'jira',             name:'Jira' },
+  { id:'linkedin',         name:'LinkedIn' },
+  { id:'netsuite',         name:'NetSuite' },
+  { id:'pipedrive',        name:'Pipedrive' },
+  { id:'salesforce',       name:'Salesforce' },
+  { id:'slack',            name:'Slack' },
+  { id:'snowflake',        name:'Snowflake' },
+  { id:'workday',          name:'Workday' },
+  { id:'zendesk',          name:'Zendesk' },
+  { id:'zoho',             name:'Zoho CRM' },
+];
+
+const TEAMS = [
+  'Account Management','Accounting','BDR Managers','Business Analytics',
+  'Business Development','Business Intelligence','Customer Success',
+  'Data Analytics','Developer Marketing','Marketing','Product Management',
+  'Product Marketing','Revenue Operations','Sales Directors','Sales Execution',
+  'Sales Leadership','Sales Ops','Sales Reps',
+];
+
+const PROMPTS = [
+  { title:'Analyze Web Traffic for Closed Won Opportunities',
+    teams:['Product Marketing','Marketing'],
+    sources:['salesforce','google-analytics'],
+    prompt:'Take all Closed-Won opportunities from the last 90 days in Salesforce. For each account, pull matching web traffic sessions from Google Analytics (match by company domain). Summarize: (1) which pages correlated with deals closing, (2) average number of sessions before close, (3) top acquisition channels. Output as a ranked table plus three insights I can share with marketing leadership.' },
+  { title:'Analyze Support Cases to Build a Product Roadmap',
+    teams:['Product Management'],
+    sources:['zendesk','jira','hubspot','salesforce'],
+    prompt:'Pull all support cases from Zendesk in the last quarter. Cluster them by theme (feature request, bug, confusion). For each cluster, cross-reference against open Jira tickets. Rank clusters by customer-impact × ARR (pull ARR from HubSpot/Salesforce). Output a roadmap recommendation with top 10 themes, owning product area, and estimated effort.' },
+  { title:'Sales Execution and Deal Portfolio Management',
+    teams:['Sales Execution','Sales Directors','Sales Leadership','Sales Reps'],
+    sources:['salesforce','hubspot','slack'],
+    prompt:'For every active deal >$25k, pull: stage, last activity date, rep, forecast category, and competitive notes. Flag deals that: (a) have been in the same stage >21 days, (b) have no activity in the last 7 days, (c) are forecast to close this quarter but missing next steps. Post a Slack digest to #sales-leadership with the top 15 at-risk deals.' },
+  { title:'Database Table Mapping and Relationship Discovery',
+    teams:['Data Analytics','Product Management','Marketing','Sales Ops'],
+    sources:['snowflake','bigquery'],
+    prompt:'Scan the Snowflake/BigQuery warehouse. For every table with more than 1,000 rows, infer primary keys and foreign-key relationships from column names, data profiles, and join cardinality. Output an ER diagram plus a markdown glossary: table name, purpose, owning team, estimated row count, refresh cadence, and known downstream consumers.' },
+  { title:'Community Developer Advocate Identification',
+    teams:['Developer Marketing','Customer Success'],
+    sources:['hubspot','jira','slack','salesforce','linkedin'],
+    prompt:'Find potential developer advocates: users who (1) have filed 3+ high-quality Jira issues, (2) are active in #community Slack, (3) work at accounts with ≥$50k ARR in Salesforce/HubSpot, (4) have public technical presence on LinkedIn. Rank by engagement score and output a short dossier per candidate with recommended outreach hook.' },
+  { title:'Competitive Win/Loss Analysis by Quarter',
+    teams:['Product Marketing','Sales Leadership','Revenue Operations'],
+    sources:['salesforce','hubspot'],
+    prompt:'For every Closed-Won and Closed-Lost opportunity this quarter, extract the primary competitor from Salesforce/HubSpot notes. Compute win rate by competitor, average deal size when won vs. lost against them, and the most common objection. Output: quarterly win/loss scorecard with three action items for enablement.' },
+  { title:'Pipeline Velocity by Source',
+    teams:['Revenue Operations','Sales Directors','Marketing'],
+    sources:['salesforce','hubspot','google-ads','linkedin'],
+    prompt:'Calculate pipeline velocity (# opps × win rate × avg deal size ÷ sales cycle length) by lead source over the last two quarters. Segment inbound vs outbound, and within inbound by channel (Google Ads, LinkedIn, organic, referral). Highlight the source with the best velocity improvement and propose a budget reallocation.' },
+  { title:'MRR Drift Reconciliation across Stripe & NetSuite',
+    teams:['Accounting','Revenue Operations','Business Intelligence'],
+    sources:['netsuite','snowflake','salesforce'],
+    prompt:'Compare MRR as reported by billing (NetSuite/warehouse) vs. MRR as reported by Salesforce Opportunity stages. For every customer where the two numbers differ by more than $500/month, output: customer, Stripe MRR, Salesforce MRR, delta, suspected cause (failed charge, unbilled upsell, churn not recorded). Cap the output at 50 rows sorted by delta.' },
+  { title:'Support Ticket Deflection Opportunities',
+    teams:['Customer Success','Product Management'],
+    sources:['zendesk','freshdesk'],
+    prompt:'Identify the top 20 support topics by ticket volume in the last 60 days. For each, estimate effort to resolve with a KB article, in-product tooltip, or feature fix. Rank by (volume × avg handle time) ÷ estimated fix effort. Output a prioritized deflection backlog with owner suggestions.' },
+  { title:'Churn Risk Scoring from Product + CRM Signals',
+    teams:['Customer Success','Account Management','Revenue Operations'],
+    sources:['salesforce','hubspot','snowflake','zendesk'],
+    prompt:'For every customer with a renewal in the next 90 days, score churn risk 0–100 based on: product usage decline, open support tickets, days since last exec touchpoint, NPS, and expansion-vs-contraction ARR trend. Output: top 30 at-risk accounts with the two strongest risk signals and a suggested play.' },
+  { title:'Campaign Attribution Deep-Dive',
+    teams:['Marketing','Product Marketing'],
+    sources:['hubspot','google-ads','linkedin','salesforce'],
+    prompt:'For the top 5 paid campaigns this quarter (Google Ads, LinkedIn Ads), trace every touchpoint from first-click through to Closed-Won opportunity in Salesforce. Compute CAC, payback period, and assisted revenue using a linear multi-touch model. Output a campaign scorecard and recommend which two to scale and which to cut.' },
+  { title:'Exec Weekly Revenue Narrative',
+    teams:['Revenue Operations','Sales Leadership','Business Analytics'],
+    sources:['salesforce','hubspot','snowflake'],
+    prompt:'Every Monday 8am, generate a 1-page exec narrative: (1) bookings vs plan, WoW and QTD, (2) pipeline coverage by stage, (3) three biggest deal movements, (4) three pipeline risks, (5) what changed since last week. Keep it under 250 words, human tone, no filler.' },
+  { title:'New-Hire Ramp Tracker',
+    teams:['Sales Leadership','Sales Directors','BDR Managers'],
+    sources:['salesforce','hubspot','slack'],
+    prompt:'For every rep hired in the last 6 months, track: activities per week, first meeting booked, first opportunity created, first Closed-Won, and quota attainment by month-of-tenure. Compare against the cohort baseline. Flag reps trending below P25 and suggest which ramp milestone to coach.' },
+  { title:'Renewal Forecast Confidence',
+    teams:['Account Management','Customer Success','Revenue Operations'],
+    sources:['salesforce','hubspot','zendesk'],
+    prompt:'For every renewal in the current quarter, output a confidence score: Commit / Best Case / Pipeline / Omit. Base it on CSM sentiment notes, product usage, support ticket severity, and last exec touchpoint. Include a short rationale line per account. Sort by ARR descending.' },
+  { title:'Data Source Freshness Audit',
+    teams:['Data Analytics','Business Intelligence'],
+    sources:['snowflake','bigquery','salesforce','hubspot','google-analytics'],
+    prompt:'Audit every connected data source: last successful sync, rows ingested in last 24h, deviation from 7-day baseline, and any error rate. Output a status board with red/yellow/green per source and a top-3 list of sources that need attention today.' },
+];
+
+/* ── PROMPT LIBRARY SIDEBAR ── */
+function PromptLibrarySidebar({ selectedTeams, toggleTeam, selectedSources, toggleSource, clearAll }) {
+  const [openTeams, setOpenTeams] = useState(true);
+  const [openSources, setOpenSources] = useState(true);
+  const total = selectedTeams.size + selectedSources.size;
+
+  const groupHeader = (label, open, setOpen) => (
+    <button
+      onClick={() => setOpen(!open)}
+      style={{
+        display:'flex', alignItems:'center', justifyContent:'space-between',
+        width:'100%', padding:'6px 16px',
+        background:'transparent', border:'none', cursor:'pointer',
+        color:'#5E8290', fontSize:'11px', fontWeight:600,
+        textTransform:'uppercase', letterSpacing:'0.08em',
+        fontFamily:'Geist,sans-serif',
+      }}
+    >
+      {label}
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+        style={{ transition:'transform 0.15s', transform: open ? 'rotate(180deg)' : 'rotate(0deg)', flexShrink:0 }}>
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </button>
+  );
+
+  const checkboxItem = (label, checked, onToggle, leading = null) => (
+    <label
+      key={label}
+      className={`filter-item ${checked ? 'checked' : ''}`}
+    >
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={onToggle}
+        style={{ position:'absolute', opacity:0, width:0, height:0 }}
+      />
+      <span className="filter-checkbox">
+        {checked && (
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#0A0E13" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        )}
+      </span>
+      {leading}
+      <span style={{ overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{label}</span>
+    </label>
+  );
+
+  return (
+    <aside className="prompt-sidebar-col">
+      {total > 0 && (
+        <div style={{ padding:'0 16px 14px' }}>
+          <button
+            onClick={clearAll}
+            style={{
+              fontSize:'11.5px', fontFamily:'Geist,sans-serif',
+              background:'rgba(9,160,157,.08)', color:'#0EC4C1',
+              border:'1px solid rgba(9,160,157,.25)',
+              borderRadius:'6px', padding:'5px 10px', cursor:'pointer',
+              display:'inline-flex', alignItems:'center', gap:'6px',
+            }}
+          >
+            Clear filters ({total})
+          </button>
+        </div>
+      )}
+
+      {/* Teams first */}
+      <div style={{ marginBottom:'10px' }}>
+        {groupHeader('Teams', openTeams, setOpenTeams)}
+        {openTeams && (
+          <div style={{ padding:'2px 0 8px' }}>
+            {TEAMS.map(team =>
+              checkboxItem(team, selectedTeams.has(team), () => toggleTeam(team))
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* Data Sources second */}
+      <div style={{ marginBottom:'10px' }}>
+        {groupHeader('Data Sources', openSources, setOpenSources)}
+        {openSources && (
+          <div style={{ padding:'2px 0 8px' }}>
+            {DATA_SOURCES.map(src =>
+              checkboxItem(
+                src.name,
+                selectedSources.has(src.id),
+                () => toggleSource(src.id),
+                <span style={{ flexShrink:0, display:'inline-flex' }}><DataSourceIcon id={src.id} size={12}/></span>
+              )
+            )}
+          </div>
+        )}
+      </div>
+    </aside>
+  );
+}
+
+/* ── PROMPT CARD ── */
+function PromptCard({ entry, index }) {
+  const [expanded, setExpanded] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = (e) => {
+    e.stopPropagation();
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(entry.prompt);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    }
+  };
+
+  return (
+    <article className="prompt-card" style={{ animationDelay:`${Math.min(index,8) * 0.04}s` }}>
+      <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', gap:'20px', flexWrap:'wrap' }}>
+        <div style={{ flex:'1 1 320px', minWidth:0 }}>
+          <h3 style={{ fontSize:'15.5px', fontWeight:500, color:'#E8F2F5', lineHeight:1.4, marginBottom:'10px', letterSpacing:'-.01em' }}>
+            {entry.title}
+          </h3>
+          <div style={{ display:'flex', flexWrap:'wrap', gap:'6px', marginBottom:'10px' }}>
+            {entry.teams.map(t => <span key={t} className="team-pill">{t}</span>)}
+          </div>
+          <div style={{ display:'flex', flexWrap:'wrap', gap:'6px', alignItems:'center' }}>
+            {entry.sources.map(s => <DataSourceIcon key={s} id={s} size={11}/>)}
+          </div>
+        </div>
+        <button
+          className="view-btn"
+          onClick={() => setExpanded(!expanded)}
+        >
+          {expanded ? 'Hide Prompt' : 'View Prompts'}
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+            style={{ transition:'transform .2s', transform: expanded ? 'rotate(90deg)' : 'rotate(0deg)' }}>
+            <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+
+      {expanded && (
+        <div style={{
+          marginTop:'16px', padding:'14px 16px',
+          background:'rgba(10,14,19,0.55)',
+          border:'1px solid rgba(9,160,157,.18)',
+          borderRadius:'10px',
+          animation:'cardFadeIn .2s ease',
+        }}>
+          <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'10px' }}>
+            <span style={{ fontSize:'10.5px', fontWeight:600, letterSpacing:'.08em', textTransform:'uppercase', color:'#5E8290' }}>
+              Prompt
+            </span>
+            <button
+              onClick={handleCopy}
+              style={{
+                display:'inline-flex', alignItems:'center', gap:'6px',
+                background:'transparent', border:'1px solid rgba(9,160,157,.25)',
+                color: copied ? '#8EDDBF' : '#0EC4C1',
+                borderRadius:'6px', padding:'4px 10px',
+                fontSize:'11.5px', fontWeight:500, cursor:'pointer',
+                fontFamily:'Geist,sans-serif',
+              }}
+            >
+              {copied ? (
+                <>
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Copied
+                </>
+              ) : (
+                <>
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  Copy
+                </>
+              )}
+            </button>
+          </div>
+          <p style={{
+            fontSize:'13.5px', color:'#B5CCD2', lineHeight:1.65,
+            whiteSpace:'pre-wrap', margin:0,
+          }}>
+            {entry.prompt}
+          </p>
+        </div>
+      )}
+    </article>
+  );
+}
+
+/* ── BOTTOM CTA ── */
+function BottomCTA() {
+  return (
+    <section style={{paddingTop:'32px',paddingBottom:'64px',position:'relative'}}>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
+        <div style={{
+          position:'relative',borderRadius:'16px',
+          border:'1px solid rgba(30,30,48,1)',
+          padding:'32px 48px',overflow:'hidden',
+          display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'24px',
+          flexWrap:'wrap',
+          background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)',
+        }}>
+          {/* Top shimmer */}
+          <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
+
+          <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',lineHeight:1.2,flexShrink:0}}>
+            Stop reading about <span style={{color:'#0EC4C1'}}>analytics.</span> Start doing it.
+          </h3>
+
+          <div style={{
+            display:'flex',alignItems:'center',
+            width:'100%',maxWidth:'420px',
+            background:'#0D0D1A',border:'1px solid rgba(46,46,64,1)',
+            borderRadius:'12px',overflow:'hidden',
+            flexShrink:0,
+          }}>
+            <input
+              type="text"
+              placeholder="Enter your work email"
+              style={{
+                flex:1,background:'transparent',fontSize:'14px',color:'#fff',
+                padding:'12px 16px',outline:'none',border:'none',
+                fontFamily:'Geist,sans-serif',minWidth:0,
+              }}
+            />
+            <button style={{
+              display:'inline-flex',alignItems:'center',gap:'8px',
+              padding:'10px 20px',margin:'4px',
+              fontSize:'13px',fontWeight:500,color:'#fff',
+              background:'linear-gradient(135deg,#07807E,#09A09D)',
+              borderRadius:'8px',border:'none',cursor:'pointer',
+              whiteSpace:'nowrap',flexShrink:0,
+              fontFamily:'Geist,sans-serif',
+            }}>
+              Start for Free
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 /* ── FOOTER ── */
 
@@ -498,6 +738,16 @@ function Footer() {
     'Prompt Library': 'Prompt Library.html',
     'Data Connectors': 'Connectors.html',
   };
+
+  const resourceLinkUrls = {
+    'Documentation': '../docs/',
+    'Prompt Library': 'Prompt Library.html',
+    'Blog': '../blog/',
+    'Support Center': 'Contact Support.html',
+    'Roadmap': 'Roadmap.html',
+    'Data Connectors': 'Connectors.html',
+  };
+
   return (
     <footer className="pt-16 pb-8 border-t border-[#1E1E30]">
       <div className="max-w-7xl mx-auto px-6">
@@ -560,7 +810,7 @@ function Footer() {
               <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Resources</h4>
               <ul className="flex flex-col gap-2.5">
                 {['Documentation', 'Prompt Library', 'Blog', 'Support Center', 'Roadmap', 'Data Connectors'].map(link => (
-                  <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                  <li key={link}><a href={resourceLinkUrls[link] || '#'} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}</a></li>
                 ))}
               </ul>
             </div>
@@ -613,675 +863,434 @@ function Footer() {
   );
 }
 
-/* ── TREE HERO ── */
-function TreeHero() {
-  const W = 1000, H = 330;
-  const spineY   = 158;
-  const upY      = spineY - 86;  // 72
-  const downY    = spineY + 86;  // 244
-  const CW = 164, CH = 52, CR = 9;
+/* ── FLOATING CHAT ── */
+function FloatingChat({ onSubmit }) {
+  const [value, setValue] = useState('');
+  const [focused, setFocused] = useState(false);
+  const [visible, setVisible] = useState(true);
 
-  const milestones = [
-    { id: 'MVP', label: 'Insightis Public MVP', sub: 'Q2 2026',                   x: 120, dir: null,   color: '#0EC4C1' },
-    { id: 'V1',  label: 'V1',                   sub: 'DWH & Team Support',        x: 308, dir: 'up',   color: '#A78BFA' },
-    { id: 'V2',  label: 'V2',                   sub: 'MCP & Advanced Dashboards', x: 490, dir: 'down', color: '#A78BFA' },
-    { id: 'V3',  label: 'V3',                   sub: 'Signals & Automations',     x: 672, dir: 'up',   color: '#7FA0AC' },
-    { id: 'V4',  label: 'V4',                   sub: 'Custom Agents',             x: 854, dir: 'down', color: '#5E8290' },
-  ];
+  useEffect(() => {
+    const footer = document.querySelector('footer');
+    if (!footer) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(!entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
 
-  /* Dot travels from x=120 → x=854 over 2 s, starting at t=0.8 s (after spine draws) */
-  const DOT_START = 0.8, DOT_DUR = 2.0;
-  const SPINE_X1 = 120, SPINE_X2 = 854, SPINE_LEN = 734;
-  /* When (in seconds) the travelling dot reaches milestone x */
-  const at = (x) => +(DOT_START + ((x - SPINE_X1) / SPINE_LEN) * DOT_DUR).toFixed(3);
-
-  return (
-    <section style={{padding:'110px 0 48px', position:'relative', zIndex:1}}>
-      <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', textAlign:'center'}}>
-
-        <h1 className="fu1" style={{fontSize:'clamp(38px,5vw,60px)', fontWeight:600, letterSpacing:'-.03em', lineHeight:1.1, color:'#E8F2F5', marginBottom:20}}>
-          Our product roadmap.
-        </h1>
-
-        <p className="fu2" style={{fontSize:'clamp(15px,1.2vw,17px)', color:'#7FA0AC', lineHeight:1.6, maxWidth:560, margin:'0 auto 52px'}}>
-          Where we're headed. The features and improvements ahead, and what we've already shipped.
-        </p>
-
-        {/* Horizontal timeline tree — all animation via SVG SMIL */}
-        <div>
-          <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{overflow:'visible'}}>
-            <defs>
-              <filter id="nodeGlow" x="-100%" y="-100%" width="300%" height="300%">
-                <feGaussianBlur stdDeviation="5" result="blur"/>
-                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-              <filter id="dotGlow" x="-200%" y="-200%" width="500%" height="500%">
-                <feGaussianBlur stdDeviation="9" result="blur"/>
-                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-              <linearGradient id="spineGrad" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%"   stopColor="#0EC4C1" stopOpacity="0.75"/>
-                <stop offset="35%"  stopColor="#A78BFA" stopOpacity="0.5"/>
-                <stop offset="100%" stopColor="#5E8290" stopOpacity="0.12"/>
-              </linearGradient>
-            </defs>
-
-            {/* ── 1. BASE SPINE: draws left → right in 0.7 s ── */}
-            <line x1={36} y1={spineY} x2={940} y2={spineY}
-              stroke="url(#spineGrad)" strokeWidth="2" strokeLinecap="round"
-              strokeDasharray="910" strokeDashoffset="910">
-              <animate attributeName="stroke-dashoffset" from="910" to="0"
-                dur="0.7s" begin="0s" fill="freeze"
-                calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.6 1"/>
-            </line>
-
-            {/* ── 2. PROGRESSIVE GLOW: teal overlay follows the dot ── */}
-            <line x1={SPINE_X1} y1={spineY} x2={SPINE_X2} y2={spineY}
-              stroke="#0EC4C1" strokeWidth="3" strokeLinecap="round"
-              strokeDasharray={SPINE_LEN} strokeDashoffset={SPINE_LEN}>
-              <animate attributeName="stroke-dashoffset"
-                from={SPINE_LEN} to="0"
-                dur={`${DOT_DUR}s`} begin={`${DOT_START}s`} fill="freeze"
-                calcMode="spline" keyTimes="0;1" keySplines="0.38 0 0.62 1"/>
-              <animate attributeName="stroke-opacity"
-                values="0.55;0.55;0.08" keyTimes="0;0.82;1"
-                dur={`${DOT_DUR}s`} begin={`${DOT_START}s`} fill="freeze"/>
-            </line>
-
-            {/* ── 3. TRAVELLING DOT ── */}
-            <g transform={`translate(${SPINE_X1},${spineY})`}>
-              <circle r="5" fill="#0EC4C1" filter="url(#dotGlow)" opacity="0">
-                <animateMotion
-                  dur={`${DOT_DUR}s`} begin={`${DOT_START}s`} fill="freeze"
-                  path={`M 0,0 L ${SPINE_LEN},0`}
-                  calcMode="spline" keyTimes="0;1" keySplines="0.38 0 0.62 1"/>
-                <animate attributeName="opacity"
-                  values="0;1;1;0.1" keyTimes="0;0.04;0.91;1"
-                  dur={`${DOT_DUR}s`} begin={`${DOT_START}s`} fill="freeze"/>
-              </circle>
-            </g>
-
-            {/* ── 4. ARROW + ELLIPSIS (appear after spine) ── */}
-            <g opacity="0">
-              <animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="0.7s" fill="freeze"/>
-              <path d={`M ${930},${spineY-5} L ${941},${spineY} L ${930},${spineY+5}`}
-                fill="none" stroke="#5E8290" strokeWidth="1.5" strokeOpacity="0.3"
-                strokeLinecap="round" strokeLinejoin="round"/>
-              <text x={955} y={spineY+4} fill="#5E8290" fontSize="12" opacity="0.3"
-                fontFamily="Geist Mono,monospace">…</text>
-            </g>
-
-            {/* ── 5. MILESTONES: each triggered when dot arrives ── */}
-            {milestones.map((m) => {
-              const arrAt   = at(m.x);          // dot arrival time (s)
-              const isMVP   = m.dir === null;
-              const isUp    = m.dir === 'up';
-              const isDown  = m.dir === 'down';
-              const bLen    = 86;               // branch length (px)
-
-              const branchEndY = isUp ? upY : isDown ? downY : spineY;
-              const cardTopY   = isUp   ? upY   - CH - 10
-                               : isDown ? downY + 10
-                               : spineY - CH / 2;  // MVP straddles spine
-              const nodeR = isMVP ? 9 : 5.5;
-
-              return (
-                <g key={m.id}>
-
-                  {/* BRANCH — draws from spine outward when dot arrives */}
-                  {!isMVP && (
-                    <>
-                      <line x1={m.x} y1={spineY} x2={m.x} y2={branchEndY}
-                        stroke={m.color} strokeWidth="1.5"
-                        strokeDasharray={bLen} strokeDashoffset={bLen} opacity="0">
-                        <animate attributeName="stroke-dashoffset"
-                          from={bLen} to="0" dur="0.75s" begin={`${arrAt}s`} fill="freeze"
-                          calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.6 1"/>
-                        <animate attributeName="opacity" from="0" to="0.35"
-                          dur="0.2s" begin={`${arrAt}s`} fill="freeze"/>
-                      </line>
-                      {/* Bright flash on branch as dot passes */}
-                      <line x1={m.x} y1={spineY} x2={m.x} y2={branchEndY}
-                        stroke={m.color} strokeWidth="3.5" opacity="0">
-                        <animate attributeName="opacity" values="0;0.85;0"
-                          dur="0.55s" begin={`${arrAt}s`} fill="remove"/>
-                      </line>
-                    </>
-                  )}
-
-                  {/* PING RING — expands outward from spine node */}
-                  <circle cx={m.x} cy={spineY} r={nodeR} fill="none"
-                    stroke={m.color} strokeWidth="2.5" opacity="0">
-                    <animate attributeName="r"
-                      from={nodeR} to={nodeR * 4.8}
-                      dur="0.9s" begin={`${arrAt}s`} fill="freeze"/>
-                    <animate attributeName="opacity" from="0.65" to="0"
-                      dur="0.9s" begin={`${arrAt}s`} fill="freeze"/>
-                    <animate attributeName="stroke-width" from="2.5" to="0.3"
-                      dur="0.9s" begin={`${arrAt}s`} fill="freeze"/>
-                  </circle>
-
-                  {/* LABEL CARD — fades in 0.2 s after dot arrives */}
-                  <g opacity="0">
-                    <animate attributeName="opacity" from="0" to="1"
-                      dur="0.45s" begin={`${arrAt + 0.2}s`} fill="freeze"/>
-
-                    {/* MVP heartbeat: outer ring 1 */}
-                    {isMVP && (
-                      <rect x={m.x - CW/2 - 6} y={cardTopY - 6} width={CW + 12} height={CH + 12} rx={CR + 5}
-                        fill="none" stroke={m.color} strokeWidth="1.5" opacity="0">
-                        <animate attributeName="opacity"
-                          values="0;0;0.55;0"
-                          keyTimes="0;0.05;0.25;1"
-                          dur="2.4s" begin={`${arrAt + 0.7}s`} repeatCount="indefinite"/>
-                        <animate attributeName="stroke-width"
-                          values="1.5;1.5;0.5;0"
-                          keyTimes="0;0.05;0.5;1"
-                          dur="2.4s" begin={`${arrAt + 0.7}s`} repeatCount="indefinite"/>
-                        <animate attributeName="x"
-                          values={`${m.x - CW/2 - 6};${m.x - CW/2 - 6};${m.x - CW/2 - 14};${m.x - CW/2 - 14}`}
-                          keyTimes="0;0.05;0.5;1"
-                          dur="2.4s" begin={`${arrAt + 0.7}s`} repeatCount="indefinite"/>
-                        <animate attributeName="y"
-                          values={`${cardTopY - 6};${cardTopY - 6};${cardTopY - 14};${cardTopY - 14}`}
-                          keyTimes="0;0.05;0.5;1"
-                          dur="2.4s" begin={`${arrAt + 0.7}s`} repeatCount="indefinite"/>
-                        <animate attributeName="width"
-                          values={`${CW + 12};${CW + 12};${CW + 28};${CW + 28}`}
-                          keyTimes="0;0.05;0.5;1"
-                          dur="2.4s" begin={`${arrAt + 0.7}s`} repeatCount="indefinite"/>
-                        <animate attributeName="height"
-                          values={`${CH + 12};${CH + 12};${CH + 28};${CH + 28}`}
-                          keyTimes="0;0.05;0.5;1"
-                          dur="2.4s" begin={`${arrAt + 0.7}s`} repeatCount="indefinite"/>
-                      </rect>
-                    )}
-
-                    {/* MVP heartbeat: inner ring 2 (slight delay = double-beat) */}
-                    {isMVP && (
-                      <rect x={m.x - CW/2 - 4} y={cardTopY - 4} width={CW + 8} height={CH + 8} rx={CR + 3}
-                        fill="none" stroke={m.color} strokeWidth="1" opacity="0">
-                        <animate attributeName="opacity"
-                          values="0;0;0.35;0"
-                          keyTimes="0;0.12;0.35;1"
-                          dur="2.4s" begin={`${arrAt + 0.9}s`} repeatCount="indefinite"/>
-                        <animate attributeName="stroke-width"
-                          values="1;1;0.3;0"
-                          keyTimes="0;0.12;0.6;1"
-                          dur="2.4s" begin={`${arrAt + 0.9}s`} repeatCount="indefinite"/>
-                        <animate attributeName="x"
-                          values={`${m.x - CW/2 - 4};${m.x - CW/2 - 4};${m.x - CW/2 - 10};${m.x - CW/2 - 10}`}
-                          keyTimes="0;0.12;0.6;1"
-                          dur="2.4s" begin={`${arrAt + 0.9}s`} repeatCount="indefinite"/>
-                        <animate attributeName="y"
-                          values={`${cardTopY - 4};${cardTopY - 4};${cardTopY - 10};${cardTopY - 10}`}
-                          keyTimes="0;0.12;0.6;1"
-                          dur="2.4s" begin={`${arrAt + 0.9}s`} repeatCount="indefinite"/>
-                        <animate attributeName="width"
-                          values={`${CW + 8};${CW + 8};${CW + 20};${CW + 20}`}
-                          keyTimes="0;0.12;0.6;1"
-                          dur="2.4s" begin={`${arrAt + 0.9}s`} repeatCount="indefinite"/>
-                        <animate attributeName="height"
-                          values={`${CH + 8};${CH + 8};${CH + 20};${CH + 20}`}
-                          keyTimes="0;0.12;0.6;1"
-                          dur="2.4s" begin={`${arrAt + 0.9}s`} repeatCount="indefinite"/>
-                      </rect>
-                    )}
-
-                    <rect x={m.x - CW/2} y={cardTopY} width={CW} height={CH} rx={CR}
-                      fill="rgba(13,17,23,0.92)" stroke={m.color}
-                      strokeOpacity={isMVP ? "0.45" : "0.22"} strokeWidth={isMVP ? "1.5" : "1"}>
-                      {/* MVP card border pulses brighter on the beat */}
-                      {isMVP && (
-                        <animate attributeName="stroke-opacity"
-                          values="0.45;0.45;0.9;0.45"
-                          keyTimes="0;0.05;0.2;1"
-                          dur="2.4s" begin={`${arrAt + 0.7}s`} repeatCount="indefinite"/>
-                      )}
-                    </rect>
-                    {isDown
-                      ? <line x1={m.x - CW/2 + CR} y1={cardTopY + CH}
-                              x2={m.x + CW/2 - CR} y2={cardTopY + CH}
-                          stroke={m.color} strokeWidth="1.5" strokeOpacity="0.5"/>
-                      : <line x1={m.x - CW/2 + CR} y1={cardTopY}
-                              x2={m.x + CW/2 - CR} y2={cardTopY}
-                          stroke={m.color} strokeWidth="1.5" strokeOpacity="0.5"/>
-                    }
-                    <text x={m.x} y={cardTopY + 19}
-                      textAnchor="middle" fill={m.color}
-                      fontSize={isMVP ? '10.5' : '11'} fontWeight="600"
-                      fontFamily="Geist Mono,monospace" letterSpacing="0.04em">
-                      {m.label}
-                    </text>
-                    <text x={m.x} y={cardTopY + 37}
-                      textAnchor="middle" fill="#7FA0AC" fontSize="10"
-                      fontFamily="Geist,sans-serif">
-                      {m.sub}
-                    </text>
-                  </g>
-
-                  {/* SPINE NODE — pops in exactly as dot arrives (skip for MVP — no dot inside card) */}
-                  {!isMVP && (
-                    <>
-                      <circle cx={m.x} cy={spineY} r={nodeR} fill={m.color} opacity="0">
-                        <animate attributeName="opacity" from="0" to="1"
-                          dur="0.3s" begin={`${arrAt}s`} fill="freeze"/>
-                      </circle>
-                      <circle cx={m.x} cy={spineY} r="2" fill="#0A0E13" opacity="0">
-                        <animate attributeName="opacity" from="0" to="1"
-                          dur="0.3s" begin={`${arrAt}s`} fill="freeze"/>
-                      </circle>
-                    </>
-                  )}
-
-                  {/* BRANCH-END NODE — appears after branch finishes drawing */}
-                  {!isMVP && (
-                    <>
-                      <circle cx={m.x} cy={branchEndY} r="4.5" fill={m.color} opacity="0">
-                        <animate attributeName="opacity" from="0" to="1"
-                          dur="0.3s" begin={`${arrAt + 0.6}s`} fill="freeze"/>
-                      </circle>
-                      <circle cx={m.x} cy={branchEndY} r="2" fill="#0A0E13" opacity="0">
-                        <animate attributeName="opacity" from="0" to="1"
-                          dur="0.3s" begin={`${arrAt + 0.6}s`} fill="freeze"/>
-                      </circle>
-                    </>
-                  )}
-
-                </g>
-              );
-            })}
-          </svg>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── ROADMAP SECTIONS ── */
-const ROADMAP_COLUMNS = [
-  {
-    key: 'now',
-    label: 'Now',
-    color: '#0EC4C1',
-    glow: 'rgba(14,196,193,.15)',
-    items: [
-      { title: 'AI Connect — Private Beta',     desc: 'Pipe your Insightis data into Claude, ChatGPT, and custom agents.' },
-      { title: 'Memory & Storage',              desc: 'Long-term business context so Insightis learns your company over time.' },
-      { title: 'Slack & Teams Notifications',   desc: 'Push metric alerts and anomalies to your team channels.' },
-    ],
-  },
-  {
-    key: 'next',
-    label: 'Next',
-    color: '#A78BFA',
-    glow: 'rgba(139,92,246,.12)',
-    items: [
-      { title: 'AI Connect — MCP Server',       desc: 'Expose your workspace to Claude, Cursor, and any MCP-compatible tool.' },
-      { title: 'Custom Dashboard Builder',      desc: 'Drag-and-drop dashboards built from saved AI Chat answers.' },
-      { title: 'Scheduled Reports',             desc: 'Auto-generated weekly and monthly business reports, delivered by email.' },
-    ],
-  },
-  {
-    key: 'later',
-    label: 'Later',
-    color: '#7FA0AC',
-    glow: 'rgba(127,160,172,.08)',
-    items: [
-      { title: 'Multi-Workspace Support',       desc: 'Manage multiple companies or business units from one account.' },
-      { title: 'Embedded Analytics',            desc: 'White-label Insightis inside your own product.' },
-      { title: 'Advanced Formula Metrics',      desc: 'Window functions, cohorts, and conditional aggregations.' },
-    ],
-  },
-];
-
-const RECENTLY_SHIPPED = [
-  { title: 'Insights Engine',       desc: 'Automated deep analysis of root causes and anomalies.' },
-  { title: '200+ Data Connectors',  desc: 'HubSpot, Stripe, Postgres, Snowflake, Salesforce, and more.' },
-  { title: 'Semantic Layer v2',     desc: 'Certified metrics, cross-source joins, and full documentation.' },
-];
-
-function RoadmapSections() {
-  return (
-    <section style={{position:'relative', zIndex:1, paddingBottom:48, paddingTop:140}}>
-      <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-
-        {/* Section heading */}
-        <div style={{marginBottom:40}}>
-          <h2 style={{fontSize:'clamp(28px,3.5vw,42px)', fontWeight:600, letterSpacing:'-.03em', lineHeight:1.15, color:'#E8F2F5', marginBottom:12}}>
-            What's on deck.
-          </h2>
-          <p style={{fontSize:'clamp(14px,1.1vw,16px)', color:'#7FA0AC', lineHeight:1.6, maxWidth:520, margin:0}}>
-            A curated look at what we're building. Curated by hand — not auto-generated.
-          </p>
-        </div>
-
-        {/* Divider */}
-        <div style={{height:1, background:'linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent)', marginBottom:32}}/>
-
-        {/* Now / Next / Later */}
-        <div className="kanban-grid" style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:20}}>
-          {ROADMAP_COLUMNS.map(col => (
-            <div key={col.key}>
-              <div className="col-header">
-                <span style={{width:8, height:8, borderRadius:'50%', background:col.color, flexShrink:0,
-                  boxShadow:`0 0 8px ${col.color}55`}}/>
-                <span style={{fontSize:12, fontWeight:600, color:'#E8F2F5', letterSpacing:'.02em'}}>{col.label}</span>
-              </div>
-              <div style={{display:'flex', flexDirection:'column', gap:10}}>
-                {col.items.map((item, i) => (
-                  <div key={i} className="roadmap-card" style={{'--card-glow': col.glow}}>
-                    <h4 style={{fontSize:14, fontWeight:500, color:'#E8F2F5', lineHeight:1.4, marginBottom:6}}>{item.title}</h4>
-                    <p style={{fontSize:12, color:'#7FA0AC', lineHeight:1.55, margin:0}}>{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Recently shipped */}
-        <div style={{marginTop:56}}>
-          <div style={{display:'flex', alignItems:'center', gap:10, marginBottom:18}}>
-            <span style={{fontSize:11, fontWeight:600, color:'#22C55E', letterSpacing:'.12em', textTransform:'uppercase'}}>Recently shipped</span>
-            <span style={{flex:1, height:1, background:'linear-gradient(90deg,rgba(34,197,94,.25),transparent)'}}/>
-          </div>
-          <div style={{display:'flex', flexWrap:'wrap', gap:'14px 28px'}}>
-            {RECENTLY_SHIPPED.map((item, i) => (
-              <div key={i} style={{display:'flex', alignItems:'flex-start', gap:10, flex:'1 1 280px', minWidth:0}}>
-                <span style={{flexShrink:0, marginTop:3, width:18, height:18, borderRadius:'50%',
-                  background:'rgba(34,197,94,.1)', border:'1px solid rgba(34,197,94,.25)',
-                  display:'inline-flex', alignItems:'center', justifyContent:'center'}}>
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                </span>
-                <div style={{minWidth:0}}>
-                  <span style={{fontSize:13, fontWeight:500, color:'#E8F2F5'}}>{item.title}</span>
-                  <span style={{fontSize:13, color:'#7FA0AC'}}> — {item.desc}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── SUGGEST FEATURE CTA ── */
-function SuggestCTA() {
-  const [open, setOpen]       = useState(false);
-  const [text, setText]       = useState('');
-  const [files, setFiles]     = useState([]);
-  const [sent, setSent]       = useState(false);
-  const [dragging, setDragging] = useState(false);
-  const fileRef               = React.useRef();
-
-  const canSubmit = text.trim().length > 0;
-
-  function handleFiles(incoming) {
-    const arr = Array.from(incoming);
-    setFiles(prev => {
-      const existing = new Set(prev.map(f => f.name + f.size));
-      return [...prev, ...arr.filter(f => !existing.has(f.name + f.size))];
-    });
-  }
-
-  function removeFile(idx) {
-    setFiles(prev => prev.filter((_, i) => i !== idx));
-  }
-
-  function handleSubmit() {
-    if (!canSubmit) return;
-    setSent(true);
-    setTimeout(() => {
-      setOpen(false);
-      setTimeout(() => { setText(''); setFiles([]); setSent(false); }, 400);
-    }, 2600);
-  }
-
-  function handleDrop(e) {
-    e.preventDefault(); setDragging(false);
-    handleFiles(e.dataTransfer.files);
-  }
-
-  /* format file size */
-  function fmtSize(b) {
-    if (b < 1024) return b + ' B';
-    if (b < 1048576) return (b/1024).toFixed(1) + ' KB';
-    return (b/1048576).toFixed(1) + ' MB';
-  }
-
-  /* overlay close on backdrop click */
-  function handleBackdrop(e) {
-    if (e.target === e.currentTarget && !sent) setOpen(false);
-  }
+  const handleSubmit = () => {
+    if (!value.trim()) return;
+    onSubmit(value.trim());
+    setValue('');
+  };
 
   return (
-    <>
-      {/* ── CTA STRIP ── */}
-      <section style={{padding:'64px 0 80px', position:'relative', zIndex:1}}>
-        <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-          <div style={{
-            position:'relative', borderRadius:16,
-            border:'1px solid rgba(30,30,48,1)',
-            padding:'32px 48px', overflow:'hidden',
-            display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-between',
-            gap:24, flexWrap:'wrap',
-            background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)',
-          }}>
-            <div style={{position:'absolute',top:0,left:0,right:0,height:1,background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
-            <div style={{maxWidth:520}}>
-              <h3 style={{fontSize:'clamp(18px,2.5vw,24px)', fontWeight:500, color:'#E8F2F5', letterSpacing:'-.02em', marginBottom:8}}>
-                Missing something? <span style={{color:'#07807E'}}>Suggest a feature.</span>
-              </h3>
-              <p style={{fontSize:14, color:'#7FA0AC', lineHeight:1.6}}>
-                Tell us what you'd like to see in Insightis. We review every suggestion.
-              </p>
-            </div>
-            <button onClick={() => setOpen(true)} style={{
-              display:'inline-flex', alignItems:'center', gap:8,
-              padding:'12px 24px', flexShrink:0,
-              fontSize:13, fontWeight:500, color:'#fff',
-              background:'linear-gradient(135deg,#07807E,#09A09D)',
-              borderRadius:10, border:'none', cursor:'pointer',
-              fontFamily:'Geist,sans-serif', letterSpacing:'.01em',
-              boxShadow:'0 0 24px rgba(9,160,157,.18)',
-              transition:'opacity .15s',
-            }}
-              onMouseEnter={e => e.currentTarget.style.opacity='.85'}
-              onMouseLeave={e => e.currentTarget.style.opacity='1'}
-            >
-              Request a Feature
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* ── MODAL ── */}
-      {open && (
-        <div onClick={handleBackdrop} style={{
-          position:'fixed', inset:0, zIndex:9000,
-          background:'rgba(6,10,15,.72)', backdropFilter:'blur(6px)',
-          display:'flex', alignItems:'center', justifyContent:'center',
-          padding:24,
-          animation:'fadeInBg .2s ease',
+    <div style={{
+      position:'fixed', bottom:0, left:0, right:0,
+      zIndex:100,
+      opacity: visible ? 1 : 0,
+      pointerEvents: 'none',
+      transform: visible ? 'translateY(0)' : 'translateY(12px)',
+      transition: 'opacity .25s, transform .25s',
+    }}>
+      <div className="floating-chat-wrap" style={{ pointerEvents:'all' }}>
+        <div style={{
+          display:'flex', alignItems:'center', gap:'8px',
+          background:'rgba(16,22,30,0.96)',
+          border: focused ? '1px solid rgba(9,160,157,.5)' : '1px solid rgba(255,255,255,.09)',
+          borderRadius:'12px',
+          padding:'6px 6px 6px 12px',
+          transition:'border-color .2s',
+          boxShadow:'0 8px 32px rgba(0,0,0,0.45)',
+          backdropFilter:'blur(10px)',
+          WebkitBackdropFilter:'blur(10px)',
         }}>
-          <div style={{
-            width:'100%', maxWidth:520,
-            background:'linear-gradient(145deg,#0E1420,#0A0E13)',
-            border:'1px solid rgba(255,255,255,.07)',
-            borderRadius:18, overflow:'hidden',
-            boxShadow:'0 32px 80px rgba(0,0,0,.6)',
-            animation:'modalSlideUp .25s cubic-bezier(.22,1,.36,1)',
-          }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7FA0AC" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          <input
+            type="text"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            onKeyDown={(e) => { if (e.key === 'Enter') handleSubmit(); }}
+            placeholder="Ask for a prompt or a custom workflow..."
+            style={{
+              flex:1, background:'transparent', border:'none', outline:'none',
+              fontSize:'13px', color:'#E8F2F5',
+              fontFamily:'inherit',
+            }}
+          />
+          <button
+            onClick={handleSubmit}
+            style={{
+              flexShrink:0,
+              padding:'6px 14px', borderRadius:'7px',
+              background: value.trim() ? '#07807E' : 'rgba(9,160,157,.15)',
+              color: value.trim() ? '#fff' : '#4A9EA0',
+              border:'none', cursor: value.trim() ? 'pointer' : 'default',
+              fontSize:'12px', fontWeight:600,
+              fontFamily:'inherit',
+              transition:'background .2s, color .2s',
+            }}
+            onMouseEnter={(e) => { if (value.trim()) e.currentTarget.style.background = '#09A09D'; }}
+            onMouseLeave={(e) => { if (value.trim()) e.currentTarget.style.background = '#07807E'; }}
+          >
+            Ask AI
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-            {/* header */}
-            <div style={{padding:'22px 28px 0', display:'flex', alignItems:'flex-start', justifyContent:'space-between'}}>
-              <div>
-                <h2 style={{fontSize:18, fontWeight:600, color:'#E8F2F5', letterSpacing:'-.02em', margin:0}}>Request a Feature</h2>
-                <p style={{fontSize:13, color:'#7FA0AC', margin:'4px 0 0'}}>Describe what you need — we read every request.</p>
-              </div>
-              <button onClick={() => { if (!sent) setOpen(false); }} style={{
-                background:'none', border:'none', cursor:'pointer',
-                color:'#5E8290', padding:4, marginTop:-2,
-                transition:'color .15s',
-              }}
-                onMouseEnter={e => e.currentTarget.style.color='#E8F2F5'}
-                onMouseLeave={e => e.currentTarget.style.color='#5E8290'}
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-              </button>
-            </div>
+/* ── AI ASSISTANT PANEL ── */
+function AssistantResponseText({ text }) {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return (
+    <span>
+      {parts.map((p, i) =>
+        p.startsWith('**') && p.endsWith('**')
+          ? <strong key={i} style={{ color:'#C8E6EA', fontWeight:600 }}>{p.slice(2,-2)}</strong>
+          : <span key={i}>{p}</span>
+      )}
+    </span>
+  );
+}
 
-            {sent ? (
-              /* ── THANK YOU STATE ── */
-              <div style={{padding:'48px 28px 52px', textAlign:'center'}}>
+function AIAssistantPanel({ query, onClose }) {
+  const [phase, setPhase] = useState('searching');
+  const [input, setInput] = useState('');
+  const [inputFocused, setInputFocused] = useState(false);
+  const [messages, setMessages] = useState([{ role:'user', text: query }]);
+  const [copied, setCopied] = useState(false);
+  const bottomRef = useRef(null);
+
+  const SAMPLE_RESPONSE = {
+    searchTerms: query.toLowerCase().split(' ').filter(w => w.length > 2).slice(0, 3).join(', ') || 'prompts',
+    intro: 'I found a few **prompt templates** that match what you\'re looking for. Each one is pre-wired to the right data sources so you can run it with a single click.',
+    bullets: [
+      { bold: 'Pipeline Velocity by Source', text: ' — measure velocity per channel across Salesforce + HubSpot + ads' },
+      { bold: 'Churn Risk Scoring', text: ' — score every renewal using usage, tickets, and ARR trend' },
+      { bold: 'Campaign Attribution Deep-Dive', text: ' — multi-touch attribution all the way to Closed-Won' },
+      { bold: 'Exec Weekly Revenue Narrative', text: ' — a 250-word Monday-morning summary for leadership' },
+    ],
+    outro: 'Want me to customize one for your team\'s stack, or generate a brand-new prompt from scratch?',
+    links: ['Browse all 15 prompts', 'Connect a new data source', 'Build a custom prompt'],
+  };
+
+  useEffect(() => {
+    const t1 = setTimeout(() => setPhase('reading'), 800);
+    const t2 = setTimeout(() => {
+      setPhase('done');
+      setMessages(m => [...m, { role:'assistant', response: SAMPLE_RESPONSE }]);
+    }, 1800);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, []);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior:'smooth' });
+  }, [messages, phase]);
+
+  const handleFollowUp = () => {
+    if (!input.trim()) return;
+    const q = input.trim();
+    setInput('');
+    setMessages(m => [...m, { role:'user', text: q }]);
+    setPhase('searching');
+    setTimeout(() => setPhase('reading'), 800);
+    setTimeout(() => {
+      setPhase('done');
+      setMessages(m => [...m, { role:'assistant', response: SAMPLE_RESPONSE }]);
+    }, 1800);
+  };
+
+  const iconBtn = (title, path) => (
+    <button title={title} onClick={() => {
+      if (title === 'Copy') { navigator.clipboard?.writeText(''); setCopied(true); setTimeout(() => setCopied(false), 2000); }
+    }} style={{
+      background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
+      color:'#5E8290', transition:'color .15s',
+    }}
+    onMouseEnter={e => e.currentTarget.style.color = '#7FA0AC'}
+    onMouseLeave={e => e.currentTarget.style.color = '#5E8290'}
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d={path}/>
+      </svg>
+    </button>
+  );
+
+  return (
+    <div style={{
+      position:'fixed', right:0, top:0, bottom:0, width:'320px',
+      background:'#0B0F16',
+      borderLeft:'1px solid rgba(255,255,255,0.07)',
+      display:'flex', flexDirection:'column',
+      zIndex:200,
+      animation:'slideInRight .25s ease',
+    }}>
+      {/* Header */}
+      <div style={{
+        display:'flex', alignItems:'center', justifyContent:'space-between',
+        padding:'12px 14px', borderBottom:'1px solid rgba(255,255,255,0.07)',
+        flexShrink:0,
+      }}>
+        <div style={{ display:'flex', alignItems:'center', gap:'7px' }}>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+          <span style={{ fontSize:'13px', fontWeight:600, color:'#E8F2F5' }}>Assistant</span>
+        </div>
+        <div style={{ display:'flex', gap:'2px' }}>
+          <button onClick={onClose} style={{
+            background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
+            color:'#5E8290', transition:'color .15s', display:'flex',
+          }}
+          onMouseEnter={e => e.currentTarget.style.color = '#E8F2F5'}
+          onMouseLeave={e => e.currentTarget.style.color = '#5E8290'}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Messages */}
+      <div style={{ flex:1, overflowY:'auto', padding:'16px 14px', display:'flex', flexDirection:'column', gap:'16px' }}>
+        {messages.map((msg, idx) => (
+          <div key={idx}>
+            {msg.role === 'user' ? (
+              <div style={{ display:'flex', justifyContent:'flex-end' }}>
                 <div style={{
-                  width:56, height:56, borderRadius:'50%', margin:'0 auto 20px',
-                  background:'rgba(34,197,94,.1)', border:'1px solid rgba(34,197,94,.25)',
-                  display:'flex', alignItems:'center', justifyContent:'center',
-                  animation:'nodeAppear .4s ease',
+                  background:'rgba(9,160,157,0.15)',
+                  border:'1px solid rgba(9,160,157,0.25)',
+                  borderRadius:'10px 10px 2px 10px',
+                  padding:'8px 12px',
+                  fontSize:'13px', color:'#C8E6EA', maxWidth:'90%',
+                  lineHeight:1.5,
                 }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  {msg.text}
                 </div>
-                <h3 style={{fontSize:20, fontWeight:600, color:'#E8F2F5', marginBottom:8, letterSpacing:'-.02em'}}>Thanks for your feedback!</h3>
-                <p style={{fontSize:14, color:'#7FA0AC', lineHeight:1.6, maxWidth:340, margin:'0 auto'}}>
-                  We've received your feature request and will review it shortly.
-                </p>
               </div>
             ) : (
-              /* ── FORM STATE ── */
-              <div style={{padding:'20px 28px 28px'}}>
-
-                {/* textarea */}
-                <div style={{marginBottom:16}}>
-                  <label style={{display:'block', fontSize:12, fontWeight:500, color:'#7FA0AC', letterSpacing:'.04em', marginBottom:8, textTransform:'uppercase'}}>
-                    Description <span style={{color:'#0EC4C1'}}>*</span>
-                  </label>
-                  <textarea
-                    value={text}
-                    onChange={e => setText(e.target.value)}
-                    placeholder="Describe the feature you'd like to see…"
-                    rows={5}
-                    style={{
-                      width:'100%', boxSizing:'border-box',
-                      background:'rgba(255,255,255,.03)', border:'1px solid rgba(255,255,255,.08)',
-                      borderRadius:10, padding:'12px 14px',
-                      fontSize:13, color:'#E8F2F5', lineHeight:1.6,
-                      fontFamily:'Geist,sans-serif', resize:'vertical',
-                      outline:'none', transition:'border-color .15s',
-                    }}
-                    onFocus={e => e.target.style.borderColor='rgba(14,196,193,.35)'}
-                    onBlur={e => e.target.style.borderColor='rgba(255,255,255,.08)'}
-                  />
-                </div>
-
-                {/* drop zone */}
-                <div style={{marginBottom:20}}>
-                  <label style={{display:'block', fontSize:12, fontWeight:500, color:'#7FA0AC', letterSpacing:'.04em', marginBottom:8, textTransform:'uppercase'}}>
-                    Attachments <span style={{color:'#5E8290', fontWeight:400, textTransform:'none', letterSpacing:0}}>(optional)</span>
-                  </label>
-                  <div
-                    onDragOver={e => { e.preventDefault(); setDragging(true); }}
-                    onDragLeave={() => setDragging(false)}
-                    onDrop={handleDrop}
-                    onClick={() => fileRef.current.click()}
-                    style={{
-                      borderRadius:10, padding:'18px 14px',
-                      border: dragging ? '1.5px dashed rgba(14,196,193,.5)' : '1.5px dashed rgba(255,255,255,.1)',
-                      background: dragging ? 'rgba(14,196,193,.05)' : 'rgba(255,255,255,.02)',
-                      cursor:'pointer', textAlign:'center', transition:'all .15s',
-                    }}
-                  >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5E8290" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{marginBottom:6}}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-                    <p style={{fontSize:12, color:'#7FA0AC', margin:0}}>
-                      Drag & drop files or <span style={{color:'#0EC4C1'}}>browse</span>
-                    </p>
-                    <p style={{fontSize:11, color:'#5E8290', margin:'4px 0 0'}}>Images, PDFs, or any file — up to 20 MB each</p>
+              <div>
+                <div style={{ fontSize:'12px', color:'#3A6070', marginBottom:'10px', display:'flex', flexDirection:'column', gap:'4px' }}>
+                  <div style={{ display:'flex', alignItems:'center', gap:'6px' }}>
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    Found prompts for <em style={{ color:'#4A8090', fontStyle:'normal' }}>{msg.response.searchTerms}</em>
                   </div>
-                  <input ref={fileRef} type="file" multiple style={{display:'none'}} onChange={e => handleFiles(e.target.files)} />
-
-                  {/* file list */}
-                  {files.length > 0 && (
-                    <div style={{marginTop:10, display:'flex', flexDirection:'column', gap:6}}>
-                      {files.map((f, i) => (
-                        <div key={i} style={{
-                          display:'flex', alignItems:'center', justifyContent:'space-between',
-                          padding:'7px 12px', borderRadius:8,
-                          background:'rgba(255,255,255,.04)', border:'1px solid rgba(255,255,255,.06)',
-                        }}>
-                          <div style={{display:'flex', alignItems:'center', gap:8, minWidth:0}}>
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7FA0AC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                            <span style={{fontSize:12, color:'#E8F2F5', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap'}}>{f.name}</span>
-                            <span style={{fontSize:11, color:'#5E8290', flexShrink:0}}>{fmtSize(f.size)}</span>
-                          </div>
-                          <button onClick={() => removeFile(i)} style={{
-                            background:'none', border:'none', cursor:'pointer',
-                            color:'#5E8290', padding:'0 2px', flexShrink:0,
-                            transition:'color .15s',
-                          }}
-                            onMouseEnter={e => e.currentTarget.style.color='#E8F2F5'}
-                            onMouseLeave={e => e.currentTarget.style.color='#5E8290'}
-                          >
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                  <div style={{ display:'flex', alignItems:'center', gap:'6px' }}>
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    Scanned 15 templates
+                  </div>
                 </div>
-
-                {/* actions */}
-                <div style={{display:'flex', gap:10, justifyContent:'flex-end'}}>
-                  <button onClick={() => setOpen(false)} style={{
-                    padding:'10px 20px', borderRadius:9, border:'1px solid rgba(255,255,255,.08)',
-                    background:'transparent', color:'#7FA0AC', fontSize:13, fontWeight:500,
-                    cursor:'pointer', fontFamily:'Geist,sans-serif', transition:'all .15s',
-                  }}
-                    onMouseEnter={e => { e.currentTarget.style.background='rgba(255,255,255,.05)'; e.currentTarget.style.color='#E8F2F5'; }}
-                    onMouseLeave={e => { e.currentTarget.style.background='transparent'; e.currentTarget.style.color='#7FA0AC'; }}
-                  >
-                    Cancel
-                  </button>
-                  <button onClick={handleSubmit} disabled={!canSubmit} style={{
-                    padding:'10px 24px', borderRadius:9, border:'none',
-                    background: canSubmit ? 'linear-gradient(135deg,#07807E,#09A09D)' : 'rgba(255,255,255,.05)',
-                    color: canSubmit ? '#fff' : '#5E8290',
-                    fontSize:13, fontWeight:500, cursor: canSubmit ? 'pointer' : 'default',
-                    fontFamily:'Geist,sans-serif', transition:'all .2s',
-                    boxShadow: canSubmit ? '0 0 20px rgba(9,160,157,.2)' : 'none',
-                    display:'inline-flex', alignItems:'center', gap:7,
-                  }}>
-                    Submit Request
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-                  </button>
+                <p style={{ fontSize:'13px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'10px' }}>
+                  <AssistantResponseText text={msg.response.intro} />
+                </p>
+                <ul style={{ margin:'0 0 10px 0', padding:'0', listStyle:'none', display:'flex', flexDirection:'column', gap:'5px' }}>
+                  {msg.response.bullets.map((b, i) => (
+                    <li key={i} style={{ fontSize:'13px', color:'#8AAAB8', lineHeight:1.6, paddingLeft:'14px', position:'relative' }}>
+                      <span style={{ position:'absolute', left:0, color:'#0EC4C1', fontWeight:700 }}>·</span>
+                      <strong style={{ color:'#C8E6EA' }}>{b.bold}</strong>{b.text}
+                    </li>
+                  ))}
+                </ul>
+                <p style={{ fontSize:'13px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'12px' }}>
+                  {msg.response.outro}
+                </p>
+                <div style={{ display:'flex', flexDirection:'column', gap:'4px', marginBottom:'12px' }}>
+                  {msg.response.links.map((l, i) => (
+                    <a key={i} href="#" style={{ fontSize:'12px', color:'#09A09D', textDecoration:'none' }}
+                      onMouseEnter={e => e.currentTarget.style.textDecoration = 'underline'}
+                      onMouseLeave={e => e.currentTarget.style.textDecoration = 'none'}
+                    >{l}</a>
+                  ))}
                 </div>
-
+                <div style={{ display:'flex', gap:'4px', alignItems:'center' }}>
+                  {iconBtn('Helpful', 'M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z')}
+                  {iconBtn('Not helpful', 'M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z')}
+                  {iconBtn('Copy', copied ? 'M20 6L9 17l-5-5' : 'M8 17.929H6c-1.105 0-2-.912-2-2.036V5.036C4 3.912 4.895 3 6 3h8c1.105 0 2 .912 2 2.036v1.866m-6 .17h8c1.105 0 2 .91 2 2.035v10.857C20 21.088 19.105 22 18 22h-8c-1.105 0-2-.911-2-2.036V9.107c0-1.124.895-2.036 2-2.036z')}
+                  {iconBtn('Regenerate', 'M1 4v6h6M23 20v-6h-6M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15')}
+                </div>
               </div>
             )}
           </div>
+        ))}
+
+        {phase !== 'done' && (
+          <div style={{ display:'flex', flexDirection:'column', gap:'6px' }}>
+            <div style={{ display:'flex', alignItems:'center', gap:'6px', fontSize:'12px', color:'#3A6070' }}>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ animation:'pulse 1.2s ease infinite' }}><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              {phase === 'searching' ? 'Searching prompt library…' : 'Reading templates…'}
+            </div>
+            <div style={{ display:'flex', gap:'5px', paddingTop:'4px' }}>
+              {[0,1,2].map(i => (
+                <div key={i} style={{
+                  width:'6px', height:'6px', borderRadius:'50%',
+                  background:'#0EC4C1',
+                  animation:`pulse 1.2s ease ${i * 0.2}s infinite`,
+                }}/>
+              ))}
+            </div>
+          </div>
+        )}
+        <div ref={bottomRef}/>
+      </div>
+
+      {/* Follow-up input */}
+      <div style={{
+        padding:'10px 14px 18px', borderTop:'1px solid rgba(255,255,255,0.07)', flexShrink:0,
+      }}>
+        <div style={{
+          display:'flex', alignItems:'center', gap:'8px',
+          background:'rgba(255,255,255,0.04)',
+          border: inputFocused ? '1px solid rgba(9,160,157,.4)' : '1px solid rgba(255,255,255,.07)',
+          borderRadius:'10px',
+          padding:'8px 8px 8px 12px',
+          transition:'border-color .2s',
+        }}>
+          <input
+            value={input}
+            onChange={e => setInput(e.target.value)}
+            onFocus={() => setInputFocused(true)}
+            onBlur={() => setInputFocused(false)}
+            onKeyDown={e => { if (e.key === 'Enter') handleFollowUp(); }}
+            placeholder="Ask a follow-up..."
+            style={{
+              flex:1, background:'transparent', border:'none', outline:'none',
+              fontSize:'13px', color:'#E8F2F5', fontFamily:'Geist,sans-serif',
+            }}
+          />
+          <button onClick={handleFollowUp} style={{
+            width:'28px', height:'28px', borderRadius:'7px', flexShrink:0,
+            background: input.trim() ? '#07807E' : 'rgba(9,160,157,.12)',
+            border:'none', cursor: input.trim() ? 'pointer' : 'default',
+            display:'flex', alignItems:'center', justifyContent:'center',
+            transition:'background .2s',
+          }}>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={input.trim() ? '#fff' : '#3A7080'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>
+            </svg>
+          </button>
         </div>
-      )}
-    </>
+      </div>
+    </div>
   );
 }
 
 /* ── APP ── */
 function App() {
+  const [selectedTeams, setSelectedTeams] = useState(() => new Set());
+  const [selectedSources, setSelectedSources] = useState(() => new Set());
+  const [query, setQuery] = useState('');
+  const [searchFocused, setSearchFocused] = useState(false);
+  const [assistantQuery, setAssistantQuery] = useState(null);
+
+  const toggleTeam = (team) => setSelectedTeams(prev => {
+    const next = new Set(prev);
+    if (next.has(team)) next.delete(team); else next.add(team);
+    return next;
+  });
+  const toggleSource = (id) => setSelectedSources(prev => {
+    const next = new Set(prev);
+    if (next.has(id)) next.delete(id); else next.add(id);
+    return next;
+  });
+  const clearAll = () => { setSelectedTeams(new Set()); setSelectedSources(new Set()); setQuery(''); };
+
+  const q = query.trim().toLowerCase();
+  const filtered = PROMPTS.filter(p => {
+    if (selectedTeams.size && !p.teams.some(t => selectedTeams.has(t))) return false;
+    if (selectedSources.size && !p.sources.some(s => selectedSources.has(s))) return false;
+    if (!q) return true;
+    return (
+      p.title.toLowerCase().includes(q) ||
+      p.prompt.toLowerCase().includes(q) ||
+      p.teams.some(t => t.toLowerCase().includes(q)) ||
+      p.sources.some(s => s.toLowerCase().includes(q))
+    );
+  });
+
   return (
-    <div style={{position:'relative', zIndex:1}}>
+    <div>
       <Header />
-      <TreeHero />
-      <RoadmapSections />
-      <SuggestCTA />
+      <PromptLibraryHero />
+      <div className="prompt-layout">
+        <PromptLibrarySidebar
+          selectedTeams={selectedTeams}
+          toggleTeam={toggleTeam}
+          selectedSources={selectedSources}
+          toggleSource={toggleSource}
+          clearAll={clearAll}
+        />
+        <div className="prompt-content">
+          <div style={{
+            display:'flex', alignItems:'center', gap:'10px',
+            background:'rgba(16,22,30,0.7)',
+            border: searchFocused ? '1px solid rgba(9,160,157,.5)' : '1px solid rgba(255,255,255,0.07)',
+            borderRadius:'12px',
+            padding:'11px 14px',
+            width:'100%',
+            marginBottom:'20px',
+            transition:'border-color .2s',
+          }}>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7FA0AC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
+              <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+            </svg>
+            <input
+              type="text"
+              placeholder="Search prompts by title, team, or data source..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onFocus={() => setSearchFocused(true)}
+              onBlur={() => setSearchFocused(false)}
+              style={{
+                flex:1, background:'transparent', border:'none', outline:'none',
+                fontSize:'14px', color:'#E8F2F5', fontFamily:"'Geist', sans-serif",
+              }}
+            />
+            {query && (
+              <button onClick={() => setQuery('')} style={{
+                background:'none', border:'none', cursor:'pointer',
+                color:'#7FA0AC', padding:'2px 6px', fontSize:'12px',
+                fontFamily:"'Geist', sans-serif",
+              }}>
+                Clear
+              </button>
+            )}
+          </div>
+
+          {filtered.length > 0 ? (
+            filtered.map((entry, i) => (
+              <PromptCard key={entry.title} entry={entry} index={i} />
+            ))
+          ) : (
+            <div style={{
+              padding:'40px 24px', textAlign:'center',
+              border:'1px dashed rgba(255,255,255,0.08)', borderRadius:'12px',
+              color:'#7FA0AC', fontSize:'14px',
+            }}>
+              No prompts match your search — try different keywords or clear a filter.
+            </div>
+          )}
+        </div>
+      </div>
+      <BottomCTA />
       <Footer />
+      <FloatingChat onSubmit={(q) => setAssistantQuery(q)} />
+      {assistantQuery && (
+        <AIAssistantPanel
+          query={assistantQuery}
+          onClose={() => setAssistantQuery(null)}
+        />
+      )}
     </div>
   );
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-</script>
-<script defer src="/assets/header-scroll.js"></script>
-</body>
-</html>

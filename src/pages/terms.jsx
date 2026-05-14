@@ -1,75 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="stylesheet" href="/assets/responsive.css">
-<title>Contacts — Insightis</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Geist', sans-serif;
-  background: #0A0E13;
-  color: #E8F2F5;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import ReactDOM from 'react-dom/client';
+import '../app.css';
 
-body::before {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  opacity: .4; mix-blend-mode: overlay;
-}
-
-body::after {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 10% 5%, rgba(10,152,150,.09) 0%, transparent 70%),
-    radial-gradient(ellipse 70% 55% at 85% 0%, rgba(110,60,200,.07) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 60% at 75% 45%, rgba(20,80,200,.05) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 55% at 5% 55%, rgba(160,50,220,.045) 0%, transparent 65%),
-    radial-gradient(ellipse 65% 55% at 50% 90%, rgba(10,152,150,.07) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 45% at 95% 75%, rgba(50,90,240,.04) 0%, transparent 55%),
-    radial-gradient(ellipse 45% 40% at 35% 30%, rgba(200,60,180,.03) 0%, transparent 55%);
-}
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-@keyframes fadeIn { from{opacity:0} to{opacity:1} }
-@keyframes slideUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
-@keyframes pulse  { 0%,100%{opacity:.4;transform:scale(.85)} 50%{opacity:1;transform:scale(1)} }
-@keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
-
-.fu0 { animation: fadeUp .7s ease both; }
-.fu1 { animation: fadeUp .7s ease .1s both; }
-.fu2 { animation: fadeUp .7s ease .2s both; }
-.fu3 { animation: fadeUp .7s ease .35s both; }
-.fu4 { animation: fadeUp .7s ease .5s both; }
-
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
-
-section { position: relative; }
-</style>
-</head>
-<body>
-
-<div id="root"></div>
-
-<script type="text/babel">
-const { useState, useEffect, useRef } = React;
-
-/* ── HEADER ── */
 function MenuIcon({ size = 24, color = "#fff" }) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>;
 }
@@ -82,48 +14,26 @@ function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const navRef = useRef(null);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const handleClick = (e) => {
-      if (navRef.current && !navRef.current.contains(e.target)) setActiveDropdown(null);
-    };
-    document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
-  }, []);
+  useEffect(() => { const h = () => setScrolled(window.scrollY > 20); window.addEventListener('scroll', h); return () => window.removeEventListener('scroll', h); }, []);
+  useEffect(() => { const h = (e) => { if (navRef.current && !navRef.current.contains(e.target)) setActiveDropdown(null); }; document.addEventListener('mousedown', h); return () => document.removeEventListener('mousedown', h); }, []);
 
   const NAV_ICONS = {
-    chat: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z M8 11h.01 M12 11h.01 M16 11h.01',
-    link: 'M12 22v-5 M9 8V2 M15 8V2 M18 8H6a3 3 0 0 0-3 3v1a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-1a3 3 0 0 0-3-3z',
-    file: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M8 18v-4 M12 18v-2 M16 18v-6',
-    bars: 'M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z M2 12l8.58 3.91a2 2 0 0 0 1.66 0L21 12 M2 17l8.58 3.91a2 2 0 0 0 1.66 0L21 17',
-    box: 'M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z M12 3v9 M20 7.5l-8 4.5 M4 7.5l8 4.5',
-    dollar: 'M23 6l-9.5 9.5-5-5L1 18 M17 6h6v6',
-    star: 'M2 20H22 M5 20L7 12L12 17L17 12L19 20H5Z',
-    pulse: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z',
-    settings: 'M21 4H8 M3 4h1 M4 4a3 3 0 1 0 6 0 3 3 0 0 0-6 0 M21 12h-5 M3 12h8 M16 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0 M21 20H8 M3 20h1 M4 20a3 3 0 1 0 6 0 3 3 0 0 0-6 0',
-    play: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z M10 8l6 4-6 4V8z',
-    rss: 'M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z M16 6l2 2 M2 21.5l6.36-6.36',
-    support: 'M3 18v-6a9 9 0 0 1 18 0v6 M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z',
-    grid: 'M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z',
-    map: 'M18 6H5a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h13l4-3.5L18 6z M12 12v8 M12 2v4',
+    chat:'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z M8 11h.01 M12 11h.01 M16 11h.01',
+    link:'M12 22v-5 M9 8V2 M15 8V2 M18 8H6a3 3 0 0 0-3 3v1a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-1a3 3 0 0 0-3-3z',
+    file:'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M8 18v-4 M12 18v-2 M16 18v-6',
+    bars:'M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z M2 12l8.58 3.91a2 2 0 0 0 1.66 0L21 12 M2 17l8.58 3.91a2 2 0 0 0 1.66 0L21 17',
+    box:'M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z M12 3v9 M20 7.5l-8 4.5 M4 7.5l8 4.5',
+    dollar:'M23 6l-9.5 9.5-5-5L1 18 M17 6h6v6',
+    star:'M2 20H22 M5 20L7 12L12 17L17 12L19 20H5Z',
+    pulse:'M13 2L3 14h9l-1 8 10-12h-9l1-8z',
+    settings:'M21 4H8 M3 4h1 M4 4a3 3 0 1 0 6 0 3 3 0 0 0-6 0 M21 12h-5 M3 12h8 M16 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0 M21 20H8 M3 20h1 M4 20a3 3 0 1 0 6 0 3 3 0 0 0-6 0',
+    play:'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z M10 8l6 4-6 4V8z',
+    rss:'M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z M16 6l2 2 M2 21.5l6.36-6.36',
+    support:'M3 18v-6a9 9 0 0 1 18 0v6 M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z',
+    grid:'M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z',
+    map:'M18 6H5a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h13l4-3.5L18 6z M12 12v8 M12 2v4',
   };
-
-  function NavIcon({ name }) {
-    const d = NAV_ICONS[name];
-    if (!d) return null;
-    const paths = d.split(' M').map((p, i) => i === 0 ? p : 'M' + p);
-    return (
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        {paths.map((p, i) => <path key={i} d={p} />)}
-      </svg>
-    );
-  }
+  function NavIcon({ name }) { const d = NAV_ICONS[name]; if (!d) return null; const paths = d.split(' M').map((p, i) => i === 0 ? p : 'M' + p); return (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{paths.map((p, i) => <path key={i} d={p} />)}</svg>); }
 
   const linkUrls = {
     'AI Chat': '../Platform/AI Chat.html',
@@ -134,13 +44,13 @@ function Header() {
     'Memory & Storage': '../Platform/Memory & Storage.html',
     'For RevOps & BizOps': '../Solutions/RevOps BizOps.html',
     'For Founders & CEOs': '../Solutions/Founders CEOs.html',
-    'For Marketing Teams': '../Solutions/Marketing Teams.html',
+    'For CMOs & Marketers': '../Solutions/Marketing Teams.html',
     'For Product Teams': '../Solutions/Product Teams.html',
     'For Data & Analytics Teams': '../Solutions/Data Analytics Teams.html',
     'For Operations & Finance': '../Solutions/Operations Finance.html',
     'Pricing': '../Pricing.html',
-    'Documentation': '../Resources/Documentation.html',
-    'Blog': '../Resources/Blog.html',
+    'Documentation': '../docs/',
+    'Blog': '../blog/',
     'Support Center': '../Resources/Contact Support.html',
     'Community': '../Resources/Community.html',
     'Roadmap': '../Resources/Roadmap.html',
@@ -171,7 +81,7 @@ function Header() {
         { heading: 'BY ROLE', items: [
           { label: 'For RevOps & BizOps', desc: 'Revenue operations and business intelligence', icon: 'dollar' },
           { label: 'For Founders & CEOs', desc: 'Strategic KPIs and company health at a glance', icon: 'star' },
-          { label: 'For Marketing Teams', desc: 'Campaign analytics and cross-channel attribution', icon: 'pulse' },
+          { label: 'For CMOs & Marketers', desc: 'Campaign analytics and cross-channel attribution', icon: 'pulse' },
         ]},
         { heading: 'BY TEAM', items: [
           { label: 'For Product Teams', desc: 'Usage metrics and feature adoption tracking', icon: 'box' },
@@ -201,77 +111,38 @@ function Header() {
 
   return (
     <>
-      <div style={{
-        position:'sticky', top:0, zIndex:50,
-        backdropFilter:'blur(20px)', WebkitBackdropFilter:'blur(20px)',
-      }}>
-      <div ref={navRef} style={{
-        position:'relative',
-        maxWidth:'1240px', width:'calc(100% - 32px)',
-        margin:'0 auto',
-        padding:'12px 0 0',
-      }}>
-        <nav style={{
-          height:'56px', display:'flex', alignItems:'center',
-          background:'rgba(10,14,19,0.92)',
-          backdropFilter:'blur(20px)', WebkitBackdropFilter:'blur(20px)',
-          border:'1px solid rgba(255,255,255,0.08)',
-          borderRadius: mobileOpen ? '24px 24px 0 0' : '50px',
-          boxShadow:'0 4px 24px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2)',
-          padding:'0 8px 0 24px',
-          transition:'border-radius 0.25s ease, box-shadow 0.3s ease',
-        }}>
+      <div style={{position:'sticky', top:0, zIndex:50, backdropFilter:'blur(20px)', WebkitBackdropFilter:'blur(20px)'}}>
+      <div ref={navRef} style={{position:'relative', maxWidth:'1240px', width:'calc(100% - 32px)', margin:'0 auto', padding:'12px 0 0'}}>
+        <nav style={{height:'56px', display:'flex', alignItems:'center', background:'rgba(10,14,19,0.92)', backdropFilter:'blur(20px)', WebkitBackdropFilter:'blur(20px)', border:'1px solid rgba(255,255,255,0.08)', borderRadius: mobileOpen ? '24px 24px 0 0' : '50px', boxShadow:'0 4px 24px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2)', padding:'0 8px 0 24px', transition:'border-radius 0.25s ease, box-shadow 0.3s ease'}}>
           <div style={{width:'100%'}} className="flex items-center justify-between">
             <a href="../index.html" className="flex items-center gap-2.5 flex-shrink-0">
               <svg width="111" height="26" viewBox="0 0 111 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7"><g clipPath="url(#clip0_2673_16536)"><path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="#1498B9"/><path d="M33.2746 17.5261V5.60823H35.5859V17.5261H33.2746Z" fill="white"/><path d="M38.2797 17.5261V8.0821H40.1758L40.1216 10.9713H40.4466C40.6152 10.261 40.8379 9.67717 41.1148 9.21971C41.4037 8.76226 41.7708 8.41917 42.2163 8.19044C42.6617 7.96171 43.1793 7.84735 43.7692 7.84735C44.8406 7.84735 45.6532 8.22656 46.207 8.98497C46.7728 9.74338 47.0557 10.9171 47.0557 12.5062V17.5261H44.7624V12.7409C44.7624 11.7177 44.6059 10.9713 44.2929 10.5018C43.9919 10.0203 43.5405 9.77949 42.9386 9.77949C42.433 9.77949 42.0056 9.94201 41.6565 10.267C41.3074 10.58 41.0365 11.0014 40.8439 11.5311C40.6633 12.0487 40.567 12.6205 40.555 13.2465V17.5261H38.2797Z" fill="white"/><path d="M53.1255 17.7609C52.4875 17.7609 51.9096 17.6947 51.392 17.5622C50.8864 17.4419 50.453 17.2673 50.0918 17.0386C49.7307 16.7978 49.4418 16.5149 49.2251 16.1899C49.0084 15.8528 48.876 15.4796 48.8278 15.0703L50.6155 14.4022C50.6396 14.7152 50.76 14.9981 50.9767 15.2509C51.1933 15.4917 51.4943 15.6843 51.8795 15.8287C52.2647 15.9732 52.7282 16.0454 53.2699 16.0454C53.8719 16.0454 54.3353 15.9551 54.6604 15.7746C54.9974 15.5819 55.166 15.3111 55.166 14.962C55.166 14.7092 55.0757 14.5105 54.8951 14.3661C54.7145 14.2096 54.4497 14.0832 54.1006 13.9869C53.7635 13.8785 53.3542 13.7762 52.8727 13.6799C52.4273 13.5836 51.9758 13.4752 51.5184 13.3549C51.073 13.2224 50.6576 13.0539 50.2724 12.8493C49.8992 12.6326 49.5922 12.3557 49.3515 12.0186C49.1228 11.6695 49.0084 11.2301 49.0084 10.7004C49.0084 10.1226 49.1589 9.623 49.4598 9.20166C49.7728 8.78032 50.2182 8.44926 50.7961 8.2085C51.386 7.96773 52.0962 7.84735 52.9269 7.84735C53.7093 7.84735 54.3835 7.9557 54.9493 8.17238C55.5271 8.38907 55.9966 8.70207 56.3578 9.11137C56.7189 9.50863 56.9476 9.98415 57.0439 10.5379L55.166 11.1338C55.1299 10.7967 55.0155 10.5138 54.8229 10.2851C54.6303 10.0443 54.3714 9.86376 54.0464 9.74338C53.7214 9.623 53.3422 9.56281 52.9088 9.56281C52.355 9.56281 51.9217 9.65911 51.6087 9.85172C51.2957 10.0443 51.1392 10.3032 51.1392 10.6282C51.1392 10.893 51.2355 11.1037 51.4281 11.2602C51.6327 11.4167 51.9096 11.5431 52.2587 11.6394C52.6199 11.7357 53.0292 11.832 53.4866 11.9283C53.9682 12.0246 54.4316 12.139 54.8771 12.2714C55.3345 12.3918 55.7438 12.5543 56.105 12.759C56.4661 12.9636 56.755 13.2345 56.9717 13.5716C57.1884 13.8966 57.2967 14.3179 57.2967 14.8356C57.2967 15.4616 57.1282 15.9973 56.7911 16.4427C56.4541 16.8761 55.9725 17.2071 55.3465 17.4358C54.7326 17.6525 53.9922 17.7609 53.1255 17.7609Z" fill="white"/><path d="M59.2115 17.5261V8.0821H61.4868V17.5261H59.2115ZM60.3492 6.60139C59.8917 6.60139 59.5366 6.50508 59.2838 6.31247C59.043 6.10782 58.9226 5.8189 58.9226 5.44571C58.9226 5.07253 59.043 4.78963 59.2838 4.59702C59.5366 4.39236 59.8917 4.29004 60.3492 4.29004C60.8307 4.29004 61.1918 4.38635 61.4326 4.57896C61.6734 4.77157 61.7937 5.06049 61.7937 5.44571C61.7937 5.8189 61.6673 6.10782 61.4145 6.31247C61.1738 6.50508 60.8186 6.60139 60.3492 6.60139Z" fill="white"/><path d="M67.709 20.7765C66.6857 20.7765 65.843 20.6982 65.1809 20.5417C64.5309 20.3852 64.0493 20.1505 63.7363 19.8375C63.4233 19.5245 63.2668 19.1393 63.2668 18.6818C63.2668 18.128 63.4835 17.6766 63.9169 17.3275C64.3623 16.9663 65.0184 16.7436 65.8852 16.6594V16.2982C65.2351 16.3103 64.7415 16.2441 64.4045 16.0996C64.0674 15.9431 63.8988 15.6963 63.8988 15.3592C63.8988 15.0342 64.0614 14.7453 64.3864 14.4925C64.7235 14.2397 65.2772 14.029 66.0477 13.8605V13.4993C65.3133 13.4632 64.7415 13.2345 64.3322 12.8131C63.9229 12.3798 63.7183 11.82 63.7183 11.1338C63.7183 10.5198 63.8868 9.97813 64.2239 9.50863C64.561 9.03914 65.0545 8.67197 65.7046 8.40713C66.3667 8.13025 67.1672 7.99181 68.1062 7.99181H72.7831V9.79755L69.8217 9.36417V9.76144C70.5681 9.88182 71.1158 10.0925 71.4649 10.3934C71.8261 10.6944 72.0066 11.1037 72.0066 11.6214C72.0066 12.1149 71.8501 12.5543 71.5371 12.9395C71.2241 13.3127 70.7667 13.6077 70.1648 13.8244C69.5749 14.029 68.8586 14.1313 68.0159 14.1313C67.8594 14.1313 67.6909 14.1253 67.5103 14.1133C67.3298 14.1012 67.0469 14.0711 66.6616 14.023C66.4088 14.2036 66.2042 14.3661 66.0477 14.5105C65.8912 14.643 65.8129 14.7694 65.8129 14.8897C65.8129 14.986 65.8731 15.0703 65.9935 15.1425C66.1139 15.2027 66.2704 15.2449 66.463 15.2689C66.6556 15.293 66.8422 15.3051 67.0228 15.3051H69.5328C69.7735 15.3051 70.0805 15.3231 70.4537 15.3592C70.8389 15.3954 71.2181 15.4917 71.5913 15.6482C71.9765 15.8047 72.2955 16.0514 72.5484 16.3885C72.8132 16.7256 72.9456 17.2011 72.9456 17.815C72.9456 18.5012 72.747 19.061 72.3497 19.4944C71.9645 19.9398 71.3806 20.2648 70.5982 20.4695C69.8277 20.6741 68.8646 20.7765 67.709 20.7765ZM67.9076 18.9346C68.654 18.9346 69.2499 18.8925 69.6953 18.8082C70.1407 18.7239 70.4597 18.5855 70.6523 18.3929C70.8449 18.2123 70.9412 17.9776 70.9412 17.6886C70.9412 17.4238 70.8811 17.2192 70.7607 17.0747C70.6403 16.9182 70.4838 16.8098 70.2912 16.7497C70.1106 16.6895 69.924 16.6534 69.7314 16.6413C69.5388 16.6293 69.3763 16.6233 69.2438 16.6233H67.0228C66.4449 16.7075 66.0356 16.87 65.7949 17.1108C65.5662 17.3516 65.4518 17.6164 65.4518 17.9053C65.4518 18.1943 65.5481 18.4109 65.7407 18.5554C65.9333 18.7119 66.2102 18.8142 66.5713 18.8624C66.9445 18.9105 67.3899 18.9346 67.9076 18.9346ZM67.9618 12.8854C68.5878 12.8854 69.0633 12.7409 69.3883 12.452C69.7133 12.151 69.8759 11.7598 69.8759 11.2783C69.8759 10.7606 69.7073 10.3393 69.3702 10.0142C69.0452 9.67717 68.5697 9.50863 67.9437 9.50863C67.3177 9.50863 66.8302 9.67115 66.4811 9.99618C66.144 10.3212 65.9755 10.7365 65.9755 11.2421C65.9755 11.5672 66.0477 11.8561 66.1921 12.1089C66.3486 12.3497 66.5713 12.5423 66.8603 12.6867C67.1612 12.8192 67.5284 12.8854 67.9618 12.8854Z" fill="white"/><path d="M74.7825 17.5261V4.70536H77.0758V7.64872C77.0758 7.90152 77.0638 8.16035 77.0397 8.42519C77.0277 8.69003 77.0036 8.96089 76.9675 9.23777C76.9314 9.51465 76.8892 9.79153 76.8411 10.0684C76.805 10.3453 76.7628 10.6222 76.7147 10.8991H77.0939C77.2624 10.249 77.4791 9.70125 77.7439 9.25583C78.0088 8.79837 78.3459 8.44926 78.7552 8.2085C79.1765 7.96773 79.6881 7.84735 80.29 7.84735C81.3855 7.84735 82.2041 8.23258 82.7459 9.00303C83.2876 9.76144 83.5584 10.9171 83.5584 12.47V17.5261H81.2651V12.7951C81.2651 11.7598 81.1087 10.9954 80.7957 10.5018C80.4947 10.0082 80.0372 9.76144 79.4233 9.76144C78.9177 9.76144 78.4963 9.91793 78.1593 10.2309C77.8222 10.5319 77.5634 10.9352 77.3828 11.4408C77.2022 11.9464 77.0939 12.5182 77.0578 13.1562V17.5261H74.7825Z" fill="white"/><path d="M89.2495 17.7428C88.2503 17.7428 87.516 17.478 87.0465 16.9483C86.577 16.4066 86.3422 15.5699 86.3422 14.4383V9.9059H84.9518L84.9879 8.10015H85.9089C86.258 8.10015 86.5168 8.04598 86.6853 7.93764C86.8539 7.82929 86.9562 7.63668 86.9923 7.3598L87.209 5.98744H88.5272V8.0821H91.0191V9.97813H88.5272V14.348C88.5272 14.7934 88.6295 15.1185 88.8342 15.3231C89.0509 15.5278 89.3699 15.6301 89.7912 15.6301C90.0199 15.6301 90.2426 15.606 90.4593 15.5579C90.6881 15.4977 90.8987 15.4014 91.0913 15.2689V17.4358C90.7182 17.5562 90.3751 17.6345 90.0621 17.6706C89.7611 17.7187 89.4903 17.7428 89.2495 17.7428Z" fill="white"/><path d="M92.9634 17.5261V8.0821H95.2386V17.5261H92.9634ZM94.101 6.60139C93.6436 6.60139 93.2884 6.50508 93.0356 6.31247C92.7949 6.10782 92.6745 5.8189 92.6745 5.44571C92.6745 5.07253 92.7949 4.78963 93.0356 4.59702C93.2884 4.39236 93.6436 4.29004 94.101 4.29004C94.5825 4.29004 94.9437 4.38635 95.1845 4.57896C95.4252 4.77157 95.5456 5.06049 95.5456 5.44571C95.5456 5.8189 95.4192 6.10782 95.1664 6.31247C94.9256 6.50508 94.5705 6.60139 94.101 6.60139Z" fill="white"/><path d="M101.461 17.7609C100.823 17.7609 100.245 17.6947 99.7273 17.5622C99.2217 17.4419 98.7883 17.2673 98.4272 17.0386C98.066 16.7978 97.7771 16.5149 97.5604 16.1899C97.3437 15.8528 97.2113 15.4796 97.1632 15.0703L98.9508 14.4022C98.9749 14.7152 99.0953 14.9981 99.312 15.2509C99.5287 15.4917 99.8296 15.6843 100.215 15.8287C100.6 15.9732 101.064 16.0454 101.605 16.0454C102.207 16.0454 102.671 15.9551 102.996 15.7746C103.333 15.5819 103.501 15.3111 103.501 14.962C103.501 14.7092 103.411 14.5105 103.23 14.3661C103.05 14.2096 102.785 14.0832 102.436 13.9869C102.099 13.8785 101.69 13.7762 101.208 13.6799C100.763 13.5836 100.311 13.4752 99.8537 13.3549C99.4083 13.2224 98.993 13.0539 98.6077 12.8493C98.2346 12.6326 97.9276 12.3557 97.6868 12.0186C97.4581 11.6695 97.3437 11.2301 97.3437 10.7004C97.3437 10.1226 97.4942 9.623 97.7952 9.20166C98.1082 8.78032 98.5536 8.44926 99.1314 8.2085C99.7213 7.96773 100.432 7.84735 101.262 7.84735C102.045 7.84735 102.719 7.9557 103.285 8.17238C103.862 8.38907 104.332 8.70207 104.693 9.11137C105.054 9.50863 105.283 9.98415 105.379 10.5379L103.501 11.1338C103.465 10.7967 103.351 10.5138 103.158 10.2851C102.966 10.0443 102.707 9.86376 102.382 9.74338C102.057 9.623 101.678 9.56281 101.244 9.56281C100.69 9.56281 100.257 9.65911 99.944 9.85172C99.631 10.0443 99.4745 10.3032 99.4745 10.6282C99.4745 10.893 99.5708 11.1037 99.7634 11.2602C99.9681 11.4167 100.245 11.5431 100.594 11.6394C100.955 11.7357 101.365 11.832 101.822 11.9283C102.303 12.0246 102.767 12.139 103.212 12.2714C103.67 12.3918 104.079 12.5543 104.44 12.759C104.801 12.9636 105.09 13.2345 105.307 13.5716C105.524 13.8966 105.632 14.3179 105.632 14.8356C105.632 15.4616 105.464 15.9973 105.126 16.4427C104.789 16.8761 104.308 17.2071 103.682 17.4358C103.068 17.6525 102.328 17.7609 101.461 17.7609Z" fill="white"/></g><defs><clipPath id="clip0_2673_16536"><rect width="111" height="25.4928" fill="white"/></clipPath></defs></svg>
             </a>
-
             <div className="hidden md:flex items-center" style={{gap:'2px'}}>
               {['Platform', 'Solutions', 'Resources', 'Pricing'].map(link => (
                 <div key={link}>
                   {hasDropdown(link) ? (
-                    <button
-                      onClick={() => setActiveDropdown(activeDropdown === link ? null : link)}
-                      className={`flex items-center gap-1 px-4 py-1.5 rounded-full text-sm transition-colors ${activeDropdown === link ? 'text-white bg-white/[0.08]' : 'text-[#A0A0B8] hover:text-white hover:bg-white/[0.04]'}`}
-                    >
+                    <button onClick={() => setActiveDropdown(activeDropdown === link ? null : link)} className={`flex items-center gap-1 px-4 py-1.5 rounded-full text-sm transition-colors ${activeDropdown === link ? 'text-white bg-white/[0.08]' : 'text-[#A0A0B8] hover:text-white hover:bg-white/[0.04]'}`}>
                       {link}
-                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-                        style={{transition:'transform 0.2s', transform: activeDropdown === link ? 'rotate(180deg)' : 'rotate(0deg)', opacity:0.5}}>
-                        <polyline points="6 9 12 15 18 9"/>
-                      </svg>
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{transition:'transform 0.2s', transform: activeDropdown === link ? 'rotate(180deg)' : 'rotate(0deg)', opacity:0.5}}><polyline points="6 9 12 15 18 9"/></svg>
                     </button>
                   ) : (
-                    <a href={linkUrls[link] || '#'} className="flex items-center px-4 py-1.5 rounded-full text-sm text-[#A0A0B8] hover:text-white hover:bg-white/[0.04] transition-colors">
-                      {link}
-                    </a>
+                    <a href={linkUrls[link] || '#'} className="flex items-center px-4 py-1.5 rounded-full text-sm text-[#A0A0B8] hover:text-white hover:bg-white/[0.04] transition-colors">{link}</a>
                   )}
                 </div>
               ))}
             </div>
-
             <div className="hidden md:flex items-center flex-shrink-0" style={{gap:'12px'}}>
               <a href="#" className="text-sm text-[#A0A0B8] hover:text-white transition-colors px-3 py-1.5">Sign In</a>
               <a href="#" className="text-sm font-medium text-white bg-[#07807E] hover:bg-[#09A09D] px-5 py-2 rounded-full transition-colors">Start for Free</a>
             </div>
-
             <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden p-2">
               {mobileOpen ? <CloseIcon /> : <MenuIcon />}
             </button>
           </div>
         </nav>
-
         {anyOpen && dropdowns[activeDropdown] && (
-          <div style={{
-            position:'absolute', left:0, right:0, zIndex:-1,
-            marginTop:'-24px',
-            background:'rgba(10,14,19,0.97)',
-            backdropFilter:'blur(24px)', WebkitBackdropFilter:'blur(24px)',
-            borderLeft:'1px solid rgba(255,255,255,0.08)',
-            borderRight:'1px solid rgba(255,255,255,0.08)',
-            borderBottom:'1px solid rgba(255,255,255,0.08)',
-            borderRadius:'0 0 24px 24px',
-            boxShadow:'0 12px 48px rgba(0,0,0,0.5)',
-          }}>
+          <div style={{position:'absolute', left:0, right:0, zIndex:-1, marginTop:'-24px', background:'rgba(10,14,19,0.97)', backdropFilter:'blur(24px)', WebkitBackdropFilter:'blur(24px)', borderLeft:'1px solid rgba(255,255,255,0.08)', borderRight:'1px solid rgba(255,255,255,0.08)', borderBottom:'1px solid rgba(255,255,255,0.08)', borderRadius:'0 0 24px 24px', boxShadow:'0 12px 48px rgba(0,0,0,0.5)'}}>
             <div style={{padding:'44px 32px 28px'}}>
               <div className="flex gap-10">
                 {dropdowns[activeDropdown].sections.map((section, si) => (
@@ -279,27 +150,16 @@ function Header() {
                     <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-[#A0A0B8] mb-4 px-3">{section.heading}</p>
                     <div className="flex flex-col gap-0.5">
                       {section.items.map((item, ii) => (
-                        <a key={ii} href={linkUrls[item.label] || '#'} {...(item.external ? {target:'_blank', rel:'noopener noreferrer'} : {})} onClick={() => setActiveDropdown(null)}
-                          className="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-white/[0.05] transition-colors group">
+                        <a key={ii} href={linkUrls[item.label] || '#'} {...(item.external ? {target:'_blank', rel:'noopener noreferrer'} : {})} onClick={() => setActiveDropdown(null)} className="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-white/[0.05] transition-colors group">
                           {item.icon && (
-                            <div style={{
-                              flexShrink:0, marginTop:'2px',
-                              width:'30px', height:'30px',
-                              display:'flex', alignItems:'center', justifyContent:'center',
-                              borderRadius:'8px',
-                              background:'rgba(10,152,150,0.1)',
-                              border:'1px solid rgba(10,152,150,0.2)',
-                              color:'#0EC4C1',
-                            }}>
+                            <div style={{flexShrink:0, marginTop:'2px', width:'30px', height:'30px', display:'flex', alignItems:'center', justifyContent:'center', borderRadius:'8px', background:'rgba(10,152,150,0.1)', border:'1px solid rgba(10,152,150,0.2)', color:'#0EC4C1'}}>
                               <NavIcon name={item.icon} />
                             </div>
                           )}
                           <div className="flex flex-col">
                             <span className="flex items-center gap-2">
                               <span className="text-sm font-medium text-white group-hover:text-[#0EC4C1] transition-colors">{item.label}{item.external && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</span>
-                              {item.comingSoon && (
-                                <span style={{fontSize:'10px', fontWeight:500, letterSpacing:'0.04em', padding:'1px 6px', borderRadius:'4px', background:'rgba(10,152,150,0.12)', border:'1px solid rgba(10,152,150,0.3)', color:'#0EC4C1', whiteSpace:'nowrap'}}>Coming Soon</span>
-                              )}
+                              {item.comingSoon && (<span style={{fontSize:'10px', fontWeight:500, letterSpacing:'0.04em', padding:'1px 6px', borderRadius:'4px', background:'rgba(10,152,150,0.12)', border:'1px solid rgba(10,152,150,0.3)', color:'#0EC4C1', whiteSpace:'nowrap'}}>Coming Soon</span>)}
                             </span>
                             <span className="text-xs text-[#A0A0B8] mt-0.5 leading-relaxed">{item.desc}</span>
                           </div>
@@ -312,19 +172,8 @@ function Header() {
             </div>
           </div>
         )}
-
         {mobileOpen && (
-          <div className="md:hidden" style={{
-            position:'absolute', left:0, right:0, zIndex:-1,
-            marginTop:'-1px',
-            background:'rgba(10,14,19,0.97)',
-            backdropFilter:'blur(24px)', WebkitBackdropFilter:'blur(24px)',
-            borderLeft:'1px solid rgba(255,255,255,0.08)',
-            borderRight:'1px solid rgba(255,255,255,0.08)',
-            borderBottom:'1px solid rgba(255,255,255,0.08)',
-            borderRadius:'0 0 24px 24px',
-            padding:'16px 24px',
-          }}>
+          <div className="md:hidden" style={{position:'absolute', left:0, right:0, zIndex:-1, marginTop:'-1px', background:'rgba(10,14,19,0.97)', backdropFilter:'blur(24px)', WebkitBackdropFilter:'blur(24px)', borderLeft:'1px solid rgba(255,255,255,0.08)', borderRight:'1px solid rgba(255,255,255,0.08)', borderBottom:'1px solid rgba(255,255,255,0.08)', borderRadius:'0 0 24px 24px', padding:'16px 24px'}}>
             {['Platform', 'Solutions', 'Resources', 'Pricing'].map(link => {
               const dd = dropdowns[link];
               if (!dd) {
@@ -354,414 +203,236 @@ function Header() {
         )}
       </div>
       </div>
-
       {anyOpen && (
-        <div onClick={() => setActiveDropdown(null)} style={{
-          position:'fixed', inset:0, zIndex:48,
-          background:'rgba(0,0,0,0.4)',
-          backdropFilter:'blur(2px)',
-        }}/>
+        <div onClick={() => setActiveDropdown(null)} style={{position:'fixed', inset:0, zIndex:48, background:'rgba(0,0,0,0.4)', backdropFilter:'blur(2px)'}}/>
       )}
     </>
   );
 }
 
-/* ── CONTACT HERO ── */
-function ContactHero() {
-  return (
-    <section style={{padding:'120px 0 60px', position:'relative'}}>
-      <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', textAlign:'center', position:'relative'}}>
-        <h1 className="fu0" style={{fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'20px'}}>
-          Let's talk.
-        </h1>
-        <p className="fu1" style={{fontSize:'17px', color:'rgba(255,255,255,.5)', maxWidth:'520px', margin:'0 auto', lineHeight:1.65}}>
-          Whether you have a question, need a demo, or want to discuss Enterprise pricing — we'd love to hear from you.
-        </p>
-      </div>
-    </section>
-  );
-}
-
-/* ── CONTACT OPTIONS ── */
-function ContactOptions({ onOpenDemo, onOpenSupport }) {
-  const cardStyle = {background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)', borderRadius:'16px', padding:'32px', position:'relative', overflow:'hidden', transition:'all .2s'};
-
-  return (
-    <section style={{padding:'40px 0 80px'}}>
-      <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-        <div style={{display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'16px'}} className="md:grid-cols-3 grid-cols-1">
-
-          {/* Talk to Sales */}
-          <div style={cardStyle}
-            onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-            onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
-            <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
-            <div style={{width:'48px', height:'48px', borderRadius:'50%', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'20px'}}>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            </div>
-            <h3 style={{fontSize:'18px', fontWeight:600, color:'#E8F2F5', marginBottom:'10px'}}>Talk to Sales</h3>
-            <p style={{fontSize:'14px', color:'#7FA0AC', lineHeight:1.65, marginBottom:'20px'}}>Get a personalized demo of Insightis for your team. We'll show you exactly how it works with your data sources.</p>
-            <button onClick={onOpenDemo} style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'13px', fontWeight:600, color:'#fff', background:'linear-gradient(135deg,#07807E,#09A09D)', borderRadius:'999px', border:'none', cursor:'pointer', fontFamily:'Geist,sans-serif'}}>
-              Book a Demo
-            </button>
-            <p style={{fontSize:'11px', color:'#6E8D9A', fontFamily:'Geist Mono,monospace', marginTop:'14px'}}>Typically responds within 2 hours</p>
-          </div>
-
-          {/* Get Support */}
-          <div style={cardStyle}
-            onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-            onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
-            <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
-            <div style={{width:'48px', height:'48px', borderRadius:'50%', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'20px'}}>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
-            </div>
-            <h3 style={{fontSize:'18px', fontWeight:600, color:'#E8F2F5', marginBottom:'10px'}}>Get Support</h3>
-            <p style={{fontSize:'14px', color:'#7FA0AC', lineHeight:1.65, marginBottom:'20px'}}>Already using Insightis? Our support team can help with setup, integrations, troubleshooting, and best practices.</p>
-            <button onClick={onOpenSupport} style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'13px', fontWeight:600, color:'#E8F2F5', background:'transparent', borderRadius:'999px', border:'1px solid rgba(255,255,255,.12)', cursor:'pointer', fontFamily:'Geist,sans-serif', transition:'all .15s'}}
-              onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.4)';e.currentTarget.style.color='#0EC4C1';}}
-              onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.12)';e.currentTarget.style.color='#E8F2F5';}}>
-              Open Support Ticket
-            </button>
-            <p style={{fontSize:'11px', color:'#6E8D9A', fontFamily:'Geist Mono,monospace', marginTop:'14px'}}>Pro & Team: priority support included</p>
-          </div>
-
-          {/* Help Center */}
-          <div style={cardStyle}
-            onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-            onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
-            <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
-            <div style={{width:'48px', height:'48px', borderRadius:'50%', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'20px'}}>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            </div>
-            <h3 style={{fontSize:'18px', fontWeight:600, color:'#E8F2F5', marginBottom:'10px'}}>Help Center</h3>
-            <p style={{fontSize:'14px', color:'#7FA0AC', lineHeight:1.65, marginBottom:'20px'}}>Browse our knowledge base for guides, FAQs, troubleshooting tips, and everything you need to get the most out of Insightis.</p>
-            <a href="../Resources/Contact Support.html" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'13px', fontWeight:600, color:'#fff', background:'linear-gradient(135deg,#07807E,#09A09D)', borderRadius:'999px', border:'none', cursor:'pointer', fontFamily:'Geist,sans-serif', textDecoration:'none'}}>
-              Visit Help Center
-            </a>
-            <p style={{fontSize:'11px', color:'#6E8D9A', fontFamily:'Geist Mono,monospace', marginTop:'14px'}}>Guides, FAQs & troubleshooting</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── MODAL FORM ── */
-function ModalForm({ open, onClose, type }) {
-  const [submitted, setSubmitted] = useState(false);
-
+/* ── TERMS CONTENT ── */
+function TermsContent() {
+  const [activeSection, setActiveSection] = useState('acceptance');
+  const sections = [
+    { id: 'acceptance', title: 'Acceptance of Terms' },
+    { id: 'description', title: 'Description of Service' },
+    { id: 'account', title: 'Account Registration' },
+    { id: 'acceptable-use', title: 'Acceptable Use' },
+    { id: 'data-integrations', title: 'Data & Integrations' },
+    { id: 'intellectual-property', title: 'Intellectual Property' },
+    { id: 'billing', title: 'Subscription & Billing' },
+    { id: 'availability', title: 'Service Availability' },
+    { id: 'liability', title: 'Limitation of Liability' },
+    { id: 'indemnification', title: 'Indemnification' },
+    { id: 'termination', title: 'Termination' },
+    { id: 'governing-law', title: 'Governing Law' },
+    { id: 'changes', title: 'Changes to Terms' },
+    { id: 'contact', title: 'Contact Us' },
+  ];
   useEffect(() => {
-    if (open) { setSubmitted(false); document.body.style.overflow = 'hidden'; }
-    else { document.body.style.overflow = ''; }
-    return () => { document.body.style.overflow = ''; };
-  }, [open]);
-
-  if (!open) return null;
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => { setSubmitted(false); onClose(); }, 2500);
-  };
-
-  const inputStyle = {
-    width:'100%', background:'rgba(255,255,255,.04)', border:'1px solid rgba(255,255,255,.08)',
-    borderRadius:'10px', padding:'12px 16px', fontSize:'14px', color:'#E8F2F5',
-    fontFamily:'Geist,sans-serif', outline:'none', transition:'border-color .15s',
-  };
-  const labelStyle = {
-    display:'block', fontSize:'11px', fontWeight:600, letterSpacing:'.08em',
-    textTransform:'uppercase', color:'#7FA0AC', fontFamily:'Geist Mono,monospace',
-    marginBottom:'6px',
-  };
-  const selectStyle = {...inputStyle, appearance:'none', backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237FA0AC' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E\")", backgroundRepeat:'no-repeat', backgroundPosition:'right 16px center'};
-
-  const isDemo = type === 'demo';
+    const observer = new IntersectionObserver(
+      entries => { entries.forEach(e => { if (e.isIntersecting) setActiveSection(e.target.id); }); },
+      { rootMargin: '-10% 0px -80% 0px', threshold: 0 }
+    );
+    sections.forEach(s => { const el = document.getElementById(s.id); if (el) observer.observe(el); });
+    return () => observer.disconnect();
+  }, []);
+  const sectionStyle = { marginBottom: '48px', scrollMarginTop: '100px' };
+  const h2Style = { fontSize: '20px', fontWeight: 600, color: '#E8F2F5', marginBottom: '16px', letterSpacing: '-.01em' };
+  const pStyle = { fontSize: '15px', color: 'rgba(255,255,255,.55)', lineHeight: 1.8, marginBottom: '14px' };
+  const ulStyle = { fontSize: '15px', color: 'rgba(255,255,255,.55)', lineHeight: 1.8, paddingLeft: '24px', marginBottom: '14px', listStyleType: 'disc' };
 
   return (
-    <div style={{position:'fixed', inset:0, zIndex:9999, display:'flex', alignItems:'center', justifyContent:'center', padding:'24px'}}
-      onClick={onClose}>
-      <div style={{position:'absolute', inset:0, background:'rgba(0,0,0,.7)', backdropFilter:'blur(6px)'}}/>
-      <div style={{position:'relative', width:'100%', maxWidth:'520px', maxHeight:'90vh', overflowY:'auto', background:'#0D1117', border:'1px solid rgba(255,255,255,.08)', borderRadius:'20px', padding:'36px'}}
-        onClick={e => e.stopPropagation()}>
-        {/* Close button */}
-        <button onClick={onClose} style={{position:'absolute', top:'16px', right:'16px', background:'none', border:'none', cursor:'pointer', padding:'4px', color:'#7FA0AC'}}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
+    <section style={{position:'relative'}}>
+      {/* Hero */}
+      <div style={{padding:'120px 0 60px'}}>
+        <div style={{maxWidth:'800px', margin:'0 auto', padding:'0 24px', textAlign:'center'}}>
+          <h1 className="fu1" style={{fontSize:'clamp(32px,5vw,48px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'16px', color:'#E8F2F5'}}>Terms of Service</h1>
+          <p className="fu2" style={{fontSize:'14px', color:'rgba(255,255,255,.35)', fontFamily:'Geist Mono, monospace', marginBottom:'20px'}}>Effective Date: April 6, 2026</p>
+          <p className="fu3" style={pStyle}>These Terms of Service govern your access to and use of the Insightis platform, an AI-powered analytics workspace developed and operated by Devart. By accessing or using Insightis, you agree to be bound by these Terms. Please read them carefully before using the Service.</p>
+        </div>
+      </div>
 
-        {/* Header */}
-        <div style={{marginBottom:'28px'}}>
-          <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>
-              {isDemo ? 'Demo Request' : 'Support Ticket'}
-            </span>
-          </div>
-          <h2 style={{fontSize:'24px', fontWeight:500, color:'#fff', letterSpacing:'-.02em'}}>
-            {isDemo ? 'Book a personalized demo' : 'Submit a support ticket'}
-          </h2>
-          <p style={{fontSize:'14px', color:'rgba(255,255,255,.45)', marginTop:'8px', lineHeight:1.6}}>
-            {isDemo ? 'Tell us about your team and we\'ll tailor the demo to your needs.' : 'Describe your issue and our team will get back to you as soon as possible.'}
-          </p>
+      {/* Two-column: TOC + Content */}
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px 100px', display: 'flex', gap: '56px', alignItems: 'flex-start' }}>
+
+        {/* Sticky TOC */}
+        <div className="hidden md:block" style={{ width: '200px', flexShrink: 0, position: 'sticky', top: '90px' }}>
+          <p style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '.12em', textTransform: 'uppercase', color: '#7878A8', marginBottom: '16px' }}>On this page</p>
+          <nav style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+            {sections.map(s => (
+              <a key={s.id} href={`#${s.id}`} style={{ fontSize: '13px', color: activeSection === s.id ? '#0EC4C1' : 'rgba(255,255,255,.4)', padding: '5px 0 5px 12px', borderLeft: `2px solid ${activeSection === s.id ? '#07807E' : 'rgba(255,255,255,.08)'}`, transition: 'all .15s', textDecoration: 'none', display: 'block', lineHeight: 1.5 }}>
+                {s.title}
+              </a>
+            ))}
+          </nav>
         </div>
 
-        <form onSubmit={handleSubmit} style={{display:'flex', flexDirection:'column', gap:'18px'}}>
-          <div>
-            <label style={labelStyle}>Name</label>
-            <input type="text" placeholder="Your name" style={inputStyle}
-              onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='rgba(255,255,255,.08)'} />
-          </div>
-          <div>
-            <label style={labelStyle}>Work Email</label>
-            <input type="email" placeholder="you@company.com" style={inputStyle}
-              onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='rgba(255,255,255,.08)'} />
-          </div>
-          <div>
-            <label style={labelStyle}>Company</label>
-            <input type="text" placeholder="Your company name" style={inputStyle}
-              onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='rgba(255,255,255,.08)'} />
-          </div>
+        {/* Content */}
+        <div style={{ flex: 1, minWidth: 0 }}>
 
-          {isDemo ? (
-            <>
-              <div>
-                <label style={labelStyle}>Job Title</label>
-                <input type="text" placeholder="e.g. Data Lead, CTO" style={inputStyle}
-                  onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='rgba(255,255,255,.08)'} />
-              </div>
-              <div>
-                <label style={labelStyle}>Team Size</label>
-                <select style={selectStyle}
-                  onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='rgba(255,255,255,.08)'}>
-                  <option value="" style={{background:'#0D1117'}}>Select team size</option>
-                  <option value="1-10" style={{background:'#0D1117'}}>1–10</option>
-                  <option value="11-50" style={{background:'#0D1117'}}>11–50</option>
-                  <option value="51-200" style={{background:'#0D1117'}}>51–200</option>
-                  <option value="200+" style={{background:'#0D1117'}}>200+</option>
-                </select>
-              </div>
-              <div>
-                <label style={labelStyle}>Message <span style={{fontWeight:400, textTransform:'none', letterSpacing:0}}>(optional)</span></label>
-                <textarea placeholder="Anything specific you'd like us to cover?" rows={3} style={{...inputStyle, resize:'vertical'}}
-                  onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='rgba(255,255,255,.08)'} />
-              </div>
-            </>
-          ) : (
-            <>
-              <div>
-                <label style={labelStyle}>Product</label>
-                <select style={selectStyle}
-                  onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='rgba(255,255,255,.08)'}>
-                  <option value="" style={{background:'#0D1117'}}>Select product</option>
-                  <option value="insightis" style={{background:'#0D1117'}}>Insightis</option>
-                  <option value="ai-connect" style={{background:'#0D1117'}}>AI Connect</option>
-                  <option value="other" style={{background:'#0D1117'}}>Other</option>
-                </select>
-              </div>
-              <div>
-                <label style={labelStyle}>Priority</label>
-                <select style={selectStyle}
-                  onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='rgba(255,255,255,.08)'}>
-                  <option value="" style={{background:'#0D1117'}}>Select priority</option>
-                  <option value="low" style={{background:'#0D1117'}}>Low</option>
-                  <option value="medium" style={{background:'#0D1117'}}>Medium</option>
-                  <option value="high" style={{background:'#0D1117'}}>High</option>
-                  <option value="critical" style={{background:'#0D1117'}}>Critical</option>
-                </select>
-              </div>
-              <div>
-                <label style={labelStyle}>Subject</label>
-                <input type="text" placeholder="Brief summary of your issue" style={inputStyle}
-                  onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='rgba(255,255,255,.08)'} />
-              </div>
-              <div>
-                <label style={labelStyle}>Description</label>
-                <textarea placeholder="Describe the issue in detail..." rows={4} style={{...inputStyle, resize:'vertical'}}
-                  onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='rgba(255,255,255,.08)'} />
-              </div>
-            </>
-          )}
+        {/* 1. Acceptance of Terms */}
+        <div id="acceptance" style={sectionStyle}>
+          <h2 style={h2Style}>1. Acceptance of Terms</h2>
+          <p style={pStyle}>By creating an account, accessing, or using Insightis (the "Service"), you acknowledge that you have read, understood, and agree to be bound by these Terms of Service and our Privacy Policy. If you are using the Service on behalf of an organization, you represent and warrant that you have the authority to bind that organization to these Terms.</p>
+          <p style={pStyle}>You must be at least 16 years of age to use the Service. If you are under 16, you may not create an account or use Insightis in any capacity. By using the Service, you represent that you meet this age requirement.</p>
+        </div>
 
-          <button type="submit" style={{width:'100%', padding:'14px', fontSize:'14px', fontWeight:600, color:'#fff', background:'linear-gradient(135deg,#07807E,#09A09D)', borderRadius:'10px', border:'none', cursor:'pointer', fontFamily:'Geist,sans-serif', transition:'opacity .15s', marginTop:'4px'}}
-            onMouseEnter={e=>e.currentTarget.style.opacity='0.9'}
-            onMouseLeave={e=>e.currentTarget.style.opacity='1'}>
-            {isDemo ? 'Request Demo' : 'Submit Ticket'}
-          </button>
-          {submitted && (
-            <p style={{textAlign:'center', fontSize:'14px', color:'#22C55E', fontWeight:500}}>
-              {isDemo ? 'Demo request sent! We\'ll be in touch shortly.' : 'Ticket submitted! Our team will respond soon.'}
+        {/* 2. Description of Service */}
+        <div id="description" style={sectionStyle}>
+          <h2 style={h2Style}>2. Description of Service</h2>
+          <p style={pStyle}>Insightis is an AI analytics workspace that enables users to connect their business data sources, ask questions in natural language, and receive accurate, data-driven answers. The Service includes, but is not limited to:</p>
+          <ul style={ulStyle}>
+            <li>AI Chat for natural language data queries</li>
+            <li>Integration with 200+ data sources including databases, SaaS platforms, spreadsheets, and cloud warehouses</li>
+            <li>Semantic Layer for certified, consistent metric definitions across your organization</li>
+            <li>Insights Engine for automated root-cause analysis and trend detection</li>
+            <li>Reports for saving, scheduling, and sharing analytical outputs</li>
+            <li>Memory and contextual learning capabilities that adapt to your business over time</li>
+          </ul>
+          <p style={pStyle}>The specific features available to you may vary depending on your subscription plan. Feature availability and limits are described on our <a href="../Pricing.html" style={{color:'#0EC4C1', textDecoration:'none', borderBottom:'1px solid rgba(14,196,193,.3)'}}>Pricing</a> page.</p>
+        </div>
+
+        {/* 3. Account Registration and Security */}
+        <div id="account" style={sectionStyle}>
+          <h2 style={h2Style}>3. Account Registration and Security</h2>
+          <p style={pStyle}>To access the Service, you must create an account and provide accurate, complete, and current information. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.</p>
+          <p style={pStyle}>You agree to:</p>
+          <ul style={ulStyle}>
+            <li>Provide truthful and accurate registration information</li>
+            <li>Keep your login credentials secure and confidential</li>
+            <li>Notify Insightis immediately at <a href="mailto:legal@insightis.ai" style={{color:'#0EC4C1', textDecoration:'none', borderBottom:'1px solid rgba(14,196,193,.3)'}}>legal@insightis.ai</a> if you suspect any unauthorized access to or use of your account</li>
+            <li>Not share your account credentials with third parties</li>
+          </ul>
+          <p style={pStyle}>Insightis will not be liable for any loss or damage arising from your failure to protect your account credentials.</p>
+        </div>
+
+        {/* 4. Acceptable Use */}
+        <div id="acceptable-use" style={sectionStyle}>
+          <h2 style={h2Style}>4. Acceptable Use</h2>
+          <p style={pStyle}>You agree to use the Service only for lawful purposes and in accordance with these Terms. You shall not:</p>
+          <ul style={ulStyle}>
+            <li>Use the Service in any way that violates applicable local, national, or international law or regulation</li>
+            <li>Attempt to reverse engineer, decompile, disassemble, or otherwise attempt to discover the source code or underlying algorithms of the Service</li>
+            <li>Access or attempt to access the Service through any unauthorized means, including automated bots, scraping tools, or hacking techniques</li>
+            <li>Interfere with or disrupt the integrity or performance of the Service or its underlying infrastructure</li>
+            <li>Use the Service to transmit any malware, viruses, or other harmful code</li>
+            <li>Resell, sublicense, or redistribute access to the Service without prior written consent from Insightis</li>
+            <li>Use the Service to store or process data that you do not have the legal right to use</li>
+          </ul>
+          <p style={pStyle}>Insightis reserves the right to investigate and take appropriate action against anyone who violates these provisions, including suspending or terminating access to the Service.</p>
+        </div>
+
+        {/* 5. Data and Integrations */}
+        <div id="data-integrations" style={sectionStyle}>
+          <h2 style={h2Style}>5. Data and Integrations</h2>
+          <p style={pStyle}>You retain full ownership of all data that you connect to, upload to, or generate through the Service ("Your Data"). Insightis does not claim ownership over Your Data.</p>
+          <p style={pStyle}>By using the Service, you grant Insightis a limited, non-exclusive, worldwide license to access, process, analyze, and display Your Data solely for the purpose of providing and improving the Service. This license is strictly limited to what is necessary to deliver the analytics functionality you have requested.</p>
+          <p style={pStyle}>You represent and warrant that:</p>
+          <ul style={ulStyle}>
+            <li>You have all necessary rights, permissions, and consents to connect your data sources to Insightis</li>
+            <li>Your use of the Service in connection with Your Data does not violate any applicable data protection laws, third-party agreements, or privacy regulations</li>
+            <li>You are solely responsible for the accuracy, quality, and legality of Your Data</li>
+          </ul>
+          <p style={pStyle}>For details on how we handle, store, and protect Your Data, please refer to our <a href="Privacy.html" style={{color:'#0EC4C1', textDecoration:'none', borderBottom:'1px solid rgba(14,196,193,.3)'}}>Privacy Policy</a> and <a href="Security.html" style={{color:'#0EC4C1', textDecoration:'none', borderBottom:'1px solid rgba(14,196,193,.3)'}}>Security</a> page.</p>
+        </div>
+
+        {/* 6. Intellectual Property */}
+        <div id="intellectual-property" style={sectionStyle}>
+          <h2 style={h2Style}>6. Intellectual Property</h2>
+          <p style={pStyle}>The Service, including its software, design, architecture, algorithms, documentation, trademarks, and all related intellectual property, is and remains the exclusive property of Devart and its licensors. Nothing in these Terms grants you any right, title, or interest in the Service beyond the limited right to use it in accordance with these Terms.</p>
+          <p style={pStyle}>You retain ownership of Your Data and any analytical outputs (such as reports and saved answers) generated through the Service using Your Data.</p>
+          <p style={pStyle}>If you provide feedback, suggestions, or ideas regarding the Service, you grant Insightis a perpetual, irrevocable, royalty-free, worldwide license to use, modify, and incorporate such feedback into the Service without any obligation or compensation to you.</p>
+        </div>
+
+        {/* 7. Subscription and Billing */}
+        <div id="billing" style={sectionStyle}>
+          <h2 style={h2Style}>7. Subscription and Billing</h2>
+          <p style={pStyle}>Insightis offers various subscription plans as described on our <a href="../Pricing.html" style={{color:'#0EC4C1', textDecoration:'none', borderBottom:'1px solid rgba(14,196,193,.3)'}}>Pricing</a> page. By subscribing to a paid plan, you agree to pay all applicable fees in accordance with the billing terms presented at the time of purchase.</p>
+          <ul style={ulStyle}>
+            <li><strong style={{color:'rgba(255,255,255,.7)'}}>Auto-Renewal:</strong> Paid subscriptions automatically renew at the end of each billing cycle (monthly or annually) unless you cancel before the renewal date.</li>
+            <li><strong style={{color:'rgba(255,255,255,.7)'}}>Cancellation:</strong> You may cancel your subscription at any time through your account settings. Cancellation takes effect at the end of the current billing period. You will continue to have access to paid features until the end of that period.</li>
+            <li><strong style={{color:'rgba(255,255,255,.7)'}}>Refunds:</strong> Fees are generally non-refundable except where required by applicable law. If you believe you are entitled to a refund, please contact us at <a href="mailto:legal@insightis.ai" style={{color:'#0EC4C1', textDecoration:'none', borderBottom:'1px solid rgba(14,196,193,.3)'}}>legal@insightis.ai</a>.</li>
+            <li><strong style={{color:'rgba(255,255,255,.7)'}}>Price Changes:</strong> Insightis reserves the right to modify pricing. We will provide at least 30 days' notice before any price increase takes effect on your account.</li>
+          </ul>
+        </div>
+
+        {/* 8. Service Availability and Modifications */}
+        <div id="availability" style={sectionStyle}>
+          <h2 style={h2Style}>8. Service Availability and Modifications</h2>
+          <p style={pStyle}>Insightis uses commercially reasonable efforts to maintain high availability and uptime for the Service. However, we do not guarantee uninterrupted or error-free access. The Service may be temporarily unavailable due to scheduled maintenance, updates, or circumstances beyond our reasonable control.</p>
+          <p style={pStyle}>We reserve the right to modify, update, or discontinue features of the Service at any time. For material changes that significantly affect your use of the Service, we will provide reasonable advance notice (typically at least 30 days) via email or in-app notification.</p>
+        </div>
+
+        {/* 9. Limitation of Liability */}
+        <div id="liability" style={sectionStyle}>
+          <h2 style={h2Style}>9. Limitation of Liability</h2>
+          <p style={pStyle}>THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
+          <p style={pStyle}>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, INSIGHTIS AND ITS AFFILIATES, OFFICERS, DIRECTORS, EMPLOYEES, AND AGENTS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA, USE, OR GOODWILL, ARISING OUT OF OR IN CONNECTION WITH YOUR ACCESS TO OR USE OF THE SERVICE.</p>
+          <p style={pStyle}>IN NO EVENT SHALL THE TOTAL LIABILITY OF INSIGHTIS EXCEED THE AGGREGATE AMOUNT OF FEES PAID BY YOU TO INSIGHTIS DURING THE TWELVE (12) MONTHS IMMEDIATELY PRECEDING THE EVENT GIVING RISE TO THE CLAIM.</p>
+        </div>
+
+        {/* 10. Indemnification */}
+        <div id="indemnification" style={sectionStyle}>
+          <h2 style={h2Style}>10. Indemnification</h2>
+          <p style={pStyle}>You agree to indemnify, defend, and hold harmless Insightis, Devart, and their respective officers, directors, employees, and agents from and against any and all claims, damages, losses, liabilities, costs, and expenses (including reasonable attorneys' fees) arising out of or related to:</p>
+          <ul style={ulStyle}>
+            <li>Your use or misuse of the Service</li>
+            <li>Your violation of these Terms</li>
+            <li>Your violation of any applicable law or regulation</li>
+            <li>Your Data or the connection of your data sources to the Service</li>
+            <li>Any third-party claims related to your use of analytical outputs generated by the Service</li>
+          </ul>
+        </div>
+
+        {/* 11. Termination */}
+        <div id="termination" style={sectionStyle}>
+          <h2 style={h2Style}>11. Termination</h2>
+          <p style={pStyle}>Either party may terminate these Terms at any time. You may terminate by closing your account through your account settings or by contacting us at <a href="mailto:legal@insightis.ai" style={{color:'#0EC4C1', textDecoration:'none', borderBottom:'1px solid rgba(14,196,193,.3)'}}>legal@insightis.ai</a>.</p>
+          <p style={pStyle}>Insightis may suspend or terminate your access to the Service immediately, without prior notice, if:</p>
+          <ul style={ulStyle}>
+            <li>You breach any provision of these Terms</li>
+            <li>Your use of the Service poses a security risk to the Service or other users</li>
+            <li>We are required to do so by law</li>
+            <li>Your account has been inactive for an extended period</li>
+          </ul>
+          <p style={pStyle}>Upon termination, you will have a 30-day window to export Your Data from the Service. After this period, we may delete Your Data in accordance with our data retention policies. Sections of these Terms that by their nature should survive termination will remain in effect.</p>
+        </div>
+
+        {/* 12. Governing Law and Dispute Resolution */}
+        <div id="governing-law" style={sectionStyle}>
+          <h2 style={h2Style}>12. Governing Law and Dispute Resolution</h2>
+          <p style={pStyle}>These Terms shall be governed by and construed in accordance with the laws of the Czech Republic, without regard to its conflict of law provisions. Devart, the company behind Insightis, is incorporated and headquartered in the Czech Republic.</p>
+          <p style={pStyle}>Any disputes arising out of or in connection with these Terms shall first be attempted to be resolved through good-faith negotiation between the parties. If a resolution cannot be reached within 30 days, the dispute shall be submitted to the competent courts of the Czech Republic.</p>
+        </div>
+
+        {/* 13. Changes to Terms */}
+        <div id="changes" style={sectionStyle}>
+          <h2 style={h2Style}>13. Changes to Terms</h2>
+          <p style={pStyle}>Insightis reserves the right to update or modify these Terms at any time. When we make material changes, we will provide at least 30 days' advance notice by posting the updated Terms on our website and notifying you via email or in-app notification.</p>
+          <p style={pStyle}>Your continued use of the Service after the effective date of the revised Terms constitutes your acceptance of the changes. If you do not agree with the updated Terms, you must discontinue your use of the Service and close your account before the changes take effect.</p>
+        </div>
+
+        {/* 14. Contact Us */}
+        <div id="contact" style={sectionStyle}>
+          <h2 style={h2Style}>14. Contact Us</h2>
+          <p style={pStyle}>If you have any questions, concerns, or requests regarding these Terms of Service, please contact us at:</p>
+          <div style={{background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)', borderRadius:'12px', padding:'20px 24px', marginTop:'8px'}}>
+            <p style={{fontSize:'15px', color:'rgba(255,255,255,.55)', lineHeight:1.8, margin:0}}>
+              <strong style={{color:'rgba(255,255,255,.7)'}}>Insightis Legal Team</strong><br/>
+              Email: <a href="mailto:legal@insightis.ai" style={{color:'#0EC4C1', textDecoration:'none', borderBottom:'1px solid rgba(14,196,193,.3)'}}>legal@insightis.ai</a><br/>
+              Operated by Devart, Czech Republic
             </p>
-          )}
-        </form>
-      </div>
-    </div>
-  );
-}
-
-/* ── QUICK LINKS ── */
-function QuickLinks() {
-  const links = [
-    {
-      icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>,
-      title: 'Video Guides',
-      desc: 'Step-by-step walkthroughs to help you get started and master advanced features.',
-      href: '../Resources/Documentation.html',
-    },
-    {
-      icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>,
-      title: 'Documentation',
-      desc: 'In-depth technical docs, API references, and integration guides.',
-      href: '../Resources/Documentation.html',
-    },
-    {
-      icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
-      title: 'Community',
-      desc: 'Join discussions, share ideas, and connect with other Insightis users.',
-      href: '../Resources/Community.html',
-    },
-    {
-      icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>,
-      title: 'Roadmap',
-      desc: 'See what\'s coming next and vote on features that matter to you.',
-      href: '../Resources/Roadmap.html',
-    },
-  ];
-
-  return (
-    <section style={{padding:'60px 0 80px'}}>
-      <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-        <div style={{textAlign:'center', marginBottom:'40px'}}>
-          <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Resources</span>
           </div>
-          <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>Find answers faster</h2>
         </div>
-        <div style={{display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:'16px'}} className="md:grid-cols-4 sm:grid-cols-2 grid-cols-1">
-          {links.map((l, i) => (
-            <a key={i} href={l.href} style={{background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)', borderRadius:'16px', padding:'28px', position:'relative', overflow:'hidden', transition:'all .2s', textDecoration:'none', display:'block'}}
-              onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-              onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
-              <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
-              <div style={{width:'44px', height:'44px', borderRadius:'50%', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'16px'}}>
-                {l.icon}
-              </div>
-              <h3 style={{fontSize:'16px', fontWeight:600, color:'#E8F2F5', marginBottom:'8px'}}>{l.title}</h3>
-              <p style={{fontSize:'13px', color:'#7FA0AC', lineHeight:1.6}}>{l.desc}</p>
-            </a>
-          ))}
+
         </div>
       </div>
     </section>
   );
 }
 
-/* ── OUR OFFICES ── */
-function OurOffices() {
-  const offices = [
-    {
-      code: 'us',
-      country: 'United States',
-      lines: ['3422 Old Capitol Trl', 'Wilmington,', 'Delaware, USA', '19808'],
-    },
-    {
-      code: 'cz',
-      country: 'Czech Republic',
-      lines: ['2230/44 Na Žertvách Str.', 'Prague', 'Czech Republic', '180 00'],
-    },
-    {
-      code: 'sk',
-      country: 'Slovakia',
-      lines: ['Aston Building Werferova 1,', 'Košice', 'Slovakia', '04011'],
-    },
-    {
-      code: 'ua',
-      country: 'Ukraine',
-      lines: ['226A Kulparkivska Str.', 'Lviv', 'Ukraine', '79071'],
-    },
-    {
-      code: 'hk',
-      country: 'Hong Kong',
-      lines: ['No. 5, 17/F', 'Strand 50, 50 Bonham Strand', 'Sheung Wan'],
-    },
-  ];
-
-  return (
-    <section style={{padding:'40px 0 60px'}}>
-      <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-        <h2 style={{fontSize:'20px', fontWeight:600, color:'#E8F2F5', marginBottom:'32px'}}>Our offices</h2>
-        <div style={{display:'grid', gridTemplateColumns:'repeat(5,1fr)', gap:'24px'}}>
-          {offices.map((o, i) => (
-            <div key={i}>
-              <div style={{width:'36px', height:'36px', borderRadius:'50%', overflow:'hidden', border:'1px solid rgba(255,255,255,.1)', marginBottom:'14px', flexShrink:0}}>
-                <img src={`https://flagcdn.com/w80/${o.code}.png`} alt={o.country} style={{width:'100%', height:'100%', objectFit:'cover'}} />
-              </div>
-              <p style={{fontSize:'14px', fontWeight:600, color:'#E8F2F5', marginBottom:'10px'}}>{o.country}</p>
-              {o.lines.map((line, j) => (
-                <p key={j} style={{fontSize:'13px', color:'#6E8D9A', lineHeight:1.7, fontFamily:'Geist Mono,monospace'}}>{line}</p>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── CTA BANNER ── */
-function CtaBanner() {
-  const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!email) return;
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
-  };
-
-  return (
-    <section style={{padding:'8px 0 64px'}}>
-      <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-        <div style={{position:'relative', overflow:'hidden', borderRadius:'16px', padding:'32px', background:'linear-gradient(135deg, rgba(18,18,31,.95) 0%, rgba(13,13,26,.98) 50%, rgba(18,18,31,.95) 100%)', border:'1px solid rgba(30,30,48,1)', display:'flex', flexWrap:'wrap', alignItems:'center', justifyContent:'space-between', gap:'20px'}}>
-          <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
-          <div style={{flexShrink:0}}>
-            <h3 style={{fontSize:'clamp(18px,2.5vw,26px)', fontWeight:500, color:'#fff', letterSpacing:'-.02em', lineHeight:1.3, marginBottom:'6px'}}>
-              Still have questions?
-            </h3>
-            <p style={{fontSize:'13px', color:'rgba(255,255,255,.4)', fontFamily:'Geist Mono,monospace'}}>Drop your email — we'll get back to you ASAP.</p>
-          </div>
-          {!submitted ? (
-            <form onSubmit={handleSubmit} style={{display:'flex', alignItems:'center', flex:'1 1 400px', maxWidth:'460px', background:'rgba(13,13,26,1)', border:'1px solid rgba(46,46,64,1)', borderRadius:'12px', overflow:'hidden', transition:'border-color .15s'}}
-              onFocus={e=>e.currentTarget.style.borderColor='rgba(7,128,126,.6)'}
-              onBlur={e=>e.currentTarget.style.borderColor='rgba(46,46,64,1)'}>
-              <input
-                type="email"
-                placeholder="you@company.com"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                required
-                style={{flex:1, background:'transparent', border:'none', padding:'12px 16px', fontSize:'14px', color:'#E8F2F5', fontFamily:'Geist,sans-serif', outline:'none', minWidth:0}}
-              />
-              <button type="submit" style={{display:'inline-flex', alignItems:'center', gap:'6px', margin:'6px', padding:'8px 20px', fontSize:'13px', fontWeight:600, color:'#fff', background:'linear-gradient(135deg,#07807E,#09A09D)', borderRadius:'8px', border:'none', cursor:'pointer', fontFamily:'Geist,sans-serif', whiteSpace:'nowrap', flexShrink:0, transition:'box-shadow .15s'}}
-                onMouseEnter={e=>e.currentTarget.style.boxShadow='0 0 20px rgba(7,128,126,.45)'}
-                onMouseLeave={e=>e.currentTarget.style.boxShadow='none'}>
-                Get in Touch
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-              </button>
-            </form>
-          ) : (
-            <div style={{display:'flex', alignItems:'center', gap:'8px'}}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              <p style={{fontSize:'14px', color:'#22C55E', fontWeight:500}}>Thanks! We'll be in touch shortly.</p>
-            </div>
-          )}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── SOCIAL ICONS ── */
+/* ── FOOTER ── */
 function TwitterXIcon({ size = 16, color = "#A0A0B8" }) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill={color}><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>;
 }
@@ -775,7 +446,6 @@ function TikTokIcon({ size = 16, color = "#A0A0B8" }) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill={color}><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.43v-7.15a8.16 8.16 0 005.58 2.17v-3.4a4.85 4.85 0 01-1-.16l.01-.02V6.69h.99z"/></svg>;
 }
 
-/* ── FOOTER ── */
 function Footer() {
   const linkUrls = {
     'AI Chat': '../Platform/AI Chat.html',
@@ -786,10 +456,16 @@ function Footer() {
     'Memory & Storage': '../Platform/Memory & Storage.html',
     'For RevOps & BizOps': '../Solutions/RevOps BizOps.html',
     'For Founders & CEOs': '../Solutions/Founders CEOs.html',
-    'For Marketing Teams': '../Solutions/Marketing Teams.html',
+    'For CMOs & Marketers': '../Solutions/Marketing Teams.html',
     'For Product Teams': '../Solutions/Product Teams.html',
     'For Data & Analytics Teams': '../Solutions/Data Analytics Teams.html',
     'For Operations & Finance': '../Solutions/Operations Finance.html',
+    'Documentation': '../docs/',
+    'Video Tutorials': 'https://www.youtube.com/@InsightisAI',
+    'Blog': '../blog/',
+    'Support Center': '../Resources/Contact Support.html',
+    'Community': '../Resources/Community.html',
+    'Roadmap': '../Resources/Roadmap.html',
   };
   return (
     <footer className="pt-16 pb-8 border-t border-[#1E1E30]">
@@ -802,7 +478,6 @@ function Footer() {
             <p className="text-xs font-medium text-[#09A09D] uppercase tracking-wider mb-2">AI Analytics Workspace for instant insights</p>
             <p className="text-sm text-[#7878A8] leading-relaxed">Every data has an insight. We help you find them, without the complexity.</p>
           </div>
-
           <div className="md:ml-auto grid grid-cols-2 gap-8 md:flex md:flex-row md:gap-16">
             <div>
               <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Platform</h4>
@@ -812,16 +487,14 @@ function Footer() {
                 ))}
               </ul>
             </div>
-
             <div>
               <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Solutions</h4>
               <ul className="flex flex-col gap-2.5">
-                {['For RevOps & BizOps', 'For Founders & CEOs', 'For Marketing Teams', 'For Product Teams', 'For Data & Analytics Teams', 'For Operations & Finance'].map(link => (
+                {['For RevOps & BizOps', 'For Founders & CEOs', 'For CMOs & Marketers', 'For Product Teams', 'For Data & Analytics Teams', 'For Operations & Finance'].map(link => (
                   <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
               </ul>
             </div>
-
             <div>
               <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Resources</h4>
               <ul className="flex flex-col gap-2.5">
@@ -830,29 +503,27 @@ function Footer() {
                 ))}
               </ul>
             </div>
-
             <div>
               <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Company</h4>
               <ul className="flex flex-col gap-2.5">
                 {[
-                  { label: 'About Insightis', href: 'About Insightis.html' },
+                  { label: 'About Insightis', href: '../Company/About Insightis.html' },
                   { label: 'About Devart', href: 'https://www.devart.com/company/' },
                   { label: 'Careers', href: 'https://www.devart.com/vacancies/' },
-                  { label: 'Contacts', href: 'Contacts.html' },
+                  { label: 'Contacts', href: '../Company/Contacts.html' },
                 ].map(link => (
                   <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
               </ul>
             </div>
-
             <div>
               <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Legal</h4>
               <ul className="flex flex-col gap-2.5">
                 {[
-                  { label: 'Privacy', href: '../Security/Privacy.html' },
-                  { label: 'Terms', href: '../Security/Terms.html' },
-                  { label: 'Security', href: '../Security/Security.html' },
-                  { label: 'Cookie Settings', href: '../Security/Cookie Settings.html' },
+                  { label: 'Privacy', href: 'Privacy.html' },
+                  { label: 'Terms', href: 'Terms.html' },
+                  { label: 'Security', href: 'Security.html' },
+                  { label: 'Cookie Settings', href: 'Cookie Settings.html' },
                 ].map(link => (
                   <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
@@ -860,7 +531,6 @@ function Footer() {
             </div>
           </div>
         </div>
-
         <div className="border-t border-[#1E1E30] pt-6 flex items-center justify-between">
           <p className="text-xs text-[#7878A8]">&copy; Copyright &copy; Devart 2026</p>
           <div className="flex items-center gap-4">
@@ -877,24 +547,13 @@ function Footer() {
 
 /* ── APP ── */
 function App() {
-  const [modalType, setModalType] = useState(null);
-
   return (
     <div>
       <Header />
-      <ContactHero />
-      <ContactOptions onOpenDemo={() => setModalType('demo')} onOpenSupport={() => setModalType('support')} />
-      <QuickLinks />
-      <OurOffices />
-      <CtaBanner />
+      <TermsContent />
       <Footer />
-      <ModalForm open={modalType !== null} onClose={() => setModalType(null)} type={modalType} />
     </div>
   );
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-</script>
-<script defer src="/assets/header-scroll.js"></script>
-</body>
-</html>

@@ -1,205 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="stylesheet" href="/assets/responsive.css">
-<title>Prompt Library — Insightis</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Geist', sans-serif;
-  background: #0A0E13;
-  color: #E8F2F5;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-body::before {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  opacity: .4; mix-blend-mode: overlay;
-}
-
-body::after {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 10% 5%, rgba(10,152,150,.09) 0%, transparent 70%),
-    radial-gradient(ellipse 70% 55% at 85% 0%, rgba(110,60,200,.07) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 60% at 75% 45%, rgba(20,80,200,.05) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 55% at 5% 55%, rgba(160,50,220,.045) 0%, transparent 65%),
-    radial-gradient(ellipse 65% 55% at 50% 90%, rgba(10,152,150,.07) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 45% at 95% 75%, rgba(50,90,240,.04) 0%, transparent 55%),
-    radial-gradient(ellipse 45% 40% at 35% 30%, rgba(200,60,180,.03) 0%, transparent 55%);
-}
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-@keyframes fadeIn { from{opacity:0} to{opacity:1} }
-@keyframes typing { from{width:0} to{width:100%} }
-@keyframes blink  { 0%,100%{opacity:1} 50%{opacity:0} }
-@keyframes slideUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
-@keyframes pulse  { 0%,100%{opacity:.4;transform:scale(.85)} 50%{opacity:1;transform:scale(1)} }
-@keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
-@keyframes slideInRight { from{opacity:0;transform:translateX(24px)} to{opacity:1;transform:translateX(0)} }
-@keyframes cardFadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
-
-.fu0 { animation: fadeUp .7s ease both; }
-.fu1 { animation: fadeUp .7s ease .1s both; }
-.fu2 { animation: fadeUp .7s ease .2s both; }
-.fu3 { animation: fadeUp .7s ease .35s both; }
-.fu4 { animation: fadeUp .7s ease .5s both; }
-
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
-
-/* ── SECTION SPACING ── */
-section { position: relative; }
-
-/* ── PROMPT LIBRARY LAYOUT ── */
-.prompt-layout {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  max-width: 1280px;
-  margin: 0 auto;
-  width: calc(100% - 48px);
-  align-items: start;
-  position: relative;
-  z-index: 1;
-}
-.prompt-sidebar-col {
-  position: sticky;
-  top: 72px;
-  max-height: calc(100vh - 72px);
-  overflow-y: auto;
-  border-right: 1px solid rgba(255,255,255,0.055);
-  padding: 24px 0;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.prompt-sidebar-col::-webkit-scrollbar { display: none; }
-.prompt-content {
-  padding: 24px 0 120px 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  min-width: 0;
-}
-@media (max-width: 900px) {
-  .prompt-layout { grid-template-columns: 1fr; }
-  .prompt-sidebar-col { display: none; }
-  .prompt-content { padding: 16px 0 100px 0; }
-}
-
-/* ── FLOATING CHAT ALIGN TO PROMPTS GRID ── */
-.floating-chat-wrap {
-  max-width: 1280px;
-  margin: 0 auto;
-  width: calc(100% - 48px);
-  padding: 16px 0 20px 292px; /* 260 sidebar + 32 gap */
-}
-.floating-chat-wrap > div {
-  max-width: 520px;
-  margin: 0 auto;
-}
-@media (max-width: 900px) {
-  .floating-chat-wrap { padding: 16px 0 20px; }
-  .floating-chat-wrap > div { max-width: 100%; }
-}
-
-/* ── PROMPT CARD ── */
-.prompt-card {
-  background: rgba(13,17,23,.6);
-  border: 1px solid rgba(255,255,255,.07);
-  border-radius: 12px;
-  padding: 18px 22px;
-  transition: border-color .2s, transform .2s, background .2s;
-  animation: cardFadeIn .35s ease both;
-}
-.prompt-card:hover {
-  border-color: rgba(9,160,157,.3);
-  background: rgba(13,17,23,.8);
-}
-.prompt-card .view-btn {
-  color: #0EC4C1;
-  font-size: 13px;
-  font-weight: 500;
-  background: none;
-  border: none;
-  cursor: pointer;
-  white-space: nowrap;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: 'Geist', sans-serif;
-  padding: 4px 0;
-  transition: gap .15s;
-}
-.prompt-card .view-btn:hover { gap: 10px; }
-
-.team-pill {
-  display: inline-block;
-  font-size: 10.5px;
-  padding: 2px 8px;
-  border-radius: 4px;
-  border: 1px solid rgba(9,160,157,.22);
-  background: rgba(9,160,157,.06);
-  color: #8DC9CB;
-  letter-spacing: .02em;
-  font-family: 'Geist Mono', monospace;
-}
-
-.ds-icon-wrap {
-  width: 18px; height: 18px;
-  display: inline-flex; align-items: center; justify-content: center;
-  border-radius: 4px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.05);
-}
-
-/* ── FILTER CHECKBOX ── */
-.filter-item {
-  display: flex; align-items: center; gap: 9px;
-  padding: 5px 16px; cursor: pointer;
-  transition: background .12s;
-  font-size: 13px;
-  color: #7FA0AC;
-  font-family: 'Geist', sans-serif;
-  user-select: none;
-}
-.filter-item:hover { background: rgba(255,255,255,0.04); color: #E8F2F5; }
-.filter-item.checked { color: #E8F2F5; }
-.filter-checkbox {
-  width: 13px; height: 13px;
-  border-radius: 3px;
-  border: 1px solid rgba(255,255,255,.18);
-  background: transparent;
-  display: inline-flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  transition: border-color .15s, background .15s;
-}
-.filter-item.checked .filter-checkbox {
-  border-color: #0EC4C1;
-  background: #0EC4C1;
-}
-</style>
-</head>
-<body>
-
-<div id="root"></div>
-
-<script type="text/babel">
-const { useState, useEffect, useRef } = React;
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import ReactDOM from 'react-dom/client';
+import '../app.css';
 
 /* ── HEADER ── */
 function MenuIcon({ size = 24, color = "#fff" }) {
@@ -501,407 +302,6 @@ function Header() {
   );
 }
 
-/* ── INSIGHTIS LOGO MARK SVG ── */
-function InsightisLogoMark({ size = 60, opacity = 1 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" style={{opacity}}>
-      <path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="#0EC4C1"/>
-    </svg>
-  );
-}
-
-/* ── PROMPT LIBRARY HERO ── */
-function PromptLibraryHero() {
-  return (
-    <section style={{padding:'80px 0 40px', textAlign:'center', position:'relative'}}>
-      <div style={{maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
-        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid rgba(255,255,255,.07)', background:'rgba(255,255,255,.03)', fontSize:'12px', color:'#7FA0AC', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
-          ✦ PROMPT LIBRARY
-        </div>
-        <h1 className="fu1" style={{fontSize:'clamp(36px,5vw,56px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'#E8F2F5', marginBottom:'20px'}}>
-          Prompts for every team.
-        </h1>
-        <p className="fu2" style={{fontSize:'17px', color:'#7FA0AC', lineHeight:1.6, maxWidth:'560px', margin:'0 auto'}}>
-          Curated prompt templates for analytics, ops, and go-to-market teams — connected to the tools you already use.
-        </p>
-      </div>
-    </section>
-  );
-}
-
-/* ── DATA SOURCE ICONS (inline SVG marks) ── */
-const DS_ICON = {
-  'salesforce':        (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#00A1E0"><path d="M10.5 5.5A4.5 4.5 0 0 0 7 8a3 3 0 0 0-1 5.83A4 4 0 0 0 10 19a4 4 0 0 0 3.87-3 3.5 3.5 0 0 0 5-4A4.5 4.5 0 0 0 14.5 6.5 4.48 4.48 0 0 0 10.5 5.5z"/></svg>,
-  'hubspot':           (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#FF7A59"><circle cx="17" cy="12" r="4"/><path d="M16 6V3h2v3z"/><circle cx="7" cy="7" r="2"/><path d="M7 9v10h2V9z"/></svg>,
-  'snowflake':         (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#29B5E8"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/><circle cx="12" cy="12" r="2.5"/></svg>,
-  'bigquery':          (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#4285F4"><circle cx="12" cy="12" r="8" fill="none" stroke="#4285F4" strokeWidth="2"/><path d="M16 16l4 4" stroke="#4285F4" strokeWidth="2" strokeLinecap="round"/></svg>,
-  'google-analytics':  (s=12)=><svg width={s} height={s} viewBox="0 0 24 24"><rect x="16" y="4" width="4" height="16" rx="2" fill="#F9AB00"/><rect x="10" y="10" width="4" height="10" rx="2" fill="#E37400"/><circle cx="6" cy="18" r="2" fill="#E37400"/></svg>,
-  'google-ads':        (s=12)=><svg width={s} height={s} viewBox="0 0 24 24"><path d="M10 4L4 14l6 4 6-10z" fill="#4285F4"/><circle cx="16" cy="17" r="3" fill="#34A853"/><path d="M14 4l-4 10 4 4 6-10z" fill="#FBBC04"/></svg>,
-  'google-sheets':     (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#0F9D58"><path d="M6 2h8l4 4v16H6z"/><path d="M14 2v4h4" fill="#0B8043"/><path d="M8 11h8v1H8zm0 3h8v1H8zm0 3h8v1H8z" fill="#fff"/></svg>,
-  'google-drive':      (s=12)=><svg width={s} height={s} viewBox="0 0 24 24"><path d="M7 4l-5 9 3 5 5-9z" fill="#0F9D58"/><path d="M17 4H7l5 9h10z" fill="#FFCA28"/><path d="M22 13H12l-3 5h10z" fill="#4285F4"/></svg>,
-  'slack':             (s=12)=><svg width={s} height={s} viewBox="0 0 24 24"><rect x="10" y="2" width="3" height="12" rx="1.5" fill="#E01E5A"/><rect x="2" y="10" width="12" height="3" rx="1.5" fill="#36C5F0"/><rect x="14" y="10" width="8" height="3" rx="1.5" fill="#2EB67D"/><rect x="10" y="14" width="3" height="8" rx="1.5" fill="#ECB22E"/></svg>,
-  'jira':              (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#0052CC"><path d="M11 2L2 11l9 9 9-9zM11 8l6 6-6 6-6-6z" fillOpacity=".8"/></svg>,
-  'pipedrive':         (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#000"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 8h4a3 3 0 0 1 0 6H10v4H8z" fill="#fff"/></svg>,
-  'zoho':              (s=12)=><svg width={s} height={s} viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="#2098D1" strokeWidth="2"/><path d="M7 10h10M7 14h7" stroke="#E8BE2E" strokeWidth="2" strokeLinecap="round"/></svg>,
-  'netsuite':          (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#1A1A1A"><rect x="3" y="3" width="18" height="18" rx="2"/><text x="12" y="15" textAnchor="middle" fontSize="8" fontWeight="700" fill="#F58220" fontFamily="Arial">N</text></svg>,
-  'dynamics':          (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#002050"><path d="M3 4l9 2v12l-9 2zM13 7l8-2v14l-8-2z"/></svg>,
-  'redshift':          (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#8C4FFF"><path d="M4 6l8-3 8 3v12l-8 3-8-3z" fillOpacity=".9"/><path d="M12 3v18" stroke="#fff" strokeWidth="1"/></svg>,
-  'databricks':        (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#FF3621"><path d="M4 7l8 4 8-4v3l-8 4-8-4zm0 6l8 4 8-4v3l-8 4-8-4z"/></svg>,
-  'azure':             (s=12)=><svg width={s} height={s} viewBox="0 0 24 24"><path d="M13 4l8 16H8l5-8-3-2z" fill="#0078D4"/><path d="M3 20l6-12h4l-5 8 3 4z" fill="#5EA0EF"/></svg>,
-  'asana':             (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#F06A6A"><circle cx="12" cy="7" r="3"/><circle cx="7" cy="16" r="3"/><circle cx="17" cy="16" r="3"/></svg>,
-  'freshdesk':         (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#25C16F"><circle cx="12" cy="12" r="9"/><path d="M8 12a4 4 0 0 1 8 0v4H8z" fill="#fff"/></svg>,
-  'zendesk':           (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#03363D"><path d="M3 5h8v14zm10 14c0-4 4-7 8-7V5H13z"/></svg>,
-  'linkedin':          (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#0A66C2"><path d="M4 4h4v16H4zM10 9h4v2a4 4 0 0 1 7 3v6h-4v-5a2 2 0 0 0-4 0v5h-3z"/><circle cx="6" cy="5" r="2"/></svg>,
-  'workday':           (s=12)=><svg width={s} height={s} viewBox="0 0 24 24" fill="#0875E1"><path d="M3 8h2l2 8 2-6h2l2 6 2-8h2l-3 10h-3l-1-4-1 4H7z"/></svg>,
-};
-function DataSourceIcon({ id, size = 12 }) {
-  const render = DS_ICON[id];
-  return (
-    <span className="ds-icon-wrap" title={id}>
-      {render ? render(size) : <span style={{fontSize:'9px',color:'#5E8290'}}>•</span>}
-    </span>
-  );
-}
-
-/* ── TAXONOMIES ── */
-const DATA_SOURCES = [
-  { id:'redshift',         name:'Amazon Redshift' },
-  { id:'asana',            name:'Asana' },
-  { id:'azure',            name:'Azure Data Lake' },
-  { id:'databricks',       name:'Databricks' },
-  { id:'dynamics',         name:'Dynamics 365' },
-  { id:'freshdesk',        name:'Freshdesk' },
-  { id:'google-ads',       name:'Google Ads' },
-  { id:'google-analytics', name:'Google Analytics' },
-  { id:'bigquery',         name:'Google BigQuery' },
-  { id:'google-drive',     name:'Google Drive' },
-  { id:'google-sheets',    name:'Google Sheets' },
-  { id:'hubspot',          name:'HubSpot' },
-  { id:'jira',             name:'Jira' },
-  { id:'linkedin',         name:'LinkedIn' },
-  { id:'netsuite',         name:'NetSuite' },
-  { id:'pipedrive',        name:'Pipedrive' },
-  { id:'salesforce',       name:'Salesforce' },
-  { id:'slack',            name:'Slack' },
-  { id:'snowflake',        name:'Snowflake' },
-  { id:'workday',          name:'Workday' },
-  { id:'zendesk',          name:'Zendesk' },
-  { id:'zoho',             name:'Zoho CRM' },
-];
-
-const TEAMS = [
-  'Account Management','Accounting','BDR Managers','Business Analytics',
-  'Business Development','Business Intelligence','Customer Success',
-  'Data Analytics','Developer Marketing','Marketing','Product Management',
-  'Product Marketing','Revenue Operations','Sales Directors','Sales Execution',
-  'Sales Leadership','Sales Ops','Sales Reps',
-];
-
-const PROMPTS = [
-  { title:'Analyze Web Traffic for Closed Won Opportunities',
-    teams:['Product Marketing','Marketing'],
-    sources:['salesforce','google-analytics'],
-    prompt:'Take all Closed-Won opportunities from the last 90 days in Salesforce. For each account, pull matching web traffic sessions from Google Analytics (match by company domain). Summarize: (1) which pages correlated with deals closing, (2) average number of sessions before close, (3) top acquisition channels. Output as a ranked table plus three insights I can share with marketing leadership.' },
-  { title:'Analyze Support Cases to Build a Product Roadmap',
-    teams:['Product Management'],
-    sources:['zendesk','jira','hubspot','salesforce'],
-    prompt:'Pull all support cases from Zendesk in the last quarter. Cluster them by theme (feature request, bug, confusion). For each cluster, cross-reference against open Jira tickets. Rank clusters by customer-impact × ARR (pull ARR from HubSpot/Salesforce). Output a roadmap recommendation with top 10 themes, owning product area, and estimated effort.' },
-  { title:'Sales Execution and Deal Portfolio Management',
-    teams:['Sales Execution','Sales Directors','Sales Leadership','Sales Reps'],
-    sources:['salesforce','hubspot','slack'],
-    prompt:'For every active deal >$25k, pull: stage, last activity date, rep, forecast category, and competitive notes. Flag deals that: (a) have been in the same stage >21 days, (b) have no activity in the last 7 days, (c) are forecast to close this quarter but missing next steps. Post a Slack digest to #sales-leadership with the top 15 at-risk deals.' },
-  { title:'Database Table Mapping and Relationship Discovery',
-    teams:['Data Analytics','Product Management','Marketing','Sales Ops'],
-    sources:['snowflake','bigquery'],
-    prompt:'Scan the Snowflake/BigQuery warehouse. For every table with more than 1,000 rows, infer primary keys and foreign-key relationships from column names, data profiles, and join cardinality. Output an ER diagram plus a markdown glossary: table name, purpose, owning team, estimated row count, refresh cadence, and known downstream consumers.' },
-  { title:'Community Developer Advocate Identification',
-    teams:['Developer Marketing','Customer Success'],
-    sources:['hubspot','jira','slack','salesforce','linkedin'],
-    prompt:'Find potential developer advocates: users who (1) have filed 3+ high-quality Jira issues, (2) are active in #community Slack, (3) work at accounts with ≥$50k ARR in Salesforce/HubSpot, (4) have public technical presence on LinkedIn. Rank by engagement score and output a short dossier per candidate with recommended outreach hook.' },
-  { title:'Competitive Win/Loss Analysis by Quarter',
-    teams:['Product Marketing','Sales Leadership','Revenue Operations'],
-    sources:['salesforce','hubspot'],
-    prompt:'For every Closed-Won and Closed-Lost opportunity this quarter, extract the primary competitor from Salesforce/HubSpot notes. Compute win rate by competitor, average deal size when won vs. lost against them, and the most common objection. Output: quarterly win/loss scorecard with three action items for enablement.' },
-  { title:'Pipeline Velocity by Source',
-    teams:['Revenue Operations','Sales Directors','Marketing'],
-    sources:['salesforce','hubspot','google-ads','linkedin'],
-    prompt:'Calculate pipeline velocity (# opps × win rate × avg deal size ÷ sales cycle length) by lead source over the last two quarters. Segment inbound vs outbound, and within inbound by channel (Google Ads, LinkedIn, organic, referral). Highlight the source with the best velocity improvement and propose a budget reallocation.' },
-  { title:'MRR Drift Reconciliation across Stripe & NetSuite',
-    teams:['Accounting','Revenue Operations','Business Intelligence'],
-    sources:['netsuite','snowflake','salesforce'],
-    prompt:'Compare MRR as reported by billing (NetSuite/warehouse) vs. MRR as reported by Salesforce Opportunity stages. For every customer where the two numbers differ by more than $500/month, output: customer, Stripe MRR, Salesforce MRR, delta, suspected cause (failed charge, unbilled upsell, churn not recorded). Cap the output at 50 rows sorted by delta.' },
-  { title:'Support Ticket Deflection Opportunities',
-    teams:['Customer Success','Product Management'],
-    sources:['zendesk','freshdesk'],
-    prompt:'Identify the top 20 support topics by ticket volume in the last 60 days. For each, estimate effort to resolve with a KB article, in-product tooltip, or feature fix. Rank by (volume × avg handle time) ÷ estimated fix effort. Output a prioritized deflection backlog with owner suggestions.' },
-  { title:'Churn Risk Scoring from Product + CRM Signals',
-    teams:['Customer Success','Account Management','Revenue Operations'],
-    sources:['salesforce','hubspot','snowflake','zendesk'],
-    prompt:'For every customer with a renewal in the next 90 days, score churn risk 0–100 based on: product usage decline, open support tickets, days since last exec touchpoint, NPS, and expansion-vs-contraction ARR trend. Output: top 30 at-risk accounts with the two strongest risk signals and a suggested play.' },
-  { title:'Campaign Attribution Deep-Dive',
-    teams:['Marketing','Product Marketing'],
-    sources:['hubspot','google-ads','linkedin','salesforce'],
-    prompt:'For the top 5 paid campaigns this quarter (Google Ads, LinkedIn Ads), trace every touchpoint from first-click through to Closed-Won opportunity in Salesforce. Compute CAC, payback period, and assisted revenue using a linear multi-touch model. Output a campaign scorecard and recommend which two to scale and which to cut.' },
-  { title:'Exec Weekly Revenue Narrative',
-    teams:['Revenue Operations','Sales Leadership','Business Analytics'],
-    sources:['salesforce','hubspot','snowflake'],
-    prompt:'Every Monday 8am, generate a 1-page exec narrative: (1) bookings vs plan, WoW and QTD, (2) pipeline coverage by stage, (3) three biggest deal movements, (4) three pipeline risks, (5) what changed since last week. Keep it under 250 words, human tone, no filler.' },
-  { title:'New-Hire Ramp Tracker',
-    teams:['Sales Leadership','Sales Directors','BDR Managers'],
-    sources:['salesforce','hubspot','slack'],
-    prompt:'For every rep hired in the last 6 months, track: activities per week, first meeting booked, first opportunity created, first Closed-Won, and quota attainment by month-of-tenure. Compare against the cohort baseline. Flag reps trending below P25 and suggest which ramp milestone to coach.' },
-  { title:'Renewal Forecast Confidence',
-    teams:['Account Management','Customer Success','Revenue Operations'],
-    sources:['salesforce','hubspot','zendesk'],
-    prompt:'For every renewal in the current quarter, output a confidence score: Commit / Best Case / Pipeline / Omit. Base it on CSM sentiment notes, product usage, support ticket severity, and last exec touchpoint. Include a short rationale line per account. Sort by ARR descending.' },
-  { title:'Data Source Freshness Audit',
-    teams:['Data Analytics','Business Intelligence'],
-    sources:['snowflake','bigquery','salesforce','hubspot','google-analytics'],
-    prompt:'Audit every connected data source: last successful sync, rows ingested in last 24h, deviation from 7-day baseline, and any error rate. Output a status board with red/yellow/green per source and a top-3 list of sources that need attention today.' },
-];
-
-/* ── PROMPT LIBRARY SIDEBAR ── */
-function PromptLibrarySidebar({ selectedTeams, toggleTeam, selectedSources, toggleSource, clearAll }) {
-  const [openTeams, setOpenTeams] = useState(true);
-  const [openSources, setOpenSources] = useState(true);
-  const total = selectedTeams.size + selectedSources.size;
-
-  const groupHeader = (label, open, setOpen) => (
-    <button
-      onClick={() => setOpen(!open)}
-      style={{
-        display:'flex', alignItems:'center', justifyContent:'space-between',
-        width:'100%', padding:'6px 16px',
-        background:'transparent', border:'none', cursor:'pointer',
-        color:'#5E8290', fontSize:'11px', fontWeight:600,
-        textTransform:'uppercase', letterSpacing:'0.08em',
-        fontFamily:'Geist,sans-serif',
-      }}
-    >
-      {label}
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-        style={{ transition:'transform 0.15s', transform: open ? 'rotate(180deg)' : 'rotate(0deg)', flexShrink:0 }}>
-        <polyline points="6 9 12 15 18 9"/>
-      </svg>
-    </button>
-  );
-
-  const checkboxItem = (label, checked, onToggle, leading = null) => (
-    <label
-      key={label}
-      className={`filter-item ${checked ? 'checked' : ''}`}
-    >
-      <input
-        type="checkbox"
-        checked={checked}
-        onChange={onToggle}
-        style={{ position:'absolute', opacity:0, width:0, height:0 }}
-      />
-      <span className="filter-checkbox">
-        {checked && (
-          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#0A0E13" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="20 6 9 17 4 12"/>
-          </svg>
-        )}
-      </span>
-      {leading}
-      <span style={{ overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{label}</span>
-    </label>
-  );
-
-  return (
-    <aside className="prompt-sidebar-col">
-      {total > 0 && (
-        <div style={{ padding:'0 16px 14px' }}>
-          <button
-            onClick={clearAll}
-            style={{
-              fontSize:'11.5px', fontFamily:'Geist,sans-serif',
-              background:'rgba(9,160,157,.08)', color:'#0EC4C1',
-              border:'1px solid rgba(9,160,157,.25)',
-              borderRadius:'6px', padding:'5px 10px', cursor:'pointer',
-              display:'inline-flex', alignItems:'center', gap:'6px',
-            }}
-          >
-            Clear filters ({total})
-          </button>
-        </div>
-      )}
-
-      {/* Teams first */}
-      <div style={{ marginBottom:'10px' }}>
-        {groupHeader('Teams', openTeams, setOpenTeams)}
-        {openTeams && (
-          <div style={{ padding:'2px 0 8px' }}>
-            {TEAMS.map(team =>
-              checkboxItem(team, selectedTeams.has(team), () => toggleTeam(team))
-            )}
-          </div>
-        )}
-      </div>
-
-      {/* Data Sources second */}
-      <div style={{ marginBottom:'10px' }}>
-        {groupHeader('Data Sources', openSources, setOpenSources)}
-        {openSources && (
-          <div style={{ padding:'2px 0 8px' }}>
-            {DATA_SOURCES.map(src =>
-              checkboxItem(
-                src.name,
-                selectedSources.has(src.id),
-                () => toggleSource(src.id),
-                <span style={{ flexShrink:0, display:'inline-flex' }}><DataSourceIcon id={src.id} size={12}/></span>
-              )
-            )}
-          </div>
-        )}
-      </div>
-    </aside>
-  );
-}
-
-/* ── PROMPT CARD ── */
-function PromptCard({ entry, index }) {
-  const [expanded, setExpanded] = useState(false);
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = (e) => {
-    e.stopPropagation();
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(entry.prompt);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1800);
-    }
-  };
-
-  return (
-    <article className="prompt-card" style={{ animationDelay:`${Math.min(index,8) * 0.04}s` }}>
-      <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', gap:'20px', flexWrap:'wrap' }}>
-        <div style={{ flex:'1 1 320px', minWidth:0 }}>
-          <h3 style={{ fontSize:'15.5px', fontWeight:500, color:'#E8F2F5', lineHeight:1.4, marginBottom:'10px', letterSpacing:'-.01em' }}>
-            {entry.title}
-          </h3>
-          <div style={{ display:'flex', flexWrap:'wrap', gap:'6px', marginBottom:'10px' }}>
-            {entry.teams.map(t => <span key={t} className="team-pill">{t}</span>)}
-          </div>
-          <div style={{ display:'flex', flexWrap:'wrap', gap:'6px', alignItems:'center' }}>
-            {entry.sources.map(s => <DataSourceIcon key={s} id={s} size={11}/>)}
-          </div>
-        </div>
-        <button
-          className="view-btn"
-          onClick={() => setExpanded(!expanded)}
-        >
-          {expanded ? 'Hide Prompt' : 'View Prompts'}
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-            style={{ transition:'transform .2s', transform: expanded ? 'rotate(90deg)' : 'rotate(0deg)' }}>
-            <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
-          </svg>
-        </button>
-      </div>
-
-      {expanded && (
-        <div style={{
-          marginTop:'16px', padding:'14px 16px',
-          background:'rgba(10,14,19,0.55)',
-          border:'1px solid rgba(9,160,157,.18)',
-          borderRadius:'10px',
-          animation:'cardFadeIn .2s ease',
-        }}>
-          <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'10px' }}>
-            <span style={{ fontSize:'10.5px', fontWeight:600, letterSpacing:'.08em', textTransform:'uppercase', color:'#5E8290' }}>
-              Prompt
-            </span>
-            <button
-              onClick={handleCopy}
-              style={{
-                display:'inline-flex', alignItems:'center', gap:'6px',
-                background:'transparent', border:'1px solid rgba(9,160,157,.25)',
-                color: copied ? '#8EDDBF' : '#0EC4C1',
-                borderRadius:'6px', padding:'4px 10px',
-                fontSize:'11.5px', fontWeight:500, cursor:'pointer',
-                fontFamily:'Geist,sans-serif',
-              }}
-            >
-              {copied ? (
-                <>
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  Copied
-                </>
-              ) : (
-                <>
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                  Copy
-                </>
-              )}
-            </button>
-          </div>
-          <p style={{
-            fontSize:'13.5px', color:'#B5CCD2', lineHeight:1.65,
-            whiteSpace:'pre-wrap', margin:0,
-          }}>
-            {entry.prompt}
-          </p>
-        </div>
-      )}
-    </article>
-  );
-}
-
-/* ── BOTTOM CTA ── */
-function BottomCTA() {
-  return (
-    <section style={{paddingTop:'32px',paddingBottom:'64px',position:'relative'}}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{
-          position:'relative',borderRadius:'16px',
-          border:'1px solid rgba(30,30,48,1)',
-          padding:'32px 48px',overflow:'hidden',
-          display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'24px',
-          flexWrap:'wrap',
-          background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)',
-        }}>
-          {/* Top shimmer */}
-          <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
-
-          <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',lineHeight:1.2,flexShrink:0}}>
-            Stop reading about <span style={{color:'#0EC4C1'}}>analytics.</span> Start doing it.
-          </h3>
-
-          <div style={{
-            display:'flex',alignItems:'center',
-            width:'100%',maxWidth:'420px',
-            background:'#0D0D1A',border:'1px solid rgba(46,46,64,1)',
-            borderRadius:'12px',overflow:'hidden',
-            flexShrink:0,
-          }}>
-            <input
-              type="text"
-              placeholder="Enter your work email"
-              style={{
-                flex:1,background:'transparent',fontSize:'14px',color:'#fff',
-                padding:'12px 16px',outline:'none',border:'none',
-                fontFamily:'Geist,sans-serif',minWidth:0,
-              }}
-            />
-            <button style={{
-              display:'inline-flex',alignItems:'center',gap:'8px',
-              padding:'10px 20px',margin:'4px',
-              fontSize:'13px',fontWeight:500,color:'#fff',
-              background:'linear-gradient(135deg,#07807E,#09A09D)',
-              borderRadius:'8px',border:'none',cursor:'pointer',
-              whiteSpace:'nowrap',flexShrink:0,
-              fontFamily:'Geist,sans-serif',
-            }}>
-              Start for Free
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ── FOOTER ── */
 
@@ -937,16 +337,6 @@ function Footer() {
     'Prompt Library': 'Prompt Library.html',
     'Data Connectors': 'Connectors.html',
   };
-
-  const resourceLinkUrls = {
-    'Documentation': '../docs/',
-    'Prompt Library': 'Prompt Library.html',
-    'Blog': '../blog/',
-    'Support Center': 'Contact Support.html',
-    'Roadmap': 'Roadmap.html',
-    'Data Connectors': 'Connectors.html',
-  };
-
   return (
     <footer className="pt-16 pb-8 border-t border-[#1E1E30]">
       <div className="max-w-7xl mx-auto px-6">
@@ -1009,7 +399,7 @@ function Footer() {
               <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Resources</h4>
               <ul className="flex flex-col gap-2.5">
                 {['Documentation', 'Prompt Library', 'Blog', 'Support Center', 'Roadmap', 'Data Connectors'].map(link => (
-                  <li key={link}><a href={resourceLinkUrls[link] || '#'} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}</a></li>
+                  <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
               </ul>
             </div>
@@ -1062,13 +452,15 @@ function Footer() {
   );
 }
 
-/* ── FLOATING CHAT ── */
-function FloatingChat({ onSubmit }) {
-  const [value, setValue] = useState('');
-  const [focused, setFocused] = useState(false);
-  const [visible, setVisible] = useState(true);
 
-  useEffect(() => {
+/* ── APP ── */
+/* ── FLOATING CHAT BAR ── */
+function FloatingChat({ onSubmit }) {
+  const [value, setValue] = React.useState('');
+  const [focused, setFocused] = React.useState(false);
+  const [visible, setVisible] = React.useState(true);
+
+  React.useEffect(() => {
     const footer = document.querySelector('footer');
     if (!footer) return;
     const observer = new IntersectionObserver(
@@ -1116,7 +508,7 @@ function FloatingChat({ onSubmit }) {
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
             onKeyDown={(e) => { if (e.key === 'Enter') handleSubmit(); }}
-            placeholder="Ask for a prompt or a custom workflow..."
+            placeholder="Ask a question..."
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
               fontSize:'13px', color:'#E8F2F5',
@@ -1161,27 +553,27 @@ function AssistantResponseText({ text }) {
 }
 
 function AIAssistantPanel({ query, onClose }) {
-  const [phase, setPhase] = useState('searching');
-  const [input, setInput] = useState('');
-  const [inputFocused, setInputFocused] = useState(false);
-  const [messages, setMessages] = useState([{ role:'user', text: query }]);
-  const [copied, setCopied] = useState(false);
-  const bottomRef = useRef(null);
+  const [phase, setPhase] = React.useState('searching'); // searching | reading | done
+  const [input, setInput] = React.useState('');
+  const [inputFocused, setInputFocused] = React.useState(false);
+  const [messages, setMessages] = React.useState([{ role:'user', text: query }]);
+  const [copied, setCopied] = React.useState(false);
+  const bottomRef = React.useRef(null);
 
   const SAMPLE_RESPONSE = {
-    searchTerms: query.toLowerCase().split(' ').filter(w => w.length > 2).slice(0, 3).join(', ') || 'prompts',
-    intro: 'I found a few **prompt templates** that match what you\'re looking for. Each one is pre-wired to the right data sources so you can run it with a single click.',
+    searchTerms: query.toLowerCase().split(' ').filter(w => w.length > 2).slice(0, 3).join(', ') || 'insightis',
+    intro: '**Insightis** is an AI-powered analytics workspace that lets you ask questions about your business data in plain language — and get instant, reliable answers. No SQL, no dashboards, no waiting.',
     bullets: [
-      { bold: 'Pipeline Velocity by Source', text: ' — measure velocity per channel across Salesforce + HubSpot + ads' },
-      { bold: 'Churn Risk Scoring', text: ' — score every renewal using usage, tickets, and ARR trend' },
-      { bold: 'Campaign Attribution Deep-Dive', text: ' — multi-touch attribution all the way to Closed-Won' },
-      { bold: 'Exec Weekly Revenue Narrative', text: ' — a 250-word Monday-morning summary for leadership' },
+      { bold: 'AI Chat', text: ' — ask anything about your data and get answers in seconds' },
+      { bold: 'Semantic Layer', text: ' — define your metrics once, use them everywhere with one trusted source of truth' },
+      { bold: '200+ Integrations', text: ' — connect your databases, CRMs, and SaaS tools directly' },
+      { bold: 'Reports', text: ' — save and share insights with your team on a schedule' },
     ],
-    outro: 'Want me to customize one for your team\'s stack, or generate a brand-new prompt from scratch?',
-    links: ['Browse all 15 prompts', 'Connect a new data source', 'Build a custom prompt'],
+    outro: 'Think of it as your personal data analyst — always available, always accurate, no technical skills required.',
+    links: ['Quick Start Guide', 'Connecting Your First Data Source', 'AI Chat Overview'],
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     const t1 = setTimeout(() => setPhase('reading'), 800);
     const t2 = setTimeout(() => {
       setPhase('done');
@@ -1190,7 +582,7 @@ function AIAssistantPanel({ query, onClose }) {
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior:'smooth' });
   }, [messages, phase]);
 
@@ -1225,7 +617,7 @@ function AIAssistantPanel({ query, onClose }) {
 
   return (
     <div style={{
-      position:'fixed', right:0, top:0, bottom:0, width:'320px',
+      position:'fixed', right:0, top:0, bottom:0, width:'280px',
       background:'#0B0F16',
       borderLeft:'1px solid rgba(255,255,255,0.07)',
       display:'flex', flexDirection:'column',
@@ -1281,11 +673,11 @@ function AIAssistantPanel({ query, onClose }) {
                 <div style={{ fontSize:'12px', color:'#3A6070', marginBottom:'10px', display:'flex', flexDirection:'column', gap:'4px' }}>
                   <div style={{ display:'flex', alignItems:'center', gap:'6px' }}>
                     <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                    Found prompts for <em style={{ color:'#4A8090', fontStyle:'normal' }}>{msg.response.searchTerms}</em>
+                    Found results for <em style={{ color:'#4A8090', fontStyle:'normal' }}>{msg.response.searchTerms}</em>
                   </div>
                   <div style={{ display:'flex', alignItems:'center', gap:'6px' }}>
                     <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                    Scanned 15 templates
+                    Read 1 file
                   </div>
                 </div>
                 <p style={{ fontSize:'13px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'10px' }}>
@@ -1310,6 +702,7 @@ function AIAssistantPanel({ query, onClose }) {
                     >{l}</a>
                   ))}
                 </div>
+                {/* Feedback row */}
                 <div style={{ display:'flex', gap:'4px', alignItems:'center' }}>
                   {iconBtn('Helpful', 'M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z')}
                   {iconBtn('Not helpful', 'M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z')}
@@ -1321,11 +714,12 @@ function AIAssistantPanel({ query, onClose }) {
           </div>
         ))}
 
+        {/* Loading state */}
         {phase !== 'done' && (
           <div style={{ display:'flex', flexDirection:'column', gap:'6px' }}>
             <div style={{ display:'flex', alignItems:'center', gap:'6px', fontSize:'12px', color:'#3A6070' }}>
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ animation:'pulse 1.2s ease infinite' }}><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              {phase === 'searching' ? 'Searching prompt library…' : 'Reading templates…'}
+              {phase === 'searching' ? 'Searching docs…' : 'Reading file…'}
             </div>
             <div style={{ display:'flex', gap:'5px', paddingTop:'4px' }}>
               {[0,1,2].map(i => (
@@ -1359,7 +753,7 @@ function AIAssistantPanel({ query, onClose }) {
             onFocus={() => setInputFocused(true)}
             onBlur={() => setInputFocused(false)}
             onKeyDown={e => { if (e.key === 'Enter') handleFollowUp(); }}
-            placeholder="Ask a follow-up..."
+            placeholder="Ask a question..."
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
               fontSize:'13px', color:'#E8F2F5', fontFamily:'Geist,sans-serif',
@@ -1382,104 +776,490 @@ function AIAssistantPanel({ query, onClose }) {
   );
 }
 
-/* ── APP ── */
-function App() {
-  const [selectedTeams, setSelectedTeams] = useState(() => new Set());
-  const [selectedSources, setSelectedSources] = useState(() => new Set());
-  const [query, setQuery] = useState('');
-  const [searchFocused, setSearchFocused] = useState(false);
-  const [assistantQuery, setAssistantQuery] = useState(null);
+/* ── CONNECTORS DATA ── */
+const CATEGORIES = [
+  'All',
+  'Databases & Warehouses',
+  'CRM',
+  'Marketing & Ads',
+  'Support',
+  'Productivity',
+  'Finance & E-commerce',
+  'HR & People',
+  'Product Analytics',
+  'Cloud & Storage',
+  'Developer Tools',
+  'Communication & Email',
+  'Security & Identity',
+  'Data Pipelines & ETL',
+];
 
-  const toggleTeam = (team) => setSelectedTeams(prev => {
-    const next = new Set(prev);
-    if (next.has(team)) next.delete(team); else next.add(team);
-    return next;
-  });
-  const toggleSource = (id) => setSelectedSources(prev => {
-    const next = new Set(prev);
-    if (next.has(id)) next.delete(id); else next.add(id);
-    return next;
-  });
-  const clearAll = () => { setSelectedTeams(new Set()); setSelectedSources(new Set()); setQuery(''); };
+// domain = clearbit logo domain; color = fallback bubble color
+const CONNECTORS = [
+  // Databases & Warehouses (30)
+  { name:'Amazon Redshift',   category:'Databases & Warehouses', domain:'aws.amazon.com',       color:'#8C4FFF' },
+  { name:'Amazon Athena',     category:'Databases & Warehouses', domain:'aws.amazon.com',       color:'#F58220' },
+  { name:'Amazon DynamoDB',   category:'Databases & Warehouses', domain:'aws.amazon.com',       color:'#3B48CC' },
+  { name:'Snowflake',         category:'Databases & Warehouses', domain:'snowflake.com',        color:'#29B5E8' },
+  { name:'Google BigQuery',   category:'Databases & Warehouses', domain:'cloud.google.com',     color:'#4285F4' },
+  { name:'Databricks',        category:'Databases & Warehouses', domain:'databricks.com',       color:'#FF3621' },
+  { name:'Azure Synapse',     category:'Databases & Warehouses', domain:'azure.microsoft.com',  color:'#0078D4' },
+  { name:'Azure SQL',         category:'Databases & Warehouses', domain:'azure.microsoft.com',  color:'#0078D4' },
+  { name:'AlloyDB',           category:'Databases & Warehouses', domain:'cloud.google.com',     color:'#4285F4' },
+  { name:'PostgreSQL',        category:'Databases & Warehouses', domain:'postgresql.org',       color:'#336791' },
+  { name:'MySQL',             category:'Databases & Warehouses', domain:'mysql.com',            color:'#00758F' },
+  { name:'MariaDB',           category:'Databases & Warehouses', domain:'mariadb.org',          color:'#003545' },
+  { name:'MongoDB',           category:'Databases & Warehouses', domain:'mongodb.com',          color:'#47A248' },
+  { name:'Oracle',            category:'Databases & Warehouses', domain:'oracle.com',           color:'#F80000' },
+  { name:'SQL Server',        category:'Databases & Warehouses', domain:'microsoft.com',        color:'#CC2927' },
+  { name:'SAP HANA',          category:'Databases & Warehouses', domain:'sap.com',              color:'#008FD3' },
+  { name:'IBM Db2',           category:'Databases & Warehouses', domain:'ibm.com',              color:'#054ADA' },
+  { name:'Teradata',          category:'Databases & Warehouses', domain:'teradata.com',         color:'#F05D40' },
+  { name:'Vertica',           category:'Databases & Warehouses', domain:'vertica.com',          color:'#1A5E9A' },
+  { name:'ClickHouse',        category:'Databases & Warehouses', domain:'clickhouse.com',       color:'#FFCC00' },
+  { name:'Elasticsearch',     category:'Databases & Warehouses', domain:'elastic.co',           color:'#005571' },
+  { name:'Firebolt',          category:'Databases & Warehouses', domain:'firebolt.io',          color:'#FF3C4A' },
+  { name:'SingleStore',       category:'Databases & Warehouses', domain:'singlestore.com',      color:'#AA00FF' },
+  { name:'CockroachDB',       category:'Databases & Warehouses', domain:'cockroachlabs.com',    color:'#6933FF' },
+  { name:'TimescaleDB',       category:'Databases & Warehouses', domain:'timescale.com',        color:'#FDB515' },
+  { name:'InfluxDB',          category:'Databases & Warehouses', domain:'influxdata.com',       color:'#22ADF6' },
+  { name:'Neo4j',             category:'Databases & Warehouses', domain:'neo4j.com',            color:'#008CC1' },
+  { name:'Couchbase',         category:'Databases & Warehouses', domain:'couchbase.com',        color:'#ED2226' },
+  { name:'Redis',             category:'Databases & Warehouses', domain:'redis.io',             color:'#DC382D' },
+  { name:'Supabase',          category:'Databases & Warehouses', domain:'supabase.com',         color:'#3ECF8E' },
 
-  const q = query.trim().toLowerCase();
-  const filtered = PROMPTS.filter(p => {
-    if (selectedTeams.size && !p.teams.some(t => selectedTeams.has(t))) return false;
-    if (selectedSources.size && !p.sources.some(s => selectedSources.has(s))) return false;
-    if (!q) return true;
-    return (
-      p.title.toLowerCase().includes(q) ||
-      p.prompt.toLowerCase().includes(q) ||
-      p.teams.some(t => t.toLowerCase().includes(q)) ||
-      p.sources.some(s => s.toLowerCase().includes(q))
-    );
-  });
+  // CRM (15)
+  { name:'Salesforce',        category:'CRM',                    domain:'salesforce.com',       color:'#00A1E0' },
+  { name:'HubSpot',           category:'CRM',                    domain:'hubspot.com',          color:'#FF7A59' },
+  { name:'Pipedrive',         category:'CRM',                    domain:'pipedrive.com',        color:'#1A1A1A' },
+  { name:'Zoho CRM',          category:'CRM',                    domain:'zoho.com',             color:'#E42527' },
+  { name:'Microsoft Dynamics',category:'CRM',                    domain:'microsoft.com',        color:'#002050' },
+  { name:'Copper',            category:'CRM',                    domain:'copper.com',           color:'#FF6F31' },
+  { name:'Close',             category:'CRM',                    domain:'close.com',            color:'#0A6AFF' },
+  { name:'Freshsales',        category:'CRM',                    domain:'freshworks.com',       color:'#2F9CEE' },
+  { name:'Insightly',         category:'CRM',                    domain:'insightly.com',        color:'#F99F2B' },
+  { name:'Nimble',            category:'CRM',                    domain:'nimble.com',           color:'#F16522' },
+  { name:'Nutshell',          category:'CRM',                    domain:'nutshell.com',         color:'#C8332D' },
+  { name:'Keap',              category:'CRM',                    domain:'keap.com',             color:'#3ECF22' },
+  { name:'Sugar CRM',         category:'CRM',                    domain:'sugarcrm.com',         color:'#ED1C24' },
+  { name:'Capsule CRM',       category:'CRM',                    domain:'capsulecrm.com',       color:'#1DC3D3' },
+  { name:'Creatio',           category:'CRM',                    domain:'creatio.com',          color:'#FF4F27' },
+
+  // Marketing & Ads (22)
+  { name:'Google Ads',        category:'Marketing & Ads',        domain:'ads.google.com',       color:'#4285F4' },
+  { name:'Google Analytics',  category:'Marketing & Ads',        domain:'analytics.google.com', color:'#F9AB00' },
+  { name:'Bing Ads',          category:'Marketing & Ads',        domain:'microsoft.com',        color:'#008373' },
+  { name:'LinkedIn Ads',      category:'Marketing & Ads',        domain:'linkedin.com',         color:'#0A66C2' },
+  { name:'Facebook Ads',      category:'Marketing & Ads',        domain:'facebook.com',         color:'#1877F2' },
+  { name:'TikTok Ads',        category:'Marketing & Ads',        domain:'tiktok.com',           color:'#000000' },
+  { name:'Pinterest Ads',     category:'Marketing & Ads',        domain:'pinterest.com',        color:'#E60023' },
+  { name:'Snapchat Ads',      category:'Marketing & Ads',        domain:'snapchat.com',         color:'#FFFC00' },
+  { name:'Reddit Ads',        category:'Marketing & Ads',        domain:'reddit.com',           color:'#FF4500' },
+  { name:'Criteo',            category:'Marketing & Ads',        domain:'criteo.com',           color:'#F8903E' },
+  { name:'Taboola',           category:'Marketing & Ads',        domain:'taboola.com',          color:'#0067DB' },
+  { name:'Outbrain',          category:'Marketing & Ads',        domain:'outbrain.com',         color:'#F26B24' },
+  { name:'Mailchimp',         category:'Marketing & Ads',        domain:'mailchimp.com',        color:'#FFE01B' },
+  { name:'SendGrid',          category:'Marketing & Ads',        domain:'sendgrid.com',         color:'#1A82E2' },
+  { name:'Klaviyo',           category:'Marketing & Ads',        domain:'klaviyo.com',          color:'#000000' },
+  { name:'Marketo',           category:'Marketing & Ads',        domain:'marketo.com',          color:'#5C4C9F' },
+  { name:'Pardot',            category:'Marketing & Ads',        domain:'pardot.com',           color:'#00A1E0' },
+  { name:'ActiveCampaign',    category:'Marketing & Ads',        domain:'activecampaign.com',   color:'#356AE6' },
+  { name:'Braze',             category:'Marketing & Ads',        domain:'braze.com',            color:'#FFA524' },
+  { name:'Iterable',          category:'Marketing & Ads',        domain:'iterable.com',         color:'#7F56D9' },
+  { name:'Customer.io',       category:'Marketing & Ads',        domain:'customer.io',          color:'#7B40F2' },
+  { name:'Omnisend',          category:'Marketing & Ads',        domain:'omnisend.com',         color:'#15BC71' },
+
+  // Support (12)
+  { name:'Zendesk',           category:'Support',                domain:'zendesk.com',          color:'#03363D' },
+  { name:'Freshdesk',         category:'Support',                domain:'freshworks.com',       color:'#25C16F' },
+  { name:'Intercom',          category:'Support',                domain:'intercom.com',         color:'#1F8DED' },
+  { name:'Help Scout',        category:'Support',                domain:'helpscout.com',        color:'#1292EE' },
+  { name:'Kustomer',          category:'Support',                domain:'kustomer.com',         color:'#FFBF00' },
+  { name:'Gorgias',           category:'Support',                domain:'gorgias.com',          color:'#0E1E1A' },
+  { name:'Drift',             category:'Support',                domain:'drift.com',            color:'#1D0E5F' },
+  { name:'Zoho Desk',         category:'Support',                domain:'zoho.com',             color:'#E42527' },
+  { name:'Front',             category:'Support',                domain:'front.com',            color:'#A857F8' },
+  { name:'Crisp',             category:'Support',                domain:'crisp.chat',           color:'#1972F5' },
+  { name:'Gladly',            category:'Support',                domain:'gladly.com',           color:'#EA5E3F' },
+  { name:'ServiceNow',        category:'Support',                domain:'servicenow.com',       color:'#62D84E' },
+
+  // Productivity (18)
+  { name:'Slack',             category:'Productivity',           domain:'slack.com',            color:'#4A154B' },
+  { name:'Microsoft Teams',   category:'Productivity',           domain:'teams.microsoft.com',  color:'#6264A7' },
+  { name:'Asana',             category:'Productivity',           domain:'asana.com',            color:'#F06A6A' },
+  { name:'Trello',            category:'Productivity',           domain:'trello.com',           color:'#0079BF' },
+  { name:'Jira',              category:'Productivity',           domain:'atlassian.com',        color:'#0052CC' },
+  { name:'Confluence',        category:'Productivity',           domain:'atlassian.com',        color:'#172B4D' },
+  { name:'Notion',            category:'Productivity',           domain:'notion.so',            color:'#000000' },
+  { name:'Airtable',          category:'Productivity',           domain:'airtable.com',         color:'#FCB400' },
+  { name:'Monday.com',        category:'Productivity',           domain:'monday.com',           color:'#FF3D57' },
+  { name:'ClickUp',           category:'Productivity',           domain:'clickup.com',          color:'#7B68EE' },
+  { name:'Smartsheet',        category:'Productivity',           domain:'smartsheet.com',       color:'#0073EC' },
+  { name:'Basecamp',          category:'Productivity',           domain:'basecamp.com',         color:'#1D2D35' },
+  { name:'Wrike',             category:'Productivity',           domain:'wrike.com',            color:'#08BB67' },
+  { name:'Coda',              category:'Productivity',           domain:'coda.io',              color:'#F46A54' },
+  { name:'Figma',             category:'Productivity',           domain:'figma.com',            color:'#F24E1E' },
+  { name:'Miro',              category:'Productivity',           domain:'miro.com',             color:'#FFD02F' },
+  { name:'Lucidchart',        category:'Productivity',           domain:'lucid.co',             color:'#F68D42' },
+  { name:'Loom',              category:'Productivity',           domain:'loom.com',             color:'#625DF5' },
+
+  // Finance & E-commerce (25)
+  { name:'Stripe',            category:'Finance & E-commerce',   domain:'stripe.com',           color:'#635BFF' },
+  { name:'QuickBooks',        category:'Finance & E-commerce',   domain:'quickbooks.intuit.com',color:'#2CA01C' },
+  { name:'Xero',              category:'Finance & E-commerce',   domain:'xero.com',             color:'#13B5EA' },
+  { name:'NetSuite',          category:'Finance & E-commerce',   domain:'netsuite.com',         color:'#F58220' },
+  { name:'Sage',              category:'Finance & E-commerce',   domain:'sage.com',             color:'#00D639' },
+  { name:'Square',            category:'Finance & E-commerce',   domain:'squareup.com',         color:'#3E4348' },
+  { name:'PayPal',            category:'Finance & E-commerce',   domain:'paypal.com',           color:'#003087' },
+  { name:'Adyen',             category:'Finance & E-commerce',   domain:'adyen.com',            color:'#0ABF53' },
+  { name:'Braintree',         category:'Finance & E-commerce',   domain:'braintreepayments.com',color:'#000000' },
+  { name:'Chargebee',         category:'Finance & E-commerce',   domain:'chargebee.com',        color:'#FF7846' },
+  { name:'Recurly',           category:'Finance & E-commerce',   domain:'recurly.com',          color:'#5C068C' },
+  { name:'Zuora',             category:'Finance & E-commerce',   domain:'zuora.com',            color:'#DE2332' },
+  { name:'Paddle',            category:'Finance & E-commerce',   domain:'paddle.com',           color:'#FFD00E' },
+  { name:'Expensify',         category:'Finance & E-commerce',   domain:'expensify.com',        color:'#0185FF' },
+  { name:'Bill.com',          category:'Finance & E-commerce',   domain:'bill.com',             color:'#ED2224' },
+  { name:'Ramp',              category:'Finance & E-commerce',   domain:'ramp.com',             color:'#FFE900' },
+  { name:'Brex',              category:'Finance & E-commerce',   domain:'brex.com',             color:'#FF5500' },
+  { name:'Coupa',             category:'Finance & E-commerce',   domain:'coupa.com',            color:'#083166' },
+  { name:'Shopify',           category:'Finance & E-commerce',   domain:'shopify.com',          color:'#96BF48' },
+  { name:'BigCommerce',       category:'Finance & E-commerce',   domain:'bigcommerce.com',      color:'#34313F' },
+  { name:'Magento',           category:'Finance & E-commerce',   domain:'magento.com',          color:'#EE672F' },
+  { name:'WooCommerce',       category:'Finance & E-commerce',   domain:'woocommerce.com',      color:'#7F54B3' },
+  { name:'Amazon Marketplace',category:'Finance & E-commerce',   domain:'sellercentral.amazon.com', color:'#FF9900' },
+  { name:'Wix',               category:'Finance & E-commerce',   domain:'wix.com',              color:'#0C6EFC' },
+  { name:'Squarespace',       category:'Finance & E-commerce',   domain:'squarespace.com',      color:'#000000' },
+
+  // HR & People (15)
+  { name:'Workday',           category:'HR & People',            domain:'workday.com',          color:'#0875E1' },
+  { name:'BambooHR',          category:'HR & People',            domain:'bamboohr.com',         color:'#73C41D' },
+  { name:'Gusto',             category:'HR & People',            domain:'gusto.com',            color:'#F45D48' },
+  { name:'Rippling',          category:'HR & People',            domain:'rippling.com',         color:'#FECE00' },
+  { name:'ADP',               category:'HR & People',            domain:'adp.com',              color:'#D0271D' },
+  { name:'Paychex',           category:'HR & People',            domain:'paychex.com',          color:'#004B8D' },
+  { name:'Paylocity',         category:'HR & People',            domain:'paylocity.com',        color:'#3078C2' },
+  { name:'Justworks',         category:'HR & People',            domain:'justworks.com',        color:'#00A1DF' },
+  { name:'TriNet',            category:'HR & People',            domain:'trinet.com',           color:'#E31E38' },
+  { name:'UKG',               category:'HR & People',            domain:'ukg.com',              color:'#005EB8' },
+  { name:'Ceridian Dayforce', category:'HR & People',            domain:'ceridian.com',         color:'#005EB8' },
+  { name:'Greenhouse',        category:'HR & People',            domain:'greenhouse.io',        color:'#23AA49' },
+  { name:'Lever',             category:'HR & People',            domain:'lever.co',             color:'#5B2AE8' },
+  { name:'Workable',          category:'HR & People',            domain:'workable.com',         color:'#0F996D' },
+  { name:'SAP SuccessFactors',category:'HR & People',            domain:'sap.com',              color:'#008FD3' },
+
+  // Product Analytics (12)
+  { name:'Mixpanel',          category:'Product Analytics',      domain:'mixpanel.com',         color:'#7856FF' },
+  { name:'Amplitude',         category:'Product Analytics',      domain:'amplitude.com',        color:'#1E61F0' },
+  { name:'Segment',           category:'Product Analytics',      domain:'segment.com',          color:'#52BD94' },
+  { name:'Heap',              category:'Product Analytics',      domain:'heap.io',              color:'#4F43DC' },
+  { name:'Pendo',             category:'Product Analytics',      domain:'pendo.io',             color:'#FF4876' },
+  { name:'Hotjar',            category:'Product Analytics',      domain:'hotjar.com',           color:'#FF3C00' },
+  { name:'FullStory',         category:'Product Analytics',      domain:'fullstory.com',        color:'#FF4A00' },
+  { name:'LogRocket',         category:'Product Analytics',      domain:'logrocket.com',        color:'#764ABC' },
+  { name:'Sentry',            category:'Product Analytics',      domain:'sentry.io',            color:'#362D59' },
+  { name:'PostHog',           category:'Product Analytics',      domain:'posthog.com',          color:'#1D4AFF' },
+  { name:'June',              category:'Product Analytics',      domain:'june.so',              color:'#161B22' },
+  { name:'Smartlook',         category:'Product Analytics',      domain:'smartlook.com',        color:'#FBA50A' },
+
+  // Cloud & Storage (12)
+  { name:'Amazon S3',         category:'Cloud & Storage',        domain:'aws.amazon.com',       color:'#E25444' },
+  { name:'Azure Data Lake',   category:'Cloud & Storage',        domain:'azure.microsoft.com',  color:'#0078D4' },
+  { name:'Azure Blob Storage',category:'Cloud & Storage',        domain:'azure.microsoft.com',  color:'#0078D4' },
+  { name:'Google Cloud Storage', category:'Cloud & Storage',     domain:'cloud.google.com',     color:'#4285F4' },
+  { name:'Google Drive',      category:'Cloud & Storage',        domain:'drive.google.com',     color:'#0F9D58' },
+  { name:'Google Sheets',     category:'Cloud & Storage',        domain:'sheets.google.com',    color:'#0F9D58' },
+  { name:'Dropbox',           category:'Cloud & Storage',        domain:'dropbox.com',          color:'#0061FF' },
+  { name:'Box',               category:'Cloud & Storage',        domain:'box.com',              color:'#0061D5' },
+  { name:'OneDrive',          category:'Cloud & Storage',        domain:'onedrive.live.com',    color:'#0364B8' },
+  { name:'Backblaze B2',      category:'Cloud & Storage',        domain:'backblaze.com',        color:'#EE3027' },
+  { name:'Wasabi',            category:'Cloud & Storage',        domain:'wasabi.com',           color:'#01CD3E' },
+  { name:'Cloudflare R2',     category:'Cloud & Storage',        domain:'cloudflare.com',       color:'#F6821F' },
+
+  // Developer Tools (15)
+  { name:'GitHub',            category:'Developer Tools',        domain:'github.com',           color:'#181717' },
+  { name:'GitLab',            category:'Developer Tools',        domain:'gitlab.com',           color:'#FC6D26' },
+  { name:'Bitbucket',         category:'Developer Tools',        domain:'bitbucket.org',        color:'#0052CC' },
+  { name:'CircleCI',          category:'Developer Tools',        domain:'circleci.com',         color:'#343434' },
+  { name:'Jenkins',           category:'Developer Tools',        domain:'jenkins.io',           color:'#D24939' },
+  { name:'Azure DevOps',      category:'Developer Tools',        domain:'azure.microsoft.com',  color:'#0078D4' },
+  { name:'Vercel',            category:'Developer Tools',        domain:'vercel.com',           color:'#000000' },
+  { name:'Netlify',           category:'Developer Tools',        domain:'netlify.com',          color:'#00AD9F' },
+  { name:'Heroku',            category:'Developer Tools',        domain:'heroku.com',           color:'#430098' },
+  { name:'Render',            category:'Developer Tools',        domain:'render.com',           color:'#46E3B7' },
+  { name:'Cloudflare',        category:'Developer Tools',        domain:'cloudflare.com',       color:'#F6821F' },
+  { name:'Fastly',            category:'Developer Tools',        domain:'fastly.com',           color:'#FF282D' },
+  { name:'Datadog',           category:'Developer Tools',        domain:'datadoghq.com',        color:'#632CA6' },
+  { name:'New Relic',         category:'Developer Tools',        domain:'newrelic.com',         color:'#00AC69' },
+  { name:'PagerDuty',         category:'Developer Tools',        domain:'pagerduty.com',        color:'#06AC38' },
+
+  // Communication & Email (12)
+  { name:'Gmail',             category:'Communication & Email',  domain:'mail.google.com',      color:'#EA4335' },
+  { name:'Outlook',           category:'Communication & Email',  domain:'outlook.com',          color:'#0078D4' },
+  { name:'Calendly',          category:'Communication & Email',  domain:'calendly.com',         color:'#006BFF' },
+  { name:'Cal.com',           category:'Communication & Email',  domain:'cal.com',              color:'#111827' },
+  { name:'Zoom',              category:'Communication & Email',  domain:'zoom.us',              color:'#2D8CFF' },
+  { name:'Google Meet',       category:'Communication & Email',  domain:'meet.google.com',      color:'#00897B' },
+  { name:'Webex',             category:'Communication & Email',  domain:'webex.com',            color:'#00A0D2' },
+  { name:'RingCentral',       category:'Communication & Email',  domain:'ringcentral.com',      color:'#FF7A00' },
+  { name:'Dialpad',           category:'Communication & Email',  domain:'dialpad.com',          color:'#7E44FA' },
+  { name:'Aircall',           category:'Communication & Email',  domain:'aircall.io',           color:'#00B388' },
+  { name:'Twilio',            category:'Communication & Email',  domain:'twilio.com',           color:'#F22F46' },
+  { name:'Mailgun',           category:'Communication & Email',  domain:'mailgun.com',          color:'#F06B66' },
+
+  // Security & Identity (8)
+  { name:'Okta',              category:'Security & Identity',    domain:'okta.com',             color:'#007DC1' },
+  { name:'Auth0',             category:'Security & Identity',    domain:'auth0.com',            color:'#EB5424' },
+  { name:'OneLogin',          category:'Security & Identity',    domain:'onelogin.com',         color:'#1D252C' },
+  { name:'JumpCloud',         category:'Security & Identity',    domain:'jumpcloud.com',        color:'#3ACE01' },
+  { name:'Duo',               category:'Security & Identity',    domain:'duo.com',              color:'#6BBE45' },
+  { name:'1Password',         category:'Security & Identity',    domain:'1password.com',        color:'#0572EC' },
+  { name:'LastPass',          category:'Security & Identity',    domain:'lastpass.com',         color:'#D32D27' },
+  { name:'Cloudflare Access', category:'Security & Identity',    domain:'cloudflare.com',       color:'#F6821F' },
+
+  // Data Pipelines & ETL (10)
+  { name:'Fivetran',          category:'Data Pipelines & ETL',   domain:'fivetran.com',         color:'#0070FF' },
+  { name:'Stitch Data',       category:'Data Pipelines & ETL',   domain:'stitchdata.com',       color:'#FF6700' },
+  { name:'Airbyte',           category:'Data Pipelines & ETL',   domain:'airbyte.com',          color:'#615EFF' },
+  { name:'dbt',               category:'Data Pipelines & ETL',   domain:'getdbt.com',           color:'#FF694A' },
+  { name:'Matillion',         category:'Data Pipelines & ETL',   domain:'matillion.com',        color:'#19E57F' },
+  { name:'Hevo Data',         category:'Data Pipelines & ETL',   domain:'hevodata.com',         color:'#FFC043' },
+  { name:'Talend',            category:'Data Pipelines & ETL',   domain:'talend.com',           color:'#FF6D70' },
+  { name:'Informatica',       category:'Data Pipelines & ETL',   domain:'informatica.com',      color:'#FF4D00' },
+  { name:'Rivery',            category:'Data Pipelines & ETL',   domain:'rivery.io',            color:'#0B50F8' },
+  { name:'Dataiku',           category:'Data Pipelines & ETL',   domain:'dataiku.com',          color:'#2AB1AC' },
+];
+
+/* ── CONNECTORS HERO ── */
+function ConnectorsHero() {
+  return (
+    <section style={{padding:'80px 0 36px', textAlign:'center', position:'relative', zIndex:1}}>
+      <div style={{maxWidth:'760px', margin:'0 auto', padding:'0 24px'}}>
+        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid rgba(255,255,255,.07)', background:'rgba(255,255,255,.03)', fontSize:'12px', color:'#7FA0AC', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
+          ✦ DATA CONNECTORS
+        </div>
+        <h1 className="fu1" style={{fontSize:'clamp(34px,4.6vw,52px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'#E8F2F5', marginBottom:'18px'}}>
+          Connect to everything you run on.
+        </h1>
+        <p className="fu2" style={{fontSize:'16px', color:'#7FA0AC', lineHeight:1.6, maxWidth:'580px', margin:'0 auto'}}>
+          200+ data connectors across your CRM, warehouse, ads, finance, product, and developer stack. Plug one in and start asking questions in plain English.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* ── CATEGORY SIDEBAR ── */
+function ConnectorCategorySidebar({ active, setActive, counts, onRequestConnector }) {
+  return (
+    <aside className="connectors-sidebar-col">
+      <div className="cat-group-header">Categories</div>
+      <div>
+        {CATEGORIES.map(cat => (
+          <button
+            key={cat}
+            onClick={() => setActive(cat)}
+            className={`cat-item ${active === cat ? 'active' : ''}`}
+          >
+            <span style={{overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap'}}>{cat}</span>
+            <span className="count">{counts[cat] || 0}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* Request a connector */}
+      <div style={{
+        marginTop:'20px', padding:'16px',
+        borderTop:'1px solid rgba(255,255,255,0.055)',
+      }}>
+        <p style={{
+          fontSize:'11.5px', color:'#7FA0AC', lineHeight:1.5, marginBottom:'10px',
+        }}>
+          Don't see what you need?
+        </p>
+        <button
+          onClick={onRequestConnector}
+          style={{
+            display:'inline-flex', alignItems:'center', gap:'6px',
+            width:'100%', justifyContent:'center',
+            padding:'8px 12px', borderRadius:'8px',
+            border:'1px solid rgba(9,160,157,.3)',
+            background:'rgba(9,160,157,.08)',
+            color:'#0EC4C1', fontSize:'12.5px', fontWeight:500,
+            fontFamily:'Geist, sans-serif', cursor:'pointer',
+            transition:'background .15s, border-color .15s',
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(9,160,157,.15)'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(9,160,157,.08)'; }}
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          Request a connector
+        </button>
+      </div>
+    </aside>
+  );
+}
+
+/* ── CONNECTOR TILE ── */
+function ConnectorTile({ c, index, onAskChat, onConnect }) {
+  const [imgFailed, setImgFailed] = useState(false);
+  const initials = c.name.split(' ').filter(w => !['&','the','-'].includes(w.toLowerCase())).slice(0,2).map(w => w[0]).join('').toUpperCase();
 
   return (
-    <div>
+    <div className="connector-tile" style={{ animationDelay:`${Math.min(index,12) * 0.02}s` }}>
+      <div className="connector-face">
+        <div className="connector-logo">
+          {imgFailed ? (
+            <div className="fallback" style={{ background: c.color, color: '#fff', borderRadius: 6 }}>
+              {initials}
+            </div>
+          ) : (
+            <img
+              src={`https://logo.clearbit.com/${c.domain}`}
+              alt={c.name}
+              loading="lazy"
+              onError={() => setImgFailed(true)}
+            />
+          )}
+        </div>
+        <div className="connector-name" title={c.name}>{c.name}</div>
+      </div>
+
+      <div className="connector-overlay">
+        <button className="overlay-btn primary" onClick={(e) => { e.stopPropagation(); onAskChat(c); }}>
+          Open in a new chat
+        </button>
+        <button className="overlay-btn secondary" onClick={(e) => { e.stopPropagation(); onConnect(c); }}>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/>
+            <path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/>
+          </svg>
+          Connect
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ── CONNECTOR GRID ── */
+function ConnectorGrid({ items, onAskChat, onConnect }) {
+  if (items.length === 0) {
+    return (
+      <div style={{
+        padding:'40px 24px', textAlign:'center',
+        border:'1px dashed rgba(255,255,255,0.08)', borderRadius:'12px',
+        color:'#7FA0AC', fontSize:'14px',
+      }}>
+        No connectors match your search.
+      </div>
+    );
+  }
+  return (
+    <div className="connector-grid">
+      {items.map((c, i) => (
+        <ConnectorTile key={c.name} c={c} index={i} onAskChat={onAskChat} onConnect={onConnect} />
+      ))}
+    </div>
+  );
+}
+
+/* ── APP ── */
+function App() {
+  const [query, setQuery] = useState('');
+  const [category, setCategory] = useState('All');
+  const [assistantQuery, setAssistantQuery] = useState(null);
+
+  const q = query.trim().toLowerCase();
+  const filtered = CONNECTORS.filter(c =>
+    (category === 'All' || c.category === category) &&
+    (!q || c.name.toLowerCase().includes(q) || c.category.toLowerCase().includes(q))
+  );
+
+  const handleAskChat = (c) => {
+    const url = `Chat.html?connector=${encodeURIComponent(c.name)}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+  const handleConnect = (c) => {
+    setAssistantQuery(`Walk me through connecting ${c.name} to Insightis step by step.`);
+  };
+
+  const counts = CATEGORIES.reduce((acc, cat) => {
+    acc[cat] = cat === 'All' ? CONNECTORS.length : CONNECTORS.filter(c => c.category === cat).length;
+    return acc;
+  }, {});
+
+  const handleRequestConnector = () => {
+    setAssistantQuery('I want to request a new data connector. How do I submit the request and what info do you need?');
+  };
+
+  return (
+    <div style={{ paddingBottom:'100px' }}>
       <Header />
-      <PromptLibraryHero />
-      <div className="prompt-layout">
-        <PromptLibrarySidebar
-          selectedTeams={selectedTeams}
-          toggleTeam={toggleTeam}
-          selectedSources={selectedSources}
-          toggleSource={toggleSource}
-          clearAll={clearAll}
+      <ConnectorsHero />
+      <div className="connectors-layout">
+        <ConnectorCategorySidebar
+          active={category}
+          setActive={setCategory}
+          counts={counts}
+          onRequestConnector={handleRequestConnector}
         />
-        <div className="prompt-content">
-          <div style={{
-            display:'flex', alignItems:'center', gap:'10px',
-            background:'rgba(16,22,30,0.7)',
-            border: searchFocused ? '1px solid rgba(9,160,157,.5)' : '1px solid rgba(255,255,255,0.07)',
-            borderRadius:'12px',
-            padding:'11px 14px',
-            width:'100%',
-            marginBottom:'20px',
-            transition:'border-color .2s',
-          }}>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7FA0AC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
+        <div className="connectors-content">
+          <div className="connector-search fu2">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7FA0AC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
             </svg>
             <input
               type="text"
-              placeholder="Search prompts by title, team, or data source..."
+              placeholder="Search 200+ connectors..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              onFocus={() => setSearchFocused(true)}
-              onBlur={() => setSearchFocused(false)}
-              style={{
-                flex:1, background:'transparent', border:'none', outline:'none',
-                fontSize:'14px', color:'#E8F2F5', fontFamily:"'Geist', sans-serif",
-              }}
             />
             {query && (
-              <button onClick={() => setQuery('')} style={{
-                background:'none', border:'none', cursor:'pointer',
-                color:'#7FA0AC', padding:'2px 6px', fontSize:'12px',
-                fontFamily:"'Geist', sans-serif",
-              }}>
+              <button onClick={() => setQuery('')} style={{background:'none',border:'none',color:'#7FA0AC',cursor:'pointer',padding:'2px 6px',fontSize:'12px'}}>
                 Clear
               </button>
             )}
           </div>
+          <ConnectorGrid items={filtered} onAskChat={handleAskChat} onConnect={handleConnect} />
 
-          {filtered.length > 0 ? (
-            filtered.map((entry, i) => (
-              <PromptCard key={entry.title} entry={entry} index={i} />
-            ))
-          ) : (
-            <div style={{
-              padding:'40px 24px', textAlign:'center',
-              border:'1px dashed rgba(255,255,255,0.08)', borderRadius:'12px',
-              color:'#7FA0AC', fontSize:'14px',
-            }}>
-              No prompts match your search — try different keywords or clear a filter.
+          {/* Bottom request-a-connector CTA (shown on mobile where sidebar is hidden, and as a reinforcement on desktop) */}
+          <div style={{
+            marginTop:'40px', padding:'24px',
+            border:'1px solid rgba(9,160,157,.18)',
+            borderRadius:'12px',
+            background:'linear-gradient(135deg, rgba(9,160,157,0.06), rgba(16,22,30,0.4))',
+            display:'flex', alignItems:'center', justifyContent:'space-between',
+            gap:'16px', flexWrap:'wrap',
+          }}>
+            <div>
+              <h3 style={{fontSize:'16px', fontWeight:500, color:'#E8F2F5', marginBottom:'4px', letterSpacing:'-.01em'}}>
+                Can't find your tool?
+              </h3>
+              <p style={{fontSize:'13.5px', color:'#7FA0AC', lineHeight:1.5}}>
+                Tell us what you use and we'll prioritize the connector.
+              </p>
             </div>
-          )}
+            <button
+              onClick={handleRequestConnector}
+              style={{
+                display:'inline-flex', alignItems:'center', gap:'8px',
+                padding:'10px 18px', borderRadius:'8px',
+                border:'none', background:'#07807E', color:'#fff',
+                fontSize:'13px', fontWeight:600, fontFamily:'Geist,sans-serif',
+                cursor:'pointer', transition:'background .15s',
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = '#09A09D'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = '#07807E'; }}
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+              Request a connector
+            </button>
+          </div>
         </div>
       </div>
-      <BottomCTA />
       <Footer />
       <FloatingChat onSubmit={(q) => setAssistantQuery(q)} />
       {assistantQuery && (
@@ -1493,7 +1273,3 @@ function App() {
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-</script>
-<script defer src="/assets/header-scroll.js"></script>
-</body>
-</html>
