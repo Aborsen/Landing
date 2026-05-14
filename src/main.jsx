@@ -1554,11 +1554,11 @@ function BottomCTA() {
 function App() {
   return (
     <div className="font-body">
-      <header>
-        <Header />
-        <Hero />
-      </header>
+      <Header />
       <main id="main-content">
+        <header>
+          <Hero />
+        </header>
         <Architecture />
         <HowItWorks />
         <SubscribeBanner />
