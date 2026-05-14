@@ -494,7 +494,9 @@ function PricingCards() {
     {
       name:'Starter',
       tag:'For small teams',
-      price:19.99,
+      price:9.99,
+      originalPrice:19.99,
+      discount:'50% OFF',
       cta:'Start free trial',
       ctaStyle:'outline',
       features:[
@@ -509,8 +511,8 @@ function PricingCards() {
     {
       name:'Pro',
       tag:'For growing teams',
-      price:39.99,
-      originalPrice:79.99,
+      price:19.99,
+      originalPrice:39.99,
       discount:'50% OFF',
       cta:'Start free trial',
       ctaStyle:'primary',
