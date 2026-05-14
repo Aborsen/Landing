@@ -55,17 +55,14 @@
     max-width: 100% !important;
   }
   /* Shrink the tall (500px) animation cards used on Integrations / Semantic Layer / Chat hero */
-  .hero-anim > div[style*="height:'500px'"],
   .hero-anim > div[style*="height: 500px"],
   .hero-anim > div[style*="height:500px"] {
     height: 380px !important;
   }
 
   /* Solutions hero right-side visual panel (was minHeight: 540px) */
-  [data-hero-grid] > div[style*="minHeight:'540px'"] > div,
-  [data-hero-grid] > div[style*="minHeight: 540px"] > div,
-  [data-hero-grid] [style*="minHeight:'540px'"],
-  [data-hero-grid] [style*="minHeight: 540px"] {
+  [data-hero-grid] [style*="min-height: 540px"],
+  [data-hero-grid] [style*="min-height:540px"] {
     min-height: auto !important;
   }
 
@@ -81,13 +78,17 @@
   [data-spotlight-grid] > [data-spotlight-text] { order: 0 !important; }
   [data-spotlight-grid] > [data-spotlight-visual] { order: 1 !important; }
 
-  /* Generic two-column → one-column for content grids */
-  [style*="gridTemplateColumns:'1fr 1fr'"],
-  [style*="gridTemplateColumns: '1fr 1fr'"],
-  [style*="gridTemplateColumns:'1.05fr 1fr'"],
-  [style*="gridTemplateColumns: '1.05fr 1fr'"],
-  [style*="gridTemplateColumns:'minmax(0,1fr) minmax(0,1fr)'"],
-  [style*="gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)'"] {
+  /* Generic two-column → one-column for content grids.
+     React renders inline style camelCase props as kebab-case in the
+     final HTML attribute (and converts `0` to `0px` in calc values),
+     so the selectors must match the rendered form, not the JSX form. */
+  [style*="grid-template-columns: 1fr 1fr"],
+  [style*="grid-template-columns:1fr 1fr"],
+  [style*="grid-template-columns: 1.05fr 1fr"],
+  [style*="grid-template-columns:1.05fr 1fr"],
+  [style*="grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr)"],
+  [style*="grid-template-columns:minmax(0px,1fr) minmax(0px,1fr)"],
+  [style*="grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)"] {
     grid-template-columns: 1fr !important;
   }
 
@@ -131,11 +132,12 @@
   .hero-anim > div { width: 100% !important; max-width: 100% !important; box-sizing: border-box; }
 
   /* Solutions hero right-side visual panel — outer wrapper inline minHeight */
-  [data-hero-grid] > div > div[style*="minHeight:'540px'"],
-  [data-hero-grid] > div > div[style*="minHeight: 540px"] { min-height: 380px !important; }
+  [data-hero-grid] > div > div[style*="min-height: 540px"],
+  [data-hero-grid] > div > div[style*="min-height:540px"] { min-height: 380px !important; }
 
   /* Solutions inner hero panel (the rounded panel that holds the SVG illustration) */
-  [data-hero-grid] [style*="borderRadius:'24px'"] { max-width: 100% !important; box-sizing: border-box; }
+  [data-hero-grid] [style*="border-radius: 24px"],
+  [data-hero-grid] [style*="border-radius:24px"] { max-width: 100% !important; box-sizing: border-box; }
 
   /* Pricing comparison table — allow horizontal scroll instead of squishing */
   [data-compare-wrap] { overflow-x: auto !important; }
@@ -191,8 +193,12 @@
    and the animation panel sits right below
    =========================================================== */
 @media (max-width: 768px) {
-  [style*="height: '500px'"][style*="space-between"],
-  [style*="height:'500px'"][style*="space-between"] {
+  /* Platform hero text columns: drop the desktop 500px-tall justify-between
+     layout on mobile so text flows naturally and the animation panel sits
+     right below. React renders `space-between` as-is (it's a value, not a
+     property name) and `height:'500px'` as `height: 500px`. */
+  [style*="height: 500px"][style*="space-between"],
+  [style*="height:500px"][style*="space-between"] {
     height: auto !important;
     justify-content: flex-start !important;
     padding: 0 !important;
