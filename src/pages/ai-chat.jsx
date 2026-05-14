@@ -185,7 +185,12 @@ function Header() {
               <a href="#" className="text-sm font-medium text-white bg-[#07807E] hover:bg-[#09A09D] px-5 py-2 rounded-full transition-colors">Start for Free</a>
             </div>
 
-            <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden p-2">
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="md:hidden p-2"
+              aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileOpen}
+            >
               {mobileOpen ? <CloseIcon /> : <MenuIcon />}
             </button>
           </div>
@@ -425,7 +430,7 @@ function ChatMock() {
             <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
           ))}
         </div>
-        <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'#6E8D9A',fontFamily:'Geist Mono, monospace'}}>
+        <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono, monospace'}}>
           insightis — ai chat
         </div>
         <div style={{display:'flex',alignItems:'center',gap:5,padding:'3px 8px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'5px'}}>
@@ -471,7 +476,7 @@ function ChatMock() {
 
         {/* Idle state */}
         {phase === 'idle' && (
-          <div style={{flex:1,display:'flex',alignItems:'center',justifyContent:'center',color:'#6E8D9A',fontSize:'12px',fontFamily:'Geist Mono,monospace'}}>
+          <div style={{flex:1,display:'flex',alignItems:'center',justifyContent:'center',color:'#8AA6B3',fontSize:'12px',fontFamily:'Geist Mono,monospace'}}>
             Ask anything about your data...
           </div>
         )}
@@ -479,12 +484,12 @@ function ChatMock() {
 
       {/* Input bar */}
       <div style={{padding:'12px 16px',borderTop:'1px solid rgba(255,255,255,0.06)',display:'flex',alignItems:'center',gap:'8px'}}>
-        <div style={{flex:1,background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.08)',borderRadius:'10px',padding:'9px 12px',fontSize:'13px',color:'#6E8D9A',fontFamily:'Geist,sans-serif'}}>
+        <div style={{flex:1,background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.08)',borderRadius:'10px',padding:'9px 12px',fontSize:'13px',color:'#8AA6B3',fontFamily:'Geist,sans-serif'}}>
           Ask anything about your data…
         </div>
         <div style={{display:'flex',alignItems:'center',gap:'5px'}}>
           <div style={{width:'28px',height:'28px',borderRadius:'7px',background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.08)',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer'}}>
-            <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M14 10a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h1l2-2h2l2 2h1a2 2 0 012 2v4z" stroke="#6E8D9A" strokeWidth="1.3"/></svg>
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M14 10a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h1l2-2h2l2 2h1a2 2 0 012 2v4z" stroke="#8AA6B3" strokeWidth="1.3"/></svg>
           </div>
           <div style={{width:'28px',height:'28px',borderRadius:'7px',background:'linear-gradient(135deg,#09A09D,#07807E)',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer',boxShadow:'0 0 10px rgba(9,160,157,.3)'}}>
             <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -607,7 +612,7 @@ function LineChart({ points, labels }) {
         <path d={area} fill="url(#areaFill)"/>
         <path d={line} fill="none" stroke="#0EC4C1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         {coords.map((c,i) => <circle key={i} cx={c.x} cy={c.y} r="3" fill="#0EC4C1" stroke="#0A0E13" strokeWidth="1.5"/>)}
-        {labels && labels.map((l,i) => <text key={i} x={coords[i].x} y={h-1} textAnchor="middle" style={{fontSize:'9px',fill:'#6E8D9A',fontFamily:'Geist Mono,monospace'}}>{l}</text>)}
+        {labels && labels.map((l,i) => <text key={i} x={coords[i].x} y={h-1} textAnchor="middle" style={{fontSize:'9px',fill:'#8AA6B3',fontFamily:'Geist Mono,monospace'}}>{l}</text>)}
       </svg>
     </div>
   );
@@ -631,14 +636,14 @@ function GroupedBarChart({ groups }) {
               <div style={{width:'100%',background:'rgba(255,255,255,.04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
                 <div style={{width:`${(g.budget/maxVal)*100}%`,height:'100%',borderRadius:'3px',background:'rgba(255,255,255,.12)'}}/>
               </div>
-              <span style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color:'#6E8D9A',minWidth:'40px',flexShrink:0}}>${g.budget}K</span>
+              <span style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color:'#8AA6B3',minWidth:'40px',flexShrink:0}}>${g.budget}K</span>
             </div>
           </div>
         </div>
       ))}
       <div style={{display:'flex',gap:'16px',marginTop:'4px'}}>
-        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(9,160,157,.55)'}}/><span style={{fontSize:'10px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace'}}>Actual</span></div>
-        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(255,255,255,.12)'}}/><span style={{fontSize:'10px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace'}}>Budget</span></div>
+        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(9,160,157,.55)'}}/><span style={{fontSize:'10px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace'}}>Actual</span></div>
+        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(255,255,255,.12)'}}/><span style={{fontSize:'10px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace'}}>Budget</span></div>
       </div>
     </div>
   );
@@ -668,8 +673,8 @@ function RetainedVsChurnedChart({ bars }) {
         </div>
       ))}
       <div style={{display:'flex',gap:'16px',marginTop:'4px'}}>
-        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(9,160,157,.6)'}}/><span style={{fontSize:'10px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace'}}>Retained (12+ mo)</span></div>
-        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(220,80,80,.55)'}}/><span style={{fontSize:'10px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace'}}>Churned</span></div>
+        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(9,160,157,.6)'}}/><span style={{fontSize:'10px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace'}}>Retained (12+ mo)</span></div>
+        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(220,80,80,.55)'}}/><span style={{fontSize:'10px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace'}}>Churned</span></div>
       </div>
     </div>
   );
@@ -707,7 +712,7 @@ const GALLERY_DATA = {
           { label:'Meridian', value:31, display:'$31K', color:'#F87171' },
           { label:'Quell Inc.', value:28, display:'$28K', color:'#FBBF24' },
           { label:'Vertexio', value:22, display:'$22K', color:'#818CF8' },
-          { label:'Others', value:13, display:'$13K', color:'#6E8D9A' },
+          { label:'Others', value:13, display:'$13K', color:'#8AA6B3' },
         ],
         caption: '7 deals totalling $184K at risk of slipping past Q2. NovaCorp ($52K) untouched for 21 days.',
         action: 'Schedule executive business reviews for the top 3 at-risk deals before end of week',
@@ -773,7 +778,7 @@ const GALLERY_DATA = {
           { label:'Cloud & Infra', value:34, display:'$34K', color:'#0EC4C1' },
           { label:'Contractors', value:21, display:'$21K', color:'#FBBF24' },
           { label:'Marketing', value:12, display:'$12K', color:'#09A09D' },
-          { label:'Other', value:8, display:'$8K', color:'#6E8D9A' },
+          { label:'Other', value:8, display:'$8K', color:'#8AA6B3' },
         ],
         caption: '$187K/month burn, $4.2M in bank = 22.5 months runway. Payroll is 60% of total spend.',
         action: 'Model two hiring-pace scenarios (full plan vs. 70%) ahead of the board meeting',
@@ -932,7 +937,7 @@ const GALLERY_DATA = {
           { label:'checkout_complete', value:41, display:'-41%', color:'#F87171' },
           { label:'page_view (bot filter)', value:18, display:'-18%', color:'#FBBF24' },
           { label:'session_start', value:9, display:'-9%', color:'#FBBF24' },
-          { label:'feature_activated', value:5, display:'−5%', color:'#6E8D9A' },
+          { label:'feature_activated', value:5, display:'−5%', color:'#8AA6B3' },
         ],
         caption: '3 anomalies in yesterday\'s pipeline. checkout_complete −41% (14:00–16:00 UTC) — Stripe webhook delay. All resolved by 18:30 UTC.',
         action: 'Confirm Stripe webhook backfill completed and close the incident log',
@@ -1145,7 +1150,7 @@ function QuestionsGallery() {
                   }}/>
                   <span style={{
                     fontSize:'13px',fontWeight: i===activeQ?500:400,
-                    color: i===activeQ?'#E8F2F5':'#6E8D9A',
+                    color: i===activeQ?'#E8F2F5':'#8AA6B3',
                     lineHeight:1.45,
                     transition:'color .18s, font-weight .18s',
                     whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',display:'block',
@@ -1189,7 +1194,7 @@ function QuestionsGallery() {
                     <svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z" stroke="#0EC4C1" strokeWidth="1.2" strokeLinejoin="round"/></svg>
                   </div>
                   <span style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color:'#0EC4C1',fontWeight:500}}>Insightis</span>
-                  <div style={{marginLeft:'auto',fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'#6E8D9A',display:'flex',alignItems:'center',gap:4}}>
+                  <div style={{marginLeft:'auto',fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'#8AA6B3',display:'flex',alignItems:'center',gap:4}}>
                     <div style={{width:5,height:5,borderRadius:'50%',background:'#22C55E',boxShadow:'0 0 5px #22C55E'}}/>
                     live data
                   </div>
@@ -1314,7 +1319,7 @@ function HowItWorks() {
               </p>
 
               {/* Example chip */}
-              <div style={{padding:'10px 14px',background:'rgba(255,255,255,.03)',border:'1px solid rgba(255,255,255,.06)',borderRadius:'8px',fontSize:'12px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',fontStyle:'italic',width:'100%',maxWidth:'320px',boxSizing:'border-box'}}>
+              <div style={{padding:'10px 14px',background:'rgba(255,255,255,.03)',border:'1px solid rgba(255,255,255,.06)',borderRadius:'8px',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',fontStyle:'italic',width:'100%',maxWidth:'320px',boxSizing:'border-box'}}>
                 {s.example}
               </div>
             </div>
@@ -1374,7 +1379,7 @@ function AccuracyComparison() {
               <span style={{fontSize:'13px',fontWeight:600,color:'#F87171'}}>Generic AI</span>
             </div>
             <div style={{background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',minHeight:'118px',display:'flex',flexDirection:'column',justifyContent:'flex-start'}}>
-              <div style={{fontSize:'11px',color:'#6E8D9A',marginBottom:'8px'}}>→ "What's our churn rate?"</div>
+              <div style={{fontSize:'11px',color:'#8AA6B3',marginBottom:'8px'}}>→ "What's our churn rate?"</div>
               <div style={{fontSize:'12.5px',color:'#505068',lineHeight:1.7}}>
                 The average SaaS churn rate is typically between <span style={{color:'#F87171'}}>3–8% monthly</span>, depending on your segment and pricing tier. Companies in the SMB market typically see higher rates. This estimate may or may not reflect your situation.
               </div>
@@ -1390,7 +1395,7 @@ function AccuracyComparison() {
               <span style={{fontSize:'13px',fontWeight:500,color:'#0EC4C1'}}>Insightis</span>
             </div>
             <div style={{background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',minHeight:'118px',display:'flex',flexDirection:'column',justifyContent:'flex-start'}}>
-              <div style={{fontSize:'11px',color:'#6E8D9A',marginBottom:'8px'}}>→ "What's our churn rate?"</div>
+              <div style={{fontSize:'11px',color:'#8AA6B3',marginBottom:'8px'}}>→ "What's our churn rate?"</div>
               <div style={{fontSize:'12.5px',color:'#C0D4DC',lineHeight:1.7}}>
                 Your churn rate in March was <span style={{color:'#0EC4C1',fontWeight:500}}>2.1%</span> — down from 2.8% in February. Main driver: reduced churn in Starter plan (↓ 0.9pp). 3 accounts churned vs 5 last month.
               </div>
@@ -1566,7 +1571,7 @@ function Footer() {
 
             {/* Platform */}
             <div>
-              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Platform</h4>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#9090C0] mb-4 whitespace-nowrap">Platform</h3>
               <ul className="flex flex-col gap-2.5">
                 {['AI Chat', 'Integrations', 'Semantic Layer'].map(link => (
                   <li key={link}><a href={linkUrls[link] || '#'} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}</a></li>
@@ -1576,7 +1581,7 @@ function Footer() {
 
             {/* Solutions */}
             <div>
-              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Solutions</h4>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#9090C0] mb-4 whitespace-nowrap">Solutions</h3>
               <ul className="flex flex-col gap-2.5">
                 {['For RevOps & BizOps', 'For Founders & CEOs', 'For CMOs & Marketers', 'For Product Teams', 'For Data & Analytics Teams', 'For Operations & Finance'].map(link => (
                   <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
@@ -1586,7 +1591,7 @@ function Footer() {
 
             {/* Resources */}
             <div>
-              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Resources</h4>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#9090C0] mb-4 whitespace-nowrap">Resources</h3>
               <ul className="flex flex-col gap-2.5">
                 {['Documentation', 'Prompt Library', 'Blog', 'Support Center', 'Roadmap', 'Data Connectors'].map(link => (
                   <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
@@ -1596,7 +1601,7 @@ function Footer() {
 
             {/* Company */}
             <div>
-              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Company</h4>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#9090C0] mb-4 whitespace-nowrap">Company</h3>
               <ul className="flex flex-col gap-2.5">
                 {[
                   { label: 'About Insightis', href: '../Company/About Insightis.html' },
@@ -1611,7 +1616,7 @@ function Footer() {
 
             {/* Legal */}
             <div>
-              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Legal</h4>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#9090C0] mb-4 whitespace-nowrap">Legal</h3>
               <ul className="flex flex-col gap-2.5">
                 {[
                   { label: 'Privacy', href: '../Security/Privacy.html' },
@@ -1631,10 +1636,10 @@ function Footer() {
         <div className="border-t border-[#1E1E30] pt-6 flex items-center justify-between">
           <p className="text-xs text-[#7878A8]">&copy; Copyright © Devart 2026</p>
           <div className="flex items-center gap-4">
-            <a href="https://x.com/Insightisai" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity"><TwitterXIcon size={18} color="#7878A8" /></a>
-            <a href="https://www.tiktok.com/@insightisai" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity"><TikTokIcon size={18} color="#7878A8" /></a>
-            <a href="https://www.youtube.com/@InsightisAI" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity"><YouTubeIcon size={18} color="#7878A8" /></a>
-            <a href="https://www.linkedin.com/company/112025589" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity"><LinkedInIcon size={18} color="#7878A8" /></a>
+            <a href="https://x.com/Insightisai" target="_blank" rel="noopener noreferrer" aria-label="Insightis on X (formerly Twitter)" className="hover:opacity-80 transition-opacity"><TwitterXIcon size={18} color="#7878A8" /></a>
+            <a href="https://www.tiktok.com/@insightisai" target="_blank" rel="noopener noreferrer" aria-label="Insightis on TikTok" className="hover:opacity-80 transition-opacity"><TikTokIcon size={18} color="#7878A8" /></a>
+            <a href="https://www.youtube.com/@InsightisAI" target="_blank" rel="noopener noreferrer" aria-label="Insightis on YouTube" className="hover:opacity-80 transition-opacity"><YouTubeIcon size={18} color="#7878A8" /></a>
+            <a href="https://www.linkedin.com/company/112025589" target="_blank" rel="noopener noreferrer" aria-label="Insightis on LinkedIn" className="hover:opacity-80 transition-opacity"><LinkedInIcon size={18} color="#7878A8" /></a>
           </div>
         </div>
       </div>
@@ -1739,7 +1744,7 @@ function ChatMockAnimation() {
             <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
           ))}
         </div>
-        <div style={{flex:1, textAlign:'center', fontSize:'12px', color:'#6E8D9A', fontFamily:'Geist Mono, monospace', letterSpacing:'.02em'}}>
+        <div style={{flex:1, textAlign:'center', fontSize:'12px', color:'#8AA6B3', fontFamily:'Geist Mono, monospace', letterSpacing:'.02em'}}>
           insightis — ai chat
         </div>
         <div style={{width:'46px'}}/>
@@ -1798,7 +1803,7 @@ function ChatMockAnimation() {
                       fontSize:'9px', fontWeight:700,
                       background: done ? 'rgba(14,196,193,0.12)' : 'rgba(255,255,255,0.04)',
                       border: done ? '1px solid rgba(14,196,193,0.28)' : '1px solid rgba(255,255,255,0.09)',
-                      color: done ? '#0EC4C1' : '#6E8D9A',
+                      color: done ? '#0EC4C1' : '#8AA6B3',
                       transition:'all .3s ease',
                     }}>
                       {done ? '✓' : (i + 1)}
@@ -1898,7 +1903,7 @@ function ChatMockAnimation() {
           {inputText ? (
             <span>{inputText}</span>
           ) : (
-            <span style={{color:'rgba(255,255,255,0.28)', fontSize:'13px'}}>Ask anything…</span>
+            <span style={{color:'rgba(255,255,255,0.55)', fontSize:'13px'}}>Ask anything…</span>
           )}
           {showCursor && (
             <span style={{display:'inline-block',width:'1.5px',height:'15px',background:'#0EC4C1',marginLeft:'1px',animation:'blink 1s step-end infinite',verticalAlign:'middle'}}/>
@@ -1950,7 +1955,7 @@ function Hero() {
           </div>
           <div style={{display:'flex',alignItems:'center',gap:'18px',flexWrap:'wrap'}}>
             {['Free plan','No SQL required','Setup in minutes'].map(t=>(
-              <span key={t} style={{display:'flex',alignItems:'center',gap:'5px',fontSize:'12px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',fontVariantNumeric:'tabular-nums'}}>
+              <span key={t} style={{display:'flex',alignItems:'center',gap:'5px',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',fontVariantNumeric:'tabular-nums'}}>
                 <span style={{color:'#09A09D'}}>✓</span>{t}
               </span>
             ))}
@@ -1970,6 +1975,7 @@ function App() {
   return (
     <div>
       <Header />
+      <main>
       <Hero />
       {/* TODO SEO [P0]: Insert <TLDR/> component here (between Hero and HowItWorks).
           Required: Block 0 executive summary, 80–100 words, format Problem → Insightis → Benefit.
@@ -1998,6 +2004,7 @@ function App() {
           Answers #4–#6 still need author copy.
       */}
       <BottomCTA />
+      </main>
       <Footer />
     </div>
   );
