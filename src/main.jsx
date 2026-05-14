@@ -905,7 +905,7 @@ function Architecture() {
       <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 50% 40% at 50% 50%, rgba(7,128,126,0.06) 0%, transparent 70%)' }}></div>
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <FadeUp>
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 arch-heading">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-4" style={{background: 'rgba(7,128,126,0.1)', border: '1px solid rgba(7,128,126,0.4)'}}>
               <span className="text-[var(--ins-color-teal-500)] text-sm">✦</span>
               <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-color-teal-500)]">Architecture</span>
