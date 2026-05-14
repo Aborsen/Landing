@@ -185,7 +185,12 @@ function Header() {
               <a href="#" className="text-sm font-medium text-white bg-[#07807E] hover:bg-[#09A09D] px-5 py-2 rounded-full transition-colors">Start for Free</a>
             </div>
 
-            <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden p-2">
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="md:hidden p-2"
+              aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileOpen}
+            >
               {mobileOpen ? <CloseIcon /> : <MenuIcon />}
             </button>
           </div>
@@ -396,7 +401,7 @@ function SemanticLayerMockAnimation() {
 
   // Header label reflects the active phase
   const phaseLabel = showCertScreen ? 'certified' : (t >= THINKING_START ? 'processing' : 'ingesting');
-  const phaseColor = showCertScreen ? 'rgba(14,196,193,0.85)' : (t >= THINKING_START ? 'rgba(255,180,100,0.9)' : 'rgba(255,255,255,0.5)');
+  const phaseColor = showCertScreen ? 'rgba(14,196,193,0.85)' : (t >= THINKING_START ? 'rgba(255,180,100,0.9)' : 'rgba(255,255,255,0.7)');
   const phaseDot   = showCertScreen ? '#0EC4C1' : (t >= THINKING_START ? '#FFB464' : '#9BBEC8');
 
   return (
@@ -418,7 +423,7 @@ function SemanticLayerMockAnimation() {
             <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
           ))}
         </div>
-        <div style={{flex:1, textAlign:'center', fontSize:'12px', color:'#6E8D9A', fontFamily:'Geist Mono, monospace', letterSpacing:'.02em'}}>
+        <div style={{flex:1, textAlign:'center', fontSize:'12px', color:'#8AA6B3', fontFamily:'Geist Mono, monospace', letterSpacing:'.02em'}}>
           insightis — semantic layer
         </div>
         <div style={{width:'46px'}}/>
@@ -470,7 +475,7 @@ function SemanticLayerMockAnimation() {
                       display:'flex', alignItems:'center', justifyContent:'center',
                       fontSize:'8.5px', fontWeight:700, color:m.color, fontFamily:'Geist Mono,monospace',
                     }}>{m.short}</span>
-                    <span style={{fontSize:'10.5px', color:'rgba(255,255,255,0.55)', fontFamily:'Geist Mono,monospace', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}>{m.source}</span>
+                    <span style={{fontSize:'10.5px', color:'rgba(255,255,255,0.7)', fontFamily:'Geist Mono,monospace', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}>{m.source}</span>
                   </div>
                   <span style={{fontSize:'12px', color:'#D2E2E8', fontWeight:500}}>{m.name}</span>
                   <span style={{
@@ -547,7 +552,7 @@ function SemanticLayerMockAnimation() {
                     fontSize:'9px', fontWeight:800,
                     background: done ? 'rgba(14,196,193,0.18)' : (active ? 'transparent' : 'rgba(255,255,255,0.04)'),
                     border: done ? '1px solid rgba(14,196,193,0.45)' : (active ? '1.5px solid rgba(14,196,193,0.7)' : '1px solid rgba(255,255,255,0.1)'),
-                    color: done ? '#0EC4C1' : (active ? '#0EC4C1' : '#6E8D9A'),
+                    color: done ? '#0EC4C1' : (active ? '#0EC4C1' : '#8AA6B3'),
                     transition:'all .3s ease',
                     animation: active ? 'pulse 1.3s ease-in-out infinite' : 'none',
                   }}>
@@ -653,7 +658,7 @@ function Hero() {
           </div>
           <div style={{display:'flex',alignItems:'center',gap:'18px',flexWrap:'wrap'}}>
             {['Single source of truth','Zero conflicting numbers','Every team aligned'].map(t=>(
-              <span key={t} style={{display:'flex',alignItems:'center',gap:'5px',fontSize:'12px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',fontVariantNumeric:'tabular-nums'}}>
+              <span key={t} style={{display:'flex',alignItems:'center',gap:'5px',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',fontVariantNumeric:'tabular-nums'}}>
                 <span style={{color:'#09A09D'}}>✓</span>{t}
               </span>
             ))}
@@ -737,7 +742,7 @@ function WhatItDoes() {
               </p>
 
               {/* Example chip */}
-              <div style={{padding:'10px 14px',background:'rgba(255,255,255,.03)',border:'1px solid rgba(255,255,255,.06)',borderRadius:'8px',fontSize:'12px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',fontStyle:'italic',width:'100%',maxWidth:'320px',boxSizing:'border-box'}}>
+              <div style={{padding:'10px 14px',background:'rgba(255,255,255,.03)',border:'1px solid rgba(255,255,255,.06)',borderRadius:'8px',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',fontStyle:'italic',width:'100%',maxWidth:'320px',boxSizing:'border-box'}}>
                 {s.example}
               </div>
             </div>
@@ -998,7 +1003,7 @@ function Panel2() {
 
       <div style={{fontSize:'12px',color:'rgba(255,255,255,.35)',marginBottom:'12px',fontFamily:'Geist Mono,monospace'}}>Customer Acquisition Cost → CAC</div>
 
-      <div style={{fontSize:'11.5px',color:'rgba(255,255,255,.5)',marginBottom:'12px',lineHeight:1.6}}>
+      <div style={{fontSize:'11.5px',color:'rgba(255,255,255,.7)',marginBottom:'12px',lineHeight:1.6}}>
         Connecting <span style={{color:'#0EC4C1'}}>(@marketing_spend + @sales_spend) / @new_customers</span>
       </div>
 
@@ -1282,7 +1287,7 @@ function FeaturesShowcase() {
               </p>
 
               {/* Example chip */}
-              <div style={{padding:'10px 14px',background:'rgba(255,255,255,.03)',border:'1px solid rgba(255,255,255,.06)',borderRadius:'8px',fontSize:'12px',color:'#6E8D9A',fontFamily:'Geist Mono,monospace',fontStyle:'italic',width:'100%',maxWidth:'320px',boxSizing:'border-box'}}>
+              <div style={{padding:'10px 14px',background:'rgba(255,255,255,.03)',border:'1px solid rgba(255,255,255,.06)',borderRadius:'8px',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',fontStyle:'italic',width:'100%',maxWidth:'320px',boxSizing:'border-box'}}>
                 {s.example}
               </div>
             </div>
@@ -1401,7 +1406,7 @@ function BeforeAfter() {
               <span style={{fontSize:'13px',fontWeight:600,color:'#F87171'}}>Without Semantic Layer</span>
             </div>
             <div style={{background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',minHeight:'118px',display:'flex',flexDirection:'column',justifyContent:'flex-start'}}>
-              <div style={{fontSize:'11px',color:'#6E8D9A',marginBottom:'8px'}}>→ "What's our MRR this month?"</div>
+              <div style={{fontSize:'11px',color:'#8AA6B3',marginBottom:'8px'}}>→ "What's our MRR this month?"</div>
               <div style={{fontSize:'12.5px',color:'#505068',lineHeight:1.7}}>
                 Finance says <span style={{color:'#F87171'}}>$52,000</span>. RevOps says <span style={{color:'#F87171'}}>$47,200</span>. The CEO dashboard shows <span style={{color:'#F87171'}}>$44,800</span>. Analysts spend Monday reconciling four spreadsheets before anyone can answer.
               </div>
@@ -1417,7 +1422,7 @@ function BeforeAfter() {
               <span style={{fontSize:'13px',fontWeight:500,color:'#0EC4C1'}}>With Insightis Semantic Layer</span>
             </div>
             <div style={{background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',minHeight:'118px',display:'flex',flexDirection:'column',justifyContent:'flex-start'}}>
-              <div style={{fontSize:'11px',color:'#6E8D9A',marginBottom:'8px'}}>→ "What's our MRR this month?"</div>
+              <div style={{fontSize:'11px',color:'#8AA6B3',marginBottom:'8px'}}>→ "What's our MRR this month?"</div>
               <div style={{fontSize:'12.5px',color:'#C0D4DC',lineHeight:1.7}}>
                 @MRR = <span style={{color:'#0EC4C1',fontWeight:500}}>$42,400</span> — March, blended across Stripe + HubSpot + Postgres. Every dashboard, chat, and board deck reads the same certified definition. Analysts ship insights, not reconciliations.
               </div>
@@ -1588,7 +1593,7 @@ function Footer() {
 
             {/* Platform */}
             <div>
-              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Platform</h4>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#9090C0] mb-4 whitespace-nowrap">Platform</h3>
               <ul className="flex flex-col gap-2.5">
                 {['AI Chat', 'Integrations', 'Semantic Layer'].map(link => (
                   <li key={link}><a href={linkUrls[link] || '#'} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}</a></li>
@@ -1598,7 +1603,7 @@ function Footer() {
 
             {/* Solutions */}
             <div>
-              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Solutions</h4>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#9090C0] mb-4 whitespace-nowrap">Solutions</h3>
               <ul className="flex flex-col gap-2.5">
                 {['For RevOps & BizOps', 'For Founders & CEOs', 'For CMOs & Marketers', 'For Product Teams', 'For Data & Analytics Teams', 'For Operations & Finance'].map(link => (
                   <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
@@ -1608,7 +1613,7 @@ function Footer() {
 
             {/* Resources */}
             <div>
-              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Resources</h4>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#9090C0] mb-4 whitespace-nowrap">Resources</h3>
               <ul className="flex flex-col gap-2.5">
                 {['Documentation', 'Prompt Library', 'Blog', 'Support Center', 'Roadmap', 'Data Connectors'].map(link => (
                   <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
@@ -1618,7 +1623,7 @@ function Footer() {
 
             {/* Company */}
             <div>
-              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Company</h4>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#9090C0] mb-4 whitespace-nowrap">Company</h3>
               <ul className="flex flex-col gap-2.5">
                 {[
                   { label: 'About Insightis', href: '../Company/About Insightis.html' },
@@ -1633,7 +1638,7 @@ function Footer() {
 
             {/* Legal */}
             <div>
-              <h4 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#7878A8] mb-4 whitespace-nowrap">Legal</h4>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#9090C0] mb-4 whitespace-nowrap">Legal</h3>
               <ul className="flex flex-col gap-2.5">
                 {[
                   { label: 'Privacy', href: '../Security/Privacy.html' },
@@ -1653,10 +1658,10 @@ function Footer() {
         <div className="border-t border-[#1E1E30] pt-6 flex items-center justify-between">
           <p className="text-xs text-[#7878A8]">&copy; Copyright © Devart 2026</p>
           <div className="flex items-center gap-4">
-            <a href="https://x.com/Insightisai" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity"><TwitterXIcon size={18} color="#7878A8" /></a>
-            <a href="https://www.tiktok.com/@insightisai" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity"><TikTokIcon size={18} color="#7878A8" /></a>
-            <a href="https://www.youtube.com/@InsightisAI" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity"><YouTubeIcon size={18} color="#7878A8" /></a>
-            <a href="https://www.linkedin.com/company/112025589" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity"><LinkedInIcon size={18} color="#7878A8" /></a>
+            <a href="https://x.com/Insightisai" target="_blank" rel="noopener noreferrer" aria-label="Insightis on X (formerly Twitter)" className="hover:opacity-80 transition-opacity"><TwitterXIcon size={18} color="#7878A8" /></a>
+            <a href="https://www.tiktok.com/@insightisai" target="_blank" rel="noopener noreferrer" aria-label="Insightis on TikTok" className="hover:opacity-80 transition-opacity"><TikTokIcon size={18} color="#7878A8" /></a>
+            <a href="https://www.youtube.com/@InsightisAI" target="_blank" rel="noopener noreferrer" aria-label="Insightis on YouTube" className="hover:opacity-80 transition-opacity"><YouTubeIcon size={18} color="#7878A8" /></a>
+            <a href="https://www.linkedin.com/company/112025589" target="_blank" rel="noopener noreferrer" aria-label="Insightis on LinkedIn" className="hover:opacity-80 transition-opacity"><LinkedInIcon size={18} color="#7878A8" /></a>
           </div>
         </div>
       </div>
@@ -1670,12 +1675,14 @@ function App() {
   return (
     <div>
       <Header />
+      <main>
       <Hero />
       <WhatItDoes />
       <MidCTA />
       <ConnectorGallery />
       <BeforeAfter />
       <BottomCTA />
+            </main>
       <Footer />
     </div>
   );
