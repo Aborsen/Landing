@@ -1000,6 +1000,7 @@ function Architecture() {
                   left: item.left,
                   transform: `rotate(${item.rotate}deg)`,
                   opacity: item.opacity,
+                  animation: `chaosFloat ${4 + (i % 3) * 1.5}s ease-in-out ${i * 0.5}s infinite alternate`,
                 }}>
                   <ConnectorIcon name={item.name} size={18} />
                 </div>

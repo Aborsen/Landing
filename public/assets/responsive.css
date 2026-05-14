@@ -158,14 +158,10 @@
    Home page — phone-only simplifications (≤ 768px)
    =========================================================== */
 @media (max-width: 768px) {
-  /* Architecture ("The Semantic Intelligence Layer") section — on mobile,
-     hide the entire visual diagram (chaotic connectors, separator lines,
-     engine box, and output cards). Only the heading + description remain,
-     matching the user's "text only" request. The mobile fallback wrapping
-     div has className "lg:hidden flex flex-col items-center gap-6". */
-  section > .max-w-7xl .lg\:hidden.flex.flex-col.items-center {
-    display: none !important;
-  }
+  /* Architecture ("The Semantic Intelligence Layer") mobile fallback:
+     keep the diagram visible on mobile with chaos icons + engine +
+     output cards stacked vertically. Animations come from the JSX
+     (chaosFloat, corePulse). */
 
   /* HowItWorks — hide the animated showcase, the JSX renders a text-only
      fallback on mobile. */
