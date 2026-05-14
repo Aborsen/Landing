@@ -1570,4 +1570,12 @@ function App() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+export default App;
+if (typeof window !== 'undefined') {
+  const el = document.getElementById('root');
+  if (el && el.hasChildNodes()) {
+    ReactDOM.hydrateRoot(el, <App />);
+  } else if (el) {
+    ReactDOM.createRoot(el).render(<App />);
+  }
+}

@@ -2023,4 +2023,12 @@ function App() {
    See plan: C:\Users\victorg\.claude\plans\snappy-rolling-hedgehog.md (§ "Placeholder links everywhere")
 */
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+export default App;
+if (typeof window !== 'undefined') {
+  const el = document.getElementById('root');
+  if (el && el.hasChildNodes()) {
+    ReactDOM.hydrateRoot(el, <App />);
+  } else if (el) {
+    ReactDOM.createRoot(el).render(<App />);
+  }
+}

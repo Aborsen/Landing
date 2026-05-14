@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import ReactDOM from 'react-dom/client';
 import '../app.css';
 
-const { motion, useInView, AnimatePresence } = window["framer-motion"] || { motion: { div: 'div', span: 'span', p: 'p', h1: 'h1', h2: 'h2', h3: 'h3', button: 'button', a: 'a', section: 'section', nav: 'nav', header: 'header', li: 'li', img: 'img' }, useInView: () => true, AnimatePresence: ({ children }) => children };
+const { motion, useInView, AnimatePresence } = (typeof window !== 'undefined' ? window["framer-motion"] : null) || { motion: { div: 'div', span: 'span', p: 'p', h1: 'h1', h2: 'h2', h3: 'h3', button: 'button', a: 'a', section: 'section', nav: 'nav', header: 'header', li: 'li', img: 'img' }, useInView: () => true, AnimatePresence: ({ children }) => children };
 const MotionDiv = motion.div;
 
 function FadeUp({ children, delay = 0, className = "" }) {
@@ -1299,4 +1299,12 @@ function App() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+export default App;
+if (typeof window !== 'undefined') {
+  const el = document.getElementById('root');
+  if (el && el.hasChildNodes()) {
+    ReactDOM.hydrateRoot(el, <App />);
+  } else if (el) {
+    ReactDOM.createRoot(el).render(<App />);
+  }
+}
