@@ -955,7 +955,6 @@ function HowSyncWorks() {
 function IntegrationImpact() {
   const STATS = [
     { display:'12×',  label:'faster time to insight',              sub:'vs. manual exports & BI tools' },
-    { display:'90%',  label:'fewer data requests',  sub:'teams self-serve in plain English' },
   ];
 
   return (
@@ -999,7 +998,6 @@ function IntegrationImpact() {
               <div style={{display:'flex',flexDirection:'column',gap:'10px'}}>
                 {[
                   {display:'3–5 days', label:'to produce one number',            sub:'export CSVs, VLOOKUP, reconcile by hand'},
-                  {display:'4 tools',  label:'to query for a request',   sub:'HubSpot, Stripe and the warehouse'},
                 ].map((s, i) => (
                   <div key={i} style={{display:'flex',alignItems:'baseline',gap:'12px',fontSize:'12.5px',lineHeight:1.45}}>
                     <span style={{color:'#F87171',fontWeight:600,minWidth:'64px',flexShrink:0,fontVariantNumeric:'tabular-nums',letterSpacing:'-.02em'}}>
