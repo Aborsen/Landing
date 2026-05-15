@@ -1097,3 +1097,6 @@ footer::before{content:'';position:absolute;width:500px;height:300px;background:
 .p4-jm-create.hovered{opacity:.8}
 /* Toast */
 .p4-success-toast{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:7px;padding:7px 14px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);border-radius:var(--ins-radius-lg);font-size:10.5px;color:var(--ins-status-success-fg);white-space:nowrap;z-index:200}
+
+/* Platform comparison cards — keep AI Chat / Semantic Layer / Integrations equal-height across pages */
+.compare-card{min-height:280px}
