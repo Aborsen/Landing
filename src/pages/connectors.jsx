@@ -1021,7 +1021,7 @@ function ConnectorsHero() {
         <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid rgba(255,255,255,.07)', background:'rgba(255,255,255,.03)', fontSize:'12px', color:'#7FA0AC', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
           ✦ DATA CONNECTORS
         </div>
-        <h1 className="fu1" style={{fontSize:'clamp(34px,4.6vw,52px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'#E8F2F5', marginBottom:'18px'}}>
+        <h1 className="fu1" style={{fontSize:'clamp(2.2rem,3.2vw,3.6rem)', fontWeight:700, fontFamily:"'Outfit', sans-serif", letterSpacing:'-.04em', lineHeight:1.1, color:'#E8F2F5', marginBottom:'18px', textWrap:'balance'}}>
           Connect to everything you run on.
         </h1>
         <p className="fu2" style={{fontSize:'16px', color:'#7FA0AC', lineHeight:1.6, maxWidth:'580px', margin:'0 auto'}}>

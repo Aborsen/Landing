@@ -528,7 +528,7 @@ function Hero() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
         {/* Headline */}
         <FadeUp delay={0.1}>
-          <h1 className="ins-text-display-xl text-center mb-6">
+          <h1 className="text-center mb-6" style={{fontSize:'clamp(2.2rem,3.2vw,3.6rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",letterSpacing:'-.04em',lineHeight:1.1,textWrap:'balance'}}>
             <div><span className="text-white">Your data knows the answer</span></div>
             <div><span style={{color:'var(--ins-text-highlight)'}}>Now you can ask it</span></div>
           </h1>

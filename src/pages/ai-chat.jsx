@@ -1965,7 +1965,7 @@ function Hero() {
           justifyContent: 'space-between',
           padding: '24px 0',
         }}>
-          <h1 style={{fontSize:'clamp(2.6rem,3.8vw,4.5rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'22px',textWrap:'balance'}}>
+          <h1 style={{fontSize:'clamp(2.2rem,3.2vw,3.6rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",letterSpacing:'-.04em',lineHeight:1.1,marginBottom:'22px',textWrap:'balance'}}>
             <span style={{color:'#FFFFFF'}}>Ask anything.</span><br/>
             <span style={{color:'#0EC4C1'}}>Get answers in seconds.</span>
           </h1>
