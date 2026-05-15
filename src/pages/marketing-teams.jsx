@@ -434,7 +434,7 @@ function Hero() {
                 marginBottom:'36px',
                 maxWidth:'520px',
               }}>
-                Live answers about every campaign, channel, and dollar of spend. Ask in plain English — ROAS, CAC, attribution, funnel — and stop running the team off Monday-morning data dumps.
+                Live answers about every campaign, channel, and dollar of spend. Ask in plain English — ROAS, CAC, attribution, funnel — and stop the Monday-morning data dumps.
               </p>
 
               <div className="fu3">
@@ -860,7 +860,7 @@ function BeforeAfter() {
             Campaign answers at the speed of the spend
           </h2>
           <p style={{fontSize:'16px',color:'rgba(255,255,255,.7)',maxWidth:'640px',margin:'0 auto',lineHeight:1.65}}>
-            Trade weekly performance reviews for live attribution — react before the budget is gone.
+            Trade reviews for live attribution — react before the budget is gone.
           </p>
         </div>
 
@@ -915,7 +915,7 @@ function BeforeAfter() {
 
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
-            <span style={{fontSize:'40px',fontWeight:500,color:'#0EC4C1',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>5×</span>
+            <span style={{fontSize:'40px',fontWeight:500,color:'#0EC4C1',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>8×</span>
             <span style={{fontSize:'15px',color:'#7FA0AC',whiteSpace:'nowrap'}}>faster campaign answers. Zero data-team handoffs.</span>
           </div>
         </div>

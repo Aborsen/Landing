@@ -406,7 +406,7 @@ function Hero() {
                 marginBottom:'36px',
                 maxWidth:'520px',
               }}>
-                Strategic answers in seconds, not days. Ask any company question in plain English — runway, ARR growth, NRR, burn — and walk into your next board meeting with live numbers, not last week's deck.
+                Strategic answers in seconds. Ask in plain English — runway, ARR growth, NRR, burn — and walk into your board meeting with live numbers, not last week's deck.
               </p>
 
               <div className="fu3">
@@ -887,7 +887,7 @@ function BeforeAfter() {
 
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
-            <span style={{fontSize:'40px',fontWeight:500,color:'#0EC4C1',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>X7</span>
+            <span style={{fontSize:'40px',fontWeight:500,color:'#0EC4C1',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>7×</span>
             <span style={{fontSize:'15px',color:'#7FA0AC',whiteSpace:'nowrap'}}>faster strategic answers. Zero analyst handoffs.</span>
           </div>
         </div>
