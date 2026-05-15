@@ -1049,8 +1049,8 @@ function IntegrationImpact() {
         {/* Headline callout */}
         <div style={{textAlign:'center',marginTop:'40px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'14px',flexWrap:'wrap',justifyContent:'center'}}>
-            <span style={{fontSize:'40px',fontWeight:500,color:'#0EC4C1',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0,letterSpacing:'-.02em'}}>&lt; 1 min</span>
-            <span style={{fontSize:'15px',color:'#7FA0AC'}}>to connect a new source — OAuth, no pipelines to maintain.</span>
+            <span style={{fontSize:'40px',fontWeight:500,color:'#0EC4C1',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>60s</span>
+            <span style={{fontSize:'15px',color:'#7FA0AC',whiteSpace:'nowrap'}}>to connect a new source — OAuth, no pipelines to maintain.</span>
           </div>
         </div>
 
