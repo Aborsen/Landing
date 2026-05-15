@@ -1408,12 +1408,12 @@ function Footer() {
             <p className="text-sm text-[#7878A8] leading-relaxed">Every data has an insight. We help you find them, without the complexity.</p>
           </div>
 
-          {/* 5 text columns */}
+          {/* 5 text columns — pushed to the right edge */}
           <div className="md:ml-auto grid grid-cols-2 gap-8 md:flex md:flex-row md:gap-16">
 
             {/* Platform */}
             <div>
-              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#9090C0] mb-4 whitespace-nowrap">Platform</h3>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#9090C0] mb-4 whitespace-nowrap" style={{lineHeight:1.05}}>Platform</h3>
               <ul className="flex flex-col gap-2.5">
                 {['AI Chat', 'Integrations', 'Semantic Layer'].map(link => (
                   <li key={link}><a href={linkUrls[link] || '#'} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}</a></li>
@@ -1423,7 +1423,7 @@ function Footer() {
 
             {/* Solutions */}
             <div>
-              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#9090C0] mb-4 whitespace-nowrap">Solutions</h3>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#9090C0] mb-4 whitespace-nowrap" style={{lineHeight:1.05}}>Solutions</h3>
               <ul className="flex flex-col gap-2.5">
                 {['For RevOps & BizOps', 'For Founders & CEOs', 'For CMOs & Marketers', 'For Product Teams', 'For Data & Analytics Teams', 'For Operations & Finance'].map(link => (
                   <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
@@ -1433,7 +1433,7 @@ function Footer() {
 
             {/* Resources */}
             <div>
-              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#9090C0] mb-4 whitespace-nowrap">Resources</h3>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#9090C0] mb-4 whitespace-nowrap" style={{lineHeight:1.05}}>Resources</h3>
               <ul className="flex flex-col gap-2.5">
                 {['Documentation', 'Prompt Library', 'Blog', 'Support Center', 'Roadmap', 'Data Connectors'].map(link => (
                   <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-[#A0A0B8] hover:text-white transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
@@ -1443,7 +1443,7 @@ function Footer() {
 
             {/* Company */}
             <div>
-              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#9090C0] mb-4 whitespace-nowrap">Company</h3>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#9090C0] mb-4 whitespace-nowrap" style={{lineHeight:1.05}}>Company</h3>
               <ul className="flex flex-col gap-2.5">
                 {[
                   { label: 'About Insightis', href: 'Company/About Insightis' },
@@ -1458,7 +1458,7 @@ function Footer() {
 
             {/* Legal */}
             <div>
-              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#9090C0] mb-4 whitespace-nowrap">Legal</h3>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#9090C0] mb-4 whitespace-nowrap" style={{lineHeight:1.05}}>Legal</h3>
               <ul className="flex flex-col gap-2.5">
                 {[
                   { label: 'Privacy', href: 'Security/Privacy' },
@@ -1476,7 +1476,7 @@ function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-[#1E1E30] pt-6 flex items-center justify-between">
-          <p className="text-xs text-[#7878A8]">&copy; Copyright &copy; Devart 2026</p>
+          <p className="text-xs text-[#7878A8]">&copy; Copyright © Devart 2026</p>
           <div className="flex items-center gap-4">
             <a href="https://x.com/Insightisai" target="_blank" rel="noopener noreferrer" aria-label="Insightis on X (formerly Twitter)" className="hover:opacity-80 transition-opacity"><TwitterXIcon size={18} color="#7878A8" /></a>
             <a href="https://www.tiktok.com/@insightisai" target="_blank" rel="noopener noreferrer" aria-label="Insightis on TikTok" className="hover:opacity-80 transition-opacity"><TikTokIcon size={18} color="#7878A8" /></a>
