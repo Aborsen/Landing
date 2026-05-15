@@ -1158,9 +1158,6 @@ function initShowcase() {
   if(showcase) scrollObs.observe(showcase);
 }
 window.initShowcase = initShowcase;
-
-if (document.readyState === 'complete') {
-  setTimeout(initShowcase, 0);
-} else {
-  window.addEventListener('load', () => setTimeout(initShowcase, 0));
-}
+// Don't auto-init: the React HowItWorks component calls window.initShowcase
+// from a useEffect after hydration. Auto-init on document load races React's
+// hydrateRoot on slow networks and causes #418/#423/#425 hydration mismatches.

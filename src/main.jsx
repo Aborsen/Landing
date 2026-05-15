@@ -818,8 +818,10 @@ function HowItWorks() {
         </ol>
       </div>
 
-      {/* Desktop animated showcase — hidden on mobile via responsive.css */}
-      <div id="showcase-mount" ref={mountRef} />
+      {/* Desktop animated showcase — hidden on mobile via responsive.css.
+          showcase.js populates this div imperatively from a <template>;
+          suppressHydrationWarning tells React the children diverge from SSR by design. */}
+      <div id="showcase-mount" ref={mountRef} suppressHydrationWarning />
     </section>
   );
 }

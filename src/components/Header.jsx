@@ -133,6 +133,11 @@ export default function Header() {
       <div style={{
         position:'sticky', top:0, zIndex:50,
         backdropFilter:'blur(20px)', WebkitBackdropFilter:'blur(20px)',
+        // Pre-set so /assets/header-scroll.js can race-mutate these on mobile
+        // without causing a hydration mismatch with React's SSR output.
+        willChange:'transform',
+        transition:'transform 0.25s ease',
+        transform:'translateY(0)',
       }}>
       <div ref={navRef} style={{
         position:'relative',
