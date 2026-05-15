@@ -1965,9 +1965,6 @@ function Hero() {
           justifyContent: 'space-between',
           padding: '24px 0',
         }}>
-          <p style={{fontSize:'11px',fontWeight:500,letterSpacing:'.14em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace',marginBottom:'14px'}}>
-            Insightis AI Chat — business analytics in plain English
-          </p>
           <h1 style={{fontSize:'clamp(2.6rem,3.8vw,4.5rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'22px',textWrap:'balance'}}>
             <span style={{color:'#FFFFFF'}}>Ask anything.</span><br/>
             <span style={{color:'#0EC4C1'}}>Get answers in seconds.</span>
@@ -1979,9 +1976,6 @@ function Hero() {
             <a href="#" className="cta-btn" style={{display:'inline-flex',alignItems:'center',gap:'7px',padding:'12px 28px',borderRadius:'999px',background:'linear-gradient(135deg,#09A09D,#07807E)',color:'#fff',fontWeight:600,fontSize:'14px',textDecoration:'none',boxShadow:'0 0 30px rgba(9,160,157,.25), 0 4px 12px rgba(0,0,0,.3)'}}>
               Start for free
               <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </a>
-            <a href="#" className="cta-btn" style={{display:'inline-flex',alignItems:'center',gap:'6px',padding:'12px 22px',borderRadius:'999px',border:'1px solid rgba(255,255,255,.1)',color:'#7FA0AC',fontSize:'14px',textDecoration:'none',fontWeight:500,background:'rgba(255,255,255,0.02)'}}>
-              See how it works
             </a>
           </div>
           <div style={{display:'flex',alignItems:'center',gap:'18px',flexWrap:'wrap'}}>

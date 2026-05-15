@@ -600,9 +600,6 @@ function Hero() {
           justifyContent: 'space-between',
           padding: '24px 0',
         }}>
-          <p style={{fontSize:'11px',fontWeight:500,letterSpacing:'.14em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace',marginBottom:'14px'}}>
-            Insightis Integrations — connect every source in minutes
-          </p>
           <h1 style={{fontSize:'clamp(2.2rem,3.2vw,3.6rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",letterSpacing:'-.04em',lineHeight:1.1,marginBottom:'22px'}}>
             <span style={{color:'#FFFFFF'}}>Connect everything.</span><br/>
             <span style={{color:'#0EC4C1'}}>Understand</span><br/>
@@ -616,7 +613,6 @@ function Hero() {
               Start for free
               <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </a>
-            <a href="#" className="cta-btn" style={{display:'inline-flex',alignItems:'center',gap:'6px',padding:'12px 22px',borderRadius:'999px',border:'1px solid rgba(255,255,255,.1)',color:'#7FA0AC',fontSize:'14px',textDecoration:'none',fontWeight:500,background:'rgba(255,255,255,0.02)'}}>See how it works</a>
           </div>
           <div style={{display:'flex',alignItems:'center',gap:'18px',flexWrap:'wrap'}}>
             {['Free plan','No SQL required','Setup in minutes'].map(t=>(
