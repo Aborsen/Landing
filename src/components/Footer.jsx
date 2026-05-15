@@ -49,7 +49,7 @@ export default function Footer() {
               <Logo height={26}/>
             </a>
             <p className="text-xs font-medium text-[#09A09D] uppercase tracking-wider mb-2">AI Analytics Workspace for instant insights</p>
-            <p className="text-sm text-[#7878A8] leading-relaxed">Every data has an insight. We help you find them, without the complexity.</p>
+            <p className="text-sm text-[#7878A8] leading-relaxed">Built by the Devart team — the trusted data partner of 40,000+ companies worldwide for over 28 years.</p>
           </div>
 
           {/* 5 text columns — pushed to the right edge */}
