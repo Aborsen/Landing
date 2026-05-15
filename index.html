@@ -370,7 +370,7 @@
 
       <!-- Row 1 — MRR -->
       <div class="metric-row">
-        <button class="tog on"></button>
+        <button class="tog on" aria-label="Toggle Monthly Recurring Revenue"></button>
         <div><div class="metric-name">Monthly Recurring Revenue</div></div>
         <div><span class="short-name">@mrr</span></div>
         <div><span class="badge finance">Finance</span></div>
@@ -385,7 +385,7 @@
 
       <!-- Row 2 — Conversion Rate -->
       <div class="metric-row">
-        <button class="tog on"></button>
+        <button class="tog on" aria-label="Toggle Conversion Rate"></button>
         <div><div class="metric-name">Conversion Rate</div></div>
         <div><span class="short-name">@conv_rate</span></div>
         <div><span class="badge marketing">Marketing</span></div>
@@ -400,7 +400,7 @@
 
       <!-- Row 3 — Churn Rate -->
       <div class="metric-row">
-        <button class="tog on"></button>
+        <button class="tog on" aria-label="Toggle Churn Rate"></button>
         <div><div class="metric-name">Churn Rate</div></div>
         <div><span class="short-name">@churn</span></div>
         <div><span class="badge revops">RevOps</span></div>
@@ -421,7 +421,7 @@
 
       <!-- Row 4 — CAC (TARGET) -->
       <div class="metric-row" id="p1rowCAC">
-        <button class="tog off" id="p1cacToggle"></button>
+        <button class="tog off" id="p1cacToggle" aria-label="Toggle Customer Acquisition Cost"></button>
         <div style="display:flex;align-items:center">
           <div class="metric-name draft">Customer Acquisition Cost</div>
           <span class="draft-badge">DRAFT</span>
@@ -461,7 +461,7 @@
 
       <!-- Row 5 — ARPU -->
       <div class="metric-row">
-        <button class="tog off"></button>
+        <button class="tog off" aria-label="Toggle Avg Revenue Per User"></button>
         <div style="display:flex;align-items:center">
           <div class="metric-name draft">Avg Revenue Per User</div>
           <span class="draft-badge">DRAFT</span>
@@ -492,7 +492,7 @@
     <div class="modal">
       <div class="modal-header">
         <div class="modal-title">Edit Metric</div>
-        <button class="close-btn" onclick="p1_closeModal()">
+        <button class="close-btn" onclick="p1_closeModal()" aria-label="Close">
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
         </button>
       </div>
@@ -500,13 +500,13 @@
       <!-- Name -->
       <div class="field-group">
         <div class="field-label">Name</div>
-        <input class="field-input" id="p1fName" type="text" value="Customer Acquisition Cost" readonly>
+        <input class="field-input" id="p1fName" type="text" value="Customer Acquisition Cost" readonly aria-label="Metric name">
       </div>
 
       <!-- Short name -->
       <div class="field-group">
         <div class="field-label">Short name</div>
-        <input class="field-input" id="p1fShort" type="text" placeholder="@short_name" readonly>
+        <input class="field-input" id="p1fShort" type="text" placeholder="@short_name" readonly aria-label="Short name">
       </div>
 
       <!-- Data Source -->
@@ -617,7 +617,7 @@
             <!-- Input bar -->
             <div class="p2-input-bar">
               <div class="p2-input" id="p2input"><span class="p2-typed" id="p2typed"></span><span class="p2-token" id="p2token" style="display:none">@cac</span><span class="p2-typed2" id="p2typed2"></span><span class="p2-caret" id="p2caret"></span></div>
-              <button class="p2-send" id="p2sendBtn">
+              <button class="p2-send" id="p2sendBtn" aria-label="Send">
                 <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </button>
             </div>
