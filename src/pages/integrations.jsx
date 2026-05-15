@@ -867,7 +867,7 @@ function HowSyncWorks() {
       // Assumed canonical = "200+" per the audit's "Out of scope" reconciliation note; change if product confirms "40+".
       n:'01', title:'Connect in minutes',
       desc:'Authenticate with OAuth or API key. 200+ read-only connectors live in under 5 minutes — SOC 2 secured.',
-      example:'OAuth / API key → 200+ connectors live in under 5 min, read-only & SOC 2 secured',
+      example:'OAuth / API key → 200+ connectors in 5 min, read-only & SOC 2 secured',
     },
     {
       n:'02', title:'Semantic layer maps it',
