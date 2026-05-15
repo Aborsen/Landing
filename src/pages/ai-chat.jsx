@@ -1363,7 +1363,7 @@ function AccuracyComparison() {
           <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
             Not the internet. Your data.
           </h2>
-          <p style={{fontSize:'17px',color:'rgba(255,255,255,.7)',maxWidth:'400px',margin:'0 auto',lineHeight:1.7}}>
+          <p style={{fontSize:'17px',color:'rgba(255,255,255,.7)',maxWidth:'500px',margin:'0 auto',lineHeight:1.7}}>
             Generic AI guesses. Insightis knows.
           </p>
         </div>
@@ -1378,14 +1378,14 @@ function AccuracyComparison() {
               | SQL required                    | n/a (no data access)                | No — plain-English questions translated by the engine  |
             The table can be visually hidden (sr-only) or styled as the existing cards — either way, emit the markup so crawlers/AI see it.
         */}
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'16px'}}>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'16px',alignItems:'stretch'}}>
           {/* Generic AI */}
-          <div className="compare-card" style={{background:'rgba(248,113,113,.04)',border:'1px solid rgba(248,113,113,.15)',borderRadius:'16px',padding:'32px'}}>
+          <div className="compare-card" style={{background:'rgba(248,113,113,.04)',border:'1px solid rgba(248,113,113,.15)',borderRadius:'16px',padding:'32px',display:'flex',flexDirection:'column'}}>
             <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'22px'}}>
               <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#F87171'}}/>
               <span style={{fontSize:'13px',fontWeight:600,color:'#F87171'}}>Generic AI</span>
             </div>
-            <div style={{background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',minHeight:'118px',display:'flex',flexDirection:'column',justifyContent:'flex-start'}}>
+            <div style={{flex:1,background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',display:'flex',flexDirection:'column'}}>
               <div style={{fontSize:'11px',color:'#8AA6B3',marginBottom:'8px'}}>→ "What's our churn rate?"</div>
               <div style={{fontSize:'12.5px',color:'#505068',lineHeight:1.7}}>
                 The average SaaS churn rate is typically between <span style={{color:'#F87171'}}>3–8% monthly</span>, depending on your segment and pricing tier. Companies in the SMB market typically see higher rates. This estimate may or may not reflect your situation.
@@ -1395,13 +1395,13 @@ function AccuracyComparison() {
           </div>
 
           {/* Insightis */}
-          <div className="compare-card" style={{background:'rgba(9,160,157,.05)',border:'1px solid rgba(9,160,157,.25)',borderRadius:'16px',padding:'32px',position:'relative',boxShadow:'0 8px 40px rgba(9,160,157,0.06)'}}>
+          <div className="compare-card" style={{background:'rgba(9,160,157,.05)',border:'1px solid rgba(9,160,157,.25)',borderRadius:'16px',padding:'32px',position:'relative',boxShadow:'0 8px 40px rgba(9,160,157,0.06)',display:'flex',flexDirection:'column'}}>
             <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.6),transparent)',borderRadius:'16px 16px 0 0'}}/>
-            <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'20px'}}>
+            <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'22px'}}>
               <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#0EC4C1',boxShadow:'0 0 8px #0EC4C1'}}/>
               <span style={{fontSize:'13px',fontWeight:500,color:'#0EC4C1'}}>Insightis</span>
             </div>
-            <div style={{background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',minHeight:'118px',display:'flex',flexDirection:'column',justifyContent:'flex-start'}}>
+            <div style={{flex:1,background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',display:'flex',flexDirection:'column'}}>
               <div style={{fontSize:'11px',color:'#8AA6B3',marginBottom:'8px'}}>→ "What's our churn rate?"</div>
               <div style={{fontSize:'12.5px',color:'#C0D4DC',lineHeight:1.7}}>
                 Your churn rate in March was <span style={{color:'#0EC4C1',fontWeight:500}}>2.1%</span> — down from 2.8% in February. Main driver: reduced churn in Starter plan (↓ 0.9pp). 3 accounts churned vs 5 last month.

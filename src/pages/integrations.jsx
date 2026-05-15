@@ -970,9 +970,9 @@ function IntegrationImpact() {
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Why direct integration matters</span>
           </div>
           <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
-            Scattered tools guess. Insightis answers.
+            Tools guess. Insightis answers.
           </h2>
-          <p style={{fontSize:'17px',color:'rgba(255,255,255,.7)',maxWidth:'520px',margin:'0 auto',lineHeight:1.7}}>
+          <p style={{fontSize:'17px',color:'rgba(255,255,255,.7)',maxWidth:'500px',margin:'0 auto',lineHeight:1.7}}>
             One source of truth. Answers in seconds.
           </p>
           {/* TODO SEO [P1]: Replace the two <div>-based comparison cards below with a semantic <table>

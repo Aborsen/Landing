@@ -1392,19 +1392,19 @@ function BeforeAfter() {
           <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
             Without vs with Semantic Layer
           </h2>
-          <p style={{fontSize:'17px',color:'rgba(255,255,255,.7)',maxWidth:'420px',margin:'0 auto',lineHeight:1.7}}>
+          <p style={{fontSize:'17px',color:'rgba(255,255,255,.7)',maxWidth:'500px',margin:'0 auto',lineHeight:1.7}}>
             Four teams guess. Insightis certifies.
           </p>
         </div>
 
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'16px'}}>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'16px',alignItems:'stretch'}}>
           {/* Without */}
-          <div className="compare-card" style={{background:'rgba(248,113,113,.04)',border:'1px solid rgba(248,113,113,.15)',borderRadius:'16px',padding:'32px'}}>
+          <div className="compare-card" style={{background:'rgba(248,113,113,.04)',border:'1px solid rgba(248,113,113,.15)',borderRadius:'16px',padding:'32px',display:'flex',flexDirection:'column'}}>
             <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'22px'}}>
               <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#F87171'}}/>
               <span style={{fontSize:'13px',fontWeight:600,color:'#F87171'}}>Without Semantic Layer</span>
             </div>
-            <div style={{background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',minHeight:'118px',display:'flex',flexDirection:'column',justifyContent:'flex-start'}}>
+            <div style={{flex:1,background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',display:'flex',flexDirection:'column'}}>
               <div style={{fontSize:'11px',color:'#8AA6B3',marginBottom:'8px'}}>→ "What's our MRR this month?"</div>
               <div style={{fontSize:'12.5px',color:'#505068',lineHeight:1.7}}>
                 Finance says <span style={{color:'#F87171'}}>$52,000</span>. RevOps says <span style={{color:'#F87171'}}>$47,200</span>. The CEO dashboard shows <span style={{color:'#F87171'}}>$44,800</span>. Analysts spend Monday reconciling four spreadsheets before anyone can answer.
@@ -1414,13 +1414,13 @@ function BeforeAfter() {
           </div>
 
           {/* With Insightis */}
-          <div className="compare-card" style={{background:'rgba(9,160,157,.05)',border:'1px solid rgba(9,160,157,.25)',borderRadius:'16px',padding:'32px',position:'relative',boxShadow:'0 8px 40px rgba(9,160,157,0.06)'}}>
+          <div className="compare-card" style={{background:'rgba(9,160,157,.05)',border:'1px solid rgba(9,160,157,.25)',borderRadius:'16px',padding:'32px',position:'relative',boxShadow:'0 8px 40px rgba(9,160,157,0.06)',display:'flex',flexDirection:'column'}}>
             <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.6),transparent)',borderRadius:'16px 16px 0 0'}}/>
-            <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'20px'}}>
+            <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'22px'}}>
               <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#0EC4C1',boxShadow:'0 0 8px #0EC4C1'}}/>
               <span style={{fontSize:'13px',fontWeight:500,color:'#0EC4C1'}}>With Insightis Semantic Layer</span>
             </div>
-            <div style={{background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',minHeight:'118px',display:'flex',flexDirection:'column',justifyContent:'flex-start'}}>
+            <div style={{flex:1,background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',display:'flex',flexDirection:'column'}}>
               <div style={{fontSize:'11px',color:'#8AA6B3',marginBottom:'8px'}}>→ "What's our MRR this month?"</div>
               <div style={{fontSize:'12.5px',color:'#C0D4DC',lineHeight:1.7}}>
                 @MRR = <span style={{color:'#0EC4C1',fontWeight:500}}>$42,400</span> — March, blended across Stripe + HubSpot + Postgres. Every dashboard, chat, and board deck reads the same certified definition. Analysts ship insights, not reconciliations.
