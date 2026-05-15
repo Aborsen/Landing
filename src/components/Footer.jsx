@@ -44,12 +44,12 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row gap-10 md:gap-16 mb-14 items-start">
           {/* Brand */}
-          <div className="shrink-0 md:max-w-[220px]">
+          <div className="shrink-0 md:w-[220px]">
             <a href="/" aria-label="Insightis home" className="flex items-center gap-2.5 mb-4">
               <Logo height={26}/>
             </a>
             <p className="text-xs font-medium text-[#09A09D] uppercase tracking-wider mb-2">AI Analytics Workspace for instant insights</p>
-            <p className="text-sm text-[#7878A8] leading-relaxed">Built by the Devart team — the trusted data partner of 40,000+ companies worldwide for over 28 years.</p>
+            <p className="text-sm text-[#7878A8] leading-relaxed" style={{ textWrap: 'pretty' }}>Built by the Devart team — the trusted data partner of 40,000+ companies worldwide for over 28 years.</p>
           </div>
 
           {/* 5 text columns — pushed to the right edge */}
