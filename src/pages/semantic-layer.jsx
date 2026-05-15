@@ -1494,41 +1494,44 @@ function BottomCTA() {
     <section style={{paddingTop:'40px',paddingBottom:'80px',position:'relative'}}>
       <div className="max-w-7xl mx-auto px-6">
         <div style={{
-          position:'relative',borderRadius:'16px',
+          position:'relative',borderRadius:'20px',
           border:'1px solid rgba(30,30,48,1)',
-          padding:'32px 48px',overflow:'hidden',
-          display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'24px',
+          padding:'40px 52px',overflow:'hidden',
+          display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'28px',
           flexWrap:'wrap',
           background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)',
+          boxShadow:'0 16px 64px rgba(0,0,0,0.3), 0 0 80px rgba(9,160,157,0.04)',
         }}>
-          <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
+          <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.5),transparent)'}}/>
           <h3 style={{fontSize:'clamp(1.375rem,3vw,1.875rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.03em',lineHeight:1.15,flexShrink:0,textWrap:'balance'}}>
-            Stop arguing about <span style={{color:'#07807E'}}>which number</span> is right.
+            Stop arguing about <span style={{color:'#0EC4C1'}}>which number</span> is right.
           </h3>
           <div style={{
             display:'flex',alignItems:'center',
             width:'100%',maxWidth:'420px',
             background:'#0D0D1A',border:'1px solid rgba(46,46,64,1)',
             borderRadius:'12px',overflow:'hidden',
-            flex:'1 1 340px',
+            flexShrink:0,
+            boxShadow:'inset 0 1px 0 rgba(255,255,255,0.04)',
           }}>
             <input
               type="text"
               placeholder="What metric do you want to unify?"
               style={{
                 flex:1,background:'transparent',fontSize:'14px',color:'#fff',
-                padding:'12px 16px',outline:'none',border:'none',
+                padding:'13px 16px',outline:'none',border:'none',
                 fontFamily:'Geist,sans-serif',minWidth:0,
               }}
             />
-            <button style={{
+            <button className="cta-btn" style={{
               display:'inline-flex',alignItems:'center',gap:'8px',
-              padding:'10px 20px',margin:'4px',
+              padding:'11px 22px',margin:'4px',
               fontSize:'13px',fontWeight:600,color:'#fff',
               background:'linear-gradient(135deg,#07807E,#09A09D)',
               borderRadius:'8px',border:'none',cursor:'pointer',
               whiteSpace:'nowrap',flexShrink:0,
               fontFamily:'Geist,sans-serif',
+              boxShadow:'0 0 20px rgba(9,160,157,0.2)',
             }}>
               Get Started
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
