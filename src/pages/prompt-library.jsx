@@ -733,8 +733,8 @@ function PromptLibrarySidebar({ selectedTeams, toggleTeam, clearAll }) {
 }
 
 /* ── PROMPT CARD ── */
-function PromptCard({ entry, index }) {
-  const [expanded, setExpanded] = useState(false);
+function PromptCard({ entry, index, isExpanded, onToggle }) {
+  const expanded = isExpanded;
   const [copied, setCopied] = useState(false);
 
   const handleCopy = (e) => {
@@ -759,7 +759,7 @@ function PromptCard({ entry, index }) {
         </div>
         <button
           className="view-btn"
-          onClick={() => setExpanded(!expanded)}
+          onClick={onToggle}
         >
           {expanded ? 'Hide Prompt' : 'View Prompts'}
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
@@ -1335,6 +1335,11 @@ function App() {
   const [selectedTeams, setSelectedTeams] = useState(() => new Set());
   const [query, setQuery] = useState('');
   const [searchFocused, setSearchFocused] = useState(false);
+  // Only one prompt can be expanded at a time — clicking a second prompt
+  // collapses the first.
+  const [expandedTitle, setExpandedTitle] = useState(null);
+  const toggleExpand = (title) =>
+    setExpandedTitle(prev => (prev === title ? null : title));
 
   const toggleTeam = (team) => setSelectedTeams(prev => {
     const next = new Set(prev);
@@ -1404,7 +1409,13 @@ function App() {
 
           {filtered.length > 0 ? (
             filtered.map((entry, i) => (
-              <PromptCard key={entry.title} entry={entry} index={i} />
+              <PromptCard
+                key={entry.title}
+                entry={entry}
+                index={i}
+                isExpanded={expandedTitle === entry.title}
+                onToggle={() => toggleExpand(entry.title)}
+              />
             ))
           ) : (
             <div style={{
