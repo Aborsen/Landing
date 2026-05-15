@@ -1967,7 +1967,8 @@ function Hero() {
         }}>
           <h1 style={{fontSize:'clamp(2.2rem,3.2vw,3.6rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",letterSpacing:'-.04em',lineHeight:1.1,marginBottom:'22px'}}>
             <span style={{color:'#FFFFFF'}}>Ask anything.</span><br/>
-            <span style={{color:'#0EC4C1'}}>Get answers in seconds.</span>
+            <span style={{color:'#0EC4C1'}}>Get answers in</span><br/>
+            <span style={{color:'#0EC4C1'}}>seconds.</span>
           </h1>
           <p style={{fontSize:'clamp(16px,1.2vw,18px)',color:'rgba(255,255,255,.75)',lineHeight:1.7,marginBottom:'36px',maxWidth:'480px'}}>
             Type any business question in plain English. Insightis queries your real data — no SQL, no analyst, no waiting.

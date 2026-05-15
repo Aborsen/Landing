@@ -643,7 +643,8 @@ function Hero() {
         }}>
           <h1 style={{fontSize:'clamp(2.2rem,3.2vw,3.6rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",letterSpacing:'-.04em',lineHeight:1.1,marginBottom:'22px'}}>
             <span style={{color:'#FFFFFF'}}>One platform.</span><br/>
-            <span style={{color:'#0EC4C1'}}>Every team's numbers.</span>
+            <span style={{color:'#0EC4C1'}}>Every team's</span><br/>
+            <span style={{color:'#0EC4C1'}}>numbers.</span>
           </h1>
           <p style={{fontSize:'clamp(16px,1.2vw,18px)',color:'rgba(255,255,255,.75)',lineHeight:1.7,marginBottom:'36px',maxWidth:'480px'}}>
             Your Semantic Layer certifies every metric once. Not generic guesses — your actual data, your exact logic.
