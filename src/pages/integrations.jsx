@@ -606,7 +606,7 @@ function HowSyncWorks() {
     {
       n:'03', title:'Ask in plain English',
       desc:'Your team asks questions in plain English. Insightis joins the right sources and returns a precise answer — no SQL, no ticket.',
-      example:'"Why did CAC spike last week?" → precise answer with drill-down and follow-ups',
+      example:'"Why did CAC spike last week?" → answer with drill-down',
     },
   ];
 

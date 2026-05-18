@@ -1052,11 +1052,22 @@ function ConnectorGallery() {
         }}>
           {CONNECTORS[activeCat].map((c, i) => (
             <div key={c.name} className="connector-card">
-              <div className="connector-icon" style={{background:c.bg, color:c.color}}>
-                {c.abbr}
+              <div
+                className="connector-icon"
+                style={{
+                  background:'rgba(9,160,157,.12)',
+                  color:'#0EC4C1',
+                  border:'1px solid rgba(9,160,157,.25)',
+                  fontSize:'15px',
+                  fontWeight:600,
+                  fontFamily:"'Geist Mono', monospace",
+                }}
+                aria-hidden="true"
+              >
+                @
               </div>
               <div style={{minWidth:0}}>
-                <div style={{fontSize:'0.875rem',fontWeight:500,color:'#fff',marginBottom:'3px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{c.name}</div>
+                <div style={{fontSize:'0.875rem',fontWeight:500,color:'#fff',marginBottom:'3px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>@{c.name}</div>
                 <div style={{fontSize:'12px',color:'#8A9BA4',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{c.desc}</div>
               </div>
               <div style={{marginLeft:'auto',flexShrink:0,width:6,height:6,borderRadius:'50%',background:'#22C55E',boxShadow:'0 0 6px rgba(34,197,94,.6)'}}/>
