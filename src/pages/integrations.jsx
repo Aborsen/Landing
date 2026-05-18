@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { INTEGRATIONS } from '../components/IntegrationsStrip';
 
 const { motion, useInView, AnimatePresence } = (typeof window !== 'undefined' ? window["framer-motion"] : null) || { motion: { div: 'div', span: 'span', p: 'p', h1: 'h1', h2: 'h2', h3: 'h3', button: 'button', a: 'a', section: 'section', nav: 'nav', header: 'header', li: 'li', img: 'img' }, useInView: () => true, AnimatePresence: ({ children }) => children };
 const MotionDiv = motion.div;
@@ -47,22 +48,22 @@ function HubSpotMark({size=20}) {
 }
 
 /* ── CHAOS → ORDER ANIMATION ── */
-// simpleicons.org removes brand assets when companies request — these slugs
-// reliably 404 and produce console noise. Use the clearbit/abbreviation fallback.
+// Used by the lower ConnectorsGallery (not the hero) — simpleicons.org
+// removes brand assets on company request, those slugs reliably 404. Skip
+// the network fetch and let ConnectorIcon fall back to its abbreviation.
 const SIMPLEICONS_BAD = new Set([
   'close', 'salesforce', 'drift', 'clari', 'apollostack', 'outreach',
   'copper', 'gong', 'chargebee', 'freshworks', 'docusign', 'mondaydotcom',
   'pipedrive', 'salesloft',
 ]);
 
-function BrandTile({name, slug, domain, color, size=22}) {
-  const [idx, setIdx] = useState(0);
-  const hex = color.replace('#','').toLowerCase();
-  const sources = [
-    slug && !SIMPLEICONS_BAD.has(slug) ? `https://cdn.simpleicons.org/${slug}/${hex}` : null,
-    domain ? `https://logo.clearbit.com/${domain}?size=512` : null,
-  ].filter(Boolean);
-  const imgSize = Math.round(size * 0.72);
+// Renders the same canonical brand SVG as <IntegrationsStrip /> by looking up
+// the integration by name. Keeps the visual hero animation in lockstep with
+// the strip — edit src/components/IntegrationsStrip.jsx and both update.
+function BrandTile({name, color, size=22}) {
+  const integration = INTEGRATIONS.find(i => i.name === name);
+  const Icon = integration?.Icon;
+  const iconSize = Math.round(size * 0.72);
   const fallbackSize = Math.round(size * 0.6);
   return (
     <span style={{
@@ -71,15 +72,8 @@ function BrandTile({name, slug, domain, color, size=22}) {
       display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,
       overflow:'hidden',
     }}>
-      {idx < sources.length ? (
-        <img
-          key={sources[idx]}
-          src={sources[idx]}
-          width={imgSize} height={imgSize} alt=""
-          draggable="false"
-          onError={() => setIdx(idx + 1)}
-          style={{display:'block',objectFit:'contain'}}
-        />
+      {Icon ? (
+        <Icon size={iconSize}/>
       ) : (
         <svg width={fallbackSize} height={fallbackSize} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
           <ellipse cx="12" cy="6" rx="8" ry="3"/>
@@ -95,7 +89,7 @@ function ConnectionChatAnimation() {
   const SOURCES = [
     {name:'HubSpot',    slug:'hubspot',        domain:'hubspot.com',    color:'#FF7A59', desc:'CRM'},
     {name:'Stripe',     slug:'stripe',         domain:'stripe.com',     color:'#635BFF', desc:'Payments'},
-    {name:'Zoho CRM',   slug:'zoho',           domain:'zoho.com',       color:'#E42527', desc:'CRM'},
+    {name:'Intercom',   slug:'intercom',       domain:'intercom.com',   color:'#1F8DED', desc:'Support'},
     {name:'PostgreSQL', slug:'postgresql',     domain:'postgresql.org', color:'#4169E1', desc:'Database'},
     {name:'BigQuery',   slug:'googlebigquery', domain:null,             color:'#669DF6', desc:'Warehouse'},
     {name:'Snowflake',  slug:'snowflake',      domain:'snowflake.com',  color:'#29B5E8', desc:'Warehouse'},
@@ -265,8 +259,8 @@ function ConnectionChatAnimation() {
           const begin = (i * 0.27).toFixed(2);
           return (
             <g key={i}>
-              <path d={d} stroke={color} strokeWidth="1" fill="none" opacity="0.32">
-                <animate attributeName="opacity" values="0.18;0.45;0.18" dur={`${4 + (i % 3) * 0.7}s`} repeatCount="indefinite"/>
+              <path d={d} stroke="rgba(255,255,255,0.22)" strokeWidth="1" strokeDasharray="4 4" strokeLinecap="round" fill="none" opacity="0.85">
+                <animate attributeName="opacity" values="0.55;0.95;0.55" dur={`${4 + (i % 3) * 0.7}s`} repeatCount="indefinite"/>
               </path>
               <circle r="2.4" fill={color} opacity="0.9" style={{filter:`drop-shadow(0 0 4px ${color})`}}>
                 <animateMotion dur={`${dur}s`} begin={`${begin}s`} repeatCount="indefinite" path={d}/>
@@ -314,7 +308,7 @@ function ConnectionChatAnimation() {
           willChange:'transform',
           zIndex:5,
         }}>
-          <BrandTile name={s.name} slug={s.slug} domain={s.domain} color={s.color} size={40}/>
+          <BrandTile name={s.name} color={s.color} size={40}/>
           <div style={{display:'flex', flexDirection:'column', gap:'1px'}}>
             <span style={{fontSize:'13px', fontWeight:600, color:'#FFFFFF', letterSpacing:'-0.01em', whiteSpace:'nowrap', lineHeight:1.2}}>{s.name}</span>
             <span style={{fontSize:'11px', fontWeight:400, color:'#7A8A9A', letterSpacing:'-0.005em', whiteSpace:'nowrap', lineHeight:1.2}}>{s.desc}</span>

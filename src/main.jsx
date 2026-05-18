@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import './app.css'
 import Header from './components/Header';
 import Footer from './components/Footer';
+import IntegrationsStrip from './components/IntegrationsStrip';
 
 /* Single shared IntersectionObserver for all fade-ups.
    Replaces 33 per-component framer-motion `useInView` observers + re-render cascades.
@@ -414,19 +415,7 @@ function Hero() {
       </div>
     </section>
 
-      {/* Integration strip */}
-      <div className="w-full border-t border-b border-[var(--ins-border-default)] bg-white/[0.02] py-4 relative z-10">
-        <div className="max-w-7xl mx-auto px-6 flex items-center gap-6">
-          <span className="text-[10px] font-medium uppercase tracking-[0.12em] text-[var(--ins-text-inactive)] whitespace-nowrap flex-shrink-0">200+ Integrations</span>
-          <div className="overflow-hidden flex-1 marquee-container" style={{ maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)' }}>
-            <div className="flex gap-3 marquee-left" style={{ width: 'max-content' }}>
-              {[...integrations, ...integrations].map((name, i) => (
-                <ConnectorPill key={`${name}-${i}`} name={name} small />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+      <IntegrationsStrip />
     </>
   );
 }

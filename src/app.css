@@ -290,12 +290,6 @@ nav{
   transition:background .2s var(--ins-easing-standard);position:relative
 }
 .sc-step:last-child{border-bottom:none}
-.sc-step::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
-  background:var(--ins-color-teal-500);
-  opacity:0;transition:opacity .3s var(--ins-easing-standard)
-}
-.sc-step.active::before{opacity:1}
 .sc-step:hover{background:rgba(255,255,255,.03)}
 .sc-step.active{background:rgba(7,128,126,.12);box-shadow:inset 0 0 24px rgba(7,128,126,.08)}
 .sc-num{display:none}

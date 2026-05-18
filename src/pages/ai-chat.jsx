@@ -845,13 +845,6 @@ function QuestionsGallery() {
                   background: i===activeQ?'rgba(7,128,126,.1)':'transparent',
                   position:'relative',
                 }}>
-                  <div style={{
-                    position:'absolute',left:0,top:0,bottom:0,width:'3px',
-                    background:'#09A09D',
-                    opacity: i===activeQ?1:0,
-                    transition:'opacity .25s',
-                    borderRadius:'0 2px 2px 0',
-                  }}/>
                   <span style={{
                     fontSize:'13px',fontWeight: i===activeQ?500:400,
                     color: i===activeQ?'#E8F2F5':'#8AA6B3',

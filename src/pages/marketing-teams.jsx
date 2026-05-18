@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import IntegrationsStrip from '../components/IntegrationsStrip';
 
 /* ── CHART COMPONENTS (verbatim from AI Chat.html) ── */
 function MiniBarChart({ data, color }) {
@@ -455,137 +456,6 @@ function Hero() {
 }
 
 /* ── INTEGRATIONS STRIP (marquee) ── */
-function IntegrationsStrip() {
-  const logos = [
-    { name:'HubSpot', icon:(
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="3" fill="#ff7a59"/>
-        <line x1="12" y1="3.5" x2="12" y2="9" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/>
-        <line x1="12" y1="15" x2="12" y2="20.5" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/>
-        <line x1="3.5" y1="12" x2="9" y2="12" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/>
-        <line x1="15" y1="12" x2="20.5" y2="12" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/>
-      </svg>
-    )},
-    { name:'Salesforce', icon:(
-      <svg width="18" height="13" viewBox="0 0 66 46" fill="none">
-        <path d="M27.5 5.8a13.2 13.2 0 0 1 9.7-4.3c5 0 9.4 2.8 11.7 6.9a14.6 14.6 0 0 1 6.7-1.6C62.7 6.8 69 13.1 69 21s-6.3 14.2-14.4 14.2H15C7.7 35.2 1.8 29.3 1.8 22c0-6.5 4.7-11.9 10.9-13.3a13.2 13.2 0 0 1 14.8-2.9z" fill="#00a1e0"/>
-      </svg>
-    )},
-    { name:'Stripe', icon:(
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-        <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z" fill="#635bff"/>
-      </svg>
-    )},
-    { name:'Pipedrive', icon:(
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" fill="#26b950"/>
-      </svg>
-    )},
-    { name:'Chargebee', icon:(
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" stroke="#f9ab00" strokeWidth="2"/>
-        <path d="M15.5 8.5A5 5 0 1 0 15.5 15.5" stroke="#f9ab00" strokeWidth="2" strokeLinecap="round"/>
-      </svg>
-    )},
-    { name:'PostgreSQL', icon:(
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-        <ellipse cx="12" cy="12" rx="9" ry="8" stroke="#336791" strokeWidth="1.8" fill="none"/>
-        <path d="M8 8c1.5-1 3-1 4.5-.5M16 8.5c0 3-1 5.5-2 7.5" stroke="#336791" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-      </svg>
-    )},
-    { name:'BigQuery', icon:(
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-        <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#4285f4"/>
-        <path d="M2 17l10 5 10-5" stroke="#34a853" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-        <path d="M2 12l10 5 10-5" stroke="#fbbc04" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-      </svg>
-    )},
-    { name:'Snowflake', icon:(
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-        <line x1="12" y1="2" x2="12" y2="22" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
-        <line x1="2" y1="7" x2="22" y2="17" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
-        <line x1="22" y1="7" x2="2" y2="17" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
-        <circle cx="12" cy="12" r="2.4" fill="#29b5e8"/>
-      </svg>
-    )},
-    { name:'Mixpanel', icon:(
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" fill="#7856ff" opacity=".15"/>
-        <circle cx="8" cy="12" r="2.2" fill="#7856ff"/>
-        <circle cx="16" cy="12" r="2.2" fill="#7856ff"/>
-        <circle cx="12" cy="7.5" r="2.2" fill="#7856ff"/>
-        <circle cx="12" cy="16.5" r="2.2" fill="#7856ff"/>
-      </svg>
-    )},
-    { name:'Amplitude', icon:(
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-        <path d="M3 17l4-8 4 10 3-6 2 4 5-12" stroke="#197ce6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    )},
-    { name:'Google Analytics', icon:(
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-        <rect x="2" y="13" width="5" height="9" rx="1" fill="#e37400"/>
-        <rect x="9.5" y="7" width="5" height="15" rx="1" fill="#fbbc04"/>
-        <rect x="17" y="2" width="5" height="20" rx="1" fill="#34a853"/>
-      </svg>
-    )},
-    { name:'Intercom', icon:(
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-        <rect x="2" y="2" width="20" height="20" rx="5" fill="#286ef1" opacity=".18" stroke="#286ef1" strokeWidth="1.5"/>
-        <circle cx="8" cy="12" r="1.4" fill="#286ef1"/>
-        <circle cx="12" cy="12" r="1.4" fill="#286ef1"/>
-        <circle cx="16" cy="12" r="1.4" fill="#286ef1"/>
-      </svg>
-    )},
-  ];
-  const loop = [...logos, ...logos];
-
-  return (
-    <div style={{
-      width:'100%',
-      borderTop:'1px solid rgba(255,255,255,0.06)',
-      borderBottom:'1px solid rgba(255,255,255,0.06)',
-      background:'rgba(255,255,255,0.02)',
-      padding:'18px 0',
-      position:'relative',
-      zIndex:5,
-    }}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px',display:'flex',alignItems:'center',gap:'24px'}}>
-        <span style={{
-          fontSize:'10px',fontWeight:500,
-          textTransform:'uppercase',letterSpacing:'.14em',
-          color:'#7FA0AC',
-          fontFamily:'Geist Mono,monospace',
-          whiteSpace:'nowrap',flexShrink:0,
-        }}>
-          200+ Integrations
-        </span>
-        <div className="marquee-container" style={{
-          flex:1,overflow:'hidden',
-          maskImage:'linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)',
-          WebkitMaskImage:'linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)',
-        }}>
-          <div className="marquee-left" style={{display:'flex',gap:'10px',width:'max-content'}}>
-            {loop.map((l,i) => (
-              <div key={i} style={{
-                display:'flex',alignItems:'center',gap:'8px',
-                padding:'7px 14px',
-                background:'rgba(13,17,23,0.6)',
-                border:'1px solid rgba(255,255,255,0.06)',
-                borderRadius:'999px',
-                flexShrink:0,whiteSpace:'nowrap',
-              }}>
-                <span style={{display:'flex',alignItems:'center',justifyContent:'center'}}>{l.icon}</span>
-                <span style={{fontSize:'12px',color:'#A8BCC4',fontWeight:500,fontFamily:'Geist,sans-serif'}}>{l.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 /* ── PAIN POINTS ── */
 function PainPoints() {
   const pains = [
