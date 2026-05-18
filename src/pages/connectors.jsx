@@ -4,6 +4,7 @@ import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ConnectorIcon from '../components/ConnectorIcon';
+import { CATEGORIES, CONNECTORS } from '../data/connectors';
 
 
 /* ── APP ── */
@@ -330,272 +331,105 @@ function AIAssistantPanel({ query, onClose }) {
 }
 
 /* ── CONNECTORS DATA ── */
-const CATEGORIES = [
-  'All',
-  'Databases & Warehouses',
-  'CRM',
-  'Marketing & Ads',
-  'Support',
-  'Productivity',
-  'Finance & E-commerce',
-  'HR & People',
-  'Product Analytics',
-  'Cloud & Storage',
-  'Developer Tools',
-  'Communication & Email',
-  'Security & Identity',
-  'Data Pipelines & ETL',
-];
-
-// domain = clearbit logo domain; color = fallback bubble color
-const CONNECTORS = [
-  // Databases & Warehouses (30)
-  { name:'Amazon Redshift',   category:'Databases & Warehouses', domain:'aws.amazon.com',       color:'#8C4FFF' },
-  { name:'Amazon Athena',     category:'Databases & Warehouses', domain:'aws.amazon.com',       color:'#F58220' },
-  { name:'Amazon DynamoDB',   category:'Databases & Warehouses', domain:'aws.amazon.com',       color:'#3B48CC' },
-  { name:'Snowflake',         category:'Databases & Warehouses', domain:'snowflake.com',        color:'#29B5E8' },
-  { name:'Google BigQuery',   category:'Databases & Warehouses', domain:'cloud.google.com',     color:'#4285F4' },
-  { name:'Databricks',        category:'Databases & Warehouses', domain:'databricks.com',       color:'#FF3621' },
-  { name:'Azure Synapse',     category:'Databases & Warehouses', domain:'azure.microsoft.com',  color:'#0078D4' },
-  { name:'Azure SQL',         category:'Databases & Warehouses', domain:'azure.microsoft.com',  color:'#0078D4' },
-  { name:'AlloyDB',           category:'Databases & Warehouses', domain:'cloud.google.com',     color:'#4285F4' },
-  { name:'PostgreSQL',        category:'Databases & Warehouses', domain:'postgresql.org',       color:'#336791' },
-  { name:'MySQL',             category:'Databases & Warehouses', domain:'mysql.com',            color:'#00758F' },
-  { name:'MariaDB',           category:'Databases & Warehouses', domain:'mariadb.org',          color:'#003545' },
-  { name:'MongoDB',           category:'Databases & Warehouses', domain:'mongodb.com',          color:'#47A248' },
-  { name:'Oracle',            category:'Databases & Warehouses', domain:'oracle.com',           color:'#F80000' },
-  { name:'SQL Server',        category:'Databases & Warehouses', domain:'microsoft.com',        color:'#CC2927' },
-  { name:'SAP HANA',          category:'Databases & Warehouses', domain:'sap.com',              color:'#008FD3' },
-  { name:'IBM Db2',           category:'Databases & Warehouses', domain:'ibm.com',              color:'#054ADA' },
-  { name:'Teradata',          category:'Databases & Warehouses', domain:'teradata.com',         color:'#F05D40' },
-  { name:'Vertica',           category:'Databases & Warehouses', domain:'vertica.com',          color:'#1A5E9A' },
-  { name:'ClickHouse',        category:'Databases & Warehouses', domain:'clickhouse.com',       color:'#FFCC00' },
-  { name:'Elasticsearch',     category:'Databases & Warehouses', domain:'elastic.co',           color:'#005571' },
-  { name:'Firebolt',          category:'Databases & Warehouses', domain:'firebolt.io',          color:'#FF3C4A' },
-  { name:'SingleStore',       category:'Databases & Warehouses', domain:'singlestore.com',      color:'#AA00FF' },
-  { name:'CockroachDB',       category:'Databases & Warehouses', domain:'cockroachlabs.com',    color:'#6933FF' },
-  { name:'TimescaleDB',       category:'Databases & Warehouses', domain:'timescale.com',        color:'#FDB515' },
-  { name:'InfluxDB',          category:'Databases & Warehouses', domain:'influxdata.com',       color:'#22ADF6' },
-  { name:'Neo4j',             category:'Databases & Warehouses', domain:'neo4j.com',            color:'#008CC1' },
-  { name:'Couchbase',         category:'Databases & Warehouses', domain:'couchbase.com',        color:'#ED2226' },
-  { name:'Redis',             category:'Databases & Warehouses', domain:'redis.io',             color:'#DC382D' },
-  { name:'Supabase',          category:'Databases & Warehouses', domain:'supabase.com',         color:'#3ECF8E' },
-
-  // CRM (15)
-  { name:'Salesforce',        category:'CRM',                    domain:'salesforce.com',       color:'#00A1E0' },
-  { name:'HubSpot',           category:'CRM',                    domain:'hubspot.com',          color:'#FF7A59' },
-  { name:'Pipedrive',         category:'CRM',                    domain:'pipedrive.com',        color:'#1A1A1A' },
-  { name:'Zoho CRM',          category:'CRM',                    domain:'zoho.com',             color:'#E42527' },
-  { name:'Microsoft Dynamics',category:'CRM',                    domain:'microsoft.com',        color:'#002050' },
-  { name:'Copper',            category:'CRM',                    domain:'copper.com',           color:'#FF6F31' },
-  { name:'Close',             category:'CRM',                    domain:'close.com',            color:'#0A6AFF' },
-  { name:'Freshsales',        category:'CRM',                    domain:'freshworks.com',       color:'#2F9CEE' },
-  { name:'Insightly',         category:'CRM',                    domain:'insightly.com',        color:'#F99F2B' },
-  { name:'Nimble',            category:'CRM',                    domain:'nimble.com',           color:'#F16522' },
-  { name:'Nutshell',          category:'CRM',                    domain:'nutshell.com',         color:'#C8332D' },
-  { name:'Keap',              category:'CRM',                    domain:'keap.com',             color:'#3ECF22' },
-  { name:'Sugar CRM',         category:'CRM',                    domain:'sugarcrm.com',         color:'#ED1C24' },
-  { name:'Capsule CRM',       category:'CRM',                    domain:'capsulecrm.com',       color:'#1DC3D3' },
-  { name:'Creatio',           category:'CRM',                    domain:'creatio.com',          color:'#FF4F27' },
-
-  // Marketing & Ads (22)
-  { name:'Google Ads',        category:'Marketing & Ads',        domain:'ads.google.com',       color:'#4285F4' },
-  { name:'Google Analytics',  category:'Marketing & Ads',        domain:'analytics.google.com', color:'#F9AB00' },
-  { name:'Bing Ads',          category:'Marketing & Ads',        domain:'microsoft.com',        color:'#008373' },
-  { name:'LinkedIn Ads',      category:'Marketing & Ads',        domain:'linkedin.com',         color:'#0A66C2' },
-  { name:'Facebook Ads',      category:'Marketing & Ads',        domain:'facebook.com',         color:'#1877F2' },
-  { name:'TikTok Ads',        category:'Marketing & Ads',        domain:'tiktok.com',           color:'#000000' },
-  { name:'Pinterest Ads',     category:'Marketing & Ads',        domain:'pinterest.com',        color:'#E60023' },
-  { name:'Snapchat Ads',      category:'Marketing & Ads',        domain:'snapchat.com',         color:'#FFFC00' },
-  { name:'Reddit Ads',        category:'Marketing & Ads',        domain:'reddit.com',           color:'#FF4500' },
-  { name:'Criteo',            category:'Marketing & Ads',        domain:'criteo.com',           color:'#F8903E' },
-  { name:'Taboola',           category:'Marketing & Ads',        domain:'taboola.com',          color:'#0067DB' },
-  { name:'Outbrain',          category:'Marketing & Ads',        domain:'outbrain.com',         color:'#F26B24' },
-  { name:'Mailchimp',         category:'Marketing & Ads',        domain:'mailchimp.com',        color:'#FFE01B' },
-  { name:'SendGrid',          category:'Marketing & Ads',        domain:'sendgrid.com',         color:'#1A82E2' },
-  { name:'Klaviyo',           category:'Marketing & Ads',        domain:'klaviyo.com',          color:'#000000' },
-  { name:'Marketo',           category:'Marketing & Ads',        domain:'marketo.com',          color:'#5C4C9F' },
-  { name:'Pardot',            category:'Marketing & Ads',        domain:'pardot.com',           color:'#00A1E0' },
-  { name:'ActiveCampaign',    category:'Marketing & Ads',        domain:'activecampaign.com',   color:'#356AE6' },
-  { name:'Braze',             category:'Marketing & Ads',        domain:'braze.com',            color:'#FFA524' },
-  { name:'Iterable',          category:'Marketing & Ads',        domain:'iterable.com',         color:'#7F56D9' },
-  { name:'Customer.io',       category:'Marketing & Ads',        domain:'customer.io',          color:'#7B40F2' },
-  { name:'Omnisend',          category:'Marketing & Ads',        domain:'omnisend.com',         color:'#15BC71' },
-
-  // Support (12)
-  { name:'Zendesk',           category:'Support',                domain:'zendesk.com',          color:'#03363D' },
-  { name:'Freshdesk',         category:'Support',                domain:'freshworks.com',       color:'#25C16F' },
-  { name:'Intercom',          category:'Support',                domain:'intercom.com',         color:'#1F8DED' },
-  { name:'Help Scout',        category:'Support',                domain:'helpscout.com',        color:'#1292EE' },
-  { name:'Kustomer',          category:'Support',                domain:'kustomer.com',         color:'#FFBF00' },
-  { name:'Gorgias',           category:'Support',                domain:'gorgias.com',          color:'#0E1E1A' },
-  { name:'Drift',             category:'Support',                domain:'drift.com',            color:'#1D0E5F' },
-  { name:'Zoho Desk',         category:'Support',                domain:'zoho.com',             color:'#E42527' },
-  { name:'Front',             category:'Support',                domain:'front.com',            color:'#A857F8' },
-  { name:'Crisp',             category:'Support',                domain:'crisp.chat',           color:'#1972F5' },
-  { name:'Gladly',            category:'Support',                domain:'gladly.com',           color:'#EA5E3F' },
-  { name:'ServiceNow',        category:'Support',                domain:'servicenow.com',       color:'#62D84E' },
-
-  // Productivity (18)
-  { name:'Slack',             category:'Productivity',           domain:'slack.com',            color:'#4A154B' },
-  { name:'Microsoft Teams',   category:'Productivity',           domain:'teams.microsoft.com',  color:'#6264A7' },
-  { name:'Asana',             category:'Productivity',           domain:'asana.com',            color:'#F06A6A' },
-  { name:'Trello',            category:'Productivity',           domain:'trello.com',           color:'#0079BF' },
-  { name:'Jira',              category:'Productivity',           domain:'atlassian.com',        color:'#0052CC' },
-  { name:'Confluence',        category:'Productivity',           domain:'atlassian.com',        color:'#172B4D' },
-  { name:'Notion',            category:'Productivity',           domain:'notion.so',            color:'#000000' },
-  { name:'Airtable',          category:'Productivity',           domain:'airtable.com',         color:'#FCB400' },
-  { name:'Monday.com',        category:'Productivity',           domain:'monday.com',           color:'#FF3D57' },
-  { name:'ClickUp',           category:'Productivity',           domain:'clickup.com',          color:'#7B68EE' },
-  { name:'Smartsheet',        category:'Productivity',           domain:'smartsheet.com',       color:'#0073EC' },
-  { name:'Basecamp',          category:'Productivity',           domain:'basecamp.com',         color:'#1D2D35' },
-  { name:'Wrike',             category:'Productivity',           domain:'wrike.com',            color:'#08BB67' },
-  { name:'Coda',              category:'Productivity',           domain:'coda.io',              color:'#F46A54' },
-  { name:'Figma',             category:'Productivity',           domain:'figma.com',            color:'#F24E1E' },
-  { name:'Miro',              category:'Productivity',           domain:'miro.com',             color:'#FFD02F' },
-  { name:'Lucidchart',        category:'Productivity',           domain:'lucid.co',             color:'#F68D42' },
-  { name:'Loom',              category:'Productivity',           domain:'loom.com',             color:'#625DF5' },
-
-  // Finance & E-commerce (25)
-  { name:'Stripe',            category:'Finance & E-commerce',   domain:'stripe.com',           color:'#635BFF' },
-  { name:'QuickBooks',        category:'Finance & E-commerce',   domain:'quickbooks.intuit.com',color:'#2CA01C' },
-  { name:'Xero',              category:'Finance & E-commerce',   domain:'xero.com',             color:'#13B5EA' },
-  { name:'NetSuite',          category:'Finance & E-commerce',   domain:'netsuite.com',         color:'#F58220' },
-  { name:'Sage',              category:'Finance & E-commerce',   domain:'sage.com',             color:'#00D639' },
-  { name:'Square',            category:'Finance & E-commerce',   domain:'squareup.com',         color:'#3E4348' },
-  { name:'PayPal',            category:'Finance & E-commerce',   domain:'paypal.com',           color:'#003087' },
-  { name:'Adyen',             category:'Finance & E-commerce',   domain:'adyen.com',            color:'#0ABF53' },
-  { name:'Braintree',         category:'Finance & E-commerce',   domain:'braintreepayments.com',color:'#000000' },
-  { name:'Chargebee',         category:'Finance & E-commerce',   domain:'chargebee.com',        color:'#FF7846' },
-  { name:'Recurly',           category:'Finance & E-commerce',   domain:'recurly.com',          color:'#5C068C' },
-  { name:'Zuora',             category:'Finance & E-commerce',   domain:'zuora.com',            color:'#DE2332' },
-  { name:'Paddle',            category:'Finance & E-commerce',   domain:'paddle.com',           color:'#FFD00E' },
-  { name:'Expensify',         category:'Finance & E-commerce',   domain:'expensify.com',        color:'#0185FF' },
-  { name:'Bill.com',          category:'Finance & E-commerce',   domain:'bill.com',             color:'#ED2224' },
-  { name:'Ramp',              category:'Finance & E-commerce',   domain:'ramp.com',             color:'#FFE900' },
-  { name:'Brex',              category:'Finance & E-commerce',   domain:'brex.com',             color:'#FF5500' },
-  { name:'Coupa',             category:'Finance & E-commerce',   domain:'coupa.com',            color:'#083166' },
-  { name:'Shopify',           category:'Finance & E-commerce',   domain:'shopify.com',          color:'#96BF48' },
-  { name:'BigCommerce',       category:'Finance & E-commerce',   domain:'bigcommerce.com',      color:'#34313F' },
-  { name:'Magento',           category:'Finance & E-commerce',   domain:'magento.com',          color:'#EE672F' },
-  { name:'WooCommerce',       category:'Finance & E-commerce',   domain:'woocommerce.com',      color:'#7F54B3' },
-  { name:'Amazon Marketplace',category:'Finance & E-commerce',   domain:'sellercentral.amazon.com', color:'#FF9900' },
-  { name:'Wix',               category:'Finance & E-commerce',   domain:'wix.com',              color:'#0C6EFC' },
-  { name:'Squarespace',       category:'Finance & E-commerce',   domain:'squarespace.com',      color:'#000000' },
-
-  // HR & People (15)
-  { name:'Workday',           category:'HR & People',            domain:'workday.com',          color:'#0875E1' },
-  { name:'BambooHR',          category:'HR & People',            domain:'bamboohr.com',         color:'#73C41D' },
-  { name:'Gusto',             category:'HR & People',            domain:'gusto.com',            color:'#F45D48' },
-  { name:'Rippling',          category:'HR & People',            domain:'rippling.com',         color:'#FECE00' },
-  { name:'ADP',               category:'HR & People',            domain:'adp.com',              color:'#D0271D' },
-  { name:'Paychex',           category:'HR & People',            domain:'paychex.com',          color:'#004B8D' },
-  { name:'Paylocity',         category:'HR & People',            domain:'paylocity.com',        color:'#3078C2' },
-  { name:'Justworks',         category:'HR & People',            domain:'justworks.com',        color:'#00A1DF' },
-  { name:'TriNet',            category:'HR & People',            domain:'trinet.com',           color:'#E31E38' },
-  { name:'UKG',               category:'HR & People',            domain:'ukg.com',              color:'#005EB8' },
-  { name:'Ceridian Dayforce', category:'HR & People',            domain:'ceridian.com',         color:'#005EB8' },
-  { name:'Greenhouse',        category:'HR & People',            domain:'greenhouse.io',        color:'#23AA49' },
-  { name:'Lever',             category:'HR & People',            domain:'lever.co',             color:'#5B2AE8' },
-  { name:'Workable',          category:'HR & People',            domain:'workable.com',         color:'#0F996D' },
-  { name:'SAP SuccessFactors',category:'HR & People',            domain:'sap.com',              color:'#008FD3' },
-
-  // Product Analytics (12)
-  { name:'Mixpanel',          category:'Product Analytics',      domain:'mixpanel.com',         color:'#7856FF' },
-  { name:'Amplitude',         category:'Product Analytics',      domain:'amplitude.com',        color:'#1E61F0' },
-  { name:'Segment',           category:'Product Analytics',      domain:'segment.com',          color:'#52BD94' },
-  { name:'Heap',              category:'Product Analytics',      domain:'heap.io',              color:'#4F43DC' },
-  { name:'Pendo',             category:'Product Analytics',      domain:'pendo.io',             color:'#FF4876' },
-  { name:'Hotjar',            category:'Product Analytics',      domain:'hotjar.com',           color:'#FF3C00' },
-  { name:'FullStory',         category:'Product Analytics',      domain:'fullstory.com',        color:'#FF4A00' },
-  { name:'LogRocket',         category:'Product Analytics',      domain:'logrocket.com',        color:'#764ABC' },
-  { name:'Sentry',            category:'Product Analytics',      domain:'sentry.io',            color:'#362D59' },
-  { name:'PostHog',           category:'Product Analytics',      domain:'posthog.com',          color:'#1D4AFF' },
-  { name:'June',              category:'Product Analytics',      domain:'june.so',              color:'#161B22' },
-  { name:'Smartlook',         category:'Product Analytics',      domain:'smartlook.com',        color:'#FBA50A' },
-
-  // Cloud & Storage (12)
-  { name:'Amazon S3',         category:'Cloud & Storage',        domain:'aws.amazon.com',       color:'#E25444' },
-  { name:'Azure Data Lake',   category:'Cloud & Storage',        domain:'azure.microsoft.com',  color:'#0078D4' },
-  { name:'Azure Blob Storage',category:'Cloud & Storage',        domain:'azure.microsoft.com',  color:'#0078D4' },
-  { name:'Google Cloud Storage', category:'Cloud & Storage',     domain:'cloud.google.com',     color:'#4285F4' },
-  { name:'Google Drive',      category:'Cloud & Storage',        domain:'drive.google.com',     color:'#0F9D58' },
-  { name:'Google Sheets',     category:'Cloud & Storage',        domain:'sheets.google.com',    color:'#0F9D58' },
-  { name:'Dropbox',           category:'Cloud & Storage',        domain:'dropbox.com',          color:'#0061FF' },
-  { name:'Box',               category:'Cloud & Storage',        domain:'box.com',              color:'#0061D5' },
-  { name:'OneDrive',          category:'Cloud & Storage',        domain:'onedrive.live.com',    color:'#0364B8' },
-  { name:'Backblaze B2',      category:'Cloud & Storage',        domain:'backblaze.com',        color:'#EE3027' },
-  { name:'Wasabi',            category:'Cloud & Storage',        domain:'wasabi.com',           color:'#01CD3E' },
-  { name:'Cloudflare R2',     category:'Cloud & Storage',        domain:'cloudflare.com',       color:'#F6821F' },
-
-  // Developer Tools (15)
-  { name:'GitHub',            category:'Developer Tools',        domain:'github.com',           color:'#181717' },
-  { name:'GitLab',            category:'Developer Tools',        domain:'gitlab.com',           color:'#FC6D26' },
-  { name:'Bitbucket',         category:'Developer Tools',        domain:'bitbucket.org',        color:'#0052CC' },
-  { name:'CircleCI',          category:'Developer Tools',        domain:'circleci.com',         color:'#343434' },
-  { name:'Jenkins',           category:'Developer Tools',        domain:'jenkins.io',           color:'#D24939' },
-  { name:'Azure DevOps',      category:'Developer Tools',        domain:'azure.microsoft.com',  color:'#0078D4' },
-  { name:'Vercel',            category:'Developer Tools',        domain:'vercel.com',           color:'#000000' },
-  { name:'Netlify',           category:'Developer Tools',        domain:'netlify.com',          color:'#00AD9F' },
-  { name:'Heroku',            category:'Developer Tools',        domain:'heroku.com',           color:'#430098' },
-  { name:'Render',            category:'Developer Tools',        domain:'render.com',           color:'#46E3B7' },
-  { name:'Cloudflare',        category:'Developer Tools',        domain:'cloudflare.com',       color:'#F6821F' },
-  { name:'Fastly',            category:'Developer Tools',        domain:'fastly.com',           color:'#FF282D' },
-  { name:'Datadog',           category:'Developer Tools',        domain:'datadoghq.com',        color:'#632CA6' },
-  { name:'New Relic',         category:'Developer Tools',        domain:'newrelic.com',         color:'#00AC69' },
-  { name:'PagerDuty',         category:'Developer Tools',        domain:'pagerduty.com',        color:'#06AC38' },
-
-  // Communication & Email (12)
-  { name:'Gmail',             category:'Communication & Email',  domain:'mail.google.com',      color:'#EA4335' },
-  { name:'Outlook',           category:'Communication & Email',  domain:'outlook.com',          color:'#0078D4' },
-  { name:'Calendly',          category:'Communication & Email',  domain:'calendly.com',         color:'#006BFF' },
-  { name:'Cal.com',           category:'Communication & Email',  domain:'cal.com',              color:'#111827' },
-  { name:'Zoom',              category:'Communication & Email',  domain:'zoom.us',              color:'#2D8CFF' },
-  { name:'Google Meet',       category:'Communication & Email',  domain:'meet.google.com',      color:'#00897B' },
-  { name:'Webex',             category:'Communication & Email',  domain:'webex.com',            color:'#00A0D2' },
-  { name:'RingCentral',       category:'Communication & Email',  domain:'ringcentral.com',      color:'#FF7A00' },
-  { name:'Dialpad',           category:'Communication & Email',  domain:'dialpad.com',          color:'#7E44FA' },
-  { name:'Aircall',           category:'Communication & Email',  domain:'aircall.io',           color:'#00B388' },
-  { name:'Twilio',            category:'Communication & Email',  domain:'twilio.com',           color:'#F22F46' },
-  { name:'Mailgun',           category:'Communication & Email',  domain:'mailgun.com',          color:'#F06B66' },
-
-  // Security & Identity (8)
-  { name:'Okta',              category:'Security & Identity',    domain:'okta.com',             color:'#007DC1' },
-  { name:'Auth0',             category:'Security & Identity',    domain:'auth0.com',            color:'#EB5424' },
-  { name:'OneLogin',          category:'Security & Identity',    domain:'onelogin.com',         color:'#1D252C' },
-  { name:'JumpCloud',         category:'Security & Identity',    domain:'jumpcloud.com',        color:'#3ACE01' },
-  { name:'Duo',               category:'Security & Identity',    domain:'duo.com',              color:'#6BBE45' },
-  { name:'1Password',         category:'Security & Identity',    domain:'1password.com',        color:'#0572EC' },
-  { name:'LastPass',          category:'Security & Identity',    domain:'lastpass.com',         color:'#D32D27' },
-  { name:'Cloudflare Access', category:'Security & Identity',    domain:'cloudflare.com',       color:'#F6821F' },
-
-  // Data Pipelines & ETL (10)
-  { name:'Fivetran',          category:'Data Pipelines & ETL',   domain:'fivetran.com',         color:'#0070FF' },
-  { name:'Stitch Data',       category:'Data Pipelines & ETL',   domain:'stitchdata.com',       color:'#FF6700' },
-  { name:'Airbyte',           category:'Data Pipelines & ETL',   domain:'airbyte.com',          color:'#615EFF' },
-  { name:'dbt',               category:'Data Pipelines & ETL',   domain:'getdbt.com',           color:'#FF694A' },
-  { name:'Matillion',         category:'Data Pipelines & ETL',   domain:'matillion.com',        color:'#19E57F' },
-  { name:'Hevo Data',         category:'Data Pipelines & ETL',   domain:'hevodata.com',         color:'#FFC043' },
-  { name:'Talend',            category:'Data Pipelines & ETL',   domain:'talend.com',           color:'#FF6D70' },
-  { name:'Informatica',       category:'Data Pipelines & ETL',   domain:'informatica.com',      color:'#FF4D00' },
-  { name:'Rivery',            category:'Data Pipelines & ETL',   domain:'rivery.io',            color:'#0B50F8' },
-  { name:'Dataiku',           category:'Data Pipelines & ETL',   domain:'dataiku.com',          color:'#2AB1AC' },
-];
-
 /* ── CONNECTORS HERO ── */
+// 24 hero-matrix picks — a curated grid of recognizable brands across the
+// catalog. Names match entries in the CONNECTORS list so ConnectorIcon
+// resolves the same way as the gallery tiles below.
+const HERO_MATRIX = [
+  { name:'HubSpot',          domain:'hubspot.com'    },
+  { name:'Salesforce',       domain:'salesforce.com' },
+  { name:'Stripe',           domain:'stripe.com'     },
+  { name:'Slack',            domain:'slack.com'      },
+  { name:'PostgreSQL',       domain:'postgresql.org' },
+  { name:'Snowflake',        domain:'snowflake.com'  },
+  { name:'Google BigQuery',  domain:'cloud.google.com' },
+  { name:'Amazon Redshift',  domain:'aws.amazon.com' },
+  { name:'Google Analytics', domain:'analytics.google.com' },
+  { name:'Mixpanel',         domain:'mixpanel.com'   },
+  { name:'Intercom',         domain:'intercom.com'   },
+  { name:'Shopify',          domain:'shopify.com'    },
+  { name:'Jira',             domain:'atlassian.com'  },
+  { name:'Asana',            domain:'asana.com'      },
+  { name:'Notion',           domain:'notion.com'     },
+  { name:'Monday.com',       domain:'monday.com'     },
+  { name:'Pipedrive',        domain:'pipedrive.com'  },
+  { name:'Calendly',         domain:'acuityscheduling.com' },
+  { name:'Zendesk',          domain:'zendesk.com'    },
+  { name:'Zoho CRM',         domain:'zoho.com'       },
+  { name:'Mailchimp',        domain:'mailchimp.com'  },
+  { name:'Dropbox',          domain:'dropbox.com'    },
+  { name:'GitHub',           domain:'github.com'     },
+  { name:'Twilio',           domain:'twilio.com'     },
+];
+
+// Each row offset slightly to produce a "scattered cluster" instead of a strict grid.
+// indent = how many cells to shift right (0 = flush, 1 = half-cell, etc.)
+const HERO_MATRIX_ROWS = [
+  { indent: 2, picks: ['Snowflake', 'Mailchimp', 'QuickBooks Online'] },
+  { indent: 1, picks: ['Shopify', 'Stripe', 'Pipedrive', 'FTP'] },
+  { indent: 0, picks: ['HubSpot', 'Amazon Redshift', 'Salesforce', 'PostgreSQL', 'Google BigQuery', 'Slack'] },
+  { indent: 0, picks: ['Mixpanel', 'Airtable', 'Calendly', 'GitHub', 'Notion'] },
+  { indent: 1, picks: ['Google Sheets', 'Zapier-like-bolt', 'Slack'] },
+  { indent: 3, picks: ['Salesforce'] },
+];
+
 function ConnectorsHero() {
+  // Flatten the picks into a {name, domain} list using the existing CONNECTORS catalog.
+  // Falls back to a sensible domain for the synthetic 'Zapier-like-bolt' bolt icon.
+  const resolve = (name) => {
+    const c = CONNECTORS.find(c => c.name === name);
+    if (c) return { name, domain: c.domain };
+    return { name, domain: null };
+  };
+
   return (
-    <section style={{padding:'80px 0 36px', textAlign:'center', position:'relative', zIndex:1}}>
-      <div style={{maxWidth:'760px', margin:'0 auto', padding:'0 24px'}}>
-        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid rgba(255,255,255,.07)', background:'rgba(255,255,255,.03)', fontSize:'12px', color:'#7FA0AC', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
-          ✦ DATA CONNECTORS
+    <section style={{padding:'72px 0 36px', position:'relative', zIndex:1}}>
+      <div style={{maxWidth:'1240px', margin:'0 auto', padding:'0 24px', display:'grid', gridTemplateColumns:'minmax(0, 1fr) minmax(0, 1fr)', gap:'48px', alignItems:'center'}}>
+
+        {/* LEFT — text */}
+        <div>
+          <div className="fu0" style={{fontSize:'12px', color:'#7FA0AC', letterSpacing:'0.04em', marginBottom:'18px'}}>
+            <a href="/" style={{color:'#7FA0AC', textDecoration:'none'}}>Home</a>
+            <span style={{margin:'0 6px', opacity:0.5}}>/</span>
+            <span style={{color:'#E8F2F5'}}>Connectors</span>
+            <span style={{margin:'0 6px', opacity:0.5}}>/</span>
+          </div>
+          <h1 className="fu1" style={{fontSize:'clamp(2.4rem,3.6vw,4rem)', fontWeight:700, fontFamily:"'Outfit', sans-serif", letterSpacing:'-.04em', lineHeight:1.05, marginBottom:'22px', textWrap:'balance'}}>
+            <span style={{color:'#0EC4C1'}}>Connect</span>{' '}
+            <span style={{color:'#E8F2F5'}}>to any source.</span>
+          </h1>
+          <p className="fu2" style={{fontSize:'17px', color:'#8AA6B3', lineHeight:1.6, maxWidth:'520px', marginBottom:'30px'}}>
+            Explore 200+ prebuilt connectors, create custom ones with REST and GraphQL connectors, or request the data source you're missing.
+          </p>
+          <a href="/Pricing" className="fu3 cta-btn" style={{display:'inline-flex', alignItems:'center', gap:'7px', padding:'12px 28px', borderRadius:'999px', background:'linear-gradient(135deg,#09A09D,#07807E)', color:'#fff', fontWeight:600, fontSize:'14px', textDecoration:'none', boxShadow:'0 0 30px rgba(9,160,157,.25), 0 4px 12px rgba(0,0,0,.3)'}}>
+            Start for free
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          </a>
         </div>
-        <h1 className="fu1" style={{fontSize:'clamp(2.2rem,3.2vw,3.6rem)', fontWeight:700, fontFamily:"'Outfit', sans-serif", letterSpacing:'-.04em', lineHeight:1.1, color:'#E8F2F5', marginBottom:'18px', textWrap:'balance'}}>
-          Connect to everything you run on.
-        </h1>
-        <p className="fu2" style={{fontSize:'16px', color:'#7FA0AC', lineHeight:1.6, maxWidth:'580px', margin:'0 auto'}}>
-          200+ data connectors across your CRM, warehouse, ads, finance, product, and developer stack. Plug one in and start asking questions in plain English.
-        </p>
+
+        {/* RIGHT — scattered connector cluster */}
+        <div className="fu4" style={{display:'flex', flexDirection:'column', gap:'12px', justifySelf:'end', width:'100%', maxWidth:'520px'}}>
+          {HERO_MATRIX_ROWS.map((row, ri) => (
+            <div key={ri} style={{display:'flex', gap:'12px', marginLeft:`${row.indent * 48}px`}}>
+              {row.picks.map((name, ci) => {
+                const c = resolve(name);
+                return (
+                  <div key={`${ri}-${ci}-${name}`} title={c.name} style={{
+                    width:'56px', height:'56px',
+                    borderRadius:'50%',
+                    background:'rgba(255,255,255,0.04)',
+                    border:'1px solid rgba(255,255,255,0.08)',
+                    display:'flex', alignItems:'center', justifyContent:'center',
+                    flexShrink:0,
+                    boxShadow:'0 4px 12px rgba(0,0,0,0.25)',
+                  }}>
+                    <ConnectorIcon name={c.name} domain={c.domain} bg="transparent" size={28}/>
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -811,13 +645,6 @@ function App() {
       </div>
             </main>
       <Footer />
-      <FloatingChat onSubmit={(q) => setAssistantQuery(q)} />
-      {assistantQuery && (
-        <AIAssistantPanel
-          query={assistantQuery}
-          onClose={() => setAssistantQuery(null)}
-        />
-      )}
     </div>
   );
 }

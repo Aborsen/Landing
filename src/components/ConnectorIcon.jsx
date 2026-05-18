@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { INTEGRATIONS } from './IntegrationsStrip';
 
 /*
@@ -84,6 +84,10 @@ export default function ConnectorIcon({ name, slug, domain, color = '#0EC4C1', a
   ].filter(Boolean);
 
   const [idx, setIdx] = useState(0);
+  const [loaded, setLoaded] = useState(false);
+
+  // Reset loaded state when the source changes (e.g., onError → idx++).
+  useEffect(() => { setLoaded(false); }, [idx]);
 
   return (
     <div className="connector-icon" style={{ background: bg, color, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -93,10 +97,11 @@ export default function ConnectorIcon({ name, slug, domain, color = '#0EC4C1', a
           src={sources[idx]}
           width={size}
           height={size}
-          alt={name}
+          alt=""
           draggable="false"
           onError={() => setIdx(idx + 1)}
-          style={{ display: 'block', objectFit: 'contain' }}
+          onLoad={() => setLoaded(true)}
+          style={{ display: 'block', objectFit: 'contain', opacity: loaded ? 1 : 0, transition: 'opacity .15s ease' }}
         />
       ) : (
         <span>{abbr || (name ? name[0] : '?')}</span>
