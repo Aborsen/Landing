@@ -4,6 +4,7 @@ import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { INTEGRATIONS } from '../components/IntegrationsStrip';
+import ConnectorIcon from '../components/ConnectorIcon';
 
 const { motion, useInView, AnimatePresence } = (typeof window !== 'undefined' ? window["framer-motion"] : null) || { motion: { div: 'div', span: 'span', p: 'p', h1: 'h1', h2: 'h2', h3: 'h3', button: 'button', a: 'a', section: 'section', nav: 'nav', header: 'header', li: 'li', img: 'img' }, useInView: () => true, AnimatePresence: ({ children }) => children };
 const MotionDiv = motion.div;
@@ -48,15 +49,6 @@ function HubSpotMark({size=20}) {
 }
 
 /* ── CHAOS → ORDER ANIMATION ── */
-// Used by the lower ConnectorsGallery (not the hero) — simpleicons.org
-// removes brand assets on company request, those slugs reliably 404. Skip
-// the network fetch and let ConnectorIcon fall back to its abbreviation.
-const SIMPLEICONS_BAD = new Set([
-  'close', 'salesforce', 'drift', 'clari', 'apollostack', 'outreach',
-  'copper', 'gong', 'chargebee', 'freshworks', 'docusign', 'mondaydotcom',
-  'pipedrive', 'salesloft',
-]);
-
 // Renders the same canonical brand SVG as <IntegrationsStrip /> by looking up
 // the integration by name. Keeps the visual hero animation in lockstep with
 // the strip — edit src/components/IntegrationsStrip.jsx and both update.
@@ -505,27 +497,6 @@ const CONNECTORS = {
     { name:'Zoom',        slug:'zoom',            abbr:'ZM',  color:'#2d8cff', bg:'rgba(45,140,255,.12)',  desc:'Meetings & webinar data' },
   ],
 };
-
-/* ── CONNECTOR ICON ── */
-function ConnectorIcon({ name, slug, abbr, color, bg }) {
-  const [failed, setFailed] = useState(false);
-  const useIcon = slug && !SIMPLEICONS_BAD.has(slug) && !failed;
-  return (
-    <div className="connector-icon" style={{background: bg, color: color}}>
-      {useIcon
-        ? <img
-            src={`https://cdn.simpleicons.org/${slug}`}
-            width="20" height="20"
-            alt={name}
-            draggable="false"
-            onError={() => setFailed(true)}
-            style={{display:'block', objectFit:'contain'}}
-          />
-        : <span>{abbr}</span>
-      }
-    </div>
-  );
-}
 
 /* ── CONNECTORS GALLERY ── */
 function ConnectorsGallery() {

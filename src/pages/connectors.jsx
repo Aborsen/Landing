@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import ConnectorIcon from '../components/ConnectorIcon';
 
 
 /* ── APP ── */
@@ -655,25 +656,20 @@ function ConnectorCategorySidebar({ active, setActive, counts, onRequestConnecto
 
 /* ── CONNECTOR TILE ── */
 function ConnectorTile({ c, index, onAskChat, onConnect }) {
-  const [imgFailed, setImgFailed] = useState(false);
   const initials = c.name.split(' ').filter(w => !['&','the','-'].includes(w.toLowerCase())).slice(0,2).map(w => w[0]).join('').toUpperCase();
 
   return (
     <div className="connector-tile" style={{ animationDelay:`${Math.min(index,12) * 0.02}s` }}>
       <div className="connector-face">
         <div className="connector-logo">
-          {imgFailed ? (
-            <div className="fallback" style={{ background: c.color, color: '#fff', borderRadius: 6 }}>
-              {initials}
-            </div>
-          ) : (
-            <img
-              src={`https://logo.clearbit.com/${c.domain}`}
-              alt={c.name}
-              loading="lazy"
-              onError={() => setImgFailed(true)}
-            />
-          )}
+          <ConnectorIcon
+            name={c.name}
+            domain={c.domain}
+            color={c.color}
+            abbr={initials}
+            bg="transparent"
+            size={32}
+          />
         </div>
         <div className="connector-name" title={c.name}>{c.name}</div>
       </div>
