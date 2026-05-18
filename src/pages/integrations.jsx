@@ -105,8 +105,11 @@ function ConnectionChatAnimation() {
     if (!el) return;
     let W = el.clientWidth;
     let H = el.clientHeight;
-    const cardW = 150, cardH = 52;
-    const centerBoxX = 90, centerBoxY = 90;
+    const isMobileLayout = W < 640;
+    const cardW = isMobileLayout ? 100 : 150;
+    const cardH = isMobileLayout ? 36 : 52;
+    const centerBoxX = isMobileLayout ? 60 : 90;
+    const centerBoxY = isMobileLayout ? 60 : 90;
 
     const recalc = () => { W = el.clientWidth; H = el.clientHeight; };
     window.addEventListener('resize', recalc);
@@ -194,6 +197,16 @@ function ConnectionChatAnimation() {
   const cx = size.W / 2;
   const cy = size.H / 2 + 10;
   const beamsOn = phase === 'ordered';
+  const isMobile = size.W < 640;
+  const engineBox = isMobile ? 80 : 116;
+  const gridSize = isMobile ? 22 : 30;
+  const engineFont = isMobile ? 10 : 12;
+  const tileSize = isMobile ? 26 : 40;
+  const cardPadV = isMobile ? 6 : 10;
+  const cardPadH = isMobile ? 9 : 14;
+  const cardGap = isMobile ? 7 : 11;
+  const titleFont = isMobile ? 11 : 13;
+  const descFont = isMobile ? 10 : 11;
 
   return (
     <div ref={containerRef} style={{
@@ -274,15 +287,15 @@ function ConnectionChatAnimation() {
         zIndex:4,
       }}>
         <div style={{
-          width:'116px', height:'116px',
+          width:`${engineBox}px`, height:`${engineBox}px`,
           borderRadius:'16px',
-          display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:'8px',
+          display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:'6px',
           border:'1px solid rgba(7,128,126,0.5)',
           background:'linear-gradient(135deg, rgba(7,128,126,0.25), rgba(7,128,126,0.08))',
           animation: phase === 'ordered' ? 'corePulse 3s ease-in-out infinite' : 'none',
         }}>
-          <GridIcon size={30} color="#0EC4C1"/>
-          <span style={{fontSize:'12px', fontWeight:500, color:'#0EC4C1', textAlign:'center', lineHeight:1.2}}>Insightis<br/>Semantic AI</span>
+          <GridIcon size={gridSize} color="#0EC4C1"/>
+          <span style={{fontSize:`${engineFont}px`, fontWeight:500, color:'#0EC4C1', textAlign:'center', lineHeight:1.2}}>Insightis<br/>Semantic AI</span>
         </div>
       </div>
 
@@ -292,8 +305,8 @@ function ConnectionChatAnimation() {
           position:'absolute',
           left:'50%', top:'calc(50% + 10px)',
           display:'inline-flex', alignItems:'center',
-          gap:'11px',
-          padding:'10px 14px',
+          gap:`${cardGap}px`,
+          padding:`${cardPadV}px ${cardPadH}px`,
           background:'#131820',
           border:'1px solid rgba(255,255,255,0.06)',
           borderRadius:'12px',
@@ -301,10 +314,12 @@ function ConnectionChatAnimation() {
           willChange:'transform',
           zIndex:5,
         }}>
-          <BrandTile name={s.name} color={s.color} size={40}/>
+          <BrandTile name={s.name} color={s.color} size={tileSize}/>
           <div style={{display:'flex', flexDirection:'column', gap:'1px'}}>
-            <span style={{fontSize:'13px', fontWeight:600, color:'#FFFFFF', letterSpacing:'-0.01em', whiteSpace:'nowrap', lineHeight:1.2}}>{s.name}</span>
-            <span style={{fontSize:'11px', fontWeight:400, color:'#7A8A9A', letterSpacing:'-0.005em', whiteSpace:'nowrap', lineHeight:1.2}}>{s.desc}</span>
+            <span style={{fontSize:`${titleFont}px`, fontWeight:600, color:'#FFFFFF', letterSpacing:'-0.01em', whiteSpace:'nowrap', lineHeight:1.2}}>{s.name}</span>
+            {!isMobile && (
+              <span style={{fontSize:`${descFont}px`, fontWeight:400, color:'#7A8A9A', letterSpacing:'-0.005em', whiteSpace:'nowrap', lineHeight:1.2}}>{s.desc}</span>
+            )}
           </div>
         </div>
       ))}
@@ -484,7 +499,7 @@ const AUDIENCE_TABS = {
     { name: "Recurly", desc: "Subscription billing & dunning" },
     { name: "NetSuite", desc: "Enterprise financials" },
     { name: "Sage Accounting", desc: "GL & books" },
-    { name: "Recurly", desc: "Billing & dunning" },
+    { name: "Zoho Books", desc: "SMB accounting" },
     { name: "Avalara", desc: "Sales tax compliance" },
     { name: "FreshBooks", desc: "Service-business books" },
     { name: "Maxio Billing", desc: "Recurring revenue ops" },
@@ -547,8 +562,8 @@ function ConnectorsGallery() {
           {AUDIENCE_TABS[activeCat].map((c, i) => {
             const master = MASTER_CONNECTORS.find(m => m.name === c.name);
             return (
-            <div key={c.name} className="connector-card">
-              <ConnectorIcon name={c.name} domain={master?.domain} bg="rgba(255,255,255,0.04)"/>
+            <div key={`${activeCat}-${i}-${c.name}`} className="connector-card">
+              <ConnectorIcon name={c.name} slug={master?.slug} domain={master?.domain} bg="rgba(255,255,255,0.04)"/>
               <div style={{minWidth:0}}>
                 <div style={{fontSize:'0.875rem',fontWeight:500,color:'#fff',marginBottom:'3px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{c.name}</div>
                 <div style={{fontSize:'12px',color:'#8A9BA4',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{c.desc}</div>

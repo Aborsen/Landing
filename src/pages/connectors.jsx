@@ -423,7 +423,7 @@ function ConnectorsHero() {
                     flexShrink:0,
                     boxShadow:'0 4px 12px rgba(0,0,0,0.25)',
                   }}>
-                    <ConnectorIcon name={c.name} domain={c.domain} bg="transparent" size={28}/>
+                    <ConnectorIcon name={c.name} slug={c.slug} domain={c.domain} bg="transparent" size={28}/>
                   </div>
                 );
               })}
@@ -498,6 +498,7 @@ function ConnectorTile({ c, index, onAskChat, onConnect }) {
         <div className="connector-logo">
           <ConnectorIcon
             name={c.name}
+            slug={c.slug}
             domain={c.domain}
             color={c.color}
             abbr={initials}
