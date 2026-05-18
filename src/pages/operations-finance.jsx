@@ -100,7 +100,7 @@ function Hero() {
               padding:'24px',
               backdropFilter:'blur(24px)',
               WebkitBackdropFilter:'blur(24px)',
-              boxShadow:'0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.05)',
+              boxShadow:'none',
               overflow:'hidden',
               zIndex:1,
               minHeight:'540px',
@@ -356,7 +356,7 @@ function SpotlightChat() {
       border:'1px solid rgba(255,255,255,0.08)',
       borderRadius:'20px',
       overflow:'hidden',
-      boxShadow:'0 24px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04)',
+      boxShadow:'none',
       display:'flex',
       flexDirection:'column',
     }}>
@@ -476,7 +476,7 @@ function SpotlightSemantic() {
       border:'1px solid rgba(255,255,255,0.08)',
       borderRadius:'20px',
       overflow:'hidden',
-      boxShadow:'0 24px 80px rgba(0,0,0,0.5)',
+      boxShadow:'none',
       display:'flex',
       flexDirection:'column',
     }}>
@@ -571,7 +571,7 @@ function SpotlightAnomalies() {
       border:'1px solid rgba(255,255,255,0.08)',
       borderRadius:'20px',
       overflow:'hidden',
-      boxShadow:'0 24px 80px rgba(0,0,0,0.5)',
+      boxShadow:'none',
       display:'flex',
       flexDirection:'column',
     }}>
@@ -655,7 +655,7 @@ function SpotlightStack() {
       border:'1px solid rgba(255,255,255,0.08)',
       borderRadius:'20px',
       overflow:'hidden',
-      boxShadow:'0 24px 80px rgba(0,0,0,0.5)',
+      boxShadow:'none',
       display:'flex',
       flexDirection:'column',
     }}>

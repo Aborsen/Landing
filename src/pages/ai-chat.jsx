@@ -125,7 +125,7 @@ function ChatMock() {
       borderRadius:'20px',
       overflow:'hidden',
       backdropFilter:'blur(20px)',
-      boxShadow:'0 24px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04), 0 0 120px 40px rgba(9,160,157,0.04)',
+      boxShadow:'none',
     }}>
       {/* Chat header */}
       <div style={{padding:'14px 18px',borderBottom:'1px solid rgba(255,255,255,0.06)',display:'flex',alignItems:'center',gap:'10px'}}>
@@ -827,7 +827,7 @@ function QuestionsGallery() {
           display:'grid', gridTemplateColumns:'280px 1fr',
           borderRadius:'16px', overflow:'hidden',
           border:'1px solid rgba(255,255,255,.07)',
-          boxShadow:'0 4px 6px rgba(0,0,0,.5), 0 32px 100px rgba(0,0,0,.6)',
+          boxShadow:'none',
           height:'520px', margin:'0 auto',
           position:'relative',
         }}>
@@ -1220,7 +1220,7 @@ function ChatMockAnimation() {
         display:'flex',
         flexDirection:'column',
         height:'500px',
-        boxShadow:'0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.06)',
+        boxShadow:'none',
       }} aria-hidden="true"/>
     );
   }
@@ -1304,7 +1304,7 @@ function ChatMockAnimationInner() {
       display: 'flex',
       flexDirection: 'column',
       height: '500px',
-      boxShadow: '0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.06)',
+      boxShadow: 'none',
     }}>
 
       {/* ── Header ── */}

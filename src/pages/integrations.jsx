@@ -216,7 +216,7 @@ function ConnectionChatAnimation() {
       border:'1px solid rgba(255,255,255,0.09)',
       background:'#0C1117',
       overflow:'hidden',
-      boxShadow:'0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.06)',
+      boxShadow:'none',
     }}>
       {/* Background */}
       <div style={{position:'absolute',inset:0,pointerEvents:'none',background:'radial-gradient(ellipse 55% 50% at 50% 55%, rgba(14,196,193,0.09) 0%, transparent 65%)'}}/>

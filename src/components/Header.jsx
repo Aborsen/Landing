@@ -209,7 +209,7 @@ export default function Header() {
             borderRight:'1px solid rgba(255,255,255,0.08)',
             borderBottom:'1px solid rgba(255,255,255,0.08)',
             borderRadius:'0 0 24px 24px',
-            boxShadow:'0 12px 48px rgba(0,0,0,0.5)',
+            boxShadow:'none',
           }}>
             <div style={{padding:'44px 32px 28px'}}>
               <div className="flex gap-10">

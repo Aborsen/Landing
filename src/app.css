@@ -244,7 +244,7 @@ nav{
   display:grid;grid-template-columns:380px 1fr;
   border-radius:var(--ins-radius-3xl);overflow:hidden;
   border:1px solid rgba(255,255,255,.07);
-  box-shadow:0 4px 6px rgba(0,0,0,.5),0 32px 100px rgba(0,0,0,.7);
+  box-shadow: none;
   min-height:520px;margin:0 auto;position:relative
 }
 .showcase::before{
@@ -276,7 +276,7 @@ nav{
 .aw{
   width:100%;background:rgba(10,14,19,.95);
   border:1px solid rgba(255,255,255,.08);border-radius:var(--ins-radius-2xl);
-  box-shadow:0 4px 6px rgba(0,0,0,.5),0 16px 48px rgba(0,0,0,.5);
+  box-shadow: none;
   overflow:hidden
 }
 .aw-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(255,255,255,.025);border-bottom:1px solid rgba(255,255,255,.05)}
@@ -361,7 +361,7 @@ nav{
 .mdc{
   background:rgba(13,17,23,.95);border:1px solid rgba(255,255,255,.08);
   border-radius:var(--ins-radius-xl);padding:24px;position:relative;
-  box-shadow:0 0 0 1px rgba(10,152,150,.15),0 16px 48px rgba(0,0,0,.4)
+  box-shadow: none
 }
 .mdc::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;border-radius:var(--ins-radius-xl) var(--ins-radius-xl) 0 0;background:linear-gradient(90deg,transparent,rgba(10,152,150,.6),transparent)}
 .mdc-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
@@ -383,7 +383,7 @@ nav{
   border-radius:var(--ins-radius-xl);padding:28px;position:relative;
   transition:all .25s var(--ins-easing-standard)
 }
-.testi-card:hover{background:rgba(22,32,40,.9);border-color:rgba(255,255,255,.1);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.testi-card:hover{background:rgba(22,32,40,.9);border-color:rgba(255,255,255,.1);transform:translateY(-2px);box-shadow: none}
 .testi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;border-radius:var(--ins-radius-xl) var(--ins-radius-xl) 0 0;background:linear-gradient(90deg,transparent,rgba(10,152,150,.3),transparent)}
 .testi-stars{color:var(--ins-text-highlight);font-size:12px;letter-spacing:3px;margin-bottom:12px;opacity:.8}
 .testi-q{font-size:14px;color:var(--ins-text-body);line-height:1.68;margin-bottom:20px;font-style:italic}
@@ -660,7 +660,7 @@ footer::before{content:'';position:absolute;width:500px;height:300px;background:
 .ctx-menu{
   position:absolute;
   background:var(--ins-color-gray-800);border:1px solid rgba(255,255,255,.12);
-  border-radius:9px;box-shadow:0 12px 36px rgba(0,0,0,.6);
+  border-radius:9px;box-shadow: none;
   padding:5px;min-width:148px;z-index:100;
   opacity:0;transform:scale(.92) translateY(-4px);
   transition:opacity .18s,transform .18s cubic-bezier(.34,1.56,.64,1);
@@ -692,7 +692,7 @@ footer::before{content:'';position:absolute;width:500px;height:300px;background:
   width:min(560px,92%);
   background:var(--ins-color-gray-800);border:1px solid rgba(255,255,255,.1);
   border-radius:var(--ins-radius-2xl);padding:20px;
-  box-shadow:0 24px 64px rgba(0,0,0,.8);
+  box-shadow: none;
   transform:scale(.95) translateY(8px);
   transition:transform .35s cubic-bezier(.34,1.56,.64,1);
 }
@@ -760,7 +760,7 @@ footer::before{content:'';position:absolute;width:500px;height:300px;background:
   position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:500;
   background:var(--ins-color-gray-800);border:1px solid rgba(255,255,255,.12);
   border-radius:var(--ins-radius-lg);padding:4px;
-  box-shadow:0 12px 32px rgba(0,0,0,.6);
+  box-shadow: none;
   opacity:0;transform:translateY(-6px) scale(.97);
   transition:opacity .15s,transform .15s cubic-bezier(.34,1.2,.64,1);
   pointer-events:none;
@@ -821,7 +821,7 @@ footer::before{content:'';position:absolute;width:500px;height:300px;background:
   border-radius:10px;padding:10px 16px;
   display:flex;align-items:center;gap:10px;
   font-size:12px;color:var(--ins-text-heading);
-  box-shadow:0 8px 24px rgba(0,0,0,.5);
+  box-shadow: none;
   opacity:0;transition:opacity .3s,transform .3s;
   pointer-events:none;white-space:nowrap;z-index:300;
 }
@@ -982,7 +982,7 @@ footer::before{content:'';position:absolute;width:500px;height:300px;background:
 
 /* Share modal */
 .p3-modal-overlay{position:absolute;inset:0;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;z-index:100;border-radius:var(--ins-radius-xl)}
-.p3-modal{background:var(--ins-color-gray-800);border:1px solid rgba(255,255,255,.1);border-radius:var(--ins-radius-2xl);width:88%;padding:18px 16px 14px;display:flex;flex-direction:column;gap:13px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.p3-modal{background:var(--ins-color-gray-800);border:1px solid rgba(255,255,255,.1);border-radius:var(--ins-radius-2xl);width:88%;padding:18px 16px 14px;display:flex;flex-direction:column;gap:13px;box-shadow: none}
 .p3-modal-title{font-size:14px;font-weight:500;color:var(--ins-text-heading);font-family:var(--ins-font-family-sans)}
 .p3-modal-header{display:flex;align-items:center;justify-content:space-between}
 .p3-modal-close{background:none;border:none;color:var(--ins-text-inactive);font-size:14px;cursor:pointer;padding:0;line-height:1}
@@ -1075,7 +1075,7 @@ footer::before{content:'';position:absolute;width:500px;height:300px;background:
 .p4-trend-item{font-size:9.5px;color:var(--ins-text-inactive);line-height:1.45;padding-left:8px;border-left:2px solid rgba(255,255,255,.08);margin-bottom:3px}
 /* Jira modal */
 .p4-jira-overlay{position:absolute;inset:0;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;z-index:100;border-radius:var(--ins-radius-xl)}
-.p4-jira-modal{background:#14181f;border:1px solid rgba(255,255,255,.1);border-radius:var(--ins-radius-2xl);width:90%;padding:14px;display:flex;flex-direction:column;gap:10px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.p4-jira-modal{background:#14181f;border:1px solid rgba(255,255,255,.1);border-radius:var(--ins-radius-2xl);width:90%;padding:14px;display:flex;flex-direction:column;gap:10px;box-shadow: none}
 .p4-jm-header{display:flex;align-items:center;justify-content:space-between}
 .p4-jm-icon{width:22px;height:22px;border-radius:var(--ins-radius-md);background:#2D72D2;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:#fff}
 .p4-jm-title{font-size:13px;font-weight:500;color:var(--ins-text-heading)}

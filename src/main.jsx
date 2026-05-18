@@ -197,7 +197,7 @@ function Hero() {
   const integrations = ['HubSpot', 'AWS', 'Google', 'Slack', 'Salesforce', 'Stripe', 'PostgreSQL', 'BigQuery', 'Snowflake', 'Redshift'];
 
   const TooltipPopup = () => (
-    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-56 bg-[var(--ins-color-gray-800)] border border-[var(--ins-border-hover)] rounded-xl p-4 shadow-2xl z-[100]" onClick={e => e.stopPropagation()} style={{ boxShadow: '0 12px 40px rgba(0,0,0,0.6)' }}>
+    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-56 bg-[var(--ins-color-gray-800)] border border-[var(--ins-border-hover)] rounded-xl p-4 z-[100]" onClick={e => e.stopPropagation()} style={{ boxShadow: 'none' }}>
       <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-[var(--ins-color-gray-800)] border-l border-t border-[var(--ins-border-hover)] rotate-45 mb-[-5px]"></div>
       <p className="text-white text-sm font-medium mb-1">Unlock full access</p>
       <p className="text-[var(--ins-text-inactive)] text-xs mb-3">Get more after registration — connect your data sources and explore AI insights.</p>
@@ -229,7 +229,7 @@ function Hero() {
         {/* Chat Mockup */}
         <FadeUp delay={0.2}>
           <div className="max-w-[720px] mx-auto mb-8">
-            <div className="bg-[var(--ins-surface-card)]/80 backdrop-blur-xl border border-[var(--ins-border-default)] rounded-2xl shadow-2xl" style={{ boxShadow: '0 8px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(30,30,48,0.5)' }}>
+            <div className="bg-[var(--ins-surface-card)]/80 backdrop-blur-xl border border-[var(--ins-border-default)] rounded-2xl" style={{ boxShadow: 'none' }}>
 
               {/* Input area */}
               <div className="px-5 pt-5 pb-3 cursor-text" onClick={handleChatClick} style={{ minHeight: '180px' }}>
@@ -1069,7 +1069,7 @@ function SubscribeBanner() {
     <section className="pt-16 pb-16 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <FadeUp>
-          <div className="relative rounded-2xl py-10 px-8 md:px-16 text-center overflow-hidden" style={{ border: '1px solid rgba(7,128,126,0.3)', background: 'linear-gradient(135deg, rgba(7,128,126,0.12) 0%, rgba(13,13,26,0.9) 40%, rgba(10,18,32,0.85) 70%, rgba(7,128,126,0.08) 100%)', boxShadow: '0 0 60px rgba(7,128,126,0.12), 0 8px 48px rgba(0,0,0,0.4)' }}>
+          <div className="relative rounded-2xl py-10 px-8 md:px-16 text-center overflow-hidden" style={{ border: '1px solid rgba(7,128,126,0.3)', background: 'linear-gradient(135deg, rgba(7,128,126,0.12) 0%, rgba(13,13,26,0.9) 40%, rgba(10,18,32,0.85) 70%, rgba(7,128,126,0.08) 100%)', boxShadow: 'none' }}>
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-[var(--ins-color-teal-600)]/60 to-transparent"></div>
             <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-[var(--ins-color-teal-600)]/10 to-transparent pointer-events-none"></div>
 

@@ -505,7 +505,7 @@ function SuggestCTA() {
             background:'linear-gradient(145deg,#0E1420,#0A0E13)',
             border:'1px solid rgba(255,255,255,.07)',
             borderRadius:18, overflow:'hidden',
-            boxShadow:'0 32px 80px rgba(0,0,0,.6)',
+            boxShadow:'none',
             animation:'modalSlideUp .25s cubic-bezier(.22,1,.36,1)',
           }}>
 

@@ -110,7 +110,7 @@ function SemanticLayerMockAnimation() {
       display:'flex',
       flexDirection:'column',
       height:'500px',
-      boxShadow:'0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.06)',
+      boxShadow:'none',
     }}>
 
       {/* ── Header ── */}
@@ -636,7 +636,7 @@ function Panel1() {
   const CAT_TEXT   = { Marketing:'#0EC4C1', RevOps:'#8b7cf8' };
 
   return (
-    <div style={{width:'100%',background:'rgba(10,14,19,.95)',border:'1px solid rgba(255,255,255,.08)',borderRadius:'14px',overflow:'hidden',boxShadow:'0 8px 40px rgba(0,0,0,.5)'}}>
+    <div style={{width:'100%',background:'rgba(10,14,19,.95)',border:'1px solid rgba(255,255,255,.08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none'}}>
       {/* Toolbar */}
       <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'10px 16px',background:'rgba(255,255,255,.02)',borderBottom:'1px solid rgba(255,255,255,.06)'}}>
         <div style={{display:'flex',gap:5}}>
@@ -685,7 +685,7 @@ function Panel2() {
   const srcs   = ['Google Analytics','Stripe','HubSpot'];
 
   return (
-    <div style={{width:'100%',maxWidth:'420px',background:'rgba(10,14,19,.95)',border:'1px solid rgba(255,255,255,.08)',borderRadius:'14px',overflow:'hidden',boxShadow:'0 8px 40px rgba(0,0,0,.5)',padding:'20px'}}>
+    <div style={{width:'100%',maxWidth:'420px',background:'rgba(10,14,19,.95)',border:'1px solid rgba(255,255,255,.08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'20px'}}>
       <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'16px'}}>
         <div style={{width:'22px',height:'22px',borderRadius:'6px',background:'rgba(9,160,157,.12)',border:'1px solid rgba(9,160,157,.25)',display:'flex',alignItems:'center',justifyContent:'center'}}>
           <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z" stroke="#0EC4C1" strokeWidth="1.2" strokeLinejoin="round"/></svg>
@@ -742,7 +742,7 @@ function Panel2() {
 // ── PANEL 3: Create Metric modal ──
 function Panel3() {
   return (
-    <div style={{width:'100%',maxWidth:'380px',background:'rgba(13,17,23,.97)',border:'1px solid rgba(255,255,255,.1)',borderRadius:'14px',overflow:'hidden',boxShadow:'0 8px 40px rgba(0,0,0,.6)',padding:'24px'}}>
+    <div style={{width:'100%',maxWidth:'380px',background:'rgba(13,17,23,.97)',border:'1px solid rgba(255,255,255,.1)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'24px'}}>
       <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'20px'}}>
         <span style={{fontSize:'15px',fontWeight:600,color:'#E8F2F5'}}>Create New Metric</span>
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 2l12 12M14 2L2 14" stroke="rgba(255,255,255,.3)" strokeWidth="1.5" strokeLinecap="round"/></svg>
@@ -810,7 +810,7 @@ function Panel4() {
     { label:'@New_Customers',   value:'108',      color:'#0EC4C1' },
   ];
   return (
-    <div style={{width:'100%',maxWidth:'420px',background:'rgba(10,14,19,.95)',border:'1px solid rgba(255,255,255,.08)',borderRadius:'14px',overflow:'hidden',boxShadow:'0 8px 40px rgba(0,0,0,.5)',padding:'22px'}}>
+    <div style={{width:'100%',maxWidth:'420px',background:'rgba(10,14,19,.95)',border:'1px solid rgba(255,255,255,.08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'22px'}}>
       <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'18px'}}>
         <div style={{fontSize:'13px',fontWeight:600,color:'#E8F2F5'}}>Customer Acquisition Cost</div>
         <div style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'#0EC4C1',background:'rgba(9,160,157,.08)',padding:'2px 7px',borderRadius:'4px'}}>@CAC</div>
@@ -871,7 +871,7 @@ function Panel5() {
   },[]);
 
   return (
-    <div style={{width:'100%',maxWidth:'440px',background:'rgba(10,14,19,.95)',border:'1px solid rgba(255,255,255,.08)',borderRadius:'14px',overflow:'hidden',boxShadow:'0 8px 40px rgba(0,0,0,.5)'}}>
+    <div style={{width:'100%',maxWidth:'440px',background:'rgba(10,14,19,.95)',border:'1px solid rgba(255,255,255,.08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none'}}>
       {/* Chat header */}
       <div style={{padding:'12px 16px',borderBottom:'1px solid rgba(255,255,255,.06)',display:'flex',alignItems:'center',gap:'8px'}}>
         <div style={{width:'20px',height:'20px',borderRadius:'6px',background:'rgba(9,160,157,.12)',border:'1px solid rgba(9,160,157,.25)',display:'flex',alignItems:'center',justifyContent:'center'}}>
