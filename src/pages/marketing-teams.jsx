@@ -393,19 +393,9 @@ function MarketingHeroIllustration() {
 function Hero() {
   return (
     <section style={{padding:'120px 0 80px',position:'relative',overflow:'hidden'}}>
-      {/* Decorative glows */}
-      <div style={{
-        position:'absolute',top:'-180px',right:'-120px',
-        width:'520px',height:'520px',borderRadius:'50%',
-        background:'radial-gradient(circle, rgba(9,160,157,0.14) 0%, transparent 70%)',
-        pointerEvents:'none',
-      }}/>
-      <div style={{
-        position:'absolute',bottom:'-200px',left:'-100px',
-        width:'400px',height:'400px',borderRadius:'50%',
-        background:'radial-gradient(circle, rgba(14,196,193,0.07) 0%, transparent 70%)',
-        pointerEvents:'none',
-      }}/>
+      {/* Background glows — copied from AI Chat hero for visual parity */}
+      <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 70% 60% at 72% 50%,rgba(9,160,157,0.09) 0%,transparent 70%)',pointerEvents:'none',zIndex:1}}/>
+      <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 60% 50% at 20% 50%,rgba(59,31,94,0.12) 0%,transparent 70%)',pointerEvents:'none',zIndex:1}}/>
 
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px',position:'relative'}}>
         <div data-hero-grid style={{

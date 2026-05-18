@@ -24,12 +24,11 @@ function MiniBarChart({ data, color }) {
 /* ── HERO ── */
 function Hero() {
   return (
-    <section style={{
-      padding:'96px 0 56px',
-      position:'relative',
-      background:'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(9,160,157,.06) 0%, transparent 70%)',
-    }}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
+    <section style={{padding:'96px 0 56px',position:'relative',overflow:'hidden'}}>
+      {/* Background glows — copied from AI Chat hero for visual parity */}
+      <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 70% 60% at 72% 50%,rgba(9,160,157,0.09) 0%,transparent 70%)',pointerEvents:'none',zIndex:1}}/>
+      <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 60% 50% at 20% 50%,rgba(59,31,94,0.12) 0%,transparent 70%)',pointerEvents:'none',zIndex:1}}/>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px',position:'relative',zIndex:10}}>
         <div data-hero-grid style={{
           display:'grid',
           gridTemplateColumns:'1fr 1fr',
