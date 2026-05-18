@@ -98,16 +98,6 @@
 
 body{overflow-x:hidden}
 
-/* Simplified atmospheric layers — SVG noise filter and 5 of 7 radial gradients removed.
-   The filter+mix-blend-mode combo and fixed multi-gradient overlay were forcing stacking-context
-   invalidation on every scroll/paint. Down from ~500–800 ms paint to near-zero. */
-body::after{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:
-    radial-gradient(ellipse 80% 60% at 10% 5%, var(--ins-color-teal-a-08) 0%, transparent 70%),
-    radial-gradient(ellipse 65% 55% at 50% 90%, var(--ins-color-teal-a-08) 0%, transparent 60%);
-}
-
 /* Skip style, layout, paint, and animation cost for off-screen sections.
    Each main child (Architecture, HowItWorks, Testimonials, Pricing, FAQ, BottomCTA, etc.)
    is only rendered when within ~2vh of the viewport. Marquees, core-node glow, flow lines,
