@@ -1073,9 +1073,6 @@ function SubscribeBanner() {
                 <a href="/auth/sign-up/" className="sm:w-auto px-8 py-3 text-sm font-medium text-white bg-gradient-to-r from-[var(--ins-color-teal-600)] to-[var(--ins-color-teal-500)] rounded-xl hover:shadow-[0_0_32px_rgba(7,128,126,0.5)] transition-all inline-flex items-center justify-center gap-2">
                   Start Free Trial <span>&rarr;</span>
                 </a>
-                <a href="/Resources/Contact Support" className="sm:w-auto px-8 py-3 text-sm font-medium text-white/80 bg-transparent border border-[var(--ins-border-default)] rounded-xl hover:border-[var(--ins-color-teal-600)]/40 hover:text-white transition-all inline-flex items-center justify-center">
-                  Schedule a Demo
-                </a>
               </div>
             </div>
           </div>
