@@ -578,7 +578,7 @@ function ConnectorsGallery() {
         <div style={{textAlign:'center',marginTop:'32px'}}>
           <span style={{fontSize:'12.5px',color:'#8A9BA4',fontFamily:'Geist Mono,monospace'}}>
             + 200 more connectors available ·{' '}
-            <a href="/resources/connectors/" style={{color:'rgba(9,160,157,.7)',textDecoration:'none'}}>see full list →</a>
+            <a href="/Resources/Connectors" style={{color:'rgba(9,160,157,.7)',textDecoration:'none'}}>see full list →</a>
           </span>
         </div>
       </div>

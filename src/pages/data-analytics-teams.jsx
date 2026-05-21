@@ -540,7 +540,7 @@ function RelevantIntegrations() {
         </div>
 
         <div style={{textAlign:'center'}}>
-          <a href="/resources/connectors/" style={{
+          <a href="/Resources/Connectors" style={{
             display:'inline-flex',alignItems:'center',gap:'6px',
             fontSize:'13px',color:'#7FA0AC',
             textDecoration:'none',
