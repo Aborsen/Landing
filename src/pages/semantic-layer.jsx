@@ -1210,6 +1210,7 @@ function BottomCTA() {
             <input
               name="q"
               type="text"
+              required
               placeholder="What metric do you want to unify?"
               aria-label="What metric do you want to unify?"
               className="flex-1 bg-transparent text-sm text-white placeholder-[var(--ins-text-inactive)] px-4 py-3 outline-none min-w-0"

@@ -899,6 +899,7 @@ function BottomCTA() {
             <input
               name="q"
               type="text"
+              required
               placeholder="What campaign question do you need answered?"
               style={{
                 flex:1,background:'transparent',fontSize:'14px',color:'#fff',

@@ -704,6 +704,7 @@ function BottomCTA() {
             <input
               name="q"
               type="text"
+              required
               placeholder="What data question can Insightis answer for your team?"
               style={{
                 flex:1,background:'transparent',fontSize:'14px',color:'#fff',

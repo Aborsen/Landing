@@ -1172,6 +1172,7 @@ function BottomCTA() {
             <input
               name="q"
               type="text"
+              required
               placeholder="What info are you looking for?"
               aria-label="What info are you looking for?"
               className="flex-1 bg-transparent text-sm text-white placeholder-[var(--ins-text-inactive)] px-4 py-3 outline-none min-w-0"
