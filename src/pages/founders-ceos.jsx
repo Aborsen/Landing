@@ -861,7 +861,7 @@ function BottomCTA() {
           <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',lineHeight:1.2,flexShrink:0}}>
             Stop building <span style={{color:'#07807E'}}>reports.</span> Start getting <span style={{color:'#07807E'}}>answers.</span>
           </h3>
-          <div style={{
+          <form action="/auth/sign-up/" method="get" style={{
             display:'flex',alignItems:'center',
             width:'100%',maxWidth:'420px',
             background:'#0D0D1A',border:'1px solid rgba(46,46,64,1)',
@@ -869,6 +869,7 @@ function BottomCTA() {
             flex:'1 1 340px',
           }}>
             <input
+              name="q"
               type="text"
               placeholder="What company question do you need answered?"
               style={{
@@ -877,7 +878,7 @@ function BottomCTA() {
                 fontFamily:'Geist,sans-serif',minWidth:0,
               }}
             />
-            <button style={{
+            <button type="submit" style={{
               display:'inline-flex',alignItems:'center',gap:'8px',
               padding:'10px 20px',margin:'4px',
               fontSize:'13px',fontWeight:600,color:'#fff',
@@ -889,7 +890,7 @@ function BottomCTA() {
               Get Started
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </section>

@@ -823,7 +823,7 @@ function Testimonials() {
     { quote: "We cut analysis time by 80%. Natural language queries make complex data accessible to every team member, not just data scientists.", name: "Michael Torres", role: "CTO · Arcline Logistics", initials: "MT", avatar: "https://randomuser.me/api/portraits/men/32.jpg" },
     { quote: "Automated insights caught revenue trends we'd have missed for months. It's like having a senior data scientist available around the clock.", name: "Emily Watson", role: "CEO · Brightpath Ventures", initials: "EW", avatar: "https://randomuser.me/api/portraits/women/68.jpg" },
     { quote: "Setup integrations took under an hour. ROI was immediate — we found a $200K cost saving in the first week alone.", name: "James Park", role: "Head of Finance · Crestview Capital", initials: "JP", avatar: "https://randomuser.me/api/portraits/men/77.jpg" },
-    { quote: "Our marketing team loves natural language queries. They pull data without filing tickets to engineering.", name: "Priya Sharma", role: "CMO · Vantage Media Group", initials: "PS", avatar: "https://randomuser.me/api/portraits/women/26.jpg" },
+    { quote: "Our marketing team loves natural language queries. They pull data without filing tickets to engineering every single day.", name: "Priya Sharma", role: "CMO · Vantage Media Group", initials: "PS", avatar: "https://randomuser.me/api/portraits/women/26.jpg" },
     { quote: "Enterprise-grade security with startup speed. Passed our SOC 2 audit with zero issues. The compliance tooling alone is worth it.", name: "David Kim", role: "CISO · Ledgerpoint Financial", initials: "DK", avatar: "https://randomuser.me/api/portraits/men/53.jpg" },
   ];
 
@@ -1097,18 +1097,19 @@ function BottomCTA() {
             <h2 className="text-2xl md:text-3xl font-medium text-white tracking-tight leading-tight flex-shrink-0">
               Still waiting on <span style={{color:'rgba(7, 128, 126)'}}> insights</span> that take <span style={{color:'rgba(7, 128, 126)'}}> days?</span>
             </h2>
-            <div className="flex items-center w-full md:w-auto md:min-w-[400px] bg-[var(--ins-color-promo-solid)] border border-[var(--ins-border-hover)] rounded-xl overflow-hidden focus-within:border-[var(--ins-color-teal-600)]/60 transition-colors">
+            <form action="/auth/sign-up/" method="get" className="flex items-center w-full md:w-auto md:min-w-[400px] bg-[var(--ins-color-promo-solid)] border border-[var(--ins-border-hover)] rounded-xl overflow-hidden focus-within:border-[var(--ins-color-teal-600)]/60 transition-colors">
               <input
+                name="q"
                 type="text"
                 placeholder="What info are you looking for?"
                 aria-label="What info are you looking for?"
                 className="flex-1 bg-transparent text-sm text-white placeholder-[var(--ins-text-inactive)] px-4 py-3 outline-none min-w-0"
               />
-              <button className="inline-flex items-center gap-2 px-5 py-2.5 m-1 text-sm font-medium text-white bg-gradient-to-r from-[var(--ins-color-teal-600)] to-[var(--ins-color-teal-500)] rounded-lg hover:shadow-[0_0_24px_rgba(7,128,126,0.5)] transition-all flex-shrink-0">
+              <button type="submit" className="inline-flex items-center gap-2 px-5 py-2.5 m-1 text-sm font-medium text-white bg-gradient-to-r from-[var(--ins-color-teal-600)] to-[var(--ins-color-teal-500)] rounded-lg hover:shadow-[0_0_24px_rgba(7,128,126,0.5)] transition-all flex-shrink-0">
                 Get Insight
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
               </button>
-            </div>
+            </form>
           </div>
         </FadeUp>
       </div>

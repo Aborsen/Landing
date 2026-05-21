@@ -1206,18 +1206,19 @@ function BottomCTA() {
           <h2 className="text-2xl md:text-3xl font-medium text-white tracking-tight leading-tight flex-shrink-0">
             Stop arguing about <span style={{color:'rgba(7, 128, 126)'}}> which number</span> is right.
           </h2>
-          <div className="flex items-center w-full md:w-auto md:min-w-[400px] bg-[var(--ins-color-promo-solid)] border border-[var(--ins-border-hover)] rounded-xl overflow-hidden focus-within:border-[var(--ins-color-teal-600)]/60 transition-colors">
+          <form action="/auth/sign-up/" method="get" className="flex items-center w-full md:w-auto md:min-w-[400px] bg-[var(--ins-color-promo-solid)] border border-[var(--ins-border-hover)] rounded-xl overflow-hidden focus-within:border-[var(--ins-color-teal-600)]/60 transition-colors">
             <input
+              name="q"
               type="text"
               placeholder="What metric do you want to unify?"
               aria-label="What metric do you want to unify?"
               className="flex-1 bg-transparent text-sm text-white placeholder-[var(--ins-text-inactive)] px-4 py-3 outline-none min-w-0"
             />
-            <button className="inline-flex items-center gap-2 px-5 py-2.5 m-1 text-sm font-medium text-white bg-gradient-to-r from-[var(--ins-color-teal-600)] to-[var(--ins-color-teal-500)] rounded-lg hover:shadow-[0_0_24px_rgba(7,128,126,0.5)] transition-all flex-shrink-0">
+            <button type="submit" className="inline-flex items-center gap-2 px-5 py-2.5 m-1 text-sm font-medium text-white bg-gradient-to-r from-[var(--ins-color-teal-600)] to-[var(--ins-color-teal-500)] rounded-lg hover:shadow-[0_0_24px_rgba(7,128,126,0.5)] transition-all flex-shrink-0">
               Get Started
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </section>
