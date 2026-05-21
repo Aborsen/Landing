@@ -38,8 +38,8 @@ export default defineConfig({
         'blog':                   resolve(__dirname, 'blog/index.html'),
         'docs':                   resolve(__dirname, 'docs/index.html'),
         // ── Auth (noindex placeholders) ──
-        'sign-in':                resolve(__dirname, 'Auth/Sign In.html'),
-        'sign-up':                resolve(__dirname, 'Auth/Sign Up.html'),
+        'sign-in':                resolve(__dirname, 'auth/sign-in.html'),
+        'sign-up':                resolve(__dirname, 'auth/sign-up.html'),
       }
     }
   }
