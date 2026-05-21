@@ -1,26 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import '../app.css';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import AuthShell from '../components/AuthShell';
 import AuthCard from '../components/AuthCard';
 
 function App() {
   return (
-    <div className="font-body">
-      <Header />
-      <main>
-        <AuthCard
-          mode="sign-in"
-          title="Sign in to your account"
-          googleLabel="Sign in with Google"
-          tailLeading="Don't have an account?"
-          tailLinkText="Sign up"
-          tailHref="/auth/sign-up/"
-        />
-      </main>
-      <Footer />
-    </div>
+    <AuthShell>
+      <AuthCard
+        mode="sign-in"
+        title="Sign in to your account"
+        googleLabel="Sign in with Google"
+        tailLeading="Don't have an account?"
+        tailLinkText="Sign up"
+        tailHref="/auth/sign-up/"
+      />
+    </AuthShell>
   );
 }
 
