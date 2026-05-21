@@ -37,6 +37,9 @@ export default defineConfig({
         'terms':                  resolve(__dirname, 'Security/Terms.html'),
         'blog':                   resolve(__dirname, 'blog/index.html'),
         'docs':                   resolve(__dirname, 'docs/index.html'),
+        // ── Auth (noindex placeholders) ──
+        'sign-in':                resolve(__dirname, 'Auth/Sign In.html'),
+        'sign-up':                resolve(__dirname, 'Auth/Sign Up.html'),
       }
     }
   }

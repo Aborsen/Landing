@@ -127,7 +127,7 @@ function PricingCards() {
                     </div>
                   )}
                 </div>
-                <a href="#" style={{
+                <a href="/auth/sign-up/" style={{
                   display:'inline-flex',alignItems:'center',justifyContent:'center',gap:'7px',
                   padding:'12px 20px',borderRadius:'999px',
                   fontSize:'14px',fontWeight:500,
@@ -247,7 +247,7 @@ function FeatureComparison() {
               { label:'Start Free Trial', primary:true  },
             ].map((cta, i) => (
               <div key={i} style={{display:'flex',justifyContent:'center'}}>
-                <a href="#" style={{
+                <a href="/auth/sign-up/" style={{
                   display:'inline-flex',alignItems:'center',gap:'6px',
                   padding:'9px 16px',borderRadius:'999px',
                   fontSize:'13px',fontWeight:500,
@@ -320,11 +320,11 @@ function BottomCTA() {
           <span style={{color:'#0EC4C1'}}>Upgrade when you're ready.</span>
         </h2>
         <div style={{display:'flex',justifyContent:'center',gap:'12px',flexWrap:'wrap'}}>
-          <a href="#" style={{display:'inline-flex',alignItems:'center',gap:'10px',padding:'15px 28px',borderRadius:'999px',background:'linear-gradient(135deg,#09A09D,#07807E)',color:'#fff',fontSize:'15px',fontWeight:500,textDecoration:'none',boxShadow:'0 0 32px rgba(9,160,157,.35), 0 8px 24px rgba(0,0,0,.4)'}}>
+          <a href="/auth/sign-up/" style={{display:'inline-flex',alignItems:'center',gap:'10px',padding:'15px 28px',borderRadius:'999px',background:'linear-gradient(135deg,#09A09D,#07807E)',color:'#fff',fontSize:'15px',fontWeight:500,textDecoration:'none',boxShadow:'0 0 32px rgba(9,160,157,.35), 0 8px 24px rgba(0,0,0,.4)'}}>
             Get started for free
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="Company/Contacts" style={{display:'inline-flex',alignItems:'center',gap:'8px',padding:'15px 26px',borderRadius:'999px',background:'rgba(255,255,255,0.02)',color:'#C0D4DC',fontSize:'15px',fontWeight:500,textDecoration:'none',border:'1px solid rgba(255,255,255,0.12)'}}>
+          <a href="/company/contacts/" style={{display:'inline-flex',alignItems:'center',gap:'8px',padding:'15px 26px',borderRadius:'999px',background:'rgba(255,255,255,0.02)',color:'#C0D4DC',fontSize:'15px',fontWeight:500,textDecoration:'none',border:'1px solid rgba(255,255,255,0.12)'}}>
             Talk to sales
           </a>
         </div>

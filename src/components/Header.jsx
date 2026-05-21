@@ -184,8 +184,8 @@ export default function Header() {
             </div>
 
             <div className="hidden md:flex items-center flex-shrink-0" style={{gap:'12px'}}>
-              <a href="#" className="text-sm text-[#A0A0B8] hover:text-white transition-colors px-3 py-1.5">Sign In</a>
-              <a href="#" className="text-sm font-medium text-white bg-[#07807E] hover:bg-[#09A09D] px-5 py-2 rounded-full transition-colors">Start for Free</a>
+              <a href="/auth/sign-in/" className="text-sm text-[#A0A0B8] hover:text-white transition-colors px-3 py-1.5">Sign In</a>
+              <a href="/auth/sign-up/" className="text-sm font-medium text-white bg-[#07807E] hover:bg-[#09A09D] px-5 py-2 rounded-full transition-colors">Start for Free</a>
             </div>
 
             <button
@@ -291,8 +291,8 @@ export default function Header() {
               );
             })}
             <div className="mt-4 pt-4 border-t border-[#1E1E30] flex flex-col gap-3">
-              <a href="#" className="text-sm text-[#A0A0B8] text-center py-2">Sign In</a>
-              <a href="#" className="text-sm font-medium text-white bg-[#07807E] px-5 py-2.5 rounded-full text-center">Start for Free</a>
+              <a href="/auth/sign-in/" className="text-sm text-[#A0A0B8] text-center py-2">Sign In</a>
+              <a href="/auth/sign-up/" className="text-sm font-medium text-white bg-[#07807E] px-5 py-2.5 rounded-full text-center">Start for Free</a>
             </div>
           </div>
         )}

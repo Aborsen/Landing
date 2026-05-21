@@ -355,7 +355,7 @@ function Hero() {
             Plug in your CRM, warehouse, ads and product tools. Query every source in plain English — no SQL, no waiting.
           </p>
           <div style={{display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap',marginBottom:'24px'}}>
-            <a href="#" className="cta-btn" style={{display:'inline-flex',alignItems:'center',gap:'7px',padding:'12px 28px',borderRadius:'999px',background:'linear-gradient(135deg,#09A09D,#07807E)',color:'#fff',fontWeight:600,fontSize:'14px',textDecoration:'none',boxShadow:'0 0 30px rgba(9,160,157,.25), 0 4px 12px rgba(0,0,0,.3)'}}>
+            <a href="/auth/sign-up/" className="cta-btn" style={{display:'inline-flex',alignItems:'center',gap:'7px',padding:'12px 28px',borderRadius:'999px',background:'linear-gradient(135deg,#09A09D,#07807E)',color:'#fff',fontWeight:600,fontSize:'14px',textDecoration:'none',boxShadow:'0 0 30px rgba(9,160,157,.25), 0 4px 12px rgba(0,0,0,.3)'}}>
               Start for free
               <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </a>
@@ -578,7 +578,7 @@ function ConnectorsGallery() {
         <div style={{textAlign:'center',marginTop:'32px'}}>
           <span style={{fontSize:'12.5px',color:'#8A9BA4',fontFamily:'Geist Mono,monospace'}}>
             + 200 more connectors available ·{' '}
-            <a href="#" style={{color:'rgba(9,160,157,.7)',textDecoration:'none'}}>see full list →</a>
+            <a href="/resources/connectors/" style={{color:'rgba(9,160,157,.7)',textDecoration:'none'}}>see full list →</a>
           </span>
         </div>
       </div>
@@ -816,7 +816,7 @@ function MidCTA() {
           <span style={{color:'#0EC4C1'}}>Start asking.</span>
         </h2>
         <div style={{display:'flex',justifyContent:'center'}}>
-          <a href="#" style={{
+          <a href="/auth/sign-up/" style={{
             display:'inline-flex',alignItems:'center',gap:'10px',
             padding:'16px 32px',borderRadius:'999px',
             background:'linear-gradient(135deg,#09A09D,#07807E)',

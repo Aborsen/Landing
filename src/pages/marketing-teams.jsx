@@ -429,7 +429,7 @@ function Hero() {
               </p>
 
               <div className="fu3">
-                <a href="#" style={{
+                <a href="/auth/sign-up/" style={{
                   display:'inline-flex',alignItems:'center',gap:'10px',
                   padding:'16px 32px',borderRadius:'999px',
                   background:'linear-gradient(135deg,#09A09D,#07807E)',
@@ -577,7 +577,7 @@ function MidCTA() {
           <span style={{color:'#0EC4C1'}}>Start asking.</span>
         </h2>
         <div style={{display:'flex',justifyContent:'center'}}>
-          <a href="#" style={{
+          <a href="/auth/sign-up/" style={{
             display:'inline-flex',alignItems:'center',gap:'10px',
             padding:'16px 32px',borderRadius:'999px',
             background:'linear-gradient(135deg,#09A09D,#07807E)',

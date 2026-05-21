@@ -39,6 +39,8 @@ const entries = {
   'terms':                 'Security/Terms.html',
   'blog':                  'blog/index.html',
   'docs':                  'docs/index.html',
+  'sign-in':               'Auth/Sign In.html',
+  'sign-up':               'Auth/Sign Up.html',
 };
 
 // Replace the content inside <div id="root">...</div>, walking nested <div>

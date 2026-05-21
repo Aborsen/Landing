@@ -53,7 +53,7 @@ function Hero() {
             </p>
 
             <div className="fu3" style={{display:'flex',gap:'12px',flexWrap:'wrap',marginBottom:'28px'}}>
-              <a href="#" style={{
+              <a href="/auth/sign-up/" style={{
                 display:'inline-flex',alignItems:'center',gap:'8px',
                 padding:'12px 24px',borderRadius:'999px',
                 background:'linear-gradient(135deg,#09A09D,#07807E)',
@@ -540,7 +540,7 @@ function RelevantIntegrations() {
         </div>
 
         <div style={{textAlign:'center'}}>
-          <a href="#" style={{
+          <a href="/resources/connectors/" style={{
             display:'inline-flex',alignItems:'center',gap:'6px',
             fontSize:'13px',color:'#7FA0AC',
             textDecoration:'none',
@@ -1231,7 +1231,7 @@ function UseCases() {
                 Connect your warehouse and ask Insightis a real question your team gets every week.
               </p>
             </div>
-            <button style={{
+            <a href="/auth/sign-up/" style={{
               display:'inline-flex',alignItems:'center',gap:'8px',
               padding:'14px 26px',flexShrink:0,
               fontSize:'14px',fontWeight:600,color:'#fff',
@@ -1239,11 +1239,12 @@ function UseCases() {
               borderRadius:'10px',border:'none',cursor:'pointer',
               whiteSpace:'nowrap',
               fontFamily:'Geist,sans-serif',
+              textDecoration:'none',
               boxShadow:'0 8px 24px rgba(9,160,157,.25)',
             }}>
               Get started for free
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-            </button>
+            </a>
           </div>
         </div>
         <div style={{textAlign:'center',marginBottom:'56px'}}>

@@ -401,7 +401,7 @@ function ConnectorsHero() {
           <p className="fu2" style={{fontSize:'17px', color:'#8AA6B3', lineHeight:1.6, maxWidth:'520px', marginBottom:'30px'}}>
             Explore 200+ prebuilt connectors, create custom ones with REST and GraphQL connectors, or request the data source you're missing.
           </p>
-          <a href="/Pricing" className="fu3 cta-btn" style={{display:'inline-flex', alignItems:'center', gap:'7px', padding:'12px 28px', borderRadius:'999px', background:'linear-gradient(135deg,#09A09D,#07807E)', color:'#fff', fontWeight:600, fontSize:'14px', textDecoration:'none', boxShadow:'0 0 30px rgba(9,160,157,.25), 0 4px 12px rgba(0,0,0,.3)'}}>
+          <a href="/auth/sign-up/" className="fu3 cta-btn" style={{display:'inline-flex', alignItems:'center', gap:'7px', padding:'12px 28px', borderRadius:'999px', background:'linear-gradient(135deg,#09A09D,#07807E)', color:'#fff', fontWeight:600, fontSize:'14px', textDecoration:'none', boxShadow:'0 0 30px rgba(9,160,157,.25), 0 4px 12px rgba(0,0,0,.3)'}}>
             Start for free
             <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </a>
