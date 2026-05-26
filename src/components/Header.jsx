@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Logo from './Logo';
+import Button from './Button';
+import Chip from './Chip';
 
-function MenuIcon({ size = 24, color = "#fff" }) {
-  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>;
+function MenuIcon({ size = 24 }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>;
 }
-function CloseIcon({ size = 24, color = "#fff" }) {
-  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>;
+function CloseIcon({ size = 24 }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>;
 }
 
 export default function Header() {
@@ -133,8 +135,6 @@ export default function Header() {
       <div style={{
         position:'sticky', top:0, zIndex:50,
         backdropFilter:'blur(20px)', WebkitBackdropFilter:'blur(20px)',
-        // Pre-set so /assets/header-scroll.js can race-mutate these on mobile
-        // without causing a hydration mismatch with React's SSR output.
         willChange:'transform',
         transition:'transform 0.25s ease',
         transform:'translateY(0)',
@@ -147,11 +147,11 @@ export default function Header() {
       }}>
         <nav style={{
           height:'56px', display:'flex', alignItems:'center',
-          background:'rgba(10,14,19,0.92)',
+          background:'var(--ins-surface-navbar-glass)',
           backdropFilter:'blur(20px)', WebkitBackdropFilter:'blur(20px)',
-          border:'1px solid rgba(255,255,255,0.08)',
+          border:'1px solid var(--ins-border-default)',
           borderRadius: mobileOpen ? '24px 24px 0 0' : '50px',
-          boxShadow:'inset 0 1px 0 rgba(255,255,255,0.06), 0 4px 24px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2)',
+          boxShadow:'inset 0 1px 0 var(--ins-color-white-a-06), 0 4px 24px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2)',
           padding:'0 8px 0 24px',
           transition:'border-radius 0.25s ease, box-shadow 0.3s ease',
         }}>
@@ -166,7 +166,7 @@ export default function Header() {
                   {hasDropdown(link) ? (
                     <button
                       onClick={() => setActiveDropdown(activeDropdown === link ? null : link)}
-                      className={`flex items-center gap-1 px-4 py-1.5 rounded-full text-sm transition-colors ${activeDropdown === link ? 'text-white bg-white/[0.08]' : 'text-[#A0A0B8] hover:text-white hover:bg-white/[0.04]'}`}
+                      className={`flex items-center gap-1 px-4 py-1.5 rounded-full text-sm transition-colors ${activeDropdown === link ? 'text-text-primary bg-surface-hover' : 'text-text-muted hover:text-text-primary hover:bg-surface-hover'}`}
                     >
                       {link}
                       <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
@@ -175,7 +175,7 @@ export default function Header() {
                       </svg>
                     </button>
                   ) : (
-                    <a href={linkUrls[link] || '#'} className="flex items-center px-4 py-1.5 rounded-full text-sm text-[#A0A0B8] hover:text-white hover:bg-white/[0.04] transition-colors">
+                    <a href={linkUrls[link] || '#'} className="flex items-center px-4 py-1.5 rounded-full text-sm text-text-muted hover:text-text-primary hover:bg-surface-hover transition-colors">
                       {link}
                     </a>
                   )}
@@ -184,13 +184,14 @@ export default function Header() {
             </div>
 
             <div className="hidden md:flex items-center flex-shrink-0" style={{gap:'12px'}}>
-              <a href="/auth/sign-in/" className="text-sm text-[#A0A0B8] hover:text-white transition-colors px-3 py-1.5">Sign In</a>
-              <a href="/auth/sign-up/" className="text-sm font-medium text-white bg-[#07807E] hover:bg-[#09A09D] px-5 py-2 rounded-full transition-colors">Start for Free</a>
+              <Button as="a" href="/auth/sign-in/" variant="ghost" size="sm">Sign In</Button>
+              <Button as="a" href="/auth/sign-up/" variant="primary" size="sm">Start for Free</Button>
             </div>
 
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden p-2"
+              className="md:hidden flex items-center justify-center text-text-primary"
+              style={{ minWidth: '44px', minHeight: '44px' }}
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileOpen}
             >
@@ -203,11 +204,11 @@ export default function Header() {
           <div style={{
             position:'absolute', left:0, right:0, zIndex:-1,
             marginTop:'-24px',
-            background:'rgba(10,14,19,0.97)',
+            background:'var(--ins-surface-navbar-dropdown)',
             backdropFilter:'blur(24px)', WebkitBackdropFilter:'blur(24px)',
-            borderLeft:'1px solid rgba(255,255,255,0.08)',
-            borderRight:'1px solid rgba(255,255,255,0.08)',
-            borderBottom:'1px solid rgba(255,255,255,0.08)',
+            borderLeft:'1px solid var(--ins-border-default)',
+            borderRight:'1px solid var(--ins-border-default)',
+            borderBottom:'1px solid var(--ins-border-default)',
             borderRadius:'0 0 24px 24px',
             boxShadow:'none',
           }}>
@@ -215,7 +216,7 @@ export default function Header() {
               <div className="flex gap-10">
                 {dropdowns[activeDropdown].sections.map((section, si) => (
                   <div key={si} style={{flex:'1'}}>
-                    <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-[#A0A0B8] mb-4 px-3">{section.heading}</p>
+                    <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-text-muted mb-4 px-3">{section.heading}</p>
                     <div className="flex flex-col gap-0.5">
                       {section.items.map((item, ii) => {
                         const inner = (<>
@@ -225,28 +226,28 @@ export default function Header() {
                               width:'30px', height:'30px',
                               display:'flex', alignItems:'center', justifyContent:'center',
                               borderRadius:'8px',
-                              background:'rgba(10,152,150,0.1)',
-                              border:'1px solid rgba(10,152,150,0.2)',
-                              color:'#0EC4C1',
+                              background:'var(--ins-surface-brand-tint)',
+                              border:'1px solid var(--ins-border-brand)',
+                              color:'var(--ins-text-highlight)',
                             }}>
                               <NavIcon name={item.icon} />
                             </div>
                           )}
                           <div className="flex flex-col">
                             <span className="flex items-center gap-2">
-                              <span className={`text-sm font-medium text-white transition-colors ${item.notClickable ? '' : 'group-hover:text-[#0EC4C1]'}`}>{item.label}{item.external && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</span>
+                              <span className={`text-sm font-medium text-text-primary transition-colors ${item.notClickable ? '' : 'group-hover:text-text-highlight'}`}>{item.label}{item.external && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</span>
                               {item.comingSoon && (
-                                <span style={{fontSize:'10px', fontWeight:500, letterSpacing:'0.04em', padding:'1px 6px', borderRadius:'4px', background:'rgba(10,152,150,0.12)', border:'1px solid rgba(10,152,150,0.3)', color:'#0EC4C1', whiteSpace:'nowrap'}}>Coming Soon</span>
+                                <Chip variant="brand" style={{ fontSize: '10px', letterSpacing: '0.04em', whiteSpace: 'nowrap' }}>Coming Soon</Chip>
                               )}
                             </span>
-                            <span className="text-xs text-[#A0A0B8] mt-0.5 leading-relaxed">{item.desc}</span>
+                            <span className="text-xs text-text-muted mt-0.5 leading-relaxed">{item.desc}</span>
                           </div>
                         </>);
                         return item.notClickable ? (
                           <div key={ii} className="flex items-start gap-3 px-3 py-2.5 rounded-xl group" style={{cursor:'default'}}>{inner}</div>
                         ) : (
                           <a key={ii} href={linkUrls[item.label] || '#'} {...(item.external ? {target:'_blank', rel:'noopener noreferrer'} : {})} onClick={() => setActiveDropdown(null)}
-                            className="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-white/[0.05] transition-colors group">{inner}</a>
+                            className="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-surface-hover transition-colors group">{inner}</a>
                         );
                       })}
                     </div>
@@ -261,38 +262,38 @@ export default function Header() {
           <div className="md:hidden" style={{
             position:'absolute', left:0, right:0, zIndex:-1,
             marginTop:'-1px',
-            background:'rgba(10,14,19,0.97)',
+            background:'var(--ins-surface-navbar-dropdown)',
             backdropFilter:'blur(24px)', WebkitBackdropFilter:'blur(24px)',
-            borderLeft:'1px solid rgba(255,255,255,0.08)',
-            borderRight:'1px solid rgba(255,255,255,0.08)',
-            borderBottom:'1px solid rgba(255,255,255,0.08)',
+            borderLeft:'1px solid var(--ins-border-default)',
+            borderRight:'1px solid var(--ins-border-default)',
+            borderBottom:'1px solid var(--ins-border-default)',
             borderRadius:'0 0 24px 24px',
             padding:'16px 24px',
           }}>
             {['Platform', 'Solutions', 'Resources', 'Pricing'].map(link => {
               const dd = dropdowns[link];
               if (!dd) {
-                return <a key={link} href={linkUrls[link] || '#'} className="block py-3 text-[#A0A0B8] hover:text-white transition-colors">{link}</a>;
+                return <a key={link} href={linkUrls[link] || '#'} className="block py-3 text-text-muted hover:text-text-primary transition-colors">{link}</a>;
               }
               return (
-                <details key={link} name="mobile-nav" style={{borderBottom:'1px solid rgba(255,255,255,0.06)'}}>
-                  <summary className="py-3 text-[#A0A0B8] cursor-pointer flex items-center justify-between" style={{listStyle:'none'}}>
+                <details key={link} name="mobile-nav" style={{borderBottom:'1px solid var(--ins-border-default)'}}>
+                  <summary className="py-3 text-text-muted cursor-pointer flex items-center justify-between" style={{listStyle:'none'}}>
                     <span>{link}</span>
                     <span style={{opacity:0.5,fontSize:'12px'}}>▾</span>
                   </summary>
                   <div style={{paddingLeft:'12px',paddingBottom:'8px'}}>
                     {dd.sections.flatMap(s => s.items).map(item => (
                       item.notClickable
-                        ? <div key={item.label} className="block py-2 text-sm" style={{color:'#7878A8'}}>{item.label}{item.comingSoon && <span style={{marginLeft:'8px',fontSize:'9px',padding:'1px 6px',borderRadius:'4px',background:'rgba(10,152,150,0.12)',border:'1px solid rgba(10,152,150,0.3)',color:'#0EC4C1'}}>Coming soon</span>}</div>
-                        : <a key={item.label} href={linkUrls[item.label] || '#'} className="block py-2 text-sm hover:text-white transition-colors" style={{color: item.comingSoon ? '#7878A8' : '#A0A0B8'}}>{item.label}{item.comingSoon && <span style={{marginLeft:'8px',fontSize:'9px',padding:'1px 6px',borderRadius:'4px',background:'rgba(10,152,150,0.12)',border:'1px solid rgba(10,152,150,0.3)',color:'#0EC4C1'}}>Coming soon</span>}</a>
+                        ? <div key={item.label} className="block py-2 text-sm text-text-disabled">{item.label}{item.comingSoon && <Chip variant="brand" className="ml-2" style={{ fontSize: '9px' }}>Coming soon</Chip>}</div>
+                        : <a key={item.label} href={linkUrls[item.label] || '#'} className={`block py-2 text-sm hover:text-text-primary transition-colors ${item.comingSoon ? 'text-text-disabled' : 'text-text-muted'}`}>{item.label}{item.comingSoon && <Chip variant="brand" className="ml-2" style={{ fontSize: '9px' }}>Coming soon</Chip>}</a>
                     ))}
                   </div>
                 </details>
               );
             })}
-            <div className="mt-4 pt-4 border-t border-[#1E1E30] flex flex-col gap-3">
-              <a href="/auth/sign-in/" className="text-sm text-[#A0A0B8] text-center py-2">Sign In</a>
-              <a href="/auth/sign-up/" className="text-sm font-medium text-white bg-[#07807E] px-5 py-2.5 rounded-full text-center">Start for Free</a>
+            <div className="mt-4 pt-4 border-t border-border-strong flex flex-col gap-3">
+              <Button as="a" href="/auth/sign-in/" variant="ghost" size="md" className="text-center">Sign In</Button>
+              <Button as="a" href="/auth/sign-up/" variant="primary" size="md" className="text-center">Start for Free</Button>
             </div>
           </div>
         )}

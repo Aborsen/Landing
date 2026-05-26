@@ -87,7 +87,7 @@ function SendIcon({ size = 18, color = "#fff" }) {
 function LinkIcon({ size = 16, color = "var(--ins-color-teal-600)" }) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>;
 }
-function SearchIcon({ size = 16, color = "#7878A8" }) {
+function SearchIcon({ size = 16, color = "var(--ins-text-disabled)" }) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>;
 }
 function LayersIcon({ size = 16, color = "var(--ins-color-teal-600)" }) {
@@ -98,7 +98,7 @@ function ShieldCheckIcon({ size = 16, color = "var(--ins-color-teal-600)" }) {
 }
 
 // Social icons
-function InstagramIcon({ size = 16, color = "#A0A0B8" }) {
+function InstagramIcon({ size = 16, color = "currentColor" }) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill={color}><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>;
 }
 // Connector SVG brand icons
@@ -215,9 +215,9 @@ function Hero() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
         {/* Headline */}
         <FadeUp delay={0.1}>
-          <h1 className="text-center mb-6" style={{fontSize:'clamp(2.2rem,3.2vw,3.6rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",letterSpacing:'-.04em',lineHeight:1.1,textWrap:'balance'}}>
-            <div><span className="text-white">Your data knows the answer</span></div>
-            <div><span style={{color:'var(--ins-text-highlight)'}}>Now you can ask it</span></div>
+          <h1 className="text-center mb-6" style={{fontSize:'clamp(2.2rem,3.2vw,3.6rem)',fontWeight:700,fontFamily:'var(--ins-font-family-sans)',letterSpacing:'-.04em',lineHeight:1.1,textWrap:'balance'}}>
+            <span style={{display:'block'}} className="text-white">Your data knows the answer</span>
+            <span style={{display:'block',color:'var(--ins-text-highlight)'}}>Now you can ask it</span>
           </h1>
         </FadeUp>
 
@@ -262,7 +262,7 @@ function Hero() {
                   <div className="relative">
                     <button
                       className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-150"
-                      style={{ color: tooltip === 'attach' ? 'var(--ins-color-teal-500)' : '#606078', background: tooltip === 'attach' ? 'rgba(9,160,157,0.1)' : 'transparent' }}
+                      style={{ color: tooltip === 'attach' ? 'var(--ins-text-highlight)' : 'var(--ins-text-inactive)', background: tooltip === 'attach' ? 'var(--ins-surface-brand-tint)' : 'transparent' }}
                       onClick={e => { e.stopPropagation(); setTooltip(tooltip === 'attach' ? null : 'attach'); }}
                       aria-label="Attach file"
                     >
@@ -278,7 +278,7 @@ function Hero() {
                         ].map(f => (
                           <div key={f.label} className="flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-white/5 cursor-pointer transition-colors" onClick={() => { setTooltip(null); setIsActive(true); setTimeout(() => inputRef.current && inputRef.current.focus(), 50); }}>
                             <div className="w-9 h-9 rounded-xl bg-[var(--ins-border-default)] border border-[var(--ins-border-hover)] flex items-center justify-center flex-shrink-0">
-                              <svg width="18" height="20" viewBox="0 0 18 20" fill="none"><path d="M11 1H3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7L11 1z" stroke="#7878A8" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/><path d="M11 1v6h6" stroke="#7878A8" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                              <svg width="18" height="20" viewBox="0 0 18 20" fill="none" style={{color:'var(--ins-text-disabled)'}}><path d="M11 1H3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7L11 1z" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/><path d="M11 1v6h6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
                             </div>
                             <span className="text-xs text-[var(--ins-text-inactive)]">{f.label}</span>
                           </div>
@@ -291,7 +291,7 @@ function Hero() {
                   <div className="relative">
                     <button
                       className="flex items-center gap-1.5 px-3 py-2 rounded-lg transition-all duration-150"
-                      style={{ color: tooltip === 'connectors' ? 'var(--ins-color-teal-500)' : 'var(--ins-text-inactive)', background: tooltip === 'connectors' ? 'rgba(9,160,157,0.1)' : 'transparent' }}
+                      style={{ color: tooltip === 'connectors' ? 'var(--ins-text-highlight)' : 'var(--ins-text-inactive)', background: tooltip === 'connectors' ? 'var(--ins-surface-brand-tint)' : 'transparent' }}
                       onClick={e => { e.stopPropagation(); setTooltip(tooltip === 'connectors' ? null : 'connectors'); }}
                     >
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
@@ -321,7 +321,7 @@ function Hero() {
                                 </div>
                                 <span className="text-sm text-[var(--ins-text-inactive)] group-hover:text-white transition-colors">{c.name}</span>
                               </div>
-                              <div className="w-9 h-5 rounded-full flex-shrink-0" style={{ background: 'var(--ins-border-default)', border: '1px solid #3E3E50', position: 'relative' }}>
+                              <div className="w-9 h-5 rounded-full flex-shrink-0" style={{ background: 'var(--ins-border-default)', border: '1px solid var(--ins-border-hover)', position: 'relative' }}>
                                 <div className="w-3.5 h-3.5 rounded-full bg-[var(--ins-border-hover)] absolute top-[2px] left-[2px]"></div>
                               </div>
                             </div>
@@ -341,7 +341,7 @@ function Hero() {
                   <div className="relative">
                     <button
                       className="flex items-center gap-1.5 px-3 py-2 rounded-lg transition-all duration-150"
-                      style={{ color: tooltip === 'model' ? 'var(--ins-color-teal-500)' : 'var(--ins-text-inactive)', background: tooltip === 'model' ? 'rgba(9,160,157,0.1)' : 'transparent' }}
+                      style={{ color: tooltip === 'model' ? 'var(--ins-text-highlight)' : 'var(--ins-text-inactive)', background: tooltip === 'model' ? 'var(--ins-surface-brand-tint)' : 'transparent' }}
                       onClick={e => { e.stopPropagation(); setTooltip(tooltip === 'model' ? null : 'model'); }}
                     >
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
@@ -474,7 +474,7 @@ function ArchRight({ outputs }) {
             width: '40px',
             height: '1px',
             borderRadius: '1px',
-            background: 'linear-gradient(90deg, rgba(9,160,157,0) 0%, var(--ins-color-teal-400) 60%, #13D4D1 100%)',
+            background: 'linear-gradient(90deg, rgba(9,160,157,0) 0%, var(--ins-color-teal-400) 60%, var(--ins-color-teal-300) 100%)',
             left: streaming ? 'calc(100% + 40px)' : '-40px',
             transition: streaming ? `left ${STREAM_MS}ms linear` : 'none',
           }}/>
@@ -587,8 +587,8 @@ function Architecture() {
         <FadeUp>
           <div className="text-center mb-16 arch-heading">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-4" style={{background: 'rgba(7,128,126,0.1)', border: '1px solid rgba(7,128,126,0.4)'}}>
-              <span className="text-[var(--ins-color-teal-500)] text-sm">✦</span>
-              <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-color-teal-500)]">Architecture</span>
+              <span className="text-[var(--ins-text-highlight)] text-sm">✦</span>
+              <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">Architecture</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-medium text-white mb-4 tracking-tight">The Semantic Intelligence Layer</h2>
             <p className="text-white/80 text-base md:text-lg max-w-2xl mx-auto">
@@ -605,7 +605,7 @@ function Architecture() {
               {/* Dashed connection lines between icons */}
               <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
                 {chaosLines.map((line, i) => (
-                  <path key={'cl'+i} d={line.d} stroke="#2A3A4A" strokeWidth="0.35" fill="none" strokeDasharray="1.5,1.5" opacity="0.7"/>
+                  <path key={'cl'+i} d={line.d} stroke="var(--ins-border-strong)" strokeWidth="0.35" fill="none" strokeDasharray="1.5,1.5" opacity="0.7"/>
                 ))}
               </svg>
               {/* Scattered connector icons */}
@@ -664,7 +664,7 @@ function Architecture() {
                 <GridIcon size={36} color="var(--ins-color-teal-500)" />
                 <span className="text-[13px] font-medium text-[var(--ins-color-teal-500)] text-center leading-tight">Insightis<br/>Semantic AI</span>
               </div>
-              <span className="text-[10px] font-medium uppercase tracking-[0.1em] text-[#7A8A9A] mt-2">AI Engine</span>
+              <span className="text-[10px] font-medium uppercase tracking-[0.1em] text-text-muted mt-2">AI Engine</span>
             </div>
 
             {/* Right side — stream + cards, fully synced in one React component */}
@@ -701,7 +701,7 @@ function Architecture() {
                 <div className="relative w-full" style={{height:'260px'}}>
                   <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
                     {mobileLines.map((d, i) => (
-                      <path key={'ml'+i} d={d} stroke="#2A3A4A" strokeWidth="0.35" fill="none" strokeDasharray="1.5,1.5" opacity="0.7"/>
+                      <path key={'ml'+i} d={d} stroke="var(--ins-border-strong)" strokeWidth="0.35" fill="none" strokeDasharray="1.5,1.5" opacity="0.7"/>
                     ))}
                   </svg>
                   {mobileSwarm.map((item, i) => (
@@ -788,19 +788,19 @@ function HowItWorks() {
       {/* Mobile / reduced-motion text-only summary — hidden on desktop via responsive.css */}
       <div className="how-it-works-text-only" style={{display:'none', maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
         <div style={{textAlign:'center', marginBottom:'40px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>How it works</span>
+          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'var(--ins-surface-brand-tint)',border:'1px solid var(--ins-border-brand)',borderRadius:'999px',marginBottom:'14px'}}>
+            <span style={{color:'var(--ins-text-highlight)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)'}}>How it works</span>
           </div>
-          <h2 style={{fontSize:'clamp(1.8rem,6vw,2.4rem)',fontWeight:500,color:'#fff',letterSpacing:'-.02em',lineHeight:1.15}}>From your stack to a precise answer</h2>
+          <h2 style={{fontSize:'clamp(1.8rem,6vw,2.4rem)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.02em',lineHeight:1.15}}>From your stack to a precise answer</h2>
         </div>
         <ol style={{listStyle:'none',padding:0,margin:0,display:'flex',flexDirection:'column',gap:'18px'}}>
           {steps.map(s => (
             <li key={s.n} style={{display:'flex',gap:'14px',alignItems:'flex-start'}}>
-              <span style={{flexShrink:0,width:'36px',height:'36px',borderRadius:'50%',border:'1px solid rgba(9,160,157,.4)',background:'rgba(9,160,157,.08)',display:'flex',alignItems:'center',justifyContent:'center',fontFamily:'Geist Mono,monospace',fontSize:'13px',fontWeight:500,color:'#0EC4C1'}}>{s.n}</span>
+              <span style={{flexShrink:0,width:'36px',height:'36px',borderRadius:'50%',border:'1px solid var(--ins-border-brand)',background:'var(--ins-surface-brand-tint)',display:'flex',alignItems:'center',justifyContent:'center',fontFamily:'var(--ins-font-family-mono)',fontSize:'13px',fontWeight:500,color:'var(--ins-text-highlight)'}}>{s.n}</span>
               <div>
-                <p style={{fontSize:'15px',fontWeight:600,color:'#fff',marginBottom:'4px',lineHeight:1.3}}>{s.title}</p>
-                <p style={{fontSize:'13.5px',color:'rgba(255,255,255,.6)',lineHeight:1.55}}>{s.desc}</p>
+                <p style={{fontSize:'15px',fontWeight:600,color:'var(--ins-text-heading)',marginBottom:'4px',lineHeight:1.3}}>{s.title}</p>
+                <p style={{fontSize:'13.5px',color:'var(--ins-text-body)',lineHeight:1.55}}>{s.desc}</p>
               </div>
             </li>
           ))}
@@ -840,8 +840,8 @@ function Testimonials() {
         <FadeUp>
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-4" style={{background: 'rgba(7,128,126,0.1)', border: '1px solid rgba(7,128,126,0.4)'}}>
-              <span className="text-[var(--ins-color-teal-500)] text-sm">✦</span>
-              <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-color-teal-500)]">Verified Impact</span>
+              <span className="text-[var(--ins-text-highlight)] text-sm">✦</span>
+              <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">Verified Impact</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight">Loved by a community</h2>
           </div>
@@ -930,8 +930,8 @@ function WhatIsInsightis() {
         <FadeUp>
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5" style={{background: 'rgba(7,128,126,0.1)', border: '1px solid rgba(7,128,126,0.4)'}}>
-              <span className="text-[var(--ins-color-teal-500)] text-sm">✦</span>
-              <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-color-teal-500)]">By the numbers</span>
+              <span className="text-[var(--ins-text-highlight)] text-sm">✦</span>
+              <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">By the numbers</span>
             </div>
             <h2 className="text-4xl md:text-[48px] font-medium text-white tracking-tight leading-[1.1]">What is Insightis</h2>
             <p className="text-base mt-4 max-w-xl mx-auto" style={{color:'rgba(255,255,255,0.8)'}}>

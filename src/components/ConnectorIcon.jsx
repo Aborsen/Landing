@@ -162,7 +162,7 @@ export default function ConnectorIcon({ name, slug, domain, color = '#0EC4C1', a
             color,
             opacity: 0.85,
             lineHeight: 1,
-            fontFamily: "'Outfit', 'Geist', system-ui, sans-serif",
+            fontFamily: "var(--ins-font-family-sans)",
           }}
         >
           {placeholder}
