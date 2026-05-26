@@ -88,6 +88,8 @@ export const POSTS = _SOURCES.map(({ slug, md }) => {
 
 function XIcon({ size = 16 })  { return <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>; }
 function LinkedInIcon({ size = 16 }) { return <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>; }
+function YouTubeIcon({ size = 16 }) { return <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>; }
+function TikTokIcon({ size = 16 }) { return <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.43v-7.15a8.16 8.16 0 005.58 2.17v-3.4a4.85 4.85 0 01-1-.16l.01-.02V6.69h.99z"/></svg>; }
 function RedditIcon({ size = 16 }) { return <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.067 13.137a1.624 1.624 0 0 1-1.624 1.624c-.42 0-.8-.16-1.085-.42-1.058.762-2.518 1.252-4.143 1.314l.7-3.293 2.287.48a1.16 1.16 0 1 0 .115-.55l-2.554-.543a.275.275 0 0 0-.325.213l-.778 3.66c-1.652-.054-3.138-.545-4.207-1.315a1.62 1.62 0 0 1-1.084.42 1.624 1.624 0 0 1-.66-3.107c-.054-.21-.082-.43-.082-.658 0-2.227 2.59-4.033 5.78-4.033 3.19 0 5.78 1.806 5.78 4.033 0 .224-.028.443-.082.65a1.622 1.622 0 0 1 .961 1.485zm-9.78-.13a1.16 1.16 0 1 1 2.32 0 1.16 1.16 0 0 1-2.32 0zm6.59 2.65a4.65 4.65 0 0 1-2.873.954 4.65 4.65 0 0 1-2.872-.953.275.275 0 1 1 .354-.42 4.1 4.1 0 0 0 2.518.83 4.1 4.1 0 0 0 2.519-.83.275.275 0 0 1 .354.42zm.092-1.49a1.16 1.16 0 1 1 0-2.32 1.16 1.16 0 0 1 0 2.32z"/></svg>; }
 function LinkIcon({ size = 16 })  { return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>; }
 function CheckIcon({ size = 16 }) { return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>; }
@@ -159,16 +161,29 @@ function TableOfContents({ items }) {
   if (items.length === 0) return null;
   return (
     <aside className="blog-toc">
-      <div style={{ position: 'sticky', top: '96px' }}>
+      <div style={{
+        position: 'sticky',
+        top: '96px',
+        // Cap height to viewport so a long TOC scrolls inside its own
+        // container instead of overflowing past the article on shorter
+        // viewports.
+        maxHeight: 'calc(100vh - 120px)',
+        overflowY: 'auto',
+        paddingRight: '8px',
+      }}>
         <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-inactive)', marginBottom: '12px' }}>On this page</p>
         <nav>
-          <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '6px' }}>
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '4px' }}>
             {items.map(item => (
               <li key={item.id}>
                 <a
                   href={`#${item.id}`}
+                  title={item.text}
                   style={{
-                    display: 'block',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
                     padding: '6px 10px',
                     borderLeft: '2px solid',
                     borderLeftColor: active === item.id ? 'var(--ins-text-highlight)' : 'transparent',
@@ -177,12 +192,49 @@ function TableOfContents({ items }) {
                     color: active === item.id ? 'var(--ins-text-heading)' : 'var(--ins-text-inactive)',
                     textDecoration: 'none',
                     transition: 'color 150ms, border-color 150ms',
+                    wordBreak: 'break-word',
                   }}
                 >{item.text}</a>
               </li>
             ))}
           </ul>
         </nav>
+
+        {/* Social — follow links, brand URLs matched to the Footer */}
+        <div style={{ marginTop: '32px', paddingTop: '20px', borderTop: '1px solid var(--ins-border-default)' }}>
+          <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-inactive)', marginBottom: '12px' }}>Social</p>
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+            {[
+              { label: 'Insightis on X (formerly Twitter)',    href: 'https://x.com/Insightisai',                       Icon: XIcon },
+              { label: 'Insightis on TikTok',                  href: 'https://www.tiktok.com/@insightisai',             Icon: TikTokIcon },
+              { label: 'Insightis on LinkedIn',                href: 'https://www.linkedin.com/company/112025589',      Icon: LinkedInIcon },
+              { label: 'Insightis on YouTube',                 href: 'https://www.youtube.com/@InsightisAI',            Icon: YouTubeIcon },
+            ].map(({ label, href, Icon }) => (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '36px',
+                  height: '36px',
+                  borderRadius: '50%',
+                  background: 'var(--ins-surface-card)',
+                  border: '1px solid var(--ins-border-default)',
+                  color: 'var(--ins-text-inactive)',
+                  textDecoration: 'none',
+                  transition: 'color 150ms, border-color 150ms',
+                }}
+              >
+                <Icon size={14} />
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </aside>
   );
@@ -296,10 +348,20 @@ export default function BlogPost({ markdown, slug }) {
   const rawHtml = marked.parse(bodySansH1);
 
   // Inject id attributes on H2 elements + build the TOC list from them.
+  // marked.parse() emits HTML-encoded entities (&amp;, &#39;, etc.); decode
+  // them before showing in the TOC so the label reads "Schema & HTML"
+  // instead of "Schema &amp; HTML".
+  const decodeEntities = (s) => s
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, ' ');
   const toc = [];
   const usedIds = new Set();
   const html = rawHtml.replace(/<h2(\s[^>]*)?>([\s\S]*?)<\/h2>/g, (_match, attrs, inner) => {
-    const text = inner.replace(/<[^>]+>/g, '').trim();
+    const text = decodeEntities(inner.replace(/<[^>]+>/g, '')).trim();
     let id = slugify(text) || `section-${toc.length + 1}`;
     let candidate = id, n = 2;
     while (usedIds.has(candidate)) { candidate = `${id}-${n++}`; }
@@ -501,9 +563,10 @@ export default function BlogPost({ markdown, slug }) {
         }
         @media (min-width: 1100px) {
           .blog-shell {
-            grid-template-columns: minmax(0, 760px) 240px;
-            gap: 64px;
+            grid-template-columns: minmax(0, 760px) 280px;
+            gap: 56px;
             justify-content: center;
+            align-items: start;
           }
         }
         .blog-article { min-width: 0; }
