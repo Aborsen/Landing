@@ -4,6 +4,64 @@ import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
+// Real blog posts — each .md is a published article with a matching
+// /blog/<slug> page rendered by src/pages/blog-<slug>.jsx.
+import whatIsAiMd                  from '../../blog/Articles/what-is-ai-data-analysis.md?raw';
+import bestAiToolsMd               from '../../blog/Articles/best-ai-data-analysis-tools.md?raw';
+import marketingAnalyticsMd        from '../../blog/Articles/marketing-analytics-tools.md?raw';
+import selfServiceBiMd             from '../../blog/Articles/self-service-bi-guide.md?raw';
+
+function parseFrontmatter(raw) {
+  const m = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+  if (!m) return { meta: {}, body: raw };
+  const meta = {};
+  m[1].split(/\r?\n/).forEach(line => {
+    const eq = line.indexOf(':');
+    if (eq > 0) {
+      const k = line.slice(0, eq).trim();
+      let v = line.slice(eq + 1).trim();
+      v = v.replace(/^["'](.*)["']$/, '$1');
+      meta[k] = v;
+    }
+  });
+  return { meta, body: m[2] };
+}
+
+function formatDate(iso) {
+  if (!iso) return '';
+  try {
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) return iso;
+    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  } catch { return iso; }
+}
+
+function readingMinutes(text) {
+  const words = (text || '').trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 220));
+}
+
+// Build the post list from real markdown files. Each post knows its own
+// /blog/<slug> URL because the slug matches the .md filename and the
+// blog-<slug>.html entry registered in vite.config.js.
+const POSTS = [
+  { slug: 'what-is-ai-data-analysis',    md: whatIsAiMd },
+  { slug: 'best-ai-data-analysis-tools', md: bestAiToolsMd },
+  { slug: 'marketing-analytics-tools',   md: marketingAnalyticsMd },
+  { slug: 'self-service-bi-guide',       md: selfServiceBiMd },
+].map(({ slug, md }) => {
+  const { meta, body } = parseFrontmatter(md);
+  return {
+    slug,
+    url: `/blog/${slug}`,
+    title: meta.title || slug,
+    description: meta.description || '',
+    category: meta.category || 'Article',
+    date: formatDate(meta.publishDate || meta.date),
+    readTime: `${readingMinutes(body)} min`,
+  };
+});
+
 /* ── INSIGHTIS LOGO MARK SVG ── */
 function InsightisLogoMark({ size = 60, opacity = 1 }) {
   return (
@@ -81,7 +139,8 @@ function FeaturedPost() {
 
 /* ── CATEGORY FILTER ── */
 function CategoryFilter({ activeCategory, setActiveCategory }) {
-  const categories = ['All', 'Product Updates', 'Guides & Tutorials', 'Data Analytics', 'Customer Stories', 'Engineering'];
+  // Derived from the real POSTS so we only show buttons that match content.
+  const categories = ['All', ...Array.from(new Set(POSTS.map(p => p.category)))];
 
   return (
     <section style={{padding:'0 0 40px'}}>
@@ -102,8 +161,9 @@ function CategoryFilter({ activeCategory, setActiveCategory }) {
   );
 }
 
-/* ── BLOG GRID ── */
-const ARTICLES = [
+/* ── BLOG GRID — legacy hardcoded list left for reference, no longer rendered ── */
+// eslint-disable-next-line no-unused-vars
+const _LEGACY_ARTICLES = [
   { title: 'Introducing Insights Engine: From Surface Answers to Root Causes', category: 'Product Updates', date: 'Apr 1, 2026', readTime: '6 min', excerpt: 'AI Chat gives you the what. Insights Engine tells you the why. Launching the deep analysis layer for your data ecosystem.', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=320&fit=crop' },
   { title: 'How to Write Better Questions for AI Chat', category: 'Guides & Tutorials', date: 'Mar 28, 2026', readTime: '4 min', excerpt: 'Get more accurate, actionable answers by structuring your queries with context, constraints, and clarity.', image: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&h=320&fit=crop' },
   { title: "Why Your MRR Numbers Don't Match (And How to Fix It)", category: 'Data Analytics', date: 'Mar 22, 2026', readTime: '8 min', excerpt: 'The three most common reasons your monthly recurring revenue looks different across tools, and a framework to reconcile them.', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=320&fit=crop' },
@@ -117,29 +177,44 @@ const ARTICLES = [
 
 function BlogGrid({ activeCategory }) {
   const filtered = activeCategory === 'All'
-    ? ARTICLES
-    : ARTICLES.filter(a => a.category === activeCategory);
+    ? POSTS
+    : POSTS.filter(a => a.category === activeCategory);
 
   return (
     <section style={{padding:'0 0 20px'}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
         <div className="blog-grid">
           {filtered.map((article, i) => (
-            <a href="#" key={article.title} className="blog-card blog-fade-in" style={{animationDelay:`${i * 0.05}s`}}>
-              {/* Article image */}
-              <div style={{height:'160px', background:'rgba(255,255,255,.03)', borderBottom:'1px solid rgba(255,255,255,.04)', overflow:'hidden'}}>
-                <img src={article.image} alt="" style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}} />
+            <a href={article.url} key={article.slug} className="blog-card blog-fade-in" style={{animationDelay:`${i * 0.05}s`}}>
+              {/* Article cover — token-driven gradient placeholder (cover image assets not yet shipped) */}
+              <div style={{
+                height:'160px',
+                background:'linear-gradient(135deg, var(--ins-color-teal-900), var(--ins-color-teal-700) 60%, var(--ins-color-teal-400))',
+                borderBottom:'1px solid var(--ins-border-default)',
+                position:'relative',
+                overflow:'hidden',
+              }}>
+                <div style={{
+                  position:'absolute', inset:0,
+                  background:'radial-gradient(ellipse 60% 50% at 30% 30%, rgba(255,255,255,0.15), transparent 60%)',
+                }}/>
+                <div style={{
+                  position:'absolute', bottom:14, left:18,
+                  fontFamily:'var(--ins-font-family-mono)',
+                  fontSize:'10px', letterSpacing:'0.18em', textTransform:'uppercase',
+                  color:'var(--ins-color-white)', opacity:0.9,
+                }}>Insightis · Blog</div>
               </div>
               {/* Content */}
               <div style={{padding:'20px', display:'flex', flexDirection:'column', flex:1}}>
                 <div style={{marginBottom:'10px'}}>
-                  <span style={{fontSize:'10px', padding:'3px 8px', borderRadius:'999px', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.25)', color:'var(--ins-text-highlight)', fontWeight:500, letterSpacing:'0.04em'}}>{article.category}</span>
+                  <span style={{fontSize:'10px', padding:'3px 8px', borderRadius:'999px', background:'var(--ins-surface-brand-tint)', border:'1px solid var(--ins-border-brand)', color:'var(--ins-text-highlight)', fontWeight:500, letterSpacing:'0.04em'}}>{article.category}</span>
                 </div>
                 <h3 style={{fontSize:'16px', fontWeight:500, color:'var(--ins-color-gray-100)', lineHeight:1.4, marginBottom:'8px', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:2, WebkitBoxOrient:'vertical'}}>
                   {article.title}
                 </h3>
-                <p style={{fontSize:'13px', color:'var(--ins-text-inactive)', lineHeight:1.5, marginBottom:'12px', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:2, WebkitBoxOrient:'vertical'}}>
-                  {article.excerpt}
+                <p style={{fontSize:'13px', color:'var(--ins-text-inactive)', lineHeight:1.5, marginBottom:'12px', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:3, WebkitBoxOrient:'vertical'}}>
+                  {article.description}
                 </p>
                 <div style={{fontSize:'11px', color:'var(--ins-text-disabled)', fontFamily:"'Geist Mono', monospace", marginTop:'auto'}}>
                   {article.date} &middot; {article.readTime} read
@@ -240,10 +315,8 @@ function App() {
     <div>
       <Header />
       <BlogHero />
-      <FeaturedPost />
       <CategoryFilter activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
       <BlogGrid activeCategory={activeCategory} />
-      <LoadMore />
       <BottomCTA />
       <Footer />
     </div>
