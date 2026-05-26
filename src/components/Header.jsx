@@ -223,8 +223,7 @@ export default function Header() {
                           {item.icon && (
                             <div style={{
                               flexShrink:0,
-                              alignSelf:'stretch',
-                              width:'40px',
+                              width:'36px', height:'36px',
                               display:'flex', alignItems:'center', justifyContent:'center',
                               borderRadius:'8px',
                               background:'var(--ins-surface-brand-tint)',
