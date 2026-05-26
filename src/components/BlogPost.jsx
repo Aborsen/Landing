@@ -313,9 +313,69 @@ export default function BlogPost({ markdown, slug }) {
   const cover = (slug && COVER_IMAGES[slug]) || null;
   const tags = Array.isArray(meta.tags) ? meta.tags : [];
 
+  // Raw frontmatter date — keep YYYY-MM-DD as-is to avoid UTC-shift bugs
+  // (QA item 15). publishDate / date are the two field names used in the
+  // .md files we have today.
+  const rawPublishDate = (meta.publishDate || meta.date || '').slice(0, 10);
+  const isDraft = String(meta.draft).toLowerCase() === 'true';
+
+  // QA item 14 — flip the <meta name="robots"> tag at runtime when the
+  // article is marked draft in its frontmatter. The static HTML wrapper
+  // ships `index,follow` so this is a runtime-only fix; crawlers reading
+  // the prerendered HTML still see indexable until scripts/prerender.mjs
+  // is extended to read each .md and patch the meta during build.
+  // TODO(prerender): for full crawler correctness, have prerender.mjs
+  // inspect blog/Articles/<slug>.md and rewrite dist/blog/<slug>.html
+  // robots meta when draft === true.
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    let tag = document.querySelector('meta[name="robots"]');
+    const created = !tag;
+    if (!tag) {
+      tag = document.createElement('meta');
+      tag.setAttribute('name', 'robots');
+      document.head.appendChild(tag);
+    }
+    const before = tag.getAttribute('content');
+    if (isDraft) tag.setAttribute('content', 'noindex,nofollow');
+    return () => {
+      // Restore the original content if this component unmounts (SPA-style
+      // navigation back to a non-blog page) so we don't leak noindex.
+      if (created) tag.remove();
+      else if (before != null) tag.setAttribute('content', before);
+    };
+  }, [isDraft]);
+
+  // QA items 11 + 15 — BlogPosting JSON-LD with default author and
+  // date-only `datePublished`. Rendered inside <body>; Google supports
+  // either <head> or <body> placement.
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: meta.title || '',
+    description: meta.description || '',
+    datePublished: rawPublishDate || undefined,
+    author: {
+      '@type': meta.authorType || 'Organization',
+      name: meta.author || 'Insightis Team',
+    },
+    image: cover || undefined,
+    mainEntityOfPage: slug ? {
+      '@type': 'WebPage',
+      '@id': `https://insightis.ai/blog/${slug}`,
+    } : undefined,
+  };
+
   return (
     <div className="font-body">
       <Header />
+      {/* QA #11 + #15 — BlogPosting JSON-LD. Inside <body> is supported
+          by Google. datePublished is date-only YYYY-MM-DD to avoid the
+          UTC shift `new Date(...).toISOString()` would introduce. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <main style={{ paddingTop: '32px' }}>
         <div className="blog-shell">
           <article className="blog-article">
