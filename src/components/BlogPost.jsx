@@ -654,7 +654,11 @@ export default function BlogPost({ markdown, slug }) {
             grid-template-columns: minmax(0, 760px) 280px;
             gap: 56px;
             justify-content: center;
-            align-items: start;
+            /* align-items: stretch (default) — lets the .blog-toc aside grow
+               to the article's full height so position:sticky on its inner
+               div can track the entire scroll. With align-items:start the
+               aside hugs the sticky div's intrinsic height and sticky
+               immediately scrolls off. */
           }
         }
         .blog-article { min-width: 0; }

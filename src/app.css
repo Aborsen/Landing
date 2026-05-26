@@ -96,7 +96,11 @@
 
 /* Alias :root block removed — all call-sites now read from --ins-* tokens directly. */
 
-body{overflow-x:hidden}
+/* overflow-x: clip (not hidden) — `hidden` makes body a scroll container
+   which breaks position:sticky propagation for any descendant (e.g. the
+   blog-post TOC sidebar). `clip` keeps the horizontal-overflow clipping
+   without establishing a new scroll context. */
+body{overflow-x:clip}
 
 /* Skip style, layout, paint, and animation cost for off-screen sections.
    Each main child (Architecture, HowItWorks, Testimonials, Pricing, FAQ, BottomCTA, etc.)
