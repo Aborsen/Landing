@@ -222,8 +222,9 @@ export default function Header() {
                         const inner = (<>
                           {item.icon && (
                             <div style={{
-                              flexShrink:0, marginTop:'2px',
-                              width:'30px', height:'30px',
+                              flexShrink:0,
+                              alignSelf:'stretch',
+                              width:'40px',
                               display:'flex', alignItems:'center', justifyContent:'center',
                               borderRadius:'8px',
                               background:'var(--ins-surface-brand-tint)',
