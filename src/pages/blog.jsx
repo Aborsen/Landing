@@ -3,66 +3,10 @@ import ReactDOM from 'react-dom/client';
 import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { COVER_IMAGES } from '../components/BlogPost';
-
-// Real blog posts — each .md is a published article with a matching
-// /blog/<slug> page rendered by src/pages/blog-<slug>.jsx.
-import whatIsAiMd                  from '../../blog/Articles/what-is-ai-data-analysis.md?raw';
-import bestAiToolsMd               from '../../blog/Articles/best-ai-data-analysis-tools.md?raw';
-import marketingAnalyticsMd        from '../../blog/Articles/marketing-analytics-tools.md?raw';
-import selfServiceBiMd             from '../../blog/Articles/self-service-bi-guide.md?raw';
-
-function parseFrontmatter(raw) {
-  const m = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
-  if (!m) return { meta: {}, body: raw };
-  const meta = {};
-  m[1].split(/\r?\n/).forEach(line => {
-    const eq = line.indexOf(':');
-    if (eq > 0) {
-      const k = line.slice(0, eq).trim();
-      let v = line.slice(eq + 1).trim();
-      v = v.replace(/^["'](.*)["']$/, '$1');
-      meta[k] = v;
-    }
-  });
-  return { meta, body: m[2] };
-}
-
-function formatDate(iso) {
-  if (!iso) return '';
-  try {
-    const d = new Date(iso);
-    if (isNaN(d.getTime())) return iso;
-    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-  } catch { return iso; }
-}
-
-function readingMinutes(text) {
-  const words = (text || '').trim().split(/\s+/).filter(Boolean).length;
-  return Math.max(1, Math.round(words / 220));
-}
-
-// Build the post list from real markdown files. Each post knows its own
-// /blog/<slug> URL because the slug matches the .md filename and the
-// blog-<slug>.html entry registered in vite.config.js.
-const POSTS = [
-  { slug: 'what-is-ai-data-analysis',    md: whatIsAiMd },
-  { slug: 'best-ai-data-analysis-tools', md: bestAiToolsMd },
-  { slug: 'marketing-analytics-tools',   md: marketingAnalyticsMd },
-  { slug: 'self-service-bi-guide',       md: selfServiceBiMd },
-].map(({ slug, md }) => {
-  const { meta, body } = parseFrontmatter(md);
-  return {
-    slug,
-    url: `/blog/${slug}`,
-    title: meta.title || slug,
-    description: meta.description || '',
-    category: meta.category || 'Article',
-    date: formatDate(meta.publishDate || meta.date),
-    readTime: `${readingMinutes(body)} min`,
-    image: COVER_IMAGES[slug] || '',
-  };
-});
+// Single source of truth: POSTS is built once in BlogPost.jsx from the real
+// markdown files. The listing here and the related-articles section on each
+// /blog/<slug> page consume the same list.
+import { POSTS } from '../components/BlogPost';
 
 /* ── INSIGHTIS LOGO MARK SVG ── */
 function InsightisLogoMark({ size = 60, opacity = 1 }) {
