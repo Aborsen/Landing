@@ -263,7 +263,8 @@
   --ins-surface-elevated:   var(--ins-color-gray-700);
   --ins-surface-overlay:    var(--ins-color-overlay);
   --ins-surface-brand-tint: var(--ins-color-teal-a-08);
-  --ins-surface-glass:      var(--ins-color-container-a-72);   /* navbar, popover behind backdrop-blur */
+  --ins-surface-glass:      var(--ins-color-container-a-72);   /* generic glass — popovers, light overlays behind backdrop-blur */
+  --ins-surface-navbar-glass: rgba(10, 14, 19, 0.92);            /* navbar — gray-950 at 92%, denser than --ins-surface-glass */
 
   /* ─ Border ─ */
   --ins-border-default:   var(--ins-color-white-a-06);
