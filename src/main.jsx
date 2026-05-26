@@ -772,9 +772,21 @@ function Architecture() {
 function HowItWorks() {
   const mountRef = React.useRef(null);
   React.useEffect(() => {
-    requestAnimationFrame(() => {
-      if (window.initShowcase) window.initShowcase();
-    });
+    // showcase.js is loaded via <script defer>; on slow networks (e.g. Vercel
+    // cold-start) it can finish parsing AFTER React hydrates and fires this
+    // effect, leaving window.initShowcase undefined. Poll on each frame until
+    // it appears, then call once. Bounded so we never spin forever.
+    let cancelled = false;
+    const tryInit = (attempts = 0) => {
+      if (cancelled) return;
+      if (typeof window.initShowcase === 'function') {
+        window.initShowcase();
+        return;
+      }
+      if (attempts < 120) requestAnimationFrame(() => tryInit(attempts + 1));
+    };
+    requestAnimationFrame(() => tryInit());
+    return () => { cancelled = true; };
   }, []);
   const steps = [
     { n: '01', title: 'Connect your data', desc: 'OAuth or API key. Most connectors live in under 5 minutes — read-only and SOC 2 secured.' },
