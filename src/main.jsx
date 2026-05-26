@@ -852,7 +852,7 @@ function Testimonials() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
             {testimonials.map((t, i) => (
               <div key={i} className="bg-[var(--ins-surface-card)] border border-[var(--ins-border-default)] rounded-2xl p-6 relative hover:border-[var(--ins-border-hover)] transition-colors">
-                <div className="absolute top-5 right-5" style={{color:'var(--ins-text-inactive)',fontSize:'24px',fontFamily:'Georgia,serif',lineHeight:1}}>99</div>
+                <div className="absolute top-5 right-5" style={{color:'var(--ins-text-inactive)',fontSize:'24px',fontFamily:'var(--ins-font-family-sans)',lineHeight:1}}>99</div>
                 <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, j) => <StarIcon key={j} size={13} color="var(--ins-color-amber-400)" />)}
                 </div>
