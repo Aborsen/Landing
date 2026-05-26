@@ -849,18 +849,25 @@ export default function BlogPost({ markdown, slug }) {
 
       <style>{`
         /* Grid shell — left sidebar (TOC + Topics + Social) + article.
-           max-width matches Header's container (1240px) so the blog page
-           doesn't overflow the navbar's visual line.
+           Outer dimensions match the Header / docs pattern exactly:
+              max-width: 1240px; width: calc(100% - 32px); margin: 0 auto;
+           so the blog page's left/right visual edges align with the
+           navbar chrome.
+           Inside the 1240 frame the columns total 1176 (240 + 56 + 880)
+           centred, leaving ~32px slack each side — keeps the layout
+           symmetric and the article wide enough that its right edge
+           sits close to the navbar's right edge.
            Breakpoints:
              <1100  : 1 column, article only (sidebar hidden)
              >=1100 : 2 columns, sidebar | article
            align-items defaults to stretch so the aside grows to the
-           article's full height — gives position:sticky room to track
+           article's full height, giving position:sticky room to track
            scroll all the way down. */
         .blog-shell {
           max-width: 1240px;
+          width: calc(100% - 32px);
           margin: 0 auto;
-          padding: 40px 24px 80px;
+          padding: 40px 0 80px;
           display: grid;
           grid-template-columns: minmax(0, 1fr);
           gap: 32px;
@@ -870,7 +877,7 @@ export default function BlogPost({ markdown, slug }) {
 
         @media (min-width: 1100px) {
           .blog-shell {
-            grid-template-columns: 240px minmax(0, 760px);
+            grid-template-columns: 240px minmax(0, 880px);
             gap: 56px;
             justify-content: center;
           }
