@@ -27,7 +27,70 @@ function PricingHero() {
 }
 
 /* ── PRICING CARDS ── */
+
+// 20% discount when paying yearly. Per-month-equivalent price = monthly * (1 - YEARLY_DISCOUNT).
+const YEARLY_DISCOUNT = 0.20;
+
+function BillingToggle({ cycle, onChange }) {
+  const segment = (label, value) => {
+    const active = cycle === value;
+    return (
+      <button
+        type="button"
+        role="tab"
+        aria-selected={active}
+        onClick={() => onChange(value)}
+        style={{
+          padding: '9px 18px',
+          borderRadius: '999px',
+          border: 'none',
+          background: active ? 'var(--ins-surface-elevated)' : 'transparent',
+          color: active ? 'var(--ins-text-heading)' : 'var(--ins-text-inactive)',
+          fontSize: '13px',
+          fontWeight: 500,
+          fontFamily: 'var(--ins-font-family-sans)',
+          cursor: 'pointer',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '8px',
+          transition: 'background-color 180ms, color 180ms',
+        }}
+      >
+        {label}
+        {value === 'yearly' && (
+          <span style={{
+            padding: '2px 8px',
+            borderRadius: '999px',
+            background: 'var(--ins-surface-brand-tint)',
+            border: '1px solid var(--ins-border-brand)',
+            color: 'var(--ins-text-highlight)',
+            fontSize: '10px',
+            fontWeight: 600,
+            letterSpacing: '0.04em',
+            fontFamily: 'var(--ins-font-family-mono)',
+          }}>SAVE -{Math.round(YEARLY_DISCOUNT * 100)}%</span>
+        )}
+      </button>
+    );
+  };
+  return (
+    <div role="tablist" aria-label="Billing cycle" style={{
+      display: 'inline-flex',
+      padding: '4px',
+      background: 'var(--ins-surface-card)',
+      border: '1px solid var(--ins-border-default)',
+      borderRadius: '999px',
+      gap: '4px',
+    }}>
+      {segment('Yearly', 'yearly')}
+      {segment('Monthly', 'monthly')}
+    </div>
+  );
+}
+
 function PricingCards() {
+  const [cycle, setCycle] = useState('monthly');
+
   const plans = [
     {
       name:'Free',
@@ -81,9 +144,22 @@ function PricingCards() {
     },
   ];
 
+  const displayPrice = (monthly) => {
+    if (cycle === 'monthly') return monthly;
+    // Yearly: per-month-equivalent at YEARLY_DISCOUNT off.
+    return Math.round(monthly * (1 - YEARLY_DISCOUNT) * 100) / 100;
+  };
+  // Compute yearly total from the rounded monthly so the displayed math
+  // is consistent ($7.99 × 12 = $95.88, not $95.90 from raw multiplication).
+  const yearlyTotal = (monthly) => Math.round(displayPrice(monthly) * 12 * 100) / 100;
+
   return (
     <section style={{padding:'24px 0 80px'}}>
       <div style={{maxWidth:'1100px',margin:'0 auto',padding:'0 24px'}}>
+        {/* Billing-cycle toggle */}
+        <div style={{display:'flex',justifyContent:'center',marginBottom:'32px'}}>
+          <BillingToggle cycle={cycle} onChange={setCycle} />
+        </div>
         <div data-pricing-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'20px'}}>
           {plans.map((plan,i) => {
             const isHighlight = plan.highlight;
@@ -104,7 +180,7 @@ function PricingCards() {
                 )}
                 <h3 style={{fontSize:'22px',fontWeight:600,color:'#fff',marginBottom:'4px',letterSpacing:'-0.02em'}}>{plan.name}</h3>
                 <p style={{fontSize:'13px',color:'rgba(255,255,255,0.7)',marginBottom:'24px'}}>{plan.tag}</p>
-                <div style={{marginBottom:'24px',minHeight:'104px'}}>
+                <div style={{marginBottom:'24px',minHeight:'120px'}}>
                   {plan.price === 0 ? (
                     <div>
                       <span style={{fontSize:'40px',fontWeight:500,color:'#fff',letterSpacing:'-0.03em'}}>$0</span>
@@ -113,12 +189,17 @@ function PricingCards() {
                   ) : (
                     <div>
                       <div style={{display:'flex',alignItems:'baseline',gap:'10px',flexWrap:'wrap'}}>
-                        <span style={{fontSize:'40px',fontWeight:500,color:'#fff',letterSpacing:'-0.03em'}}>${plan.price}</span>
+                        <span style={{fontSize:'40px',fontWeight:500,color:'#fff',letterSpacing:'-0.03em'}}>${displayPrice(plan.price)}</span>
                         {plan.originalPrice && (
                           <span style={{fontSize:'18px',color:'rgba(255,255,255,0.35)',textDecoration:'line-through'}}>${plan.originalPrice}</span>
                         )}
                       </div>
                       <div style={{fontSize:'13px',color:'rgba(255,255,255,0.7)',marginTop:'2px'}}>per user / month</div>
+                      {cycle === 'yearly' && (
+                        <div style={{fontSize:'12px',color:'rgba(255,255,255,0.5)',marginTop:'2px'}}>
+                          billed annually · ${yearlyTotal(plan.price).toFixed(2)}/yr
+                        </div>
+                      )}
                       {plan.discount && (
                         <div style={{marginTop:'6px',display:'inline-flex',alignItems:'center',gap:'5px',padding:'2px 8px',background:'rgba(9,160,157,0.12)',border:'1px solid rgba(9,160,157,0.35)',borderRadius:'4px',fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-highlight)',fontWeight:600,letterSpacing:'.04em'}}>
                           {plan.discount}
