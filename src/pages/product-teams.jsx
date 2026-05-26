@@ -38,14 +38,14 @@ function Hero() {
           {/* Left: text */}
           <div>
             <div className="fu0" style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'20px'}}>
-              <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-              <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>For Product Teams</span>
+              <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+              <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>For Product Teams</span>
             </div>
 
             <h1 className="fu1" style={{fontSize:'clamp(36px,4.5vw,58px)',fontWeight:500,letterSpacing:'-.03em',lineHeight:1.12,marginBottom:'20px'}}>
-              <span style={{color:'#E8F2F5'}}>Stop guessing</span>
+              <span style={{color:'var(--ins-color-gray-100)'}}>Stop guessing</span>
               <br/>
-              <span style={{color:'#0EC4C1'}}>what users actually do.</span>
+              <span style={{color:'var(--ins-text-highlight)'}}>what users actually do.</span>
             </h1>
 
             <p className="fu2" style={{fontSize:'clamp(16px,1.2vw,18px)',color:'rgba(255,255,255,.65)',lineHeight:1.65,marginBottom:'28px',maxWidth:'480px'}}>
@@ -56,7 +56,7 @@ function Hero() {
               <a href="/auth/sign-up/" style={{
                 display:'inline-flex',alignItems:'center',gap:'8px',
                 padding:'12px 24px',borderRadius:'999px',
-                background:'linear-gradient(135deg,#09A09D,#07807E)',
+                background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',
                 color:'#fff',fontSize:'14px',fontWeight:500,
                 textDecoration:'none',
                 boxShadow:'0 0 24px rgba(9,160,157,.3)',
@@ -69,7 +69,7 @@ function Hero() {
                 display:'inline-flex',alignItems:'center',gap:'8px',
                 padding:'12px 24px',borderRadius:'999px',
                 border:'1px solid rgba(255,255,255,.12)',
-                color:'#C0D4DC',fontSize:'14px',fontWeight:400,
+                color:'var(--ins-color-gray-200)',fontSize:'14px',fontWeight:400,
                 textDecoration:'none',
                 background:'rgba(255,255,255,.03)',
                 transition:'all .2s',
@@ -128,7 +128,7 @@ function Hero() {
                   transform:'translate(-50%,-50%)',
                   fontFamily:'Geist Mono,monospace',
                   fontSize:'10.5px',
-                  color:'#7FA0AC',
+                  color:'var(--ins-text-inactive)',
                   letterSpacing:'.08em',
                   whiteSpace:'nowrap',
                 }}>Insightis — For Product Teams</span>
@@ -138,17 +138,17 @@ function Hero() {
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'14px'}}>
                 <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
                   <div style={{width:'6px',height:'6px',borderRadius:'50%',background:'#A78BFA',boxShadow:'0 0 8px rgba(167,139,250,.6)'}}/>
-                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10.5px',color:'#7FA0AC',letterSpacing:'.08em',textTransform:'uppercase'}}>Funnel · May cohort</span>
+                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10.5px',color:'var(--ins-text-inactive)',letterSpacing:'.08em',textTransform:'uppercase'}}>Funnel · May cohort</span>
                 </div>
                 <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#A78BFA',padding:'3px 9px',borderRadius:'999px',background:'rgba(167,139,250,.1)',border:'1px solid rgba(167,139,250,.25)',letterSpacing:'.08em',textTransform:'uppercase'}}>cohort</span>
               </div>
 
               {/* Headline + caption */}
-              <h3 style={{fontSize:'17px',fontWeight:500,color:'#E8F2F5',marginBottom:'6px',letterSpacing:'-.015em',lineHeight:1.35}}>
+              <h3 style={{fontSize:'17px',fontWeight:500,color:'var(--ins-color-gray-100)',marginBottom:'6px',letterSpacing:'-.015em',lineHeight:1.35}}>
                 Onboarding cliff at <span style={{color:'#A78BFA'}}>step 3</span>
               </h3>
-              <p style={{fontSize:'12.5px',color:'#7FA0AC',lineHeight:1.6,marginBottom:'16px'}}>
-                <span style={{color:'#0EC4C1',fontFamily:'Geist Mono,monospace',fontSize:'11.5px'}}>workspace_created</span> dropped <span style={{color:'#F87171',fontWeight:500}}>−41%</span>. 87% on mobile. New invite flow shipped Tuesday.
+              <p style={{fontSize:'12.5px',color:'var(--ins-text-inactive)',lineHeight:1.6,marginBottom:'16px'}}>
+                <span style={{color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',fontSize:'11.5px'}}>workspace_created</span> dropped <span style={{color:'var(--ins-status-error-fg)',fontWeight:500}}>−41%</span>. 87% on mobile. New invite flow shipped Tuesday.
               </p>
 
               {/* Funnel breakdown */}
@@ -161,7 +161,7 @@ function Hero() {
               }}>
                 <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'12px'}}>
                   <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#8AA6B3',letterSpacing:'.06em',textTransform:'uppercase'}}>activation funnel</span>
-                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#7FA0AC'}}>n = 12,840</span>
+                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-inactive)'}}>n = 12,840</span>
                 </div>
                 <div style={{display:'flex',flexDirection:'column',gap:'7px'}}>
                   {[
@@ -175,7 +175,7 @@ function Hero() {
                       <span style={{
                         fontFamily:'Geist Mono,monospace',
                         fontSize:'10px',
-                        color:s.cliff?'#F87171':'#7FA0AC',
+                        color:s.cliff?'var(--ins-status-error-fg)':'var(--ins-text-inactive)',
                         width:'112px',flexShrink:0,
                         whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',
                       }}>{s.label}</span>
@@ -192,7 +192,7 @@ function Hero() {
                       <span style={{
                         fontFamily:'Geist Mono,monospace',
                         fontSize:'10.5px',
-                        color:s.cliff?'#F87171':'#C0D4DC',
+                        color:s.cliff?'var(--ins-status-error-fg)':'var(--ins-color-gray-200)',
                         width:'34px',textAlign:'right',flexShrink:0,
                       }}>{s.pct}%</span>
                     </div>
@@ -203,9 +203,9 @@ function Hero() {
               {/* Metric tiles — product-relevant */}
               <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'8px'}}>
                 {[
-                  {label:'Cliff step', val:'#3',       color:'#F87171'},
+                  {label:'Cliff step', val:'#3',       color:'var(--ins-status-error-fg)'},
                   {label:'Cohort',     val:'May new',  color:'#A78BFA'},
-                  {label:'Mobile',     val:'87%',      color:'#0EC4C1'},
+                  {label:'Mobile',     val:'87%',      color:'var(--ins-text-highlight)'},
                 ].map((m,i) => (
                   <div key={i} style={{
                     background:'rgba(255,255,255,.025)',
@@ -264,19 +264,19 @@ function Hero() {
             }}>
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'8px'}}>
                 <span style={{fontSize:'9.5px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase'}}>Retention</span>
-                <span style={{fontSize:'10.5px',color:'#0EC4C1',fontFamily:'Geist Mono,monospace',fontWeight:500}}>W12 · 28%</span>
+                <span style={{fontSize:'10.5px',color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',fontWeight:500}}>W12 · 28%</span>
               </div>
               <svg viewBox="0 0 140 32" width="100%" height="28" preserveAspectRatio="none" style={{display:'block',marginBottom:'4px'}}>
                 <defs>
                   <linearGradient id="retn-fill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#0EC4C1" stopOpacity="0.32"/>
-                    <stop offset="100%" stopColor="#0EC4C1" stopOpacity="0"/>
+                    <stop offset="0%" stopColor="var(--ins-text-highlight)" stopOpacity="0.32"/>
+                    <stop offset="100%" stopColor="var(--ins-text-highlight)" stopOpacity="0"/>
                   </linearGradient>
                 </defs>
                 <path d="M0,2 C20,12 40,18 60,22 C80,25 100,27 120,28 L140,28 L140,32 L0,32 Z" fill="url(#retn-fill)"/>
-                <path d="M0,2 C20,12 40,18 60,22 C80,25 100,27 120,28 L140,28" fill="none" stroke="#0EC4C1" strokeWidth="1.6" strokeLinecap="round"/>
-                <circle cx="0" cy="2" r="2" fill="#0EC4C1"/>
-                <circle cx="140" cy="28" r="2" fill="#0EC4C1"/>
+                <path d="M0,2 C20,12 40,18 60,22 C80,25 100,27 120,28 L140,28" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.6" strokeLinecap="round"/>
+                <circle cx="0" cy="2" r="2" fill="var(--ins-text-highlight)"/>
+                <circle cx="140" cy="28" r="2" fill="var(--ins-text-highlight)"/>
               </svg>
               <div style={{display:'flex',justifyContent:'space-between',fontSize:'9px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.04em'}}>
                 <span>W0</span><span>W4</span><span>W8</span><span>W12</span>
@@ -294,50 +294,50 @@ function PainPoints() {
   const pains = [
     {
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z" stroke="#0EC4C1" strokeWidth="1.5"/>
-        <path d="M9 8h6M9 12h6M9 16h4" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M12 4v4M9 6h6" stroke="#0EC4C1" strokeWidth="1.3" strokeLinecap="round" opacity=".5"/>
+        <path d="M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/>
+        <path d="M9 8h6M9 12h6M9 16h4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M12 4v4M9 6h6" stroke="var(--ins-text-highlight)" strokeWidth="1.3" strokeLinecap="round" opacity=".5"/>
       </svg>,
       title: '90% of requests are repetitive',
       desc: 'Your team spends most of its time answering the same questions from sales, marketing, and product — questions that should be self-serve but aren\'t.',
     },
     {
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M8 3H5a2 2 0 0 0-2 2v3m6-5h6M8 3v18m8-18v18M16 3h3a2 2 0 0 1 2 2v3M2 9h20M2 15h20M2 21h3m16 0h3" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M8 3H5a2 2 0 0 0-2 2v3m6-5h6M8 3v18m8-18v18M16 3h3a2 2 0 0 1 2 2v3M2 9h20M2 15h20M2 21h3m16 0h3" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>,
       title: 'Every team defines metrics differently',
       desc: 'Marketing defines CAC one way. Finance defines it another. Without a governed Semantic Layer, every team has their own version of the truth.',
     },
     {
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>,
       title: 'Pipeline monitoring is reactive',
       desc: 'You find out about data freshness issues and pipeline failures when a stakeholder complains that their dashboard is showing wrong numbers.',
     },
     {
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="#0EC4C1" strokeWidth="1.5"/>
-        <path d="M7 9h10M7 13h6" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/>
+        <path d="M7 9h10M7 13h6" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>,
       title: 'Ad hoc SQL requests never stop',
       desc: 'Every strategic question that can\'t be answered by an existing dashboard becomes an ad hoc SQL ticket. The backlog grows faster than it can be cleared.',
     },
     {
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="#0EC4C1" strokeWidth="1.5"/>
-        <line x1="12" y1="9" x2="12" y2="13" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="12" y1="17" x2="12.01" y2="17" stroke="#0EC4C1" strokeWidth="2" strokeLinecap="round"/>
+        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/>
+        <line x1="12" y1="9" x2="12" y2="13" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/>
+        <line x1="12" y1="17" x2="12.01" y2="17" stroke="var(--ins-text-highlight)" strokeWidth="2" strokeLinecap="round"/>
       </svg>,
       title: 'Schema drift breaks things silently',
       desc: 'When an upstream source changes a column name, your downstream models break — and nobody notices until a key metric drops to zero.',
     },
     {
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <rect x="2" y="12" width="4" height="9" rx="1" stroke="#0EC4C1" strokeWidth="1.5"/>
-        <rect x="9" y="7" width="4" height="14" rx="1" stroke="#0EC4C1" strokeWidth="1.5"/>
-        <rect x="16" y="3" width="4" height="18" rx="1" stroke="#0EC4C1" strokeWidth="1.5"/>
+        <rect x="2" y="12" width="4" height="9" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/>
+        <rect x="9" y="7" width="4" height="14" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/>
+        <rect x="16" y="3" width="4" height="18" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/>
       </svg>,
       title: 'You can\'t show ROI on the data platform',
       desc: 'Leadership asks what the data team delivered this quarter. You know you unblocked dozens of decisions, but quantifying that impact is nearly impossible.',
@@ -345,12 +345,12 @@ function PainPoints() {
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,var(--ins-surface-page) 0%,var(--ins-surface-container) 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'56px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>The Problem</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>The Problem</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
             Data teams spend 80% of time on reporting
@@ -377,8 +377,8 @@ function PainPoints() {
               <div style={{width:'40px',height:'40px',borderRadius:'10px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'16px'}}>
                 {p.icon}
               </div>
-              <h3 style={{fontSize:'16px',fontWeight:600,color:'#E8F2F5',marginBottom:'8px'}}>{p.title}</h3>
-              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.65}}>{p.desc}</p>
+              <h3 style={{fontSize:'16px',fontWeight:600,color:'var(--ins-color-gray-100)',marginBottom:'8px'}}>{p.title}</h3>
+              <p style={{fontSize:'14px',color:'var(--ins-text-inactive)',lineHeight:1.65}}>{p.desc}</p>
             </div>
           ))}
         </div>
@@ -511,19 +511,19 @@ function RelevantIntegrations() {
     {
       name:'Notion', bg:'rgba(255,255,255,.06)', desc:'Specs & docs',
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="3" width="18" height="18" rx="2.5" fill="#fff" fillOpacity=".06" stroke="#E8F2F5" strokeWidth="1.4"/>
-        <path d="M8 7v10M8 7l8 10M16 7v10" stroke="#E8F2F5" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+        <rect x="3" y="3" width="18" height="18" rx="2.5" fill="#fff" fillOpacity=".06" stroke="var(--ins-color-gray-100)" strokeWidth="1.4"/>
+        <path d="M8 7v10M8 7l8 10M16 7v10" stroke="var(--ins-color-gray-100)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>,
     },
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0D1117 0%,#101620 100%)'}}>
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,var(--ins-surface-container) 0%,#101620 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'56px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Your Product Stack</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>Your Product Stack</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
             Connects to every product data source
@@ -540,7 +540,7 @@ function RelevantIntegrations() {
                 {c.icon}
               </div>
               <div>
-                <div style={{fontSize:'13px',fontWeight:500,color:'#E8F2F5'}}>{c.name}</div>
+                <div style={{fontSize:'13px',fontWeight:500,color:'var(--ins-color-gray-100)'}}>{c.name}</div>
                 <div style={{fontSize:'11px',color:'#8AA6B3',marginTop:'2px'}}>{c.desc}</div>
               </div>
             </div>
@@ -550,7 +550,7 @@ function RelevantIntegrations() {
         <div style={{textAlign:'center'}}>
           <a href="/Resources/Connectors" style={{
             display:'inline-flex',alignItems:'center',gap:'6px',
-            fontSize:'13px',color:'#7FA0AC',
+            fontSize:'13px',color:'var(--ins-text-inactive)',
             textDecoration:'none',
             border:'1px solid rgba(255,255,255,.07)',
             borderRadius:'999px',
@@ -558,8 +558,8 @@ function RelevantIntegrations() {
             background:'rgba(255,255,255,.02)',
             transition:'all .15s',
           }}
-          onMouseEnter={e=>{e.currentTarget.style.color='#0EC4C1';e.currentTarget.style.borderColor='rgba(9,160,157,.3)';}}
-          onMouseLeave={e=>{e.currentTarget.style.color='#7FA0AC';e.currentTarget.style.borderColor='rgba(255,255,255,.07)';}}
+          onMouseEnter={e=>{e.currentTarget.style.color='var(--ins-text-highlight)';e.currentTarget.style.borderColor='rgba(9,160,157,.3)';}}
+          onMouseLeave={e=>{e.currentTarget.style.color='var(--ins-text-inactive)';e.currentTarget.style.borderColor='rgba(255,255,255,.07)';}}
           >
             See all 200+ integrations
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -581,12 +581,12 @@ function Metrics() {
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#101620 0%,#0A0E13 100%)'}}>
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#101620 0%,var(--ins-surface-page) 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'48px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Metrics That Matter</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>Metrics That Matter</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
             Every KPI a data team monitors
@@ -613,12 +613,12 @@ function Metrics() {
 /* ── BEFORE / AFTER ── */
 function BeforeAfter() {
   return (
-    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,var(--ins-surface-page) 0%,var(--ins-surface-container) 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'52px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>The Difference</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>The Difference</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
             Data teams before vs. after Insightis
@@ -629,8 +629,8 @@ function BeforeAfter() {
           {/* Before */}
           <div style={{background:'rgba(248,113,113,.04)',border:'1px solid rgba(248,113,113,.15)',borderRadius:'16px',padding:'28px'}}>
             <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'20px'}}>
-              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#F87171'}}/>
-              <span style={{fontSize:'13px',fontWeight:600,color:'#F87171'}}>Before Insightis</span>
+              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-status-error-fg)'}}/>
+              <span style={{fontSize:'13px',fontWeight:600,color:'var(--ins-status-error-fg)'}}>Before Insightis</span>
             </div>
             <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'12px'}}>
               {[
@@ -641,8 +641,8 @@ function BeforeAfter() {
                 'Schema drift breaks models silently',
                 'Data ROI impossible to quantify',
               ].map((item,i) => (
-                <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'#7FA0AC',lineHeight:1.55}}>
-                  <span style={{color:'#F87171',fontWeight:500,flexShrink:0}}>✕</span>
+                <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'var(--ins-text-inactive)',lineHeight:1.55}}>
+                  <span style={{color:'var(--ins-status-error-fg)',fontWeight:500,flexShrink:0}}>✕</span>
                   {item}
                 </li>
               ))}
@@ -653,8 +653,8 @@ function BeforeAfter() {
           <div style={{background:'rgba(9,160,157,.05)',border:'1px solid rgba(9,160,157,.25)',borderRadius:'16px',padding:'28px',position:'relative'}}>
             <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.6),transparent)',borderRadius:'16px 16px 0 0'}}/>
             <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'20px'}}>
-              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#0EC4C1',boxShadow:'0 0 8px #0EC4C1'}}/>
-              <span style={{fontSize:'13px',fontWeight:600,color:'#0EC4C1'}}>With Insightis</span>
+              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-text-highlight)',boxShadow:'0 0 8px var(--ins-text-highlight)'}}/>
+              <span style={{fontSize:'13px',fontWeight:600,color:'var(--ins-text-highlight)'}}>With Insightis</span>
             </div>
             <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'12px'}}>
               {[
@@ -665,8 +665,8 @@ function BeforeAfter() {
                 'Schema changes flagged automatically',
                 'Data impact visible and measurable',
               ].map((item,i) => (
-                <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'#C0D4DC',lineHeight:1.55}}>
-                  <span style={{color:'#0EC4C1',fontWeight:500,flexShrink:0}}>✓</span>
+                <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'var(--ins-color-gray-200)',lineHeight:1.55}}>
+                  <span style={{color:'var(--ins-text-highlight)',fontWeight:500,flexShrink:0}}>✓</span>
                   {item}
                 </li>
               ))}
@@ -676,8 +676,8 @@ function BeforeAfter() {
 
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
-            <span style={{fontSize:'40px',fontWeight:500,color:'#0EC4C1',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>4×</span>
-            <span style={{fontSize:'15px',color:'#7FA0AC',whiteSpace:'nowrap'}}>more time for real analysis. Self-serve deflects 80% of ad hoc requests.</span>
+            <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>4×</span>
+            <span style={{fontSize:'15px',color:'var(--ins-text-inactive)',whiteSpace:'nowrap'}}>more time for real analysis. Self-serve deflects 80% of ad hoc requests.</span>
           </div>
         </div>
       </div>
@@ -700,7 +700,7 @@ function BottomCTA() {
         }}>
           <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
           <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',lineHeight:1.2,flexShrink:0}}>
-            Stop <span style={{color:'#07807E'}}>guessing.</span> Start <span style={{color:'#07807E'}}>shipping.</span>
+            Stop <span style={{color:'var(--ins-button-primary-bg)'}}>guessing.</span> Start <span style={{color:'var(--ins-button-primary-bg)'}}>shipping.</span>
           </h3>
           <form action="/auth/sign-up/" method="get" style={{
             display:'flex',alignItems:'center',
@@ -724,7 +724,7 @@ function BottomCTA() {
               display:'inline-flex',alignItems:'center',gap:'8px',
               padding:'10px 20px',margin:'4px',
               fontSize:'13px',fontWeight:600,color:'#fff',
-              background:'linear-gradient(135deg,#07807E,#09A09D)',
+              background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))',
               borderRadius:'8px',border:'none',cursor:'pointer',
               whiteSpace:'nowrap',flexShrink:0,
               fontFamily:'Geist,sans-serif',
@@ -756,7 +756,7 @@ function Positioning() {
           lineHeight:1.2,
           marginBottom:'18px',
         }}>
-          Stop being a <span style={{color:'#0EC4C1'}}>reporting service.</span> Start doing <span style={{color:'#0EC4C1'}}>real analysis.</span>
+          Stop being a <span style={{color:'var(--ins-text-highlight)'}}>reporting service.</span> Start doing <span style={{color:'var(--ins-text-highlight)'}}>real analysis.</span>
         </h2>
         <p style={{fontSize:'17px',color:'rgba(255,255,255,.6)',lineHeight:1.65,marginBottom:'28px'}}>
           Sound familiar? These are the problems Insightis eliminates.
@@ -765,7 +765,7 @@ function Positioning() {
           display:'inline-flex',alignItems:'center',gap:'8px',
           padding:'10px 20px',borderRadius:'999px',
           border:'1px solid rgba(255,255,255,.12)',
-          color:'#C0D4DC',fontSize:'14px',fontWeight:400,
+          color:'var(--ins-color-gray-200)',fontSize:'14px',fontWeight:400,
           textDecoration:'none',
           background:'rgba(255,255,255,.03)',
           transition:'all .2s',
@@ -803,15 +803,15 @@ function SpotlightChat() {
         {/* AI reply */}
         <div className="chat-bubble-ai">
           <div style={{fontSize:'12.5px',lineHeight:1.6,marginBottom:'12px'}}>
-            Adoption climbed across every plan since the <span style={{color:'#0EC4C1',fontWeight:500}}>v2.4</span> ship in March. <span style={{color:'#0EC4C1',fontWeight:500}}>Pro</span> leads at 78% (+34pts QoQ); <span style={{color:'#F87171',fontWeight:500}}>Free</span> at 18% remains the soft spot. Strongest lift came from the Team plan after the in-app prompt rolled out.
+            Adoption climbed across every plan since the <span style={{color:'var(--ins-text-highlight)',fontWeight:500}}>v2.4</span> ship in March. <span style={{color:'var(--ins-text-highlight)',fontWeight:500}}>Pro</span> leads at 78% (+34pts QoQ); <span style={{color:'var(--ins-status-error-fg)',fontWeight:500}}>Free</span> at 18% remains the soft spot. Strongest lift came from the Team plan after the in-app prompt rolled out.
           </div>
 
           {/* KPI blocks */}
           <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'7px',marginBottom:'10px'}}>
             {[
-              {label:'Pro',     val:'78%',   color:'#0EC4C1', sub:'best plan'},
-              {label:'QoQ lift',val:'+34pt', color:'#22C55E', sub:'avg across plans'},
-              {label:'Free',    val:'18%',   color:'#F87171', sub:'soft spot'},
+              {label:'Pro',     val:'78%',   color:'var(--ins-text-highlight)', sub:'best plan'},
+              {label:'QoQ lift',val:'+34pt', color:'var(--ins-status-success-fg)', sub:'avg across plans'},
+              {label:'Free',    val:'18%',   color:'var(--ins-status-error-fg)', sub:'soft spot'},
             ].map((k,i)=>(
               <div key={i} style={{
                 background:'rgba(255,255,255,.03)',
@@ -821,7 +821,7 @@ function SpotlightChat() {
               }}>
                 <div style={{fontSize:'9px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'3px'}}>{k.label}</div>
                 <div style={{fontSize:'13.5px',fontWeight:500,color:k.color,fontFamily:'Geist Mono,monospace',letterSpacing:'-.01em',marginBottom:'2px'}}>{k.val}</div>
-                <div style={{fontSize:'9.5px',color:'#7FA0AC'}}>{k.sub}</div>
+                <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)'}}>{k.sub}</div>
               </div>
             ))}
           </div>
@@ -834,9 +834,9 @@ function SpotlightChat() {
             fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#8AA6B3',
           }}>
             <span style={{letterSpacing:'.06em',textTransform:'uppercase'}}>Source</span>
-            <span style={{color:'#0EC4C1'}}>events.fct_feature_use</span>
+            <span style={{color:'var(--ins-text-highlight)'}}>events.fct_feature_use</span>
             <span>·</span>
-            <span style={{color:'#0EC4C1'}}>billing.fct_subscriptions</span>
+            <span style={{color:'var(--ins-text-highlight)'}}>billing.fct_subscriptions</span>
           </div>
         </div>
       </div>
@@ -861,9 +861,9 @@ function ChromeHeader({ label }) {
 
 function SpotlightSemantic() {
   const teams = [
-    {team:'Marketing', def:'trial signup',  color:'#FBBF24'},
+    {team:'Marketing', def:'trial signup',  color:'var(--ins-status-warning-fg)'},
     {team:'CS',        def:'weekly login',  color:'#A78BFA'},
-    {team:'Product',   def:'core action',   color:'#F87171'},
+    {team:'Product',   def:'core action',   color:'var(--ins-status-error-fg)'},
   ];
   return (
     <div style={{
@@ -894,7 +894,7 @@ function SpotlightSemantic() {
               textAlign:'center',
             }}>
               <div style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:t.color,letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'5px'}}>{t.team}</div>
-              <div style={{fontSize:'11.5px',color:'#C0D4DC'}}>{t.def}</div>
+              <div style={{fontSize:'11.5px',color:'var(--ins-color-gray-200)'}}>{t.def}</div>
             </div>
           ))}
         </div>
@@ -903,7 +903,7 @@ function SpotlightSemantic() {
         <div style={{display:'flex',justifyContent:'center',marginBottom:'10px'}}>
           <svg width="28" height="20" viewBox="0 0 28 20" fill="none">
             <path d="M4 1 L14 14 L24 1" stroke="rgba(14,196,193,.35)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M14 8 L14 18 M14 18 L10 14 M14 18 L18 14" stroke="#0EC4C1" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M14 8 L14 18 M14 18 L10 14 M14 18 L18 14" stroke="var(--ins-text-highlight)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
 
@@ -915,22 +915,22 @@ function SpotlightSemantic() {
           padding:'14px 14px',
         }}>
           <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'10px'}}>
-            <div style={{fontFamily:'Geist Mono,monospace',fontSize:'13.5px',color:'#E8F2F5',fontWeight:500}}>active_user</div>
+            <div style={{fontFamily:'Geist Mono,monospace',fontSize:'13.5px',color:'var(--ins-color-gray-100)',fontWeight:500}}>active_user</div>
             <span style={{
               display:'inline-flex',alignItems:'center',gap:'5px',
               padding:'3px 9px',borderRadius:'999px',
               background:'rgba(34,197,94,.08)',border:'1px solid rgba(34,197,94,.3)',
-              fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#22C55E',
+              fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-status-success-fg)',
               letterSpacing:'.06em',textTransform:'uppercase',
             }}>
-              <span style={{width:'5px',height:'5px',borderRadius:'50%',background:'#22C55E'}}/>
+              <span style={{width:'5px',height:'5px',borderRadius:'50%',background:'var(--ins-status-success-fg)'}}/>
               Certified · v2.4
             </span>
           </div>
           <div style={{
             fontFamily:'Geist Mono,monospace',
             fontSize:'11.5px',
-            color:'#C0D4DC',
+            color:'var(--ins-color-gray-200)',
             background:'rgba(0,0,0,.2)',
             border:'1px solid rgba(255,255,255,.04)',
             borderRadius:'7px',
@@ -938,9 +938,9 @@ function SpotlightSemantic() {
             marginBottom:'10px',
             lineHeight:1.5,
           }}>
-            <span style={{color:'#7FA0AC'}}>users with</span> <span style={{color:'#0EC4C1'}}>core_action</span> <span style={{color:'#7FA0AC'}}>in 7d / new_signups</span>
+            <span style={{color:'var(--ins-text-inactive)'}}>users with</span> <span style={{color:'var(--ins-text-highlight)'}}>core_action</span> <span style={{color:'var(--ins-text-inactive)'}}>in 7d / new_signups</span>
           </div>
-          <div style={{display:'flex',justifyContent:'space-between',gap:'10px',fontSize:'10.5px',color:'#C0D4DC'}}>
+          <div style={{display:'flex',justifyContent:'space-between',gap:'10px',fontSize:'10.5px',color:'var(--ins-color-gray-200)'}}>
             <span><span style={{color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.06em',textTransform:'uppercase',fontSize:'9px',marginRight:'5px'}}>Owned</span>Product Analytics</span>
             <span><span style={{color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.06em',textTransform:'uppercase',fontSize:'9px',marginRight:'5px'}}>Used by</span>12 reports · 3 teams</span>
           </div>
@@ -952,9 +952,9 @@ function SpotlightSemantic() {
 
 function SpotlightAnomalies() {
   const segments = [
-    {seg:'Mobile · iOS',     val:'−67%', color:'#F87171', bad:true},
-    {seg:'Mobile · Android', val:'−41%', color:'#F87171', bad:true},
-    {seg:'Web',              val:'−2%',  color:'#7FA0AC', bad:false},
+    {seg:'Mobile · iOS',     val:'−67%', color:'var(--ins-status-error-fg)', bad:true},
+    {seg:'Mobile · Android', val:'−41%', color:'var(--ins-status-error-fg)', bad:true},
+    {seg:'Web',              val:'−2%',  color:'var(--ins-text-inactive)', bad:false},
   ];
   return (
     <div style={{
@@ -972,7 +972,7 @@ function SpotlightAnomalies() {
         {/* User question */}
         <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'12px'}}>
           <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#8AA6B3',letterSpacing:'.08em',textTransform:'uppercase'}}>asked</span>
-          <span style={{fontSize:'12.5px',color:'#C0D4DC'}}>"Which cohort is dragging activation?"</span>
+          <span style={{fontSize:'12.5px',color:'var(--ins-color-gray-200)'}}>"Which cohort is dragging activation?"</span>
         </div>
 
         {/* Multi-cohort line chart */}
@@ -986,10 +986,10 @@ function SpotlightAnomalies() {
           <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'8px'}}>
             <div style={{display:'flex',gap:'10px',fontFamily:'Geist Mono,monospace',fontSize:'9.5px',alignItems:'center'}}>
               <span style={{color:'#A78BFA',display:'inline-flex',alignItems:'center',gap:'4px'}}><span style={{width:'10px',height:'2px',background:'#A78BFA',borderRadius:'1px'}}/>Apr</span>
-              <span style={{color:'#F87171',display:'inline-flex',alignItems:'center',gap:'4px'}}><span style={{width:'10px',height:'2px',background:'#F87171',borderRadius:'1px'}}/>May</span>
-              <span style={{color:'#0EC4C1',display:'inline-flex',alignItems:'center',gap:'4px'}}><span style={{width:'10px',height:'2px',background:'#0EC4C1',borderRadius:'1px'}}/>Jun</span>
+              <span style={{color:'var(--ins-status-error-fg)',display:'inline-flex',alignItems:'center',gap:'4px'}}><span style={{width:'10px',height:'2px',background:'var(--ins-status-error-fg)',borderRadius:'1px'}}/>May</span>
+              <span style={{color:'var(--ins-text-highlight)',display:'inline-flex',alignItems:'center',gap:'4px'}}><span style={{width:'10px',height:'2px',background:'var(--ins-text-highlight)',borderRadius:'1px'}}/>Jun</span>
             </div>
-            <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#7FA0AC'}}>activation · D7</span>
+            <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-inactive)'}}>activation · D7</span>
           </div>
           <svg viewBox="0 0 280 60" width="100%" height="60" preserveAspectRatio="none" style={{display:'block'}}>
             <line x1="0" y1="18" x2="280" y2="18" stroke="rgba(255,255,255,0.04)" strokeDasharray="2,3"/>
@@ -997,10 +997,10 @@ function SpotlightAnomalies() {
             {/* Apr cohort - lavender, steady */}
             <path d="M0,16 L40,15 L80,17 L120,16 L160,15 L200,16 L240,15 L280,16" fill="none" stroke="#A78BFA" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             {/* Jun cohort - teal, healthy */}
-            <path d="M0,20 L40,18 L80,17 L120,15 L160,14 L200,13 L240,12 L280,12" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M0,20 L40,18 L80,17 L120,15 L160,14 L200,13 L240,12 L280,12" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             {/* May cohort - red, dropping */}
-            <path d="M0,18 L40,20 L80,22 L120,28 L160,38 L200,44 L240,48 L280,50" fill="none" stroke="#F87171" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <circle cx="280" cy="50" r="2.6" fill="#F87171"/>
+            <path d="M0,18 L40,20 L80,22 L120,28 L160,38 L200,44 L240,48 L280,50" fill="none" stroke="var(--ins-status-error-fg)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <circle cx="280" cy="50" r="2.6" fill="var(--ins-status-error-fg)"/>
           </svg>
         </div>
 
@@ -1018,7 +1018,7 @@ function SpotlightAnomalies() {
                 width:'6px',height:'6px',borderRadius:'50%',
                 background:r.color,flexShrink:0,
               }}/>
-              <span style={{fontSize:'11.5px',color:'#C0D4DC',flex:1,fontFamily:'Geist Mono,monospace'}}>{r.seg}</span>
+              <span style={{fontSize:'11.5px',color:'var(--ins-color-gray-200)',flex:1,fontFamily:'Geist Mono,monospace'}}>{r.seg}</span>
               <span style={{fontSize:'12px',fontWeight:500,color:r.color,fontFamily:'Geist Mono,monospace'}}>{r.val}</span>
             </div>
           ))}
@@ -1091,7 +1091,7 @@ function SpotlightStack() {
                 flexShrink:0,
               }}>{s.icon}</div>
               <div style={{minWidth:0,flex:1}}>
-                <div style={{fontSize:'11.5px',fontWeight:500,color:'#E8F2F5',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{s.name}</div>
+                <div style={{fontSize:'11.5px',fontWeight:500,color:'var(--ins-color-gray-100)',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{s.name}</div>
                 <div style={{fontFamily:'Geist Mono,monospace',fontSize:'8.5px',color:'#8AA6B3',letterSpacing:'.08em',textTransform:'uppercase'}}>{s.kind}</div>
               </div>
               <div style={{
@@ -1108,9 +1108,9 @@ function SpotlightStack() {
           <svg viewBox="0 0 64 280" preserveAspectRatio="none" width="100%" height="100%" style={{display:'block'}}>
             <defs>
               <linearGradient id="stack-flow" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%"  stopColor="#0EC4C1" stopOpacity="0.15"/>
-                <stop offset="60%" stopColor="#0EC4C1" stopOpacity="0.55"/>
-                <stop offset="100%" stopColor="#0EC4C1" stopOpacity="0.85"/>
+                <stop offset="0%"  stopColor="var(--ins-text-highlight)" stopOpacity="0.15"/>
+                <stop offset="60%" stopColor="var(--ins-text-highlight)" stopOpacity="0.55"/>
+                <stop offset="100%" stopColor="var(--ins-text-highlight)" stopOpacity="0.85"/>
               </linearGradient>
             </defs>
             {/* 5 curved branches from each source row to a shared right-side convergence point */}
@@ -1120,8 +1120,8 @@ function SpotlightStack() {
             <path d="M0,190 C28,190 36,140 64,140" stroke="url(#stack-flow)" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
             <path d="M0,240 C28,240 36,140 64,140" stroke="url(#stack-flow)" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
             {/* Convergence node */}
-            <circle cx="64" cy="140" r="6" fill="none" stroke="#0EC4C1" strokeWidth="1" opacity="0.4"/>
-            <circle cx="64" cy="140" r="3" fill="#0EC4C1"/>
+            <circle cx="64" cy="140" r="6" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1" opacity="0.4"/>
+            <circle cx="64" cy="140" r="3" fill="var(--ins-text-highlight)"/>
           </svg>
         </div>
 
@@ -1143,15 +1143,15 @@ function SpotlightStack() {
               display:'flex',alignItems:'center',justifyContent:'center',
             }}>
               <svg width="22" height="22" viewBox="0 0 26 26" fill="none">
-                <path d="M25.5 10.4L21.7 12.7L25.5 15.1L12.7 22.8L0 15.1L3.8 12.7L0 10.4L5.7 6.9L7.6 8.1L3.8 10.4L12.7 15.8L21.7 10.4L17.8 8.1L19.8 6.9L25.5 10.4Z" fill="#0EC4C1"/>
+                <path d="M25.5 10.4L21.7 12.7L25.5 15.1L12.7 22.8L0 15.1L3.8 12.7L0 10.4L5.7 6.9L7.6 8.1L3.8 10.4L12.7 15.8L21.7 10.4L17.8 8.1L19.8 6.9L25.5 10.4Z" fill="var(--ins-text-highlight)"/>
               </svg>
             </div>
             <div>
-              <div style={{fontSize:'13.5px',fontWeight:600,color:'#E8F2F5'}}>Insightis</div>
+              <div style={{fontSize:'13.5px',fontWeight:600,color:'var(--ins-color-gray-100)'}}>Insightis</div>
               <div style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#8AA6B3',letterSpacing:'.08em',textTransform:'uppercase',marginTop:'2px'}}>Semantic Layer</div>
             </div>
             <span style={{
-              fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#0EC4C1',
+              fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-highlight)',
               padding:'3px 9px',borderRadius:'999px',
               background:'rgba(9,160,157,.12)',border:'1px solid rgba(9,160,157,.3)',
               letterSpacing:'.08em',textTransform:'uppercase',
@@ -1198,12 +1198,12 @@ function FeatureSpotlights() {
   ];
 
   return (
-    <section id="spotlights" style={{padding:'80px 0 100px',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
+    <section id="spotlights" style={{padding:'80px 0 100px',background:'linear-gradient(180deg,var(--ins-surface-page) 0%,var(--ins-surface-container) 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'72px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>How it works</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>How it works</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
             Built for the way product teams actually work
@@ -1225,8 +1225,8 @@ function FeatureSpotlights() {
               }}>
                 <div data-spotlight-text style={{order: reverse ? 2 : 0}}>
                   <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'18px'}}>
-                    <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-                    <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>{s.eyebrow}</span>
+                    <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+                    <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>{s.eyebrow}</span>
                   </div>
                   <h3 style={{fontSize:'clamp(24px,2.6vw,34px)',fontWeight:500,color:'#fff',letterSpacing:'-.025em',lineHeight:1.18,marginBottom:'18px'}}>
                     {s.title}
@@ -1236,8 +1236,8 @@ function FeatureSpotlights() {
                   </p>
                   <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px'}}>
                     {s.bullets.map((b,bi) => (
-                      <li key={bi} style={{display:'flex',alignItems:'flex-start',gap:'10px',fontSize:'14px',color:'#C0D4DC',lineHeight:1.55}}>
-                        <span style={{color:'#0EC4C1',flexShrink:0,marginTop:'1px'}}>✓</span>
+                      <li key={bi} style={{display:'flex',alignItems:'flex-start',gap:'10px',fontSize:'14px',color:'var(--ins-color-gray-200)',lineHeight:1.55}}>
+                        <span style={{color:'var(--ins-text-highlight)',flexShrink:0,marginTop:'1px'}}>✓</span>
                         {b}
                       </li>
                     ))}
@@ -1264,39 +1264,39 @@ function FeatureSpotlights() {
 function UseCases() {
   const cases = [
     {
-      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z" stroke="#0EC4C1" strokeWidth="1.5"/><path d="M9 8h6M9 12h6M9 16h4" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M9 8h6M9 12h6M9 16h4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
       title:'Feature adoption tracking',
       desc:'Did anyone actually use that feature you shipped last quarter? Get adoption, depth-of-use, and stickiness numbers without filing a data request.',
     },
     {
-      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 3v18h18" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/><path d="M7 14l4-4 3 3 5-7" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 3v18h18" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/><path d="M7 14l4-4 3 3 5-7" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
       title:'Cohort & retention analysis',
       desc:'Slice retention by signup channel, plan, persona, or cohort week — without writing complex SQL joins across event, user, and billing tables.',
     },
     {
-      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l3-9 4 18 3-9h4" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l3-9 4 18 3-9h4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
       title:'Onboarding funnel diagnosis',
       desc:'Find the step where new users abandon, the segment where drop-off is worst, and the cause behind it — before the cohort fully churns.',
     },
     {
-      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#0EC4C1" strokeWidth="1.5"/><polyline points="12 6 12 12 16 14" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><polyline points="12 6 12 12 16 14" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
       title:'Time-to-value measurement',
       desc:'How long does it take a new user to hit their aha moment? Correlate sign-up, event, and retention data instantly instead of building a one-off analysis.',
     },
     {
-      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 18l6-6 4 4 8-10" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><polyline points="14 6 21 6 21 13" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 18l6-6 4 4 8-10" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><polyline points="14 6 21 6 21 13" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
       title:'A/B test readouts on demand',
       desc:'Get experiment readouts without waiting on the data team. Lift, confidence, and segment breakdowns from your event data in plain English.',
     },
     {
-      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="12" width="4" height="9" rx="1" stroke="#0EC4C1" strokeWidth="1.5"/><rect x="9" y="7" width="4" height="14" rx="1" stroke="#0EC4C1" strokeWidth="1.5"/><rect x="16" y="3" width="4" height="18" rx="1" stroke="#0EC4C1" strokeWidth="1.5"/></svg>,
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="12" width="4" height="9" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><rect x="9" y="7" width="4" height="14" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><rect x="16" y="3" width="4" height="18" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/></svg>,
       title:'Roadmap impact reporting',
       desc:'Tie the features you ship to the metrics that matter — activation, retention, expansion. Show exec stakeholders the impact in numbers, not anecdotes.',
     },
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0D1117 0%,#0A0E13 100%)'}}>
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,var(--ins-surface-container) 0%,var(--ins-surface-page) 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{marginBottom:'80px'}}>
           <div style={{
@@ -1310,9 +1310,9 @@ function UseCases() {
             <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
             <div style={{flex:'1 1 360px',minWidth:0}}>
               <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'8px'}}>
-                Ship faster with <span style={{color:'#07807E'}}>better data</span>.
+                Ship faster with <span style={{color:'var(--ins-button-primary-bg)'}}>better data</span>.
               </h3>
-              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.6}}>
+              <p style={{fontSize:'14px',color:'var(--ins-text-inactive)',lineHeight:1.6}}>
                 Connect Mixpanel, your warehouse, and Stripe — and ask the next product question yourself.
               </p>
             </div>
@@ -1320,7 +1320,7 @@ function UseCases() {
               display:'inline-flex',alignItems:'center',gap:'8px',
               padding:'14px 26px',flexShrink:0,
               fontSize:'14px',fontWeight:600,color:'#fff',
-              background:'linear-gradient(135deg,#07807E,#09A09D)',
+              background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))',
               borderRadius:'10px',border:'none',cursor:'pointer',
               whiteSpace:'nowrap',
               fontFamily:'Geist,sans-serif',
@@ -1334,8 +1334,8 @@ function UseCases() {
         </div>
         <div style={{textAlign:'center',marginBottom:'56px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Use cases</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>Use cases</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
             What product teams use Insightis for
@@ -1359,8 +1359,8 @@ function UseCases() {
               <div style={{width:'38px',height:'38px',borderRadius:'10px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'14px'}}>
                 {c.icon}
               </div>
-              <h3 style={{fontSize:'15px',fontWeight:600,color:'#E8F2F5',marginBottom:'6px'}}>{c.title}</h3>
-              <p style={{fontSize:'13.5px',color:'#7FA0AC',lineHeight:1.6}}>{c.desc}</p>
+              <h3 style={{fontSize:'15px',fontWeight:600,color:'var(--ins-color-gray-100)',marginBottom:'6px'}}>{c.title}</h3>
+              <p style={{fontSize:'13.5px',color:'var(--ins-text-inactive)',lineHeight:1.6}}>{c.desc}</p>
             </div>
           ))}
         </div>
@@ -1393,12 +1393,12 @@ function Testimonials() {
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,var(--ins-surface-page) 0%,var(--ins-surface-container) 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'56px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Stories</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>Stories</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
             Data teams who stopped firefighting
@@ -1421,14 +1421,14 @@ function Testimonials() {
             >
               <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.4),transparent)'}}/>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style={{marginBottom:'14px',opacity:.5}}>
-                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h2c1 0 2 .75 2 2v.5C8 19 6 19 3 19v2zm12 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h2c1 0 2 .75 2 2v.5c0 3.5-2 3.5-5 3.5v2z" fill="#0EC4C1"/>
+                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h2c1 0 2 .75 2 2v.5C8 19 6 19 3 19v2zm12 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h2c1 0 2 .75 2 2v.5c0 3.5-2 3.5-5 3.5v2z" fill="var(--ins-text-highlight)"/>
               </svg>
-              <p style={{fontSize:'15px',color:'#C0D4DC',lineHeight:1.6,marginBottom:'22px',flex:1}}>
+              <p style={{fontSize:'15px',color:'var(--ins-color-gray-200)',lineHeight:1.6,marginBottom:'22px',flex:1}}>
                 {t.quote}
               </p>
               <div style={{paddingTop:'18px',borderTop:'1px solid rgba(255,255,255,.06)'}}>
-                <div style={{fontSize:'14px',color:'#E8F2F5',fontWeight:500}}>{t.name}</div>
-                <div style={{fontSize:'12px',color:'#7FA0AC',marginTop:'2px'}}>{t.role}</div>
+                <div style={{fontSize:'14px',color:'var(--ins-color-gray-100)',fontWeight:500}}>{t.name}</div>
+                <div style={{fontSize:'12px',color:'var(--ins-text-inactive)',marginTop:'2px'}}>{t.role}</div>
                 <div style={{
                   display:'inline-block',marginTop:'10px',
                   padding:'3px 10px',borderRadius:'999px',
@@ -1476,12 +1476,12 @@ function FAQ() {
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0D1117 0%,#0A0E13 100%)'}}>
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,var(--ins-surface-container) 0%,var(--ins-surface-page) 100%)'}}>
       <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'48px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>FAQ</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>FAQ</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
             Questions product teams ask

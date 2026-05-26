@@ -142,18 +142,18 @@ function DocsTabs({ activeTab, setActiveTab }) {
                 padding:'12px 18px',
                 fontSize:'13.5px',
                 fontWeight: activeTab === tab.id ? 500 : 400,
-                color: activeTab === tab.id ? '#E8F2F5' : '#7FA0AC',
+                color: activeTab === tab.id ? 'var(--ins-color-gray-100)' : 'var(--ins-text-inactive)',
                 background: 'transparent',
                 border: 'none',
-                borderBottom: activeTab === tab.id ? '2px solid #0A9896' : '2px solid transparent',
+                borderBottom: activeTab === tab.id ? '2px solid var(--ins-color-teal-700)' : '2px solid transparent',
                 cursor: 'pointer',
                 transition: 'color 0.15s, border-color 0.15s',
                 whiteSpace: 'nowrap',
                 fontFamily: 'Geist,sans-serif',
                 marginBottom: '-1px',
               }}
-              onMouseEnter={(e) => { if (activeTab !== tab.id) e.currentTarget.style.color = '#E8F2F5'; }}
-              onMouseLeave={(e) => { if (activeTab !== tab.id) e.currentTarget.style.color = '#7FA0AC'; }}
+              onMouseEnter={(e) => { if (activeTab !== tab.id) e.currentTarget.style.color = 'var(--ins-color-gray-100)'; }}
+              onMouseLeave={(e) => { if (activeTab !== tab.id) e.currentTarget.style.color = 'var(--ins-text-inactive)'; }}
             >
               {tab.label}
             </button>
@@ -198,7 +198,7 @@ function DocsSidebar({ activePage, setActivePage, expandedSections, setExpandedS
             onChange={(e) => setSidebarSearch(e.target.value)}
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
-              fontSize:'13px', color:'#E8F2F5', fontFamily:'Geist,sans-serif',
+              fontSize:'13px', color:'var(--ins-color-gray-100)', fontFamily:'Geist,sans-serif',
             }}
           />
         </div>
@@ -236,15 +236,15 @@ function DocsSidebar({ activePage, setActivePage, expandedSections, setExpandedS
                     padding:'6px 16px 6px 20px',
                     background: activePage === item.id ? 'rgba(10,152,150,0.08)' : 'transparent',
                     border:'none',
-                    borderLeft: activePage === item.id ? '2px solid #0A9896' : '2px solid transparent',
-                    color: activePage === item.id ? '#E8F2F5' : '#7FA0AC',
+                    borderLeft: activePage === item.id ? '2px solid var(--ins-color-teal-700)' : '2px solid transparent',
+                    color: activePage === item.id ? 'var(--ins-color-gray-100)' : 'var(--ins-text-inactive)',
                     fontSize:'13px', cursor:'pointer',
                     transition:'all 0.15s',
                     fontFamily:'Geist,sans-serif',
                     lineHeight: 1.5,
                   }}
-                  onMouseEnter={(e) => { if (activePage !== item.id) { e.currentTarget.style.color = '#E8F2F5'; e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; }}}
-                  onMouseLeave={(e) => { if (activePage !== item.id) { e.currentTarget.style.color = '#7FA0AC'; e.currentTarget.style.background = 'transparent'; }}}
+                  onMouseEnter={(e) => { if (activePage !== item.id) { e.currentTarget.style.color = 'var(--ins-color-gray-100)'; e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; }}}
+                  onMouseLeave={(e) => { if (activePage !== item.id) { e.currentTarget.style.color = 'var(--ins-text-inactive)'; e.currentTarget.style.background = 'transparent'; }}}
                 >
                   {item.label}
                 </button>
@@ -285,13 +285,13 @@ function DocsTOC({ toc, activeSection, setActiveSection }) {
               display:'block',
               padding:'5px 0 5px 12px',
               fontSize:'13px',
-              color: activeSection === item.id ? '#0EC4C1' : '#5E8290',
-              borderLeft: activeSection === item.id ? '2px solid #0A9896' : '2px solid transparent',
+              color: activeSection === item.id ? 'var(--ins-text-highlight)' : '#5E8290',
+              borderLeft: activeSection === item.id ? '2px solid var(--ins-color-teal-700)' : '2px solid transparent',
               textDecoration:'none',
               transition:'color 0.15s, border-color 0.15s',
               lineHeight:1.5,
             }}
-            onMouseEnter={(e) => { if (activeSection !== item.id) e.currentTarget.style.color = '#7FA0AC'; }}
+            onMouseEnter={(e) => { if (activeSection !== item.id) e.currentTarget.style.color = 'var(--ins-text-inactive)'; }}
             onMouseLeave={(e) => { if (activeSection !== item.id) e.currentTarget.style.color = '#5E8290'; }}
           >
             {item.label}
@@ -327,7 +327,7 @@ function DocsAskQuestion() {
         borderRadius:'10px',
         padding:'4px 4px 4px 14px',
       }}>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7FA0AC" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
         </svg>
         <input
@@ -336,13 +336,13 @@ function DocsAskQuestion() {
           onChange={(e) => setQuestion(e.target.value)}
           style={{
             flex:1, background:'transparent', border:'none', outline:'none',
-            fontSize:'14px', color:'#E8F2F5', fontFamily:'Geist,sans-serif',
+            fontSize:'14px', color:'var(--ins-color-gray-100)', fontFamily:'Geist,sans-serif',
             padding:'9px 4px',
           }}
         />
         <button type="submit" style={{
           padding:'8px 18px', borderRadius:'7px',
-          background:'linear-gradient(135deg,#0EC4C1 0%,#0A9896 100%)',
+          background:'linear-gradient(135deg,var(--ins-text-highlight) 0%,var(--ins-color-teal-700) 100%)',
           color:'#fff', fontSize:'13px', fontWeight:500,
           border:'none', cursor:'pointer', fontFamily:'Geist,sans-serif',
           flexShrink:0,
@@ -392,7 +392,7 @@ function PageFeedback() {
     }}>
       {submitted ? (
         <div style={{ display:'flex', alignItems:'center', gap:'8px' }}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="20 6 9 17 4 12"/>
           </svg>
           <span style={{ fontSize:'13px', color:'#5E8290' }}>Thanks for your feedback!</span>
@@ -409,11 +409,11 @@ function PageFeedback() {
                   padding:'5px 12px', borderRadius:'6px',
                   background: vote === 'up' ? 'rgba(14,196,193,0.15)' : 'rgba(255,255,255,0.04)',
                   border: vote === 'up' ? '1px solid rgba(14,196,193,0.4)' : '1px solid rgba(255,255,255,0.08)',
-                  color: vote === 'up' ? '#0EC4C1' : '#5E8290',
+                  color: vote === 'up' ? 'var(--ins-text-highlight)' : '#5E8290',
                   cursor:'pointer', fontSize:'12px', fontFamily:'Geist,sans-serif',
                   transition:'all .15s',
                 }}
-                onMouseEnter={e => { if (vote !== 'up') { e.currentTarget.style.background='rgba(255,255,255,0.07)'; e.currentTarget.style.color='#7FA0AC'; }}}
+                onMouseEnter={e => { if (vote !== 'up') { e.currentTarget.style.background='rgba(255,255,255,0.07)'; e.currentTarget.style.color='var(--ins-text-inactive)'; }}}
                 onMouseLeave={e => { if (vote !== 'up') { e.currentTarget.style.background='rgba(255,255,255,0.04)'; e.currentTarget.style.color='#5E8290'; }}}
               >
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -433,7 +433,7 @@ function PageFeedback() {
                   cursor:'pointer', fontSize:'12px', fontFamily:'Geist,sans-serif',
                   transition:'all .15s',
                 }}
-                onMouseEnter={e => { if (vote !== 'down') { e.currentTarget.style.background='rgba(255,255,255,0.07)'; e.currentTarget.style.color='#7FA0AC'; }}}
+                onMouseEnter={e => { if (vote !== 'down') { e.currentTarget.style.background='rgba(255,255,255,0.07)'; e.currentTarget.style.color='var(--ins-text-inactive)'; }}}
                 onMouseLeave={e => { if (vote !== 'down') { e.currentTarget.style.background='rgba(255,255,255,0.04)'; e.currentTarget.style.color='#5E8290'; }}}
               >
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -455,7 +455,7 @@ function PageFeedback() {
               animation:'fadeUp .2s ease',
             }}>
               <form onSubmit={handleSubmit}>
-                <label style={{ display:'block', fontSize:'13px', color:'#7FA0AC', fontWeight:500, marginBottom:'10px' }}>
+                <label style={{ display:'block', fontSize:'13px', color:'var(--ins-text-inactive)', fontWeight:500, marginBottom:'10px' }}>
                   {prompts[vote].label}
                 </label>
                 <textarea
@@ -470,7 +470,7 @@ function PageFeedback() {
                     background:'rgba(255,255,255,0.04)',
                     border: focused ? '1px solid rgba(9,160,157,.4)' : '1px solid rgba(255,255,255,0.08)',
                     borderRadius:'8px', padding:'10px 12px',
-                    fontSize:'13px', color:'#E8F2F5', lineHeight:1.6,
+                    fontSize:'13px', color:'var(--ins-color-gray-100)', lineHeight:1.6,
                     fontFamily:'Geist,sans-serif',
                     outline:'none', transition:'border-color .2s',
                     boxSizing:'border-box',
@@ -483,20 +483,20 @@ function PageFeedback() {
                     color:'#5E8290', fontSize:'12px', cursor:'pointer',
                     fontFamily:'Geist,sans-serif', transition:'color .15s',
                   }}
-                  onMouseEnter={e => e.currentTarget.style.color='#7FA0AC'}
+                  onMouseEnter={e => e.currentTarget.style.color='var(--ins-text-inactive)'}
                   onMouseLeave={e => e.currentTarget.style.color='#5E8290'}
                   >
                     Skip
                   </button>
                   <button type="submit" style={{
                     padding:'6px 16px', borderRadius:'6px',
-                    background:'#07807E', border:'none',
+                    background:'var(--ins-button-primary-bg)', border:'none',
                     color:'#fff', fontSize:'12px', fontWeight:500,
                     cursor:'pointer', fontFamily:'Geist,sans-serif',
                     transition:'background .15s',
                   }}
-                  onMouseEnter={e => e.currentTarget.style.background='#09A09D'}
-                  onMouseLeave={e => e.currentTarget.style.background='#07807E'}
+                  onMouseEnter={e => e.currentTarget.style.background='var(--ins-button-primary-bg-hover)'}
+                  onMouseLeave={e => e.currentTarget.style.background='var(--ins-button-primary-bg)'}
                   >
                     Send feedback
                   </button>
@@ -539,12 +539,12 @@ function CopyPageButton({ page }) {
         padding:'5px 10px', borderRadius:'6px',
         background: copied ? 'rgba(9,160,157,.15)' : 'rgba(255,255,255,.05)',
         border: copied ? '1px solid rgba(9,160,157,.35)' : '1px solid rgba(255,255,255,.08)',
-        color: copied ? '#0EC4C1' : '#5E8290',
+        color: copied ? 'var(--ins-text-highlight)' : '#5E8290',
         fontSize:'12px', fontWeight:500, cursor:'pointer',
         fontFamily:'inherit', flexShrink:0,
         transition:'all .15s',
       }}
-      onMouseEnter={(e) => { if (!copied) { e.currentTarget.style.background='rgba(255,255,255,.08)'; e.currentTarget.style.color='#7FA0AC'; }}}
+      onMouseEnter={(e) => { if (!copied) { e.currentTarget.style.background='rgba(255,255,255,.08)'; e.currentTarget.style.color='var(--ins-text-inactive)'; }}}
       onMouseLeave={(e) => { if (!copied) { e.currentTarget.style.background='rgba(255,255,255,.05)'; e.currentTarget.style.color='#5E8290'; }}}
     >
       {copied ? (
@@ -578,7 +578,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
         {page.breadcrumb.map((crumb, i) => (
           <React.Fragment key={i}>
             {i > 0 && <span style={{ color:'#3A5260', fontSize:'13px' }}>/</span>}
-            <span style={{ fontSize:'13px', color: i === page.breadcrumb.length - 1 ? '#7FA0AC' : '#5E8290' }}>{crumb}</span>
+            <span style={{ fontSize:'13px', color: i === page.breadcrumb.length - 1 ? 'var(--ins-text-inactive)' : '#5E8290' }}>{crumb}</span>
           </React.Fragment>
         ))}
       </div>
@@ -587,7 +587,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'16px' }}>
         <h1 style={{
           fontSize:'32px', fontWeight:700, letterSpacing:'-0.02em',
-          color:'#E8F2F5', lineHeight:1.2, margin:0,
+          color:'var(--ins-color-gray-100)', lineHeight:1.2, margin:0,
         }}>
           {page.title}
         </h1>
@@ -596,7 +596,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
 
       {/* Description */}
       <p style={{
-        fontSize:'16px', color:'#7FA0AC', lineHeight:1.75,
+        fontSize:'16px', color:'var(--ins-text-inactive)', lineHeight:1.75,
         marginBottom:'36px',
       }}>
         {page.description}
@@ -607,7 +607,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
         <div style={{
           position:'relative', borderRadius:'14px', overflow:'hidden',
           border:'1px solid rgba(255,255,255,0.08)',
-          background:'#0A0E13',
+          background:'var(--ins-surface-page)',
           backgroundImage:'url("https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80")',
           backgroundSize:'cover', backgroundPosition:'center',
           marginBottom:'52px', aspectRatio:'16/9',
@@ -623,14 +623,14 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
           }}>
             <div style={{
               width:'32px', height:'32px', borderRadius:'8px',
-              background:'linear-gradient(135deg,#0EC4C1,#0A9896)',
+              background:'linear-gradient(135deg,var(--ins-text-highlight),var(--ins-color-teal-700))',
               display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0,
             }}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
                 <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/>
               </svg>
             </div>
-            <span style={{ fontSize:'13px', fontWeight:500, color:'#E8F2F5' }}>{page.videoTitle}</span>
+            <span style={{ fontSize:'13px', fontWeight:500, color:'var(--ins-color-gray-100)' }}>{page.videoTitle}</span>
           </div>
           <div style={{
             width:'64px', height:'64px', borderRadius:'50%', position:'relative', zIndex:1,
@@ -655,7 +655,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
               id={section.id}
               className="doc-section-heading"
               style={{
-                fontSize:'21px', fontWeight:600, color:'#E8F2F5',
+                fontSize:'21px', fontWeight:600, color:'var(--ins-color-gray-100)',
                 letterSpacing:'-0.01em', marginBottom:'12px',
                 scrollMarginTop:'140px',
               }}
@@ -668,7 +668,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
                 dangerouslySetInnerHTML={{ __html: section.html }}
               />
             ) : (
-              <p style={{ fontSize:'15px', color:'#7FA0AC', lineHeight:1.8 }}>
+              <p style={{ fontSize:'15px', color:'var(--ins-text-inactive)', lineHeight:1.8 }}>
                 {section.content}
               </p>
             )}
@@ -700,7 +700,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
               onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'}
             >
               <span style={{ fontSize:'11px', color:'#5E8290', fontWeight:500 }}>← Previous</span>
-              <span style={{ fontSize:'13px', color:'#E8F2F5', fontWeight:500 }}>{page.prevNext.prev.label}</span>
+              <span style={{ fontSize:'13px', color:'var(--ins-color-gray-100)', fontWeight:500 }}>{page.prevNext.prev.label}</span>
               <span style={{ fontSize:'11px', color:'#5E8290' }}>{page.prevNext.prev.section}</span>
             </button>
           )}
@@ -718,7 +718,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
               onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'}
             >
               <span style={{ fontSize:'11px', color:'#5E8290', fontWeight:500 }}>Next →</span>
-              <span style={{ fontSize:'13px', color:'#E8F2F5', fontWeight:500 }}>{page.prevNext.next.label}</span>
+              <span style={{ fontSize:'13px', color:'var(--ins-color-gray-100)', fontWeight:500 }}>{page.prevNext.next.label}</span>
               <span style={{ fontSize:'11px', color:'#5E8290' }}>{page.prevNext.next.section}</span>
             </button>
           )}
@@ -776,7 +776,7 @@ function FloatingChat({ onSubmit }) {
           padding:'10px 10px 10px 16px',
           transition:'border-color .2s',
         }}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7FA0AC" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
           </svg>
           <input
@@ -789,7 +789,7 @@ function FloatingChat({ onSubmit }) {
             placeholder="Ask a question..."
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
-              fontSize:'14px', color:'#E8F2F5',
+              fontSize:'14px', color:'var(--ins-color-gray-100)',
               fontFamily:'inherit',
             }}
           />
@@ -798,15 +798,15 @@ function FloatingChat({ onSubmit }) {
             style={{
               flexShrink:0,
               padding:'8px 20px', borderRadius:'8px',
-              background: value.trim() ? '#07807E' : 'rgba(9,160,157,.15)',
+              background: value.trim() ? 'var(--ins-button-primary-bg)' : 'rgba(9,160,157,.15)',
               color: value.trim() ? '#fff' : '#4A9EA0',
               border:'none', cursor: value.trim() ? 'pointer' : 'default',
               fontSize:'13px', fontWeight:600,
               fontFamily:'inherit',
               transition:'background .2s, color .2s',
             }}
-            onMouseEnter={(e) => { if (value.trim()) e.currentTarget.style.background = '#09A09D'; }}
-            onMouseLeave={(e) => { if (value.trim()) e.currentTarget.style.background = '#07807E'; }}
+            onMouseEnter={(e) => { if (value.trim()) e.currentTarget.style.background = 'var(--ins-button-primary-bg-hover)'; }}
+            onMouseLeave={(e) => { if (value.trim()) e.currentTarget.style.background = 'var(--ins-button-primary-bg)'; }}
           >
             Ask AI
           </button>
@@ -884,7 +884,7 @@ function AIAssistantPanel({ query, onClose }) {
       background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
       color:'#5E8290', transition:'color .15s',
     }}
-    onMouseEnter={e => e.currentTarget.style.color = '#7FA0AC'}
+    onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-text-inactive)'}
     onMouseLeave={e => e.currentTarget.style.color = '#5E8290'}
     >
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -909,17 +909,17 @@ function AIAssistantPanel({ query, onClose }) {
         flexShrink:0,
       }}>
         <div style={{ display:'flex', alignItems:'center', gap:'7px' }}>
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
           </svg>
-          <span style={{ fontSize:'13px', fontWeight:600, color:'#E8F2F5' }}>Assistant</span>
+          <span style={{ fontSize:'13px', fontWeight:600, color:'var(--ins-color-gray-100)' }}>Assistant</span>
         </div>
         <div style={{ display:'flex', gap:'2px' }}>
           <button onClick={onClose} style={{
             background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
             color:'#5E8290', transition:'color .15s', display:'flex',
           }}
-          onMouseEnter={e => e.currentTarget.style.color = '#E8F2F5'}
+          onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-color-gray-100)'}
           onMouseLeave={e => e.currentTarget.style.color = '#5E8290'}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -964,7 +964,7 @@ function AIAssistantPanel({ query, onClose }) {
                 <ul style={{ margin:'0 0 10px 0', padding:'0', listStyle:'none', display:'flex', flexDirection:'column', gap:'5px' }}>
                   {msg.response.bullets.map((b, i) => (
                     <li key={i} style={{ fontSize:'13px', color:'#8AAAB8', lineHeight:1.6, paddingLeft:'14px', position:'relative' }}>
-                      <span style={{ position:'absolute', left:0, color:'#0EC4C1', fontWeight:700 }}>·</span>
+                      <span style={{ position:'absolute', left:0, color:'var(--ins-text-highlight)', fontWeight:700 }}>·</span>
                       <strong style={{ color:'#C8E6EA' }}>{b.bold}</strong>{b.text}
                     </li>
                   ))}
@@ -974,7 +974,7 @@ function AIAssistantPanel({ query, onClose }) {
                 </p>
                 <div style={{ display:'flex', flexDirection:'column', gap:'4px', marginBottom:'12px' }}>
                   {msg.response.links.map((l, i) => (
-                    <a key={i} href="#" style={{ fontSize:'12px', color:'#09A09D', textDecoration:'none' }}
+                    <a key={i} href="#" style={{ fontSize:'12px', color:'var(--ins-button-primary-bg-hover)', textDecoration:'none' }}
                       onMouseEnter={e => e.currentTarget.style.textDecoration = 'underline'}
                       onMouseLeave={e => e.currentTarget.style.textDecoration = 'none'}
                     >{l}</a>
@@ -1003,7 +1003,7 @@ function AIAssistantPanel({ query, onClose }) {
               {[0,1,2].map(i => (
                 <div key={i} style={{
                   width:'6px', height:'6px', borderRadius:'50%',
-                  background:'#0EC4C1',
+                  background:'var(--ins-text-highlight)',
                   animation:`pulse 1.2s ease ${i * 0.2}s infinite`,
                 }}/>
               ))}
@@ -1034,12 +1034,12 @@ function AIAssistantPanel({ query, onClose }) {
             placeholder="Ask a question..."
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
-              fontSize:'13px', color:'#E8F2F5', fontFamily:'Geist,sans-serif',
+              fontSize:'13px', color:'var(--ins-color-gray-100)', fontFamily:'Geist,sans-serif',
             }}
           />
           <button onClick={handleFollowUp} style={{
             width:'28px', height:'28px', borderRadius:'7px', flexShrink:0,
-            background: input.trim() ? '#07807E' : 'rgba(9,160,157,.12)',
+            background: input.trim() ? 'var(--ins-button-primary-bg)' : 'rgba(9,160,157,.12)',
             border:'none', cursor: input.trim() ? 'pointer' : 'default',
             display:'flex', alignItems:'center', justifyContent:'center',
             transition:'background .2s',

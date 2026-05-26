@@ -56,18 +56,17 @@
   ]
 }
 </script>
-<link rel="preload" href="/Design system/design-system/assets/fonts/Outfit-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Geist', sans-serif;
-  background: #0A0E13;
+  background: var(--ins-surface-page);
   color: #E8F2F5;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
-h1, h2, h3 { font-family: 'Outfit', sans-serif; letter-spacing: -0.04em; line-height: 1.05; text-wrap: balance; }
+h1, h2, h3 { font-family: var(--ins-font-family-sans); letter-spacing: -0.04em; line-height: 1.05; text-wrap: balance; }
 p { text-wrap: pretty; }
 
 body::before {
@@ -138,7 +137,7 @@ body::before {
 }
 .typing-dot {
   width: 6px; height: 6px; border-radius: 50%;
-  background: #0EC4C1;
+  background: var(--ins-text-highlight);
   animation: pulse 1.2s ease-in-out infinite;
 }
 .typing-dot:nth-child(2) { animation-delay: .2s; }
@@ -170,7 +169,7 @@ section { position: relative; }
   padding: 8px 14px; border-radius: 999px;
   border: 1px solid rgba(255,255,255,0.07);
   background: rgba(255,255,255,0.03);
-  font-size: 13px; color: #7FA0AC;
+  font-size: 13px; color: var(--ins-text-inactive);
   cursor: pointer; transition: all .25s cubic-bezier(0.34,1.56,0.64,1);
   white-space: nowrap;
 }
@@ -187,7 +186,7 @@ section { position: relative; }
 }
 .q-pill.active {
   border-color: rgba(9,160,157,0.5);
-  color: #0EC4C1;
+  color: var(--ins-text-highlight);
   background: rgba(9,160,157,0.08);
 }
 
@@ -224,7 +223,7 @@ section { position: relative; }
 
 /* ── GRADIENT TEXT UTIL ── */
 .text-gradient {
-  background: linear-gradient(135deg, #fff 30%, #0EC4C1 100%);
+  background: linear-gradient(135deg, #fff 30%, var(--ins-text-highlight) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -252,13 +251,13 @@ section { position: relative; }
 <div id="root">
   <!-- Static SEO fallback: visible to crawlers and no-JS users. React replaces this on hydration. -->
   <article style="max-width:880px;margin:0 auto;padding:120px 24px 80px;color:#E8F2F5;font-family:'Geist',sans-serif;">
-    <p style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#09A09D;margin-bottom:12px;">Insightis AI Chat — business analytics in plain English</p>
-    <h1 style="font-size:clamp(2.6rem,3.8vw,4.5rem);font-family:'Outfit',sans-serif;font-weight:700;line-height:1.05;margin-bottom:22px;">Ask anything. Get answers in seconds.</h1>
+    <p style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ins-button-primary-bg-hover);margin-bottom:12px;">Insightis AI Chat — business analytics in plain English</p>
+    <h1 style="font-size:clamp(2.6rem,3.8vw,4.5rem);font-family:var(--ins-font-family-sans);font-weight:700;line-height:1.05;margin-bottom:22px;">Ask anything. Get answers in seconds.</h1>
     <p style="font-size:18px;line-height:1.7;color:rgba(255,255,255,.75);margin-bottom:36px;max-width:640px;">
       Type any business question in plain English. Insightis queries your real data — no SQL, no analyst, no waiting.
     </p>
     <section aria-label="Summary">
-      <h2 style="font-family:'Outfit',sans-serif;">TL;DR</h2>
+      <h2 style="font-family:var(--ins-font-family-sans);">TL;DR</h2>
       <p>
         Business teams wait days for analysts to run reports, and generic AI tools answer with internet averages, not your numbers.
         <strong>Insightis AI Chat</strong> lets anyone on your team ask data questions in plain English and get precise answers grounded in your real data — across Stripe, HubSpot, Postgres, and 20+ sources — in seconds.
@@ -266,7 +265,7 @@ section { position: relative; }
       </p>
     </section>
     <section aria-label="Frequently asked questions">
-      <h2 style="font-family:'Outfit',sans-serif;">Frequently asked questions</h2>
+      <h2 style="font-family:var(--ins-font-family-sans);">Frequently asked questions</h2>
       <h3>What is Insightis AI Chat?</h3>
       <p>Insightis AI Chat is a conversational analytics interface from Devart that lets anyone query your business data in plain English. It connects to your warehouse and SaaS tools, applies your Semantic Layer, and returns precise answers with charts — no SQL, no dashboards, no analyst queue.</p>
       <h3>How is Insightis different from ChatGPT or generic AI?</h3>

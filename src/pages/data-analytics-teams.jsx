@@ -38,14 +38,14 @@ function Hero() {
           {/* Left: text */}
           <div>
             <div className="fu0" style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'20px'}}>
-              <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-              <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>For Data &amp; Analytics</span>
+              <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+              <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>For Data &amp; Analytics</span>
             </div>
 
             <h1 className="fu1" style={{fontSize:'clamp(36px,4.5vw,58px)',fontWeight:500,letterSpacing:'-.03em',lineHeight:1.12,marginBottom:'20px'}}>
-              <span style={{color:'#E8F2F5'}}>Stop answering</span>
+              <span style={{color:'var(--ins-color-gray-100)'}}>Stop answering</span>
               <br/>
-              <span style={{color:'#0EC4C1'}}>repeat questions.</span>
+              <span style={{color:'var(--ins-text-highlight)'}}>repeat questions.</span>
             </h1>
 
             <p className="fu2" style={{fontSize:'clamp(16px,1.2vw,18px)',color:'rgba(255,255,255,.65)',lineHeight:1.65,marginBottom:'28px',maxWidth:'480px'}}>
@@ -56,7 +56,7 @@ function Hero() {
               <a href="/auth/sign-up/" style={{
                 display:'inline-flex',alignItems:'center',gap:'8px',
                 padding:'12px 24px',borderRadius:'999px',
-                background:'linear-gradient(135deg,#09A09D,#07807E)',
+                background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',
                 color:'#fff',fontSize:'14px',fontWeight:500,
                 textDecoration:'none',
                 boxShadow:'0 0 24px rgba(9,160,157,.3)',
@@ -69,7 +69,7 @@ function Hero() {
                 display:'inline-flex',alignItems:'center',gap:'8px',
                 padding:'12px 24px',borderRadius:'999px',
                 border:'1px solid rgba(255,255,255,.12)',
-                color:'#C0D4DC',fontSize:'14px',fontWeight:400,
+                color:'var(--ins-color-gray-200)',fontSize:'14px',fontWeight:400,
                 textDecoration:'none',
                 background:'rgba(255,255,255,.03)',
                 transition:'all .2s',
@@ -128,7 +128,7 @@ function Hero() {
                   transform:'translate(-50%,-50%)',
                   fontFamily:'Geist Mono,monospace',
                   fontSize:'10.5px',
-                  color:'#7FA0AC',
+                  color:'var(--ins-text-inactive)',
                   letterSpacing:'.08em',
                   whiteSpace:'nowrap',
                 }}>Insightis — For Data Analytics</span>
@@ -137,18 +137,18 @@ function Hero() {
               {/* Header */}
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'18px'}}>
                 <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
-                  <div style={{width:'6px',height:'6px',borderRadius:'50%',background:'#22C55E',boxShadow:'0 0 8px #22C55E'}}/>
-                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10.5px',color:'#7FA0AC',letterSpacing:'.08em',textTransform:'uppercase'}}>Live insight · 2m ago</span>
+                  <div style={{width:'6px',height:'6px',borderRadius:'50%',background:'var(--ins-status-success-fg)',boxShadow:'0 0 8px var(--ins-status-success-fg)'}}/>
+                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10.5px',color:'var(--ins-text-inactive)',letterSpacing:'.08em',textTransform:'uppercase'}}>Live insight · 2m ago</span>
                 </div>
-                <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#0EC4C1',padding:'3px 9px',borderRadius:'999px',background:'rgba(9,160,157,.1)',border:'1px solid rgba(9,160,157,.25)',letterSpacing:'.08em',textTransform:'uppercase'}}>auto</span>
+                <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-highlight)',padding:'3px 9px',borderRadius:'999px',background:'rgba(9,160,157,.1)',border:'1px solid rgba(9,160,157,.25)',letterSpacing:'.08em',textTransform:'uppercase'}}>auto</span>
               </div>
 
               {/* Headline + caption */}
-              <h3 style={{fontSize:'17px',fontWeight:500,color:'#E8F2F5',marginBottom:'8px',letterSpacing:'-.015em',lineHeight:1.35}}>
+              <h3 style={{fontSize:'17px',fontWeight:500,color:'var(--ins-color-gray-100)',marginBottom:'8px',letterSpacing:'-.015em',lineHeight:1.35}}>
                 Paid acquisition decelerating mid-funnel
               </h3>
-              <p style={{fontSize:'12.5px',color:'#7FA0AC',lineHeight:1.6,marginBottom:'18px'}}>
-                <span style={{color:'#0EC4C1',fontFamily:'Geist Mono,monospace',fontSize:'11.5px'}}>checkout_complete</span> dropped <span style={{color:'#F87171',fontWeight:500}}>−41%</span> between 14:00–16:00 UTC. Linked to a Stripe webhook delay. Resolved at 18:30 UTC.
+              <p style={{fontSize:'12.5px',color:'var(--ins-text-inactive)',lineHeight:1.6,marginBottom:'18px'}}>
+                <span style={{color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',fontSize:'11.5px'}}>checkout_complete</span> dropped <span style={{color:'var(--ins-status-error-fg)',fontWeight:500}}>−41%</span> between 14:00–16:00 UTC. Linked to a Stripe webhook delay. Resolved at 18:30 UTC.
               </p>
 
               {/* Chart */}
@@ -162,31 +162,31 @@ function Hero() {
               }}>
                 <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'8px'}}>
                   <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#8AA6B3',letterSpacing:'.06em',textTransform:'uppercase'}}>events / 30min</span>
-                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#7FA0AC'}}>last 24h</span>
+                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-inactive)'}}>last 24h</span>
                 </div>
                 <svg viewBox="0 0 280 84" width="100%" height="84" preserveAspectRatio="none" style={{display:'block'}}>
                   <defs>
                     <linearGradient id="hero-area-grad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#0EC4C1" stopOpacity="0.32"/>
-                      <stop offset="100%" stopColor="#0EC4C1" stopOpacity="0"/>
+                      <stop offset="0%" stopColor="var(--ins-text-highlight)" stopOpacity="0.32"/>
+                      <stop offset="100%" stopColor="var(--ins-text-highlight)" stopOpacity="0"/>
                     </linearGradient>
                   </defs>
                   <line x1="0" y1="22" x2="280" y2="22" stroke="rgba(255,255,255,0.04)" strokeDasharray="2,3"/>
                   <line x1="0" y1="52" x2="280" y2="52" stroke="rgba(255,255,255,0.04)" strokeDasharray="2,3"/>
                   <path d="M0,32 L18,30 L36,34 L54,28 L72,22 L90,26 L108,20 L126,16 L144,18 L162,22 L168,58 L180,54 L198,50 L216,52 L234,46 L252,42 L270,40 L280,38 L280,84 L0,84 Z" fill="url(#hero-area-grad)"/>
-                  <path d="M0,32 L18,30 L36,34 L54,28 L72,22 L90,26 L108,20 L126,16 L144,18 L162,22" fill="none" stroke="#0EC4C1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M162,22 L168,58 L180,54 L198,50 L216,52 L234,46 L252,42 L270,40 L280,38" fill="none" stroke="#F87171" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M0,32 L18,30 L36,34 L54,28 L72,22 L90,26 L108,20 L126,16 L144,18 L162,22" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M162,22 L168,58 L180,54 L198,50 L216,52 L234,46 L252,42 L270,40 L280,38" fill="none" stroke="var(--ins-status-error-fg)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   <line x1="168" y1="0" x2="168" y2="84" stroke="rgba(248,113,113,0.25)" strokeDasharray="2,2"/>
-                  <circle cx="168" cy="58" r="3.5" fill="#F87171"/>
+                  <circle cx="168" cy="58" r="3.5" fill="var(--ins-status-error-fg)"/>
                 </svg>
               </div>
 
               {/* Metric tiles */}
               <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'8px'}}>
                 {[
-                  {label:'Drop',     val:'−41%',     color:'#F87171'},
-                  {label:'Window',   val:'2h 14m',   color:'#FBBF24'},
-                  {label:'Resolved', val:'18:30',    color:'#22C55E'},
+                  {label:'Drop',     val:'−41%',     color:'var(--ins-status-error-fg)'},
+                  {label:'Window',   val:'2h 14m',   color:'var(--ins-status-warning-fg)'},
+                  {label:'Resolved', val:'18:30',    color:'var(--ins-status-success-fg)'},
                 ].map((m,i) => (
                   <div key={i} style={{
                     background:'rgba(255,255,255,.025)',
@@ -218,12 +218,12 @@ function Hero() {
               zIndex:2,
             }}>
               <div style={{
-                width:'8px',height:'8px',borderRadius:'50%',background:'#22C55E',
+                width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-status-success-fg)',
                 flexShrink:0,
               }}/>
               <div>
                 <div style={{fontSize:'9.5px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase'}}>Resolved</div>
-                <div style={{fontSize:'12.5px',color:'#22C55E',fontWeight:500,fontFamily:'Geist Mono,monospace',marginTop:'1px'}}>checkout_complete</div>
+                <div style={{fontSize:'12.5px',color:'var(--ins-status-success-fg)',fontWeight:500,fontFamily:'Geist Mono,monospace',marginTop:'1px'}}>checkout_complete</div>
               </div>
             </div>
 
@@ -245,20 +245,20 @@ function Hero() {
             }}>
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'8px'}}>
                 <span style={{fontSize:'9.5px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase'}}>Self-serve</span>
-                <span style={{fontSize:'10.5px',color:'#22C55E',fontFamily:'Geist Mono,monospace',fontWeight:500}}>+72%</span>
+                <span style={{fontSize:'10.5px',color:'var(--ins-status-success-fg)',fontFamily:'Geist Mono,monospace',fontWeight:500}}>+72%</span>
               </div>
               <div style={{display:'flex',alignItems:'flex-end',gap:'2.5px',height:'24px',marginBottom:'6px'}}>
                 {[40,52,48,60,72,68,82,78,92].map((v,i)=>(
                   <div key={i} style={{
                     flex:1,
                     height:`${v}%`,
-                    background: i>=6 ? 'linear-gradient(180deg,#0EC4C1,#09A09D)' : 'rgba(14,196,193,0.32)',
+                    background: i>=6 ? 'linear-gradient(180deg,var(--ins-text-highlight),var(--ins-button-primary-bg-hover))' : 'rgba(14,196,193,0.32)',
                     borderRadius:'2px 2px 0 0',
                     minHeight:'4px',
                   }}/>
                 ))}
               </div>
-              <div style={{fontSize:'11px',color:'#C0D4DC',fontWeight:400}}>Ad hoc tickets ↓ this week</div>
+              <div style={{fontSize:'11px',color:'var(--ins-color-gray-200)',fontWeight:400}}>Ad hoc tickets ↓ this week</div>
             </div>
           </div>
         </div>
@@ -272,50 +272,50 @@ function PainPoints() {
   const pains = [
     {
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z" stroke="#0EC4C1" strokeWidth="1.5"/>
-        <path d="M9 8h6M9 12h6M9 16h4" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M12 4v4M9 6h6" stroke="#0EC4C1" strokeWidth="1.3" strokeLinecap="round" opacity=".5"/>
+        <path d="M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/>
+        <path d="M9 8h6M9 12h6M9 16h4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M12 4v4M9 6h6" stroke="var(--ins-text-highlight)" strokeWidth="1.3" strokeLinecap="round" opacity=".5"/>
       </svg>,
       title: '90% of requests are repetitive',
       desc: 'Your team spends most of its time answering the same questions from sales, marketing, and product — questions that should be self-serve but aren\'t.',
     },
     {
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M8 3H5a2 2 0 0 0-2 2v3m6-5h6M8 3v18m8-18v18M16 3h3a2 2 0 0 1 2 2v3M2 9h20M2 15h20M2 21h3m16 0h3" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M8 3H5a2 2 0 0 0-2 2v3m6-5h6M8 3v18m8-18v18M16 3h3a2 2 0 0 1 2 2v3M2 9h20M2 15h20M2 21h3m16 0h3" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>,
       title: 'Every team defines metrics differently',
       desc: 'Marketing defines CAC one way. Finance defines it another. Without a governed Semantic Layer, every team has their own version of the truth.',
     },
     {
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>,
       title: 'Pipeline monitoring is reactive',
       desc: 'You find out about data freshness issues and pipeline failures when a stakeholder complains that their dashboard is showing wrong numbers.',
     },
     {
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="#0EC4C1" strokeWidth="1.5"/>
-        <path d="M7 9h10M7 13h6" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/>
+        <path d="M7 9h10M7 13h6" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>,
       title: 'Ad hoc SQL requests never stop',
       desc: 'Every strategic question that can\'t be answered by an existing dashboard becomes an ad hoc SQL ticket. The backlog grows faster than it can be cleared.',
     },
     {
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="#0EC4C1" strokeWidth="1.5"/>
-        <line x1="12" y1="9" x2="12" y2="13" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="12" y1="17" x2="12.01" y2="17" stroke="#0EC4C1" strokeWidth="2" strokeLinecap="round"/>
+        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/>
+        <line x1="12" y1="9" x2="12" y2="13" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/>
+        <line x1="12" y1="17" x2="12.01" y2="17" stroke="var(--ins-text-highlight)" strokeWidth="2" strokeLinecap="round"/>
       </svg>,
       title: 'Schema drift breaks things silently',
       desc: 'When an upstream source changes a column name, your downstream models break — and nobody notices until a key metric drops to zero.',
     },
     {
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <rect x="2" y="12" width="4" height="9" rx="1" stroke="#0EC4C1" strokeWidth="1.5"/>
-        <rect x="9" y="7" width="4" height="14" rx="1" stroke="#0EC4C1" strokeWidth="1.5"/>
-        <rect x="16" y="3" width="4" height="18" rx="1" stroke="#0EC4C1" strokeWidth="1.5"/>
+        <rect x="2" y="12" width="4" height="9" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/>
+        <rect x="9" y="7" width="4" height="14" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/>
+        <rect x="16" y="3" width="4" height="18" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/>
       </svg>,
       title: 'You can\'t show ROI on the data platform',
       desc: 'Leadership asks what the data team delivered this quarter. You know you unblocked dozens of decisions, but quantifying that impact is nearly impossible.',
@@ -323,12 +323,12 @@ function PainPoints() {
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,var(--ins-surface-page) 0%,var(--ins-surface-container) 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'56px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>The Problem</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>The Problem</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
             Data teams spend 80% of time on reporting
@@ -355,8 +355,8 @@ function PainPoints() {
               <div style={{width:'40px',height:'40px',borderRadius:'10px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'16px'}}>
                 {p.icon}
               </div>
-              <h3 style={{fontSize:'16px',fontWeight:600,color:'#E8F2F5',marginBottom:'8px'}}>{p.title}</h3>
-              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.65}}>{p.desc}</p>
+              <h3 style={{fontSize:'16px',fontWeight:600,color:'var(--ins-color-gray-100)',marginBottom:'8px'}}>{p.title}</h3>
+              <p style={{fontSize:'14px',color:'var(--ins-text-inactive)',lineHeight:1.65}}>{p.desc}</p>
             </div>
           ))}
         </div>
@@ -510,12 +510,12 @@ function RelevantIntegrations() {
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0D1117 0%,#101620 100%)'}}>
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,var(--ins-surface-container) 0%,#101620 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'56px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Your Data Sources</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>Your Data Sources</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
             Connects to your entire data stack
@@ -532,7 +532,7 @@ function RelevantIntegrations() {
                 {c.icon}
               </div>
               <div>
-                <div style={{fontSize:'13px',fontWeight:500,color:'#E8F2F5'}}>{c.name}</div>
+                <div style={{fontSize:'13px',fontWeight:500,color:'var(--ins-color-gray-100)'}}>{c.name}</div>
                 <div style={{fontSize:'11px',color:'#8AA6B3',marginTop:'2px'}}>{c.desc}</div>
               </div>
             </div>
@@ -542,7 +542,7 @@ function RelevantIntegrations() {
         <div style={{textAlign:'center'}}>
           <a href="/Resources/Connectors" style={{
             display:'inline-flex',alignItems:'center',gap:'6px',
-            fontSize:'13px',color:'#7FA0AC',
+            fontSize:'13px',color:'var(--ins-text-inactive)',
             textDecoration:'none',
             border:'1px solid rgba(255,255,255,.07)',
             borderRadius:'999px',
@@ -550,8 +550,8 @@ function RelevantIntegrations() {
             background:'rgba(255,255,255,.02)',
             transition:'all .15s',
           }}
-          onMouseEnter={e=>{e.currentTarget.style.color='#0EC4C1';e.currentTarget.style.borderColor='rgba(9,160,157,.3)';}}
-          onMouseLeave={e=>{e.currentTarget.style.color='#7FA0AC';e.currentTarget.style.borderColor='rgba(255,255,255,.07)';}}
+          onMouseEnter={e=>{e.currentTarget.style.color='var(--ins-text-highlight)';e.currentTarget.style.borderColor='rgba(9,160,157,.3)';}}
+          onMouseLeave={e=>{e.currentTarget.style.color='var(--ins-text-inactive)';e.currentTarget.style.borderColor='rgba(255,255,255,.07)';}}
           >
             See all 200+ integrations
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -573,12 +573,12 @@ function Metrics() {
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#101620 0%,#0A0E13 100%)'}}>
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#101620 0%,var(--ins-surface-page) 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'48px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Metrics That Matter</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>Metrics That Matter</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
             Every KPI a data team monitors
@@ -605,12 +605,12 @@ function Metrics() {
 /* ── BEFORE / AFTER ── */
 function BeforeAfter() {
   return (
-    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,var(--ins-surface-page) 0%,var(--ins-surface-container) 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'52px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>The Difference</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>The Difference</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
             Data teams before vs. after Insightis
@@ -621,8 +621,8 @@ function BeforeAfter() {
           {/* Before */}
           <div style={{background:'rgba(248,113,113,.04)',border:'1px solid rgba(248,113,113,.15)',borderRadius:'16px',padding:'28px'}}>
             <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'20px'}}>
-              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#F87171'}}/>
-              <span style={{fontSize:'13px',fontWeight:600,color:'#F87171'}}>Before Insightis</span>
+              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-status-error-fg)'}}/>
+              <span style={{fontSize:'13px',fontWeight:600,color:'var(--ins-status-error-fg)'}}>Before Insightis</span>
             </div>
             <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'12px'}}>
               {[
@@ -633,8 +633,8 @@ function BeforeAfter() {
                 'Schema drift breaks models silently',
                 'Data ROI impossible to quantify',
               ].map((item,i) => (
-                <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'#7FA0AC',lineHeight:1.55}}>
-                  <span style={{color:'#F87171',fontWeight:500,flexShrink:0}}>✕</span>
+                <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'var(--ins-text-inactive)',lineHeight:1.55}}>
+                  <span style={{color:'var(--ins-status-error-fg)',fontWeight:500,flexShrink:0}}>✕</span>
                   {item}
                 </li>
               ))}
@@ -645,8 +645,8 @@ function BeforeAfter() {
           <div style={{background:'rgba(9,160,157,.05)',border:'1px solid rgba(9,160,157,.25)',borderRadius:'16px',padding:'28px',position:'relative'}}>
             <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.6),transparent)',borderRadius:'16px 16px 0 0'}}/>
             <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'20px'}}>
-              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#0EC4C1',boxShadow:'0 0 8px #0EC4C1'}}/>
-              <span style={{fontSize:'13px',fontWeight:600,color:'#0EC4C1'}}>With Insightis</span>
+              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-text-highlight)',boxShadow:'0 0 8px var(--ins-text-highlight)'}}/>
+              <span style={{fontSize:'13px',fontWeight:600,color:'var(--ins-text-highlight)'}}>With Insightis</span>
             </div>
             <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'12px'}}>
               {[
@@ -657,8 +657,8 @@ function BeforeAfter() {
                 'Schema changes flagged automatically',
                 'Data impact visible and measurable',
               ].map((item,i) => (
-                <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'#C0D4DC',lineHeight:1.55}}>
-                  <span style={{color:'#0EC4C1',fontWeight:500,flexShrink:0}}>✓</span>
+                <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'var(--ins-color-gray-200)',lineHeight:1.55}}>
+                  <span style={{color:'var(--ins-text-highlight)',fontWeight:500,flexShrink:0}}>✓</span>
                   {item}
                 </li>
               ))}
@@ -668,8 +668,8 @@ function BeforeAfter() {
 
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
-            <span style={{fontSize:'40px',fontWeight:500,color:'#0EC4C1',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>4×</span>
-            <span style={{fontSize:'15px',color:'#7FA0AC',whiteSpace:'nowrap'}}>more time for real analysis. Self-serve deflects 80% of ad hoc requests.</span>
+            <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>4×</span>
+            <span style={{fontSize:'15px',color:'var(--ins-text-inactive)',whiteSpace:'nowrap'}}>more time for real analysis. Self-serve deflects 80% of ad hoc requests.</span>
           </div>
         </div>
       </div>
@@ -692,7 +692,7 @@ function BottomCTA() {
         }}>
           <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
           <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',lineHeight:1.2,flexShrink:0}}>
-            Stop being a <span style={{color:'#07807E'}}>reporting service.</span> Start doing <span style={{color:'#07807E'}}> real analysis.</span>
+            Stop being a <span style={{color:'var(--ins-button-primary-bg)'}}>reporting service.</span> Start doing <span style={{color:'var(--ins-button-primary-bg)'}}> real analysis.</span>
           </h3>
           <form action="/auth/sign-up/" method="get" style={{
             display:'flex',alignItems:'center',
@@ -716,7 +716,7 @@ function BottomCTA() {
               display:'inline-flex',alignItems:'center',gap:'8px',
               padding:'10px 20px',margin:'4px',
               fontSize:'13px',fontWeight:600,color:'#fff',
-              background:'linear-gradient(135deg,#07807E,#09A09D)',
+              background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))',
               borderRadius:'8px',border:'none',cursor:'pointer',
               whiteSpace:'nowrap',flexShrink:0,
               fontFamily:'Geist,sans-serif',
@@ -748,7 +748,7 @@ function Positioning() {
           lineHeight:1.2,
           marginBottom:'18px',
         }}>
-          Stop being a <span style={{color:'#0EC4C1'}}>reporting service.</span> Start doing <span style={{color:'#0EC4C1'}}>real analysis.</span>
+          Stop being a <span style={{color:'var(--ins-text-highlight)'}}>reporting service.</span> Start doing <span style={{color:'var(--ins-text-highlight)'}}>real analysis.</span>
         </h2>
         <p style={{fontSize:'17px',color:'rgba(255,255,255,.6)',lineHeight:1.65,marginBottom:'28px'}}>
           Sound familiar? These are the problems Insightis eliminates.
@@ -757,7 +757,7 @@ function Positioning() {
           display:'inline-flex',alignItems:'center',gap:'8px',
           padding:'10px 20px',borderRadius:'999px',
           border:'1px solid rgba(255,255,255,.12)',
-          color:'#C0D4DC',fontSize:'14px',fontWeight:400,
+          color:'var(--ins-color-gray-200)',fontSize:'14px',fontWeight:400,
           textDecoration:'none',
           background:'rgba(255,255,255,.03)',
           transition:'all .2s',
@@ -798,8 +798,8 @@ function SpotlightChat() {
           What's our blended CAC by channel for Q1?
         </div>
         <div className="chat-bubble-ai">
-          Blended CAC for Q1 across paid channels: $148. Paid Search $132, Paid Social $164, Display $189. Sourced from <span style={{color:'#0EC4C1',fontFamily:'Geist Mono,monospace',fontSize:'12px'}}>marketing.fct_cac</span> — governed by your Semantic Layer.
-          <MiniBarChart data={[132, 164, 189, 148]} color="#0EC4C1"/>
+          Blended CAC for Q1 across paid channels: $148. Paid Search $132, Paid Social $164, Display $189. Sourced from <span style={{color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',fontSize:'12px'}}>marketing.fct_cac</span> — governed by your Semantic Layer.
+          <MiniBarChart data={[132, 164, 189, 148]} color="var(--ins-text-highlight)"/>
         </div>
       </div>
     </div>
@@ -838,10 +838,10 @@ function SpotlightSemantic() {
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'18px'}}>
           <div style={{display:'flex',alignItems:'center',gap:'10px'}}>
             <div style={{width:'34px',height:'34px',borderRadius:'9px',background:'rgba(9,160,157,.1)',border:'1px solid rgba(9,160,157,.25)',display:'flex',alignItems:'center',justifyContent:'center'}}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.8"><path d="M3 6h18M3 12h18M3 18h12"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.8"><path d="M3 6h18M3 12h18M3 18h12"/></svg>
             </div>
             <div>
-              <div style={{fontFamily:'Geist Mono,monospace',fontSize:'14px',color:'#E8F2F5',fontWeight:500}}>customer_acquisition_cost</div>
+              <div style={{fontFamily:'Geist Mono,monospace',fontSize:'14px',color:'var(--ins-color-gray-100)',fontWeight:500}}>customer_acquisition_cost</div>
               <div style={{fontSize:'11px',color:'#8AA6B3',marginTop:'2px'}}>Owned by Data Engineering · v3.2</div>
             </div>
           </div>
@@ -849,10 +849,10 @@ function SpotlightSemantic() {
             display:'inline-flex',alignItems:'center',gap:'5px',
             padding:'4px 10px',borderRadius:'999px',
             background:'rgba(34,197,94,.08)',border:'1px solid rgba(34,197,94,.3)',
-            fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#22C55E',
+            fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-status-success-fg)',
             letterSpacing:'.06em',textTransform:'uppercase',
           }}>
-            <span style={{width:'5px',height:'5px',borderRadius:'50%',background:'#22C55E',boxShadow:'0 0 6px #22C55E'}}/>
+            <span style={{width:'5px',height:'5px',borderRadius:'50%',background:'var(--ins-status-success-fg)',boxShadow:'0 0 6px var(--ins-status-success-fg)'}}/>
             Certified
           </span>
         </div>
@@ -865,9 +865,9 @@ function SpotlightSemantic() {
           fontFamily:'Geist Mono,monospace',
           fontSize:'12.5px',
           lineHeight:1.6,
-          color:'#C0D4DC',
+          color:'var(--ins-color-gray-200)',
         }}>
-          <span style={{color:'#7FA0AC'}}>SUM</span>(<span style={{color:'#0EC4C1'}}>marketing_spend</span>) <span style={{color:'#7FA0AC'}}>/</span> <span style={{color:'#7FA0AC'}}>COUNT</span>(<span style={{color:'#0EC4C1'}}>new_customers</span>)
+          <span style={{color:'var(--ins-text-inactive)'}}>SUM</span>(<span style={{color:'var(--ins-text-highlight)'}}>marketing_spend</span>) <span style={{color:'var(--ins-text-inactive)'}}>/</span> <span style={{color:'var(--ins-text-inactive)'}}>COUNT</span>(<span style={{color:'var(--ins-text-highlight)'}}>new_customers</span>)
         </div>
         <div style={{display:'flex',flexDirection:'column',gap:'8px'}}>
           {[
@@ -877,7 +877,7 @@ function SpotlightSemantic() {
           ].map((row,i) => (
             <div key={i} style={{display:'flex',gap:'12px',fontSize:'12px'}}>
               <span style={{minWidth:'70px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.04em',textTransform:'uppercase',fontSize:'10px',paddingTop:'2px'}}>{row.label}</span>
-              <span style={{color:'#C0D4DC'}}>{row.val}</span>
+              <span style={{color:'var(--ins-color-gray-200)'}}>{row.val}</span>
             </div>
           ))}
         </div>
@@ -903,7 +903,7 @@ function SpotlightAnomalies() {
         {/* User question */}
         <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'10px'}}>
           <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#8AA6B3',letterSpacing:'.08em',textTransform:'uppercase'}}>asked</span>
-          <span style={{fontSize:'12.5px',color:'#C0D4DC'}}>"Why was revenue lower last week?"</span>
+          <span style={{fontSize:'12.5px',color:'var(--ins-color-gray-200)'}}>"Why was revenue lower last week?"</span>
         </div>
 
         {/* Headline finding */}
@@ -914,11 +914,11 @@ function SpotlightAnomalies() {
           borderRadius:'10px',
         }}>
           <span style={{
-            width:'8px',height:'8px',borderRadius:'50%',background:'#F87171',
-            boxShadow:'0 0 8px #F87171',flexShrink:0,
+            width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-status-error-fg)',
+            boxShadow:'0 0 8px var(--ins-status-error-fg)',flexShrink:0,
           }}/>
-          <span style={{fontSize:'12.5px',color:'#E8F2F5',lineHeight:1.45}}>
-            <span style={{fontWeight:500,color:'#F87171'}}>−41%</span> drop in <span style={{fontFamily:'Geist Mono,monospace',color:'#0EC4C1',fontSize:'11.5px'}}>checkout_complete</span> on Tue, 14:00–16:00 UTC
+          <span style={{fontSize:'12.5px',color:'var(--ins-color-gray-100)',lineHeight:1.45}}>
+            <span style={{fontWeight:500,color:'var(--ins-status-error-fg)'}}>−41%</span> drop in <span style={{fontFamily:'Geist Mono,monospace',color:'var(--ins-text-highlight)',fontSize:'11.5px'}}>checkout_complete</span> on Tue, 14:00–16:00 UTC
           </span>
         </div>
 
@@ -934,18 +934,18 @@ function SpotlightAnomalies() {
           <svg viewBox="0 0 280 60" width="100%" height="60" preserveAspectRatio="none" style={{display:'block'}}>
             <defs>
               <linearGradient id="anom-area" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#0EC4C1" stopOpacity="0.32"/>
-                <stop offset="100%" stopColor="#0EC4C1" stopOpacity="0"/>
+                <stop offset="0%" stopColor="var(--ins-text-highlight)" stopOpacity="0.32"/>
+                <stop offset="100%" stopColor="var(--ins-text-highlight)" stopOpacity="0"/>
               </linearGradient>
             </defs>
             <line x1="0" y1="18" x2="280" y2="18" stroke="rgba(255,255,255,0.04)" strokeDasharray="2,3"/>
             <line x1="0" y1="38" x2="280" y2="38" stroke="rgba(255,255,255,0.04)" strokeDasharray="2,3"/>
             <path d="M0,24 L20,22 L40,26 L60,20 L80,18 L100,22 L120,16 L140,14 L160,18 L168,46 L180,42 L200,38 L220,40 L240,34 L260,30 L280,28 L280,60 L0,60 Z" fill="url(#anom-area)"/>
-            <path d="M0,24 L20,22 L40,26 L60,20 L80,18 L100,22 L120,16 L140,14 L160,18" fill="none" stroke="#0EC4C1" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M160,18 L168,46 L180,42 L200,38 L220,40 L240,34 L260,30 L280,28" fill="none" stroke="#F87171" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M0,24 L20,22 L40,26 L60,20 L80,18 L100,22 L120,16 L140,14 L160,18" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M160,18 L168,46 L180,42 L200,38 L220,40 L240,34 L260,30 L280,28" fill="none" stroke="var(--ins-status-error-fg)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
             <line x1="168" y1="0" x2="168" y2="60" stroke="rgba(248,113,113,0.3)" strokeDasharray="2,2"/>
-            <circle cx="168" cy="46" r="3" fill="#F87171"/>
-            <circle cx="168" cy="46" r="3" fill="none" stroke="#F87171" strokeWidth="1.2" opacity="0.5">
+            <circle cx="168" cy="46" r="3" fill="var(--ins-status-error-fg)"/>
+            <circle cx="168" cy="46" r="3" fill="none" stroke="var(--ins-status-error-fg)" strokeWidth="1.2" opacity="0.5">
               <animate attributeName="r" from="3" to="11" dur="1.6s" repeatCount="indefinite"/>
               <animate attributeName="opacity" from="0.6" to="0" dur="1.6s" repeatCount="indefinite"/>
             </circle>
@@ -961,7 +961,7 @@ function SpotlightAnomalies() {
             padding:'9px 11px',
           }}>
             <div style={{fontSize:'9.5px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'3px'}}>Where</div>
-            <div style={{fontSize:'12px',color:'#E8F2F5'}}>87% on mobile</div>
+            <div style={{fontSize:'12px',color:'var(--ins-color-gray-100)'}}>87% on mobile</div>
           </div>
           <div style={{
             background:'rgba(255,255,255,.025)',
@@ -970,7 +970,7 @@ function SpotlightAnomalies() {
             padding:'9px 11px',
           }}>
             <div style={{fontSize:'9.5px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'3px'}}>Recovered</div>
-            <div style={{fontSize:'12px',color:'#22C55E'}}>18:30 UTC</div>
+            <div style={{fontSize:'12px',color:'var(--ins-status-success-fg)'}}>18:30 UTC</div>
           </div>
         </div>
       </div>
@@ -1041,7 +1041,7 @@ function SpotlightStack() {
                 background:s.bg,
                 display:'flex',alignItems:'center',justifyContent:'center',
               }}>{s.icon}</div>
-              <div style={{fontSize:'11px',fontWeight:500,color:'#E8F2F5',textAlign:'center'}}>{s.name}</div>
+              <div style={{fontSize:'11px',fontWeight:500,color:'var(--ins-color-gray-100)',textAlign:'center'}}>{s.name}</div>
             </div>
           ))}
         </div>
@@ -1049,7 +1049,7 @@ function SpotlightStack() {
         {/* Connector arrow */}
         <div style={{display:'flex',justifyContent:'center',marginBottom:'10px'}}>
           <svg width="14" height="22" viewBox="0 0 14 22" fill="none">
-            <path d="M7 1v18m0 0l-5-5m5 5l5-5" stroke="#0EC4C1" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity=".55"/>
+            <path d="M7 1v18m0 0l-5-5m5 5l5-5" stroke="var(--ins-text-highlight)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity=".55"/>
           </svg>
         </div>
 
@@ -1067,14 +1067,14 @@ function SpotlightStack() {
             display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,
           }}>
             <svg width="20" height="20" viewBox="0 0 26 26" fill="none">
-              <path d="M25.5 10.4L21.7 12.7L25.5 15.1L12.7 22.8L0 15.1L3.8 12.7L0 10.4L5.7 6.9L7.6 8.1L3.8 10.4L12.7 15.8L21.7 10.4L17.8 8.1L19.8 6.9L25.5 10.4Z" fill="#0EC4C1"/>
+              <path d="M25.5 10.4L21.7 12.7L25.5 15.1L12.7 22.8L0 15.1L3.8 12.7L0 10.4L5.7 6.9L7.6 8.1L3.8 10.4L12.7 15.8L21.7 10.4L17.8 8.1L19.8 6.9L25.5 10.4Z" fill="var(--ins-text-highlight)"/>
             </svg>
           </div>
           <div style={{flex:1,minWidth:0}}>
-            <div style={{fontSize:'13px',fontWeight:600,color:'#E8F2F5'}}>Insightis</div>
+            <div style={{fontSize:'13px',fontWeight:600,color:'var(--ins-color-gray-100)'}}>Insightis</div>
             <div style={{fontSize:'10.5px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.04em',textTransform:'uppercase',marginTop:'2px'}}>Semantic Layer</div>
           </div>
-          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#0EC4C1',padding:'3px 9px',borderRadius:'999px',background:'rgba(9,160,157,.1)',border:'1px solid rgba(9,160,157,.25)',letterSpacing:'.08em',textTransform:'uppercase'}}>connected</span>
+          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-highlight)',padding:'3px 9px',borderRadius:'999px',background:'rgba(9,160,157,.1)',border:'1px solid rgba(9,160,157,.25)',letterSpacing:'.08em',textTransform:'uppercase'}}>connected</span>
         </div>
       </div>
     </div>
@@ -1115,12 +1115,12 @@ function FeatureSpotlights() {
   ];
 
   return (
-    <section id="spotlights" style={{padding:'80px 0 100px',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
+    <section id="spotlights" style={{padding:'80px 0 100px',background:'linear-gradient(180deg,var(--ins-surface-page) 0%,var(--ins-surface-container) 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'72px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>How it works</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>How it works</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px',whiteSpace:'nowrap'}}>
             Built for how data teams work
@@ -1142,8 +1142,8 @@ function FeatureSpotlights() {
               }}>
                 <div data-spotlight-text style={{order: reverse ? 2 : 0}}>
                   <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'18px'}}>
-                    <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-                    <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>{s.eyebrow}</span>
+                    <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+                    <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>{s.eyebrow}</span>
                   </div>
                   <h3 style={{fontSize:'clamp(24px,2.6vw,34px)',fontWeight:500,color:'#fff',letterSpacing:'-.025em',lineHeight:1.18,marginBottom:'18px'}}>
                     {s.title}
@@ -1153,8 +1153,8 @@ function FeatureSpotlights() {
                   </p>
                   <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px'}}>
                     {s.bullets.map((b,bi) => (
-                      <li key={bi} style={{display:'flex',alignItems:'flex-start',gap:'10px',fontSize:'14px',color:'#C0D4DC',lineHeight:1.55}}>
-                        <span style={{color:'#0EC4C1',flexShrink:0,marginTop:'1px'}}>✓</span>
+                      <li key={bi} style={{display:'flex',alignItems:'flex-start',gap:'10px',fontSize:'14px',color:'var(--ins-color-gray-200)',lineHeight:1.55}}>
+                        <span style={{color:'var(--ins-text-highlight)',flexShrink:0,marginTop:'1px'}}>✓</span>
                         {b}
                       </li>
                     ))}
@@ -1181,39 +1181,39 @@ function FeatureSpotlights() {
 function UseCases() {
   const cases = [
     {
-      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z" stroke="#0EC4C1" strokeWidth="1.5"/><path d="M9 8h6M9 12h6M9 16h4" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M9 8h6M9 12h6M9 16h4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
       title:'Self-serve for non-technical teams',
       desc:'Business users self-serve in plain English — sales, marketing, and product stop pinging the data team for repetitive questions.',
     },
     {
-      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m6-5h6M8 3v18m8-18v18M16 3h3a2 2 0 0 1 2 2v3M2 9h20M2 15h20M2 21h3m16 0h3" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m6-5h6M8 3v18m8-18v18M16 3h3a2 2 0 0 1 2 2v3M2 9h20M2 15h20M2 21h3m16 0h3" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
       title:'Governed metric definitions',
       desc:'One Semantic Layer governs all definitions — every team works from the same numbers, owned and versioned by your data team.',
     },
     {
-      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
       title:'Proactive pipeline monitoring',
       desc:'Anomalies surface before anyone complains. Freshness, drops, and schema changes flag the moment they happen.',
     },
     {
-      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="#0EC4C1" strokeWidth="1.5"/><path d="M7 9h10M7 13h6" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M7 9h10M7 13h6" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
       title:'Ad hoc analysis without SQL',
       desc:'Complex questions answered without SQL — the team spends time on real analysis instead of clearing a never-ending ticket queue.',
     },
     {
-      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="#0EC4C1" strokeWidth="1.5"/><line x1="12" y1="9" x2="12" y2="13" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/><line x1="12" y1="17" x2="12.01" y2="17" stroke="#0EC4C1" strokeWidth="2" strokeLinecap="round"/></svg>,
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><line x1="12" y1="9" x2="12" y2="13" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/><line x1="12" y1="17" x2="12.01" y2="17" stroke="var(--ins-text-highlight)" strokeWidth="2" strokeLinecap="round"/></svg>,
       title:'Schema drift caught automatically',
       desc:'Schema changes flagged automatically — when an upstream column changes, you know which downstream models break before the metric does.',
     },
     {
-      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="12" width="4" height="9" rx="1" stroke="#0EC4C1" strokeWidth="1.5"/><rect x="9" y="7" width="4" height="14" rx="1" stroke="#0EC4C1" strokeWidth="1.5"/><rect x="16" y="3" width="4" height="18" rx="1" stroke="#0EC4C1" strokeWidth="1.5"/></svg>,
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="12" width="4" height="9" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><rect x="9" y="7" width="4" height="14" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><rect x="16" y="3" width="4" height="18" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/></svg>,
       title:'Measurable data team impact',
       desc:'Data impact visible and measurable — see deflected requests, decisions unblocked, and the ROI of the data platform.',
     },
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0D1117 0%,#0A0E13 100%)'}}>
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,var(--ins-surface-container) 0%,var(--ins-surface-page) 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{marginBottom:'80px'}}>
           <div style={{
@@ -1227,9 +1227,9 @@ function UseCases() {
             <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
             <div style={{flex:'1 1 360px',minWidth:0}}>
               <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'8px'}}>
-                See it on <span style={{color:'#07807E'}}>your own data</span>.
+                See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own data</span>.
               </h3>
-              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.6}}>
+              <p style={{fontSize:'14px',color:'var(--ins-text-inactive)',lineHeight:1.6}}>
                 Connect your warehouse and ask Insightis a real question your team gets every week.
               </p>
             </div>
@@ -1237,7 +1237,7 @@ function UseCases() {
               display:'inline-flex',alignItems:'center',gap:'8px',
               padding:'14px 26px',flexShrink:0,
               fontSize:'14px',fontWeight:600,color:'#fff',
-              background:'linear-gradient(135deg,#07807E,#09A09D)',
+              background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))',
               borderRadius:'10px',border:'none',cursor:'pointer',
               whiteSpace:'nowrap',
               fontFamily:'Geist,sans-serif',
@@ -1251,8 +1251,8 @@ function UseCases() {
         </div>
         <div style={{textAlign:'center',marginBottom:'56px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Use cases</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>Use cases</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
             What data teams use Insightis for
@@ -1276,8 +1276,8 @@ function UseCases() {
               <div style={{width:'38px',height:'38px',borderRadius:'10px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'14px'}}>
                 {c.icon}
               </div>
-              <h3 style={{fontSize:'15px',fontWeight:600,color:'#E8F2F5',marginBottom:'6px'}}>{c.title}</h3>
-              <p style={{fontSize:'13.5px',color:'#7FA0AC',lineHeight:1.6}}>{c.desc}</p>
+              <h3 style={{fontSize:'15px',fontWeight:600,color:'var(--ins-color-gray-100)',marginBottom:'6px'}}>{c.title}</h3>
+              <p style={{fontSize:'13.5px',color:'var(--ins-text-inactive)',lineHeight:1.6}}>{c.desc}</p>
             </div>
           ))}
         </div>
@@ -1310,12 +1310,12 @@ function Testimonials() {
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,var(--ins-surface-page) 0%,var(--ins-surface-container) 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'56px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Stories</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>Stories</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
             Data teams who stopped firefighting
@@ -1338,14 +1338,14 @@ function Testimonials() {
             >
               <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.4),transparent)'}}/>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style={{marginBottom:'14px',opacity:.5}}>
-                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h2c1 0 2 .75 2 2v.5C8 19 6 19 3 19v2zm12 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h2c1 0 2 .75 2 2v.5c0 3.5-2 3.5-5 3.5v2z" fill="#0EC4C1"/>
+                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h2c1 0 2 .75 2 2v.5C8 19 6 19 3 19v2zm12 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h2c1 0 2 .75 2 2v.5c0 3.5-2 3.5-5 3.5v2z" fill="var(--ins-text-highlight)"/>
               </svg>
-              <p style={{fontSize:'15px',color:'#C0D4DC',lineHeight:1.6,marginBottom:'22px',flex:1}}>
+              <p style={{fontSize:'15px',color:'var(--ins-color-gray-200)',lineHeight:1.6,marginBottom:'22px',flex:1}}>
                 {t.quote}
               </p>
               <div style={{paddingTop:'18px',borderTop:'1px solid rgba(255,255,255,.06)'}}>
-                <div style={{fontSize:'14px',color:'#E8F2F5',fontWeight:500}}>{t.name}</div>
-                <div style={{fontSize:'12px',color:'#7FA0AC',marginTop:'2px'}}>{t.role}</div>
+                <div style={{fontSize:'14px',color:'var(--ins-color-gray-100)',fontWeight:500}}>{t.name}</div>
+                <div style={{fontSize:'12px',color:'var(--ins-text-inactive)',marginTop:'2px'}}>{t.role}</div>
                 <div style={{
                   display:'inline-block',marginTop:'10px',
                   padding:'3px 10px',borderRadius:'999px',
@@ -1393,12 +1393,12 @@ function FAQ() {
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0D1117 0%,#0A0E13 100%)'}}>
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,var(--ins-surface-container) 0%,var(--ins-surface-page) 100%)'}}>
       <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'48px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>FAQ</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>FAQ</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
             Questions data teams ask

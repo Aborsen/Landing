@@ -8,7 +8,7 @@ import Footer from '../components/Footer';
 function InsightisLogoMark({ size = 60, opacity = 1 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" style={{opacity}}>
-      <path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="#0EC4C1"/>
+      <path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="var(--ins-text-highlight)"/>
     </svg>
   );
 }
@@ -18,13 +18,13 @@ function PromptLibraryHero() {
   return (
     <section style={{padding:'80px 0 40px', textAlign:'center', position:'relative'}}>
       <div style={{maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
-        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid rgba(255,255,255,.07)', background:'rgba(255,255,255,.03)', fontSize:'12px', color:'#7FA0AC', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
+        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid rgba(255,255,255,.07)', background:'rgba(255,255,255,.03)', fontSize:'12px', color:'var(--ins-text-inactive)', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
           ✦ PROMPT LIBRARY
         </div>
-        <h1 className="fu1" style={{fontSize:'clamp(36px,5vw,56px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'#E8F2F5', marginBottom:'20px'}}>
+        <h1 className="fu1" style={{fontSize:'clamp(36px,5vw,56px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'var(--ins-color-gray-100)', marginBottom:'20px'}}>
           Prompts for every team.
         </h1>
-        <p className="fu2" style={{fontSize:'17px', color:'#7FA0AC', lineHeight:1.6, maxWidth:'560px', margin:'0 auto'}}>
+        <p className="fu2" style={{fontSize:'17px', color:'var(--ins-text-inactive)', lineHeight:1.6, maxWidth:'560px', margin:'0 auto'}}>
           Curated prompt templates for analytics, ops, and go-to-market teams — connected to the tools you already use.
         </p>
       </div>
@@ -381,7 +381,7 @@ function PromptLibrarySidebar({ selectedTeams, toggleTeam, clearAll }) {
       />
       <span className="filter-checkbox">
         {checked && (
-          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#0A0E13" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="var(--ins-surface-page)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="20 6 9 17 4 12"/>
           </svg>
         )}
@@ -401,7 +401,7 @@ function PromptLibrarySidebar({ selectedTeams, toggleTeam, clearAll }) {
           tabIndex={total === 0 ? -1 : 0}
           style={{
             fontSize:'11.5px', fontFamily:'Geist,sans-serif',
-            background:'rgba(9,160,157,.08)', color:'#0EC4C1',
+            background:'rgba(9,160,157,.08)', color:'var(--ins-text-highlight)',
             border:'1px solid rgba(9,160,157,.25)',
             borderRadius:'6px', padding:'5px 10px', cursor:'pointer',
             display:'inline-flex', alignItems:'center', gap:'6px',
@@ -447,7 +447,7 @@ function PromptCard({ entry, index, isExpanded, onToggle }) {
     <article className="prompt-card" style={{ animationDelay:`${Math.min(index,8) * 0.04}s` }}>
       <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', gap:'20px', flexWrap:'wrap' }}>
         <div style={{ flex:'1 1 320px', minWidth:0 }}>
-          <h3 style={{ fontSize:'15.5px', fontWeight:500, color:'#E8F2F5', lineHeight:1.4, marginBottom:'10px', letterSpacing:'-.01em' }}>
+          <h3 style={{ fontSize:'15.5px', fontWeight:500, color:'var(--ins-color-gray-100)', lineHeight:1.4, marginBottom:'10px', letterSpacing:'-.01em' }}>
             {entry.title}
           </h3>
           <div style={{ display:'flex', flexWrap:'wrap', gap:'6px', marginBottom:'10px' }}>
@@ -483,7 +483,7 @@ function PromptCard({ entry, index, isExpanded, onToggle }) {
               style={{
                 display:'inline-flex', alignItems:'center', gap:'6px',
                 background:'transparent', border:'1px solid rgba(9,160,157,.25)',
-                color: copied ? '#8EDDBF' : '#0EC4C1',
+                color: copied ? '#8EDDBF' : 'var(--ins-text-highlight)',
                 borderRadius:'6px', padding:'4px 10px',
                 fontSize:'11.5px', fontWeight:500, cursor:'pointer',
                 fontFamily:'Geist,sans-serif',
@@ -531,7 +531,7 @@ function BottomCTA() {
           <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
 
           <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',lineHeight:1.2,flexShrink:0}}>
-            Stop reading about <span style={{color:'#0EC4C1'}}>analytics.</span> Start doing it.
+            Stop reading about <span style={{color:'var(--ins-text-highlight)'}}>analytics.</span> Start doing it.
           </h3>
 
           <div style={{
@@ -554,7 +554,7 @@ function BottomCTA() {
               display:'inline-flex',alignItems:'center',gap:'8px',
               padding:'10px 20px',margin:'4px',
               fontSize:'13px',fontWeight:500,color:'#fff',
-              background:'linear-gradient(135deg,#07807E,#09A09D)',
+              background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))',
               borderRadius:'8px',border:'none',cursor:'pointer',
               whiteSpace:'nowrap',flexShrink:0,
               fontFamily:'Geist,sans-serif',
@@ -613,7 +613,7 @@ function FloatingChat({ onSubmit }) {
           backdropFilter:'blur(10px)',
           WebkitBackdropFilter:'blur(10px)',
         }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7FA0AC" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
           </svg>
           <input
@@ -626,7 +626,7 @@ function FloatingChat({ onSubmit }) {
             placeholder="Ask for a prompt or a custom workflow..."
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
-              fontSize:'13px', color:'#E8F2F5',
+              fontSize:'13px', color:'var(--ins-color-gray-100)',
               fontFamily:'inherit',
             }}
           />
@@ -635,15 +635,15 @@ function FloatingChat({ onSubmit }) {
             style={{
               flexShrink:0,
               padding:'6px 14px', borderRadius:'7px',
-              background: value.trim() ? '#07807E' : 'rgba(9,160,157,.15)',
+              background: value.trim() ? 'var(--ins-button-primary-bg)' : 'rgba(9,160,157,.15)',
               color: value.trim() ? '#fff' : '#4A9EA0',
               border:'none', cursor: value.trim() ? 'pointer' : 'default',
               fontSize:'12px', fontWeight:600,
               fontFamily:'inherit',
               transition:'background .2s, color .2s',
             }}
-            onMouseEnter={(e) => { if (value.trim()) e.currentTarget.style.background = '#09A09D'; }}
-            onMouseLeave={(e) => { if (value.trim()) e.currentTarget.style.background = '#07807E'; }}
+            onMouseEnter={(e) => { if (value.trim()) e.currentTarget.style.background = 'var(--ins-button-primary-bg-hover)'; }}
+            onMouseLeave={(e) => { if (value.trim()) e.currentTarget.style.background = 'var(--ins-button-primary-bg)'; }}
           >
             Ask AI
           </button>
@@ -721,7 +721,7 @@ function AIAssistantPanel({ query, onClose }) {
       background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
       color:'#5E8290', transition:'color .15s',
     }}
-    onMouseEnter={e => e.currentTarget.style.color = '#7FA0AC'}
+    onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-text-inactive)'}
     onMouseLeave={e => e.currentTarget.style.color = '#5E8290'}
     >
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -746,17 +746,17 @@ function AIAssistantPanel({ query, onClose }) {
         flexShrink:0,
       }}>
         <div style={{ display:'flex', alignItems:'center', gap:'7px' }}>
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
           </svg>
-          <span style={{ fontSize:'13px', fontWeight:600, color:'#E8F2F5' }}>Assistant</span>
+          <span style={{ fontSize:'13px', fontWeight:600, color:'var(--ins-color-gray-100)' }}>Assistant</span>
         </div>
         <div style={{ display:'flex', gap:'2px' }}>
           <button onClick={onClose} style={{
             background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
             color:'#5E8290', transition:'color .15s', display:'flex',
           }}
-          onMouseEnter={e => e.currentTarget.style.color = '#E8F2F5'}
+          onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-color-gray-100)'}
           onMouseLeave={e => e.currentTarget.style.color = '#5E8290'}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -801,7 +801,7 @@ function AIAssistantPanel({ query, onClose }) {
                 <ul style={{ margin:'0 0 10px 0', padding:'0', listStyle:'none', display:'flex', flexDirection:'column', gap:'5px' }}>
                   {msg.response.bullets.map((b, i) => (
                     <li key={i} style={{ fontSize:'13px', color:'#8AAAB8', lineHeight:1.6, paddingLeft:'14px', position:'relative' }}>
-                      <span style={{ position:'absolute', left:0, color:'#0EC4C1', fontWeight:700 }}>·</span>
+                      <span style={{ position:'absolute', left:0, color:'var(--ins-text-highlight)', fontWeight:700 }}>·</span>
                       <strong style={{ color:'#C8E6EA' }}>{b.bold}</strong>{b.text}
                     </li>
                   ))}
@@ -811,7 +811,7 @@ function AIAssistantPanel({ query, onClose }) {
                 </p>
                 <div style={{ display:'flex', flexDirection:'column', gap:'4px', marginBottom:'12px' }}>
                   {msg.response.links.map((l, i) => (
-                    <a key={i} href="#" style={{ fontSize:'12px', color:'#09A09D', textDecoration:'none' }}
+                    <a key={i} href="#" style={{ fontSize:'12px', color:'var(--ins-button-primary-bg-hover)', textDecoration:'none' }}
                       onMouseEnter={e => e.currentTarget.style.textDecoration = 'underline'}
                       onMouseLeave={e => e.currentTarget.style.textDecoration = 'none'}
                     >{l}</a>
@@ -838,7 +838,7 @@ function AIAssistantPanel({ query, onClose }) {
               {[0,1,2].map(i => (
                 <div key={i} style={{
                   width:'6px', height:'6px', borderRadius:'50%',
-                  background:'#0EC4C1',
+                  background:'var(--ins-text-highlight)',
                   animation:`pulse 1.2s ease ${i * 0.2}s infinite`,
                 }}/>
               ))}
@@ -869,12 +869,12 @@ function AIAssistantPanel({ query, onClose }) {
             placeholder="Ask a follow-up..."
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
-              fontSize:'13px', color:'#E8F2F5', fontFamily:'Geist,sans-serif',
+              fontSize:'13px', color:'var(--ins-color-gray-100)', fontFamily:'Geist,sans-serif',
             }}
           />
           <button onClick={handleFollowUp} style={{
             width:'28px', height:'28px', borderRadius:'7px', flexShrink:0,
-            background: input.trim() ? '#07807E' : 'rgba(9,160,157,.12)',
+            background: input.trim() ? 'var(--ins-button-primary-bg)' : 'rgba(9,160,157,.12)',
             border:'none', cursor: input.trim() ? 'pointer' : 'default',
             display:'flex', alignItems:'center', justifyContent:'center',
             transition:'background .2s',
@@ -940,7 +940,7 @@ function App() {
             marginBottom:'20px',
             transition:'border-color .2s',
           }}>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7FA0AC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
               <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
             </svg>
             <input
@@ -952,13 +952,13 @@ function App() {
               onBlur={() => setSearchFocused(false)}
               style={{
                 flex:1, background:'transparent', border:'none', outline:'none',
-                fontSize:'14px', color:'#E8F2F5', fontFamily:"'Geist', sans-serif",
+                fontSize:'14px', color:'var(--ins-color-gray-100)', fontFamily:"'Geist', sans-serif",
               }}
             />
             {query && (
               <button onClick={() => setQuery('')} style={{
                 background:'none', border:'none', cursor:'pointer',
-                color:'#7FA0AC', padding:'2px 6px', fontSize:'12px',
+                color:'var(--ins-text-inactive)', padding:'2px 6px', fontSize:'12px',
                 fontFamily:"'Geist', sans-serif",
               }}>
                 Clear
@@ -980,7 +980,7 @@ function App() {
             <div style={{
               padding:'40px 24px', textAlign:'center',
               border:'1px dashed rgba(255,255,255,0.08)', borderRadius:'12px',
-              color:'#7FA0AC', fontSize:'14px',
+              color:'var(--ins-text-inactive)', fontSize:'14px',
             }}>
               No prompts match your search — try different keywords or clear a filter.
             </div>

@@ -11,12 +11,12 @@ function PricingHero() {
     <section style={{padding:'120px 0 40px',position:'relative',textAlign:'center'}}>
       <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px',position:'relative'}}>
         <div className="fu0" style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'18px'}}>
-          <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-          <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Pricing</span>
+          <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+          <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>Pricing</span>
         </div>
         <h1 className="fu1" style={{fontSize:'clamp(36px,4.8vw,62px)',fontWeight:500,letterSpacing:'-.03em',lineHeight:1.08,marginBottom:'20px'}}>
-          <span style={{color:'#E8F2F5'}}>Simple pricing. </span>
-          <span style={{color:'#0EC4C1'}}>Powerful insights.</span>
+          <span style={{color:'var(--ins-color-gray-100)'}}>Simple pricing. </span>
+          <span style={{color:'var(--ins-text-highlight)'}}>Powerful insights.</span>
         </h1>
         <p className="fu2" style={{fontSize:'clamp(16px,1.4vw,19px)',color:'rgba(255,255,255,.65)',lineHeight:1.65,maxWidth:'620px',margin:'0 auto'}}>
           Start free. Scale as your team grows. Every plan includes the Semantic Layer, AI Chat, and 200+ connectors.
@@ -98,7 +98,7 @@ function PricingCards() {
                 boxShadow: isHighlight ? '0 8px 32px rgba(9,160,157,0.08)' : 'none',
               }}>
                 {isHighlight && (
-                  <div style={{position:'absolute',top:0,left:'50%',transform:'translate(-50%,-50%)',padding:'4px 12px',background:'linear-gradient(135deg,#09A09D,#07807E)',color:'#fff',fontSize:'11px',fontWeight:500,letterSpacing:'.05em',borderRadius:'999px',textTransform:'uppercase'}}>
+                  <div style={{position:'absolute',top:0,left:'50%',transform:'translate(-50%,-50%)',padding:'4px 12px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',color:'#fff',fontSize:'11px',fontWeight:500,letterSpacing:'.05em',borderRadius:'999px',textTransform:'uppercase'}}>
                     Most popular
                   </div>
                 )}
@@ -120,7 +120,7 @@ function PricingCards() {
                       </div>
                       <div style={{fontSize:'13px',color:'rgba(255,255,255,0.7)',marginTop:'2px'}}>per user / month</div>
                       {plan.discount && (
-                        <div style={{marginTop:'6px',display:'inline-flex',alignItems:'center',gap:'5px',padding:'2px 8px',background:'rgba(9,160,157,0.12)',border:'1px solid rgba(9,160,157,0.35)',borderRadius:'4px',fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'#0EC4C1',fontWeight:600,letterSpacing:'.04em'}}>
+                        <div style={{marginTop:'6px',display:'inline-flex',alignItems:'center',gap:'5px',padding:'2px 8px',background:'rgba(9,160,157,0.12)',border:'1px solid rgba(9,160,157,0.35)',borderRadius:'4px',fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-highlight)',fontWeight:600,letterSpacing:'.04em'}}>
                           {plan.discount}
                         </div>
                       )}
@@ -133,8 +133,8 @@ function PricingCards() {
                   fontSize:'14px',fontWeight:500,
                   textDecoration:'none',
                   marginBottom:'24px',
-                  background: plan.ctaStyle === 'primary' ? 'linear-gradient(135deg,#09A09D,#07807E)' : 'transparent',
-                  color: plan.ctaStyle === 'primary' ? '#fff' : '#0EC4C1',
+                  background: plan.ctaStyle === 'primary' ? 'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))' : 'transparent',
+                  color: plan.ctaStyle === 'primary' ? '#fff' : 'var(--ins-text-highlight)',
                   border: plan.ctaStyle === 'primary' ? 'none' : '1px solid rgba(9,160,157,0.4)',
                   boxShadow: plan.ctaStyle === 'primary' ? '0 0 24px rgba(9,160,157,0.25)' : 'none',
                   transition:'all .2s',
@@ -144,8 +144,8 @@ function PricingCards() {
                 </a>
                 <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px',padding:0,margin:0}}>
                   {plan.features.map((f,fi) => (
-                    <li key={fi} style={{display:'flex',alignItems:'flex-start',gap:'9px',fontSize:'13.5px',color:'#C0D4DC',lineHeight:1.55}}>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0,marginTop:'3px'}}><polyline points="20 6 9 17 4 12"/></svg>
+                    <li key={fi} style={{display:'flex',alignItems:'flex-start',gap:'9px',fontSize:'13.5px',color:'var(--ins-color-gray-200)',lineHeight:1.55}}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0,marginTop:'3px'}}><polyline points="20 6 9 17 4 12"/></svg>
                       {f}
                     </li>
                   ))}
@@ -200,7 +200,7 @@ function FeatureComparison() {
       ]
     },
   ];
-  const Check = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>;
+  const Check = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>;
   const Dash = () => <span style={{color:'rgba(255,255,255,0.18)'}}>—</span>;
   const cols = '1.6fr 1fr 1fr 1fr';
   return (
@@ -223,14 +223,14 @@ function FeatureComparison() {
             <div key={si}>
               {/* Section heading row */}
               <div style={{padding:'14px 20px 10px',background:'rgba(255,255,255,0.015)',borderTop: si > 0 ? '1px solid rgba(255,255,255,0.06)' : 'none'}}>
-                <span style={{fontSize:'11px',fontWeight:600,letterSpacing:'.12em',textTransform:'uppercase',color:'#0EC4C1',fontFamily:'Geist Mono,monospace'}}>{section.title}</span>
+                <span style={{fontSize:'11px',fontWeight:600,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace'}}>{section.title}</span>
               </div>
               {/* Feature rows */}
               {section.rows.map((row, ri) => (
                 <div key={ri} style={{display:'grid',gridTemplateColumns:cols,padding:'12px 20px',borderTop:'1px solid rgba(255,255,255,0.04)',alignItems:'center'}}>
-                  <span style={{fontSize:'14px',color:'#C0D4DC'}}>{row.label}</span>
+                  <span style={{fontSize:'14px',color:'var(--ins-color-gray-200)'}}>{row.label}</span>
                   {row.values.map((v, vi) => (
-                    <span key={vi} style={{display:'flex',justifyContent:'center',alignItems:'center',fontSize:'13.5px',color:'#C0D4DC'}}>
+                    <span key={vi} style={{display:'flex',justifyContent:'center',alignItems:'center',fontSize:'13.5px',color:'var(--ins-color-gray-200)'}}>
                       {v === true ? <Check /> : v === false ? <Dash /> : v}
                     </span>
                   ))}
@@ -252,8 +252,8 @@ function FeatureComparison() {
                   padding:'9px 16px',borderRadius:'999px',
                   fontSize:'13px',fontWeight:500,
                   textDecoration:'none',
-                  background: cta.primary ? 'linear-gradient(135deg,#09A09D,#07807E)' : 'transparent',
-                  color: cta.primary ? '#fff' : '#0EC4C1',
+                  background: cta.primary ? 'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))' : 'transparent',
+                  color: cta.primary ? '#fff' : 'var(--ins-text-highlight)',
                   border: cta.primary ? 'none' : '1px solid rgba(9,160,157,0.4)',
                 }}>{cta.label}</a>
               </div>
@@ -296,9 +296,9 @@ function FAQ() {
         <div style={{display:'flex',flexDirection:'column',gap:'10px'}}>
           {items.map((item,i) => (
             <details key={i} style={{background:'rgba(13,17,23,0.6)',border:'1px solid rgba(255,255,255,0.07)',borderRadius:'12px',padding:'14px 18px'}}>
-              <summary style={{cursor:'pointer',fontSize:'15px',fontWeight:500,color:'#E8F2F5',listStyle:'none',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+              <summary style={{cursor:'pointer',fontSize:'15px',fontWeight:500,color:'var(--ins-color-gray-100)',listStyle:'none',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
                 <span>{item.q}</span>
-                <span style={{color:'#0EC4C1',fontSize:'16px',marginLeft:'12px'}}>+</span>
+                <span style={{color:'var(--ins-text-highlight)',fontSize:'16px',marginLeft:'12px'}}>+</span>
               </summary>
               <p style={{marginTop:'12px',fontSize:'14px',color:'rgba(255,255,255,0.65)',lineHeight:1.65}}>{item.a}</p>
             </details>
@@ -316,15 +316,15 @@ function BottomCTA() {
       <div style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:'700px',height:'420px',background:'radial-gradient(ellipse, rgba(9,160,157,0.13) 0%, transparent 70%)',pointerEvents:'none'}}/>
       <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px',position:'relative',textAlign:'center'}}>
         <h2 style={{fontSize:'clamp(22px,2.6vw,34px)',fontWeight:500,letterSpacing:'-.025em',lineHeight:1.2,marginBottom:'28px'}}>
-          <span style={{color:'#E8F2F5'}}>Start free. </span>
-          <span style={{color:'#0EC4C1'}}>Upgrade when you're ready.</span>
+          <span style={{color:'var(--ins-color-gray-100)'}}>Start free. </span>
+          <span style={{color:'var(--ins-text-highlight)'}}>Upgrade when you're ready.</span>
         </h2>
         <div style={{display:'flex',justifyContent:'center',gap:'12px',flexWrap:'wrap'}}>
-          <a href="/auth/sign-up/" style={{display:'inline-flex',alignItems:'center',gap:'10px',padding:'15px 28px',borderRadius:'999px',background:'linear-gradient(135deg,#09A09D,#07807E)',color:'#fff',fontSize:'15px',fontWeight:500,textDecoration:'none',boxShadow:'0 0 32px rgba(9,160,157,.35), 0 8px 24px rgba(0,0,0,.4)'}}>
+          <a href="/auth/sign-up/" style={{display:'inline-flex',alignItems:'center',gap:'10px',padding:'15px 28px',borderRadius:'999px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',color:'#fff',fontSize:'15px',fontWeight:500,textDecoration:'none',boxShadow:'0 0 32px rgba(9,160,157,.35), 0 8px 24px rgba(0,0,0,.4)'}}>
             Get started for free
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="/Company/Contacts" style={{display:'inline-flex',alignItems:'center',gap:'8px',padding:'15px 26px',borderRadius:'999px',background:'rgba(255,255,255,0.02)',color:'#C0D4DC',fontSize:'15px',fontWeight:500,textDecoration:'none',border:'1px solid rgba(255,255,255,0.12)'}}>
+          <a href="/Company/Contacts" style={{display:'inline-flex',alignItems:'center',gap:'8px',padding:'15px 26px',borderRadius:'999px',background:'rgba(255,255,255,0.02)',color:'var(--ins-color-gray-200)',fontSize:'15px',fontWeight:500,textDecoration:'none',border:'1px solid rgba(255,255,255,0.12)'}}>
             Talk to sales
           </a>
         </div>

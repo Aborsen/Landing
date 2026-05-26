@@ -23,7 +23,7 @@ function MiniBarChart({ data, color }) {
 }
 
 function TreemapChart({ items }) {
-  const colors = ['#0EC4C1','#09A09D','#818CF8','#FBBF24','#F87171','#34D399','#60A5FA'];
+  const colors = ['var(--ins-text-highlight)','var(--ins-button-primary-bg-hover)','#818CF8','var(--ins-status-warning-fg)','var(--ins-status-error-fg)','#34D399','#60A5FA'];
   const sorted = [...items].sort((a,b) => b.value - a.value);
   const total = sorted.reduce((s,i) => s + i.value, 0);
   const W = 860, H = 270, gap = 4;
@@ -60,7 +60,7 @@ function TreemapChart({ items }) {
 
 function PieChart({ slices }) {
   const total = slices.reduce((s, d) => s + Math.abs(d.value), 0);
-  const colors = ['#0EC4C1','#09A09D','#F87171','#FBBF24','#818CF8','#34D399'];
+  const colors = ['var(--ins-text-highlight)','var(--ins-button-primary-bg-hover)','var(--ins-status-error-fg)','var(--ins-status-warning-fg)','#818CF8','#34D399'];
   let angle = -Math.PI / 2;
   const cx = 90, cy = 90, r = 75, ri = 38;
   const paths = slices.map((s, i) => {
@@ -83,8 +83,8 @@ function PieChart({ slices }) {
         {paths.map((p,i) => (
           <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
             <div style={{width:'12px',height:'12px',borderRadius:'3px',background:p.color,flexShrink:0}}/>
-            <span style={{fontSize:'14px',color:'#7FA0AC',fontFamily:'Geist Mono,monospace',flex:1}}>{p.label}</span>
-            <span style={{fontSize:'14px',color:'#E8F2F5',fontFamily:'Geist Mono,monospace',fontWeight:500}}>{p.pct}%</span>
+            <span style={{fontSize:'14px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',flex:1}}>{p.label}</span>
+            <span style={{fontSize:'14px',color:'var(--ins-color-gray-100)',fontFamily:'Geist Mono,monospace',fontWeight:500}}>{p.pct}%</span>
           </div>
         ))}
       </div>
@@ -98,7 +98,7 @@ function HorizontalBarChart({ bars }) {
     <div style={{display:'flex',flexDirection:'column',gap:'10px',margin:'12px 0'}}>
       {bars.map((b,i) => (
         <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
-          <span style={{fontSize:'12px',color:'#7FA0AC',fontFamily:'Geist Mono,monospace',minWidth:'180px',textAlign:'right',flexShrink:0}}>{b.label}</span>
+          <span style={{fontSize:'12px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',minWidth:'180px',textAlign:'right',flexShrink:0}}>{b.label}</span>
           <div style={{flex:1,background:'rgba(255,255,255,.04)',borderRadius:'4px',height:'22px',position:'relative',overflow:'hidden'}}>
             <div style={{
               width:`${(Math.abs(b.value)/maxVal)*100}%`,
@@ -106,7 +106,7 @@ function HorizontalBarChart({ bars }) {
               background: b.color || (b.value < 0 ? 'rgba(220,80,80,.7)' : 'rgba(9,160,157,.6)'),
             }}/>
           </div>
-          <span style={{fontSize:'12px',fontFamily:'Geist Mono,monospace',color: b.value < 0 ? '#E06060' : '#0EC4C1',minWidth:'60px',flexShrink:0}}>{b.display}</span>
+          <span style={{fontSize:'12px',fontFamily:'Geist Mono,monospace',color: b.value < 0 ? '#E06060' : 'var(--ins-text-highlight)',minWidth:'60px',flexShrink:0}}>{b.display}</span>
         </div>
       ))}
     </div>
@@ -128,11 +128,11 @@ function LineChart({ points, labels }) {
   return (
     <div style={{margin:'12px 0'}}>
       <svg viewBox={`0 0 ${w} ${h}`} style={{width:'100%',height:'auto'}}>
-        <defs><linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#09A09D" stopOpacity=".25"/><stop offset="100%" stopColor="#09A09D" stopOpacity=".02"/></linearGradient></defs>
+        <defs><linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="var(--ins-button-primary-bg-hover)" stopOpacity=".25"/><stop offset="100%" stopColor="var(--ins-button-primary-bg-hover)" stopOpacity=".02"/></linearGradient></defs>
         {[0,.25,.5,.75,1].map(f => <line key={f} x1={px} y1={py+chartH*f} x2={w-px} y2={py+chartH*f} stroke="rgba(255,255,255,.05)" strokeWidth="1"/>)}
         <path d={area} fill="url(#areaFill)"/>
-        <path d={line} fill="none" stroke="#0EC4C1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        {coords.map((c,i) => <circle key={i} cx={c.x} cy={c.y} r="3" fill="#0EC4C1" stroke="#0A0E13" strokeWidth="1.5"/>)}
+        <path d={line} fill="none" stroke="var(--ins-text-highlight)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        {coords.map((c,i) => <circle key={i} cx={c.x} cy={c.y} r="3" fill="var(--ins-text-highlight)" stroke="var(--ins-surface-page)" strokeWidth="1.5"/>)}
         {labels && labels.map((l,i) => <text key={i} x={coords[i].x} y={h-1} textAnchor="middle" style={{fontSize:'9px',fill:'#8AA6B3',fontFamily:'Geist Mono,monospace'}}>{l}</text>)}
       </svg>
     </div>
@@ -165,10 +165,10 @@ const REVOPS_QA = {
     {
       type: 'graph', chart: 'treemap',
       chartData: [
-        { label:'NovaCorp', value:52, display:'$52K', color:'#F87171' },
-        { label:'AlphaBase', value:38, display:'$38K', color:'#FBBF24' },
-        { label:'Meridian', value:31, display:'$31K', color:'#F87171' },
-        { label:'Quell Inc.', value:28, display:'$28K', color:'#FBBF24' },
+        { label:'NovaCorp', value:52, display:'$52K', color:'var(--ins-status-error-fg)' },
+        { label:'AlphaBase', value:38, display:'$38K', color:'var(--ins-status-warning-fg)' },
+        { label:'Meridian', value:31, display:'$31K', color:'var(--ins-status-error-fg)' },
+        { label:'Quell Inc.', value:28, display:'$28K', color:'var(--ins-status-warning-fg)' },
         { label:'Vertexio', value:22, display:'$22K', color:'#818CF8' },
         { label:'Others', value:13, display:'$13K', color:'#8AA6B3' },
       ],
@@ -183,8 +183,8 @@ const REVOPS_QA = {
     {
       type: 'graph', chart: 'pie',
       chartData: [
-        { label:'Prospect → MQL drop-off', value:71, color:'#F87171' },
-        { label:'MQL → SQL drop-off', value:38, color:'#FBBF24' },
+        { label:'Prospect → MQL drop-off', value:71, color:'var(--ins-status-error-fg)' },
+        { label:'MQL → SQL drop-off', value:38, color:'var(--ins-status-warning-fg)' },
         { label:'SQL → Proposal drop-off', value:22, color:'#818CF8' },
         { label:'Proposal → Closed Won drop-off', value:14, color:'#34D399' },
       ],
@@ -227,11 +227,11 @@ function FoundersHeroIllustration() {
       <defs>
         <linearGradient id="ro_cardBg" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#10171E"/>
-          <stop offset="100%" stopColor="#0A0E13"/>
+          <stop offset="100%" stopColor="var(--ins-surface-page)"/>
         </linearGradient>
         <radialGradient id="ro_glow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#0EC4C1" stopOpacity="0.18"/>
-          <stop offset="100%" stopColor="#0EC4C1" stopOpacity="0"/>
+          <stop offset="0%" stopColor="var(--ins-text-highlight)" stopOpacity="0.18"/>
+          <stop offset="100%" stopColor="var(--ins-text-highlight)" stopOpacity="0"/>
         </radialGradient>
       </defs>
 
@@ -249,14 +249,14 @@ function FoundersHeroIllustration() {
         <circle cx="70" cy="62" r="4" fill="#FF5F57" opacity="0.55"/>
         <circle cx="84" cy="62" r="4" fill="#FFBD2E" opacity="0.55"/>
         <circle cx="98" cy="62" r="4" fill="#28C840" opacity="0.55"/>
-        <text x="310" y="66" textAnchor="middle" fontFamily="Geist Mono, monospace" fontSize="11" fill="#7FA0AC">Company health · Live</text>
+        <text x="310" y="66" textAnchor="middle" fontFamily="Geist Mono, monospace" fontSize="11" fill="var(--ins-text-inactive)">Company health · Live</text>
         <rect x="478" y="55" width="76" height="18" rx="5" fill="rgba(9,160,157,0.12)" stroke="rgba(9,160,157,0.35)" strokeWidth="0.5"/>
-        <circle cx="488" cy="64" r="2.5" fill="#22C55E"/>
-        <text x="496" y="67" fontFamily="Geist Mono, monospace" fontSize="9" fill="#0EC4C1" fontWeight="500">AI active</text>
+        <circle cx="488" cy="64" r="2.5" fill="var(--ins-status-success-fg)"/>
+        <text x="496" y="67" fontFamily="Geist Mono, monospace" fontSize="9" fill="var(--ins-text-highlight)" fontWeight="500">AI active</text>
 
         {/* Section title row */}
-        <text x="68" y="112" fontFamily="Geist Mono,monospace" fontSize="10" fill="#7FA0AC" letterSpacing="1.5">COHORT RETENTION</text>
-        <text x="552" y="112" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="#0EC4C1" letterSpacing="1">▲ Net retention 112%</text>
+        <text x="68" y="112" fontFamily="Geist Mono,monospace" fontSize="10" fill="var(--ins-text-inactive)" letterSpacing="1.5">COHORT RETENTION</text>
+        <text x="552" y="112" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-highlight)" letterSpacing="1">▲ Net retention 112%</text>
 
         {/* Column headers */}
         {months.map((m, j) => (
@@ -280,7 +280,7 @@ function FoundersHeroIllustration() {
               textAnchor="end"
               fontFamily="Geist Mono,monospace"
               fontSize="10"
-              fill="#7FA0AC"
+              fill="var(--ins-text-inactive)"
               fontWeight="500"
             >{c.label}</text>
             {c.v.map((val, j) => (
@@ -300,7 +300,7 @@ function FoundersHeroIllustration() {
                     textAnchor="middle"
                     fontFamily="Geist Mono,monospace"
                     fontSize="10"
-                    fill={val >= 85 ? '#0A0E13' : '#E8F2F5'}
+                    fill={val >= 85 ? 'var(--ins-surface-page)' : 'var(--ins-color-gray-100)'}
                     fontWeight="600"
                   >{val}%</text>
                 )}
@@ -310,41 +310,41 @@ function FoundersHeroIllustration() {
         ))}
 
         {/* Summary line */}
-        <text x="68" y="412" fontFamily="Geist Mono,monospace" fontSize="9" fill="#7FA0AC" letterSpacing="1">142 customers · 5 cohorts · M0–M12 retention</text>
+        <text x="68" y="412" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-inactive)" letterSpacing="1">142 customers · 5 cohorts · M0–M12 retention</text>
       </g>
 
       {/* Floating donut card — bottom-left, partially overlapping */}
       <g transform="translate(14, 358)">
         <rect x="0" y="0" width="180" height="158" rx="14" fill="rgba(15,20,25,0.97)" stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
-        <text x="14" y="24" fontFamily="Geist Mono,monospace" fontSize="9" fill="#7FA0AC" letterSpacing="1.5">REVENUE BY SEGMENT</text>
+        <text x="14" y="24" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-inactive)" letterSpacing="1.5">REVENUE BY SEGMENT</text>
 
         {/* Donut */}
         <g transform="translate(46, 92) rotate(-90)">
-          <circle r="22" fill="none" stroke="#0EC4C1" strokeWidth="14" strokeDasharray="69.12 138.23" strokeDashoffset="0"/>
+          <circle r="22" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="14" strokeDasharray="69.12 138.23" strokeDashoffset="0"/>
           <circle r="22" fill="none" stroke="#34D399" strokeWidth="14" strokeDasharray="41.47 138.23" strokeDashoffset="-69.12"/>
-          <circle r="22" fill="none" stroke="#7FA0AC" strokeWidth="14" strokeDasharray="27.65 138.23" strokeDashoffset="-110.59"/>
+          <circle r="22" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="14" strokeDasharray="27.65 138.23" strokeDashoffset="-110.59"/>
         </g>
         {/* Donut center */}
-        <text x="46" y="89" textAnchor="middle" fontFamily="Geist Mono,monospace" fontSize="8" fill="#7FA0AC">ARR</text>
-        <text x="46" y="103" textAnchor="middle" fontFamily="Geist,sans-serif" fontSize="12" fontWeight="600" fill="#E8F2F5">$24M</text>
+        <text x="46" y="89" textAnchor="middle" fontFamily="Geist Mono,monospace" fontSize="8" fill="var(--ins-text-inactive)">ARR</text>
+        <text x="46" y="103" textAnchor="middle" fontFamily="Geist,sans-serif" fontSize="12" fontWeight="600" fill="var(--ins-color-gray-100)">$24M</text>
 
         {/* Legend */}
         <g transform="translate(86, 56)">
-          <circle cx="0" cy="0" r="3" fill="#0EC4C1"/>
-          <text x="9" y="3" fontFamily="Geist Mono,monospace" fontSize="9" fill="#E8F2F5">Enterprise</text>
-          <text x="84" y="3" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="#7FA0AC">50%</text>
+          <circle cx="0" cy="0" r="3" fill="var(--ins-text-highlight)"/>
+          <text x="9" y="3" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-color-gray-100)">Enterprise</text>
+          <text x="84" y="3" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-inactive)">50%</text>
 
           <circle cx="0" cy="22" r="3" fill="#34D399"/>
-          <text x="9" y="25" fontFamily="Geist Mono,monospace" fontSize="9" fill="#E8F2F5">Mid-market</text>
-          <text x="84" y="25" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="#7FA0AC">30%</text>
+          <text x="9" y="25" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-color-gray-100)">Mid-market</text>
+          <text x="84" y="25" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-inactive)">30%</text>
 
-          <circle cx="0" cy="44" r="3" fill="#7FA0AC"/>
-          <text x="9" y="47" fontFamily="Geist Mono,monospace" fontSize="9" fill="#E8F2F5">SMB</text>
-          <text x="84" y="47" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="#7FA0AC">20%</text>
+          <circle cx="0" cy="44" r="3" fill="var(--ins-text-inactive)"/>
+          <text x="9" y="47" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-color-gray-100)">SMB</text>
+          <text x="84" y="47" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-inactive)">20%</text>
         </g>
 
         {/* Footer */}
-        <text x="14" y="146" fontFamily="Geist Mono,monospace" fontSize="8" fill="#7FA0AC">ACV $42K · 142 customers</text>
+        <text x="14" y="146" fontFamily="Geist Mono,monospace" fontSize="8" fill="var(--ins-text-inactive)">ACV $42K · 142 customers</text>
       </g>
 
       {/* Floating AI insight card — bottom-right, partially overlapping */}
@@ -352,12 +352,12 @@ function FoundersHeroIllustration() {
         <rect x="0" y="0" width="220" height="84" rx="14" fill="rgba(15,20,25,0.97)" stroke="rgba(9,160,157,0.45)" strokeWidth="1"/>
         <g transform="translate(16,16)">
           <rect x="0" y="0" width="22" height="22" rx="6" fill="rgba(9,160,157,0.18)" stroke="rgba(9,160,157,0.4)" strokeWidth="0.5"/>
-          <text x="11" y="16" textAnchor="middle" fontFamily="Geist Mono,monospace" fontSize="10" fontWeight="600" fill="#0EC4C1">AI</text>
+          <text x="11" y="16" textAnchor="middle" fontFamily="Geist Mono,monospace" fontSize="10" fontWeight="600" fill="var(--ins-text-highlight)">AI</text>
         </g>
-        <text x="48" y="26" fontFamily="Geist Mono,monospace" fontSize="9" fill="#0EC4C1" fontWeight="500" letterSpacing="1">INSIGHT · LIVE</text>
-        <text x="48" y="46" fontFamily="Geist,sans-serif" fontSize="12" fill="#E8F2F5" fontWeight="500">Q3 cohort retains 12 pp</text>
-        <text x="48" y="62" fontFamily="Geist,sans-serif" fontSize="12" fill="#E8F2F5" fontWeight="500">better — onboarding wins.</text>
-        <text x="48" y="78" fontFamily="Geist Mono,monospace" fontSize="9" fill="#7FA0AC">Enterprise mix +8 pp →</text>
+        <text x="48" y="26" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-highlight)" fontWeight="500" letterSpacing="1">INSIGHT · LIVE</text>
+        <text x="48" y="46" fontFamily="Geist,sans-serif" fontSize="12" fill="var(--ins-color-gray-100)" fontWeight="500">Q3 cohort retains 12 pp</text>
+        <text x="48" y="62" fontFamily="Geist,sans-serif" fontSize="12" fill="var(--ins-color-gray-100)" fontWeight="500">better — onboarding wins.</text>
+        <text x="48" y="78" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-inactive)">Enterprise mix +8 pp →</text>
       </g>
     </svg>
   );
@@ -386,8 +386,8 @@ function Hero() {
                 lineHeight:1.05,
                 marginBottom:'24px',
               }}>
-                <span style={{color:'#E8F2F5'}}>AI analytics for </span>
-                <span style={{color:'#0EC4C1'}}>Founders &amp; CEOs</span>
+                <span style={{color:'var(--ins-color-gray-100)'}}>AI analytics for </span>
+                <span style={{color:'var(--ins-text-highlight)'}}>Founders &amp; CEOs</span>
               </h1>
 
               <p className="fu2" style={{
@@ -404,7 +404,7 @@ function Hero() {
                 <a href="/auth/sign-up/" style={{
                   display:'inline-flex',alignItems:'center',gap:'10px',
                   padding:'16px 32px',borderRadius:'999px',
-                  background:'linear-gradient(135deg,#09A09D,#07807E)',
+                  background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',
                   color:'#fff',fontSize:'15px',fontWeight:500,
                   textDecoration:'none',
                   boxShadow:'0 0 32px rgba(9,160,157,.35), 0 8px 24px rgba(0,0,0,.4)',
@@ -458,14 +458,14 @@ function PainPoints() {
   ];
 
   return (
-    <section style={{padding:'120px 0 100px',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
+    <section style={{padding:'120px 0 100px',background:'linear-gradient(180deg,var(--ins-surface-page) 0%,var(--ins-surface-container) 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'64px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(248,113,113,.08)',border:'1px solid rgba(248,113,113,.22)',borderRadius:'999px',marginBottom:'16px'}}>
-            <span style={{color:'#F87171',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#F87171',fontFamily:'Geist Mono,monospace'}}>The Problem</span>
+            <span style={{color:'var(--ins-status-error-fg)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-status-error-fg)',fontFamily:'Geist Mono,monospace'}}>The Problem</span>
           </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
+          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
             Founders fly blind between board meetings
           </h2>
           <p style={{fontSize:'16px',color:'rgba(255,255,255,.7)',maxWidth:'480px',margin:'0 auto',lineHeight:1.65}}>
@@ -496,11 +496,11 @@ function PainPoints() {
                   flexShrink:0,
                   boxShadow:'0 0 16px rgba(248,113,113,.18), inset 0 1px 0 rgba(255,255,255,.05)',
                 }}>
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#F87171" strokeWidth="2.5" strokeLinecap="round"/></svg>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="var(--ins-status-error-fg)" strokeWidth="2.5" strokeLinecap="round"/></svg>
                 </div>
-                <h3 style={{fontSize:'16px',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#E8F2F5',letterSpacing:'-.01em',margin:0,lineHeight:1.3}}>{p.title}</h3>
+                <h3 style={{fontSize:'16px',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'var(--ins-color-gray-100)',letterSpacing:'-.01em',margin:0,lineHeight:1.3}}>{p.title}</h3>
               </div>
-              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.7,margin:0}}>{p.desc}</p>
+              <p style={{fontSize:'14px',color:'var(--ins-text-inactive)',lineHeight:1.7,margin:0}}>{p.desc}</p>
             </div>
           ))}
         </div>
@@ -545,14 +545,14 @@ function MidCTA() {
           marginBottom:'32px',
           whiteSpace:'nowrap',
         }}>
-          <span style={{color:'#E8F2F5'}}>Skip the board prep marathon. </span>
-          <span style={{color:'#0EC4C1'}}>Start asking.</span>
+          <span style={{color:'var(--ins-color-gray-100)'}}>Skip the board prep marathon. </span>
+          <span style={{color:'var(--ins-text-highlight)'}}>Start asking.</span>
         </h2>
         <div style={{display:'flex',justifyContent:'center'}}>
           <a href="/auth/sign-up/" style={{
             display:'inline-flex',alignItems:'center',gap:'10px',
             padding:'16px 32px',borderRadius:'999px',
-            background:'linear-gradient(135deg,#09A09D,#07807E)',
+            background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',
             color:'#fff',fontSize:'15px',fontWeight:500,
             textDecoration:'none',
             boxShadow:'0 0 32px rgba(9,160,157,.35), 0 8px 24px rgba(0,0,0,.4)',
@@ -600,14 +600,14 @@ function HowItWorks() {
   ];
 
   return (
-    <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,#0D1117 0%,#101620 100%)'}}>
+    <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,var(--ins-surface-container) 0%,#101620 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'64px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>The Solution</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>The Solution</span>
           </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
+          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
             Wire it in. Lock it down. Run the company.
           </h2>
           <p style={{fontSize:'16px',color:'rgba(255,255,255,.7)',maxWidth:'640px',margin:'0 auto',lineHeight:1.65}}>
@@ -634,16 +634,16 @@ function HowItWorks() {
                 boxShadow:'0 0 28px rgba(9,160,157,.18), inset 0 1px 0 rgba(255,255,255,.05)',
                 marginBottom:'22px',
               }}>
-                <span style={{fontSize:'18px',fontWeight:600,color:'#0EC4C1',fontFamily:"'Outfit', sans-serif",letterSpacing:'-.02em',fontVariantNumeric:'tabular-nums'}}>{s.n}</span>
+                <span style={{fontSize:'18px',fontWeight:600,color:'var(--ins-text-highlight)',fontFamily:"var(--ins-font-family-sans)",letterSpacing:'-.02em',fontVariantNumeric:'tabular-nums'}}>{s.n}</span>
               </div>
 
               {/* Title */}
-              <h3 style={{fontSize:'18px',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.02em',margin:'0 0 10px',lineHeight:1.2}}>
+              <h3 style={{fontSize:'18px',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.02em',margin:'0 0 10px',lineHeight:1.2}}>
                 {s.title}
               </h3>
 
               {/* Description */}
-              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.7,margin:'0 0 16px',width:'100%',maxWidth:'360px'}}>
+              <p style={{fontSize:'14px',color:'var(--ins-text-inactive)',lineHeight:1.7,margin:'0 0 16px',width:'100%',maxWidth:'360px'}}>
                 {s.desc}
               </p>
 
@@ -681,12 +681,12 @@ function HowItWorks() {
 /* ── BEFORE / AFTER ── */
 function BeforeAfter() {
   return (
-    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,var(--ins-surface-page) 0%,var(--ins-surface-container) 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'52px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>The old way VS Insightis</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>The old way VS Insightis</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
             Two ways to run the company
@@ -700,8 +700,8 @@ function BeforeAfter() {
           {/* Before */}
           <div style={{background:'rgba(248,113,113,.04)',border:'1px solid rgba(248,113,113,.15)',borderRadius:'16px',padding:'28px'}}>
             <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'20px'}}>
-              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#F87171'}}/>
-              <span style={{fontSize:'13px',fontWeight:600,color:'#F87171'}}>Before Insightis</span>
+              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-status-error-fg)'}}/>
+              <span style={{fontSize:'13px',fontWeight:600,color:'var(--ins-status-error-fg)'}}>Before Insightis</span>
             </div>
             <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'12px'}}>
               {[
@@ -712,8 +712,8 @@ function BeforeAfter() {
                 'Investors are reading numbers from the last close',
                 'Cohort signals hide across five BI tools',
               ].map((item,i) => (
-                <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'#7FA0AC',lineHeight:1.55}}>
-                  <span style={{color:'#F87171',fontWeight:500,flexShrink:0}}>✕</span>
+                <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'var(--ins-text-inactive)',lineHeight:1.55}}>
+                  <span style={{color:'var(--ins-status-error-fg)',fontWeight:500,flexShrink:0}}>✕</span>
                   {item}
                 </li>
               ))}
@@ -724,8 +724,8 @@ function BeforeAfter() {
           <div style={{background:'rgba(9,160,157,.05)',border:'1px solid rgba(9,160,157,.25)',borderRadius:'16px',padding:'28px',position:'relative'}}>
             <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.6),transparent)',borderRadius:'16px 16px 0 0'}}/>
             <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'20px'}}>
-              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#0EC4C1',boxShadow:'0 0 8px #0EC4C1'}}/>
-              <span style={{fontSize:'13px',fontWeight:600,color:'#0EC4C1'}}>With Insightis</span>
+              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-text-highlight)',boxShadow:'0 0 8px var(--ins-text-highlight)'}}/>
+              <span style={{fontSize:'13px',fontWeight:600,color:'var(--ins-text-highlight)'}}>With Insightis</span>
             </div>
             <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'12px'}}>
               {[
@@ -736,8 +736,8 @@ function BeforeAfter() {
                 'Investor numbers refreshed this morning',
                 'Cohort patterns surface from a single ask',
               ].map((item,i) => (
-                <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'#C0D4DC',lineHeight:1.55}}>
-                  <span style={{color:'#0EC4C1',fontWeight:500,flexShrink:0}}>✓</span>
+                <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'var(--ins-color-gray-200)',lineHeight:1.55}}>
+                  <span style={{color:'var(--ins-text-highlight)',fontWeight:500,flexShrink:0}}>✓</span>
                   {item}
                 </li>
               ))}
@@ -747,8 +747,8 @@ function BeforeAfter() {
 
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
-            <span style={{fontSize:'40px',fontWeight:500,color:'#0EC4C1',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>7×</span>
-            <span style={{fontSize:'15px',color:'#7FA0AC',whiteSpace:'nowrap'}}>faster strategic answers. Zero analyst handoffs.</span>
+            <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>7×</span>
+            <span style={{fontSize:'15px',color:'var(--ins-text-inactive)',whiteSpace:'nowrap'}}>faster strategic answers. Zero analyst handoffs.</span>
           </div>
         </div>
       </div>
@@ -787,12 +787,12 @@ function FAQ() {
   const [openIdx, setOpenIdx] = React.useState(0);
 
   return (
-    <section style={{padding:'100px 0',background:'linear-gradient(180deg,#0D1117 0%,#101620 100%)'}}>
+    <section style={{padding:'100px 0',background:'linear-gradient(180deg,var(--ins-surface-container) 0%,#101620 100%)'}}>
       <div style={{maxWidth:'880px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'52px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>FAQ</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>FAQ</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
             What founders and CEOs ask first
@@ -816,20 +816,20 @@ function FAQ() {
                 <button onClick={() => setOpenIdx(isOpen ? -1 : i)} style={{
                   width:'100%',padding:'18px 24px',
                   background:'transparent',border:'none',
-                  color:'#E8F2F5',fontSize:'16px',fontWeight:500,
+                  color:'var(--ins-color-gray-100)',fontSize:'16px',fontWeight:500,
                   textAlign:'left',cursor:'pointer',
                   display:'flex',justifyContent:'space-between',alignItems:'center',gap:'16px',
                   fontFamily:'Geist,sans-serif',letterSpacing:'-.005em',
                 }}>
                   <span>{item.q}</span>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={isOpen?'#0EC4C1':'#7FA0AC'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0,transform:isOpen?'rotate(180deg)':'rotate(0)',transition:'transform .25s'}}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={isOpen?'var(--ins-text-highlight)':'var(--ins-text-inactive)'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0,transform:isOpen?'rotate(180deg)':'rotate(0)',transition:'transform .25s'}}>
                     <polyline points="6 9 12 15 18 9"/>
                   </svg>
                 </button>
                 {isOpen && (
                   <div style={{
                     padding:'0 24px 20px 24px',
-                    fontSize:'14px',color:'#7FA0AC',
+                    fontSize:'14px',color:'var(--ins-text-inactive)',
                     lineHeight:1.7,
                   }}>
                     {item.a}
@@ -859,7 +859,7 @@ function BottomCTA() {
         }}>
           <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
           <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',lineHeight:1.2,flexShrink:0}}>
-            Stop building <span style={{color:'#07807E'}}>reports.</span> Start getting <span style={{color:'#07807E'}}>answers.</span>
+            Stop building <span style={{color:'var(--ins-button-primary-bg)'}}>reports.</span> Start getting <span style={{color:'var(--ins-button-primary-bg)'}}>answers.</span>
           </h3>
           <form action="/auth/sign-up/" method="get" style={{
             display:'flex',alignItems:'center',
@@ -883,7 +883,7 @@ function BottomCTA() {
               display:'inline-flex',alignItems:'center',gap:'8px',
               padding:'10px 20px',margin:'4px',
               fontSize:'13px',fontWeight:600,color:'#fff',
-              background:'linear-gradient(135deg,#07807E,#09A09D)',
+              background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))',
               borderRadius:'8px',border:'none',cursor:'pointer',
               whiteSpace:'nowrap',flexShrink:0,
               fontFamily:'Geist,sans-serif',

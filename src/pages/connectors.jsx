@@ -52,7 +52,7 @@ function FloatingChat({ onSubmit }) {
           backdropFilter:'blur(10px)',
           WebkitBackdropFilter:'blur(10px)',
         }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7FA0AC" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
           </svg>
           <input
@@ -65,7 +65,7 @@ function FloatingChat({ onSubmit }) {
             placeholder="Ask a question..."
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
-              fontSize:'13px', color:'#E8F2F5',
+              fontSize:'13px', color:'var(--ins-color-gray-100)',
               fontFamily:'inherit',
             }}
           />
@@ -74,15 +74,15 @@ function FloatingChat({ onSubmit }) {
             style={{
               flexShrink:0,
               padding:'6px 14px', borderRadius:'7px',
-              background: value.trim() ? '#07807E' : 'rgba(9,160,157,.15)',
+              background: value.trim() ? 'var(--ins-button-primary-bg)' : 'rgba(9,160,157,.15)',
               color: value.trim() ? '#fff' : '#4A9EA0',
               border:'none', cursor: value.trim() ? 'pointer' : 'default',
               fontSize:'12px', fontWeight:600,
               fontFamily:'inherit',
               transition:'background .2s, color .2s',
             }}
-            onMouseEnter={(e) => { if (value.trim()) e.currentTarget.style.background = '#09A09D'; }}
-            onMouseLeave={(e) => { if (value.trim()) e.currentTarget.style.background = '#07807E'; }}
+            onMouseEnter={(e) => { if (value.trim()) e.currentTarget.style.background = 'var(--ins-button-primary-bg-hover)'; }}
+            onMouseLeave={(e) => { if (value.trim()) e.currentTarget.style.background = 'var(--ins-button-primary-bg)'; }}
           >
             Ask AI
           </button>
@@ -160,7 +160,7 @@ function AIAssistantPanel({ query, onClose }) {
       background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
       color:'#5E8290', transition:'color .15s',
     }}
-    onMouseEnter={e => e.currentTarget.style.color = '#7FA0AC'}
+    onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-text-inactive)'}
     onMouseLeave={e => e.currentTarget.style.color = '#5E8290'}
     >
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -185,17 +185,17 @@ function AIAssistantPanel({ query, onClose }) {
         flexShrink:0,
       }}>
         <div style={{ display:'flex', alignItems:'center', gap:'7px' }}>
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
           </svg>
-          <span style={{ fontSize:'13px', fontWeight:600, color:'#E8F2F5' }}>Assistant</span>
+          <span style={{ fontSize:'13px', fontWeight:600, color:'var(--ins-color-gray-100)' }}>Assistant</span>
         </div>
         <div style={{ display:'flex', gap:'2px' }}>
           <button onClick={onClose} style={{
             background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
             color:'#5E8290', transition:'color .15s', display:'flex',
           }}
-          onMouseEnter={e => e.currentTarget.style.color = '#E8F2F5'}
+          onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-color-gray-100)'}
           onMouseLeave={e => e.currentTarget.style.color = '#5E8290'}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -240,7 +240,7 @@ function AIAssistantPanel({ query, onClose }) {
                 <ul style={{ margin:'0 0 10px 0', padding:'0', listStyle:'none', display:'flex', flexDirection:'column', gap:'5px' }}>
                   {msg.response.bullets.map((b, i) => (
                     <li key={i} style={{ fontSize:'13px', color:'#8AAAB8', lineHeight:1.6, paddingLeft:'14px', position:'relative' }}>
-                      <span style={{ position:'absolute', left:0, color:'#0EC4C1', fontWeight:700 }}>·</span>
+                      <span style={{ position:'absolute', left:0, color:'var(--ins-text-highlight)', fontWeight:700 }}>·</span>
                       <strong style={{ color:'#C8E6EA' }}>{b.bold}</strong>{b.text}
                     </li>
                   ))}
@@ -250,7 +250,7 @@ function AIAssistantPanel({ query, onClose }) {
                 </p>
                 <div style={{ display:'flex', flexDirection:'column', gap:'4px', marginBottom:'12px' }}>
                   {msg.response.links.map((l, i) => (
-                    <a key={i} href="#" style={{ fontSize:'12px', color:'#09A09D', textDecoration:'none' }}
+                    <a key={i} href="#" style={{ fontSize:'12px', color:'var(--ins-button-primary-bg-hover)', textDecoration:'none' }}
                       onMouseEnter={e => e.currentTarget.style.textDecoration = 'underline'}
                       onMouseLeave={e => e.currentTarget.style.textDecoration = 'none'}
                     >{l}</a>
@@ -279,7 +279,7 @@ function AIAssistantPanel({ query, onClose }) {
               {[0,1,2].map(i => (
                 <div key={i} style={{
                   width:'6px', height:'6px', borderRadius:'50%',
-                  background:'#0EC4C1',
+                  background:'var(--ins-text-highlight)',
                   animation:`pulse 1.2s ease ${i * 0.2}s infinite`,
                 }}/>
               ))}
@@ -310,12 +310,12 @@ function AIAssistantPanel({ query, onClose }) {
             placeholder="Ask a question..."
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
-              fontSize:'13px', color:'#E8F2F5', fontFamily:'Geist,sans-serif',
+              fontSize:'13px', color:'var(--ins-color-gray-100)', fontFamily:'Geist,sans-serif',
             }}
           />
           <button onClick={handleFollowUp} style={{
             width:'28px', height:'28px', borderRadius:'7px', flexShrink:0,
-            background: input.trim() ? '#07807E' : 'rgba(9,160,157,.12)',
+            background: input.trim() ? 'var(--ins-button-primary-bg)' : 'rgba(9,160,157,.12)',
             border:'none', cursor: input.trim() ? 'pointer' : 'default',
             display:'flex', alignItems:'center', justifyContent:'center',
             transition:'background .2s',
@@ -388,20 +388,20 @@ function ConnectorsHero() {
 
         {/* LEFT — text */}
         <div>
-          <div className="fu0" style={{fontSize:'12px', color:'#7FA0AC', letterSpacing:'0.04em', marginBottom:'18px'}}>
-            <a href="/" style={{color:'#7FA0AC', textDecoration:'none'}}>Home</a>
+          <div className="fu0" style={{fontSize:'12px', color:'var(--ins-text-inactive)', letterSpacing:'0.04em', marginBottom:'18px'}}>
+            <a href="/" style={{color:'var(--ins-text-inactive)', textDecoration:'none'}}>Home</a>
             <span style={{margin:'0 6px', opacity:0.5}}>/</span>
-            <span style={{color:'#E8F2F5'}}>Connectors</span>
+            <span style={{color:'var(--ins-color-gray-100)'}}>Connectors</span>
             <span style={{margin:'0 6px', opacity:0.5}}>/</span>
           </div>
-          <h1 className="fu1" style={{fontSize:'clamp(2.4rem,3.6vw,4rem)', fontWeight:700, fontFamily:"'Outfit', sans-serif", letterSpacing:'-.04em', lineHeight:1.05, marginBottom:'22px', textWrap:'balance'}}>
-            <span style={{color:'#0EC4C1'}}>Connect</span>{' '}
-            <span style={{color:'#E8F2F5'}}>to any source.</span>
+          <h1 className="fu1" style={{fontSize:'clamp(2.4rem,3.6vw,4rem)', fontWeight:700, fontFamily:"var(--ins-font-family-sans)", letterSpacing:'-.04em', lineHeight:1.05, marginBottom:'22px', textWrap:'balance'}}>
+            <span style={{color:'var(--ins-text-highlight)'}}>Connect</span>{' '}
+            <span style={{color:'var(--ins-color-gray-100)'}}>to any source.</span>
           </h1>
           <p className="fu2" style={{fontSize:'17px', color:'#8AA6B3', lineHeight:1.6, maxWidth:'520px', marginBottom:'30px'}}>
             Explore 200+ prebuilt connectors, create custom ones with REST and GraphQL connectors, or request the data source you're missing.
           </p>
-          <a href="/auth/sign-up/" className="fu3 cta-btn" style={{display:'inline-flex', alignItems:'center', gap:'7px', padding:'12px 28px', borderRadius:'999px', background:'linear-gradient(135deg,#09A09D,#07807E)', color:'#fff', fontWeight:600, fontSize:'14px', textDecoration:'none', boxShadow:'0 0 30px rgba(9,160,157,.25), 0 4px 12px rgba(0,0,0,.3)'}}>
+          <a href="/auth/sign-up/" className="fu3 cta-btn" style={{display:'inline-flex', alignItems:'center', gap:'7px', padding:'12px 28px', borderRadius:'999px', background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))', color:'#fff', fontWeight:600, fontSize:'14px', textDecoration:'none', boxShadow:'0 0 30px rgba(9,160,157,.25), 0 4px 12px rgba(0,0,0,.3)'}}>
             Start for free
             <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </a>
@@ -459,7 +459,7 @@ function ConnectorCategorySidebar({ active, setActive, counts, onRequestConnecto
         borderTop:'1px solid rgba(255,255,255,0.055)',
       }}>
         <p style={{
-          fontSize:'11.5px', color:'#7FA0AC', lineHeight:1.5, marginBottom:'10px',
+          fontSize:'11.5px', color:'var(--ins-text-inactive)', lineHeight:1.5, marginBottom:'10px',
         }}>
           Don't see what you need?
         </p>
@@ -471,7 +471,7 @@ function ConnectorCategorySidebar({ active, setActive, counts, onRequestConnecto
             padding:'8px 12px', borderRadius:'8px',
             border:'1px solid rgba(9,160,157,.3)',
             background:'rgba(9,160,157,.08)',
-            color:'#0EC4C1', fontSize:'12.5px', fontWeight:500,
+            color:'var(--ins-text-highlight)', fontSize:'12.5px', fontWeight:500,
             fontFamily:'Geist, sans-serif', cursor:'pointer',
             transition:'background .15s, border-color .15s',
           }}
@@ -532,7 +532,7 @@ function ConnectorGrid({ items, onAskChat, onConnect }) {
       <div style={{
         padding:'40px 24px', textAlign:'center',
         border:'1px dashed rgba(255,255,255,0.08)', borderRadius:'12px',
-        color:'#7FA0AC', fontSize:'14px',
+        color:'var(--ins-text-inactive)', fontSize:'14px',
       }}>
         No connectors match your search.
       </div>
@@ -590,7 +590,7 @@ function App() {
         />
         <div className="connectors-content">
           <div className="connector-search fu2">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7FA0AC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
             </svg>
             <input
@@ -600,7 +600,7 @@ function App() {
               onChange={(e) => setQuery(e.target.value)}
             />
             {query && (
-              <button onClick={() => setQuery('')} style={{background:'none',border:'none',color:'#7FA0AC',cursor:'pointer',padding:'2px 6px',fontSize:'12px'}}>
+              <button onClick={() => setQuery('')} style={{background:'none',border:'none',color:'var(--ins-text-inactive)',cursor:'pointer',padding:'2px 6px',fontSize:'12px'}}>
                 Clear
               </button>
             )}
@@ -617,10 +617,10 @@ function App() {
             gap:'16px', flexWrap:'wrap',
           }}>
             <div>
-              <h3 style={{fontSize:'16px', fontWeight:500, color:'#E8F2F5', marginBottom:'4px', letterSpacing:'-.01em'}}>
+              <h3 style={{fontSize:'16px', fontWeight:500, color:'var(--ins-color-gray-100)', marginBottom:'4px', letterSpacing:'-.01em'}}>
                 Can't find your tool?
               </h3>
-              <p style={{fontSize:'13.5px', color:'#7FA0AC', lineHeight:1.5}}>
+              <p style={{fontSize:'13.5px', color:'var(--ins-text-inactive)', lineHeight:1.5}}>
                 Tell us what you use and we'll prioritize the connector.
               </p>
             </div>
@@ -629,12 +629,12 @@ function App() {
               style={{
                 display:'inline-flex', alignItems:'center', gap:'8px',
                 padding:'10px 18px', borderRadius:'8px',
-                border:'none', background:'#07807E', color:'#fff',
+                border:'none', background:'var(--ins-button-primary-bg)', color:'#fff',
                 fontSize:'13px', fontWeight:600, fontFamily:'Geist,sans-serif',
                 cursor:'pointer', transition:'background .15s',
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = '#09A09D'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = '#07807E'; }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--ins-button-primary-bg-hover)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = 'var(--ins-button-primary-bg)'; }}
             >
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>

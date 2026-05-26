@@ -14,7 +14,7 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Geist', sans-serif;
-  background: #0A0E13;
+  background: var(--ins-surface-page);
   color: #E8F2F5;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -117,7 +117,7 @@ section { position: relative; }
   background: rgba(13,17,23,.8);
 }
 .prompt-card .view-btn {
-  color: #0EC4C1;
+  color: var(--ins-text-highlight);
   font-size: 13px;
   font-weight: 500;
   background: none;
@@ -159,7 +159,7 @@ section { position: relative; }
   padding: 5px 16px; cursor: pointer;
   transition: background .12s;
   font-size: 13px;
-  color: #7FA0AC;
+  color: var(--ins-text-inactive);
   font-family: 'Geist', sans-serif;
   user-select: none;
 }
@@ -175,8 +175,8 @@ section { position: relative; }
   transition: border-color .15s, background .15s;
 }
 .filter-item.checked .filter-checkbox {
-  border-color: #0EC4C1;
-  background: #0EC4C1;
+  border-color: var(--ins-text-highlight);
+  background: var(--ins-text-highlight);
 }
 </style>
     <link rel="canonical" href="https://insightis.ai/resources/prompt-library/">

@@ -45,7 +45,7 @@ const CONVERSATIONS = [
     a: "Your MRR dropped by $1,240 last week, mainly from 3 churned Starter accounts. The primary reason was plan downgrade after trial expiry — these accounts averaged 4 logins in their last 30 days.",
     chart: true,
     chartData: [82,78,80,77,74,71,68,72],
-    chartColor: '#F87171',
+    chartColor: 'var(--ins-status-error-fg)',
   },
   {
     q: "Which channel has the best CAC?",
@@ -57,7 +57,7 @@ const CONVERSATIONS = [
     a: "Your Net Revenue Retention is 113% this quarter, up from 108% last quarter. Expansion revenue from Starter → Pro upgrades drove the improvement — 22 accounts upgraded in Q1.",
     chart: true,
     chartData: [96,99,101,103,106,108,110,113],
-    chartColor: '#22C55E',
+    chartColor: 'var(--ins-status-success-fg)',
   },
 ];
 
@@ -138,8 +138,8 @@ function ChatMock() {
           insightis — ai chat
         </div>
         <div style={{display:'flex',alignItems:'center',gap:5,padding:'3px 8px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'5px'}}>
-          <div style={{width:'5px',height:'5px',borderRadius:'50%',background:'#22C55E',boxShadow:'0 0 6px #22C55E'}}/>
-          <span style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'#0EC4C1',fontWeight:500}}>Gemini Pro</span>
+          <div style={{width:'5px',height:'5px',borderRadius:'50%',background:'var(--ins-status-success-fg)',boxShadow:'0 0 6px var(--ins-status-success-fg)'}}/>
+          <span style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-highlight)',fontWeight:500}}>Gemini Pro</span>
         </div>
       </div>
 
@@ -150,7 +150,7 @@ function ChatMock() {
           <div className="chat-bubble-user" style={{animation:'slideUp .25s ease both'}}>
             {typedQ}
             {phase === 'typing-q' && (
-              <span style={{display:'inline-block',width:'2px',height:'13px',background:'#0EC4C1',marginLeft:'2px',verticalAlign:'middle',animation:'blink .7s ease-in-out infinite'}}/>
+              <span style={{display:'inline-block',width:'2px',height:'13px',background:'var(--ins-text-highlight)',marginLeft:'2px',verticalAlign:'middle',animation:'blink .7s ease-in-out infinite'}}/>
             )}
           </div>
         )}
@@ -168,7 +168,7 @@ function ChatMock() {
               <>
                 <span>{typedA}</span>
                 {phase === 'typing-a' && (
-                  <span style={{display:'inline-block',width:'2px',height:'13px',background:'#7FA0AC',marginLeft:'2px',verticalAlign:'middle',animation:'blink .7s ease-in-out infinite'}}/>
+                  <span style={{display:'inline-block',width:'2px',height:'13px',background:'var(--ins-text-inactive)',marginLeft:'2px',verticalAlign:'middle',animation:'blink .7s ease-in-out infinite'}}/>
                 )}
                 {showChart && conv.chart && (
                   <MiniBarChart data={conv.chartData} color={conv.chartColor}/>
@@ -195,7 +195,7 @@ function ChatMock() {
           <div style={{width:'28px',height:'28px',borderRadius:'7px',background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.08)',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer'}}>
             <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M14 10a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h1l2-2h2l2 2h1a2 2 0 012 2v4z" stroke="#8AA6B3" strokeWidth="1.3"/></svg>
           </div>
-          <div style={{width:'28px',height:'28px',borderRadius:'7px',background:'linear-gradient(135deg,#09A09D,#07807E)',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer',boxShadow:'0 0 10px rgba(9,160,157,.3)'}}>
+          <div style={{width:'28px',height:'28px',borderRadius:'7px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer',boxShadow:'0 0 10px rgba(9,160,157,.3)'}}>
             <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </div>
         </div>
@@ -206,7 +206,7 @@ function ChatMock() {
 
 /* ── INLINE CHART COMPONENTS ── */
 function TreemapChart({ items }) {
-  const colors = ['#0EC4C1','#09A09D','#818CF8','#FBBF24','#F87171','#34D399','#60A5FA'];
+  const colors = ['var(--ins-text-highlight)','var(--ins-button-primary-bg-hover)','#818CF8','var(--ins-status-warning-fg)','var(--ins-status-error-fg)','#34D399','#60A5FA'];
   const sorted = [...items].sort((a,b) => b.value - a.value);
   const total = sorted.reduce((s,i) => s + i.value, 0);
   const W = 860, H = 210, gap = 4;
@@ -243,7 +243,7 @@ function TreemapChart({ items }) {
 
 function PieChart({ slices }) {
   const total = slices.reduce((s, d) => s + Math.abs(d.value), 0);
-  const colors = ['#0EC4C1','#09A09D','#F87171','#FBBF24','#818CF8','#34D399'];
+  const colors = ['var(--ins-text-highlight)','var(--ins-button-primary-bg-hover)','var(--ins-status-error-fg)','var(--ins-status-warning-fg)','#818CF8','#34D399'];
   let angle = -Math.PI / 2;
   const cx = 90, cy = 90, r = 75, ri = 38;
   const paths = slices.map((s, i) => {
@@ -266,8 +266,8 @@ function PieChart({ slices }) {
         {paths.map((p,i) => (
           <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
             <div style={{width:'12px',height:'12px',borderRadius:'3px',background:p.color,flexShrink:0}}/>
-            <span style={{fontSize:'14px',color:'#7FA0AC',fontFamily:'Geist Mono,monospace',flex:1}}>{p.label}</span>
-            <span style={{fontSize:'14px',color:'#E8F2F5',fontFamily:'Geist Mono,monospace',fontWeight:500}}>{p.pct}%</span>
+            <span style={{fontSize:'14px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',flex:1}}>{p.label}</span>
+            <span style={{fontSize:'14px',color:'var(--ins-color-gray-100)',fontFamily:'Geist Mono,monospace',fontWeight:500}}>{p.pct}%</span>
           </div>
         ))}
       </div>
@@ -281,7 +281,7 @@ function HorizontalBarChart({ bars }) {
     <div style={{display:'flex',flexDirection:'column',gap:'10px',margin:'12px 0'}}>
       {bars.map((b,i) => (
         <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
-          <span style={{fontSize:'12px',color:'#7FA0AC',fontFamily:'Geist Mono,monospace',minWidth:'180px',textAlign:'right',flexShrink:0}}>{b.label}</span>
+          <span style={{fontSize:'12px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',minWidth:'180px',textAlign:'right',flexShrink:0}}>{b.label}</span>
           <div style={{flex:1,background:'rgba(255,255,255,.04)',borderRadius:'4px',height:'22px',position:'relative',overflow:'hidden'}}>
             <div style={{
               width:`${(Math.abs(b.value)/maxVal)*100}%`,
@@ -289,7 +289,7 @@ function HorizontalBarChart({ bars }) {
               background: b.color || (b.value < 0 ? 'rgba(220,80,80,.7)' : 'rgba(9,160,157,.6)'),
             }}/>
           </div>
-          <span style={{fontSize:'12px',fontFamily:'Geist Mono,monospace',color: b.value < 0 ? '#E06060' : '#0EC4C1',minWidth:'60px',flexShrink:0}}>{b.display}</span>
+          <span style={{fontSize:'12px',fontFamily:'Geist Mono,monospace',color: b.value < 0 ? '#E06060' : 'var(--ins-text-highlight)',minWidth:'60px',flexShrink:0}}>{b.display}</span>
         </div>
       ))}
     </div>
@@ -311,11 +311,11 @@ function LineChart({ points, labels }) {
   return (
     <div style={{margin:'12px 0'}}>
       <svg viewBox={`0 0 ${w} ${h}`} style={{width:'100%',height:'auto'}}>
-        <defs><linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#09A09D" stopOpacity=".25"/><stop offset="100%" stopColor="#09A09D" stopOpacity=".02"/></linearGradient></defs>
+        <defs><linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="var(--ins-button-primary-bg-hover)" stopOpacity=".25"/><stop offset="100%" stopColor="var(--ins-button-primary-bg-hover)" stopOpacity=".02"/></linearGradient></defs>
         {[0,.25,.5,.75,1].map(f => <line key={f} x1={px} y1={py+chartH*f} x2={w-px} y2={py+chartH*f} stroke="rgba(255,255,255,.05)" strokeWidth="1"/>)}
         <path d={area} fill="url(#areaFill)"/>
-        <path d={line} fill="none" stroke="#0EC4C1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        {coords.map((c,i) => <circle key={i} cx={c.x} cy={c.y} r="3" fill="#0EC4C1" stroke="#0A0E13" strokeWidth="1.5"/>)}
+        <path d={line} fill="none" stroke="var(--ins-text-highlight)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        {coords.map((c,i) => <circle key={i} cx={c.x} cy={c.y} r="3" fill="var(--ins-text-highlight)" stroke="var(--ins-surface-page)" strokeWidth="1.5"/>)}
         {labels && labels.map((l,i) => <text key={i} x={coords[i].x} y={h-1} textAnchor="middle" style={{fontSize:'9px',fill:'#8AA6B3',fontFamily:'Geist Mono,monospace'}}>{l}</text>)}
       </svg>
     </div>
@@ -328,13 +328,13 @@ function GroupedBarChart({ groups }) {
     <div style={{display:'flex',flexDirection:'column',gap:'10px',margin:'12px 0'}}>
       {groups.map((g,i) => (
         <div key={i}>
-          <div style={{fontSize:'11px',color:'#7FA0AC',fontFamily:'Geist Mono,monospace',marginBottom:'4px'}}>{g.label}</div>
+          <div style={{fontSize:'11px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',marginBottom:'4px'}}>{g.label}</div>
           <div style={{display:'flex',gap:'4px',flexDirection:'column'}}>
             <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
               <div style={{width:'100%',background:'rgba(255,255,255,.04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
                 <div style={{width:`${(g.actual/maxVal)*100}%`,height:'100%',borderRadius:'3px',background: g.actual > g.budget ? 'rgba(220,80,80,.65)' : 'rgba(9,160,157,.55)'}}/>
               </div>
-              <span style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color: g.actual > g.budget ? '#E06060' : '#0EC4C1',minWidth:'40px',flexShrink:0}}>${g.actual}K</span>
+              <span style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color: g.actual > g.budget ? '#E06060' : 'var(--ins-text-highlight)',minWidth:'40px',flexShrink:0}}>${g.actual}K</span>
             </div>
             <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
               <div style={{width:'100%',background:'rgba(255,255,255,.04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
@@ -359,13 +359,13 @@ function RetainedVsChurnedChart({ bars }) {
     <div style={{display:'flex',flexDirection:'column',gap:'10px',margin:'12px 0'}}>
       {bars.map((b,i) => (
         <div key={i}>
-          <div style={{fontSize:'11px',color:'#7FA0AC',fontFamily:'Geist Mono,monospace',marginBottom:'4px'}}>{b.label}</div>
+          <div style={{fontSize:'11px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',marginBottom:'4px'}}>{b.label}</div>
           <div style={{display:'flex',gap:'4px',flexDirection:'column'}}>
             <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
               <div style={{width:'100%',background:'rgba(255,255,255,.04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
                 <div style={{width:`${(b.retained/maxVal)*100}%`,height:'100%',borderRadius:'3px',background:'rgba(9,160,157,.6)'}}/>
               </div>
-              <span style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color:'#0EC4C1',minWidth:'35px',flexShrink:0}}>{b.retained}%</span>
+              <span style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-highlight)',minWidth:'35px',flexShrink:0}}>{b.retained}%</span>
             </div>
             <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
               <div style={{width:'100%',background:'rgba(255,255,255,.04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
@@ -411,10 +411,10 @@ const GALLERY_DATA = {
       {
         type: 'graph', chart: 'treemap',
         chartData: [
-          { label:'NovaCorp', value:52, display:'$52K', color:'#F87171' },
-          { label:'AlphaBase', value:38, display:'$38K', color:'#FBBF24' },
-          { label:'Meridian', value:31, display:'$31K', color:'#F87171' },
-          { label:'Quell Inc.', value:28, display:'$28K', color:'#FBBF24' },
+          { label:'NovaCorp', value:52, display:'$52K', color:'var(--ins-status-error-fg)' },
+          { label:'AlphaBase', value:38, display:'$38K', color:'var(--ins-status-warning-fg)' },
+          { label:'Meridian', value:31, display:'$31K', color:'var(--ins-status-error-fg)' },
+          { label:'Quell Inc.', value:28, display:'$28K', color:'var(--ins-status-warning-fg)' },
           { label:'Vertexio', value:22, display:'$22K', color:'#818CF8' },
           { label:'Others', value:13, display:'$13K', color:'#8AA6B3' },
         ],
@@ -429,8 +429,8 @@ const GALLERY_DATA = {
       {
         type: 'graph', chart: 'pie',
         chartData: [
-          { label:'Prospect → MQL drop-off', value:71, color:'#F87171' },
-          { label:'MQL → SQL drop-off', value:38, color:'#FBBF24' },
+          { label:'Prospect → MQL drop-off', value:71, color:'var(--ins-status-error-fg)' },
+          { label:'MQL → SQL drop-off', value:38, color:'var(--ins-status-warning-fg)' },
           { label:'SQL → Proposal drop-off', value:22, color:'#818CF8' },
           { label:'Proposal → Closed Won drop-off', value:14, color:'#34D399' },
         ],
@@ -479,9 +479,9 @@ const GALLERY_DATA = {
         type: 'graph', chart: 'treemap',
         chartData: [
           { label:'Payroll', value:112, display:'$112K', color:'#818CF8' },
-          { label:'Cloud & Infra', value:34, display:'$34K', color:'#0EC4C1' },
-          { label:'Contractors', value:21, display:'$21K', color:'#FBBF24' },
-          { label:'Marketing', value:12, display:'$12K', color:'#09A09D' },
+          { label:'Cloud & Infra', value:34, display:'$34K', color:'var(--ins-text-highlight)' },
+          { label:'Contractors', value:21, display:'$21K', color:'var(--ins-status-warning-fg)' },
+          { label:'Marketing', value:12, display:'$12K', color:'var(--ins-button-primary-bg-hover)' },
           { label:'Other', value:8, display:'$8K', color:'#8AA6B3' },
         ],
         caption: '$187K/month burn, $4.2M in bank = 22.5 months runway. Payroll is 60% of total spend.',
@@ -495,10 +495,10 @@ const GALLERY_DATA = {
       {
         type: 'graph', chart: 'pie',
         chartData: [
-          { label:'Analytics Suite', value:64, color:'#0EC4C1' },
+          { label:'Analytics Suite', value:64, color:'var(--ins-text-highlight)' },
           { label:'Integrations Add-on', value:51, color:'#818CF8' },
-          { label:'Pro Plan (base)', value:38, color:'#09A09D' },
-          { label:'Professional Services', value:22, color:'#FBBF24' },
+          { label:'Pro Plan (base)', value:38, color:'var(--ins-button-primary-bg-hover)' },
+          { label:'Professional Services', value:22, color:'var(--ins-status-warning-fg)' },
         ],
         caption: 'Analytics Suite delivers the highest gross margin — its infrastructure cost is largely fixed while revenue scales with seats.',
         action: 'Prioritise Analytics Suite in the next sales enablement refresh and bundle with Pro upsell',
@@ -517,11 +517,11 @@ const GALLERY_DATA = {
       {
         type: 'graph', chart: 'treemap',
         chartData: [
-          { label:'Webinar Series', value:214, display:'214 MQLs', color:'#0EC4C1' },
+          { label:'Webinar Series', value:214, display:'214 MQLs', color:'var(--ins-text-highlight)' },
           { label:'LinkedIn Ads', value:67, display:'67 MQLs', color:'#818CF8' },
-          { label:'Organic Search', value:58, display:'58 MQLs', color:'#09A09D' },
-          { label:'G2 / Reviews', value:34, display:'34 MQLs', color:'#FBBF24' },
-          { label:'Google Ads', value:21, display:'21 MQLs', color:'#F87171' },
+          { label:'Organic Search', value:58, display:'58 MQLs', color:'var(--ins-button-primary-bg-hover)' },
+          { label:'G2 / Reviews', value:34, display:'34 MQLs', color:'var(--ins-status-warning-fg)' },
+          { label:'Google Ads', value:21, display:'21 MQLs', color:'var(--ins-status-error-fg)' },
         ],
         caption: "Webinar series generated 214 MQLs at $18/lead — 5× cheaper than LinkedIn Ads.",
         action: 'Schedule 2 additional webinars targeting the same ICP segment in Q3',
@@ -553,11 +553,11 @@ const GALLERY_DATA = {
       {
         type: 'graph', chart: 'pie',
         chartData: [
-          { label:'Webinar', value:41, color:'#0EC4C1' },
+          { label:'Webinar', value:41, color:'var(--ins-text-highlight)' },
           { label:'Organic Search', value:28, color:'#818CF8' },
-          { label:'G2 / Review Sites', value:22, color:'#09A09D' },
-          { label:'LinkedIn Ads', value:14, color:'#FBBF24' },
-          { label:'Google Ads', value:9, color:'#F87171' },
+          { label:'G2 / Review Sites', value:22, color:'var(--ins-button-primary-bg-hover)' },
+          { label:'LinkedIn Ads', value:14, color:'var(--ins-status-warning-fg)' },
+          { label:'Google Ads', value:9, color:'var(--ins-status-error-fg)' },
         ],
         caption: 'Webinar-sourced leads convert to SQL at 41% — nearly 3× the rate of paid search, reflecting much stronger intent.',
         action: 'Add a post-webinar nurture sequence with a 3-day trial CTA to capture intent at peak',
@@ -599,10 +599,10 @@ const GALLERY_DATA = {
       {
         type: 'graph', chart: 'treemap',
         chartData: [
-          { label:'Step 3 — Connect Source', value:31, display:'31% drop', color:'#F87171' },
-          { label:'Step 5 — Invite Team', value:14, display:'14% drop', color:'#FBBF24' },
-          { label:'Step 4 — First Query', value:11, display:'11% drop', color:'#FBBF24' },
-          { label:'Step 2 — Profile Setup', value:6, display:'6% drop', color:'#09A09D' },
+          { label:'Step 3 — Connect Source', value:31, display:'31% drop', color:'var(--ins-status-error-fg)' },
+          { label:'Step 5 — Invite Team', value:14, display:'14% drop', color:'var(--ins-status-warning-fg)' },
+          { label:'Step 4 — First Query', value:11, display:'11% drop', color:'var(--ins-status-warning-fg)' },
+          { label:'Step 2 — Profile Setup', value:6, display:'6% drop', color:'var(--ins-button-primary-bg-hover)' },
           { label:'Step 1 — Verify Email', value:4, display:'4% drop', color:'#34D399' },
         ],
         caption: '312 users onboarded this week (+18%). Step 3 (connect source) causes 31% abandonment — worst on mobile.',
@@ -616,10 +616,10 @@ const GALLERY_DATA = {
       {
         type: 'graph', chart: 'pie',
         chartData: [
-          { label:'Custom date filters', value:87, color:'#0EC4C1' },
+          { label:'Custom date filters', value:87, color:'var(--ins-text-highlight)' },
           { label:'PDF/PPT export', value:64, color:'#818CF8' },
-          { label:'Multi-dashboard view', value:51, color:'#FBBF24' },
-          { label:'Role-based permissions', value:38, color:'#F87171' },
+          { label:'Multi-dashboard view', value:51, color:'var(--ins-status-warning-fg)' },
+          { label:'Role-based permissions', value:38, color:'var(--ins-status-error-fg)' },
         ],
         caption: 'Custom date filters lead by a wide margin — strong signal for Q3 prioritisation across all customer segments.',
         action: 'Add custom date range filters to the Q3 roadmap and notify the 87 requesters on release',
@@ -638,9 +638,9 @@ const GALLERY_DATA = {
       {
         type: 'graph', chart: 'treemap',
         chartData: [
-          { label:'checkout_complete', value:41, display:'-41%', color:'#F87171' },
-          { label:'page_view (bot filter)', value:18, display:'-18%', color:'#FBBF24' },
-          { label:'session_start', value:9, display:'-9%', color:'#FBBF24' },
+          { label:'checkout_complete', value:41, display:'-41%', color:'var(--ins-status-error-fg)' },
+          { label:'page_view (bot filter)', value:18, display:'-18%', color:'var(--ins-status-warning-fg)' },
+          { label:'session_start', value:9, display:'-9%', color:'var(--ins-status-warning-fg)' },
           { label:'feature_activated', value:5, display:'−5%', color:'#8AA6B3' },
         ],
         caption: '3 anomalies in yesterday\'s pipeline. checkout_complete −41% (14:00–16:00 UTC) — Stripe webhook delay. All resolved by 18:30 UTC.',
@@ -680,9 +680,9 @@ const GALLERY_DATA = {
       {
         type: 'graph', chart: 'pie',
         chartData: [
-          { label:'4+ logins/wk → $2,840 LTV', value:2840, color:'#0EC4C1' },
-          { label:'2–3 logins/wk → $1,420 LTV', value:1420, color:'#09A09D' },
-          { label:'<2 logins/wk → $610 LTV', value:610, color:'#F87171' },
+          { label:'4+ logins/wk → $2,840 LTV', value:2840, color:'var(--ins-text-highlight)' },
+          { label:'2–3 logins/wk → $1,420 LTV', value:1420, color:'var(--ins-button-primary-bg-hover)' },
+          { label:'<2 logins/wk → $610 LTV', value:610, color:'var(--ins-status-error-fg)' },
         ],
         caption: 'Strong correlation (r=0.74). 4+ weekly logins → $2,840 LTV vs $610 for low-engagement. Days 8–14 login frequency is the strongest 12-month retention predictor.',
         action: 'Add login-frequency triggers to the lifecycle email sequence starting at day 8 for low-engagement users',
@@ -712,8 +712,8 @@ const GALLERY_DATA = {
       {
         type: 'graph', chart: 'treemap',
         chartData: [
-          { label:'Cloudflare', value:4200, display:'$4,200', color:'#F87171' },
-          { label:'Segment', value:2800, display:'$2,800', color:'#FBBF24' },
+          { label:'Cloudflare', value:4200, display:'$4,200', color:'var(--ins-status-error-fg)' },
+          { label:'Segment', value:2800, display:'$2,800', color:'var(--ins-status-warning-fg)' },
           { label:'SaaS Auto-renew #1', value:1400, display:'$1,400', color:'#818CF8' },
           { label:'SaaS Auto-renew #2', value:1000, display:'$1,000', color:'#818CF8' },
         ],
@@ -742,11 +742,11 @@ const GALLERY_DATA = {
       {
         type: 'graph', chart: 'pie',
         chartData: [
-          { label:'Contractors +72% over', value:72, color:'#F87171' },
-          { label:'Cloud Infra +41% over', value:41, color:'#FBBF24' },
+          { label:'Contractors +72% over', value:72, color:'var(--ins-status-error-fg)' },
+          { label:'Cloud Infra +41% over', value:41, color:'var(--ins-status-warning-fg)' },
           { label:'T&E +18% over', value:18, color:'#818CF8' },
           { label:'Software Licences 4% under', value:4, color:'#34D399' },
-          { label:'Headcount 3% under', value:3, color:'#0EC4C1' },
+          { label:'Headcount 3% under', value:3, color:'var(--ins-text-highlight)' },
         ],
         caption: 'Contractors are the most over-budget at 72% above plan — 3 unplanned engineering engagements approved outside the budget cycle.',
         action: 'Require CFO sign-off for any contractor engagement exceeding $5K not in the approved budget',
@@ -766,7 +766,7 @@ function QuestionsGallery() {
 
   const renderReply = (reply) => {
     if (reply.type === 'paragraph') {
-      return <p style={{fontSize:'16px',color:'#C0D4DC',lineHeight:2.0}}>{reply.text}</p>;
+      return <p style={{fontSize:'16px',color:'var(--ins-color-gray-200)',lineHeight:2.0}}>{reply.text}</p>;
     }
     if (reply.chart === 'horizontalBar') {
       return <HorizontalBarChart bars={reply.chartData}/>;
@@ -790,16 +790,16 @@ function QuestionsGallery() {
   };
 
   return (
-    <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,#0D1117 0%,#101620 100%)'}}>
+    <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,var(--ins-surface-container) 0%,#101620 100%)'}}>
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Heading */}
         <div style={{textAlign:'center',marginBottom:'28px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>{"\u2726"}</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>What you can ask</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>{"\u2726"}</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>What you can ask</span>
           </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
+          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
             What kind of questions can you ask Insightis?
           </h2>
           <p style={{fontSize:'clamp(16px,1.2vw,19px)',color:'rgba(255,255,255,.7)',maxWidth:'42rem',margin:'0 auto',lineHeight:1.7}}>
@@ -815,7 +815,7 @@ function QuestionsGallery() {
               cursor:'pointer',fontFamily:'Geist,sans-serif',transition:'all .15s',
               border:`1px solid ${c===activeCat?'rgba(9,160,157,.5)':'rgba(255,255,255,.08)'}`,
               background: c===activeCat?'rgba(9,160,157,.08)':'transparent',
-              color: c===activeCat?'#fff':'#7FA0AC',
+              color: c===activeCat?'#fff':'var(--ins-text-inactive)',
             }}>
               {c}
             </button>
@@ -847,7 +847,7 @@ function QuestionsGallery() {
                 }}>
                   <span style={{
                     fontSize:'13px',fontWeight: i===activeQ?500:400,
-                    color: i===activeQ?'#E8F2F5':'#8AA6B3',
+                    color: i===activeQ?'var(--ins-color-gray-100)':'#8AA6B3',
                     lineHeight:1.45,
                     transition:'color .18s, font-weight .18s',
                     whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',display:'block',
@@ -871,7 +871,7 @@ function QuestionsGallery() {
                 alignSelf:'flex-end', maxWidth:'80%',
                 background:'rgba(9,160,157,.15)', border:'1px solid rgba(9,160,157,.3)',
                 borderRadius:'16px 16px 4px 16px', padding:'12px 16px',
-                fontSize:'14px', color:'#E8F2F5', lineHeight:1.5,
+                fontSize:'14px', color:'var(--ins-color-gray-100)', lineHeight:1.5,
               }}>
                 {cat.questions[activeQ]}
               </div>
@@ -888,11 +888,11 @@ function QuestionsGallery() {
                 {/* Header */}
                 <div style={{display:'flex',alignItems:'center',gap:'6px',marginBottom:'14px'}}>
                   <div style={{width:'20px',height:'20px',borderRadius:'6px',background:'rgba(9,160,157,.12)',border:'1px solid rgba(9,160,157,.25)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
-                    <svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z" stroke="#0EC4C1" strokeWidth="1.2" strokeLinejoin="round"/></svg>
+                    <svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z" stroke="var(--ins-text-highlight)" strokeWidth="1.2" strokeLinejoin="round"/></svg>
                   </div>
-                  <span style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color:'#0EC4C1',fontWeight:500}}>Insightis</span>
+                  <span style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-highlight)',fontWeight:500}}>Insightis</span>
                   <div style={{marginLeft:'auto',fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'#8AA6B3',display:'flex',alignItems:'center',gap:4}}>
-                    <div style={{width:5,height:5,borderRadius:'50%',background:'#22C55E',boxShadow:'0 0 5px #22C55E'}}/>
+                    <div style={{width:5,height:5,borderRadius:'50%',background:'var(--ins-status-success-fg)',boxShadow:'0 0 5px var(--ins-status-success-fg)'}}/>
                     live data
                   </div>
                 </div>
@@ -908,8 +908,8 @@ function QuestionsGallery() {
                 {/* Action chip */}
                 {cat.replies[activeQ].action && (
                   <div style={{display:'flex',alignItems:'flex-start',gap:'8px',background:'rgba(9,160,157,.05)',border:'1px solid rgba(9,160,157,.15)',borderRadius:'10px',padding:'12px 16px',marginTop:'16px'}}>
-                    <span style={{color:'#09A09D',fontSize:'13px',flexShrink:0}}>{"\u2606"}</span>
-                    <span style={{fontSize:'13px',color:'#7FA0AC',lineHeight:1.55}}>{"\u2192"} {cat.replies[activeQ].action}</span>
+                    <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'13px',flexShrink:0}}>{"\u2606"}</span>
+                    <span style={{fontSize:'13px',color:'var(--ins-text-inactive)',lineHeight:1.55}}>{"\u2192"} {cat.replies[activeQ].action}</span>
                   </div>
                 )}
               </div>
@@ -954,19 +954,19 @@ function HowItWorks() {
       n:'01', title:'You ask',
       desc:'Type any business question in plain English — the same way you would ask a colleague. No SQL, no dashboards, no analyst required.',
       example:'"Which channel has the best CAC this quarter?"',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" stroke="#0EC4C1" strokeWidth="1.5" strokeLinejoin="round"/></svg>,
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinejoin="round"/></svg>,
     },
     {
       n:'02', title:'AI Engine goes to work',
       desc:'Insightis validates and analyzes data across every connected source, applying your business logic for accurate, grounded results.',
       example:'CRM + payments + product data → validated insight',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="#0EC4C1" strokeWidth="1.5"/><path d="M8 21h8M12 17v4" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M8 21h8M12 17v4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
     },
     {
       n:'03', title:'You get a precise answer',
       desc:'Get an instant answer with visualization and suggested follow-ups. Save any answer as a live report in one click — no BI tool required.',
       example:'Answer + chart + "Why did this change?" suggestion',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
     },
   ];
 
@@ -975,10 +975,10 @@ function HowItWorks() {
       <div className="max-w-7xl mx-auto px-6">
         <div style={{textAlign:'center',marginBottom:'64px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>How it works</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>How it works</span>
           </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,textWrap:'balance'}}>
+          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,textWrap:'balance'}}>
             From question to answer in seconds
           </h2>
         </div>
@@ -1002,16 +1002,16 @@ function HowItWorks() {
                 boxShadow:'0 0 28px rgba(9,160,157,.18), inset 0 1px 0 rgba(255,255,255,.05)',
                 marginBottom:'22px',
               }}>
-                <span style={{fontSize:'18px',fontWeight:600,color:'#0EC4C1',fontFamily:"'Outfit', sans-serif",letterSpacing:'-.02em',fontVariantNumeric:'tabular-nums'}}>{s.n}</span>
+                <span style={{fontSize:'18px',fontWeight:600,color:'var(--ins-text-highlight)',fontFamily:"var(--ins-font-family-sans)",letterSpacing:'-.02em',fontVariantNumeric:'tabular-nums'}}>{s.n}</span>
               </div>
 
               {/* Title */}
-              <h3 style={{fontSize:'18px',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.02em',margin:'0 0 10px',lineHeight:1.2}}>
+              <h3 style={{fontSize:'18px',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.02em',margin:'0 0 10px',lineHeight:1.2}}>
                 {s.title}
               </h3>
 
               {/* Description */}
-              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.7,margin:'0 0 16px',width:'100%',maxWidth:'320px'}}>
+              <p style={{fontSize:'14px',color:'var(--ins-text-inactive)',lineHeight:1.7,margin:'0 0 16px',width:'100%',maxWidth:'320px'}}>
                 {s.desc}
               </p>
 
@@ -1043,14 +1043,14 @@ function HowItWorks() {
 /* ── ACCURACY COMPARISON ── */
 function AccuracyComparison() {
   return (
-    <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,#101620 0%,#0A0E13 100%)'}}>
+    <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,#101620 0%,var(--ins-surface-page) 100%)'}}>
       <div className="max-w-7xl mx-auto px-6">
         <div style={{textAlign:'center',marginBottom:'56px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Accuracy</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>Accuracy</span>
           </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
+          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
             Not the internet. Your data.
           </h2>
           <p style={{fontSize:'17px',color:'rgba(255,255,255,.7)',maxWidth:'500px',margin:'0 auto',lineHeight:1.7}}>
@@ -1072,13 +1072,13 @@ function AccuracyComparison() {
           {/* Generic AI */}
           <div className="compare-card" style={{background:'rgba(248,113,113,.04)',border:'1px solid rgba(248,113,113,.15)',borderRadius:'16px',padding:'32px',display:'flex',flexDirection:'column'}}>
             <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'22px'}}>
-              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#F87171'}}/>
-              <span style={{fontSize:'13px',fontWeight:600,color:'#F87171'}}>Generic AI</span>
+              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-status-error-fg)'}}/>
+              <span style={{fontSize:'13px',fontWeight:600,color:'var(--ins-status-error-fg)'}}>Generic AI</span>
             </div>
             <div style={{flex:1,background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',display:'flex',flexDirection:'column'}}>
               <div style={{fontSize:'11px',color:'#8AA6B3',marginBottom:'8px'}}>→ "What's our churn rate?"</div>
               <div style={{fontSize:'12.5px',color:'#505068',lineHeight:1.7}}>
-                The average SaaS churn rate is typically between <span style={{color:'#F87171'}}>3–8% monthly</span>, depending on your segment and pricing tier. Companies in the SMB market typically see higher rates. This estimate may or may not reflect your situation.
+                The average SaaS churn rate is typically between <span style={{color:'var(--ins-status-error-fg)'}}>3–8% monthly</span>, depending on your segment and pricing tier. Companies in the SMB market typically see higher rates. This estimate may or may not reflect your situation.
               </div>
             </div>
             <p style={{fontSize:'12px',color:'rgba(248,113,113,.6)',fontStyle:'italic'}}>Searches the internet. Returns industry averages. Not your numbers.</p>
@@ -1088,13 +1088,13 @@ function AccuracyComparison() {
           <div className="compare-card" style={{background:'rgba(9,160,157,.05)',border:'1px solid rgba(9,160,157,.25)',borderRadius:'16px',padding:'32px',position:'relative',boxShadow:'0 8px 40px rgba(9,160,157,0.06)',display:'flex',flexDirection:'column'}}>
             <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.6),transparent)',borderRadius:'16px 16px 0 0'}}/>
             <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'22px'}}>
-              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#0EC4C1',boxShadow:'0 0 8px #0EC4C1'}}/>
-              <span style={{fontSize:'13px',fontWeight:500,color:'#0EC4C1'}}>Insightis</span>
+              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-text-highlight)',boxShadow:'0 0 8px var(--ins-text-highlight)'}}/>
+              <span style={{fontSize:'13px',fontWeight:500,color:'var(--ins-text-highlight)'}}>Insightis</span>
             </div>
             <div style={{flex:1,background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',display:'flex',flexDirection:'column'}}>
               <div style={{fontSize:'11px',color:'#8AA6B3',marginBottom:'8px'}}>→ "What's our churn rate?"</div>
-              <div style={{fontSize:'12.5px',color:'#C0D4DC',lineHeight:1.7}}>
-                Your churn rate in March was <span style={{color:'#0EC4C1',fontWeight:500}}>2.1%</span> — down from 2.8% in February. Main driver: reduced churn in Starter plan (↓ 0.9pp). 3 accounts churned vs 5 last month.
+              <div style={{fontSize:'12.5px',color:'var(--ins-color-gray-200)',lineHeight:1.7}}>
+                Your churn rate in March was <span style={{color:'var(--ins-text-highlight)',fontWeight:500}}>2.1%</span> — down from 2.8% in February. Main driver: reduced churn in Starter plan (↓ 0.9pp). 3 accounts churned vs 5 last month.
               </div>
             </div>
             <p style={{fontSize:'12px',color:'rgba(9,160,157,.6)',fontStyle:'italic'}}>Queries your Stripe + PostgreSQL through Semantic Layer. Always your numbers.</p>
@@ -1104,8 +1104,8 @@ function AccuracyComparison() {
         {/* 3x badge */}
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
-            <span style={{fontSize:'40px',fontWeight:500,color:'#0EC4C1',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>3×</span>
-            <span style={{fontSize:'15px',color:'#7FA0AC',whiteSpace:'nowrap'}}>more accurate because it knows your data, not the internet's.</span>
+            <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>3×</span>
+            <span style={{fontSize:'15px',color:'var(--ins-text-inactive)',whiteSpace:'nowrap'}}>more accurate because it knows your data, not the internet's.</span>
           </div>
         </div>
       </div>
@@ -1135,14 +1135,14 @@ function MidCTA() {
           marginBottom:'32px',
           whiteSpace:'nowrap',
         }}>
-          <span style={{color:'#E8F2F5'}}>Skip the analyst queue. </span>
-          <span style={{color:'#0EC4C1'}}>Start asking.</span>
+          <span style={{color:'var(--ins-color-gray-100)'}}>Skip the analyst queue. </span>
+          <span style={{color:'var(--ins-text-highlight)'}}>Start asking.</span>
         </h2>
         <div style={{display:'flex',justifyContent:'center'}}>
           <a href="/auth/sign-up/" style={{
             display:'inline-flex',alignItems:'center',gap:'10px',
             padding:'16px 32px',borderRadius:'999px',
-            background:'linear-gradient(135deg,#09A09D,#07807E)',
+            background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',
             color:'#fff',fontSize:'15px',fontWeight:500,
             textDecoration:'none',
             boxShadow:'0 0 32px rgba(9,160,157,.35), 0 8px 24px rgba(0,0,0,.4)',
@@ -1177,7 +1177,7 @@ function BottomCTA() {
               aria-label="What info are you looking for?"
               className="flex-1 bg-transparent text-sm text-white placeholder-[var(--ins-text-inactive)] px-4 py-3 outline-none min-w-0"
             />
-            <button type="submit" className="inline-flex items-center gap-2 px-5 py-2.5 m-1 text-sm font-medium text-white bg-gradient-to-r from-[var(--ins-color-teal-600)] to-[var(--ins-color-teal-500)] rounded-lg hover:shadow-[0_0_24px_rgba(7,128,126,0.5)] transition-all flex-shrink-0">
+            <button type="submit" className="inline-flex items-center gap-2 px-5 py-2.5 m-1 text-sm font-medium text-white bg-gradient-to-r from-[var(--ins-color-teal-600)] to-[var(--ins-text-highlight)] rounded-lg hover:shadow-[0_0_24px_rgba(7,128,126,0.5)] transition-all flex-shrink-0">
               Get Started
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </button>
@@ -1323,7 +1323,7 @@ function ChatMockAnimationInner() {
             alignSelf:'flex-end', maxWidth:'78%',
             background:'rgba(9,160,157,0.2)', border:'1px solid rgba(9,160,157,0.32)',
             borderRadius:'14px 14px 3px 14px',
-            padding:'11px 15px', fontSize:'13.5px', color:'#E8F2F5',
+            padding:'11px 15px', fontSize:'13.5px', color:'var(--ins-color-gray-100)',
             animation:'slideUp .25s ease both',
           }}>
             {QUESTION}
@@ -1335,15 +1335,15 @@ function ChatMockAnimationInner() {
             {/* Thinking header */}
             <div style={{display:'flex', alignItems:'center', gap:'8px', paddingLeft:'2px'}}>
               <InsightisIcon size={18}/>
-              <span style={{fontSize:'12.5px', color: thinkingDone ? 'rgba(14,196,193,0.55)' : '#0EC4C1', fontWeight:500, transition:'color .4s ease'}}>Thinking</span>
+              <span style={{fontSize:'12.5px', color: thinkingDone ? 'rgba(14,196,193,0.55)' : 'var(--ins-text-highlight)', fontWeight:500, transition:'color .4s ease'}}>Thinking</span>
               {!thinkingDone ? (
                 <div style={{display:'flex', gap:'3px', alignItems:'center', marginLeft:'1px'}}>
                   {[0, 0.2, 0.4].map(d => (
-                    <span key={d} style={{width:'4.5px',height:'4.5px',borderRadius:'50%',background:'#0EC4C1',display:'block',animation:`pulse 1.2s ease-in-out ${d}s infinite`}}/>
+                    <span key={d} style={{width:'4.5px',height:'4.5px',borderRadius:'50%',background:'var(--ins-text-highlight)',display:'block',animation:`pulse 1.2s ease-in-out ${d}s infinite`}}/>
                   ))}
                 </div>
               ) : (
-                <span style={{width:'14px',height:'14px',borderRadius:'50%',background:'rgba(14,196,193,0.12)',border:'1px solid rgba(14,196,193,0.28)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'8px',fontWeight:700,color:'#0EC4C1',flexShrink:0}}>✓</span>
+                <span style={{width:'14px',height:'14px',borderRadius:'50%',background:'rgba(14,196,193,0.12)',border:'1px solid rgba(14,196,193,0.28)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'8px',fontWeight:700,color:'var(--ins-text-highlight)',flexShrink:0}}>✓</span>
               )}
             </div>
             {/* Steps list — collapses when thinking is done */}
@@ -1361,14 +1361,14 @@ function ChatMockAnimationInner() {
                   { visible: showStep2, done: step2Done, label: 'Analyzing last week activity' },
                   { visible: showStep3, done: step3Done, label: 'Checking results' },
                 ].filter(s => s.visible).map(({done, label}, i) => (
-                  <div key={label} style={{display:'flex', alignItems:'center', gap:'7px', fontSize:'12px', color: done ? 'rgba(14,196,193,0.75)' : '#7FA0AC', animation:'slideUp .22s ease both', transition:'color .3s ease'}}>
+                  <div key={label} style={{display:'flex', alignItems:'center', gap:'7px', fontSize:'12px', color: done ? 'rgba(14,196,193,0.75)' : 'var(--ins-text-inactive)', animation:'slideUp .22s ease both', transition:'color .3s ease'}}>
                     <span style={{
                       width:'16px', height:'16px', borderRadius:'4px', flexShrink:0,
                       display:'flex', alignItems:'center', justifyContent:'center',
                       fontSize:'9px', fontWeight:700,
                       background: done ? 'rgba(14,196,193,0.12)' : 'rgba(255,255,255,0.04)',
                       border: done ? '1px solid rgba(14,196,193,0.28)' : '1px solid rgba(255,255,255,0.09)',
-                      color: done ? '#0EC4C1' : '#8AA6B3',
+                      color: done ? 'var(--ins-text-highlight)' : '#8AA6B3',
                       transition:'all .3s ease',
                     }}>
                       {done ? '✓' : (i + 1)}
@@ -1446,7 +1446,7 @@ function ChatMockAnimationInner() {
                     marginTop: i > 0 ? '5px' : '0',
                     opacity:0, animation:`fadeIn .3s ease ${0.2 + i * 0.12}s both`,
                   }}>
-                    <span style={{color:'#0EC4C1', flexShrink:0, fontWeight:700, fontSize:'11px', marginTop:'1px'}}>→</span>
+                    <span style={{color:'var(--ins-text-highlight)', flexShrink:0, fontWeight:700, fontSize:'11px', marginTop:'1px'}}>→</span>
                     {action}
                   </div>
                 ))}
@@ -1461,7 +1461,7 @@ function ChatMockAnimationInner() {
         <div style={{
           background:'rgba(255,255,255,0.038)', border:'1px solid rgba(255,255,255,0.08)',
           borderRadius:'9px', padding:'10px 13px',
-          fontSize:'13.5px', color:'#E8F2F5',
+          fontSize:'13.5px', color:'var(--ins-color-gray-100)',
           display:'flex', alignItems:'center', minHeight:'38px',
           pointerEvents:'none', userSelect:'none',
         }}>
@@ -1471,7 +1471,7 @@ function ChatMockAnimationInner() {
             <span style={{color:'rgba(255,255,255,0.55)', fontSize:'13px'}}>Ask anything…</span>
           )}
           {showCursor && (
-            <span style={{display:'inline-block',width:'1.5px',height:'15px',background:'#0EC4C1',marginLeft:'1px',animation:'blink 1s step-end infinite',verticalAlign:'middle'}}/>
+            <span style={{display:'inline-block',width:'1.5px',height:'15px',background:'var(--ins-text-highlight)',marginLeft:'1px',animation:'blink 1s step-end infinite',verticalAlign:'middle'}}/>
           )}
         </div>
       </div>
@@ -1499,16 +1499,16 @@ function Hero() {
           justifyContent: 'space-between',
           padding: '24px 0',
         }}>
-          <h1 style={{fontSize:'clamp(2.2rem,3.2vw,3.6rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",letterSpacing:'-.04em',lineHeight:1.1,marginBottom:'22px'}}>
+          <h1 style={{fontSize:'clamp(2.2rem,3.2vw,3.6rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",letterSpacing:'-.04em',lineHeight:1.1,marginBottom:'22px'}}>
             <span style={{color:'#FFFFFF'}}>Ask anything.</span><br/>
-            <span style={{color:'#0EC4C1'}}>Get answers in</span><br/>
-            <span style={{color:'#0EC4C1'}}>seconds.</span>
+            <span style={{color:'var(--ins-text-highlight)'}}>Get answers in</span><br/>
+            <span style={{color:'var(--ins-text-highlight)'}}>seconds.</span>
           </h1>
           <p style={{fontSize:'clamp(16px,1.2vw,18px)',color:'rgba(255,255,255,.75)',lineHeight:1.7,marginBottom:'36px',maxWidth:'480px'}}>
             Type any business question in plain English. Insightis queries your real data — no SQL, no analyst, no waiting.
           </p>
           <div style={{display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap',marginBottom:'24px'}}>
-            <a href="/auth/sign-up/" className="cta-btn" style={{display:'inline-flex',alignItems:'center',gap:'7px',padding:'12px 28px',borderRadius:'999px',background:'linear-gradient(135deg,#09A09D,#07807E)',color:'#fff',fontWeight:600,fontSize:'14px',textDecoration:'none',boxShadow:'0 0 30px rgba(9,160,157,.25), 0 4px 12px rgba(0,0,0,.3)'}}>
+            <a href="/auth/sign-up/" className="cta-btn" style={{display:'inline-flex',alignItems:'center',gap:'7px',padding:'12px 28px',borderRadius:'999px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',color:'#fff',fontWeight:600,fontSize:'14px',textDecoration:'none',boxShadow:'0 0 30px rgba(9,160,157,.25), 0 4px 12px rgba(0,0,0,.3)'}}>
               Start for free
               <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </a>
@@ -1516,7 +1516,7 @@ function Hero() {
           <div style={{display:'flex',alignItems:'center',gap:'18px',flexWrap:'wrap'}}>
             {['Free plan','No SQL required','Setup in minutes'].map(t=>(
               <span key={t} style={{display:'flex',alignItems:'center',gap:'5px',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',fontVariantNumeric:'tabular-nums'}}>
-                <span style={{color:'#09A09D'}}>✓</span>{t}
+                <span style={{color:'var(--ins-button-primary-bg-hover)'}}>✓</span>{t}
               </span>
             ))}
           </div>

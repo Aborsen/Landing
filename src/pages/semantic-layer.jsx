@@ -99,7 +99,7 @@ function SemanticLayerMockAnimation() {
   // Header label reflects the active phase
   const phaseLabel = showCertScreen ? 'certified' : (t >= THINKING_START ? 'processing' : 'ingesting');
   const phaseColor = showCertScreen ? 'rgba(14,196,193,0.85)' : (t >= THINKING_START ? 'rgba(255,180,100,0.9)' : 'rgba(255,255,255,0.7)');
-  const phaseDot   = showCertScreen ? '#0EC4C1' : (t >= THINKING_START ? '#FFB464' : '#9BBEC8');
+  const phaseDot   = showCertScreen ? 'var(--ins-text-highlight)' : (t >= THINKING_START ? '#FFB464' : '#9BBEC8');
 
   return (
     <div style={{
@@ -211,13 +211,13 @@ function SemanticLayerMockAnimation() {
               <InsightisIcon size={26}/>
             </div>
             <div style={{display:'flex', alignItems:'center', gap:'9px'}}>
-              <span style={{fontSize:'15px', color: allStepsDone ? 'rgba(14,196,193,0.8)' : '#E0EDF2', fontWeight:600, fontFamily:"'Outfit', sans-serif", letterSpacing:'-0.01em', transition:'color .4s ease'}}>
+              <span style={{fontSize:'15px', color: allStepsDone ? 'rgba(14,196,193,0.8)' : '#E0EDF2', fontWeight:600, fontFamily:"var(--ins-font-family-sans)", letterSpacing:'-0.01em', transition:'color .4s ease'}}>
                 {allStepsDone ? 'Structured' : 'Structuring metrics'}
               </span>
               {!allStepsDone && (
                 <div style={{display:'flex', gap:'3px', alignItems:'center'}}>
                   {[0, 0.2, 0.4].map(d => (
-                    <span key={d} style={{width:'5px',height:'5px',borderRadius:'50%',background:'#0EC4C1',display:'block',animation:`pulse 1.2s ease-in-out ${d}s infinite`}}/>
+                    <span key={d} style={{width:'5px',height:'5px',borderRadius:'50%',background:'var(--ins-text-highlight)',display:'block',animation:`pulse 1.2s ease-in-out ${d}s infinite`}}/>
                   ))}
                 </div>
               )}
@@ -249,7 +249,7 @@ function SemanticLayerMockAnimation() {
                     fontSize:'9px', fontWeight:800,
                     background: done ? 'rgba(14,196,193,0.18)' : (active ? 'transparent' : 'rgba(255,255,255,0.04)'),
                     border: done ? '1px solid rgba(14,196,193,0.45)' : (active ? '1.5px solid rgba(14,196,193,0.7)' : '1px solid rgba(255,255,255,0.1)'),
-                    color: done ? '#0EC4C1' : (active ? '#0EC4C1' : '#8AA6B3'),
+                    color: done ? 'var(--ins-text-highlight)' : (active ? 'var(--ins-text-highlight)' : '#8AA6B3'),
                     transition:'all .3s ease',
                     animation: active ? 'pulse 1.3s ease-in-out infinite' : 'none',
                   }}>
@@ -257,7 +257,7 @@ function SemanticLayerMockAnimation() {
                   </span>
                   <span style={{
                     fontSize:'12.5px',
-                    color: done ? 'rgba(14,196,193,0.85)' : (active ? '#E0EDF2' : '#7FA0AC'),
+                    color: done ? 'rgba(14,196,193,0.85)' : (active ? '#E0EDF2' : 'var(--ins-text-inactive)'),
                     fontWeight: active ? 500 : 400,
                     transition:'color .35s ease',
                   }}>
@@ -298,14 +298,14 @@ function SemanticLayerMockAnimation() {
                   boxShadow:'0 0 20px rgba(9,160,157,0.05)',
                   opacity:0, animation:`slideUp .35s ease ${i*0.03}s both`,
                 }}>
-                  <span style={{fontSize:'12.5px', color:'#0EC4C1', fontFamily:'Geist Mono,monospace', fontWeight:600}}>{m.name}</span>
-                  <span style={{fontSize:'12.5px', fontFamily:'Geist Mono,monospace', color:'#E8F2F5', fontWeight:600, fontVariantNumeric:'tabular-nums'}}>{m.value}</span>
+                  <span style={{fontSize:'12.5px', color:'var(--ins-text-highlight)', fontFamily:'Geist Mono,monospace', fontWeight:600}}>{m.name}</span>
+                  <span style={{fontSize:'12.5px', fontFamily:'Geist Mono,monospace', color:'var(--ins-color-gray-100)', fontWeight:600, fontVariantNumeric:'tabular-nums'}}>{m.value}</span>
                   <span style={{fontSize:'10.5px', color:'rgba(255,255,255,0.4)', fontFamily:'Geist Mono,monospace', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}>{m.source}</span>
                   <span style={{
                     width:'14px', height:'14px', borderRadius:'50%',
                     background:'rgba(14,196,193,0.15)', border:'1px solid rgba(14,196,193,0.4)',
                     display:'flex', alignItems:'center', justifyContent:'center',
-                    fontSize:'8px', fontWeight:800, color:'#0EC4C1',
+                    fontSize:'8px', fontWeight:800, color:'var(--ins-text-highlight)',
                   }}>✓</span>
                 </div>
               );
@@ -338,16 +338,16 @@ function Hero() {
           justifyContent: 'space-between',
           padding: '24px 0',
         }}>
-          <h1 style={{fontSize:'clamp(2.2rem,3.2vw,3.6rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",letterSpacing:'-.04em',lineHeight:1.1,marginBottom:'22px'}}>
+          <h1 style={{fontSize:'clamp(2.2rem,3.2vw,3.6rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",letterSpacing:'-.04em',lineHeight:1.1,marginBottom:'22px'}}>
             <span style={{color:'#FFFFFF'}}>One platform.</span><br/>
-            <span style={{color:'#0EC4C1'}}>Every team's</span><br/>
-            <span style={{color:'#0EC4C1'}}>numbers.</span>
+            <span style={{color:'var(--ins-text-highlight)'}}>Every team's</span><br/>
+            <span style={{color:'var(--ins-text-highlight)'}}>numbers.</span>
           </h1>
           <p style={{fontSize:'clamp(16px,1.2vw,18px)',color:'rgba(255,255,255,.75)',lineHeight:1.7,marginBottom:'36px',maxWidth:'480px'}}>
             Your Semantic Layer certifies every metric once. Not generic guesses — your actual data, your exact logic.
           </p>
           <div style={{display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap',marginBottom:'24px'}}>
-            <a href="/auth/sign-up/" className="cta-btn" style={{display:'inline-flex',alignItems:'center',gap:'7px',padding:'12px 28px',borderRadius:'999px',background:'linear-gradient(135deg,#09A09D,#07807E)',color:'#fff',fontWeight:600,fontSize:'14px',textDecoration:'none',boxShadow:'0 0 30px rgba(9,160,157,.25), 0 4px 12px rgba(0,0,0,.3)'}}>
+            <a href="/auth/sign-up/" className="cta-btn" style={{display:'inline-flex',alignItems:'center',gap:'7px',padding:'12px 28px',borderRadius:'999px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',color:'#fff',fontWeight:600,fontSize:'14px',textDecoration:'none',boxShadow:'0 0 30px rgba(9,160,157,.25), 0 4px 12px rgba(0,0,0,.3)'}}>
               Start for free
               <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </a>
@@ -355,7 +355,7 @@ function Hero() {
           <div style={{display:'flex',alignItems:'center',gap:'18px',flexWrap:'wrap'}}>
             {['Single source of truth','Zero conflicting numbers','Every team aligned'].map(t=>(
               <span key={t} style={{display:'flex',alignItems:'center',gap:'5px',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',fontVariantNumeric:'tabular-nums'}}>
-                <span style={{color:'#09A09D'}}>✓</span>{t}
+                <span style={{color:'var(--ins-button-primary-bg-hover)'}}>✓</span>{t}
               </span>
             ))}
           </div>
@@ -393,14 +393,14 @@ function WhatItDoes() {
   ];
 
   return (
-    <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
+    <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,var(--ins-surface-page) 0%,var(--ins-surface-container) 100%)'}}>
       <div className="max-w-7xl mx-auto px-6">
         <div style={{textAlign:'center',marginBottom:'64px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>How it works</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>How it works</span>
           </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,textWrap:'balance'}}>
+          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,textWrap:'balance'}}>
             One layer. Every metric. Always right.
           </h2>
         </div>
@@ -424,16 +424,16 @@ function WhatItDoes() {
                 boxShadow:'0 0 28px rgba(9,160,157,.18), inset 0 1px 0 rgba(255,255,255,.05)',
                 marginBottom:'22px',
               }}>
-                <span style={{fontSize:'18px',fontWeight:600,color:'#0EC4C1',fontFamily:"'Outfit', sans-serif",letterSpacing:'-.02em',fontVariantNumeric:'tabular-nums'}}>{s.n}</span>
+                <span style={{fontSize:'18px',fontWeight:600,color:'var(--ins-text-highlight)',fontFamily:"var(--ins-font-family-sans)",letterSpacing:'-.02em',fontVariantNumeric:'tabular-nums'}}>{s.n}</span>
               </div>
 
               {/* Title */}
-              <h3 style={{fontSize:'18px',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.02em',margin:'0 0 10px',lineHeight:1.2}}>
+              <h3 style={{fontSize:'18px',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.02em',margin:'0 0 10px',lineHeight:1.2}}>
                 {s.title}
               </h3>
 
               {/* Description */}
-              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.7,margin:'0 0 16px',width:'100%',maxWidth:'320px'}}>
+              <p style={{fontSize:'14px',color:'var(--ins-text-inactive)',lineHeight:1.7,margin:'0 0 16px',width:'100%',maxWidth:'320px'}}>
                 {s.desc}
               </p>
 
@@ -608,8 +608,8 @@ const SHOWCASE_CSS = `
 .sc-step-connector{position:absolute;top:28px;left:calc(50% + 36px);right:calc(-50% + 36px);height:1px;background:linear-gradient(90deg,rgba(9,160,157,.45) 0%,rgba(9,160,157,.18) 100%);z-index:0}
 .sc-circle{position:relative;z-index:1;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:14px;border:1px solid rgba(9,160,157,.35);background:radial-gradient(circle at 50% 30%,rgba(9,160,157,.10) 0%,rgba(13,17,23,.95) 75%);box-shadow:0 0 18px rgba(9,160,157,.10), inset 0 1px 0 rgba(255,255,255,.05);transition:border-color .25s,box-shadow .25s,background .25s}
 .sc-step.active .sc-circle{border-color:rgba(9,160,157,.7);background:radial-gradient(circle at 50% 30%,rgba(9,160,157,.22) 0%,rgba(13,17,23,.95) 75%);box-shadow:0 0 28px rgba(9,160,157,.25), inset 0 1px 0 rgba(255,255,255,.06)}
-.sc-num{font-size:18px;font-weight:600;font-family:'Outfit',sans-serif;letter-spacing:-.02em;color:rgba(14,196,193,.55);font-variant-numeric:tabular-nums;transition:color .25s}
-.sc-step.active .sc-num{color:#0EC4C1}
+.sc-num{font-size:18px;font-weight:600;font-family:var(--ins-font-family-sans);letter-spacing:-.02em;color:rgba(14,196,193,.55);font-variant-numeric:tabular-nums;transition:color .25s}
+.sc-step.active .sc-num{color:var(--ins-text-highlight)}
 .sc-step-label{font-size:13.5px;font-weight:600;letter-spacing:-.01em;color:rgba(255,255,255,.45);margin-bottom:6px;transition:color .25s;line-height:1.25}
 .sc-step.active .sc-step-label{color:#fff}
 .sc-step-desc{font-size:11.5px;color:rgba(255,255,255,.4);line-height:1.5;max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .35s ease}
@@ -633,7 +633,7 @@ function Panel1() {
     { name:'Return on Ad Spend',        short:'@ROAS',      cat:'Marketing', src:'PostgreSQL',        active:false },
   ];
   const CAT_COLORS = { Marketing:'rgba(14,196,193,.12)', RevOps:'rgba(99,91,255,.12)' };
-  const CAT_TEXT   = { Marketing:'#0EC4C1', RevOps:'#8b7cf8' };
+  const CAT_TEXT   = { Marketing:'var(--ins-text-highlight)', RevOps:'#8b7cf8' };
 
   return (
     <div style={{width:'100%',background:'rgba(10,14,19,.95)',border:'1px solid rgba(255,255,255,.08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none'}}>
@@ -644,7 +644,7 @@ function Panel1() {
             <div key={i} style={{padding:'3px 10px',borderRadius:'999px',fontSize:'11px',fontWeight:600,fontFamily:'Geist Mono,monospace',background:i===0?'var(--mint)':'rgba(255,255,255,.04)',color:i===0?'#fff':'rgba(255,255,255,.4)',border:`1px solid ${i===0?'var(--mint)':'rgba(255,255,255,.07)'}`}}>{l}</div>
           ))}
         </div>
-        <div style={{display:'inline-flex',alignItems:'center',gap:'6px',padding:'5px 12px',background:'rgba(9,160,157,.1)',border:'1px solid rgba(9,160,157,.3)',borderRadius:'8px',fontSize:'11.5px',fontWeight:600,color:'#0EC4C1',cursor:'pointer'}}>
+        <div style={{display:'inline-flex',alignItems:'center',gap:'6px',padding:'5px 12px',background:'rgba(9,160,157,.1)',border:'1px solid rgba(9,160,157,.3)',borderRadius:'8px',fontSize:'11.5px',fontWeight:600,color:'var(--ins-text-highlight)',cursor:'pointer'}}>
           <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/></svg>
           + New Metric
         </div>
@@ -659,11 +659,11 @@ function Panel1() {
       {metrics.map((m,i)=>(
         <div key={i} style={{display:'grid',gridTemplateColumns:'40px 1fr 100px 90px 110px 36px',padding:'9px 16px',borderBottom:'1px solid rgba(255,255,255,.03)',alignItems:'center',background:i===0?'rgba(9,160,157,.05)':'transparent'}}>
           <div style={{width:'28px',height:'16px',borderRadius:'8px',background:m.active?'rgba(9,160,157,.15)':'rgba(255,255,255,.06)',border:`1px solid ${m.active?'rgba(9,160,157,.4)':'rgba(255,255,255,.1)'}`,position:'relative'}}>
-            <div style={{position:'absolute',top:'2px',width:'10px',height:'10px',borderRadius:'50%',background:m.active?'#0EC4C1':'rgba(255,255,255,.25)',transition:'left .2s',left:m.active?'14px':'2px'}}/>
+            <div style={{position:'absolute',top:'2px',width:'10px',height:'10px',borderRadius:'50%',background:m.active?'var(--ins-text-highlight)':'rgba(255,255,255,.25)',transition:'left .2s',left:m.active?'14px':'2px'}}/>
           </div>
           <div style={{fontSize:'12px',color:'rgba(232,242,245,.85)',fontWeight:500,whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',paddingRight:'8px'}}>{m.name}</div>
-          <div style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color:'#0EC4C1',background:'rgba(9,160,157,.07)',padding:'2px 6px',borderRadius:'4px',width:'fit-content'}}>{m.short}</div>
-          <div style={{fontSize:'11px',padding:'2px 8px',borderRadius:'4px',background:CAT_COLORS[m.cat]||'rgba(255,255,255,.06)',color:CAT_TEXT[m.cat]||'#7FA0AC',width:'fit-content'}}>{m.cat}</div>
+          <div style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-highlight)',background:'rgba(9,160,157,.07)',padding:'2px 6px',borderRadius:'4px',width:'fit-content'}}>{m.short}</div>
+          <div style={{fontSize:'11px',padding:'2px 8px',borderRadius:'4px',background:CAT_COLORS[m.cat]||'rgba(255,255,255,.06)',color:CAT_TEXT[m.cat]||'var(--ins-text-inactive)',width:'fit-content'}}>{m.cat}</div>
           <div style={{fontSize:'11px',color:'rgba(255,255,255,.4)',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{m.src}</div>
           <div style={{color:'rgba(255,255,255,.2)',fontSize:'14px',cursor:'pointer'}}>···</div>
         </div>
@@ -688,11 +688,11 @@ function Panel2() {
     <div style={{width:'100%',maxWidth:'420px',background:'rgba(10,14,19,.95)',border:'1px solid rgba(255,255,255,.08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'20px'}}>
       <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'16px'}}>
         <div style={{width:'22px',height:'22px',borderRadius:'6px',background:'rgba(9,160,157,.12)',border:'1px solid rgba(9,160,157,.25)',display:'flex',alignItems:'center',justifyContent:'center'}}>
-          <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z" stroke="#0EC4C1" strokeWidth="1.2" strokeLinejoin="round"/></svg>
+          <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z" stroke="var(--ins-text-highlight)" strokeWidth="1.2" strokeLinejoin="round"/></svg>
         </div>
-        <span style={{fontSize:'12px',fontWeight:600,color:'#0EC4C1',fontFamily:'Geist Mono,monospace'}}>AI Auto-Mapping</span>
+        <span style={{fontSize:'12px',fontWeight:600,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace'}}>AI Auto-Mapping</span>
         <div style={{marginLeft:'auto',display:'flex',alignItems:'center',gap:'4px',fontSize:'10px',color:'rgba(34,197,94,.8)',fontFamily:'Geist Mono,monospace'}}>
-          <div style={{width:'5px',height:'5px',borderRadius:'50%',background:'#22C55E',boxShadow:'0 0 5px #22C55E',animation:'pulse 1.5s infinite'}}/>
+          <div style={{width:'5px',height:'5px',borderRadius:'50%',background:'var(--ins-status-success-fg)',boxShadow:'0 0 5px var(--ins-status-success-fg)',animation:'pulse 1.5s infinite'}}/>
           mapping...
         </div>
       </div>
@@ -700,7 +700,7 @@ function Panel2() {
       <div style={{fontSize:'12px',color:'rgba(255,255,255,.35)',marginBottom:'12px',fontFamily:'Geist Mono,monospace'}}>Customer Acquisition Cost → CAC</div>
 
       <div style={{fontSize:'11.5px',color:'rgba(255,255,255,.7)',marginBottom:'12px',lineHeight:1.6}}>
-        Connecting <span style={{color:'#0EC4C1'}}>(@marketing_spend + @sales_spend) / @new_customers</span>
+        Connecting <span style={{color:'var(--ins-text-highlight)'}}>(@marketing_spend + @sales_spend) / @new_customers</span>
       </div>
 
       <div style={{display:'flex',flexDirection:'column',gap:'8px'}}>
@@ -709,9 +709,9 @@ function Panel2() {
           const active = step === i;
           return (
             <div key={i} style={{display:'flex',alignItems:'center',gap:'8px',padding:'9px 12px',borderRadius:'10px',border:`1px solid ${done?'rgba(9,160,157,.3)':active?'rgba(9,160,157,.15)':'rgba(255,255,255,.06)'}`,background:done?'rgba(9,160,157,.06)':active?'rgba(9,160,157,.03)':'rgba(255,255,255,.02)',transition:'all .3s'}}>
-              <div style={{fontFamily:'Geist Mono,monospace',fontSize:'11px',color:done?'#0EC4C1':'rgba(255,255,255,.4)',flex:1}}>{f}</div>
+              <div style={{fontFamily:'Geist Mono,monospace',fontSize:'11px',color:done?'var(--ins-text-highlight)':'rgba(255,255,255,.4)',flex:1}}>{f}</div>
               {(done||active) && (
-                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" style={{flexShrink:0,opacity:active?0.5:1}}><path d="M3 8h10M9 4l4 4-4 4" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" style={{flexShrink:0,opacity:active?0.5:1}}><path d="M3 8h10M9 4l4 4-4 4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               )}
               {done && (
                 <div style={{display:'flex',flexDirection:'column',alignItems:'flex-end'}}>
@@ -721,7 +721,7 @@ function Panel2() {
               )}
               {active && (
                 <div style={{display:'flex',gap:'3px',alignItems:'center'}}>
-                  {[0,1,2].map(d=><div key={d} style={{width:'4px',height:'4px',borderRadius:'50%',background:'#0EC4C1',animation:`pulse ${0.9+d*0.15}s ease-in-out infinite`,animationDelay:`${d*0.15}s`}}/>)}
+                  {[0,1,2].map(d=><div key={d} style={{width:'4px',height:'4px',borderRadius:'50%',background:'var(--ins-text-highlight)',animation:`pulse ${0.9+d*0.15}s ease-in-out infinite`,animationDelay:`${d*0.15}s`}}/>)}
                 </div>
               )}
             </div>
@@ -731,7 +731,7 @@ function Panel2() {
 
       {step >= 4 && (
         <div style={{marginTop:'12px',padding:'10px 14px',borderRadius:'10px',background:'rgba(34,197,94,.06)',border:'1px solid rgba(34,197,94,.2)',display:'flex',alignItems:'center',gap:'8px',animation:'slideUp .3s ease both'}}>
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><polyline points="2 8 6 12 14 4" stroke="#22C55E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><polyline points="2 8 6 12 14 4" stroke="var(--ins-status-success-fg)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
           <span style={{fontSize:'12px',color:'rgba(34,197,94,.9)',fontWeight:500}}>All fields mapped — metric certified ✓</span>
         </div>
       )}
@@ -744,7 +744,7 @@ function Panel3() {
   return (
     <div style={{width:'100%',maxWidth:'380px',background:'rgba(13,17,23,.97)',border:'1px solid rgba(255,255,255,.1)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'24px'}}>
       <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'20px'}}>
-        <span style={{fontSize:'15px',fontWeight:600,color:'#E8F2F5'}}>Create New Metric</span>
+        <span style={{fontSize:'15px',fontWeight:600,color:'var(--ins-color-gray-100)'}}>Create New Metric</span>
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 2l12 12M14 2L2 14" stroke="rgba(255,255,255,.3)" strokeWidth="1.5" strokeLinecap="round"/></svg>
       </div>
       {[{label:'Name',ph:'e.g., Customer Acquisition Cost'},{label:'Short name',ph:'@CAC'}].map((f,i)=>(
@@ -756,7 +756,7 @@ function Panel3() {
       <div style={{marginBottom:'14px'}}>
         <div style={{fontSize:'11.5px',color:'rgba(255,255,255,.4)',marginBottom:'6px',fontFamily:'Geist Mono,monospace'}}>Definition Method</div>
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',borderRadius:'8px',overflow:'hidden',border:'1px solid rgba(255,255,255,.08)'}}>
-          <div style={{padding:'8px',textAlign:'center',background:'rgba(255,255,255,.08)',fontSize:'12px',color:'#E8F2F5',fontWeight:500,display:'flex',alignItems:'center',justifyContent:'center',gap:'5px'}}>
+          <div style={{padding:'8px',textAlign:'center',background:'rgba(255,255,255,.08)',fontSize:'12px',color:'var(--ins-color-gray-100)',fontWeight:500,display:'flex',alignItems:'center',justifyContent:'center',gap:'5px'}}>
             <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3v10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
             Direct Mapping
           </div>
@@ -777,13 +777,13 @@ function Panel3() {
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="rgba(9,160,157,.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           <div>
             <div style={{fontSize:'10px',color:'rgba(255,255,255,.3)',marginBottom:'4px',fontFamily:'Geist Mono,monospace'}}>Object</div>
-            <div style={{padding:'6px 10px',borderRadius:'7px',border:'1px solid rgba(9,160,157,.3)',background:'rgba(9,160,157,.06)',fontSize:'11.5px',color:'#0EC4C1'}}>Charges</div>
+            <div style={{padding:'6px 10px',borderRadius:'7px',border:'1px solid rgba(9,160,157,.3)',background:'rgba(9,160,157,.06)',fontSize:'11.5px',color:'var(--ins-text-highlight)'}}>Charges</div>
           </div>
         </div>
         <div style={{display:'grid',gridTemplateColumns:'1fr auto 1fr',gap:'8px',alignItems:'center'}}>
           <div>
             <div style={{fontSize:'10px',color:'rgba(255,255,255,.3)',marginBottom:'4px',fontFamily:'Geist Mono,monospace'}}>Field</div>
-            <div style={{padding:'6px 10px',borderRadius:'7px',border:'1px solid rgba(9,160,157,.3)',background:'rgba(9,160,157,.06)',fontSize:'11.5px',color:'#0EC4C1'}}>Amount</div>
+            <div style={{padding:'6px 10px',borderRadius:'7px',border:'1px solid rgba(9,160,157,.3)',background:'rgba(9,160,157,.06)',fontSize:'11.5px',color:'var(--ins-text-highlight)'}}>Amount</div>
           </div>
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="rgba(9,160,157,.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           <div>
@@ -794,7 +794,7 @@ function Panel3() {
       </div>
       <div style={{display:'flex',gap:'8px',marginTop:'16px'}}>
         <div style={{flex:1,padding:'9px',borderRadius:'8px',border:'1px solid rgba(255,255,255,.1)',textAlign:'center',fontSize:'13px',color:'rgba(255,255,255,.4)',cursor:'pointer'}}>Cancel</div>
-        <div style={{flex:1,padding:'9px',borderRadius:'8px',background:'linear-gradient(135deg,#09A09D,#07807E)',textAlign:'center',fontSize:'13px',fontWeight:600,color:'#fff',cursor:'pointer',boxShadow:'0 0 12px rgba(9,160,157,.3)'}}>Create Metric</div>
+        <div style={{flex:1,padding:'9px',borderRadius:'8px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',textAlign:'center',fontSize:'13px',fontWeight:600,color:'#fff',cursor:'pointer',boxShadow:'0 0 12px rgba(9,160,157,.3)'}}>Create Metric</div>
       </div>
     </div>
   );
@@ -807,13 +807,13 @@ function Panel4() {
   const parts = [
     { label:'@Marketing_Spend', value:'$28,400', color:'#6772E5' },
     { label:'@Sales_Spend',     value:'$18,200', color:'#FF7A59' },
-    { label:'@New_Customers',   value:'108',      color:'#0EC4C1' },
+    { label:'@New_Customers',   value:'108',      color:'var(--ins-text-highlight)' },
   ];
   return (
     <div style={{width:'100%',maxWidth:'420px',background:'rgba(10,14,19,.95)',border:'1px solid rgba(255,255,255,.08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'22px'}}>
       <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'18px'}}>
-        <div style={{fontSize:'13px',fontWeight:600,color:'#E8F2F5'}}>Customer Acquisition Cost</div>
-        <div style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'#0EC4C1',background:'rgba(9,160,157,.08)',padding:'2px 7px',borderRadius:'4px'}}>@CAC</div>
+        <div style={{fontSize:'13px',fontWeight:600,color:'var(--ins-color-gray-100)'}}>Customer Acquisition Cost</div>
+        <div style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-highlight)',background:'rgba(9,160,157,.08)',padding:'2px 7px',borderRadius:'4px'}}>@CAC</div>
       </div>
 
       {/* Formula */}
@@ -824,7 +824,7 @@ function Panel4() {
           <span style={{color:'rgba(255,255,255,.35)'}}> + </span>
           <span style={{color:'#FF7A59'}}>@Sales_Spend</span>
           <span style={{color:'rgba(255,255,255,.35)'}}> / </span>
-          <span style={{color:'#0EC4C1'}}>@New_Customers</span>
+          <span style={{color:'var(--ins-text-highlight)'}}>@New_Customers</span>
         </div>
       </div>
 
@@ -849,7 +849,7 @@ function Panel4() {
         transition:'all .5s ease',
       }}>
         <div style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color:'rgba(255,255,255,.4)'}}>@CAC =</div>
-        <div style={{fontSize:'22px',fontWeight:500,fontFamily:'Geist Mono,monospace',color:solved?'#0EC4C1':'rgba(255,255,255,.2)',transition:'color .5s ease'}}>
+        <div style={{fontSize:'22px',fontWeight:500,fontFamily:'Geist Mono,monospace',color:solved?'var(--ins-text-highlight)':'rgba(255,255,255,.2)',transition:'color .5s ease'}}>
           {solved ? '$431' : '...'}
         </div>
         {solved && <div style={{fontSize:'10px',color:'rgba(34,197,94,.8)',background:'rgba(34,197,94,.06)',border:'1px solid rgba(34,197,94,.2)',padding:'2px 8px',borderRadius:'4px',fontFamily:'Geist Mono,monospace'}}>● certified</div>}
@@ -875,20 +875,20 @@ function Panel5() {
       {/* Chat header */}
       <div style={{padding:'12px 16px',borderBottom:'1px solid rgba(255,255,255,.06)',display:'flex',alignItems:'center',gap:'8px'}}>
         <div style={{width:'20px',height:'20px',borderRadius:'6px',background:'rgba(9,160,157,.12)',border:'1px solid rgba(9,160,157,.25)',display:'flex',alignItems:'center',justifyContent:'center'}}>
-          <svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z" stroke="#0EC4C1" strokeWidth="1.2" strokeLinejoin="round"/></svg>
+          <svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z" stroke="var(--ins-text-highlight)" strokeWidth="1.2" strokeLinejoin="round"/></svg>
         </div>
-        <span style={{fontSize:'12px',fontWeight:600,color:'#0EC4C1',fontFamily:'Geist Mono,monospace'}}>Insightis AI</span>
+        <span style={{fontSize:'12px',fontWeight:600,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace'}}>Insightis AI</span>
         <div style={{marginLeft:'auto',display:'flex',alignItems:'center',gap:4,fontSize:'10px',color:'rgba(34,197,94,.8)',fontFamily:'Geist Mono,monospace'}}>
-          <div style={{width:5,height:5,borderRadius:'50%',background:'#22C55E',boxShadow:'0 0 4px #22C55E'}}/>live
+          <div style={{width:5,height:5,borderRadius:'50%',background:'var(--ins-status-success-fg)',boxShadow:'0 0 4px var(--ins-status-success-fg)'}}/>live
         </div>
       </div>
 
       <div style={{padding:'16px',display:'flex',flexDirection:'column',gap:'10px',minHeight:'220px'}}>
         {/* User message with @ mention */}
         {step >= 1 && (
-          <div style={{alignSelf:'flex-end',background:'rgba(9,160,157,.1)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'14px 14px 3px 14px',padding:'9px 13px',fontSize:'13px',color:'#E8F2F5',maxWidth:'90%',animation:'slideUp .2s ease both'}}>
+          <div style={{alignSelf:'flex-end',background:'rgba(9,160,157,.1)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'14px 14px 3px 14px',padding:'9px 13px',fontSize:'13px',color:'var(--ins-color-gray-100)',maxWidth:'90%',animation:'slideUp .2s ease both'}}>
             Why did{' '}
-            <span style={{background:'rgba(9,160,157,.15)',border:'1px solid rgba(9,160,157,.3)',borderRadius:'4px',padding:'1px 6px',color:'#0EC4C1',fontFamily:'Geist Mono,monospace',fontSize:'12px',fontWeight:600}}>@CAC</span>
+            <span style={{background:'rgba(9,160,157,.15)',border:'1px solid rgba(9,160,157,.3)',borderRadius:'4px',padding:'1px 6px',color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',fontSize:'12px',fontWeight:600}}>@CAC</span>
             {' '}spike last month?
           </div>
         )}
@@ -897,19 +897,19 @@ function Panel5() {
         {step === 2 && (
           <div style={{alignSelf:'flex-start',background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.07)',borderRadius:'3px 14px 14px 14px',padding:'10px 13px',animation:'slideUp .2s ease both'}}>
             <div style={{display:'flex',gap:4,alignItems:'center'}}>
-              {[0,1,2].map(d=><div key={d} style={{width:5,height:5,borderRadius:'50%',background:'#0EC4C1',animation:`pulse ${0.9+d*0.15}s ease-in-out infinite`,animationDelay:`${d*0.15}s`}}/>)}
+              {[0,1,2].map(d=><div key={d} style={{width:5,height:5,borderRadius:'50%',background:'var(--ins-text-highlight)',animation:`pulse ${0.9+d*0.15}s ease-in-out infinite`,animationDelay:`${d*0.15}s`}}/>)}
             </div>
           </div>
         )}
 
         {/* AI answer */}
         {step >= 3 && (
-          <div style={{alignSelf:'flex-start',background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.07)',borderRadius:'3px 14px 14px 14px',padding:'10px 13px',fontSize:'13px',color:'#C0D4DC',maxWidth:'95%',lineHeight:1.65,animation:'slideUp .2s ease both'}}>
-            <span style={{color:'#0EC4C1',fontFamily:'Geist Mono,monospace',fontSize:'12px',fontWeight:600,background:'rgba(9,160,157,.08)',padding:'1px 6px',borderRadius:'4px'}}>@CAC</span>
-            {' '}rose to <strong style={{color:'#E8F2F5'}}>$431</strong> in Nov — up from $394 in Oct (+9.4%). Main driver: <strong style={{color:'#E8F2F5'}}>@Marketing_Spend</strong> increased $4.2K while <strong style={{color:'#E8F2F5'}}>@New_Customers</strong> grew only 3%.
+          <div style={{alignSelf:'flex-start',background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.07)',borderRadius:'3px 14px 14px 14px',padding:'10px 13px',fontSize:'13px',color:'var(--ins-color-gray-200)',maxWidth:'95%',lineHeight:1.65,animation:'slideUp .2s ease both'}}>
+            <span style={{color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',fontSize:'12px',fontWeight:600,background:'rgba(9,160,157,.08)',padding:'1px 6px',borderRadius:'4px'}}>@CAC</span>
+            {' '}rose to <strong style={{color:'var(--ins-color-gray-100)'}}>$431</strong> in Nov — up from $394 in Oct (+9.4%). Main driver: <strong style={{color:'var(--ins-color-gray-100)'}}>@Marketing_Spend</strong> increased $4.2K while <strong style={{color:'var(--ins-color-gray-100)'}}>@New_Customers</strong> grew only 3%.
             <div style={{marginTop:'8px',display:'flex',gap:5}}>
               {['Stripe','HubSpot','PostgreSQL'].map(s=>(
-                <span key={s} style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',padding:'2px 6px',borderRadius:'4px',background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.07)',color:'#7FA0AC'}}>{s}</span>
+                <span key={s} style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',padding:'2px 6px',borderRadius:'4px',background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.07)',color:'var(--ins-text-inactive)'}}>{s}</span>
               ))}
             </div>
           </div>
@@ -918,10 +918,10 @@ function Panel5() {
 
       {/* Input */}
       <div style={{padding:'10px 14px',borderTop:'1px solid rgba(255,255,255,.06)',display:'flex',alignItems:'center',gap:'8px'}}>
-        <div style={{flex:1,background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.08)',borderRadius:'8px',padding:'8px 12px',fontSize:'12.5px',color:'#7FA0AC',fontFamily:'Geist,sans-serif'}}>
+        <div style={{flex:1,background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.08)',borderRadius:'8px',padding:'8px 12px',fontSize:'12.5px',color:'var(--ins-text-inactive)',fontFamily:'Geist,sans-serif'}}>
           Ask anything... use <span style={{color:'rgba(9,160,157,.5)',fontFamily:'Geist Mono,monospace'}}>@</span> to reference metrics
         </div>
-        <div style={{width:'26px',height:'26px',borderRadius:'7px',background:'linear-gradient(135deg,#09A09D,#07807E)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
+        <div style={{width:'26px',height:'26px',borderRadius:'7px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
           <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
         </div>
       </div>
@@ -938,14 +938,14 @@ const SHOWCASE_STEPS = [
 ];
 function FeaturesShowcase() {
   return (
-    <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,#0A0E13 0%,#0D1117 100%)'}}>
+    <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,var(--ins-surface-page) 0%,var(--ins-surface-container) 100%)'}}>
       <div className="max-w-7xl mx-auto px-6">
         <div style={{textAlign:'center',marginBottom:'64px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>How it works</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>How it works</span>
           </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,textWrap:'balance'}}>
+          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,textWrap:'balance'}}>
             Your Semantic Layer, fully in control
           </h2>
         </div>
@@ -969,16 +969,16 @@ function FeaturesShowcase() {
                 boxShadow:'0 0 28px rgba(9,160,157,.18), inset 0 1px 0 rgba(255,255,255,.05)',
                 marginBottom:'22px',
               }}>
-                <span style={{fontSize:'18px',fontWeight:600,color:'#0EC4C1',fontFamily:"'Outfit', sans-serif",letterSpacing:'-.02em',fontVariantNumeric:'tabular-nums'}}>{s.n}</span>
+                <span style={{fontSize:'18px',fontWeight:600,color:'var(--ins-text-highlight)',fontFamily:"var(--ins-font-family-sans)",letterSpacing:'-.02em',fontVariantNumeric:'tabular-nums'}}>{s.n}</span>
               </div>
 
               {/* Title */}
-              <h3 style={{fontSize:'18px',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.02em',margin:'0 0 10px',lineHeight:1.2}}>
+              <h3 style={{fontSize:'18px',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.02em',margin:'0 0 10px',lineHeight:1.2}}>
                 {s.label}
               </h3>
 
               {/* Description */}
-              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.7,margin:'0 0 16px',width:'100%',maxWidth:'320px'}}>
+              <p style={{fontSize:'14px',color:'var(--ins-text-inactive)',lineHeight:1.7,margin:'0 0 16px',width:'100%',maxWidth:'320px'}}>
                 {s.desc}
               </p>
 
@@ -1012,16 +1012,16 @@ function ConnectorGallery() {
   const [activeCat, setActiveCat] = useState(cats[0]);
 
   return (
-    <section style={{padding:'80px 0 100px', background:'linear-gradient(180deg,#0D1117 0%,#101620 100%)'}}>
+    <section style={{padding:'80px 0 100px', background:'linear-gradient(180deg,var(--ins-surface-container) 0%,#101620 100%)'}}>
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Heading */}
         <div style={{textAlign:'center',marginBottom:'28px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:600,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Metrics catalog</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:600,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>Metrics catalog</span>
           </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,textWrap:'balance',marginBottom:'12px'}}>
+          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,textWrap:'balance',marginBottom:'12px'}}>
             Define, certify, and version your metrics
           </h2>
           <p style={{fontSize:'clamp(1rem,1.8vw,1.19rem)',color:'rgba(255,255,255,0.7)',maxWidth:'42rem',margin:'0 auto',lineHeight:1.7}}>
@@ -1037,7 +1037,7 @@ function ConnectorGallery() {
               cursor:'pointer',fontFamily:'Geist,sans-serif',transition:'all .15s',
               border:`1px solid ${cat===activeCat?'rgba(9,160,157,.5)':'rgba(255,255,255,.08)'}`,
               background: cat===activeCat?'rgba(9,160,157,.08)':'transparent',
-              color: cat===activeCat?'#0EC4C1':'#7FA0AC',
+              color: cat===activeCat?'var(--ins-text-highlight)':'var(--ins-text-inactive)',
             }}>
               {cat}
             </button>
@@ -1056,7 +1056,7 @@ function ConnectorGallery() {
                 className="connector-icon"
                 style={{
                   background:'rgba(9,160,157,.12)',
-                  color:'#0EC4C1',
+                  color:'var(--ins-text-highlight)',
                   border:'1px solid rgba(9,160,157,.25)',
                   fontSize:'15px',
                   fontWeight:600,
@@ -1070,7 +1070,7 @@ function ConnectorGallery() {
                 <div style={{fontSize:'0.875rem',fontWeight:500,color:'#fff',marginBottom:'3px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>@{c.name}</div>
                 <div style={{fontSize:'12px',color:'#8A9BA4',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{c.desc}</div>
               </div>
-              <div style={{marginLeft:'auto',flexShrink:0,width:6,height:6,borderRadius:'50%',background:'#22C55E',boxShadow:'0 0 6px rgba(34,197,94,.6)'}}/>
+              <div style={{marginLeft:'auto',flexShrink:0,width:6,height:6,borderRadius:'50%',background:'var(--ins-status-success-fg)',boxShadow:'0 0 6px rgba(34,197,94,.6)'}}/>
             </div>
           ))}
         </div>
@@ -1090,14 +1090,14 @@ function ConnectorGallery() {
 /* ── BEFORE / AFTER — Without vs With Semantic Layer ── */
 function BeforeAfter() {
   return (
-    <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,#101620 0%,#0A0E13 100%)'}}>
+    <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,#101620 0%,var(--ins-surface-page) 100%)'}}>
       <div className="max-w-7xl mx-auto px-6">
         <div style={{textAlign:'center',marginBottom:'56px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>The difference</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>The difference</span>
           </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
+          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
             Without vs with Semantic Layer
           </h2>
           <p style={{fontSize:'17px',color:'rgba(255,255,255,.7)',maxWidth:'500px',margin:'0 auto',lineHeight:1.7}}>
@@ -1109,13 +1109,13 @@ function BeforeAfter() {
           {/* Without */}
           <div className="compare-card" style={{background:'rgba(248,113,113,.04)',border:'1px solid rgba(248,113,113,.15)',borderRadius:'16px',padding:'32px',display:'flex',flexDirection:'column'}}>
             <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'22px'}}>
-              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#F87171'}}/>
-              <span style={{fontSize:'13px',fontWeight:600,color:'#F87171'}}>Without Semantic Layer</span>
+              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-status-error-fg)'}}/>
+              <span style={{fontSize:'13px',fontWeight:600,color:'var(--ins-status-error-fg)'}}>Without Semantic Layer</span>
             </div>
             <div style={{flex:1,background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',display:'flex',flexDirection:'column'}}>
               <div style={{fontSize:'11px',color:'#8AA6B3',marginBottom:'8px'}}>→ "What's our MRR this month?"</div>
               <div style={{fontSize:'12.5px',color:'#505068',lineHeight:1.7}}>
-                Finance says <span style={{color:'#F87171'}}>$52,000</span>. RevOps says <span style={{color:'#F87171'}}>$47,200</span>. The CEO dashboard shows <span style={{color:'#F87171'}}>$44,800</span>. Analysts spend Monday reconciling four spreadsheets before anyone can answer.
+                Finance says <span style={{color:'var(--ins-status-error-fg)'}}>$52,000</span>. RevOps says <span style={{color:'var(--ins-status-error-fg)'}}>$47,200</span>. The CEO dashboard shows <span style={{color:'var(--ins-status-error-fg)'}}>$44,800</span>. Analysts spend Monday reconciling four spreadsheets before anyone can answer.
               </div>
             </div>
             <p style={{fontSize:'12px',color:'rgba(248,113,113,.6)',fontStyle:'italic'}}>Four definitions of "revenue". Four dashboards. Four different numbers.</p>
@@ -1125,13 +1125,13 @@ function BeforeAfter() {
           <div className="compare-card" style={{background:'rgba(9,160,157,.05)',border:'1px solid rgba(9,160,157,.25)',borderRadius:'16px',padding:'32px',position:'relative',boxShadow:'0 8px 40px rgba(9,160,157,0.06)',display:'flex',flexDirection:'column'}}>
             <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.6),transparent)',borderRadius:'16px 16px 0 0'}}/>
             <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'22px'}}>
-              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#0EC4C1',boxShadow:'0 0 8px #0EC4C1'}}/>
-              <span style={{fontSize:'13px',fontWeight:500,color:'#0EC4C1'}}>With Insightis Semantic Layer</span>
+              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-text-highlight)',boxShadow:'0 0 8px var(--ins-text-highlight)'}}/>
+              <span style={{fontSize:'13px',fontWeight:500,color:'var(--ins-text-highlight)'}}>With Insightis Semantic Layer</span>
             </div>
             <div style={{flex:1,background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',display:'flex',flexDirection:'column'}}>
               <div style={{fontSize:'11px',color:'#8AA6B3',marginBottom:'8px'}}>→ "What's our MRR this month?"</div>
-              <div style={{fontSize:'12.5px',color:'#C0D4DC',lineHeight:1.7}}>
-                @MRR = <span style={{color:'#0EC4C1',fontWeight:500}}>$42,400</span> — March, blended across Stripe + HubSpot + Postgres. Every dashboard, chat, and board deck reads the same certified definition. Analysts ship insights, not reconciliations.
+              <div style={{fontSize:'12.5px',color:'var(--ins-color-gray-200)',lineHeight:1.7}}>
+                @MRR = <span style={{color:'var(--ins-text-highlight)',fontWeight:500}}>$42,400</span> — March, blended across Stripe + HubSpot + Postgres. Every dashboard, chat, and board deck reads the same certified definition. Analysts ship insights, not reconciliations.
               </div>
             </div>
             <p style={{fontSize:'12px',color:'rgba(9,160,157,.6)',fontStyle:'italic'}}>One certified definition. Queried through the Semantic Layer. Always your numbers.</p>
@@ -1141,8 +1141,8 @@ function BeforeAfter() {
         {/* 5x badge */}
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
-            <span style={{fontSize:'40px',fontWeight:500,color:'#0EC4C1',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>5×</span>
-            <span style={{fontSize:'15px',color:'#7FA0AC',whiteSpace:'nowrap'}}>faster reporting because every metric is certified once, used everywhere.</span>
+            <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>5×</span>
+            <span style={{fontSize:'15px',color:'var(--ins-text-inactive)',whiteSpace:'nowrap'}}>faster reporting because every metric is certified once, used everywhere.</span>
           </div>
         </div>
       </div>
@@ -1173,14 +1173,14 @@ function MidCTA() {
           marginBottom:'32px',
           whiteSpace:'nowrap',
         }}>
-          <span style={{color:'#E8F2F5'}}>Skip the metric debates. </span>
-          <span style={{color:'#0EC4C1'}}>Start asking.</span>
+          <span style={{color:'var(--ins-color-gray-100)'}}>Skip the metric debates. </span>
+          <span style={{color:'var(--ins-text-highlight)'}}>Start asking.</span>
         </h2>
         <div style={{display:'flex',justifyContent:'center'}}>
           <a href="/auth/sign-up/" style={{
             display:'inline-flex',alignItems:'center',gap:'10px',
             padding:'16px 32px',borderRadius:'999px',
-            background:'linear-gradient(135deg,#09A09D,#07807E)',
+            background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',
             color:'#fff',fontSize:'15px',fontWeight:500,
             textDecoration:'none',
             boxShadow:'0 0 32px rgba(9,160,157,.35), 0 8px 24px rgba(0,0,0,.4)',
@@ -1215,7 +1215,7 @@ function BottomCTA() {
               aria-label="What metric do you want to unify?"
               className="flex-1 bg-transparent text-sm text-white placeholder-[var(--ins-text-inactive)] px-4 py-3 outline-none min-w-0"
             />
-            <button type="submit" className="inline-flex items-center gap-2 px-5 py-2.5 m-1 text-sm font-medium text-white bg-gradient-to-r from-[var(--ins-color-teal-600)] to-[var(--ins-color-teal-500)] rounded-lg hover:shadow-[0_0_24px_rgba(7,128,126,0.5)] transition-all flex-shrink-0">
+            <button type="submit" className="inline-flex items-center gap-2 px-5 py-2.5 m-1 text-sm font-medium text-white bg-gradient-to-r from-[var(--ins-color-teal-600)] to-[var(--ins-text-highlight)] rounded-lg hover:shadow-[0_0_24px_rgba(7,128,126,0.5)] transition-all flex-shrink-0">
               Get Started
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </button>

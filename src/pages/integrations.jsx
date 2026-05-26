@@ -28,7 +28,7 @@ function InsightisIcon({size=20}) {
     </svg>
   );
 }
-function GridIcon({size=36, color='#0EC4C1'}) {
+function GridIcon({size=36, color='var(--ins-text-highlight)'}) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <rect x="3" y="3" width="7" height="7"/>
@@ -294,8 +294,8 @@ function ConnectionChatAnimation() {
           background:'linear-gradient(135deg, rgba(7,128,126,0.25), rgba(7,128,126,0.08))',
           animation: phase === 'ordered' ? 'corePulse 3s ease-in-out infinite' : 'none',
         }}>
-          <GridIcon size={gridSize} color="#0EC4C1"/>
-          <span style={{fontSize:`${engineFont}px`, fontWeight:500, color:'#0EC4C1', textAlign:'center', lineHeight:1.2}}>Insightis<br/>Semantic AI</span>
+          <GridIcon size={gridSize} color="var(--ins-text-highlight)"/>
+          <span style={{fontSize:`${engineFont}px`, fontWeight:500, color:'var(--ins-text-highlight)', textAlign:'center', lineHeight:1.2}}>Insightis<br/>Semantic AI</span>
         </div>
       </div>
 
@@ -307,7 +307,7 @@ function ConnectionChatAnimation() {
           display:'inline-flex', alignItems:'center',
           gap:`${cardGap}px`,
           padding:`${cardPadV}px ${cardPadH}px`,
-          background:'#131820',
+          background:'var(--ins-surface-card)',
           border:'1px solid rgba(255,255,255,0.06)',
           borderRadius:'12px',
           boxShadow:'0 1px 3px rgba(0,0,0,0.30), 0 4px 12px rgba(0,0,0,0.20)',
@@ -346,16 +346,16 @@ function Hero() {
           justifyContent: 'space-between',
           padding: '24px 0',
         }}>
-          <h1 style={{fontSize:'clamp(2.2rem,3.2vw,3.6rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",letterSpacing:'-.04em',lineHeight:1.1,marginBottom:'22px'}}>
+          <h1 style={{fontSize:'clamp(2.2rem,3.2vw,3.6rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",letterSpacing:'-.04em',lineHeight:1.1,marginBottom:'22px'}}>
             <span style={{color:'#FFFFFF'}}>Connect everything.</span><br/>
-            <span style={{color:'#0EC4C1'}}>Understand</span><br/>
-            <span style={{color:'#0EC4C1'}}>anything.</span>
+            <span style={{color:'var(--ins-text-highlight)'}}>Understand</span><br/>
+            <span style={{color:'var(--ins-text-highlight)'}}>anything.</span>
           </h1>
           <p style={{fontSize:'clamp(16px,1.2vw,18px)',color:'rgba(255,255,255,.75)',lineHeight:1.7,marginBottom:'36px',maxWidth:'480px'}}>
             Plug in your CRM, warehouse, ads and product tools. Query every source in plain English — no SQL, no waiting.
           </p>
           <div style={{display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap',marginBottom:'24px'}}>
-            <a href="/auth/sign-up/" className="cta-btn" style={{display:'inline-flex',alignItems:'center',gap:'7px',padding:'12px 28px',borderRadius:'999px',background:'linear-gradient(135deg,#09A09D,#07807E)',color:'#fff',fontWeight:600,fontSize:'14px',textDecoration:'none',boxShadow:'0 0 30px rgba(9,160,157,.25), 0 4px 12px rgba(0,0,0,.3)'}}>
+            <a href="/auth/sign-up/" className="cta-btn" style={{display:'inline-flex',alignItems:'center',gap:'7px',padding:'12px 28px',borderRadius:'999px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',color:'#fff',fontWeight:600,fontSize:'14px',textDecoration:'none',boxShadow:'0 0 30px rgba(9,160,157,.25), 0 4px 12px rgba(0,0,0,.3)'}}>
               Start for free
               <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </a>
@@ -363,7 +363,7 @@ function Hero() {
           <div style={{display:'flex',alignItems:'center',gap:'18px',flexWrap:'wrap'}}>
             {['Free plan','No SQL required','Setup in minutes'].map(t=>(
               <span key={t} style={{display:'flex',alignItems:'center',gap:'5px',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',fontVariantNumeric:'tabular-nums'}}>
-                <span style={{color:'#09A09D'}}>✓</span>{t}
+                <span style={{color:'var(--ins-button-primary-bg-hover)'}}>✓</span>{t}
               </span>
             ))}
           </div>
@@ -520,16 +520,16 @@ function ConnectorsGallery() {
   const [activeCat, setActiveCat] = useState(cats[0]);
 
   return (
-    <section style={{padding:'100px 0 120px', background:'linear-gradient(180deg,#0D1117 0%,#101620 100%)'}}>
+    <section style={{padding:'100px 0 120px', background:'linear-gradient(180deg,var(--ins-surface-container) 0%,#101620 100%)'}}>
       <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 1.5rem'}}>
 
         {/* Heading */}
         <div style={{textAlign:'center',marginBottom:'32px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:600,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Built for every team</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:600,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>Built for every team</span>
           </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'16px',textWrap:'balance'}}>
+          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'16px',textWrap:'balance'}}>
             Which data sources does Insightis integrate with?
           </h2>
           <p style={{fontSize:'clamp(1rem,1.8vw,1.19rem)',color:'rgba(255,255,255,0.7)',maxWidth:'42rem',margin:'0 auto',lineHeight:1.7}}>
@@ -545,7 +545,7 @@ function ConnectorsGallery() {
               cursor:'pointer',fontFamily:'Geist,sans-serif',transition:'all .15s',
               border:`1px solid ${cat===activeCat?'rgba(9,160,157,.5)':'rgba(255,255,255,.08)'}`,
               background: cat===activeCat?'rgba(9,160,157,.08)':'transparent',
-              color: cat===activeCat?'#0EC4C1':'#7FA0AC',
+              color: cat===activeCat?'var(--ins-text-highlight)':'var(--ins-text-inactive)',
             }}>
               {cat}
             </button>
@@ -568,7 +568,7 @@ function ConnectorsGallery() {
                 <div style={{fontSize:'0.875rem',fontWeight:500,color:'#fff',marginBottom:'3px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{c.name}</div>
                 <div style={{fontSize:'12px',color:'#8A9BA4',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{c.desc}</div>
               </div>
-              <div style={{marginLeft:'auto',flexShrink:0,width:6,height:6,borderRadius:'50%',background:'#22C55E',boxShadow:'0 0 6px rgba(34,197,94,.6)'}}/>
+              <div style={{marginLeft:'auto',flexShrink:0,width:6,height:6,borderRadius:'50%',background:'var(--ins-status-success-fg)',boxShadow:'0 0 6px rgba(34,197,94,.6)'}}/>
             </div>
             );
           })}
@@ -611,14 +611,14 @@ function HowSyncWorks() {
   ];
 
   return (
-    <section style={{padding:'120px 0 140px',background:'#0A0E13'}}>
+    <section style={{padding:'120px 0 140px',background:'var(--ins-surface-page)'}}>
       <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 1.5rem'}}>
         <div style={{textAlign:'center',marginBottom:'64px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>How it works</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>How it works</span>
           </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,textWrap:'balance'}}>
+          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,textWrap:'balance'}}>
             How does Insightis connect to your data sources?
           </h2>
         </div>
@@ -642,16 +642,16 @@ function HowSyncWorks() {
                 boxShadow:'0 0 28px rgba(9,160,157,.18), inset 0 1px 0 rgba(255,255,255,.05)',
                 marginBottom:'22px',
               }}>
-                <span style={{fontSize:'18px',fontWeight:600,color:'#0EC4C1',fontFamily:"'Outfit', sans-serif",letterSpacing:'-.02em',fontVariantNumeric:'tabular-nums'}}>{s.n}</span>
+                <span style={{fontSize:'18px',fontWeight:600,color:'var(--ins-text-highlight)',fontFamily:"var(--ins-font-family-sans)",letterSpacing:'-.02em',fontVariantNumeric:'tabular-nums'}}>{s.n}</span>
               </div>
 
               {/* Title */}
-              <h3 style={{fontSize:'18px',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.02em',margin:'0 0 10px',lineHeight:1.2}}>
+              <h3 style={{fontSize:'18px',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.02em',margin:'0 0 10px',lineHeight:1.2}}>
                 {s.title}
               </h3>
 
               {/* Description */}
-              <p style={{fontSize:'14px',color:'#7FA0AC',lineHeight:1.7,margin:'0 0 16px',width:'100%',maxWidth:'320px'}}>
+              <p style={{fontSize:'14px',color:'var(--ins-text-inactive)',lineHeight:1.7,margin:'0 0 16px',width:'100%',maxWidth:'320px'}}>
                 {s.desc}
               </p>
 
@@ -688,16 +688,16 @@ function IntegrationImpact() {
   ];
 
   return (
-    <section style={{padding:'120px 0 140px', background:'linear-gradient(180deg,#101620 0%,#0A0E13 100%)'}}>
+    <section style={{padding:'120px 0 140px', background:'linear-gradient(180deg,#101620 0%,var(--ins-surface-page) 100%)'}}>
       <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 1.5rem'}}>
 
         {/* Heading */}
         <div style={{textAlign:'center',marginBottom:'56px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
-            <span style={{color:'#09A09D',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'#09A09D',fontFamily:'Geist Mono,monospace'}}>Why direct integration matters</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>Why direct integration matters</span>
           </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"'Outfit', sans-serif",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
+          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
             Tools guess. Insightis answers.
           </h2>
           <p style={{fontSize:'17px',color:'rgba(255,255,255,.7)',maxWidth:'500px',margin:'0 auto',lineHeight:1.7}}>
@@ -719,8 +719,8 @@ function IntegrationImpact() {
           {/* Disconnected data */}
           <div className="compare-card" style={{background:'rgba(248,113,113,.04)',border:'1px solid rgba(248,113,113,.15)',borderRadius:'16px',padding:'32px',display:'flex',flexDirection:'column'}}>
             <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'22px'}}>
-              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#F87171'}}/>
-              <span style={{fontSize:'13px',fontWeight:600,color:'#F87171'}}>Disconnected data</span>
+              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-status-error-fg)'}}/>
+              <span style={{fontSize:'13px',fontWeight:600,color:'var(--ins-status-error-fg)'}}>Disconnected data</span>
             </div>
             <div style={{flex:1,background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',display:'flex',flexDirection:'column'}}>
               <div style={{fontSize:'11px',color:'#8AA6B3',marginBottom:'10px'}}>→ "Which channel drove the most signups last month?"</div>
@@ -731,7 +731,7 @@ function IntegrationImpact() {
                   {display:'4 tools',  label:'to query for a request',   sub:'HubSpot, Stripe and the warehouse'},
                 ].map((s, i) => (
                   <div key={i} style={{display:'flex',alignItems:'baseline',gap:'12px',fontSize:'12.5px',lineHeight:1.45}}>
-                    <span style={{color:'#F87171',fontWeight:600,minWidth:'64px',flexShrink:0,fontVariantNumeric:'tabular-nums',letterSpacing:'-.02em'}}>
+                    <span style={{color:'var(--ins-status-error-fg)',fontWeight:600,minWidth:'64px',flexShrink:0,fontVariantNumeric:'tabular-nums',letterSpacing:'-.02em'}}>
                       {s.display}
                     </span>
                     <span style={{minWidth:0}}>
@@ -749,22 +749,22 @@ function IntegrationImpact() {
           <div className="compare-card" style={{background:'rgba(9,160,157,.05)',border:'1px solid rgba(9,160,157,.25)',borderRadius:'16px',padding:'32px',position:'relative',boxShadow:'0 8px 40px rgba(9,160,157,0.06)',display:'flex',flexDirection:'column'}}>
             <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.6),transparent)',borderRadius:'16px 16px 0 0'}}/>
             <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'22px'}}>
-              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'#0EC4C1',boxShadow:'0 0 8px #0EC4C1'}}/>
-              <span style={{fontSize:'13px',fontWeight:500,color:'#0EC4C1'}}>Insightis</span>
+              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-text-highlight)',boxShadow:'0 0 8px var(--ins-text-highlight)'}}/>
+              <span style={{fontSize:'13px',fontWeight:500,color:'var(--ins-text-highlight)'}}>Insightis</span>
             </div>
             <div style={{flex:1,background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',display:'flex',flexDirection:'column'}}>
              
-              <div style={{fontSize:'12.5px',color:'#C0D4DC',lineHeight:1.6,marginBottom:'14px'}}>
+              <div style={{fontSize:'12.5px',color:'var(--ins-color-gray-200)',lineHeight:1.6,marginBottom:'14px'}}>
                 Answered in seconds. What direct integration unlocks:
               </div>
               <div style={{display:'flex',flexDirection:'column',gap:'10px'}}>
                 {STATS.map((s, i) => (
                   <div key={i} style={{display:'flex',alignItems:'baseline',gap:'12px',fontSize:'12.5px',lineHeight:1.45}}>
-                    <span style={{color:'#0EC4C1',fontWeight:600,minWidth:'64px',flexShrink:0,fontVariantNumeric:'tabular-nums',letterSpacing:'-.02em'}}>
+                    <span style={{color:'var(--ins-text-highlight)',fontWeight:600,minWidth:'64px',flexShrink:0,fontVariantNumeric:'tabular-nums',letterSpacing:'-.02em'}}>
                       {s.display}
                     </span>
                     <span style={{minWidth:0}}>
-                      <span style={{color:'#C0D4DC'}}>{s.label}</span>
+                      <span style={{color:'var(--ins-color-gray-200)'}}>{s.label}</span>
                       <span style={{color:'#8AA6B3'}}> — {s.sub}</span>
                     </span>
                   </div>
@@ -778,8 +778,8 @@ function IntegrationImpact() {
         {/* Headline callout */}
         <div style={{textAlign:'center',marginTop:'40px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'14px',flexWrap:'wrap',justifyContent:'center'}}>
-            <span style={{fontSize:'40px',fontWeight:500,color:'#0EC4C1',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>60s</span>
-            <span style={{fontSize:'15px',color:'#7FA0AC',whiteSpace:'nowrap'}}>to connect a new source — OAuth, no pipelines to maintain.</span>
+            <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>60s</span>
+            <span style={{fontSize:'15px',color:'var(--ins-text-inactive)',whiteSpace:'nowrap'}}>to connect a new source — OAuth, no pipelines to maintain.</span>
           </div>
         </div>
 
@@ -812,14 +812,14 @@ function MidCTA() {
           marginBottom:'32px',
           whiteSpace:'nowrap',
         }}>
-          <span style={{color:'#E8F2F5'}}>Skip the data engineering. </span>
-          <span style={{color:'#0EC4C1'}}>Start asking.</span>
+          <span style={{color:'var(--ins-color-gray-100)'}}>Skip the data engineering. </span>
+          <span style={{color:'var(--ins-text-highlight)'}}>Start asking.</span>
         </h2>
         <div style={{display:'flex',justifyContent:'center'}}>
           <a href="/auth/sign-up/" style={{
             display:'inline-flex',alignItems:'center',gap:'10px',
             padding:'16px 32px',borderRadius:'999px',
-            background:'linear-gradient(135deg,#09A09D,#07807E)',
+            background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',
             color:'#fff',fontSize:'15px',fontWeight:500,
             textDecoration:'none',
             boxShadow:'0 0 32px rgba(9,160,157,.35), 0 8px 24px rgba(0,0,0,.4)',
@@ -849,7 +849,7 @@ function CTA() {
           <form action="/auth/sign-up/" method="get" className="flex items-center w-full md:w-auto md:min-w-[400px] bg-[var(--ins-color-promo-solid)] border border-[var(--ins-border-hover)] rounded-xl overflow-hidden focus-within:border-[var(--ins-color-teal-600)]/60 transition-colors">
             <label htmlFor="cta-connector-input" style={{position:'absolute',width:'1px',height:'1px',padding:0,margin:'-1px',overflow:'hidden',clip:'rect(0,0,0,0)',whiteSpace:'nowrap',border:0}}>Which tool do you want to connect?</label>
             <input id="cta-connector-input" name="q" type="text" required placeholder="Which tool do you want to connect?" aria-label="Which tool do you want to connect?" className="flex-1 bg-transparent text-sm text-white placeholder-[var(--ins-text-inactive)] px-4 py-3 outline-none min-w-0"/>
-            <button type="submit" aria-label="Get started" className="inline-flex items-center gap-2 px-5 py-2.5 m-1 text-sm font-medium text-white bg-gradient-to-r from-[var(--ins-color-teal-600)] to-[var(--ins-color-teal-500)] rounded-lg hover:shadow-[0_0_24px_rgba(7,128,126,0.5)] transition-all flex-shrink-0">
+            <button type="submit" aria-label="Get started" className="inline-flex items-center gap-2 px-5 py-2.5 m-1 text-sm font-medium text-white bg-gradient-to-r from-[var(--ins-color-teal-600)] to-[var(--ins-text-highlight)] rounded-lg hover:shadow-[0_0_24px_rgba(7,128,126,0.5)] transition-all flex-shrink-0">
               Get Started
               <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </button>

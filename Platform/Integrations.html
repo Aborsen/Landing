@@ -80,12 +80,11 @@
 }
 </script>
 
-<link rel="preload" href="/Design system/design-system/assets/fonts/Outfit-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: 'Geist', sans-serif; background: #0A0E13; color: #E8F2F5; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-h1, h2, h3 { font-family: 'Outfit', sans-serif; letter-spacing: -0.04em; line-height: 1.05; text-wrap: balance; }
+body { font-family: 'Geist', sans-serif; background: var(--ins-surface-page); color: #E8F2F5; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+h1, h2, h3 { font-family: var(--ins-font-family-sans); letter-spacing: -0.04em; line-height: 1.05; text-wrap: balance; }
 p { text-wrap: pretty; }
 body::before {
   content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
@@ -93,7 +92,7 @@ body::before {
   opacity:.4;mix-blend-mode:overlay;
 }
 
-:root { --mint:#0A9896; --mint-lt:#0EC4C1; --fm:'Geist Mono',monospace; }
+:root { --mint:var(--ins-color-teal-700); --mint-lt:var(--ins-text-highlight); --fm:'Geist Mono',monospace; }
 @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
 @keyframes slideUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
 @keyframes pulse { 0%,100%{opacity:.4;transform:scale(.85)} 50%{opacity:1;transform:scale(1)} }
@@ -121,7 +120,7 @@ body::before {
 .connector-icon { width:36px; height:36px; border-radius:9px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:10px; font-weight:700; font-family:'Geist Mono',monospace; letter-spacing:-.02em; }
 
 /* ── ENHANCED STYLES ── */
-.text-gradient { background:linear-gradient(135deg, #fff 30%, #0EC4C1 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.text-gradient { background:linear-gradient(135deg, #fff 30%, var(--ins-text-highlight) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 .cta-btn { transition:all 0.25s cubic-bezier(0.34,1.56,0.64,1); }
 .cta-btn:hover { transform:translateY(-1px); box-shadow:0 4px 20px rgba(9,160,157,0.3); }
 .cta-btn:active { transform:translateY(1px) scale(0.98); }

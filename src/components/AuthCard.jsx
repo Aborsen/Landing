@@ -52,7 +52,7 @@ export default function AuthCard({ mode, title, googleLabel, tailLeading, tailLi
         <h1 style={{
           fontSize:'22px', fontWeight:600, color:'#fff',
           textAlign:'center', marginBottom:'24px',
-          fontFamily:"'Outfit', sans-serif", letterSpacing:'-.01em',
+          fontFamily:"var(--ins-font-family-sans)", letterSpacing:'-.01em',
         }}>{title}</h1>
 
         {/* Email */}

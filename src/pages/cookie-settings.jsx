@@ -11,7 +11,7 @@ function ToggleSwitch({ enabled, onChange, disabled = false }) {
       onClick={() => !disabled && onChange(!enabled)}
       style={{
         width: '44px', height: '24px', borderRadius: '12px',
-        background: enabled ? '#07807E' : 'rgba(255,255,255,.15)',
+        background: enabled ? 'var(--ins-button-primary-bg)' : 'rgba(255,255,255,.15)',
         border: 'none', cursor: disabled ? 'not-allowed' : 'pointer',
         position: 'relative', transition: 'background 0.2s',
         opacity: disabled ? 0.6 : 1,
@@ -87,7 +87,7 @@ function CookieContent() {
     marginBottom: '40px',
   };
   const headingStyle = {
-    fontSize: '20px', fontWeight: 600, color: '#E8F2F5', marginBottom: '12px', letterSpacing: '-.01em',
+    fontSize: '20px', fontWeight: 600, color: 'var(--ins-color-gray-100)', marginBottom: '12px', letterSpacing: '-.01em',
   };
   const paraStyle = {
     fontSize: '15px', color: 'rgba(255,255,255,.55)', lineHeight: 1.8,
@@ -117,8 +117,8 @@ function CookieContent() {
             }}>
               <div style={{display:'flex', alignItems:'flex-start', gap:'20px'}}>
                 <div style={{flex:1}}>
-                  <div style={{fontSize:'16px', fontWeight:600, color:'#E8F2F5'}}>{cat.title}</div>
-                  <div style={{fontSize:'14px', color:'#7FA0AC', lineHeight:1.6, marginTop:'4px'}}>{cat.description}</div>
+                  <div style={{fontSize:'16px', fontWeight:600, color:'var(--ins-color-gray-100)'}}>{cat.title}</div>
+                  <div style={{fontSize:'14px', color:'var(--ins-text-inactive)', lineHeight:1.6, marginTop:'4px'}}>{cat.description}</div>
                   {cat.examples && (
                     <div style={{fontSize:'13px', color:'rgba(255,255,255,.35)', marginTop:'8px'}}>Examples: {cat.examples}</div>
                   )}
@@ -126,7 +126,7 @@ function CookieContent() {
                 <div style={{display:'flex', alignItems:'center', gap:'10px', paddingTop:'2px'}}>
                   {cat.alwaysActive ? (
                     <>
-                      <span style={{fontSize:'12px', fontWeight:500, color:'#0EC4C1', whiteSpace:'nowrap'}}>Always Active</span>
+                      <span style={{fontSize:'12px', fontWeight:500, color:'var(--ins-text-highlight)', whiteSpace:'nowrap'}}>Always Active</span>
                       <ToggleSwitch enabled={true} onChange={() => {}} disabled={true} />
                     </>
                   ) : (
@@ -147,12 +147,12 @@ function CookieContent() {
               style={{
                 display:'inline-flex', alignItems:'center', gap:'8px',
                 padding:'12px 32px', fontSize:'15px', fontWeight:600,
-                color:'#fff', background:'#07807E', borderRadius:'50px',
+                color:'#fff', background:'var(--ins-button-primary-bg)', borderRadius:'50px',
                 border:'none', cursor:'pointer', transition:'background 0.2s',
                 fontFamily:'Geist,sans-serif',
               }}
-              onMouseEnter={(e) => e.currentTarget.style.background = '#09A09D'}
-              onMouseLeave={(e) => e.currentTarget.style.background = '#07807E'}
+              onMouseEnter={(e) => e.currentTarget.style.background = 'var(--ins-button-primary-bg-hover)'}
+              onMouseLeave={(e) => e.currentTarget.style.background = 'var(--ins-button-primary-bg)'}
             >
               {saved ? 'Preferences Saved!' : 'Save Preferences'}
             </button>
@@ -187,10 +187,10 @@ function CookieContent() {
               Most web browsers allow you to control cookies through their settings. Below are links and instructions for the most common browsers:
             </p>
             <ul style={{...paraStyle, paddingLeft:'24px', marginTop:'12px'}}>
-              <li style={{marginBottom:'8px'}}><strong style={{color:'#E8F2F5'}}>Google Chrome:</strong> Settings &gt; Privacy and security &gt; Cookies and other site data</li>
-              <li style={{marginBottom:'8px'}}><strong style={{color:'#E8F2F5'}}>Mozilla Firefox:</strong> Settings &gt; Privacy &amp; Security &gt; Cookies and Site Data</li>
-              <li style={{marginBottom:'8px'}}><strong style={{color:'#E8F2F5'}}>Safari:</strong> Preferences &gt; Privacy &gt; Manage Website Data</li>
-              <li style={{marginBottom:'8px'}}><strong style={{color:'#E8F2F5'}}>Microsoft Edge:</strong> Settings &gt; Cookies and site permissions &gt; Manage and delete cookies and site data</li>
+              <li style={{marginBottom:'8px'}}><strong style={{color:'var(--ins-color-gray-100)'}}>Google Chrome:</strong> Settings &gt; Privacy and security &gt; Cookies and other site data</li>
+              <li style={{marginBottom:'8px'}}><strong style={{color:'var(--ins-color-gray-100)'}}>Mozilla Firefox:</strong> Settings &gt; Privacy &amp; Security &gt; Cookies and Site Data</li>
+              <li style={{marginBottom:'8px'}}><strong style={{color:'var(--ins-color-gray-100)'}}>Safari:</strong> Preferences &gt; Privacy &gt; Manage Website Data</li>
+              <li style={{marginBottom:'8px'}}><strong style={{color:'var(--ins-color-gray-100)'}}>Microsoft Edge:</strong> Settings &gt; Cookies and site permissions &gt; Manage and delete cookies and site data</li>
             </ul>
             <p style={{...paraStyle, marginTop:'12px'}}>
               Please note that blocking all cookies may affect the functionality of this and other websites. Some features may not work as intended if cookies are disabled.
@@ -207,19 +207,19 @@ function CookieContent() {
               <table style={{width:'100%', borderCollapse:'collapse', fontSize:'14px'}}>
                 <thead>
                   <tr style={{background:'rgba(255,255,255,.04)'}}>
-                    <th style={{padding:'12px 16px', textAlign:'left', color:'#E8F2F5', fontWeight:600, borderBottom:'1px solid rgba(255,255,255,.06)', whiteSpace:'nowrap'}}>Cookie Name</th>
-                    <th style={{padding:'12px 16px', textAlign:'left', color:'#E8F2F5', fontWeight:600, borderBottom:'1px solid rgba(255,255,255,.06)', whiteSpace:'nowrap'}}>Provider</th>
-                    <th style={{padding:'12px 16px', textAlign:'left', color:'#E8F2F5', fontWeight:600, borderBottom:'1px solid rgba(255,255,255,.06)', whiteSpace:'nowrap'}}>Purpose</th>
-                    <th style={{padding:'12px 16px', textAlign:'left', color:'#E8F2F5', fontWeight:600, borderBottom:'1px solid rgba(255,255,255,.06)', whiteSpace:'nowrap'}}>Duration</th>
+                    <th style={{padding:'12px 16px', textAlign:'left', color:'var(--ins-color-gray-100)', fontWeight:600, borderBottom:'1px solid rgba(255,255,255,.06)', whiteSpace:'nowrap'}}>Cookie Name</th>
+                    <th style={{padding:'12px 16px', textAlign:'left', color:'var(--ins-color-gray-100)', fontWeight:600, borderBottom:'1px solid rgba(255,255,255,.06)', whiteSpace:'nowrap'}}>Provider</th>
+                    <th style={{padding:'12px 16px', textAlign:'left', color:'var(--ins-color-gray-100)', fontWeight:600, borderBottom:'1px solid rgba(255,255,255,.06)', whiteSpace:'nowrap'}}>Purpose</th>
+                    <th style={{padding:'12px 16px', textAlign:'left', color:'var(--ins-color-gray-100)', fontWeight:600, borderBottom:'1px solid rgba(255,255,255,.06)', whiteSpace:'nowrap'}}>Duration</th>
                   </tr>
                 </thead>
                 <tbody>
                   {cookieTable.map((row, i) => (
                     <tr key={i} style={{background: i % 2 === 1 ? 'rgba(255,255,255,.02)' : 'transparent'}}>
-                      <td style={{padding:'10px 16px', color:'#0EC4C1', fontFamily:'Geist Mono, monospace', fontSize:'13px', borderBottom:'1px solid rgba(255,255,255,.04)'}}>{row.name}</td>
-                      <td style={{padding:'10px 16px', color:'#7FA0AC', borderBottom:'1px solid rgba(255,255,255,.04)'}}>{row.provider}</td>
-                      <td style={{padding:'10px 16px', color:'#7FA0AC', borderBottom:'1px solid rgba(255,255,255,.04)'}}>{row.purpose}</td>
-                      <td style={{padding:'10px 16px', color:'#7FA0AC', borderBottom:'1px solid rgba(255,255,255,.04)', whiteSpace:'nowrap'}}>{row.duration}</td>
+                      <td style={{padding:'10px 16px', color:'var(--ins-text-highlight)', fontFamily:'Geist Mono, monospace', fontSize:'13px', borderBottom:'1px solid rgba(255,255,255,.04)'}}>{row.name}</td>
+                      <td style={{padding:'10px 16px', color:'var(--ins-text-inactive)', borderBottom:'1px solid rgba(255,255,255,.04)'}}>{row.provider}</td>
+                      <td style={{padding:'10px 16px', color:'var(--ins-text-inactive)', borderBottom:'1px solid rgba(255,255,255,.04)'}}>{row.purpose}</td>
+                      <td style={{padding:'10px 16px', color:'var(--ins-text-inactive)', borderBottom:'1px solid rgba(255,255,255,.04)', whiteSpace:'nowrap'}}>{row.duration}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -240,8 +240,8 @@ function CookieContent() {
             <h2 style={headingStyle}>Contact Us</h2>
             <p style={paraStyle}>
               If you have any questions about our use of cookies or this Cookie Settings page, please contact us at{' '}
-              <a href="mailto:privacy@insightis.ai" style={{color:'#0EC4C1', textDecoration:'none'}}>privacy@insightis.ai</a>.
-              You can also review our full <a href="Privacy" style={{color:'#0EC4C1', textDecoration:'none'}}>Privacy Policy</a> for more information about how we handle your data.
+              <a href="mailto:privacy@insightis.ai" style={{color:'var(--ins-text-highlight)', textDecoration:'none'}}>privacy@insightis.ai</a>.
+              You can also review our full <a href="Privacy" style={{color:'var(--ins-text-highlight)', textDecoration:'none'}}>Privacy Policy</a> for more information about how we handle your data.
             </p>
           </div>
 

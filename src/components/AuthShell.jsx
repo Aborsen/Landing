@@ -34,7 +34,7 @@ export default function AuthShell({ children }) {
           <InsightisMark size={28}/>
           <span style={{
             color:'#E8F2F5', fontWeight:600, fontSize:'16px',
-            fontFamily:"'Outfit', sans-serif", letterSpacing:'-.01em',
+            fontFamily:"var(--ins-font-family-sans)", letterSpacing:'-.01em',
           }}>Insightis</span>
         </a>
       </header>

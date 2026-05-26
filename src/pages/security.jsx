@@ -10,47 +10,47 @@ function SecurityContent() {
 
   const securityCards = [
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><rect x="10" y="11" width="4" height="5" rx="1"/><path d="M12 11V9a2 2 0 1 1 4 0"/></svg>,
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><rect x="10" y="11" width="4" height="5" rx="1"/><path d="M12 11V9a2 2 0 1 1 4 0"/></svg>,
       title: 'Data Encryption',
       desc: 'AES-256 encryption at rest, TLS 1.3 in transit, and fully encrypted backups. Your data is protected at every stage of the pipeline.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>,
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>,
       title: 'Infrastructure Security',
       desc: 'Cloud-hosted on enterprise infrastructure with network isolation, web application firewalls, and DDoS protection built in.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>,
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>,
       title: 'Access Controls',
       desc: 'Role-based access control, SSO/SAML integration, multi-factor authentication, and least-privilege access policies across the platform.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/></svg>,
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/></svg>,
       title: 'Application Security',
       desc: 'Regular security audits, automated dependency scanning, secure SDLC practices, and code reviews on every release.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>,
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>,
       title: 'Continuous Monitoring',
       desc: '24/7 infrastructure and application monitoring, anomaly detection, and real-time alerting for security events.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><path d="M12 14v4"/><path d="M12 14a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><path d="M20 6H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z"/></svg>,
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><path d="M12 14v4"/><path d="M12 14a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><path d="M20 6H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z"/></svg>,
       title: 'Vulnerability Management',
       desc: 'Regular penetration testing, automated vulnerability scanning, and a responsible disclosure program for external researchers.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12l8.58 3.91a2 2 0 0 0 1.66 0L21 12"/><path d="M2 17l8.58 3.91a2 2 0 0 0 1.66 0L21 17"/></svg>,
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12l8.58 3.91a2 2 0 0 0 1.66 0L21 12"/><path d="M2 17l8.58 3.91a2 2 0 0 0 1.66 0L21 17"/></svg>,
       title: 'Data Isolation',
       desc: 'Tenant data is logically and physically isolated. Environment separation ensures no cross-contamination between accounts.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>,
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>,
       title: 'Incident Response',
       desc: 'Documented incident response plan with 24-hour customer notification, thorough post-incident reviews, and continuous improvement.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
       title: 'Employee Security',
       desc: 'Background checks for all team members, mandatory security training, and least-privilege internal access controls.',
     },
@@ -58,17 +58,17 @@ function SecurityContent() {
 
   const complianceCards = [
     {
-      icon: <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M24 44s16-8 16-20V10l-16-6-16 6v14c0 12 16 20 16 20z"/><path d="M18 24l4 4 8-8"/></svg>,
+      icon: <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M24 44s16-8 16-20V10l-16-6-16 6v14c0 12 16 20 16 20z"/><path d="M18 24l4 4 8-8"/></svg>,
       title: 'SOC 2 Type II',
       desc: 'Audited annually for security, availability, and confidentiality controls.',
     },
     {
-      icon: <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="24" cy="24" r="16"/><path d="M16 18h16v12H16z"/><circle cx="24" cy="24" r="3"/><path d="M15 24h-3"/><path d="M36 24h-3"/><path d="M24 15v-3"/><path d="M24 36v-3"/></svg>,
+      icon: <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="24" cy="24" r="16"/><path d="M16 18h16v12H16z"/><circle cx="24" cy="24" r="3"/><path d="M15 24h-3"/><path d="M36 24h-3"/><path d="M24 15v-3"/><path d="M24 36v-3"/></svg>,
       title: 'GDPR',
       desc: 'Full compliance with EU data protection regulations and privacy requirements.',
     },
     {
-      icon: <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="10" y="6" width="28" height="36" rx="2"/><path d="M18 14h12"/><path d="M18 20h12"/><path d="M18 26h8"/><circle cx="24" cy="34" r="3"/><path d="M21 34l3 3 3-3"/></svg>,
+      icon: <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="10" y="6" width="28" height="36" rx="2"/><path d="M18 14h12"/><path d="M18 20h12"/><path d="M18 26h8"/><circle cx="24" cy="34" r="3"/><path d="M21 34l3 3 3-3"/></svg>,
       title: 'ISO 27001',
       desc: 'Certified information security management system with continuous improvement.',
     },
@@ -124,8 +124,8 @@ function SecurityContent() {
         <div style={{position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:'100%', height:'100%', background:'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(9,160,157,.06) 0%, transparent 70%)', pointerEvents:'none'}}/>
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', textAlign:'center', position:'relative'}}>
           <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'20px'}}>
-            <span style={{color:'#09A09D', fontSize:'12px'}}>&#x2726;</span>
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Security</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)', fontSize:'12px'}}>&#x2726;</span>
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Security</span>
           </div>
           <h1 className="fu1" style={{fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'20px'}}>
             Secure by design
@@ -134,12 +134,12 @@ function SecurityContent() {
             Your data stays yours. Insightis is built with enterprise-grade security at every layer — from encryption and access controls to compliance certifications and continuous monitoring.
           </p>
           <div className="fu3" style={{display:'flex', justifyContent:'center', gap:'12px', marginTop:'32px', flexWrap:'wrap'}}>
-            <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'12px 28px', fontSize:'14px', fontWeight:600, color:'#fff', background:'#07807E', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
-              onMouseEnter={e=>e.currentTarget.style.background='#09A09D'}
-              onMouseLeave={e=>e.currentTarget.style.background='#07807E'}>
+            <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'12px 28px', fontSize:'14px', fontWeight:600, color:'#fff', background:'var(--ins-button-primary-bg)', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
+              onMouseEnter={e=>e.currentTarget.style.background='var(--ins-button-primary-bg-hover)'}
+              onMouseLeave={e=>e.currentTarget.style.background='var(--ins-button-primary-bg)'}>
               Contact Security Team
             </a>
-            <a href="Privacy" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'12px 28px', fontSize:'14px', fontWeight:600, color:'#E8F2F5', border:'1px solid rgba(255,255,255,.15)', borderRadius:'999px', textDecoration:'none', transition:'border-color .2s'}}
+            <a href="Privacy" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'12px 28px', fontSize:'14px', fontWeight:600, color:'var(--ins-color-gray-100)', border:'1px solid rgba(255,255,255,.15)', borderRadius:'999px', textDecoration:'none', transition:'border-color .2s'}}
               onMouseEnter={e=>e.currentTarget.style.borderColor='rgba(255,255,255,.35)'}
               onMouseLeave={e=>e.currentTarget.style.borderColor='rgba(255,255,255,.15)'}>
               View Privacy Policy
@@ -153,8 +153,8 @@ function SecurityContent() {
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
           <div style={{textAlign:'center', marginBottom:'56px'}}>
             <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
-              <span style={{color:'#09A09D', fontSize:'12px'}}>&#x2726;</span>
-              <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Enterprise Security</span>
+              <span style={{color:'var(--ins-button-primary-bg-hover)', fontSize:'12px'}}>&#x2726;</span>
+              <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Enterprise Security</span>
             </div>
             <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>Built-in security at every layer</h2>
           </div>
@@ -167,8 +167,8 @@ function SecurityContent() {
                 <div style={{width:'40px', height:'40px', borderRadius:'10px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'16px'}}>
                   {v.icon}
                 </div>
-                <h3 style={{fontSize:'17px', fontWeight:600, color:'#E8F2F5', marginBottom:'8px'}}>{v.title}</h3>
-                <p style={{fontSize:'14px', color:'#7FA0AC', lineHeight:1.65}}>{v.desc}</p>
+                <h3 style={{fontSize:'17px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'8px'}}>{v.title}</h3>
+                <p style={{fontSize:'14px', color:'var(--ins-text-inactive)', lineHeight:1.65}}>{v.desc}</p>
               </div>
             ))}
           </div>
@@ -180,8 +180,8 @@ function SecurityContent() {
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
           <div style={{textAlign:'center', marginBottom:'56px'}}>
             <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
-              <span style={{color:'#09A09D', fontSize:'12px'}}>&#x2726;</span>
-              <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Compliance</span>
+              <span style={{color:'var(--ins-button-primary-bg-hover)', fontSize:'12px'}}>&#x2726;</span>
+              <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Compliance</span>
             </div>
             <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>Industry-standard certifications</h2>
           </div>
@@ -194,8 +194,8 @@ function SecurityContent() {
                 <div style={{display:'flex', justifyContent:'center', marginBottom:'20px'}}>
                   {c.icon}
                 </div>
-                <h3 style={{fontSize:'17px', fontWeight:600, color:'#E8F2F5', marginBottom:'8px'}}>{c.title}</h3>
-                <p style={{fontSize:'14px', color:'#7FA0AC', lineHeight:1.65}}>{c.desc}</p>
+                <h3 style={{fontSize:'17px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'8px'}}>{c.title}</h3>
+                <p style={{fontSize:'14px', color:'var(--ins-text-inactive)', lineHeight:1.65}}>{c.desc}</p>
               </div>
             ))}
           </div>
@@ -207,8 +207,8 @@ function SecurityContent() {
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
           <div style={{textAlign:'center', marginBottom:'56px'}}>
             <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
-              <span style={{color:'#09A09D', fontSize:'12px'}}>&#x2726;</span>
-              <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Data Protection</span>
+              <span style={{color:'var(--ins-button-primary-bg-hover)', fontSize:'12px'}}>&#x2726;</span>
+              <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Data Protection</span>
             </div>
             <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>Your data, your rules</h2>
           </div>
@@ -219,9 +219,9 @@ function SecurityContent() {
                 {promises.map((p, i) => (
                   <div key={i} style={{display:'flex', alignItems:'flex-start', gap:'14px'}}>
                     <div style={{flexShrink:0, marginTop:'2px'}}>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                     </div>
-                    <p style={{fontSize:'15px', color:'#C0D4DC', lineHeight:1.6}}>{p}</p>
+                    <p style={{fontSize:'15px', color:'var(--ins-color-gray-200)', lineHeight:1.6}}>{p}</p>
                   </div>
                 ))}
               </div>
@@ -243,14 +243,14 @@ function SecurityContent() {
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   style={{width:'100%', display:'flex', alignItems:'center', justifyContent:'space-between', padding:'18px 24px', background:'transparent', border:'none', cursor:'pointer', textAlign:'left'}}
                 >
-                  <span style={{fontSize:'15px', fontWeight:500, color:'#E8F2F5'}}>{faq.q}</span>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7FA0AC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0, marginLeft:'16px', transition:'transform .25s', transform: openFaq === i ? 'rotate(180deg)' : 'rotate(0deg)'}}>
+                  <span style={{fontSize:'15px', fontWeight:500, color:'var(--ins-color-gray-100)'}}>{faq.q}</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0, marginLeft:'16px', transition:'transform .25s', transform: openFaq === i ? 'rotate(180deg)' : 'rotate(0deg)'}}>
                     <polyline points="6 9 12 15 18 9"/>
                   </svg>
                 </button>
                 {openFaq === i && (
                   <div style={{padding:'0 24px 18px'}}>
-                    <p style={{fontSize:'14px', color:'#7FA0AC', lineHeight:1.7}}>{faq.a}</p>
+                    <p style={{fontSize:'14px', color:'var(--ins-text-inactive)', lineHeight:1.7}}>{faq.a}</p>
                   </div>
                 )}
               </div>
@@ -272,9 +272,9 @@ function SecurityContent() {
               <p style={{fontSize:'16px', color:'rgba(255,255,255,.5)', maxWidth:'520px', margin:'0 auto 32px', lineHeight:1.65}}>
                 Our security team is here to help with assessments, compliance documentation, and custom security requirements.
               </p>
-              <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'14px 32px', fontSize:'14px', fontWeight:600, color:'#fff', background:'#07807E', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
-                onMouseEnter={e=>e.currentTarget.style.background='#09A09D'}
-                onMouseLeave={e=>e.currentTarget.style.background='#07807E'}>
+              <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'14px 32px', fontSize:'14px', fontWeight:600, color:'#fff', background:'var(--ins-button-primary-bg)', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
+                onMouseEnter={e=>e.currentTarget.style.background='var(--ins-button-primary-bg-hover)'}
+                onMouseLeave={e=>e.currentTarget.style.background='var(--ins-button-primary-bg)'}>
                 Contact Security Team
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
               </a>

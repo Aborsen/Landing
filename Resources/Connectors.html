@@ -14,7 +14,7 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Geist', sans-serif;
-  background: #0A0E13;
+  background: var(--ins-surface-page);
   color: #E8F2F5;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -127,14 +127,14 @@ section { position: relative; }
   width: 100%; padding: 7px 16px;
   background: transparent; border: none; cursor: pointer;
   text-align: left; font-size: 13px;
-  color: #7FA0AC; font-family: 'Geist', sans-serif;
+  color: var(--ins-text-inactive); font-family: 'Geist', sans-serif;
   transition: background .12s, color .12s;
   border-left: 2px solid transparent;
 }
 .cat-item:hover { background: rgba(255,255,255,0.04); color: #E8F2F5; }
 .cat-item.active {
   background: rgba(10,152,150,0.08);
-  border-left-color: #0A9896;
+  border-left-color: var(--ins-color-teal-700);
   color: #E8F2F5;
 }
 .cat-item .count {
@@ -142,7 +142,7 @@ section { position: relative; }
   font-size: 11px; color: #5E8290;
   font-family: 'Geist Mono', monospace;
 }
-.cat-item.active .count { color: #0EC4C1; }
+.cat-item.active .count { color: var(--ins-text-highlight); }
 
 .connector-grid {
   display: grid;
@@ -189,7 +189,7 @@ section { position: relative; }
   width: 100%; height: 100%;
   display: flex; align-items: center; justify-content: center;
   font-weight: 700; font-size: 15px;
-  color: #0A0E13;
+  color: var(--ins-surface-page);
 }
 .connector-face {
   display: flex; flex-direction: column;
@@ -234,7 +234,7 @@ section { position: relative; }
   transition: background .15s, transform .15s;
 }
 .overlay-btn.primary {
-  background: #0A0E13; color: #fff;
+  background: var(--ins-surface-page); color: #fff;
 }
 .overlay-btn.primary:hover { background: #000; transform: translateY(-1px); }
 .overlay-btn.secondary {

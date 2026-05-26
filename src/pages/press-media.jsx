@@ -10,8 +10,8 @@ function PressHero() {
     <section style={{padding:'120px 0 60px', position:'relative'}}>
       <div className="max-w-7xl mx-auto px-6 text-center relative">
         <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
-          <span style={{color:'#09A09D', fontSize:'12px'}}>&#10022;</span>
-          <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Press & Media</span>
+          <span style={{color:'var(--ins-button-primary-bg-hover)', fontSize:'12px'}}>&#10022;</span>
+          <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Press & Media</span>
         </div>
         <h1 className="fu1" style={{fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'20px'}}>
           Insightis in the news.
@@ -32,10 +32,10 @@ function MediaContact() {
         <div className="flex flex-col md:flex-row gap-12 md:gap-16">
           {/* Left column */}
           <div className="md:w-[35%] flex-shrink-0">
-            <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#0EC4C1', letterSpacing:'-.03em', lineHeight:1.15}}>
+            <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'var(--ins-text-highlight)', letterSpacing:'-.03em', lineHeight:1.15}}>
               Media Contact
             </h2>
-            <h3 style={{fontSize:'20px', fontWeight:600, color:'#E8F2F5', marginTop:'12px', marginBottom:'12px'}}>
+            <h3 style={{fontSize:'20px', fontWeight:600, color:'var(--ins-color-gray-100)', marginTop:'12px', marginBottom:'12px'}}>
               Get in touch
             </h3>
             <p style={{fontSize:'15px', color:'rgba(255,255,255,.5)', lineHeight:1.65}}>
@@ -44,19 +44,19 @@ function MediaContact() {
           </div>
           {/* Right column */}
           <div className="md:w-[65%]">
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Contact</span>
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Contact</span>
             <div style={{borderTop:'1px solid rgba(255,255,255,0.08)', marginTop:'8px', marginBottom:'24px'}} />
             <div style={{background:'rgba(9,160,157,.04)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'16px', padding:'32px', position:'relative', overflow:'hidden'}}>
               <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.4),transparent)'}}/>
               <div style={{display:'flex', alignItems:'center', gap:'16px', marginBottom:'16px'}}>
                 <div style={{width:'48px', height:'48px', borderRadius:'50%', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0}}>
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 </div>
                 <div>
-                  <a href="mailto:press@insightis.io" style={{display:'block', fontSize:'18px', fontWeight:500, color:'#0EC4C1', fontFamily:'Geist Mono,monospace', textDecoration:'none'}}>
+                  <a href="mailto:press@insightis.io" style={{display:'block', fontSize:'18px', fontWeight:500, color:'var(--ins-text-highlight)', fontFamily:'Geist Mono,monospace', textDecoration:'none'}}>
                     press@insightis.io
                   </a>
-                  <p style={{fontSize:'12px', color:'#6E8D9A', fontFamily:'Geist Mono,monospace', marginTop:'4px'}}>We aim to respond within 4 hours for press inquiries</p>
+                  <p style={{fontSize:'12px', color:'var(--ins-text-disabled)', fontFamily:'Geist Mono,monospace', marginTop:'4px'}}>We aim to respond within 4 hours for press inquiries</p>
                 </div>
               </div>
             </div>
@@ -96,10 +96,10 @@ function BrandAssets() {
   ];
 
   const colors = [
-    { hex: '#0A0E13', name: 'Background' },
-    { hex: '#09A09D', name: 'Primary Teal' },
-    { hex: '#0EC4C1', name: 'Accent Teal' },
-    { hex: '#E8F2F5', name: 'Text' },
+    { hex: 'var(--ins-surface-page)', name: 'Background' },
+    { hex: 'var(--ins-button-primary-bg-hover)', name: 'Primary Teal' },
+    { hex: 'var(--ins-text-highlight)', name: 'Accent Teal' },
+    { hex: 'var(--ins-color-gray-100)', name: 'Text' },
   ];
 
   const AssetCard = ({ a }) => (
@@ -113,18 +113,18 @@ function BrandAssets() {
             {colors.map((c, ci) => (
               <div key={ci} style={{textAlign:'center'}}>
                 <div style={{width:'44px', height:'44px', borderRadius:'8px', background:c.hex, border:'1px solid rgba(255,255,255,.1)', marginBottom:'6px'}}/>
-                <div style={{fontSize:'9px', color:'#7FA0AC', fontFamily:'Geist Mono,monospace'}}>{c.hex}</div>
+                <div style={{fontSize:'9px', color:'var(--ins-text-inactive)', fontFamily:'Geist Mono,monospace'}}>{c.hex}</div>
               </div>
             ))}
           </div>
         )}
       </div>
       <div style={{padding:'16px'}}>
-        <p style={{fontSize:'13px', color:'#E8F2F5', marginBottom:'4px'}}>{a.label}</p>
+        <p style={{fontSize:'13px', color:'var(--ins-color-gray-100)', marginBottom:'4px'}}>{a.label}</p>
         {a.formats && (
           <div style={{display:'flex', gap:'12px'}}>
             {a.formats.split('  ').map((f, fi) => (
-              <span key={fi} style={{fontSize:'12px', color:'#0EC4C1', fontFamily:'Geist Mono,monospace', cursor:'pointer'}}>{f}</span>
+              <span key={fi} style={{fontSize:'12px', color:'var(--ins-text-highlight)', fontFamily:'Geist Mono,monospace', cursor:'pointer'}}>{f}</span>
             ))}
           </div>
         )}
@@ -138,10 +138,10 @@ function BrandAssets() {
         <div className="flex flex-col md:flex-row gap-12 md:gap-16">
           {/* Left column */}
           <div className="md:w-[35%] flex-shrink-0">
-            <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#0EC4C1', letterSpacing:'-.03em', lineHeight:1.15}}>
+            <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'var(--ins-text-highlight)', letterSpacing:'-.03em', lineHeight:1.15}}>
               Brand Assets
             </h2>
-            <h3 style={{fontSize:'20px', fontWeight:600, color:'#E8F2F5', marginTop:'12px', marginBottom:'12px'}}>
+            <h3 style={{fontSize:'20px', fontWeight:600, color:'var(--ins-color-gray-100)', marginTop:'12px', marginBottom:'12px'}}>
               Logos and brand resources
             </h3>
             <p style={{fontSize:'15px', color:'rgba(255,255,255,.5)', lineHeight:1.65}}>
@@ -151,7 +151,7 @@ function BrandAssets() {
           {/* Right column */}
           <div className="md:w-[65%]">
             {/* Logo Assets */}
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Logo Assets</span>
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Logo Assets</span>
             <div style={{borderTop:'1px solid rgba(255,255,255,0.08)', marginTop:'8px', marginBottom:'24px'}} />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{marginBottom:'32px'}}>
               <AssetCard a={assets[0]} />
@@ -159,14 +159,14 @@ function BrandAssets() {
             </div>
 
             {/* Icon Mark */}
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Icon Mark</span>
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Icon Mark</span>
             <div style={{borderTop:'1px solid rgba(255,255,255,0.08)', marginTop:'8px', marginBottom:'24px'}} />
             <div style={{marginBottom:'32px', maxWidth:'380px'}}>
               <AssetCard a={assets[2]} />
             </div>
 
             {/* Brand Colors */}
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Brand Colors</span>
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Brand Colors</span>
             <div style={{borderTop:'1px solid rgba(255,255,255,0.08)', marginTop:'8px', marginBottom:'24px'}} />
             <AssetCard a={assets[3]} />
           </div>
@@ -196,10 +196,10 @@ function CompanyFacts() {
         <div className="flex flex-col md:flex-row gap-12 md:gap-16">
           {/* Left column */}
           <div className="md:w-[35%] flex-shrink-0">
-            <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#0EC4C1', letterSpacing:'-.03em', lineHeight:1.15}}>
+            <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'var(--ins-text-highlight)', letterSpacing:'-.03em', lineHeight:1.15}}>
               Company Facts
             </h2>
-            <h3 style={{fontSize:'20px', fontWeight:600, color:'#E8F2F5', marginTop:'12px', marginBottom:'12px'}}>
+            <h3 style={{fontSize:'20px', fontWeight:600, color:'var(--ins-color-gray-100)', marginTop:'12px', marginBottom:'12px'}}>
               Quick reference
             </h3>
             <p style={{fontSize:'15px', color:'rgba(255,255,255,.5)', lineHeight:1.65}}>
@@ -208,12 +208,12 @@ function CompanyFacts() {
           </div>
           {/* Right column */}
           <div className="md:w-[65%]">
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Fact Sheet</span>
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Fact Sheet</span>
             <div style={{borderTop:'1px solid rgba(255,255,255,0.08)', marginTop:'8px', marginBottom:'24px'}} />
             {facts.map((f, i) => (
               <div key={i} style={{display:'flex', padding:'14px 0', borderBottom:'1px solid rgba(255,255,255,.04)'}}>
-                <div style={{width:'200px', flexShrink:0, fontSize:'12px', fontFamily:'Geist Mono,monospace', color:'#7FA0AC', textTransform:'uppercase'}}>{f.label}</div>
-                <div style={{fontSize:'14px', color:'#E8F2F5'}}>{f.value}</div>
+                <div style={{width:'200px', flexShrink:0, fontSize:'12px', fontFamily:'Geist Mono,monospace', color:'var(--ins-text-inactive)', textTransform:'uppercase'}}>{f.label}</div>
+                <div style={{fontSize:'14px', color:'var(--ins-color-gray-100)'}}>{f.value}</div>
               </div>
             ))}
           </div>
@@ -240,10 +240,10 @@ function Boilerplate() {
         <div className="flex flex-col md:flex-row gap-12 md:gap-16">
           {/* Left column */}
           <div className="md:w-[35%] flex-shrink-0">
-            <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#0EC4C1', letterSpacing:'-.03em', lineHeight:1.15}}>
+            <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'var(--ins-text-highlight)', letterSpacing:'-.03em', lineHeight:1.15}}>
               Boilerplate
             </h2>
-            <h3 style={{fontSize:'20px', fontWeight:600, color:'#E8F2F5', marginTop:'12px', marginBottom:'12px'}}>
+            <h3 style={{fontSize:'20px', fontWeight:600, color:'var(--ins-color-gray-100)', marginTop:'12px', marginBottom:'12px'}}>
               About Insightis
             </h3>
             <p style={{fontSize:'15px', color:'rgba(255,255,255,.5)', lineHeight:1.65}}>
@@ -252,13 +252,13 @@ function Boilerplate() {
           </div>
           {/* Right column */}
           <div className="md:w-[65%]">
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Press Copy</span>
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Press Copy</span>
             <div style={{borderTop:'1px solid rgba(255,255,255,0.08)', marginTop:'8px', marginBottom:'24px'}} />
             <div style={{background:'rgba(255,255,255,.03)', border:'1px solid rgba(255,255,255,.07)', borderRadius:'16px', padding:'32px', position:'relative'}}>
-              <button onClick={handleCopy} style={{position:'absolute', top:'16px', right:'16px', fontSize:'12px', fontWeight:500, color: copied ? '#22C55E' : '#0EC4C1', background:'transparent', border:'1px solid ' + (copied ? 'rgba(34,197,94,.3)' : 'rgba(14,196,193,.2)'), borderRadius:'8px', padding:'6px 12px', cursor:'pointer', fontFamily:'Geist Mono,monospace', transition:'all .15s'}}>
+              <button onClick={handleCopy} style={{position:'absolute', top:'16px', right:'16px', fontSize:'12px', fontWeight:500, color: copied ? 'var(--ins-status-success-fg)' : 'var(--ins-text-highlight)', background:'transparent', border:'1px solid ' + (copied ? 'rgba(34,197,94,.3)' : 'rgba(14,196,193,.2)'), borderRadius:'8px', padding:'6px 12px', cursor:'pointer', fontFamily:'Geist Mono,monospace', transition:'all .15s'}}>
                 {copied ? 'Copied \u2713' : 'Copy to clipboard'}
               </button>
-              <p style={{fontSize:'15px', color:'#C0D4DC', lineHeight:1.75, paddingRight:'120px'}}>
+              <p style={{fontSize:'15px', color:'var(--ins-color-gray-200)', lineHeight:1.75, paddingRight:'120px'}}>
                 {boilerplateText}
               </p>
             </div>
@@ -277,11 +277,11 @@ function BottomCTA() {
         <div style={{position:'relative', borderRadius:'16px', border:'1px solid rgba(30,30,48,1)', padding:'32px 48px', overflow:'hidden', display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:'24px', flexWrap:'wrap', background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)'}}>
           <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
           <h3 style={{fontSize:'clamp(22px,3vw,30px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em', lineHeight:1.2, flexShrink:0}}>
-            Ready to see your data <span style={{color:'#07807E'}}>clearly?</span>
+            Ready to see your data <span style={{color:'var(--ins-button-primary-bg)'}}>clearly?</span>
           </h3>
           <div style={{display:'flex', alignItems:'center', width:'100%', maxWidth:'420px', background:'#0D0D1A', border:'1px solid rgba(46,46,64,1)', borderRadius:'12px', overflow:'hidden', flex:'1 1 340px'}}>
             <input type="email" placeholder="Enter your work email" style={{flex:1, background:'transparent', fontSize:'14px', color:'#fff', padding:'12px 16px', outline:'none', border:'none', fontFamily:'Geist,sans-serif', minWidth:0}} />
-            <button style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 20px', margin:'4px', fontSize:'13px', fontWeight:600, color:'#fff', background:'linear-gradient(135deg,#07807E,#09A09D)', borderRadius:'8px', border:'none', cursor:'pointer', whiteSpace:'nowrap', flexShrink:0, fontFamily:'Geist,sans-serif'}}>
+            <button style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 20px', margin:'4px', fontSize:'13px', fontWeight:600, color:'#fff', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'8px', border:'none', cursor:'pointer', whiteSpace:'nowrap', flexShrink:0, fontFamily:'Geist,sans-serif'}}>
               Start for Free
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </button>

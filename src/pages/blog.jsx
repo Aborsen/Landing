@@ -8,7 +8,7 @@ import Footer from '../components/Footer';
 function InsightisLogoMark({ size = 60, opacity = 1 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" style={{opacity}}>
-      <path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="#0EC4C1"/>
+      <path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="var(--ins-text-highlight)"/>
     </svg>
   );
 }
@@ -18,13 +18,13 @@ function BlogHero() {
   return (
     <section style={{padding:'120px 0 60px', textAlign:'center', position:'relative'}}>
       <div style={{maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
-        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid rgba(255,255,255,.07)', background:'rgba(255,255,255,.03)', fontSize:'12px', color:'#7FA0AC', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
+        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid rgba(255,255,255,.07)', background:'rgba(255,255,255,.03)', fontSize:'12px', color:'var(--ins-text-inactive)', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
           ✦ BLOG
         </div>
-        <h1 className="fu1" style={{fontSize:'clamp(36px,5vw,56px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'#E8F2F5', marginBottom:'20px'}}>
+        <h1 className="fu1" style={{fontSize:'clamp(36px,5vw,56px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'var(--ins-color-gray-100)', marginBottom:'20px'}}>
           Insights about insights.
         </h1>
-        <p className="fu2" style={{fontSize:'17px', color:'#7FA0AC', lineHeight:1.6, maxWidth:'540px', margin:'0 auto'}}>
+        <p className="fu2" style={{fontSize:'17px', color:'var(--ins-text-inactive)', lineHeight:1.6, maxWidth:'540px', margin:'0 auto'}}>
           Data analytics tips, product updates, and deep dives into how teams are using AI to replace spreadsheet chaos.
         </p>
       </div>
@@ -52,18 +52,18 @@ function FeaturedPost() {
             {/* Left: Text content (60%) */}
             <div style={{flex:'1 1 340px', padding:'36px 40px', display:'flex', flexDirection:'column', justifyContent:'center', gap:'16px'}}>
               <div>
-                <span style={{fontSize:'11px', padding:'4px 10px', borderRadius:'999px', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.25)', color:'#0EC4C1', fontWeight:500, letterSpacing:'0.04em'}}>Product Update</span>
+                <span style={{fontSize:'11px', padding:'4px 10px', borderRadius:'999px', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.25)', color:'var(--ins-text-highlight)', fontWeight:500, letterSpacing:'0.04em'}}>Product Update</span>
               </div>
-              <h2 style={{fontSize:'24px', fontWeight:500, color:'#E8F2F5', lineHeight:1.35, letterSpacing:'-.02em'}}>
+              <h2 style={{fontSize:'24px', fontWeight:500, color:'var(--ins-color-gray-100)', lineHeight:1.35, letterSpacing:'-.02em'}}>
                 Introducing Insights Engine: From Surface Answers to Root Causes
               </h2>
-              <p style={{fontSize:'14px', color:'#7FA0AC', lineHeight:1.6}}>
+              <p style={{fontSize:'14px', color:'var(--ins-text-inactive)', lineHeight:1.6}}>
                 AI Chat gives you the what. Insights Engine tells you the why. Today we're launching the deep analysis layer that connects dots across your entire data ecosystem.
               </p>
-              <div style={{fontSize:'12px', color:'#6E8D9A', fontFamily:"'Geist Mono', monospace"}}>
+              <div style={{fontSize:'12px', color:'var(--ins-text-disabled)', fontFamily:"'Geist Mono', monospace"}}>
                 Apr 1, 2026 &middot; 6 min read
               </div>
-              <a href="#" style={{fontSize:'14px', color:'#0EC4C1', textDecoration:'none', fontWeight:500, marginTop:'4px'}}>
+              <a href="#" style={{fontSize:'14px', color:'var(--ins-text-highlight)', textDecoration:'none', fontWeight:500, marginTop:'4px'}}>
                 Read Article &rarr;
               </a>
             </div>
@@ -133,15 +133,15 @@ function BlogGrid({ activeCategory }) {
               {/* Content */}
               <div style={{padding:'20px', display:'flex', flexDirection:'column', flex:1}}>
                 <div style={{marginBottom:'10px'}}>
-                  <span style={{fontSize:'10px', padding:'3px 8px', borderRadius:'999px', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.25)', color:'#0EC4C1', fontWeight:500, letterSpacing:'0.04em'}}>{article.category}</span>
+                  <span style={{fontSize:'10px', padding:'3px 8px', borderRadius:'999px', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.25)', color:'var(--ins-text-highlight)', fontWeight:500, letterSpacing:'0.04em'}}>{article.category}</span>
                 </div>
-                <h3 style={{fontSize:'16px', fontWeight:500, color:'#E8F2F5', lineHeight:1.4, marginBottom:'8px', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:2, WebkitBoxOrient:'vertical'}}>
+                <h3 style={{fontSize:'16px', fontWeight:500, color:'var(--ins-color-gray-100)', lineHeight:1.4, marginBottom:'8px', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:2, WebkitBoxOrient:'vertical'}}>
                   {article.title}
                 </h3>
-                <p style={{fontSize:'13px', color:'#7FA0AC', lineHeight:1.5, marginBottom:'12px', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:2, WebkitBoxOrient:'vertical'}}>
+                <p style={{fontSize:'13px', color:'var(--ins-text-inactive)', lineHeight:1.5, marginBottom:'12px', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:2, WebkitBoxOrient:'vertical'}}>
                   {article.excerpt}
                 </p>
-                <div style={{fontSize:'11px', color:'#6E8D9A', fontFamily:"'Geist Mono', monospace", marginTop:'auto'}}>
+                <div style={{fontSize:'11px', color:'var(--ins-text-disabled)', fontFamily:"'Geist Mono', monospace", marginTop:'auto'}}>
                   {article.date} &middot; {article.readTime} read
                 </div>
               </div>
@@ -160,7 +160,7 @@ function LoadMore() {
       <button style={{
         border:'1px solid rgba(255,255,255,.1)',
         background:'transparent',
-        color:'#7FA0AC',
+        color:'var(--ins-text-inactive)',
         borderRadius:'999px',
         padding:'11px 24px',
         fontSize:'14px',
@@ -169,7 +169,7 @@ function LoadMore() {
         transition:'all .2s',
       }}
         onMouseEnter={e => e.target.style.color = '#fff'}
-        onMouseLeave={e => e.target.style.color = '#7FA0AC'}
+        onMouseLeave={e => e.target.style.color = 'var(--ins-text-inactive)'}
       >
         Load More Articles
       </button>
@@ -194,7 +194,7 @@ function BottomCTA() {
           <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
 
           <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',lineHeight:1.2,flexShrink:0}}>
-            Stop reading about <span style={{color:'#0EC4C1'}}>analytics.</span> Start doing it.
+            Stop reading about <span style={{color:'var(--ins-text-highlight)'}}>analytics.</span> Start doing it.
           </h3>
 
           <div style={{
@@ -217,7 +217,7 @@ function BottomCTA() {
               display:'inline-flex',alignItems:'center',gap:'8px',
               padding:'10px 20px',margin:'4px',
               fontSize:'13px',fontWeight:500,color:'#fff',
-              background:'linear-gradient(135deg,#07807E,#09A09D)',
+              background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))',
               borderRadius:'8px',border:'none',cursor:'pointer',
               whiteSpace:'nowrap',flexShrink:0,
               fontFamily:'Geist,sans-serif',

@@ -14,7 +14,7 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Geist', sans-serif;
-  background: #0A0E13;
+  background: var(--ins-surface-page);
   color: #E8F2F5;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -56,7 +56,7 @@ section { position: relative; }
   padding: 8px 14px; border-radius: 999px;
   border: 1px solid rgba(255,255,255,0.07);
   background: rgba(255,255,255,0.03);
-  font-size: 13px; color: #7FA0AC;
+  font-size: 13px; color: var(--ins-text-inactive);
   cursor: pointer; transition: all .15s;
   white-space: nowrap;
 }
@@ -67,7 +67,7 @@ section { position: relative; }
 }
 .q-pill.active {
   border-color: rgba(9,160,157,0.5);
-  color: #0EC4C1;
+  color: var(--ins-text-highlight);
   background: rgba(9,160,157,0.08);
 }
 
@@ -96,17 +96,17 @@ section { position: relative; }
   border: 1px solid rgba(255,255,255,.08);
   background: rgba(255,255,255,.04);
   font-size: 11px; font-family: 'Geist Mono', monospace;
-  color: #7FA0AC; cursor: pointer;
+  color: var(--ins-text-inactive); cursor: pointer;
   transition: all .15s; white-space: nowrap; flex-shrink: 0;
 }
 .upvote-btn:hover {
   border-color: rgba(9,160,157,.35);
-  color: #0EC4C1;
+  color: var(--ins-text-highlight);
   background: rgba(9,160,157,.06);
 }
 .upvote-btn.voted {
   border-color: rgba(9,160,157,.45);
-  color: #0EC4C1;
+  color: var(--ins-text-highlight);
   background: rgba(9,160,157,.1);
 }
 

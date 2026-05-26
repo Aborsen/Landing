@@ -18,7 +18,7 @@ function AboutHero() {
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', textAlign:'center', position:'relative'}}>
         <h1 className="fu1" style={{fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'20px'}}>
           Every dataset has an insight.<br/>
-          <span style={{color:'#0EC4C1'}}>We help you find it.</span>
+          <span style={{color:'var(--ins-text-highlight)'}}>We help you find it.</span>
         </h1>
         <p className="fu2" style={{fontSize:'17px', color:'rgba(255,255,255,.5)', maxWidth:'580px', margin:'0 auto', lineHeight:1.65}}>
           Insightis is the AI analytics workspace that lets anyone — not just analysts — ask questions about their data and get instant, accurate answers. No SQL. No dashboards. No waiting.
@@ -26,7 +26,7 @@ function AboutHero() {
         <div className="fu3" style={{display:'flex', justifyContent:'center', gap:'0', marginTop:'56px', borderTop:'1px solid rgba(255,255,255,.06)', borderBottom:'1px solid rgba(255,255,255,.06)', flexWrap:'wrap'}}>
           {stats.map((s, i) => (
             <div key={i} style={{flex:'1 1 160px', padding:'28px 24px', textAlign:'center', borderRight: i < stats.length-1 ? '1px solid rgba(255,255,255,.06)' : 'none'}}>
-              <div style={{fontSize:'clamp(28px,3.5vw,42px)', fontWeight:600, color:'#0EC4C1', letterSpacing:'-.02em', lineHeight:1}}>{s.num}</div>
+              <div style={{fontSize:'clamp(28px,3.5vw,42px)', fontWeight:600, color:'var(--ins-text-highlight)', letterSpacing:'-.02em', lineHeight:1}}>{s.num}</div>
               <div style={{fontSize:'13px', color:'rgba(255,255,255,.4)', marginTop:'8px', letterSpacing:'.02em'}}>{s.label}</div>
             </div>
           ))}
@@ -40,17 +40,17 @@ function AboutHero() {
 function MissionValues() {
   const values = [
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>,
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>,
       title: 'Data should be accessible',
       desc: 'Business intelligence shouldn\'t require a data team. We believe every team member should be able to ask questions and get answers from their own data — in seconds, in plain English.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>,
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>,
       title: 'Accuracy is non-negotiable',
       desc: 'Generic AI guesses from internet averages. Insightis answers from your real data, through a certified Semantic Layer. Every answer is grounded, traceable, and trustworthy.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2z"/></svg>,
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2z"/></svg>,
       title: 'Complexity should be invisible',
       desc: 'Behind every simple answer is a sophisticated data pipeline — cross-source joins, metric certification, context memory. Our job is to make all of that disappear so you can focus on decisions.',
     },
@@ -61,8 +61,8 @@ function MissionValues() {
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
         <div style={{textAlign:'center', marginBottom:'56px'}}>
           <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
-            <span style={{color:'#09A09D', fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Our Values</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)', fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Our Values</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>Built on three principles</h2>
         </div>
@@ -75,8 +75,8 @@ function MissionValues() {
               <div style={{width:'40px', height:'40px', borderRadius:'10px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'16px'}}>
                 {v.icon}
               </div>
-              <h3 style={{fontSize:'17px', fontWeight:600, color:'#E8F2F5', marginBottom:'8px'}}>{v.title}</h3>
-              <p style={{fontSize:'14px', color:'#7FA0AC', lineHeight:1.65}}>{v.desc}</p>
+              <h3 style={{fontSize:'17px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'8px'}}>{v.title}</h3>
+              <p style={{fontSize:'14px', color:'var(--ins-text-inactive)', lineHeight:1.65}}>{v.desc}</p>
             </div>
           ))}
         </div>
@@ -88,11 +88,11 @@ function MissionValues() {
 /* ── WHAT WE BUILT ── */
 function WhatWeBuilt() {
   const pillars = [
-    { icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>, name: 'AI Chat', desc: 'Ask anything in plain English' },
-    { icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22v-5M9 8V2M15 8V2M18 8H6a3 3 0 0 0-3 3v1a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-1a3 3 0 0 0-3-3z"/></svg>, name: 'Integrations', desc: '200+ data sources connected' },
-    { icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12l8.58 3.91a2 2 0 0 0 1.66 0L21 12"/><path d="M2 17l8.58 3.91a2 2 0 0 0 1.66 0L21 17"/></svg>, name: 'Semantic Layer', desc: 'One certified truth' },
-    { icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>, name: 'Insights Engine', desc: 'Deep root-cause analysis' },
-    { icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0EC4C1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 3v9"/><path d="M20 7.5l-8 4.5"/><path d="M4 7.5l8 4.5"/></svg>, name: 'Memory & Storage', desc: 'AI that learns your business' },
+    { icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>, name: 'AI Chat', desc: 'Ask anything in plain English' },
+    { icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22v-5M9 8V2M15 8V2M18 8H6a3 3 0 0 0-3 3v1a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-1a3 3 0 0 0-3-3z"/></svg>, name: 'Integrations', desc: '200+ data sources connected' },
+    { icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12l8.58 3.91a2 2 0 0 0 1.66 0L21 12"/><path d="M2 17l8.58 3.91a2 2 0 0 0 1.66 0L21 17"/></svg>, name: 'Semantic Layer', desc: 'One certified truth' },
+    { icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>, name: 'Insights Engine', desc: 'Deep root-cause analysis' },
+    { icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 3v9"/><path d="M20 7.5l-8 4.5"/><path d="M4 7.5l8 4.5"/></svg>, name: 'Memory & Storage', desc: 'AI that learns your business' },
   ];
 
   return (
@@ -100,8 +100,8 @@ function WhatWeBuilt() {
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
         <div style={{textAlign:'center', marginBottom:'56px'}}>
           <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
-            <span style={{color:'#09A09D', fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>The Platform</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)', fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>The Platform</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>One workspace for every data question</h2>
         </div>
@@ -112,8 +112,8 @@ function WhatWeBuilt() {
                 <div className="hb" style={{width:'64px', height:'64px', borderRadius:'16px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'14px', animationDelay:`${i * 0.4}s`}}>
                   {p.icon}
                 </div>
-                <h4 style={{fontSize:'15px', fontWeight:600, color:'#E8F2F5', marginBottom:'4px'}}>{p.name}</h4>
-                <p style={{fontSize:'12px', color:'#7FA0AC', lineHeight:1.5}}>{p.desc}</p>
+                <h4 style={{fontSize:'15px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'4px'}}>{p.name}</h4>
+                <p style={{fontSize:'12px', color:'var(--ins-text-inactive)', lineHeight:1.5}}>{p.desc}</p>
               </div>
               {i < pillars.length - 1 && (
                 <div style={{display:'flex', alignItems:'center', paddingTop:'24px', flexShrink:0, minWidth:'32px', flex:'0 0 auto'}}>
@@ -131,8 +131,8 @@ function WhatWeBuilt() {
                   {p.icon}
                 </div>
                 <div>
-                  <h4 style={{fontSize:'14px', fontWeight:600, color:'#E8F2F5', marginBottom:'2px'}}>{p.name}</h4>
-                  <p style={{fontSize:'12px', color:'#7FA0AC', lineHeight:1.5}}>{p.desc}</p>
+                  <h4 style={{fontSize:'14px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'2px'}}>{p.name}</h4>
+                  <p style={{fontSize:'12px', color:'var(--ins-text-inactive)', lineHeight:1.5}}>{p.desc}</p>
                 </div>
               </div>
               {i < pillars.length - 1 && (
@@ -154,35 +154,35 @@ function BackedBy() {
         {/* Header row */}
         <div style={{marginBottom:'48px'}}>
           <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'16px'}}>
-            <span style={{color:'#09A09D', fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Our Mission</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)', fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Our Mission</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em', maxWidth:'700px'}}>Precise analytics for everyone</h2>
         </div>
         {/* Two-column text grid */}
         <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'24px 48px'}}>
-          <p style={{fontSize:'16px', color:'#C0D4DC', lineHeight:1.75}}>
-            Backed by <span style={{color:'#0EC4C1', fontWeight:500}}>Devart</span> and 25+ years of data expertise, we built Insightis with a single mission: make precise, trustworthy analytics accessible to every person in every team — no technical skills required.
+          <p style={{fontSize:'16px', color:'var(--ins-color-gray-200)', lineHeight:1.75}}>
+            Backed by <span style={{color:'var(--ins-text-highlight)', fontWeight:500}}>Devart</span> and 25+ years of data expertise, we built Insightis with a single mission: make precise, trustworthy analytics accessible to every person in every team — no technical skills required.
           </p>
-          <p style={{fontSize:'16px', color:'#C0D4DC', lineHeight:1.75}}>
+          <p style={{fontSize:'16px', color:'var(--ins-color-gray-200)', lineHeight:1.75}}>
             We believe data insights shouldn't be locked behind complex dashboards or reserved for analysts. Every founder, marketer, operator, and team lead deserves instant, accurate answers from their own data — in plain English, in seconds. That's the future we're building.
           </p>
-          <p style={{fontSize:'16px', color:'#C0D4DC', lineHeight:1.75}}>
+          <p style={{fontSize:'16px', color:'var(--ins-color-gray-200)', lineHeight:1.75}}>
             Insightis combines AI that understands your questions with a certified Semantic Layer that guarantees accuracy. The result: analytics you can trust, delivered at the speed of conversation — so you can focus on making decisions, not waiting for reports.
           </p>
-          <p style={{fontSize:'16px', color:'#C0D4DC', lineHeight:1.75}}>
+          <p style={{fontSize:'16px', color:'var(--ins-color-gray-200)', lineHeight:1.75}}>
             We connect to over 200 data sources, unify metrics through a single source of truth, and let AI handle the complexity — from cross-source joins to deep root-cause analysis. Every answer is grounded in your real data, fully traceable, and gets smarter with every conversation.
           </p>
-          <p style={{fontSize:'16px', color:'#C0D4DC', lineHeight:1.75}}>
+          <p style={{fontSize:'16px', color:'var(--ins-color-gray-200)', lineHeight:1.75}}>
             Our goal is simple: eliminate the gap between having data and understanding it. Whether you're tracking revenue, monitoring churn, or exploring a new market segment — Insightis turns your questions into answers in seconds, not days.
           </p>
-          <p style={{fontSize:'16px', color:'#C0D4DC', lineHeight:1.75}}>
+          <p style={{fontSize:'16px', color:'var(--ins-color-gray-200)', lineHeight:1.75}}>
             We're not building another BI tool. We're building the analytics layer that every modern business deserves — one that speaks your language, learns your business, and delivers the right answer every time you ask.
           </p>
-          <p style={{fontSize:'16px', color:'#C0D4DC', lineHeight:1.75}}>
+          <p style={{fontSize:'16px', color:'var(--ins-color-gray-200)', lineHeight:1.75}}>
             Speed matters. The organizations that act on data fastest win. Insightis removes every bottleneck between a question and its answer — no waiting for a data engineer, no building a dashboard, no interpreting raw query results. Just ask, and know.
           </p>
-          <p style={{fontSize:'16px', color:'#C0D4DC', lineHeight:1.75}}>
+          <p style={{fontSize:'16px', color:'var(--ins-color-gray-200)', lineHeight:1.75}}>
             Trust matters even more. Every insight Insightis delivers is backed by your certified data model — not AI guesswork. You always know where the answer came from, what data it's based on, and how confident you should be. That's what precision analytics means to us.
           </p>
         </div>
@@ -205,8 +205,8 @@ function OurStory() {
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
         <div style={{marginBottom:'56px'}}>
           <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'16px'}}>
-            <span style={{color:'#09A09D', fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#09A09D', fontFamily:'Geist Mono,monospace'}}>Our Story</span>
+            <span style={{color:'var(--ins-button-primary-bg-hover)', fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Our Story</span>
           </div>
           <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>From data tools to data intelligence</h2>
         </div>
@@ -218,17 +218,17 @@ function OurStory() {
               <div key={i} style={{display:'flex', gap:'0', position:'relative', paddingBottom: i < milestones.length-1 ? '48px' : '0'}}>
                 {/* Year label */}
                 <div className="hidden md:block" style={{width:'120px', flexShrink:0, paddingTop:'4px'}}>
-                  <span style={{fontSize: m.year === '∞' ? '26px' : '13px', fontWeight:600, color:'#09A09D', fontFamily:'Geist Mono,monospace', letterSpacing:'.04em', lineHeight:1}}>{m.year}</span>
+                  <span style={{fontSize: m.year === '∞' ? '26px' : '13px', fontWeight:600, color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace', letterSpacing:'.04em', lineHeight:1}}>{m.year}</span>
                 </div>
                 {/* Dot */}
                 <div className="hidden md:flex" style={{width:'0', flexShrink:0, position:'relative', justifyContent:'center'}}>
-                  <div style={{width:'10px', height:'10px', borderRadius:'50%', background:'#09A09D', border:'2px solid rgba(9,160,157,.3)', boxShadow:'0 0 12px rgba(9,160,157,.4)', marginLeft:'-5px', marginTop:'6px', flexShrink:0}}/>
+                  <div style={{width:'10px', height:'10px', borderRadius:'50%', background:'var(--ins-button-primary-bg-hover)', border:'2px solid rgba(9,160,157,.3)', boxShadow:'0 0 12px rgba(9,160,157,.4)', marginLeft:'-5px', marginTop:'6px', flexShrink:0}}/>
                 </div>
                 {/* Content */}
                 <div style={{flex:1, paddingLeft:'40px'}}>
-                  <div className="md:hidden" style={{fontSize: m.year === '∞' ? '24px' : '12px', fontWeight:600, color:'#09A09D', fontFamily:'Geist Mono,monospace', marginBottom:'6px', letterSpacing:'.04em', lineHeight:1}}>{m.year}</div>
-                  <h3 style={{fontSize:'18px', fontWeight:600, color:'#E8F2F5', marginBottom:'8px', letterSpacing:'-.01em'}}>{m.title}</h3>
-                  <p style={{fontSize:'15px', color:'#7FA0AC', lineHeight:1.7, maxWidth:'680px'}}>{m.desc}</p>
+                  <div className="md:hidden" style={{fontSize: m.year === '∞' ? '24px' : '12px', fontWeight:600, color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace', marginBottom:'6px', letterSpacing:'.04em', lineHeight:1}}>{m.year}</div>
+                  <h3 style={{fontSize:'18px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'8px', letterSpacing:'-.01em'}}>{m.title}</h3>
+                  <p style={{fontSize:'15px', color:'var(--ins-text-inactive)', lineHeight:1.7, maxWidth:'680px'}}>{m.desc}</p>
                 </div>
               </div>
             ))}
@@ -253,16 +253,16 @@ function ConnectorIcon({ name, size = 20 }) {
     Snowflake: <svg width={size} height={size} viewBox="0 0 24 24" fill="#29B5E8"><path d="M12.394 23.4a1.963 1.963 0 0 1-.979-.263L7.7 20.96a.492.492 0 0 1 .488-.854l3.715 2.177a.982.982 0 0 0 .982 0l3.715-2.177a.492.492 0 0 1 .488.854l-3.715 2.177a1.963 1.963 0 0 1-.979.263zM5.51 19.384a.492.492 0 0 1-.492-.492v-4.343a.492.492 0 0 1 .984 0v4.343a.492.492 0 0 1-.492.492zm12.768 0a.492.492 0 0 1-.492-.492v-4.343a.492.492 0 0 1 .984 0v4.343a.492.492 0 0 1-.492.492zm-6.384-3.684a1.963 1.963 0 0 1-.979-.263l-3.715-2.177a1.963 1.963 0 0 1-.979-1.7V7.2c0-.702.373-1.35.979-1.7L10.915 3.32a1.963 1.963 0 0 1 1.958 0l3.715 2.18c.606.35.979.998.979 1.7v4.36c0 .702-.373 1.35-.979 1.7l-3.715 2.177a1.963 1.963 0 0 1-.979.263zm0-14.16a.982.982 0 0 0-.49.132L7.69 3.852a.982.982 0 0 0-.49.85v4.36c0 .35.187.675.49.85l3.715 2.18a.982.982 0 0 0 .982 0l3.715-2.18a.982.982 0 0 0 .49-.85V4.7a.982.982 0 0 0-.49-.85L12.384 1.672a.982.982 0 0 0-.49-.132z"/></svg>,
     Redshift: <svg width={size} height={size} viewBox="0 0 24 24" fill="#8C4FFF"><path d="M1.463 8.586L12 14.12l10.537-5.534L12 3.051 1.463 8.586zm10.025 6.586L1.463 9.894v5.534L11.488 20.95v-5.778zm1.024 0v5.778l10.025-5.522V9.894l-10.025 5.278z"/></svg>,
   };
-  return icons[name] || <svg width={size} height={size} viewBox="0 0 24 24" fill="#07807E"><rect width="24" height="24" rx="4"/><text x="12" y="16" textAnchor="middle" fill="#fff" fontSize="12" fontWeight="500">{name[0]}</text></svg>;
+  return icons[name] || <svg width={size} height={size} viewBox="0 0 24 24" fill="var(--ins-button-primary-bg)"><rect width="24" height="24" rx="4"/><text x="12" y="16" textAnchor="middle" fill="#fff" fontSize="12" fontWeight="500">{name[0]}</text></svg>;
 }
 
 function ConnectorPill({ name }) {
   return (
-    <div className="flex items-center gap-2 px-3 py-1.5 bg-[#12121F] border border-[#1E1E30] rounded-full flex-shrink-0 hover:border-[#2E2E40] transition-colors">
+    <div className="flex items-center gap-2 px-3 py-1.5 bg-[#12121F] border border-[var(--ins-border-strong)] rounded-full flex-shrink-0 hover:border-[#2E2E40] transition-colors">
       <div className="w-5 h-5 flex items-center justify-center">
         <ConnectorIcon name={name} size={16} />
       </div>
-      <span className="text-xs text-[#A0A0B8] font-medium whitespace-nowrap">{name}</span>
+      <span className="text-xs text-[var(--ins-text-inactive)] font-medium whitespace-nowrap">{name}</span>
     </div>
   );
 }
@@ -283,16 +283,16 @@ function CompanyIcon({ name, size = 16 }) {
     SAP: <svg width={size} height={size} viewBox="0 0 24 24" fill="#0070F2"><path d="M2 4h20v16H2V4zm2 2v12h16V6H4zm2 2h5v2H6zm0 4h8v2H6zm6-4h4v6h-4z"/></svg>,
     Bosch: <svg width={size} height={size} viewBox="0 0 24 24" fill="#EA0016"><circle cx="12" cy="12" r="10" fill="none" stroke="#EA0016" strokeWidth="2"/><circle cx="12" cy="12" r="5"/></svg>,
   };
-  return icons[name] || <svg width={size} height={size} viewBox="0 0 24 24" fill="#07807E"><rect width="24" height="24" rx="4"/><text x="12" y="16" textAnchor="middle" fill="#fff" fontSize="12" fontWeight="500">{name[0]}</text></svg>;
+  return icons[name] || <svg width={size} height={size} viewBox="0 0 24 24" fill="var(--ins-button-primary-bg)"><rect width="24" height="24" rx="4"/><text x="12" y="16" textAnchor="middle" fill="#fff" fontSize="12" fontWeight="500">{name[0]}</text></svg>;
 }
 
 function CompanyPill({ name }) {
   return (
-    <div className="flex items-center gap-2 px-3 py-1.5 bg-[#12121F] border border-[#1E1E30] rounded-full flex-shrink-0 hover:border-[#2E2E40] transition-colors">
+    <div className="flex items-center gap-2 px-3 py-1.5 bg-[#12121F] border border-[var(--ins-border-strong)] rounded-full flex-shrink-0 hover:border-[#2E2E40] transition-colors">
       <div className="w-5 h-5 flex items-center justify-center">
         <CompanyIcon name={name} size={16} />
       </div>
-      <span className="text-xs text-[#A0A0B8] font-medium whitespace-nowrap">{name}</span>
+      <span className="text-xs text-[var(--ins-text-inactive)] font-medium whitespace-nowrap">{name}</span>
     </div>
   );
 }
@@ -302,7 +302,7 @@ function TrustedBy() {
   return (
     <section style={{padding:'0 16px', margin:'0 auto', maxWidth:'1272px'}}>
       <div style={{border:'1px solid rgba(255,255,255,.06)', background:'rgba(255,255,255,.02)', borderRadius:'16px', padding:'32px 32px', display:'flex', alignItems:'center', gap:'24px'}}>
-        <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'#7878A8', whiteSpace:'nowrap', flexShrink:0, fontFamily:'Geist Mono,monospace'}}>Trusted by teams at</span>
+        <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-text-disabled)', whiteSpace:'nowrap', flexShrink:0, fontFamily:'Geist Mono,monospace'}}>Trusted by teams at</span>
         <div className="overflow-hidden flex-1 marquee-container" style={{maskImage:'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)', WebkitMaskImage:'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)'}}>
           <div className="flex gap-3 marquee-left" style={{width:'max-content'}}>
             {[...companies, ...companies].map((name, i) => (
@@ -323,11 +323,11 @@ function BottomCTA() {
         <div style={{position:'relative', borderRadius:'16px', border:'1px solid rgba(30,30,48,1)', padding:'32px 48px', overflow:'hidden', display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:'24px', flexWrap:'wrap', background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)'}}>
           <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
           <h3 style={{fontSize:'clamp(22px,3vw,30px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em', lineHeight:1.2, flexShrink:0}}>
-            Ready to see your data <span style={{color:'#07807E'}}>clearly?</span>
+            Ready to see your data <span style={{color:'var(--ins-button-primary-bg)'}}>clearly?</span>
           </h3>
           <div style={{display:'flex', alignItems:'center', width:'100%', maxWidth:'420px', background:'#0D0D1A', border:'1px solid rgba(46,46,64,1)', borderRadius:'12px', overflow:'hidden', flex:'1 1 340px'}}>
             <input type="email" placeholder="Enter your work email" style={{flex:1, background:'transparent', fontSize:'14px', color:'#fff', padding:'12px 16px', outline:'none', border:'none', fontFamily:'Geist,sans-serif', minWidth:0}} />
-            <button style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 20px', margin:'4px', fontSize:'13px', fontWeight:600, color:'#fff', background:'linear-gradient(135deg,#07807E,#09A09D)', borderRadius:'8px', border:'none', cursor:'pointer', whiteSpace:'nowrap', flexShrink:0, fontFamily:'Geist,sans-serif'}}>
+            <button style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 20px', margin:'4px', fontSize:'13px', fontWeight:600, color:'#fff', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'8px', border:'none', cursor:'pointer', whiteSpace:'nowrap', flexShrink:0, fontFamily:'Geist,sans-serif'}}>
               Start for Free
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </button>
