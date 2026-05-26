@@ -172,18 +172,39 @@ function TableOfContents({ items }) {
         paddingRight: '8px',
       }}>
         <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-inactive)', marginBottom: '12px' }}>On this page</p>
-        <nav>
-          <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '4px' }}>
+        {/* src/app.css:119 has a global `nav { display:flex; padding:0 48px;
+            height:58px; ... }` rule originally for the site-wide top nav.
+            Inside this TOC sidebar `<nav>` it nukes layout — the 96px
+            horizontal padding collapses the inner <ul> to ~166px. Override
+            every relevant property here to neutralize the cascade. */}
+        <nav style={{
+          display: 'block',
+          width: '100%',
+          padding: 0,
+          height: 'auto',
+          position: 'static',
+          background: 'transparent',
+          borderBottom: 'none',
+        }}>
+          <ul style={{
+            listStyle: 'none',
+            padding: 0,
+            margin: 0,
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'stretch',
+            gap: '4px',
+          }}>
             {items.map(item => (
-              <li key={item.id}>
+              <li key={item.id} style={{ width: '100%' }}>
                 <a
                   href={`#${item.id}`}
                   title={item.text}
                   style={{
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden',
+                    display: 'block',
+                    boxSizing: 'border-box',
+                    width: '100%',
                     padding: '6px 10px',
                     borderLeft: '2px solid',
                     borderLeftColor: active === item.id ? 'var(--ins-text-highlight)' : 'transparent',
