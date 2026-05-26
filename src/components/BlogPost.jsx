@@ -449,6 +449,19 @@ export default function BlogPost({ markdown, slug }) {
     } : undefined,
   };
 
+  // BreadcrumbList JSON-LD — pairs with the visible Home › Blog ›
+  // Article-Title chain rendered above the cover image. Same domain
+  // pattern as the BlogPosting block above.
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://insightis.ai/' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://insightis.ai/blog/' },
+      ...(slug ? [{ '@type': 'ListItem', position: 3, name: meta.title || '', item: `https://insightis.ai/blog/${slug}` }] : []),
+    ],
+  };
+
   return (
     <div className="font-body">
       <Header />
@@ -459,9 +472,63 @@ export default function BlogPost({ markdown, slug }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       <main style={{ paddingTop: '32px' }}>
         <div className="blog-shell">
           <article className="blog-article">
+            {/* Breadcrumbs — Home › Blog › Article-Title.
+                The wrapping element MUST override the global app.css
+                `nav { display:flex; padding:0 48px; ... }` rule the same
+                way the TOC nav does, or the breadcrumb collapses. */}
+            <nav
+              aria-label="Breadcrumb"
+              style={{
+                display: 'block',
+                width: '100%',
+                padding: 0,
+                height: 'auto',
+                position: 'static',
+                background: 'transparent',
+                borderBottom: 'none',
+                marginBottom: '24px',
+              }}
+            >
+              <ol style={{
+                listStyle: 'none',
+                padding: 0,
+                margin: 0,
+                display: 'flex',
+                flexWrap: 'wrap',
+                alignItems: 'center',
+                gap: '6px',
+                fontSize: '13px',
+                color: 'var(--ins-text-inactive)',
+                lineHeight: 1.4,
+              }}>
+                <li>
+                  <a href="/" style={{ color: 'var(--ins-text-inactive)', textDecoration: 'none' }}>Home</a>
+                </li>
+                <li aria-hidden="true" style={{ color: 'var(--ins-text-disabled)' }}>›</li>
+                <li>
+                  <a href="/blog/" style={{ color: 'var(--ins-text-inactive)', textDecoration: 'none' }}>Blog</a>
+                </li>
+                <li aria-hidden="true" style={{ color: 'var(--ins-text-disabled)' }}>›</li>
+                <li aria-current="page" style={{
+                  color: 'var(--ins-text-body)',
+                  minWidth: 0,
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                  maxWidth: '420px',
+                }} title={meta.title || ''}>
+                  {meta.title || 'Article'}
+                </li>
+              </ol>
+            </nav>
+
             {/* Cover image */}
             {cover && (
               <div style={{
