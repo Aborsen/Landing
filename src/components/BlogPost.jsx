@@ -35,24 +35,57 @@ function readingMinutes(text) {
   return Math.max(1, Math.round(words / 220));
 }
 
+// Topic-relevant cover photos, exported so blog.jsx can render the same
+// image on the listing cards. Swap to `/assets/blog/<slug>.webp` once real
+// cover assets are produced.
+export const COVER_IMAGES = {
+  'what-is-ai-data-analysis':    'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1600&h=840&fit=crop&q=80',
+  'best-ai-data-analysis-tools': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&h=840&fit=crop&q=80',
+  'marketing-analytics-tools':   'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&h=840&fit=crop&q=80',
+  'self-service-bi-guide':       'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1600&h=840&fit=crop&q=80',
+};
+
 /**
  * BlogPost — renders a single markdown article (with YAML frontmatter) inside
  * the standard site chrome. Typography is scoped to .blog-prose so styles
  * don't leak into the rest of the site.
+ *
+ * Props
+ *  markdown  raw markdown string (with YAML frontmatter) — required
+ *  slug      slug used to look up a cover image from COVER_IMAGES — optional
  */
-export default function BlogPost({ markdown }) {
+export default function BlogPost({ markdown, slug }) {
   const { meta, body } = parseFrontmatter(markdown);
   // Strip a leading `# ...` heading if present — it duplicates the frontmatter
   // title we render in the page header. Demotes the article to a single H1.
   const bodySansH1 = body.replace(/^\s*#\s+[^\n]*\n+/, '');
   const html = marked.parse(bodySansH1);
   const minutes = readingMinutes(bodySansH1);
+  const cover = (slug && COVER_IMAGES[slug]) || null;
 
   return (
     <div className="font-body">
       <Header />
       <main style={{ paddingTop: '40px' }}>
         <article style={{ maxWidth: '760px', margin: '0 auto', padding: '40px 24px 80px' }}>
+          {/* Cover image */}
+          {cover && (
+            <div style={{
+              marginBottom: '32px',
+              borderRadius: 'var(--ins-radius-xl)',
+              overflow: 'hidden',
+              border: '1px solid var(--ins-border-default)',
+              aspectRatio: '16 / 9',
+              background: 'var(--ins-surface-card)',
+            }}>
+              <img
+                src={cover}
+                alt=""
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              />
+            </div>
+          )}
+
           {/* Meta strip */}
           <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px', marginBottom: '20px', fontSize: '13px', color: 'var(--ins-text-inactive)' }}>
             {meta.category && (

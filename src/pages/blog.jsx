@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { COVER_IMAGES } from '../components/BlogPost';
 
 // Real blog posts — each .md is a published article with a matching
 // /blog/<slug> page rendered by src/pages/blog-<slug>.jsx.
@@ -59,6 +60,7 @@ const POSTS = [
     category: meta.category || 'Article',
     date: formatDate(meta.publishDate || meta.date),
     readTime: `${readingMinutes(body)} min`,
+    image: COVER_IMAGES[slug] || '',
   };
 });
 
@@ -186,24 +188,27 @@ function BlogGrid({ activeCategory }) {
         <div className="blog-grid">
           {filtered.map((article, i) => (
             <a href={article.url} key={article.slug} className="blog-card blog-fade-in" style={{animationDelay:`${i * 0.05}s`}}>
-              {/* Article cover — token-driven gradient placeholder (cover image assets not yet shipped) */}
+              {/* Article cover */}
               <div style={{
-                height:'160px',
-                background:'linear-gradient(135deg, var(--ins-color-teal-900), var(--ins-color-teal-700) 60%, var(--ins-color-teal-400))',
+                height:'180px',
+                background:'var(--ins-surface-card)',
                 borderBottom:'1px solid var(--ins-border-default)',
-                position:'relative',
                 overflow:'hidden',
+                position:'relative',
               }}>
-                <div style={{
-                  position:'absolute', inset:0,
-                  background:'radial-gradient(ellipse 60% 50% at 30% 30%, rgba(255,255,255,0.15), transparent 60%)',
-                }}/>
-                <div style={{
-                  position:'absolute', bottom:14, left:18,
-                  fontFamily:'var(--ins-font-family-mono)',
-                  fontSize:'10px', letterSpacing:'0.18em', textTransform:'uppercase',
-                  color:'var(--ins-color-white)', opacity:0.9,
-                }}>Insightis · Blog</div>
+                {article.image ? (
+                  <img
+                    src={article.image}
+                    alt=""
+                    loading="lazy"
+                    style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }}
+                  />
+                ) : (
+                  <div style={{
+                    width:'100%', height:'100%',
+                    background:'linear-gradient(135deg, var(--ins-color-teal-900), var(--ins-color-teal-700) 60%, var(--ins-color-teal-400))',
+                  }}/>
+                )}
               </div>
               {/* Content */}
               <div style={{padding:'20px', display:'flex', flexDirection:'column', flex:1}}>

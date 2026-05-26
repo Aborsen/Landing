@@ -4,7 +4,7 @@ import '../app.css';
 import BlogPost from '../components/BlogPost';
 import md from '../../blog/Articles/what-is-ai-data-analysis.md?raw';
 
-function App() { return <BlogPost markdown={md} />; }
+function App() { return <BlogPost markdown={md} slug="what-is-ai-data-analysis" />; }
 export default App;
 
 if (typeof window !== 'undefined') {

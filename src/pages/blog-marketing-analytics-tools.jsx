@@ -4,7 +4,7 @@ import '../app.css';
 import BlogPost from '../components/BlogPost';
 import md from '../../blog/Articles/marketing-analytics-tools.md?raw';
 
-function App() { return <BlogPost markdown={md} />; }
+function App() { return <BlogPost markdown={md} slug="marketing-analytics-tools" />; }
 export default App;
 
 if (typeof window !== 'undefined') {
