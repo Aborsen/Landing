@@ -260,6 +260,20 @@ function BottomCTA() {
 function App() {
   const [activeCategory, setActiveCategory] = useState('All');
 
+  // Deep-link from a blog-post Topics sidebar: when the page mounts on the
+  // client read ?category= and pre-filter the grid. Done in useEffect (not
+  // in useState initializer) because the prerender runs without `window`
+  // and the initializer doesn't re-run during hydration.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      const p = new URLSearchParams(window.location.search).get('category');
+      if (!p) return;
+      const match = POSTS.find(post => post.category === p);
+      if (match) setActiveCategory(match.category);
+    } catch { /* ignore malformed URLSearchParams */ }
+  }, []);
+
   return (
     <div>
       <Header />

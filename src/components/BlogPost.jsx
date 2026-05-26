@@ -164,9 +164,6 @@ function TableOfContents({ items }) {
       <div style={{
         position: 'sticky',
         top: '96px',
-        // Cap height to viewport so a long TOC scrolls inside its own
-        // container instead of overflowing past the article on shorter
-        // viewports.
         maxHeight: 'calc(100vh - 120px)',
         overflowY: 'auto',
         paddingRight: '8px',
@@ -220,17 +217,82 @@ function TableOfContents({ items }) {
             ))}
           </ul>
         </nav>
+      </div>
+    </aside>
+  );
+}
 
-        {/* Social — follow links, brand URLs matched to the Footer */}
-        <div style={{ marginTop: '32px', paddingTop: '20px', borderTop: '1px solid var(--ins-border-default)' }}>
+/* ───────────────────────── right sidebar: Topics + Social ───────────────────────── */
+
+function TopicsSidebar({ currentSlug }) {
+  // Count posts per category from the shared POSTS list.
+  const counts = POSTS.reduce((acc, p) => {
+    acc[p.category] = (acc[p.category] || 0) + 1;
+    return acc;
+  }, {});
+  const items = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+  const socials = [
+    { label: 'Insightis on X (formerly Twitter)', href: 'https://x.com/Insightisai',                  Icon: XIcon },
+    { label: 'Insightis on TikTok',               href: 'https://www.tiktok.com/@insightisai',        Icon: TikTokIcon },
+    { label: 'Insightis on LinkedIn',             href: 'https://www.linkedin.com/company/112025589', Icon: LinkedInIcon },
+    { label: 'Insightis on YouTube',              href: 'https://www.youtube.com/@InsightisAI',       Icon: YouTubeIcon },
+  ];
+  return (
+    <aside className="blog-side-right">
+      <div style={{
+        position: 'sticky',
+        top: '96px',
+        maxHeight: 'calc(100vh - 120px)',
+        overflowY: 'auto',
+        paddingRight: '8px',
+      }}>
+        {/* Topics */}
+        <div>
+          <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-inactive)', marginBottom: '12px' }}>Topics</p>
+          <ul style={{
+            listStyle: 'none',
+            padding: 0,
+            margin: 0,
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'stretch',
+            gap: '2px',
+            borderTop: '1px solid var(--ins-border-default)',
+          }}>
+            {items.map(([category, count]) => (
+              <li key={category} style={{ width: '100%' }}>
+                <a
+                  href={`/blog/?category=${encodeURIComponent(category)}`}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '8px',
+                    padding: '10px 4px',
+                    borderBottom: '1px solid var(--ins-border-default)',
+                    fontSize: '13px',
+                    lineHeight: 1.4,
+                    color: 'var(--ins-text-body)',
+                    textDecoration: 'none',
+                    transition: 'color 150ms',
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-text-heading)'}
+                  onMouseLeave={e => e.currentTarget.style.color = 'var(--ins-text-body)'}
+                >
+                  <span style={{ minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{category}</span>
+                  <span style={{ color: 'var(--ins-text-disabled)', fontFamily: 'var(--ins-font-family-mono)', fontSize: '12px', flexShrink: 0 }}>{count}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Social */}
+        <div style={{ marginTop: '32px' }}>
           <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-inactive)', marginBottom: '12px' }}>Social</p>
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-            {[
-              { label: 'Insightis on X (formerly Twitter)',    href: 'https://x.com/Insightisai',                       Icon: XIcon },
-              { label: 'Insightis on TikTok',                  href: 'https://www.tiktok.com/@insightisai',             Icon: TikTokIcon },
-              { label: 'Insightis on LinkedIn',                href: 'https://www.linkedin.com/company/112025589',      Icon: LinkedInIcon },
-              { label: 'Insightis on YouTube',                 href: 'https://www.youtube.com/@InsightisAI',            Icon: YouTubeIcon },
-            ].map(({ label, href, Icon }) => (
+            {socials.map(({ label, href, Icon }) => (
               <a
                 key={href}
                 href={href}
@@ -258,6 +320,53 @@ function TableOfContents({ items }) {
         </div>
       </div>
     </aside>
+  );
+}
+
+/* ───────────────────────── Back-to-top floating button ───────────────────────── */
+
+function BackToTop() {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 400);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  return (
+    <button
+      type="button"
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      aria-label="Back to top"
+      style={{
+        position: 'fixed',
+        bottom: '32px',
+        right: '32px',
+        width: '44px',
+        height: '44px',
+        borderRadius: '50%',
+        background: 'var(--ins-surface-card)',
+        border: '1px solid var(--ins-border-default)',
+        color: 'var(--ins-text-inactive)',
+        cursor: 'pointer',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 60,
+        boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+        opacity: visible ? 1 : 0,
+        pointerEvents: visible ? 'auto' : 'none',
+        transform: visible ? 'translateY(0)' : 'translateY(8px)',
+        transition: 'opacity 200ms ease, transform 200ms ease, color 150ms, border-color 150ms',
+      }}
+      onMouseEnter={e => { e.currentTarget.style.color = 'var(--ins-text-heading)'; e.currentTarget.style.borderColor = 'var(--ins-border-hover)'; }}
+      onMouseLeave={e => { e.currentTarget.style.color = 'var(--ins-text-inactive)'; e.currentTarget.style.borderColor = 'var(--ins-border-default)'; }}
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <line x1="12" y1="19" x2="12" y2="5"/>
+        <polyline points="5 12 12 5 19 12"/>
+      </svg>
+    </button>
   );
 }
 
@@ -478,6 +587,10 @@ export default function BlogPost({ markdown, slug }) {
       />
       <main style={{ paddingTop: '32px' }}>
         <div className="blog-shell">
+          {/* Left: TOC */}
+          <TableOfContents items={toc} />
+
+          {/* Center: article */}
           <article className="blog-article">
             {/* Breadcrumbs — Home › Blog › Article-Title.
                 The wrapping element MUST override the global app.css
@@ -635,36 +748,48 @@ export default function BlogPost({ markdown, slug }) {
             <RelatedArticles currentSlug={slug} />
           </article>
 
-          <TableOfContents items={toc} />
+          {/* Right: Topics + Social */}
+          <TopicsSidebar currentSlug={slug} />
         </div>
       </main>
 
+      {/* Floating back-to-top button (appears once scrolled > 400px) */}
+      <BackToTop />
+
       <style>{`
-        /* Grid shell — article + TOC sidebar */
+        /* Grid shell — left TOC + article + right Topics/Social.
+           Breakpoints:
+             <1100         : 1 column, only article
+             1100-1299     : 2 columns, TOC | article (Topics/Social hidden)
+             >=1300        : 3 columns, TOC | article | Topics/Social
+           align-items defaults to stretch so both aside sidebars span the
+           article's full height — that gives position:sticky on each inner
+           div the room to track scroll through the whole article. */
         .blog-shell {
-          max-width: 1200px;
+          max-width: 1400px;
           margin: 0 auto;
           padding: 40px 24px 80px;
           display: grid;
           grid-template-columns: minmax(0, 1fr);
           gap: 32px;
         }
+        .blog-article { min-width: 0; }
+        .blog-toc, .blog-side-right { display: none; }
+
         @media (min-width: 1100px) {
           .blog-shell {
-            grid-template-columns: minmax(0, 760px) 280px;
-            gap: 56px;
+            grid-template-columns: 240px minmax(0, 760px);
+            gap: 48px;
             justify-content: center;
-            /* align-items: stretch (default) — lets the .blog-toc aside grow
-               to the article's full height so position:sticky on its inner
-               div can track the entire scroll. With align-items:start the
-               aside hugs the sticky div's intrinsic height and sticky
-               immediately scrolls off. */
           }
-        }
-        .blog-article { min-width: 0; }
-        .blog-toc { display: none; }
-        @media (min-width: 1100px) {
           .blog-toc { display: block; }
+        }
+        @media (min-width: 1300px) {
+          .blog-shell {
+            grid-template-columns: 240px minmax(0, 760px) 240px;
+            gap: 40px;
+          }
+          .blog-side-right { display: block; }
         }
 
         /* Related-articles grid */
