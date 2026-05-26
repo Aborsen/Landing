@@ -158,7 +158,20 @@ function TableOfContents({ items }) {
     return () => obs.disconnect();
   }, [items]);
 
-  if (items.length === 0) return null;
+  // Topics list — counts per category from the shared POSTS list.
+  const topicCounts = POSTS.reduce((acc, p) => {
+    acc[p.category] = (acc[p.category] || 0) + 1;
+    return acc;
+  }, {});
+  const topicEntries = Object.entries(topicCounts).sort((a, b) => b[1] - a[1]);
+
+  const socials = [
+    { label: 'Insightis on X (formerly Twitter)', href: 'https://x.com/Insightisai',                  Icon: XIcon },
+    { label: 'Insightis on TikTok',               href: 'https://www.tiktok.com/@insightisai',        Icon: TikTokIcon },
+    { label: 'Insightis on LinkedIn',             href: 'https://www.linkedin.com/company/112025589', Icon: LinkedInIcon },
+    { label: 'Insightis on YouTube',              href: 'https://www.youtube.com/@InsightisAI',       Icon: YouTubeIcon },
+  ];
+
   return (
     <aside className="blog-toc">
       <div style={{
@@ -167,22 +180,68 @@ function TableOfContents({ items }) {
         maxHeight: 'calc(100vh - 120px)',
         overflowY: 'auto',
         paddingRight: '8px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '28px',
       }}>
-        <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-inactive)', marginBottom: '12px' }}>On this page</p>
-        {/* src/app.css:119 has a global `nav { display:flex; padding:0 48px;
-            height:58px; ... }` rule originally for the site-wide top nav.
-            Inside this TOC sidebar `<nav>` it nukes layout — the 96px
-            horizontal padding collapses the inner <ul> to ~166px. Override
-            every relevant property here to neutralize the cascade. */}
-        <nav style={{
-          display: 'block',
-          width: '100%',
-          padding: 0,
-          height: 'auto',
-          position: 'static',
-          background: 'transparent',
-          borderBottom: 'none',
-        }}>
+        {/* On this page (TOC) */}
+        {items.length > 0 && (
+          <div>
+            <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-inactive)', marginBottom: '12px' }}>On this page</p>
+            {/* src/app.css:119 has a global `nav { display:flex; padding:0 48px;
+                height:58px; ... }` rule originally for the site-wide top nav.
+                Inside this TOC sidebar `<nav>` it nukes layout — the 96px
+                horizontal padding collapses the inner <ul> to ~166px. Override
+                every relevant property here to neutralize the cascade. */}
+            <nav style={{
+              display: 'block',
+              width: '100%',
+              padding: 0,
+              height: 'auto',
+              position: 'static',
+              background: 'transparent',
+              borderBottom: 'none',
+            }}>
+              <ul style={{
+                listStyle: 'none',
+                padding: 0,
+                margin: 0,
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'stretch',
+                gap: '4px',
+              }}>
+                {items.map(item => (
+                  <li key={item.id} style={{ width: '100%' }}>
+                    <a
+                      href={`#${item.id}`}
+                      title={item.text}
+                      style={{
+                        display: 'block',
+                        boxSizing: 'border-box',
+                        width: '100%',
+                        padding: '6px 10px',
+                        borderLeft: '2px solid',
+                        borderLeftColor: active === item.id ? 'var(--ins-text-highlight)' : 'transparent',
+                        fontSize: '13px',
+                        lineHeight: 1.45,
+                        color: active === item.id ? 'var(--ins-text-heading)' : 'var(--ins-text-inactive)',
+                        textDecoration: 'none',
+                        transition: 'color 150ms, border-color 150ms',
+                        wordBreak: 'break-word',
+                      }}
+                    >{item.text}</a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+        )}
+
+        {/* Topics */}
+        <div>
+          <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-inactive)', marginBottom: '12px' }}>Topics</p>
           <ul style={{
             listStyle: 'none',
             padding: 0,
@@ -191,32 +250,67 @@ function TableOfContents({ items }) {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'stretch',
-            gap: '4px',
+            gap: 0,
+            borderTop: '1px solid var(--ins-border-default)',
           }}>
-            {items.map(item => (
-              <li key={item.id} style={{ width: '100%' }}>
+            {topicEntries.map(([category, count]) => (
+              <li key={category} style={{ width: '100%' }}>
                 <a
-                  href={`#${item.id}`}
-                  title={item.text}
+                  href={`/blog/?category=${encodeURIComponent(category)}`}
                   style={{
-                    display: 'block',
-                    boxSizing: 'border-box',
-                    width: '100%',
-                    padding: '6px 10px',
-                    borderLeft: '2px solid',
-                    borderLeftColor: active === item.id ? 'var(--ins-text-highlight)' : 'transparent',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '8px',
+                    padding: '10px 4px',
+                    borderBottom: '1px solid var(--ins-border-default)',
                     fontSize: '13px',
-                    lineHeight: 1.45,
-                    color: active === item.id ? 'var(--ins-text-heading)' : 'var(--ins-text-inactive)',
+                    lineHeight: 1.4,
+                    color: 'var(--ins-text-body)',
                     textDecoration: 'none',
-                    transition: 'color 150ms, border-color 150ms',
-                    wordBreak: 'break-word',
+                    transition: 'color 150ms',
                   }}
-                >{item.text}</a>
+                  onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-text-heading)'}
+                  onMouseLeave={e => e.currentTarget.style.color = 'var(--ins-text-body)'}
+                >
+                  <span style={{ minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{category}</span>
+                  <span style={{ color: 'var(--ins-text-disabled)', fontFamily: 'var(--ins-font-family-mono)', fontSize: '12px', flexShrink: 0 }}>{count}</span>
+                </a>
               </li>
             ))}
           </ul>
-        </nav>
+        </div>
+
+        {/* Social */}
+        <div>
+          <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-inactive)', marginBottom: '12px' }}>Social</p>
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+            {socials.map(({ label, href, Icon }) => (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '36px',
+                  height: '36px',
+                  borderRadius: '50%',
+                  background: 'var(--ins-surface-card)',
+                  border: '1px solid var(--ins-border-default)',
+                  color: 'var(--ins-text-inactive)',
+                  textDecoration: 'none',
+                  transition: 'color 150ms, border-color 150ms',
+                }}
+              >
+                <Icon size={14} />
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </aside>
   );
@@ -747,9 +841,6 @@ export default function BlogPost({ markdown, slug }) {
             {/* Related articles */}
             <RelatedArticles currentSlug={slug} />
           </article>
-
-          {/* Right: Topics + Social */}
-          <TopicsSidebar currentSlug={slug} />
         </div>
       </main>
 
@@ -757,16 +848,17 @@ export default function BlogPost({ markdown, slug }) {
       <BackToTop />
 
       <style>{`
-        /* Grid shell — left TOC + article + right Topics/Social.
+        /* Grid shell — left sidebar (TOC + Topics + Social) + article.
+           max-width matches Header's container (1240px) so the blog page
+           doesn't overflow the navbar's visual line.
            Breakpoints:
-             <1100         : 1 column, only article
-             1100-1299     : 2 columns, TOC | article (Topics/Social hidden)
-             >=1300        : 3 columns, TOC | article | Topics/Social
-           align-items defaults to stretch so both aside sidebars span the
-           article's full height — that gives position:sticky on each inner
-           div the room to track scroll through the whole article. */
+             <1100  : 1 column, article only (sidebar hidden)
+             >=1100 : 2 columns, sidebar | article
+           align-items defaults to stretch so the aside grows to the
+           article's full height — gives position:sticky room to track
+           scroll all the way down. */
         .blog-shell {
-          max-width: 1400px;
+          max-width: 1240px;
           margin: 0 auto;
           padding: 40px 24px 80px;
           display: grid;
@@ -774,22 +866,15 @@ export default function BlogPost({ markdown, slug }) {
           gap: 32px;
         }
         .blog-article { min-width: 0; }
-        .blog-toc, .blog-side-right { display: none; }
+        .blog-toc { display: none; }
 
         @media (min-width: 1100px) {
           .blog-shell {
             grid-template-columns: 240px minmax(0, 760px);
-            gap: 48px;
+            gap: 56px;
             justify-content: center;
           }
           .blog-toc { display: block; }
-        }
-        @media (min-width: 1300px) {
-          .blog-shell {
-            grid-template-columns: 240px minmax(0, 760px) 240px;
-            gap: 40px;
-          }
-          .blog-side-right { display: block; }
         }
 
         /* Related-articles grid */
