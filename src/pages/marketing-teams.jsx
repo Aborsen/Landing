@@ -9,6 +9,7 @@ import CodeChip from '../components/CodeChip';
 import BottomCTA from '../components/BottomCTA';
 import FAQAccordion from '../components/FAQAccordion';
 import PainPointGrid from '../components/PainPointGrid';
+import ComparisonCards from '../components/ComparisonCards';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -667,54 +668,30 @@ function BeforeAfter() {
           </p>
         </div>
 
-        <div data-compare-grid style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'12px'}}>
-          {/* Before */}
-          <div style={{background:'rgba(248,113,113,.04)',border:'1px solid rgba(248,113,113,.15)',borderRadius:'16px',padding:'28px'}}>
-            <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'20px'}}>
-              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-status-error-fg)'}}/>
-              <span style={{fontSize:'13px',fontWeight:600,color:'var(--ins-status-error-fg)'}}>Before Insightis</span>
-            </div>
-            <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'12px'}}>
-              {[
-                'Performance reports take all morning to build',
-                'Attribution depends on which tool you trust',
-                'Channel ROAS lives in five spreadsheets',
-                'MQL → SQL handoff settled by Slack argument',
-                'Budget reallocations wait for the Monday review',
-                'CAC anomalies surface at month-end close',
-              ].map((item,i) => (
-                <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'var(--ins-text-inactive)',lineHeight:1.55}}>
-                  <span style={{color:'var(--ins-status-error-fg)',fontWeight:500,flexShrink:0}}>✕</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* After */}
-          <div style={{background:'rgba(9,160,157,.05)',border:'1px solid rgba(9,160,157,.25)',borderRadius:'16px',padding:'28px',position:'relative'}}>
-            <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.6),transparent)',borderRadius:'16px 16px 0 0'}}/>
-            <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'20px'}}>
-              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-text-highlight)',boxShadow:'0 0 8px var(--ins-text-highlight)'}}/>
-              <span style={{fontSize:'13px',fontWeight:600,color:'var(--ins-text-highlight)'}}>With Insightis</span>
-            </div>
-            <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'12px'}}>
-              {[
-                'Live performance the moment the spend lands',
-                'One unified attribution model everyone trusts',
-                'Channel ROAS surfaced in a single ask',
-                'MQL → SQL settled by data, not a Slack thread',
-                'Budget moves the day the signal hits',
-                'CAC drift flagged the same day it happens',
-              ].map((item,i) => (
-                <li key={i} style={{display:'flex',alignItems:'flex-start',gap:'8px',fontSize:'13.5px',color:'var(--ins-color-gray-200)',lineHeight:1.55}}>
-                  <span style={{color:'var(--ins-text-highlight)',fontWeight:500,flexShrink:0}}>✓</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ComparisonCards
+          before={{
+            label: 'Before Insightis',
+            items: [
+              'Performance reports take all morning to build',
+              'Attribution depends on which tool you trust',
+              'Channel ROAS lives in five spreadsheets',
+              'MQL → SQL handoff settled by Slack argument',
+              'Budget reallocations wait for the Monday review',
+              'CAC anomalies surface at month-end close',
+            ],
+          }}
+          after={{
+            label: 'With Insightis',
+            items: [
+              'Live performance the moment the spend lands',
+              'One unified attribution model everyone trusts',
+              'Channel ROAS surfaced in a single ask',
+              'MQL → SQL settled by data, not a Slack thread',
+              'Budget moves the day the signal hits',
+              'CAC drift flagged the same day it happens',
+            ],
+          }}
+        />
 
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
