@@ -54,15 +54,46 @@
   --ins-color-purple-400:#A78BFA;
   --ins-color-purple-600:#7C3AED;
 
-  /* ─ Color primitives — Alpha-blended (explicit, named, never raw rgba in semantic) ─ */
+  /* ─ Color primitives — Alpha-blended (explicit, named, never raw rgba in semantic) ─
+     Added Sweep-0 (ISS-06 prep): the audit's call-site frequency map showed
+     white-a-02/03/04/05/07/08/10 and teal-a-04/06/10/15/18/30/40/60 as the
+     most common raw rgba values in src/. Defining them here lets Sweep 2
+     replace inline rgba()s mechanically with named tokens.
+
+     Canonical brand teal is rgba(14, 196, 193, …) = #0EC4C1 (brand-bright);
+     the legacy rgba(9, 160, 157, …) = #09A09D (Devart dark) is preserved
+     as -dark-* aliases. Pre-existing tokens are left as-is so no call site
+     breaks.
+  */
+  --ins-color-white-a-02: rgba(255, 255, 255, 0.02);
+  --ins-color-white-a-03: rgba(255, 255, 255, 0.03);
+  --ins-color-white-a-04: rgba(255, 255, 255, 0.04);
+  --ins-color-white-a-05: rgba(255, 255, 255, 0.05);
   --ins-color-white-a-06: rgba(255, 255, 255, 0.06);
+  --ins-color-white-a-07: rgba(255, 255, 255, 0.07);
+  --ins-color-white-a-08: rgba(255, 255, 255, 0.08);
+  --ins-color-white-a-10: rgba(255, 255, 255, 0.10);
   --ins-color-white-a-12: rgba(255, 255, 255, 0.12);
   --ins-color-white-a-45: rgba(255, 255, 255, 0.45);
+  /* Brand-bright teal (#0EC4C1) — preferred for new call sites */
+  --ins-color-teal-a-04: rgba(14, 196, 193, 0.04);
+  --ins-color-teal-a-06: rgba(14, 196, 193, 0.06);
+  --ins-color-teal-a-10: rgba(14, 196, 193, 0.10);
+  --ins-color-teal-a-15: rgba(14, 196, 193, 0.15);
+  --ins-color-teal-a-18: rgba(14, 196, 193, 0.18);
+  --ins-color-teal-a-30: rgba(14, 196, 193, 0.30);
+  --ins-color-teal-a-40: rgba(14, 196, 193, 0.40);
+  --ins-color-teal-a-60: rgba(14, 196, 193, 0.60);
+  /* Pre-existing teal alphas (some on dark-teal 9,160,157, some bright) — left untouched. */
   --ins-color-teal-a-08: rgba(9, 160, 157, 0.08);
   --ins-color-teal-a-12: rgba(9, 196, 193, 0.12);
   --ins-color-teal-a-20: rgba(14, 196, 193, 0.20);
   --ins-color-teal-a-25: rgba(9, 196, 193, 0.25);
   --ins-color-teal-a-50: rgba(9, 160, 157, 0.50);
+  /* Status colors */
+  --ins-color-red-a-06:  rgba(248, 113, 113, 0.06);
+  --ins-color-red-a-12:  rgba(248, 113, 113, 0.12);
+  --ins-color-red-a-25:  rgba(248, 113, 113, 0.25);
   --ins-color-red-a-30:  rgba(248, 113, 113, 0.30);
   --ins-color-body-a-30: rgba(168, 191, 200, 0.30);    /* inline-link underline — 30% of body color */
   --ins-color-overlay:   rgba(10, 14, 19, 0.72);
