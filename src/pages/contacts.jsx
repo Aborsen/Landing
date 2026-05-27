@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom/client';
 import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Button from '../components/Button';
+
+const ArrowRightIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+);
 
 /* ── CONTACT HERO ── */
 function ContactHero() {
@@ -220,11 +225,9 @@ function ModalForm({ open, onClose, type }) {
             </>
           )}
 
-          <button type="submit" style={{width:'100%', padding:'14px', fontSize:'14px', fontWeight:600, color:'#fff', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'10px', border:'none', cursor:'pointer', fontFamily:'Geist,sans-serif', transition:'opacity .15s', marginTop:'4px'}}
-            onMouseEnter={e=>e.currentTarget.style.opacity='0.9'}
-            onMouseLeave={e=>e.currentTarget.style.opacity='1'}>
+          <Button type="submit" variant="primary" size="md" radius="lg" className="w-full mt-1">
             {isDemo ? 'Request Demo' : 'Submit Ticket'}
-          </button>
+          </Button>
           {submitted && (
             <p style={{textAlign:'center', fontSize:'14px', color:'var(--ins-status-success-fg)', fontWeight:500}}>
               {isDemo ? 'Demo request sent! We\'ll be in touch shortly.' : 'Ticket submitted! Our team will respond soon.'}
@@ -380,12 +383,9 @@ function CtaBanner() {
                 required
                 style={{flex:1, background:'transparent', border:'none', padding:'12px 16px', fontSize:'14px', color:'var(--ins-color-gray-100)', fontFamily:'Geist,sans-serif', outline:'none', minWidth:0}}
               />
-              <button type="submit" style={{display:'inline-flex', alignItems:'center', gap:'6px', margin:'6px', padding:'8px 20px', fontSize:'13px', fontWeight:600, color:'#fff', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'8px', border:'none', cursor:'pointer', fontFamily:'Geist,sans-serif', whiteSpace:'nowrap', flexShrink:0, transition:'box-shadow .15s'}}
-                onMouseEnter={e=>e.currentTarget.style.boxShadow='0 0 20px rgba(7,128,126,.45)'}
-                onMouseLeave={e=>e.currentTarget.style.boxShadow='none'}>
+              <Button type="submit" variant="primary" size="sm" radius="lg" iconEnd={<ArrowRightIcon />} className="m-1 flex-shrink-0">
                 Get in Touch
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-              </button>
+              </Button>
             </form>
           ) : (
             <div style={{display:'flex', alignItems:'center', gap:'8px'}}>

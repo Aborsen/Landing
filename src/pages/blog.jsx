@@ -3,10 +3,15 @@ import ReactDOM from 'react-dom/client';
 import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Button from '../components/Button';
 // Single source of truth: POSTS is built once in BlogPost.jsx from the real
 // markdown files. The listing here and the related-articles section on each
 // /blog/<slug> page consume the same list.
 import { POSTS } from '../components/BlogPost';
+
+const ArrowRightIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+);
 
 /* ── INSIGHTIS LOGO MARK SVG ── */
 function InsightisLogoMark({ size = 60, opacity = 1 }) {
@@ -240,18 +245,9 @@ function BottomCTA() {
                 fontFamily:'Geist,sans-serif',minWidth:0,
               }}
             />
-            <button style={{
-              display:'inline-flex',alignItems:'center',gap:'8px',
-              padding:'10px 20px',margin:'4px',
-              fontSize:'13px',fontWeight:500,color:'#fff',
-              background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))',
-              borderRadius:'8px',border:'none',cursor:'pointer',
-              whiteSpace:'nowrap',flexShrink:0,
-              fontFamily:'Geist,sans-serif',
-            }}>
+            <Button variant="primary" size="sm" radius="lg" iconEnd={<ArrowRightIcon />} className="m-1 flex-shrink-0">
               Start for Free
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-            </button>
+            </Button>
           </div>
         </div>
       </div>

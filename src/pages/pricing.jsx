@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom/client';
 import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Button from '../components/Button';
+
+const ArrowRightIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+);
 
 /* ── APP ── */
 /* ── PRICING HERO ── */
@@ -208,21 +213,16 @@ function PricingCards() {
                     </div>
                   )}
                 </div>
-                <a href="/auth/sign-up/" style={{
-                  display:'inline-flex',alignItems:'center',justifyContent:'center',gap:'7px',
-                  padding:'12px 20px',borderRadius:'999px',
-                  fontSize:'14px',fontWeight:500,
-                  textDecoration:'none',
-                  marginBottom:'24px',
-                  background: plan.ctaStyle === 'primary' ? 'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))' : 'transparent',
-                  color: plan.ctaStyle === 'primary' ? '#fff' : 'var(--ins-text-highlight)',
-                  border: plan.ctaStyle === 'primary' ? 'none' : '1px solid rgba(9,160,157,0.4)',
-                  boxShadow: plan.ctaStyle === 'primary' ? '0 0 24px rgba(9,160,157,0.25)' : 'none',
-                  transition:'all .2s',
-                }}>
+                <Button
+                  as="a"
+                  href="/auth/sign-up/"
+                  variant={plan.ctaStyle === 'primary' ? 'primary' : 'secondary'}
+                  size="md"
+                  iconEnd={<ArrowRightIcon />}
+                  className="justify-center mb-6 w-full"
+                >
                   {plan.cta}
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-                </a>
+                </Button>
                 <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px',padding:0,margin:0}}>
                   {plan.features.map((f,fi) => (
                     <li key={fi} style={{display:'flex',alignItems:'flex-start',gap:'9px',fontSize:'13.5px',color:'var(--ins-color-gray-200)',lineHeight:1.55}}>
@@ -328,15 +328,14 @@ function FeatureComparison() {
               { label:'Start Free Trial', primary:true  },
             ].map((cta, i) => (
               <div key={i} style={{display:'flex',justifyContent:'center'}}>
-                <a href="/auth/sign-up/" style={{
-                  display:'inline-flex',alignItems:'center',gap:'6px',
-                  padding:'9px 16px',borderRadius:'999px',
-                  fontSize:'13px',fontWeight:500,
-                  textDecoration:'none',
-                  background: cta.primary ? 'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))' : 'transparent',
-                  color: cta.primary ? '#fff' : 'var(--ins-text-highlight)',
-                  border: cta.primary ? 'none' : '1px solid rgba(9,160,157,0.4)',
-                }}>{cta.label}</a>
+                <Button
+                  as="a"
+                  href="/auth/sign-up/"
+                  variant={cta.primary ? 'primary' : 'secondary'}
+                  size="sm"
+                >
+                  {cta.label}
+                </Button>
               </div>
             ))}
           </div>
@@ -401,13 +400,12 @@ function BottomCTA() {
           <span style={{color:'var(--ins-text-highlight)'}}>Upgrade when you're ready.</span>
         </h2>
         <div style={{display:'flex',justifyContent:'center',gap:'12px',flexWrap:'wrap'}}>
-          <a href="/auth/sign-up/" style={{display:'inline-flex',alignItems:'center',gap:'10px',padding:'15px 28px',borderRadius:'999px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',color:'#fff',fontSize:'15px',fontWeight:500,textDecoration:'none',boxShadow:'0 0 32px rgba(9,160,157,.35), 0 8px 24px rgba(0,0,0,.4)'}}>
+          <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
             Get started for free
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="/Company/Contacts" style={{display:'inline-flex',alignItems:'center',gap:'8px',padding:'15px 26px',borderRadius:'999px',background:'rgba(255,255,255,0.02)',color:'var(--ins-color-gray-200)',fontSize:'15px',fontWeight:500,textDecoration:'none',border:'1px solid rgba(255,255,255,0.12)'}}>
+          </Button>
+          <Button as="a" href="/Company/Contacts" variant="secondary" size="lg">
             Talk to sales
-          </a>
+          </Button>
         </div>
       </div>
     </section>

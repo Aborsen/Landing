@@ -3,9 +3,13 @@ import ReactDOM from 'react-dom/client';
 import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Button from '../components/Button';
 import ConnectorIcon from '../components/ConnectorIcon';
 import { CATEGORIES, CONNECTORS } from '../data/connectors';
 
+const ArrowRightIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+);
 
 /* ── APP ── */
 /* ── FLOATING CHAT BAR ── */
@@ -401,10 +405,9 @@ function ConnectorsHero() {
           <p className="fu2" style={{fontSize:'17px', color:'#8AA6B3', lineHeight:1.6, maxWidth:'520px', marginBottom:'30px'}}>
             Explore 200+ prebuilt connectors, create custom ones with REST and GraphQL connectors, or request the data source you're missing.
           </p>
-          <a href="/auth/sign-up/" className="fu3 cta-btn" style={{display:'inline-flex', alignItems:'center', gap:'7px', padding:'12px 28px', borderRadius:'999px', background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))', color:'#fff', fontWeight:600, fontSize:'14px', textDecoration:'none', boxShadow:'0 0 30px rgba(9,160,157,.25), 0 4px 12px rgba(0,0,0,.3)'}}>
+          <Button as="a" href="/auth/sign-up/" variant="primary" size="md" iconEnd={<ArrowRightIcon />} className="fu3">
             Start for free
-            <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          </a>
+          </Button>
         </div>
 
         {/* RIGHT — scattered connector cluster */}

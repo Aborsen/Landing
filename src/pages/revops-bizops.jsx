@@ -3,7 +3,12 @@ import ReactDOM from 'react-dom/client';
 import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Button from '../components/Button';
 import IntegrationsStrip from '../components/IntegrationsStrip';
+
+const ArrowRightIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+);
 
 /* ── CHART COMPONENTS (verbatim from AI Chat.html) ── */
 function MiniBarChart({ data, color }) {
@@ -369,19 +374,9 @@ function Hero() {
               </p>
 
               <div className="fu3">
-                <a href="/auth/sign-up/" style={{
-                  display:'inline-flex',alignItems:'center',gap:'10px',
-                  padding:'16px 32px',borderRadius:'999px',
-                  background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',
-                  color:'#fff',fontSize:'15px',fontWeight:500,
-                  textDecoration:'none',
-                  boxShadow:'0 0 32px rgba(9,160,157,.35), 0 8px 24px rgba(0,0,0,.4)',
-                  transition:'all .2s',
-                  letterSpacing:'.01em',
-                }}>
+                <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
                   Start free
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-                </a>
+                </Button>
               </div>
             </div>
 
@@ -517,19 +512,9 @@ function MidCTA() {
           <span style={{color:'var(--ins-text-highlight)'}}>Start asking.</span>
         </h2>
         <div style={{display:'flex',justifyContent:'center'}}>
-          <a href="/auth/sign-up/" style={{
-            display:'inline-flex',alignItems:'center',gap:'10px',
-            padding:'16px 32px',borderRadius:'999px',
-            background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',
-            color:'#fff',fontSize:'15px',fontWeight:500,
-            textDecoration:'none',
-            boxShadow:'0 0 32px rgba(9,160,157,.35), 0 8px 24px rgba(0,0,0,.4)',
-            transition:'all .2s',
-            letterSpacing:'.01em',
-          }}>
+          <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
             Get started for free
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-          </a>
+          </Button>
         </div>
       </div>
     </section>
@@ -847,18 +832,9 @@ function BottomCTA() {
                 fontFamily:'Geist,sans-serif',minWidth:0,
               }}
             />
-            <button type="submit" style={{
-              display:'inline-flex',alignItems:'center',gap:'8px',
-              padding:'10px 20px',margin:'4px',
-              fontSize:'13px',fontWeight:600,color:'#fff',
-              background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))',
-              borderRadius:'8px',border:'none',cursor:'pointer',
-              whiteSpace:'nowrap',flexShrink:0,
-              fontFamily:'Geist,sans-serif',
-            }}>
+            <Button type="submit" variant="primary" size="sm" radius="lg" iconEnd={<ArrowRightIcon />} className="m-1 flex-shrink-0">
               Get Started
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-            </button>
+            </Button>
           </form>
         </div>
       </div>

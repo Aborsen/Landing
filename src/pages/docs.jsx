@@ -19,6 +19,11 @@ import securityMd from '../../docs/content/security.md?raw';
 import paymentsBillingMd from '../../docs/content/payments-billing.md?raw';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Button from '../components/Button';
+
+const ArrowRightIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+);
 
 function slugifyHeading(s) {
   return s.toLowerCase().trim()
@@ -340,15 +345,9 @@ function DocsAskQuestion() {
             padding:'9px 4px',
           }}
         />
-        <button type="submit" style={{
-          padding:'8px 18px', borderRadius:'7px',
-          background:'linear-gradient(135deg,var(--ins-text-highlight) 0%,var(--ins-color-teal-700) 100%)',
-          color:'#fff', fontSize:'13px', fontWeight:500,
-          border:'none', cursor:'pointer', fontFamily:'Geist,sans-serif',
-          flexShrink:0,
-        }}>
+        <Button type="submit" variant="primary" size="sm" radius="lg" className="flex-shrink-0">
           Ask AI
-        </button>
+        </Button>
       </form>
     </div>
   );
@@ -488,18 +487,9 @@ function PageFeedback() {
                   >
                     Skip
                   </button>
-                  <button type="submit" style={{
-                    padding:'6px 16px', borderRadius:'6px',
-                    background:'var(--ins-button-primary-bg)', border:'none',
-                    color:'#fff', fontSize:'12px', fontWeight:500,
-                    cursor:'pointer', fontFamily:'Geist,sans-serif',
-                    transition:'background .15s',
-                  }}
-                  onMouseEnter={e => e.currentTarget.style.background='var(--ins-button-primary-bg-hover)'}
-                  onMouseLeave={e => e.currentTarget.style.background='var(--ins-button-primary-bg)'}
-                  >
+                  <Button type="submit" variant="primary" size="sm" radius="md">
                     Send feedback
-                  </button>
+                  </Button>
                 </div>
               </form>
             </div>

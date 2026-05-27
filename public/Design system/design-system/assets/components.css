@@ -64,10 +64,22 @@
 .ins-btn__icon--leading  { margin-right: calc(var(--ins-space-xs) * -1); }
 .ins-btn__icon--trailing { margin-left: calc(var(--ins-space-xs) * -1); }
 
-/* Primary */
-.ins-btn--primary { background: var(--ins-button-primary-bg); color: var(--ins-button-primary-fg); }
-.ins-btn--primary:hover:not(:disabled) { background: var(--ins-button-primary-bg-hover); }
-.ins-btn--primary:active:not(:disabled) { background: var(--ins-button-primary-bg-active); }
+/* Primary — canonical hover adds a brand-glow shadow (PR 2). */
+.ins-btn--primary {
+  background: var(--ins-button-primary-bg);
+  color: var(--ins-button-primary-fg);
+  transition: background-color var(--ins-duration-base) var(--ins-easing-standard),
+              color var(--ins-duration-base) var(--ins-easing-standard),
+              box-shadow var(--ins-duration-base) var(--ins-easing-standard);
+}
+.ins-btn--primary:hover:not(:disabled) {
+  background: var(--ins-button-primary-bg-hover);
+  box-shadow: var(--ins-button-primary-shadow-hover);
+}
+.ins-btn--primary:active:not(:disabled) {
+  background: var(--ins-button-primary-bg-active);
+  box-shadow: none;
+}
 .ins-btn--primary:disabled,
 .ins-btn--primary[aria-disabled="true"] {
   background: var(--ins-button-primary-bg-disabled);
