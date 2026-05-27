@@ -1187,8 +1187,8 @@ function FAQ() {
 
   return (
     <section style={{padding:'100px 0',background:'linear-gradient(180deg,var(--ins-surface-container) 0%,var(--ins-surface-page) 100%)'}}>
-      <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'48px'}}>
+      <div style={{maxWidth:'880px',margin:'0 auto',padding:'0 24px'}}>
+        <div style={{textAlign:'center',marginBottom:'52px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
             <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>FAQ</span>
