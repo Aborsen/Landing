@@ -121,10 +121,13 @@ const _LEGACY_ARTICLES = [
   { title: 'The Future of Business Intelligence is Conversational', category: 'Data Analytics', date: 'Feb 14, 2026', readTime: '9 min', excerpt: 'Dashboards were built for an era of patience. AI chat is built for an era of speed. Here is what changes.', image: 'https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=600&h=320&fit=crop' },
 ];
 
-function BlogGrid({ activeCategory }) {
-  const filtered = activeCategory === 'All'
+function BlogGrid({ activeCategory, activeTag }) {
+  let filtered = activeCategory === 'All'
     ? POSTS
     : POSTS.filter(a => a.category === activeCategory);
+  if (activeTag) {
+    filtered = filtered.filter(p => Array.isArray(p.tags) && p.tags.includes(activeTag));
+  }
 
   return (
     <section style={{padding:'0 0 20px'}}>
@@ -259,27 +262,61 @@ function BottomCTA() {
 /* ── APP ── */
 function App() {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [activeTag, setActiveTag] = useState('');
 
-  // Deep-link from a blog-post Topics sidebar: when the page mounts on the
-  // client read ?category= and pre-filter the grid. Done in useEffect (not
-  // in useState initializer) because the prerender runs without `window`
+  // Deep-link from a blog-post Topics sidebar / tag chip: read ?category= and
+  // ?tag= from the URL on mount and pre-filter the grid. Done in useEffect
+  // (not in useState initializer) because the prerender runs without `window`
   // and the initializer doesn't re-run during hydration.
   useEffect(() => {
     if (typeof window === 'undefined') return;
     try {
-      const p = new URLSearchParams(window.location.search).get('category');
-      if (!p) return;
-      const match = POSTS.find(post => post.category === p);
-      if (match) setActiveCategory(match.category);
+      const params = new URLSearchParams(window.location.search);
+      const cat = params.get('category');
+      if (cat) {
+        const match = POSTS.find(post => post.category === cat);
+        if (match) setActiveCategory(match.category);
+      }
+      const tag = params.get('tag');
+      if (tag) setActiveTag(tag);
     } catch { /* ignore malformed URLSearchParams */ }
   }, []);
+
+  const clearTag = () => {
+    setActiveTag('');
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('tag');
+      window.history.replaceState({}, '', url);
+    }
+  };
 
   return (
     <div>
       <Header />
       <BlogHero />
       <CategoryFilter activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
-      <BlogGrid activeCategory={activeCategory} />
+      {activeTag && (
+        <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px 16px', display:'flex', justifyContent:'center'}}>
+          <div style={{
+            display:'inline-flex', alignItems:'center', gap:'10px',
+            padding:'8px 14px',
+            background:'var(--ins-surface-brand-tint)',
+            border:'1px solid var(--ins-border-brand)',
+            borderRadius:'var(--ins-radius-pill)',
+            fontSize:'13px',
+            color:'var(--ins-text-highlight)',
+          }}>
+            <span>Filtered by tag: <strong style={{fontWeight:600}}>#{activeTag}</strong></span>
+            <button onClick={clearTag} aria-label="Clear tag filter" style={{
+              background:'transparent', border:'none', color:'var(--ins-text-highlight)',
+              cursor:'pointer', fontSize:'13px', textDecoration:'underline', padding:0,
+              fontFamily:'inherit',
+            }}>Clear</button>
+          </div>
+        </div>
+      )}
+      <BlogGrid activeCategory={activeCategory} activeTag={activeTag} />
       <BottomCTA />
       <Footer />
     </div>

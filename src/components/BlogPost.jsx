@@ -505,15 +505,17 @@ function RelatedArticles({ currentSlug }) {
   const others = POSTS.filter(p => p.slug !== currentSlug).slice(0, 3);
   if (others.length === 0) return null;
   return (
-    <section style={{ marginTop: '80px', borderTop: '1px solid var(--ins-border-default)', paddingTop: '40px' }}>
-      <h2 style={{
+    <aside aria-label="Related articles" style={{ marginTop: '80px', borderTop: '1px solid var(--ins-border-default)', paddingTop: '40px' }}>
+      {/* div (not h2) so the related-articles block doesn't pollute the
+          article's outline / heading hierarchy — SEO-clean per QA. */}
+      <div style={{
         fontSize: '11px',
         fontWeight: 500,
         letterSpacing: '0.12em',
         textTransform: 'uppercase',
         color: 'var(--ins-text-inactive)',
         marginBottom: '20px',
-      }}>Related articles</h2>
+      }}>Related articles</div>
       <div className="blog-related-grid">
         {others.map(p => (
           <a key={p.slug} href={p.url} className="blog-related-card">
@@ -532,7 +534,8 @@ function RelatedArticles({ currentSlug }) {
                 fontWeight: 500,
                 letterSpacing: '0.04em',
               }}>{p.category}</span>
-              <h3 style={{
+              {/* p (not h3) for the same reason — keeps article outline clean. */}
+              <p style={{
                 fontSize: '15px',
                 fontWeight: 500,
                 color: 'var(--ins-text-heading)',
@@ -541,7 +544,8 @@ function RelatedArticles({ currentSlug }) {
                 WebkitLineClamp: 2,
                 WebkitBoxOrient: 'vertical',
                 overflow: 'hidden',
-              }}>{p.title}</h3>
+                margin: 0,
+              }}>{p.title}</p>
               <div style={{ fontSize: '11px', color: 'var(--ins-text-disabled)', fontFamily: 'var(--ins-font-family-mono)', marginTop: 'auto' }}>
                 {p.date} · {p.readTime} read
               </div>
@@ -549,7 +553,7 @@ function RelatedArticles({ currentSlug }) {
           </a>
         ))}
       </div>
-    </section>
+    </aside>
   );
 }
 
@@ -584,7 +588,7 @@ export default function BlogPost({ markdown, slug }) {
     .replace(/&nbsp;/g, ' ');
   const toc = [];
   const usedIds = new Set();
-  const html = rawHtml.replace(/<h2(\s[^>]*)?>([\s\S]*?)<\/h2>/g, (_match, attrs, inner) => {
+  let html = rawHtml.replace(/<h2(\s[^>]*)?>([\s\S]*?)<\/h2>/g, (_match, attrs, inner) => {
     const text = decodeEntities(inner.replace(/<[^>]+>/g, '')).trim();
     let id = slugify(text) || `section-${toc.length + 1}`;
     let candidate = id, n = 2;
@@ -594,6 +598,79 @@ export default function BlogPost({ markdown, slug }) {
     toc.push({ id, text });
     return `<h2 id="${id}"${attrs || ''}>${inner}</h2>`;
   });
+
+  // ── TL;DR callout ───────────────────────────────────────────
+  // Find the first H3 whose text matches "TL;DR" (and variants like
+  // "BTL;DR / Executive Summary") and wrap that heading + the content
+  // up to the next heading in a bordered <aside> with data-tldr for
+  // AI scrapers. Keeps the heading inside so the article outline still
+  // shows it, but the visual frame makes it pop.
+  html = html.replace(
+    /<h3(\s[^>]*)?>([^<]*?(?:tl;?dr|btl;?dr|executive summary)[\s\S]*?)<\/h3>([\s\S]*?)(?=<h[123][\s>])/i,
+    (_m, attrs, headingInner, bodyContent) => {
+      const headingText = decodeEntities(headingInner.replace(/<[^>]+>/g, '')).trim();
+      return `<aside class="blog-tldr" role="note" aria-label="TL;DR" data-tldr="executive-summary">
+        <div class="blog-tldr-badge">TL;DR</div>
+        <h3${attrs || ''}>${headingText}</h3>
+        ${bodyContent.trim()}
+      </aside>`;
+    }
+  );
+
+  // ── FAQ accordion + JSON-LD ─────────────────────────────────
+  // Find the H2 "FAQ Section" (or just "FAQ") and the H3/paragraph
+  // pairs that follow until the next H2. Convert each pair to a
+  // <details>/<summary> accordion item inside a bordered wrapper.
+  // Build a FAQPage JSON-LD schema from the extracted Q&As to be
+  // emitted alongside the article.
+  const faqItems = [];
+  html = html.replace(
+    /<h2(\s[^>]*)?>\s*(?:[\s\S]*?(?:FAQ(?:\s+Section)?)[\s\S]*?)<\/h2>([\s\S]*?)(?=<h2[\s>]|$)/i,
+    (_m, h2Attrs, faqBody) => {
+      // Pair every <h3>...</h3> with the HTML that follows it until the next <h3> (or end).
+      const pairRe = /<h3(?:\s[^>]*)?>([\s\S]*?)<\/h3>([\s\S]*?)(?=<h3[\s>]|$)/g;
+      let pair;
+      const items = [];
+      while ((pair = pairRe.exec(faqBody)) !== null) {
+        const question = decodeEntities(pair[1].replace(/<[^>]+>/g, '')).trim();
+        const answerHtml = pair[2].trim();
+        // Schema.org wants plain text answers; strip outer <p> tags but keep
+        // the inner HTML so links/lists survive in the rendered accordion.
+        const answerText = decodeEntities(answerHtml.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ')).trim();
+        if (!question || !answerText) continue;
+        items.push({ question, answerHtml, answerText });
+      }
+      if (items.length === 0) return _m;
+      faqItems.push(...items);
+      const accordion = items.map((it, i) => `
+        <details class="blog-faq-item"${i === 0 ? ' open' : ''}>
+          <summary>
+            <span class="blog-faq-q">${it.question}</span>
+            <span class="blog-faq-chev" aria-hidden="true">+</span>
+          </summary>
+          <div class="blog-faq-a">${it.answerHtml}</div>
+        </details>`).join('');
+      const id = 'faq';
+      return `<h2 id="${id}"${h2Attrs || ''}>FAQ</h2>
+        <div class="blog-faq">${accordion}</div>`;
+    }
+  );
+
+  // Re-track the FAQ entry in the TOC if we rewrote it (so the sidebar
+  // still links to it cleanly).
+  if (faqItems.length > 0 && !toc.some(t => t.id === 'faq')) {
+    toc.push({ id: 'faq', text: 'FAQ' });
+  }
+
+  const faqSchema = faqItems.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map(it => ({
+      "@type": "Question",
+      "name": it.question,
+      "acceptedAnswer": { "@type": "Answer", "text": it.answerText },
+    })),
+  } : null;
 
   const minutes = readingMinutes(bodySansH1);
   const cover = (slug && COVER_IMAGES[slug]) || null;
@@ -791,18 +868,23 @@ export default function BlogPost({ markdown, slug }) {
               }}>{meta.description}</p>
             )}
 
-            {/* Tags */}
+            {/* Tags — clickable, route to /blog/?tag=... to filter the index */}
             {tags.length > 0 && (
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '24px' }}>
                 {tags.map(t => (
-                  <span key={t} style={{
+                  <a key={t} href={`/blog/?tag=${encodeURIComponent(t)}`} style={{
                     fontSize: '11px',
                     padding: '3px 9px',
                     borderRadius: 'var(--ins-radius-pill)',
                     background: 'var(--ins-surface-card)',
                     border: '1px solid var(--ins-border-default)',
                     color: 'var(--ins-text-inactive)',
-                  }}>#{t}</span>
+                    textDecoration: 'none',
+                    transition: 'all .15s ease',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.color = 'var(--ins-text-highlight)'; e.currentTarget.style.borderColor = 'var(--ins-border-brand)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.color = 'var(--ins-text-inactive)'; e.currentTarget.style.borderColor = 'var(--ins-border-default)'; }}
+                  >#{t}</a>
                 ))}
               </div>
             )}
@@ -831,6 +913,16 @@ export default function BlogPost({ markdown, slug }) {
 
             {/* Body */}
             <div className="blog-prose" dangerouslySetInnerHTML={{ __html: html }} />
+
+            {/* FAQPage JSON-LD — emitted only when the article actually
+                has a FAQ section. Validated against schema.org / Google
+                Rich Results. */}
+            {faqSchema && (
+              <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+              />
+            )}
 
             {/* Share — bottom */}
             <ShareButtons slug={slug} title={meta.title} />
@@ -910,6 +1002,86 @@ export default function BlogPost({ markdown, slug }) {
           overflow: hidden;
         }
         .blog-related-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        /* TL;DR callout — bordered aside that wraps the H3 + the
+           summary paragraphs/lists below it. data-tldr attribute helps
+           AI scrapers identify the executive summary block cleanly. */
+        .blog-tldr {
+          margin: 28px 0 32px;
+          padding: 20px 22px 22px;
+          background: linear-gradient(135deg, rgba(9,160,157,0.06), rgba(9,160,157,0.02));
+          border: 1px solid var(--ins-border-brand);
+          border-left: 3px solid var(--ins-text-highlight);
+          border-radius: var(--ins-radius-lg);
+          position: relative;
+        }
+        .blog-tldr-badge {
+          display: inline-block;
+          font-size: 10px;
+          font-weight: 600;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: var(--ins-text-highlight);
+          font-family: var(--ins-font-family-mono);
+          background: var(--ins-surface-brand-tint);
+          border: 1px solid var(--ins-border-brand);
+          border-radius: var(--ins-radius-pill);
+          padding: 3px 10px;
+          margin-bottom: 12px;
+        }
+        .blog-tldr > h3 {
+          margin-top: 0 !important;
+          font-size: 18px;
+          color: var(--ins-text-heading);
+        }
+        .blog-tldr > * + * { margin-top: 12px; }
+        .blog-tldr p, .blog-tldr ul, .blog-tldr ol { color: var(--ins-text-body); }
+
+        /* FAQ accordion — bordered card containing one <details> per Q&A. */
+        .blog-faq {
+          margin: 24px 0 8px;
+          border: 1px solid var(--ins-border-default);
+          border-radius: var(--ins-radius-lg);
+          background: var(--ins-surface-card);
+          overflow: hidden;
+        }
+        .blog-faq-item {
+          border-bottom: 1px solid var(--ins-border-default);
+        }
+        .blog-faq-item:last-child { border-bottom: none; }
+        .blog-faq-item > summary {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+          padding: 16px 20px;
+          cursor: pointer;
+          list-style: none;
+          color: var(--ins-text-heading);
+          font-weight: 500;
+          font-size: 15px;
+          transition: background 180ms;
+        }
+        .blog-faq-item > summary::-webkit-details-marker { display: none; }
+        .blog-faq-item > summary:hover { background: rgba(255,255,255,0.02); }
+        .blog-faq-q { flex: 1; }
+        .blog-faq-chev {
+          font-size: 20px;
+          font-weight: 300;
+          color: var(--ins-text-highlight);
+          line-height: 1;
+          transition: transform 180ms;
+        }
+        .blog-faq-item[open] > summary .blog-faq-chev { transform: rotate(45deg); }
+        .blog-faq-a {
+          padding: 0 20px 18px;
+          color: var(--ins-text-body);
+          font-size: 15px;
+          line-height: 1.65;
+        }
+        .blog-faq-a > * + * { margin-top: 12px; }
+        .blog-faq-a a { color: var(--ins-text-highlight); text-decoration: underline; }
+        .blog-faq-a code { font-family: var(--ins-font-family-mono); font-size: 0.92em; background: var(--ins-surface-elevated); border-radius: var(--ins-radius-sm); padding: 1px 6px; }
 
         /* Prose typography */
         .blog-prose {
