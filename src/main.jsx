@@ -891,20 +891,31 @@ function Testimonials() {
 
 // ─── WHAT IS INSIGHTIS ───
 function AnimatedStat({ target, suffix, prefix, duration = 1800 }) {
-  const [count, setCount] = React.useState(0);
+  // Initialize at target so SSR + initial hydration render the REAL number
+  // (ISS-02). The count-up animation is purely enhancement: it kicks in only
+  // for below-the-fold elements that scroll into view AFTER mount. Above-fold
+  // elements render their final value immediately — no "0x / 0% / 0+" flash.
+  const [count, setCount] = React.useState(target);
   const [started, setStarted] = React.useState(false);
   const ref = React.useRef(null);
 
   React.useEffect(() => {
+    if (typeof window === 'undefined' || !ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    // If element is already in view at hydration time, skip the animation —
+    // the visitor would see a flash from target → 0 → target otherwise.
+    if (rect.top < window.innerHeight && rect.bottom > 0) return;
+
+    setCount(0); // armed for animation; below the fold, never rendered until scrolled to
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting && !started) {
         setStarted(true);
         observer.disconnect();
       }
     }, { threshold: 0.5 });
-    if (ref.current) observer.observe(ref.current);
+    observer.observe(ref.current);
     return () => observer.disconnect();
-  }, [started]);
+  }, []);
 
   React.useEffect(() => {
     if (!started) return;
@@ -923,7 +934,7 @@ function AnimatedStat({ target, suffix, prefix, duration = 1800 }) {
 
   return (
     <span ref={ref}>
-      {prefix}{count.toLocaleString()}{suffix}
+      {prefix}{count.toLocaleString('en-US')}{suffix}
     </span>
   );
 }
