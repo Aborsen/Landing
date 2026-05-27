@@ -4,6 +4,7 @@ import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
+import Chip from '../components/Chip';
 // Single source of truth: POSTS is built once in BlogPost.jsx from the real
 // markdown files. The listing here and the related-articles section on each
 // /blog/<slug> page consume the same list.
@@ -97,15 +98,21 @@ function CategoryFilter({ activeCategory, setActiveCategory }) {
     <section style={{padding:'0 0 40px'}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
         <div style={{display:'flex', justifyContent:'center', gap:'8px', flexWrap:'wrap', overflowX:'auto'}}>
-          {categories.map(cat => (
-            <button
-              key={cat}
-              className={`q-pill ${activeCategory === cat ? 'active' : ''}`}
-              onClick={() => setActiveCategory(cat)}
-            >
-              {cat}
-            </button>
-          ))}
+          {categories.map(cat => {
+            const isActive = activeCategory === cat;
+            return (
+              <Chip
+                key={cat}
+                as="button"
+                variant={isActive ? 'brand' : 'neutral'}
+                onClick={() => setActiveCategory(cat)}
+                aria-pressed={isActive}
+                style={{cursor:'pointer', padding:'8px 14px', fontSize:'13px'}}
+              >
+                {cat}
+              </Chip>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -189,22 +196,7 @@ function BlogGrid({ activeCategory, activeTag }) {
 function LoadMore() {
   return (
     <div style={{padding:'40px 0 60px', textAlign:'center'}}>
-      <button style={{
-        border:'1px solid rgba(255,255,255,.1)',
-        background:'transparent',
-        color:'var(--ins-text-inactive)',
-        borderRadius:'999px',
-        padding:'11px 24px',
-        fontSize:'14px',
-        cursor:'pointer',
-        fontFamily:"'Geist', sans-serif",
-        transition:'all .2s',
-      }}
-        onMouseEnter={e => e.target.style.color = '#fff'}
-        onMouseLeave={e => e.target.style.color = 'var(--ins-text-inactive)'}
-      >
-        Load More Articles
-      </button>
+      <Button variant="secondary" size="md">Load More Articles</Button>
     </div>
   );
 }
@@ -294,22 +286,14 @@ function App() {
       <CategoryFilter activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
       {activeTag && (
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px 16px', display:'flex', justifyContent:'center'}}>
-          <div style={{
-            display:'inline-flex', alignItems:'center', gap:'10px',
-            padding:'8px 14px',
-            background:'var(--ins-surface-brand-tint)',
-            border:'1px solid var(--ins-border-brand)',
-            borderRadius:'var(--ins-radius-pill)',
-            fontSize:'13px',
-            color:'var(--ins-text-highlight)',
-          }}>
-            <span>Filtered by tag: <strong style={{fontWeight:600}}>#{activeTag}</strong></span>
-            <button onClick={clearTag} aria-label="Clear tag filter" style={{
-              background:'transparent', border:'none', color:'var(--ins-text-highlight)',
-              cursor:'pointer', fontSize:'13px', textDecoration:'underline', padding:0,
-              fontFamily:'inherit',
-            }}>Clear</button>
-          </div>
+          <Chip
+            variant="brand"
+            onRemove={clearTag}
+            aria-label="Clear tag filter"
+            style={{fontSize:'13px', padding:'8px 14px'}}
+          >
+            Filtered by tag:&nbsp;<strong style={{fontWeight:600}}>#{activeTag}</strong>
+          </Chip>
         </div>
       )}
       <BlogGrid activeCategory={activeCategory} activeTag={activeTag} />

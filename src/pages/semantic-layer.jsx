@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import Button from '../components/Button';
 import SectionHeader from '../components/SectionHeader';
 import Card from '../components/Card';
+import Chip from '../components/Chip';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -1111,10 +1112,7 @@ function BeforeAfter() {
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'16px',alignItems:'stretch'}}>
           {/* Without */}
           <Card variant="glow" className="compare-card" style={{padding:'32px',display:'flex',flexDirection:'column',background:'var(--ins-color-red-a-06)',borderColor:'var(--ins-color-red-a-25)'}}>
-            <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'22px'}}>
-              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-status-error-fg)'}}/>
-              <span style={{fontSize:'13px',fontWeight:600,color:'var(--ins-status-error-fg)'}}>Without Semantic Layer</span>
-            </div>
+            <Chip variant="error" dot dotPulse style={{fontSize:'13px',fontWeight:600,marginBottom:'22px'}}>Without Semantic Layer</Chip>
             <div style={{flex:1,background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',display:'flex',flexDirection:'column'}}>
               <div style={{fontSize:'11px',color:'#8AA6B3',marginBottom:'8px'}}>→ "What's our MRR this month?"</div>
               <div style={{fontSize:'12.5px',color:'#505068',lineHeight:1.7}}>
@@ -1126,10 +1124,7 @@ function BeforeAfter() {
 
           {/* With Insightis */}
           <Card variant="glow" className="compare-card" style={{padding:'32px',display:'flex',flexDirection:'column'}}>
-            <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'22px'}}>
-              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-text-highlight)',boxShadow:'0 0 8px var(--ins-text-highlight)'}}/>
-              <span style={{fontSize:'13px',fontWeight:500,color:'var(--ins-text-highlight)'}}>With Insightis Semantic Layer</span>
-            </div>
+            <Chip variant="brand" dot dotPulse style={{fontSize:'13px',fontWeight:500,marginBottom:'22px'}}>With Insightis Semantic Layer</Chip>
             <div style={{flex:1,background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',display:'flex',flexDirection:'column'}}>
               <div style={{fontSize:'11px',color:'#8AA6B3',marginBottom:'8px'}}>→ "What's our MRR this month?"</div>
               <div style={{fontSize:'12.5px',color:'var(--ins-color-gray-200)',lineHeight:1.7}}>

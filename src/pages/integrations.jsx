@@ -8,6 +8,7 @@ import { INTEGRATIONS } from '../components/IntegrationsStrip';
 import ConnectorIcon from '../components/ConnectorIcon';
 import { CONNECTORS as MASTER_CONNECTORS } from '../data/connectors';
 import Card from '../components/Card';
+import Chip from '../components/Chip';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -544,17 +545,21 @@ function ConnectorsGallery() {
 
         {/* Category tabs */}
         <div style={{display:'flex',justifyContent:'center',gap:'8px',marginBottom:'28px',flexWrap:'wrap'}}>
-          {cats.map(cat => (
-            <button key={cat} onClick={() => setActiveCat(cat)} style={{
-              padding:'7px 18px',borderRadius:'999px',fontSize:'13px',fontWeight:500,
-              cursor:'pointer',fontFamily:'Geist,sans-serif',transition:'all .15s',
-              border:`1px solid ${cat===activeCat?'rgba(9,160,157,.5)':'rgba(255,255,255,.08)'}`,
-              background: cat===activeCat?'rgba(9,160,157,.08)':'transparent',
-              color: cat===activeCat?'var(--ins-text-highlight)':'var(--ins-text-inactive)',
-            }}>
-              {cat}
-            </button>
-          ))}
+          {cats.map(cat => {
+            const isActive = cat === activeCat;
+            return (
+              <Chip
+                key={cat}
+                as="button"
+                variant={isActive ? 'brand' : 'neutral'}
+                onClick={() => setActiveCat(cat)}
+                aria-pressed={isActive}
+                style={{padding:'7px 18px', fontSize:'13px', fontWeight:500, cursor:'pointer'}}
+              >
+                {cat}
+              </Chip>
+            );
+          })}
         </div>
 
         {/* Cards grid */}
@@ -723,10 +728,7 @@ function IntegrationImpact() {
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'16px',alignItems:'stretch'}}>
           {/* Disconnected data */}
           <Card variant="glow" className="compare-card" style={{padding:'32px',display:'flex',flexDirection:'column',background:'var(--ins-color-red-a-06)',borderColor:'var(--ins-color-red-a-25)'}}>
-            <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'22px'}}>
-              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-status-error-fg)'}}/>
-              <span style={{fontSize:'13px',fontWeight:600,color:'var(--ins-status-error-fg)'}}>Disconnected data</span>
-            </div>
+            <Chip variant="error" dot dotPulse style={{fontSize:'13px',fontWeight:600,marginBottom:'22px'}}>Disconnected data</Chip>
             <div style={{flex:1,background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',display:'flex',flexDirection:'column'}}>
               <div style={{fontSize:'11px',color:'#8AA6B3',marginBottom:'10px'}}>→ "Which channel drove the most signups last month?"</div>
               
@@ -752,10 +754,7 @@ function IntegrationImpact() {
 
           {/* Insightis */}
           <Card variant="glow" className="compare-card" style={{padding:'32px',display:'flex',flexDirection:'column'}}>
-            <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'22px'}}>
-              <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-text-highlight)',boxShadow:'0 0 8px var(--ins-text-highlight)'}}/>
-              <span style={{fontSize:'13px',fontWeight:500,color:'var(--ins-text-highlight)'}}>Insightis</span>
-            </div>
+            <Chip variant="brand" dot dotPulse style={{fontSize:'13px',fontWeight:500,marginBottom:'22px'}}>Insightis</Chip>
             <div style={{flex:1,background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',display:'flex',flexDirection:'column'}}>
              
               <div style={{fontSize:'12.5px',color:'var(--ins-color-gray-200)',lineHeight:1.6,marginBottom:'14px'}}>
