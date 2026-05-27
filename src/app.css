@@ -301,23 +301,9 @@ nav{
 .sc-panel .aw{align-self:stretch;display:flex;flex-direction:column;width:100%;height:100%;overflow:hidden}
 .sc-panel .aw-body{flex:1;overflow:hidden}
 
-.aw{
-  width:100%;background:rgba(10,14,19,.95);
-  border:1px solid rgba(255,255,255,.08);border-radius:var(--ins-radius-2xl);
-  box-shadow: none;
-  overflow:hidden
-}
-.aw-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(255,255,255,.025);border-bottom:1px solid rgba(255,255,255,.05)}
-/* p1 needs visible overflow so cursor/modal aren't clipped */
-#p1 .aw{overflow:visible;border-radius:var(--ins-radius-2xl)}
-#p1 .aw .panel{overflow:hidden;border-radius:0 0 14px 14px}
-.aw-dots{display:flex;gap:5px}
-.aw-dot{width:9px;height:9px;border-radius:50%}
-.aw-dot:nth-child(1){background:#FF5F57}
-.aw-dot:nth-child(2){background:#FEBC2E}
-.aw-dot:nth-child(3){background:#28C840}
-.aw-lbl{font-family:var(--ins-font-family-mono);font-size:10.5px;color:var(--ins-text-inactive);margin-left:2px;letter-spacing:.02em}
-.aw-body{padding:14px;display:flex;flex-direction:column;gap:10px}
+/* .aw + .aw-* removed in PR 6 — superseded by <CodeChip> component + .ins-code-chip class.
+   These selectors had no consumers in src/ (verified via grep) and are now expressed via
+   the DS-compliant CodeChip primitive. */
 
 .sc-steps{display:flex;flex-direction:column;background:rgba(10,14,19,.9);border-right:1px solid rgba(255,255,255,.05);text-align:left}
 .sc-step{

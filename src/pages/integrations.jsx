@@ -9,6 +9,7 @@ import ConnectorIcon from '../components/ConnectorIcon';
 import { CONNECTORS as MASTER_CONNECTORS } from '../data/connectors';
 import Card from '../components/Card';
 import Chip from '../components/Chip';
+import CodeChip from '../components/CodeChip';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -666,9 +667,7 @@ function HowSyncWorks() {
               </p>
 
               {/* Example chip */}
-              <div style={{padding:'10px 14px',background:'rgba(255,255,255,.03)',border:'1px solid rgba(255,255,255,.06)',borderRadius:'8px',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',fontStyle:'italic',width:'100%',maxWidth:'320px',boxSizing:'border-box'}}>
-                {s.example}
-              </div>
+              <CodeChip variant="inline" style={{maxWidth:'320px'}}>{s.example}</CodeChip>
             </div>
           ))}
         </div>
@@ -729,51 +728,59 @@ function IntegrationImpact() {
           {/* Disconnected data */}
           <Card variant="glow" className="compare-card" style={{padding:'32px',display:'flex',flexDirection:'column',background:'var(--ins-color-red-a-06)',borderColor:'var(--ins-color-red-a-25)'}}>
             <Chip variant="error" dot dotPulse style={{fontSize:'13px',fontWeight:600,marginBottom:'22px'}}>Disconnected data</Chip>
-            <div style={{flex:1,background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',display:'flex',flexDirection:'column'}}>
-              <div style={{fontSize:'11px',color:'#8AA6B3',marginBottom:'10px'}}>→ "Which channel drove the most signups last month?"</div>
-              
-              <div style={{display:'flex',flexDirection:'column',gap:'10px'}}>
-                {[
-                  {display:'3–5 days', label:'to produce one number',            sub:'export CSVs, VLOOKUP, reconcile by hand'},
-                  {display:'4 tools',  label:'to query for a request',   sub:'HubSpot, Stripe and the warehouse'},
-                ].map((s, i) => (
-                  <div key={i} style={{display:'flex',alignItems:'baseline',gap:'12px',fontSize:'12.5px',lineHeight:1.45}}>
-                    <span style={{color:'var(--ins-status-error-fg)',fontWeight:600,minWidth:'64px',flexShrink:0,fontVariantNumeric:'tabular-nums',letterSpacing:'-.02em'}}>
-                      {s.display}
-                    </span>
-                    <span style={{minWidth:0}}>
-                      <span style={{color:'#8A8A9A'}}>{s.label}</span>
-                      <span style={{color:'#5E5E70'}}> — {s.sub}</span>
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <CodeChip
+              variant="panel"
+              style={{flex:1,marginBottom:'12px'}}
+              query="Which channel drove the most signups last month?"
+              response={
+                <div style={{display:'flex',flexDirection:'column',gap:'10px'}}>
+                  {[
+                    {display:'3–5 days', label:'to produce one number',            sub:'export CSVs, VLOOKUP, reconcile by hand'},
+                    {display:'4 tools',  label:'to query for a request',   sub:'HubSpot, Stripe and the warehouse'},
+                  ].map((s, i) => (
+                    <div key={i} style={{display:'flex',alignItems:'baseline',gap:'12px',fontSize:'12.5px',lineHeight:1.45}}>
+                      <span style={{color:'var(--ins-status-error-fg)',fontWeight:600,minWidth:'64px',flexShrink:0,fontVariantNumeric:'tabular-nums',letterSpacing:'-.02em'}}>
+                        {s.display}
+                      </span>
+                      <span style={{minWidth:0}}>
+                        <span style={{color:'#8A8A9A'}}>{s.label}</span>
+                        <span style={{color:'#5E5E70'}}> — {s.sub}</span>
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              }
+            />
             <p style={{fontSize:'12px',color:'rgba(248,113,113,.6)',fontStyle:'italic'}}>Exports, manual joins, copy-pasted dashboards. Stale by the time they land.</p>
           </Card>
 
           {/* Insightis */}
           <Card variant="glow" className="compare-card" style={{padding:'32px',display:'flex',flexDirection:'column'}}>
             <Chip variant="brand" dot dotPulse style={{fontSize:'13px',fontWeight:500,marginBottom:'22px'}}>Insightis</Chip>
-            <div style={{flex:1,background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',display:'flex',flexDirection:'column'}}>
-             
-              <div style={{fontSize:'12.5px',color:'var(--ins-color-gray-200)',lineHeight:1.6,marginBottom:'14px'}}>
-                Answered in seconds. What direct integration unlocks:
-              </div>
-              <div style={{display:'flex',flexDirection:'column',gap:'10px'}}>
-                {STATS.map((s, i) => (
-                  <div key={i} style={{display:'flex',alignItems:'baseline',gap:'12px',fontSize:'12.5px',lineHeight:1.45}}>
-                    <span style={{color:'var(--ins-text-highlight)',fontWeight:600,minWidth:'64px',flexShrink:0,fontVariantNumeric:'tabular-nums',letterSpacing:'-.02em'}}>
-                      {s.display}
-                    </span>
-                    <span style={{minWidth:0}}>
-                      <span style={{color:'var(--ins-color-gray-200)'}}>{s.label}</span>
-                      <span style={{color:'#8AA6B3'}}> — {s.sub}</span>
-                    </span>
+            <CodeChip
+              variant="panel"
+              style={{flex:1,marginBottom:'12px'}}
+              response={
+                <>
+                  <div style={{fontSize:'12.5px',color:'var(--ins-color-gray-200)',lineHeight:1.6,marginBottom:'14px'}}>
+                    Answered in seconds. What direct integration unlocks:
                   </div>
-                ))}
-              </div>
-            </div>
+                  <div style={{display:'flex',flexDirection:'column',gap:'10px'}}>
+                    {STATS.map((s, i) => (
+                      <div key={i} style={{display:'flex',alignItems:'baseline',gap:'12px',fontSize:'12.5px',lineHeight:1.45}}>
+                        <span style={{color:'var(--ins-text-highlight)',fontWeight:600,minWidth:'64px',flexShrink:0,fontVariantNumeric:'tabular-nums',letterSpacing:'-.02em'}}>
+                          {s.display}
+                        </span>
+                        <span style={{minWidth:0}}>
+                          <span style={{color:'var(--ins-color-gray-200)'}}>{s.label}</span>
+                          <span style={{color:'#8AA6B3'}}> — {s.sub}</span>
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              }
+            />
             <p style={{fontSize:'12px',color:'rgba(9,160,157,.6)',fontStyle:'italic'}}>Direct connectors + Semantic Layer. Real numbers, refreshed continuously.</p>
           </Card>
         </div>

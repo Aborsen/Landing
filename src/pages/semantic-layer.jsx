@@ -7,6 +7,7 @@ import Button from '../components/Button';
 import SectionHeader from '../components/SectionHeader';
 import Card from '../components/Card';
 import Chip from '../components/Chip';
+import CodeChip from '../components/CodeChip';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -445,9 +446,7 @@ function WhatItDoes() {
               </p>
 
               {/* Example chip */}
-              <div style={{padding:'10px 14px',background:'rgba(255,255,255,.03)',border:'1px solid rgba(255,255,255,.06)',borderRadius:'8px',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',fontStyle:'italic',width:'100%',maxWidth:'320px',boxSizing:'border-box'}}>
-                {s.example}
-              </div>
+              <CodeChip variant="inline" style={{maxWidth:'320px'}}>{s.example}</CodeChip>
             </div>
           ))}
         </div>
@@ -990,9 +989,7 @@ function FeaturesShowcase() {
               </p>
 
               {/* Example chip */}
-              <div style={{padding:'10px 14px',background:'rgba(255,255,255,.03)',border:'1px solid rgba(255,255,255,.06)',borderRadius:'8px',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',fontStyle:'italic',width:'100%',maxWidth:'320px',boxSizing:'border-box'}}>
-                {s.example}
-              </div>
+              <CodeChip variant="inline" style={{maxWidth:'320px'}}>{s.example}</CodeChip>
             </div>
           ))}
         </div>
@@ -1113,24 +1110,24 @@ function BeforeAfter() {
           {/* Without */}
           <Card variant="glow" className="compare-card" style={{padding:'32px',display:'flex',flexDirection:'column',background:'var(--ins-color-red-a-06)',borderColor:'var(--ins-color-red-a-25)'}}>
             <Chip variant="error" dot dotPulse style={{fontSize:'13px',fontWeight:600,marginBottom:'22px'}}>Without Semantic Layer</Chip>
-            <div style={{flex:1,background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',display:'flex',flexDirection:'column'}}>
-              <div style={{fontSize:'11px',color:'#8AA6B3',marginBottom:'8px'}}>→ "What's our MRR this month?"</div>
-              <div style={{fontSize:'12.5px',color:'#505068',lineHeight:1.7}}>
-                Finance says <span style={{color:'var(--ins-status-error-fg)'}}>$52,000</span>. RevOps says <span style={{color:'var(--ins-status-error-fg)'}}>$47,200</span>. The CEO dashboard shows <span style={{color:'var(--ins-status-error-fg)'}}>$44,800</span>. Analysts spend Monday reconciling four spreadsheets before anyone can answer.
-              </div>
-            </div>
+            <CodeChip
+              variant="panel"
+              style={{flex:1,marginBottom:'12px'}}
+              query="What's our MRR this month?"
+              response={<span style={{color:'#505068'}}>Finance says <span style={{color:'var(--ins-status-error-fg)'}}>$52,000</span>. RevOps says <span style={{color:'var(--ins-status-error-fg)'}}>$47,200</span>. The CEO dashboard shows <span style={{color:'var(--ins-status-error-fg)'}}>$44,800</span>. Analysts spend Monday reconciling four spreadsheets before anyone can answer.</span>}
+            />
             <p style={{fontSize:'12px',color:'rgba(248,113,113,.6)',fontStyle:'italic'}}>Four definitions of "revenue". Four dashboards. Four different numbers.</p>
           </Card>
 
           {/* With Insightis */}
           <Card variant="glow" className="compare-card" style={{padding:'32px',display:'flex',flexDirection:'column'}}>
             <Chip variant="brand" dot dotPulse style={{fontSize:'13px',fontWeight:500,marginBottom:'22px'}}>With Insightis Semantic Layer</Chip>
-            <div style={{flex:1,background:'rgba(0,0,0,.3)',borderRadius:'10px',padding:'16px',marginBottom:'12px',fontFamily:'Geist Mono,monospace',display:'flex',flexDirection:'column'}}>
-              <div style={{fontSize:'11px',color:'#8AA6B3',marginBottom:'8px'}}>→ "What's our MRR this month?"</div>
-              <div style={{fontSize:'12.5px',color:'var(--ins-color-gray-200)',lineHeight:1.7}}>
-                @MRR = <span style={{color:'var(--ins-text-highlight)',fontWeight:500}}>$42,400</span> — March, blended across Stripe + HubSpot + Postgres. Every dashboard, chat, and board deck reads the same certified definition. Analysts ship insights, not reconciliations.
-              </div>
-            </div>
+            <CodeChip
+              variant="panel"
+              style={{flex:1,marginBottom:'12px'}}
+              query="What's our MRR this month?"
+              response={<>@MRR = <CodeChip.Highlight>$42,400</CodeChip.Highlight> — March, blended across Stripe + HubSpot + Postgres. Every dashboard, chat, and board deck reads the same certified definition. Analysts ship insights, not reconciliations.</>}
+            />
             <p style={{fontSize:'12px',color:'rgba(9,160,157,.6)',fontStyle:'italic'}}>One certified definition. Queried through the Semantic Layer. Always your numbers.</p>
           </Card>
         </div>

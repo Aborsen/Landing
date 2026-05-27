@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
 import IntegrationsStrip from '../components/IntegrationsStrip';
+import CodeChip from '../components/CodeChip';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -633,9 +634,7 @@ function HowItWorks() {
               </p>
 
               {/* Example chip */}
-              <div style={{padding:'10px 14px',background:'rgba(255,255,255,.03)',border:'1px solid rgba(255,255,255,.06)',borderRadius:'8px',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',fontStyle:'italic',width:'100%',maxWidth:'360px',boxSizing:'border-box'}}>
-                {s.example}
-              </div>
+              <CodeChip variant="inline" style={{maxWidth:'360px'}}>{s.example}</CodeChip>
             </div>
           ))}
         </div>
