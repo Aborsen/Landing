@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import IntegrationsStrip from './components/IntegrationsStrip';
 import Card from './components/Card';
 import BottomCTA from './components/BottomCTA';
+import TestimonialCard from './components/TestimonialCard';
 
 /* Single shared IntersectionObserver for all fade-ups.
    Replaces 33 per-component framer-motion `useInView` observers + re-render cascades.
@@ -874,23 +875,15 @@ function Testimonials() {
         <FadeUp delay={0.1}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
             {testimonials.map((t, i) => (
-              <div key={i} className="bg-[var(--ins-surface-card)] border border-[var(--ins-border-default)] rounded-2xl p-6 relative hover:border-[var(--ins-border-hover)] transition-colors">
-                <div aria-hidden="true" className="absolute top-5 right-5" style={{color:'var(--ins-text-inactive)',fontSize:'34px',fontFamily:'var(--ins-font-family-sans)',lineHeight:1,opacity:.5}}>&ldquo;</div>
-                <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_, j) => <StarIcon key={j} size={13} color="var(--ins-color-amber-400)" />)}
-                </div>
-                <p className="text-sm text-[var(--ins-text-inactive)] leading-relaxed mb-6">"{t.quote}"</p>
-                <div className="flex items-center gap-3">
-                  {t.avatar ? (
-                    <img src={t.avatar} alt={t.name} width="36" height="36" loading="lazy" className="w-9 h-9 rounded-full flex-shrink-0 object-cover" style={{border:'2px solid rgba(255,255,255,0.1)'}} onError={(e) => { e.currentTarget.style.display='none'; e.currentTarget.nextSibling.style.display='flex'; }} />
-                  ) : null}
-                  <div className="w-9 h-9 rounded-full flex-shrink-0 items-center justify-center text-xs font-semibold text-white" style={{background:'linear-gradient(135deg, var(--ins-text-highlight), var(--ins-color-teal-650))', border:'2px solid rgba(255,255,255,0.1)', display: t.avatar ? 'none' : 'flex'}}>{t.initials}</div>
-                  <div>
-                    <p className="text-sm font-medium text-white">{t.name}</p>
-                    <p className="text-xs text-[var(--ins-text-inactive)]">{t.role}</p>
-                  </div>
-                </div>
-              </div>
+              <TestimonialCard
+                key={i}
+                quote={t.quote}
+                name={t.name}
+                role={t.role}
+                avatar={t.avatar}
+                initials={t.initials}
+                showStars
+              />
             ))}
           </div>
         </FadeUp>

@@ -8,6 +8,7 @@ import BottomCTA from '../components/BottomCTA';
 import FAQAccordion from '../components/FAQAccordion';
 import PainPointGrid from '../components/PainPointGrid';
 import ComparisonCards from '../components/ComparisonCards';
+import TestimonialCard from '../components/TestimonialCard';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -1287,37 +1288,13 @@ function Testimonials() {
 
         <div data-testimonials-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'16px'}}>
           {items.map((t,i) => (
-            <div key={i} style={{
-              background:'rgba(13,17,23,.6)',
-              border:'1px solid rgba(255,255,255,.06)',
-              borderRadius:'16px',
-              padding:'28px',
-              display:'flex',flexDirection:'column',
-              position:'relative',overflow:'hidden',
-              transition:'all .2s',
-            }}
-              onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';}}
-              onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';}}
-            >
-              <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.4),transparent)'}}/>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style={{marginBottom:'14px',opacity:.5}}>
-                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h2c1 0 2 .75 2 2v.5C8 19 6 19 3 19v2zm12 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h2c1 0 2 .75 2 2v.5c0 3.5-2 3.5-5 3.5v2z" fill="var(--ins-text-highlight)"/>
-              </svg>
-              <p style={{fontSize:'15px',color:'var(--ins-color-gray-200)',lineHeight:1.6,marginBottom:'22px',flex:1}}>
-                {t.quote}
-              </p>
-              <div style={{paddingTop:'18px',borderTop:'1px solid rgba(255,255,255,.06)'}}>
-                <div style={{fontSize:'14px',color:'var(--ins-color-gray-100)',fontWeight:500}}>{t.name}</div>
-                <div style={{fontSize:'12px',color:'var(--ins-text-inactive)',marginTop:'2px'}}>{t.role}</div>
-                <div style={{
-                  display:'inline-block',marginTop:'10px',
-                  padding:'3px 10px',borderRadius:'999px',
-                  background:'rgba(255,255,255,.03)',border:'1px solid rgba(255,255,255,.07)',
-                  fontSize:'10.5px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',
-                  letterSpacing:'.04em',textTransform:'uppercase',
-                }}>{t.company}</div>
-              </div>
-            </div>
+            <TestimonialCard
+              key={i}
+              quote={t.quote}
+              name={t.name}
+              role={t.role}
+              company={t.company}
+            />
           ))}
         </div>
       </div>
