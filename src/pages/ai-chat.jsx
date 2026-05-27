@@ -7,6 +7,7 @@ import Button from '../components/Button';
 import Card from '../components/Card';
 import Chip from '../components/Chip';
 import CodeChip from '../components/CodeChip';
+import BottomCTA from '../components/BottomCTA';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -1148,29 +1149,16 @@ function MidCTA() {
 }
 
 /* ── BOTTOM CTA ── */
-function BottomCTA() {
+function BottomCTASection() {
   return (
     <section className="pt-8 pb-16 relative">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="relative rounded-2xl border border-[var(--ins-border-default)] py-8 px-8 md:px-12 overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6" style={{background:'linear-gradient(135deg, rgba(18,18,31,0.95) 0%, rgba(13,13,26,0.98) 50%, rgba(18,18,31,0.95) 100%)'}}>
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--ins-color-teal-600)]/30 to-transparent"></div>
-          <h2 className="text-2xl md:text-3xl font-medium text-white tracking-tight leading-tight flex-shrink-0">
-            Still waiting on <span style={{color:'rgba(7, 128, 126)'}}> insights</span> that take <span style={{color:'rgba(7, 128, 126)'}}> days?</span>
-          </h2>
-          <form action="/auth/sign-up/" method="get" className="flex items-center w-full md:w-auto md:min-w-[400px] bg-[var(--ins-color-promo-solid)] border border-[var(--ins-border-hover)] rounded-xl overflow-hidden focus-within:border-[var(--ins-color-teal-600)]/60 transition-colors">
-            <input
-              name="q"
-              type="text"
-              required
-              placeholder="What info are you looking for?"
-              aria-label="What info are you looking for?"
-              className="flex-1 bg-transparent text-sm text-white placeholder-[var(--ins-text-inactive)] px-4 py-3 outline-none min-w-0"
-            />
-            <Button type="submit" variant="primary" size="sm" radius="lg" iconEnd={<ArrowRightIcon />} className="m-1 flex-shrink-0">
-              Get Started
-            </Button>
-          </form>
-        </div>
+        <BottomCTA
+          variant="form"
+          title={<>Still waiting on <BottomCTA.Highlight> insights</BottomCTA.Highlight> that take <BottomCTA.Highlight> days?</BottomCTA.Highlight></>}
+          inputPlaceholder="What info are you looking for?"
+          ctaLabel="Get Started"
+        />
       </div>
     </section>
   );
@@ -1550,7 +1538,7 @@ function App() {
           Drafted answers for #1–#3 are in the <head> FAQPage JSON-LD — render the same text visibly so the schema matches the DOM.
           Answers #4–#6 still need author copy.
       */}
-      <BottomCTA />
+      <BottomCTASection />
       </main>
       <Footer />
     </div>

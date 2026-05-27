@@ -10,6 +10,7 @@ import { CONNECTORS as MASTER_CONNECTORS } from '../data/connectors';
 import Card from '../components/Card';
 import Chip from '../components/Chip';
 import CodeChip from '../components/CodeChip';
+import BottomCTA from '../components/BottomCTA';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -838,22 +839,14 @@ function MidCTA() {
 /* ── BOTTOM CTA ── */
 function CTA() {
   return (
-    <section aria-labelledby="cta-heading" className="pt-8 pb-16 relative">
+    <section className="pt-8 pb-16 relative">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 id="cta-heading" style={{position:'absolute',width:'1px',height:'1px',padding:0,margin:'-1px',overflow:'hidden',clip:'rect(0,0,0,0)',whiteSpace:'nowrap',border:0}}>Start connecting your stack</h2>
-        <div className="relative rounded-2xl border border-[var(--ins-border-default)] py-8 px-8 md:px-12 overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6" style={{background:'linear-gradient(135deg, rgba(18,18,31,0.95) 0%, rgba(13,13,26,0.98) 50%, rgba(18,18,31,0.95) 100%)'}}>
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--ins-color-teal-600)]/30 to-transparent"></div>
-          <p className="text-2xl md:text-3xl font-medium text-white tracking-tight leading-tight flex-shrink-0 m-0">
-            Your data is already there.<span style={{color:'rgba(7, 128, 126)'}}> Connect it in minutes.</span>
-          </p>
-          <form action="/auth/sign-up/" method="get" className="flex items-center w-full md:w-auto md:min-w-[400px] bg-[var(--ins-color-promo-solid)] border border-[var(--ins-border-hover)] rounded-xl overflow-hidden focus-within:border-[var(--ins-color-teal-600)]/60 transition-colors">
-            <label htmlFor="cta-connector-input" style={{position:'absolute',width:'1px',height:'1px',padding:0,margin:'-1px',overflow:'hidden',clip:'rect(0,0,0,0)',whiteSpace:'nowrap',border:0}}>Which tool do you want to connect?</label>
-            <input id="cta-connector-input" name="q" type="text" required placeholder="Which tool do you want to connect?" aria-label="Which tool do you want to connect?" className="flex-1 bg-transparent text-sm text-white placeholder-[var(--ins-text-inactive)] px-4 py-3 outline-none min-w-0"/>
-            <Button type="submit" aria-label="Get started" variant="primary" size="sm" radius="lg" iconEnd={<ArrowRightIcon />} className="m-1 flex-shrink-0">
-              Get Started
-            </Button>
-          </form>
-        </div>
+        <BottomCTA
+          variant="form"
+          title={<>Your data is already there.<BottomCTA.Highlight> Connect it in minutes.</BottomCTA.Highlight></>}
+          inputPlaceholder="Which tool do you want to connect?"
+          ctaLabel="Get Started"
+        />
       </div>
     </section>
   );

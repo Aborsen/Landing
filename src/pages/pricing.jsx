@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
 import Card from '../components/Card';
+import BottomCTA from '../components/BottomCTA';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -389,23 +390,19 @@ function FAQ() {
 }
 
 /* ── BOTTOM CTA ── */
-function BottomCTA() {
+function BottomCTASection() {
   return (
     <section style={{padding:'80px 0 100px',position:'relative',overflow:'hidden'}}>
       <div style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:'700px',height:'420px',background:'radial-gradient(ellipse, rgba(9,160,157,0.13) 0%, transparent 70%)',pointerEvents:'none'}}/>
       <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px',position:'relative',textAlign:'center'}}>
-        <h2 style={{fontSize:'clamp(22px,2.6vw,34px)',fontWeight:500,letterSpacing:'-.025em',lineHeight:1.2,marginBottom:'28px'}}>
-          <span style={{color:'var(--ins-color-gray-100)'}}>Start free. </span>
-          <span style={{color:'var(--ins-text-highlight)'}}>Upgrade when you're ready.</span>
-        </h2>
-        <div style={{display:'flex',justifyContent:'center',gap:'12px',flexWrap:'wrap'}}>
-          <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
-            Get started for free
-          </Button>
-          <Button as="a" href="/Company/Contacts" variant="secondary" size="lg">
-            Talk to sales
-          </Button>
-        </div>
+        <BottomCTA
+          variant="buttons"
+          title={<>Start free. <BottomCTA.Highlight>Upgrade when you're ready.</BottomCTA.Highlight></>}
+          ctaLabel="Get started for free"
+          ctaHref="/auth/sign-up/"
+          secondaryCtaLabel="Talk to sales"
+          secondaryCtaHref="/Company/Contacts"
+        />
       </div>
     </section>
   );
@@ -420,7 +417,7 @@ function App() {
       <PricingCards />
       <FeatureComparison />
       <FAQ />
-      <BottomCTA />
+      <BottomCTASection />
             </main>
       <Footer />
     </div>

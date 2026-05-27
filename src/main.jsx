@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import IntegrationsStrip from './components/IntegrationsStrip';
 import Card from './components/Card';
+import BottomCTA from './components/BottomCTA';
 
 /* Single shared IntersectionObserver for all fade-ups.
    Replaces 33 per-component framer-motion `useInView` observers + re-render cascades.
@@ -1117,31 +1118,18 @@ function SubscribeBanner() {
 
 
 // ─── BOTTOM CTA ───
-function BottomCTA() {
+function BottomCTASection() {
   return (
     <section className="pt-8 pb-16 relative">
       <div className="max-w-7xl mx-auto px-6">
         <FadeUp>
-          <div className="relative rounded-2xl border border-[var(--ins-border-default)] py-8 px-8 md:px-12 overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6" style={{background:'linear-gradient(135deg, rgba(18,18,31,0.95) 0%, rgba(13,13,26,0.98) 50%, rgba(18,18,31,0.95) 100%)'}}>
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--ins-color-teal-600)]/30 to-transparent"></div>
-            <h2 className="text-2xl md:text-3xl font-medium text-white tracking-tight leading-tight flex-shrink-0">
-              Still waiting on <span style={{color:'var(--ins-text-highlight)'}}>insights</span> that take <span style={{color:'var(--ins-text-highlight)'}}>days?</span>
-            </h2>
-            <form action="/auth/sign-up/" method="get" className="flex items-center w-full md:w-auto md:min-w-[400px] bg-[var(--ins-color-promo-solid)] border border-[var(--ins-border-hover)] rounded-xl overflow-hidden focus-within:border-[var(--ins-color-teal-600)]/60 transition-colors">
-              <label htmlFor="home-bottom-cta-q" className="sr-only">Ask a question</label>
-              <input
-                id="home-bottom-cta-q"
-                name="q"
-                type="text"
-                required
-                placeholder="Show me MRR by region last quarter"
-                className="flex-1 bg-transparent text-sm text-white placeholder-[var(--ins-text-inactive)] px-4 py-3 outline-none min-w-0"
-              />
-              <button type="submit" className="inline-flex items-center gap-2 px-5 py-2.5 m-1 text-sm font-medium text-white bg-gradient-to-r from-[var(--ins-color-teal-600)] to-[var(--ins-color-teal-500)] rounded-lg hover:shadow-[0_0_24px_rgba(7,128,126,0.5)] transition-all flex-shrink-0">
-                Get insights
-              </button>
-            </form>
-          </div>
+          <BottomCTA
+            variant="form"
+            title={<>Still waiting on <BottomCTA.Highlight>insights</BottomCTA.Highlight> that take <BottomCTA.Highlight>days?</BottomCTA.Highlight></>}
+            inputPlaceholder="Show me MRR by region last quarter"
+            inputAriaLabel="Ask a question"
+            ctaLabel="Get insights"
+          />
         </FadeUp>
       </div>
     </section>
@@ -1163,7 +1151,7 @@ function App() {
         <Testimonials />
         <WhatIsInsightis />
         <Pricing />
-        <BottomCTA />
+        <BottomCTASection />
       </main>
       <Footer />
     </div>

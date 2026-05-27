@@ -2245,3 +2245,135 @@ kbd, .ins-kbd {
   line-height: 1.5;
 }
 
+
+/* ══════════════════════════════════════════════════════════════════
+   34. BOTTOM CTA (PR 7)
+   Flagship organism — full-width section above the footer with an
+   eyebrow + headline + form-input + primary CTA. Variants:
+   - .ins-bottom-cta            : default form variant
+   - .ins-bottom-cta--buttons   : heading + button pair (no input)
+   - .ins-bottom-cta--text      : heading + single CTA button (no form)
+   Renders inside a Section with tone="tint" for the subtle radial glow.
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-bottom-cta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ins-space-xl);
+  padding: var(--ins-space-3xl) var(--ins-space-xl);
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  border-radius: var(--ins-radius-2xl);
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(18, 18, 31, 0.95) 0%, rgba(13, 13, 26, 0.98) 50%, rgba(18, 18, 31, 0.95) 100%);
+}
+@media (min-width: 768px) {
+  .ins-bottom-cta {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: var(--ins-space-2xl) var(--ins-space-3xl);
+  }
+}
+
+/* Top brand-glow line — replaces the inline absolute <div> some pages
+   used to add a faint teal stripe along the top edge. */
+.ins-bottom-cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ins-color-teal-a-30), transparent);
+  pointer-events: none;
+}
+
+.ins-bottom-cta__title {
+  flex-shrink: 0;
+  font-family: var(--ins-font-family-sans);
+  font-size: var(--ins-font-size-22);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: var(--ins-font-weight-500);
+  color: var(--ins-text-heading);
+  text-align: center;
+  margin: 0;
+}
+@media (min-width: 768px) {
+  .ins-bottom-cta__title {
+    text-align: left;
+    font-size: var(--ins-font-size-28);
+  }
+}
+
+/* Title highlight — teal-tinted inline span used by <BottomCTA.Highlight>. */
+.ins-bottom-cta__highlight {
+  color: var(--ins-text-highlight);
+}
+
+/* Form variant — input + submit button laid out horizontally in a single
+   rounded chrome. */
+.ins-bottom-cta__form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: var(--ins-color-promo-solid, var(--ins-surface-card));
+  border: var(--ins-border-width-1) solid var(--ins-border-hover);
+  border-radius: var(--ins-radius-xl);
+  overflow: hidden;
+  transition: border-color var(--ins-duration-base) var(--ins-easing-standard);
+}
+@media (min-width: 768px) {
+  .ins-bottom-cta__form { width: auto; min-width: 400px; }
+}
+.ins-bottom-cta__form:focus-within {
+  border-color: var(--ins-color-teal-a-60);
+}
+.ins-bottom-cta__form .ins-bottom-cta__input {
+  flex: 1;
+  min-width: 0;
+  height: auto;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: var(--ins-space-md) var(--ins-space-lg);
+  font-size: var(--ins-font-size-14);
+  color: var(--ins-text-heading);
+}
+.ins-bottom-cta__form .ins-bottom-cta__input::placeholder {
+  color: var(--ins-text-inactive);
+}
+.ins-bottom-cta__form .ins-bottom-cta__input:focus-visible {
+  box-shadow: none;
+  outline: none;
+  border: none;
+}
+
+/* Buttons + text variants — center the CTA pair beneath the title. */
+.ins-bottom-cta--buttons,
+.ins-bottom-cta--text {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--ins-space-4xl) var(--ins-space-xl);
+}
+.ins-bottom-cta--buttons .ins-bottom-cta__actions,
+.ins-bottom-cta--text .ins-bottom-cta__actions {
+  display: flex;
+  gap: var(--ins-space-md);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.ins-bottom-cta--buttons .ins-bottom-cta__title,
+.ins-bottom-cta--text .ins-bottom-cta__title {
+  text-align: center;
+  font-size: var(--ins-font-size-28);
+}
+@media (min-width: 768px) {
+  .ins-bottom-cta--buttons .ins-bottom-cta__title,
+  .ins-bottom-cta--text .ins-bottom-cta__title {
+    font-size: var(--ins-font-size-36);
+  }
+}
+

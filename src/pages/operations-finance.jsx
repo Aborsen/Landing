@@ -4,6 +4,7 @@ import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
+import BottomCTA from '../components/BottomCTA';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -1219,45 +1220,16 @@ function FAQ() {
 }
 
 /* ── BOTTOM CTA ── */
-function BottomCTA() {
+function BottomCTASection() {
   return (
     <section style={{paddingTop:'32px',paddingBottom:'64px',position:'relative'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{
-          position:'relative',borderRadius:'16px',
-          border:'1px solid rgba(30,30,48,1)',
-          padding:'32px 48px',overflow:'hidden',
-          display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'24px',
-          flexWrap:'wrap',
-          background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)',
-        }}>
-          <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
-          <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',lineHeight:1.2,flexShrink:0}}>
-            Stop reconciling <span style={{color:'var(--ins-button-primary-bg)'}}>spreadsheets.</span> Start controlling <span style={{color:'var(--ins-button-primary-bg)'}}> costs.</span>
-          </h3>
-          <form action="/auth/sign-up/" method="get" style={{
-            display:'flex',alignItems:'center',
-            width:'100%',maxWidth:'420px',
-            background:'#0D0D1A',border:'1px solid rgba(46,46,64,1)',
-            borderRadius:'12px',overflow:'hidden',
-            flex:'1 1 340px',
-          }}>
-            <input
-              name="q"
-              type="text"
-              required
-              placeholder="What cost or finance question can Insightis answer for your team?"
-              style={{
-                flex:1,background:'transparent',fontSize:'14px',color:'#fff',
-                padding:'12px 16px',outline:'none',border:'none',
-                fontFamily:'Geist,sans-serif',minWidth:0,
-              }}
-            />
-            <Button type="submit" variant="primary" size="sm" radius="lg" iconEnd={<ArrowRightIcon />} className="m-1 flex-shrink-0">
-              Get Started
-            </Button>
-          </form>
-        </div>
+        <BottomCTA
+          variant="form"
+          title={<>Stop reconciling <BottomCTA.Highlight>spreadsheets.</BottomCTA.Highlight> Start controlling <BottomCTA.Highlight> costs.</BottomCTA.Highlight></>}
+          inputPlaceholder="What cost or finance question can Insightis answer for your team?"
+          ctaLabel="Get Started"
+        />
       </div>
     </section>
   );
@@ -1274,7 +1246,7 @@ function App() {
       <UseCases />
       <RelevantIntegrations />
       <FAQ />
-      <BottomCTA />
+      <BottomCTASection />
             </main>
       <Footer />
     </div>
