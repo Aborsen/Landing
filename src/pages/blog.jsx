@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
 import Chip from '../components/Chip';
+import Input from '../components/Input';
 // Single source of truth: POSTS is built once in BlogPost.jsx from the real
 // markdown files. The listing here and the related-articles section on each
 // /blog/<slug> page consume the same list.
@@ -228,13 +229,16 @@ function BottomCTA() {
             borderRadius:'12px',overflow:'hidden',
             flexShrink:0,
           }}>
-            <input
+            <Input
+              hideLabel
+              label="Your work email"
               type="text"
               placeholder="Enter your work email"
               style={{
                 flex:1,background:'transparent',fontSize:'14px',color:'#fff',
                 padding:'12px 16px',outline:'none',border:'none',
                 fontFamily:'Geist,sans-serif',minWidth:0,
+                height:'auto',borderRadius:0,boxShadow:'none',
               }}
             />
             <Button variant="primary" size="sm" radius="lg" iconEnd={<ArrowRightIcon />} className="m-1 flex-shrink-0">

@@ -4,6 +4,7 @@ import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
+import Input from '../components/Input';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -150,27 +151,19 @@ function ModalForm({ open, onClose, type }) {
 
         <form onSubmit={handleSubmit} style={{display:'flex', flexDirection:'column', gap:'18px'}}>
           <div>
-            <label style={labelStyle}>Name</label>
-            <input type="text" placeholder="Your name" style={inputStyle}
-              onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='rgba(255,255,255,.08)'} />
+            <Input label="Name" type="text" placeholder="Your name" />
           </div>
           <div>
-            <label style={labelStyle}>Work Email</label>
-            <input type="email" placeholder="you@company.com" style={inputStyle}
-              onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='rgba(255,255,255,.08)'} />
+            <Input label="Work Email" type="email" placeholder="you@company.com" />
           </div>
           <div>
-            <label style={labelStyle}>Company</label>
-            <input type="text" placeholder="Your company name" style={inputStyle}
-              onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='rgba(255,255,255,.08)'} />
+            <Input label="Company" type="text" placeholder="Your company name" />
           </div>
 
           {isDemo ? (
             <>
               <div>
-                <label style={labelStyle}>Job Title</label>
-                <input type="text" placeholder="e.g. Data Lead, CTO" style={inputStyle}
-                  onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='rgba(255,255,255,.08)'} />
+                <Input label="Job Title" type="text" placeholder="e.g. Data Lead, CTO" />
               </div>
               <div>
                 <label style={labelStyle}>Team Size</label>
@@ -184,9 +177,12 @@ function ModalForm({ open, onClose, type }) {
                 </select>
               </div>
               <div>
-                <label style={labelStyle}>Message <span style={{fontWeight:400, textTransform:'none', letterSpacing:0}}>(optional)</span></label>
-                <textarea placeholder="Anything specific you'd like us to cover?" rows={3} style={{...inputStyle, resize:'vertical'}}
-                  onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='rgba(255,255,255,.08)'} />
+                <Input
+                  multiline
+                  label={<>Message <span style={{fontWeight:400, textTransform:'none', letterSpacing:0}}>(optional)</span></>}
+                  placeholder="Anything specific you'd like us to cover?"
+                  rows={3}
+                />
               </div>
             </>
           ) : (
@@ -213,14 +209,10 @@ function ModalForm({ open, onClose, type }) {
                 </select>
               </div>
               <div>
-                <label style={labelStyle}>Subject</label>
-                <input type="text" placeholder="Brief summary of your issue" style={inputStyle}
-                  onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='rgba(255,255,255,.08)'} />
+                <Input label="Subject" type="text" placeholder="Brief summary of your issue" />
               </div>
               <div>
-                <label style={labelStyle}>Description</label>
-                <textarea placeholder="Describe the issue in detail..." rows={4} style={{...inputStyle, resize:'vertical'}}
-                  onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='rgba(255,255,255,.08)'} />
+                <Input multiline label="Description" placeholder="Describe the issue in detail..." rows={4} />
               </div>
             </>
           )}
@@ -375,13 +367,15 @@ function CtaBanner() {
             <form onSubmit={handleSubmit} style={{display:'flex', alignItems:'center', flex:'1 1 400px', maxWidth:'460px', background:'rgba(13,13,26,1)', border:'1px solid rgba(46,46,64,1)', borderRadius:'12px', overflow:'hidden', transition:'border-color .15s'}}
               onFocus={e=>e.currentTarget.style.borderColor='rgba(7,128,126,.6)'}
               onBlur={e=>e.currentTarget.style.borderColor='rgba(46,46,64,1)'}>
-              <input
+              <Input
+                hideLabel
+                label="Your email address"
                 type="email"
                 placeholder="you@company.com"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 required
-                style={{flex:1, background:'transparent', border:'none', padding:'12px 16px', fontSize:'14px', color:'var(--ins-color-gray-100)', fontFamily:'Geist,sans-serif', outline:'none', minWidth:0}}
+                style={{flex:1, background:'transparent', border:'none', padding:'12px 16px', fontSize:'14px', color:'var(--ins-color-gray-100)', fontFamily:'Geist,sans-serif', outline:'none', minWidth:0, height:'auto', borderRadius:0, boxShadow:'none'}}
               />
               <Button type="submit" variant="primary" size="sm" radius="lg" iconEnd={<ArrowRightIcon />} className="m-1 flex-shrink-0">
                 Get in Touch
