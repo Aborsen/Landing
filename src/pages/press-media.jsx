@@ -3,22 +3,21 @@ import ReactDOM from 'react-dom/client';
 import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import SectionHeader from '../components/SectionHeader';
 
 /* ── PRESS HERO ── */
 function PressHero() {
   return (
     <section style={{padding:'120px 0 60px', position:'relative'}}>
       <div className="max-w-7xl mx-auto px-6 text-center relative">
-        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
-          <span style={{color:'var(--ins-button-primary-bg-hover)', fontSize:'12px'}}>&#10022;</span>
-          <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Press & Media</span>
-        </div>
-        <h1 className="fu1" style={{fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'20px'}}>
-          Insightis in the news.
-        </h1>
-        <p className="fu2" style={{fontSize:'17px', color:'rgba(255,255,255,.5)', maxWidth:'520px', margin:'0 auto', lineHeight:1.65}}>
-          Press resources, brand assets, and media inquiries. Everything you need to write about Insightis.
-        </p>
+        <SectionHeader
+          eyebrow="Press & Media"
+          title="Insightis in the news."
+          lede="Press resources, brand assets, and media inquiries. Everything you need to write about Insightis."
+          as="h1"
+          size="lg"
+          sparkle
+        />
       </div>
     </section>
   );

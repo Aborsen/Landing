@@ -900,14 +900,13 @@ function FeaturesShowcase() {
   return (
     <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,var(--ins-surface-page) 0%,var(--ins-surface-container) 100%)'}}>
       <div className="max-w-7xl mx-auto px-6">
-        <div style={{textAlign:'center',marginBottom:'64px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
-            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>How it works</span>
-          </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,textWrap:'balance'}}>
-            Your Semantic Layer, fully in control
-          </h2>
+        <div style={{marginBottom:'64px'}}>
+          <SectionHeader
+            eyebrow="How it works"
+            title="Your Semantic Layer, fully in control"
+            sparkle
+            size="lg"
+          />
         </div>
 
         {/* Horizontal stepper */}
@@ -999,17 +998,14 @@ function BeforeAfter() {
   return (
     <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,#101620 0%,var(--ins-surface-page) 100%)'}}>
       <div className="max-w-7xl mx-auto px-6">
-        <div style={{textAlign:'center',marginBottom:'56px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
-            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>The difference</span>
-          </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
-            Without vs with Semantic Layer
-          </h2>
-          <p style={{fontSize:'17px',color:'rgba(255,255,255,.7)',maxWidth:'500px',margin:'0 auto',lineHeight:1.7}}>
-            Four teams guess. Insightis certifies.
-          </p>
+        <div style={{marginBottom:'56px'}}>
+          <SectionHeader
+            eyebrow="The difference"
+            title="Without vs with Semantic Layer"
+            lede="Four teams guess. Insightis certifies."
+            sparkle
+            size="lg"
+          />
         </div>
 
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'16px',alignItems:'stretch'}}>

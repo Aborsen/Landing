@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import Button from '../components/Button';
 import BottomCTA from '../components/BottomCTA';
 import FAQAccordion from '../components/FAQAccordion';
+import SectionHeader from '../components/SectionHeader';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -797,17 +798,13 @@ function FeatureSpotlights() {
   return (
     <section id="spotlights" style={{padding:'80px 0 100px',background:'linear-gradient(180deg,var(--ins-surface-page) 0%,var(--ins-surface-container) 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'72px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>How it works</span>
-          </div>
-          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
-            Built for the way finance teams actually work
-          </h2>
-          <p style={{fontSize:'16px',color:'rgba(255,255,255,.7)',maxWidth:'560px',margin:'0 auto',lineHeight:1.65}}>
-            Four capabilities that turn finance from a spreadsheet pipeline into a real-time control function.
-          </p>
+        <div style={{marginBottom:'72px'}}>
+          <SectionHeader
+            eyebrow="How it works"
+            title="Built for the way finance teams actually work"
+            lede="Four capabilities that turn finance from a spreadsheet pipeline into a real-time control function."
+            sparkle
+          />
         </div>
 
         <div style={{display:'flex',flexDirection:'column',gap:'88px'}}>
@@ -918,14 +915,12 @@ function UseCases() {
             </Button>
           </div>
         </div>
-        <div style={{textAlign:'center',marginBottom:'56px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>Use cases</span>
-          </div>
-          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
-            What ops &amp; finance teams use Insightis for
-          </h2>
+        <div style={{marginBottom:'56px'}}>
+          <SectionHeader
+            eyebrow="Use cases"
+            title="What ops & finance teams use Insightis for"
+            sparkle
+          />
         </div>
 
         <div data-usecase-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'14px'}}>
@@ -1106,17 +1101,13 @@ function RelevantIntegrations() {
   return (
     <section style={{padding:'100px 0',background:'linear-gradient(180deg,var(--ins-surface-container) 0%,#101620 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'56px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>Your Finance Stack</span>
-          </div>
-          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
-            Works with every accounting, payroll, and billing tool
-          </h2>
-          <p style={{fontSize:'16px',color:'rgba(255,255,255,.7)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
-            Insightis integrates with your accounting, billing, payroll, and warehouse stack.
-          </p>
+        <div style={{marginBottom:'56px'}}>
+          <SectionHeader
+            eyebrow="Your Finance Stack"
+            title="Works with every accounting, payroll, and billing tool"
+            lede="Insightis integrates with your accounting, billing, payroll, and warehouse stack."
+            sparkle
+          />
         </div>
 
         <div data-connectors-grid style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'10px',marginBottom:'32px'}}>

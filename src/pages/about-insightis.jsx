@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
 import Input from '../components/Input';
+import SectionHeader from '../components/SectionHeader';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -65,12 +66,12 @@ function MissionValues() {
   return (
     <section style={{padding:'80px 0 100px'}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-        <div style={{textAlign:'center', marginBottom:'56px'}}>
-          <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
-            <span style={{color:'var(--ins-button-primary-bg-hover)', fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Our Values</span>
-          </div>
-          <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>Built on three principles</h2>
+        <div style={{marginBottom:'56px'}}>
+          <SectionHeader
+            eyebrow="Our Values"
+            title="Built on three principles"
+            sparkle
+          />
         </div>
         <div style={{display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'16px'}} className="md:grid-cols-3 grid-cols-1" >
           {values.map((v, i) => (
@@ -104,12 +105,12 @@ function WhatWeBuilt() {
   return (
     <section style={{padding:'80px 0 100px'}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-        <div style={{textAlign:'center', marginBottom:'56px'}}>
-          <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
-            <span style={{color:'var(--ins-button-primary-bg-hover)', fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>The Platform</span>
-          </div>
-          <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>One workspace for every data question</h2>
+        <div style={{marginBottom:'56px'}}>
+          <SectionHeader
+            eyebrow="The Platform"
+            title="One workspace for every data question"
+            sparkle
+          />
         </div>
         <div className="hidden md:flex" style={{alignItems:'flex-start', justifyContent:'space-between', gap:'0', position:'relative'}}>
           {pillars.map((p, i) => (
@@ -210,11 +211,12 @@ function OurStory() {
     <section style={{padding:'80px 0 100px'}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
         <div style={{marginBottom:'56px'}}>
-          <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'16px'}}>
-            <span style={{color:'var(--ins-button-primary-bg-hover)', fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Our Story</span>
-          </div>
-          <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>From data tools to data intelligence</h2>
+          <SectionHeader
+            eyebrow="Our Story"
+            title="From data tools to data intelligence"
+            align="left"
+            sparkle
+          />
         </div>
         <div style={{position:'relative'}}>
           {/* Vertical line */}

@@ -9,6 +9,7 @@ import Chip from '../components/Chip';
 import CodeChip from '../components/CodeChip';
 import BottomCTA from '../components/BottomCTA';
 import StepsProcess from '../components/StepsProcess';
+import SectionHeader from '../components/SectionHeader';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -804,17 +805,14 @@ function QuestionsGallery() {
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Heading */}
-        <div style={{textAlign:'center',marginBottom:'28px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
-            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>{"\u2726"}</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>What you can ask</span>
-          </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
-            What kind of questions can you ask Insightis?
-          </h2>
-          <p style={{fontSize:'clamp(16px,1.2vw,19px)',color:'rgba(255,255,255,.7)',maxWidth:'42rem',margin:'0 auto',lineHeight:1.7}}>
-            From daily standups to board meetings {"\u2014"} ask in plain English, get precise answers.
-          </p>
+        <div style={{marginBottom:'28px'}}>
+          <SectionHeader
+            eyebrow="What you can ask"
+            title="What kind of questions can you ask Insightis?"
+            lede={"From daily standups to board meetings \u2014 ask in plain English, get precise answers."}
+            sparkle
+            size="lg"
+          />
         </div>
 
         {/* Category pills */}
@@ -983,14 +981,13 @@ function HowItWorks() {
   return (
     <section style={{padding:'120px 0 140px'}}>
       <div className="max-w-7xl mx-auto px-6">
-        <div style={{textAlign:'center',marginBottom:'64px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
-            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>How it works</span>
-          </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,textWrap:'balance'}}>
-            From question to answer in seconds
-          </h2>
+        <div style={{marginBottom:'64px'}}>
+          <SectionHeader
+            eyebrow="How it works"
+            title="From question to answer in seconds"
+            sparkle
+            size="lg"
+          />
         </div>
 
         {/* Horizontal stepper */}
@@ -1005,17 +1002,14 @@ function AccuracyComparison() {
   return (
     <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,#101620 0%,var(--ins-surface-page) 100%)'}}>
       <div className="max-w-7xl mx-auto px-6">
-        <div style={{textAlign:'center',marginBottom:'56px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
-            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>Accuracy</span>
-          </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
-            Not the internet. Your data.
-          </h2>
-          <p style={{fontSize:'17px',color:'rgba(255,255,255,.7)',maxWidth:'500px',margin:'0 auto',lineHeight:1.7}}>
-            Generic AI guesses. Insightis knows.
-          </p>
+        <div style={{marginBottom:'56px'}}>
+          <SectionHeader
+            eyebrow="Accuracy"
+            title="Not the internet. Your data."
+            lede="Generic AI guesses. Insightis knows."
+            sparkle
+            size="lg"
+          />
         </div>
 
         {/* TODO SEO [P1]: Emit a semantic <table> companion to the comparison cards below.

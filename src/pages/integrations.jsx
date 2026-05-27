@@ -12,6 +12,7 @@ import Chip from '../components/Chip';
 import CodeChip from '../components/CodeChip';
 import BottomCTA from '../components/BottomCTA';
 import StepsProcess from '../components/StepsProcess';
+import SectionHeader from '../components/SectionHeader';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -533,17 +534,14 @@ function ConnectorsGallery() {
       <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 1.5rem'}}>
 
         {/* Heading */}
-        <div style={{textAlign:'center',marginBottom:'32px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
-            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:600,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>Built for every team</span>
-          </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'16px',textWrap:'balance'}}>
-            Which data sources does Insightis integrate with?
-          </h2>
-          <p style={{fontSize:'clamp(1rem,1.8vw,1.19rem)',color:'rgba(255,255,255,0.7)',maxWidth:'42rem',margin:'0 auto',lineHeight:1.7}}>
-            200+ connectors across CRMs, warehouses, and finance — synced live, ready to query.
-          </p>
+        <div style={{marginBottom:'32px'}}>
+          <SectionHeader
+            eyebrow="Built for every team"
+            title="Which data sources does Insightis integrate with?"
+            lede="200+ connectors across CRMs, warehouses, and finance — synced live, ready to query."
+            sparkle
+            size="lg"
+          />
         </div>
 
         {/* Category tabs */}
@@ -626,14 +624,13 @@ function HowSyncWorks() {
   return (
     <section style={{padding:'120px 0 140px',background:'var(--ins-surface-page)'}}>
       <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 1.5rem'}}>
-        <div style={{textAlign:'center',marginBottom:'64px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
-            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>How it works</span>
-          </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,textWrap:'balance'}}>
-            How does Insightis connect to your data sources?
-          </h2>
+        <div style={{marginBottom:'64px'}}>
+          <SectionHeader
+            eyebrow="How it works"
+            title="How does Insightis connect to your data sources?"
+            sparkle
+            size="lg"
+          />
         </div>
 
         {/* Horizontal stepper */}
@@ -655,17 +652,14 @@ function IntegrationImpact() {
       <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 1.5rem'}}>
 
         {/* Heading */}
-        <div style={{textAlign:'center',marginBottom:'56px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
-            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>Why direct integration matters</span>
-          </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
-            Tools guess. Insightis answers.
-          </h2>
-          <p style={{fontSize:'17px',color:'rgba(255,255,255,.7)',maxWidth:'500px',margin:'0 auto',lineHeight:1.7}}>
-            One source of truth. Answers in seconds.
-          </p>
+        <div style={{marginBottom:'56px'}}>
+          <SectionHeader
+            eyebrow="Why direct integration matters"
+            title="Tools guess. Insightis answers."
+            lede="One source of truth. Answers in seconds."
+            sparkle
+            size="lg"
+          />
           {/* TODO SEO [P1]: Replace the two <div>-based comparison cards below with a semantic <table>
               for AI/SERP extraction. Columns: "Dimension | Disconnected data | Insightis".
               Rows from audit:

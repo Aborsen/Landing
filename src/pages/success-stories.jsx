@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import SectionHeader from '../components/SectionHeader';
 
 /* ── STORIES HERO ── */
 function StoriesHero() {
@@ -88,12 +89,12 @@ function StoryGrid() {
   return (
     <section style={{padding:'40px 0 80px'}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-        <div style={{textAlign:'center', marginBottom:'56px'}}>
-          <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
-            <span style={{color:'var(--ins-button-primary-bg-hover)', fontSize:'12px'}}>&#10022;</span>
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>More Stories</span>
-          </div>
-          <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>How teams use Insightis</h2>
+        <div style={{marginBottom:'56px'}}>
+          <SectionHeader
+            eyebrow="More Stories"
+            title="How teams use Insightis"
+            sparkle
+          />
         </div>
         <div style={{display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'16px'}} className="md:grid-cols-3 grid-cols-1">
           {stories.map((s, i) => (

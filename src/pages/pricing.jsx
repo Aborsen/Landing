@@ -7,6 +7,7 @@ import Button from '../components/Button';
 import Card from '../components/Card';
 import BottomCTA from '../components/BottomCTA';
 import FAQAccordion from '../components/FAQAccordion';
+import SectionHeader from '../components/SectionHeader';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -18,17 +19,14 @@ function PricingHero() {
   return (
     <section style={{padding:'120px 0 40px',position:'relative',textAlign:'center'}}>
       <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px',position:'relative'}}>
-        <div className="fu0" style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'18px'}}>
-          <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
-          <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>Pricing</span>
-        </div>
-        <h1 className="fu1" style={{fontSize:'clamp(36px,4.8vw,62px)',fontWeight:500,letterSpacing:'-.03em',lineHeight:1.08,marginBottom:'20px'}}>
-          <span style={{color:'var(--ins-color-gray-100)'}}>Simple pricing. </span>
-          <span style={{color:'var(--ins-text-highlight)'}}>Powerful insights.</span>
-        </h1>
-        <p className="fu2" style={{fontSize:'clamp(16px,1.4vw,19px)',color:'rgba(255,255,255,.65)',lineHeight:1.65,maxWidth:'620px',margin:'0 auto'}}>
-          Start free. Scale as your team grows. Every plan includes the Semantic Layer, AI Chat, and 200+ connectors.
-        </p>
+        <SectionHeader
+          eyebrow="Pricing"
+          title={<><span style={{color:'var(--ins-color-gray-100)'}}>Simple pricing. </span><span style={{color:'var(--ins-text-highlight)'}}>Powerful insights.</span></>}
+          lede="Start free. Scale as your team grows. Every plan includes the Semantic Layer, AI Chat, and 200+ connectors."
+          as="h1"
+          size="lg"
+          sparkle
+        />
       </div>
     </section>
   );

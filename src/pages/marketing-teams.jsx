@@ -11,6 +11,7 @@ import FAQAccordion from '../components/FAQAccordion';
 import PainPointGrid from '../components/PainPointGrid';
 import ComparisonCards from '../components/ComparisonCards';
 import StepsProcess from '../components/StepsProcess';
+import SectionHeader from '../components/SectionHeader';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -577,17 +578,14 @@ function HowItWorks() {
   return (
     <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,var(--ins-surface-container) 0%,#101620 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'64px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
-            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>The Solution</span>
-          </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
-            Wire channels. Anchor metrics. Steer spend.
-          </h2>
-          <p style={{fontSize:'16px',color:'rgba(255,255,255,.7)',maxWidth:'640px',margin:'0 auto',lineHeight:1.65}}>
-            Three moves from disconnected channel data to live decisions on every dollar.
-          </p>
+        <div style={{marginBottom:'64px'}}>
+          <SectionHeader
+            eyebrow="The Solution"
+            title="Wire channels. Anchor metrics. Steer spend."
+            lede="Three moves from disconnected channel data to live decisions on every dollar."
+            sparkle
+            size="lg"
+          />
         </div>
 
         {/* Horizontal stepper */}
@@ -602,17 +600,13 @@ function BeforeAfter() {
   return (
     <section style={{padding:'100px 0',background:'linear-gradient(180deg,var(--ins-surface-page) 0%,var(--ins-surface-container) 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'52px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>The old way VS Insightis</span>
-          </div>
-          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
-            Campaign answers at the speed of the spend
-          </h2>
-          <p style={{fontSize:'16px',color:'rgba(255,255,255,.7)',maxWidth:'640px',margin:'0 auto',lineHeight:1.65}}>
-            Trade reviews for live attribution — react before the budget is gone.
-          </p>
+        <div style={{marginBottom:'52px'}}>
+          <SectionHeader
+            eyebrow="The old way VS Insightis"
+            title="Campaign answers at the speed of the spend"
+            lede="Trade reviews for live attribution — react before the budget is gone."
+            sparkle
+          />
         </div>
 
         <ComparisonCards

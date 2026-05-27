@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import SectionHeader from '../components/SectionHeader';
 
 /* ── SECURITY CONTENT ── */
 function SecurityContent() {
@@ -151,12 +152,12 @@ function SecurityContent() {
       {/* Security Controls Grid */}
       <section style={{padding:'80px 0'}}>
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-          <div style={{textAlign:'center', marginBottom:'56px'}}>
-            <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
-              <span style={{color:'var(--ins-button-primary-bg-hover)', fontSize:'12px'}}>&#x2726;</span>
-              <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Enterprise Security</span>
-            </div>
-            <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>Built-in security at every layer</h2>
+          <div style={{marginBottom:'56px'}}>
+            <SectionHeader
+              eyebrow="Enterprise Security"
+              title="Built-in security at every layer"
+              sparkle
+            />
           </div>
           <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))', gap:'16px'}}>
             {securityCards.map((v, i) => (
@@ -178,12 +179,12 @@ function SecurityContent() {
       {/* Compliance Section */}
       <section style={{padding:'80px 0'}}>
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-          <div style={{textAlign:'center', marginBottom:'56px'}}>
-            <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
-              <span style={{color:'var(--ins-button-primary-bg-hover)', fontSize:'12px'}}>&#x2726;</span>
-              <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Compliance</span>
-            </div>
-            <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>Industry-standard certifications</h2>
+          <div style={{marginBottom:'56px'}}>
+            <SectionHeader
+              eyebrow="Compliance"
+              title="Industry-standard certifications"
+              sparkle
+            />
           </div>
           <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))', gap:'16px', maxWidth:'960px', margin:'0 auto'}}>
             {complianceCards.map((c, i) => (
@@ -205,12 +206,12 @@ function SecurityContent() {
       {/* Your Data Promise */}
       <section style={{padding:'80px 0'}}>
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-          <div style={{textAlign:'center', marginBottom:'56px'}}>
-            <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
-              <span style={{color:'var(--ins-button-primary-bg-hover)', fontSize:'12px'}}>&#x2726;</span>
-              <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Data Protection</span>
-            </div>
-            <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>Your data, your rules</h2>
+          <div style={{marginBottom:'56px'}}>
+            <SectionHeader
+              eyebrow="Data Protection"
+              title="Your data, your rules"
+              sparkle
+            />
           </div>
           <div style={{maxWidth:'720px', margin:'0 auto'}}>
             <div style={{background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)', borderRadius:'16px', padding:'36px', position:'relative', overflow:'hidden'}}>
