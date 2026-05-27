@@ -8,6 +8,7 @@ import Card from '../components/Card';
 import Chip from '../components/Chip';
 import CodeChip from '../components/CodeChip';
 import BottomCTA from '../components/BottomCTA';
+import StepsProcess from '../components/StepsProcess';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -961,19 +962,19 @@ function HowItWorks() {
   const steps = [
     {
       n:'01', title:'You ask',
-      desc:'Type any business question in plain English — the same way you would ask a colleague. No SQL, no dashboards, no analyst required.',
+      body:'Type any business question in plain English — the same way you would ask a colleague. No SQL, no dashboards, no analyst required.',
       example:'"Which channel has the best CAC this quarter?"',
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinejoin="round"/></svg>,
     },
     {
       n:'02', title:'AI Engine goes to work',
-      desc:'Insightis validates and analyzes data across every connected source, applying your business logic for accurate, grounded results.',
+      body:'Insightis validates and analyzes data across every connected source, applying your business logic for accurate, grounded results.',
       example:'CRM + payments + product data → validated insight',
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M8 21h8M12 17v4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
     },
     {
       n:'03', title:'You get a precise answer',
-      desc:'Get an instant answer with visualization and suggested follow-ups. Save any answer as a live report in one click — no BI tool required.',
+      body:'Get an instant answer with visualization and suggested follow-ups. Save any answer as a live report in one click — no BI tool required.',
       example:'Answer + chart + "Why did this change?" suggestion',
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
     },
@@ -993,55 +994,7 @@ function HowItWorks() {
         </div>
 
         {/* Horizontal stepper */}
-        <div data-steps-grid style={{display:'grid',gridTemplateColumns:`repeat(${steps.length}, 1fr)`,gap:'24px',position:'relative'}}>
-          {steps.map((s,i) => (
-            <div key={i} data-step-cell style={{position:'relative',display:'flex',flexDirection:'column',alignItems:'center',textAlign:'center',padding:'0 8px'}}>
-              {/* Connector line — to the right of every step except the last */}
-              {i < steps.length - 1 && (
-                <div data-step-connector style={{position:'absolute',top:'28px',left:'calc(50% + 36px)',right:'calc(-50% + 36px)',height:'1px',background:'linear-gradient(90deg, rgba(9,160,157,.45) 0%, rgba(9,160,157,.18) 100%)',zIndex:0}}/>
-              )}
-
-              {/* Numbered circle */}
-              <div style={{
-                position:'relative',zIndex:1,
-                width:'56px',height:'56px',borderRadius:'50%',
-                border:'1px solid rgba(9,160,157,.45)',
-                background:'radial-gradient(circle at 50% 30%, rgba(9,160,157,.18) 0%, rgba(13,17,23,.95) 75%)',
-                display:'flex',alignItems:'center',justifyContent:'center',
-                boxShadow:'0 0 28px rgba(9,160,157,.18), inset 0 1px 0 rgba(255,255,255,.05)',
-                marginBottom:'22px',
-              }}>
-                <span style={{fontSize:'18px',fontWeight:600,color:'var(--ins-text-highlight)',fontFamily:"var(--ins-font-family-sans)",letterSpacing:'-.02em',fontVariantNumeric:'tabular-nums'}}>{s.n}</span>
-              </div>
-
-              {/* Title */}
-              <h3 style={{fontSize:'18px',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.02em',margin:'0 0 10px',lineHeight:1.2}}>
-                {s.title}
-              </h3>
-
-              {/* Description */}
-              <p style={{fontSize:'14px',color:'var(--ins-text-inactive)',lineHeight:1.7,margin:'0 0 16px',width:'100%',maxWidth:'320px'}}>
-                {s.desc}
-              </p>
-
-              {/* Example chip */}
-              <CodeChip variant="inline" style={{maxWidth:'320px'}}>{s.example}</CodeChip>
-            </div>
-          ))}
-        </div>
-
-        {/* Mobile responsive overrides */}
-        <style>{`
-          @media (max-width: 768px) {
-            [data-steps-grid] {
-              grid-template-columns: 1fr !important;
-              gap: 32px !important;
-            }
-            [data-steps-grid] [data-step-connector] {
-              display: none !important;
-            }
-          }
-        `}</style>
+        <StepsProcess steps={steps} />
       </div>
     </section>
   );
