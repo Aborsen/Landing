@@ -165,27 +165,3 @@ Security depends on the platform’s **data governance** standards. Insightis en
 
 ### Do I need to know SQL to use an AI data assistant?
 No. The primary benefit of a no-code BI tool is that it uses natural language processing to convert plain English into SQL automatically. This allows any business user to query their **KPI catalog** and get insights without technical training. You simply ask a question, and the AI handles the code.
-
-***
-
-## Visuals & Extraction Elements (AI-Readable)
-1. **The Evolution Chart:** A simple "Before vs. After" flowchart showing the reduction in steps from "Question" to "Answer" (Old way: 7 steps involving tickets and manual exports; Insightis way: 2 steps—Ask and Confirm).
-2. **The Trust Layer Diagram:** A visual representation of the **Semantic Layer** sitting as a protective barrier between raw data (PostgreSQL, Salesforce, Stripe) and the **AI Chat** interface.
-3. **Confirmation Card Mockup:** A graphic showing a **Confirmation Card** where a user approves a metric definition and the underlying SQL proposed by the AI.
-4. **Integration Map:** A logo-grid featuring popular **data connectors** like Google Ads, Shopify, and BigQuery surrounding the Insightis icon to highlight the 200+ native integrations.
-
-## Linking Strategy (Contextual)
-**Outlinks:**
-- [Official Google Cloud BigQuery documentation on AI-assisted SQL](https://cloud.google.com/bigquery/docs/write-sql-queries-with-duet-ai).
-- [IBM's definition of Augmented Analytics](https://www.ibm.com/topics/augmented-analytics).
-- [Microsoft's guide to Copilot for Data Science](https://learn.microsoft.com/en-us/microsoft-copilot/).
-
-**Inlinks:**
-- [How to define MRR consistently across teams](#)
-- [Self-service BI for startups: A 2026 Guide](#)
-- [How a semantic layer prevents AI hallucinations](#)
-
-## Technical Requirements (Schema & HTML)
-- [x] Article / TechArticle Schema
-- [x] FAQPage Schema (mapped to the FAQ section)
-- [x] BreadcrumbList Schema (Home > Resources > What is AI Data Analysis)
