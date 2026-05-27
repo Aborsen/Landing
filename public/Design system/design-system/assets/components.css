@@ -2063,3 +2063,115 @@ kbd, .ins-kbd {
   border-radius: var(--ins-radius-sm);
   box-shadow: var(--ins-shadow-xs);
 }
+
+
+/* ══════════════════════════════════════════════════════════════════
+   31. EYEBROW (PR 0)
+   Small uppercase label that sits above section h2s. Optional pill
+   treatment via .ins-eyebrow--pill. Optional sparkle slot for the
+   Lucide Sparkles icon used in the homepage hero.
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ins-space-xs);
+  font-family: var(--ins-font-family-sans);
+  font-size: var(--ins-font-size-11);
+  font-weight: var(--ins-font-weight-500);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ins-text-highlight);
+  margin: 0;
+  line-height: 1;
+}
+
+/* Pill treatment — used in hero eyebrows + section eyebrows that need more presence. */
+.ins-eyebrow--pill {
+  padding: 6px var(--ins-space-md);
+  background: var(--ins-color-teal-a-08);
+  border: var(--ins-border-width-1) solid var(--ins-color-teal-a-20);
+  border-radius: var(--ins-radius-pill);
+}
+
+/* Centered eyebrow inside a centered section header — kept as a separate modifier
+   so the bare .ins-eyebrow stays a true inline-flex element. */
+.ins-eyebrow--center {
+  margin-inline: auto;
+}
+
+.ins-eyebrow__sparkle {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   32. ICON BADGE (PR 0)
+   Circular tinted icon container used by PainPointGrid (red ✕),
+   ComparisonCards (red ✕ / teal ✓), StepsProcess (teal numbered),
+   feature cards, etc. Six tones × four sizes.
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--ins-radius-pill);
+  background: var(--ins-color-white-a-04);
+  border: var(--ins-border-width-1) solid var(--ins-color-white-a-08);
+  color: var(--ins-text-body);
+}
+
+.ins-icon-badge > svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 1.5;
+}
+
+/* Sizes */
+.ins-icon-badge--sm  { width: 30px; height: 30px; }
+.ins-icon-badge--sm > svg { width: 14px; height: 14px; }
+.ins-icon-badge--md  { width: 40px; height: 40px; }
+.ins-icon-badge--lg  { width: 52px; height: 52px; }
+.ins-icon-badge--lg > svg { width: 22px; height: 22px; }
+.ins-icon-badge--xl  { width: 64px; height: 64px; font-family: var(--ins-font-family-mono); font-size: var(--ins-font-size-18); font-weight: var(--ins-font-weight-500); }
+.ins-icon-badge--xl > svg { width: 28px; height: 28px; }
+
+/* Tones — background tint + border + icon color follow the same hue family. */
+.ins-icon-badge--teal {
+  background: var(--ins-color-teal-a-08);
+  border-color: var(--ins-color-teal-a-25);
+  color: var(--ins-text-highlight);
+}
+.ins-icon-badge--red {
+  background: var(--ins-color-red-a-06);
+  border-color: var(--ins-color-red-a-25);
+  color: var(--ins-status-error-fg);
+}
+.ins-icon-badge--amber {
+  background: var(--ins-color-status-warning-bg, rgba(245, 158, 11, 0.08));
+  border-color: rgba(245, 158, 11, 0.25);
+  color: var(--ins-status-warning-fg);
+}
+.ins-icon-badge--green {
+  background: var(--ins-color-status-success-bg, rgba(34, 197, 94, 0.08));
+  border-color: rgba(34, 197, 94, 0.25);
+  color: var(--ins-status-success-fg);
+}
+.ins-icon-badge--purple {
+  background: var(--ins-color-status-planned-bg, rgba(168, 85, 247, 0.08));
+  border-color: rgba(168, 85, 247, 0.25);
+  color: var(--ins-status-planned-fg);
+}
+.ins-icon-badge--neutral {
+  /* falls back to the bare .ins-icon-badge defaults — defined for explicit prop-driven use */
+  background: var(--ins-color-white-a-04);
+  border-color: var(--ins-color-white-a-08);
+  color: var(--ins-text-body);
+}
+

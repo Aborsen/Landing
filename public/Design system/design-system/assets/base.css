@@ -265,9 +265,51 @@ h1, h2, h3, h4, h5, h6 { font-weight: inherit; font-size: inherit; }
 @media (min-width: 768px)  { .ins-container { padding-inline: var(--ins-container-padding-tablet); } }
 @media (min-width: 1280px) { .ins-container { padding-inline: var(--ins-container-padding-desktop); } }
 
-/* Section — vertical rhythm */
-.ins-section { padding-block: var(--ins-space-5xl); }
+/* Section — vertical rhythm.
+   Default (.ins-section alone) keeps existing space-5xl / space-6xl behavior to avoid
+   regressing legacy callers. The size modifiers below give explicit, named tiers used
+   by the <Section padding="..."> React atom. The tone modifier (--tint) applies a
+   subtle teal radial-glow background; --dark applies a deeper surface than page bg. */
+.ins-section { padding-block: var(--ins-space-5xl); position: relative; }
 @media (min-width: 768px)  { .ins-section { padding-block: var(--ins-space-6xl); } }
+
+/* Padding tiers (mobile values; desktop bumps via inner @media below) */
+.ins-section--sm  { padding-block: var(--ins-space-3xl); }   /* 48 px — compact */
+.ins-section--md  { padding-block: var(--ins-space-4xl); }   /* 64 px */
+.ins-section--lg  { padding-block: var(--ins-space-5xl); }   /* 80 px — canonical */
+.ins-section--xl  { padding-block: var(--ins-space-6xl); }   /* 96 px — hero, bottom CTA */
+@media (min-width: 768px) {
+  .ins-section--sm { padding-block: var(--ins-space-4xl); }  /* 64 px */
+  .ins-section--md { padding-block: var(--ins-space-5xl); }  /* 80 px */
+  .ins-section--lg { padding-block: var(--ins-space-6xl); }  /* 96 px */
+  .ins-section--xl { padding-block: var(--ins-space-7xl, 120px); }  /* 120 px (fallback if token absent) */
+}
+
+/* Tone modifiers — opt-in background treatments. */
+.ins-section--tint {
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, var(--ins-color-teal-a-08), transparent 70%),
+    radial-gradient(ellipse 40% 40% at 50% 100%, var(--ins-color-teal-a-06), transparent 70%);
+}
+.ins-section--dark {
+  background: var(--ins-surface-elevated);
+}
+
+/* Section inner container — combines max-width + horizontal padding in one wrapper.
+   Use as: <section class="ins-section ins-section--lg"><div class="ins-section__inner">…</div></section> */
+.ins-section__inner {
+  width: 100%;
+  max-width: var(--ins-container-max);
+  margin-inline: auto;
+  padding-inline: var(--ins-container-padding-mobile);
+}
+@media (min-width: 768px)  { .ins-section__inner { padding-inline: var(--ins-container-padding-tablet); } }
+@media (min-width: 1280px) { .ins-section__inner { padding-inline: var(--ins-container-padding-desktop); } }
+
+/* Container max-width overrides for narrower content (5xl / 6xl). */
+.ins-section--container-5xl .ins-section__inner { max-width: 64rem; }   /* 1024 px */
+.ins-section--container-6xl .ins-section__inner { max-width: 72rem; }   /* 1152 px */
+.ins-section--container-7xl .ins-section__inner { max-width: 80rem; }   /* 1280 px — canonical */
 
 /* Grid (column count varies by breakpoint) */
 .ins-grid {

@@ -321,6 +321,8 @@
   --ins-button-primary-bg-active:    var(--ins-color-teal-850);
   --ins-button-primary-bg-disabled:  var(--ins-color-teal-950);
   --ins-button-primary-fg:           var(--ins-color-white);
+  /* Canonical hover glow for primary CTAs (PR 0 — applied site-wide in PR 2). */
+  --ins-button-primary-shadow-hover: var(--ins-glow-brand);
 
   --ins-button-secondary-bg:          var(--ins-surface-card);
   --ins-button-secondary-bg-hover:    var(--ins-surface-elevated);
