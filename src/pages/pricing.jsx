@@ -370,7 +370,7 @@ function FAQ() {
   ];
   return (
     <section style={{padding:'60px 0 80px'}}>
-      <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px'}}>
+      <div style={{maxWidth:'880px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'40px'}}>
           <h2 style={{fontSize:'clamp(26px,3.4vw,38px)',fontWeight:500,color:'#fff',letterSpacing:'-.025em',marginBottom:'10px'}}>Frequently asked questions</h2>
         </div>
