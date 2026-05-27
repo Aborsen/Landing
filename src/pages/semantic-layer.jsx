@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import SectionHeader from '../components/SectionHeader';
 
 /* ── HERO CANVAS — Chaotic data connections calming down ── */
 /* ── HERO CANVAS — Sources converge → green orb → disappear ── */
@@ -395,14 +396,14 @@ function WhatItDoes() {
   return (
     <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,var(--ins-surface-page) 0%,var(--ins-surface-container) 100%)'}}>
       <div className="max-w-7xl mx-auto px-6">
-        <div style={{textAlign:'center',marginBottom:'64px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'16px'}}>
-            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>How it works</span>
-          </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,textWrap:'balance'}}>
-            One layer. Every metric. Always right.
-          </h2>
+        {/* PR 1 canary — replaces hand-rolled eyebrow + h2 with <SectionHeader> */}
+        <div style={{marginBottom:'64px'}}>
+          <SectionHeader
+            eyebrow="How it works"
+            title="One layer. Every metric. Always right."
+            sparkle
+            size="lg"
+          />
         </div>
 
         {/* Horizontal stepper */}
@@ -1015,18 +1016,15 @@ function ConnectorGallery() {
     <section style={{padding:'80px 0 100px', background:'linear-gradient(180deg,var(--ins-surface-container) 0%,#101620 100%)'}}>
       <div className="max-w-7xl mx-auto px-6">
 
-        {/* Heading */}
-        <div style={{textAlign:'center',marginBottom:'28px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:600,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>Metrics catalog</span>
-          </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,textWrap:'balance',marginBottom:'12px'}}>
-            Define, certify, and version your metrics
-          </h2>
-          <p style={{fontSize:'clamp(1rem,1.8vw,1.19rem)',color:'rgba(255,255,255,0.7)',maxWidth:'42rem',margin:'0 auto',lineHeight:1.7}}>
-            Every metric defined once, certified, and used by every team — across RevOps, Finance, and Marketing.
-          </p>
+        {/* PR 1 canary — replaces hand-rolled eyebrow + h2 + lede with <SectionHeader> */}
+        <div style={{marginBottom:'28px'}}>
+          <SectionHeader
+            eyebrow="Metrics catalog"
+            title="Define, certify, and version your metrics"
+            lede="Every metric defined once, certified, and used by every team — across RevOps, Finance, and Marketing."
+            sparkle
+            size="lg"
+          />
         </div>
 
         {/* Category tabs */}
