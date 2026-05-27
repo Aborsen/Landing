@@ -6,6 +6,40 @@
 @tailwind utilities;
   /* Reset, scroll-behavior, body font, focus-ring all come from Design System base.css */
 
+  /* ISS-24 / ISS-77 — global keyboard focus ring. Tabbing through nav,
+     CTAs, inputs, and chips now shows a clear teal outline + glow so
+     keyboard-only users can see where they are. Mouse users are
+     unaffected (`:focus-visible` doesn't trigger on click). */
+  :focus { outline: none; }
+  :focus-visible {
+    outline: 2px solid var(--ins-text-highlight, #0EC4C1);
+    outline-offset: 2px;
+    border-radius: 4px;
+    box-shadow: 0 0 0 4px rgba(9, 160, 157, 0.25);
+  }
+  /* Buttons / anchors with their own border radius keep the ring snug. */
+  a:focus-visible, button:focus-visible {
+    outline-offset: 3px;
+  }
+
+  /* ISS-48 — honor user's prefers-reduced-motion setting. Decorative
+     animations (hero caret blink, integrations marquee, KPI counter,
+     fade-up entrances) freeze; state-communicating animations
+     (spinners, typing dots) keep running as they convey live state. */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-left, .marquee-right,
+    .marquee-left-slow, .marquee-right-slow {
+      animation: none !important;
+    }
+    .fade-up { opacity: 1 !important; transform: none !important; transition: none !important; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   /* Marquee animations */
   @keyframes marquee-left {
     0% { transform: translateX(0); }

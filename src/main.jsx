@@ -1118,12 +1118,13 @@ function BottomCTA() {
               Still waiting on <span style={{color:'var(--ins-text-highlight)'}}>insights</span> that take <span style={{color:'var(--ins-text-highlight)'}}>days?</span>
             </h2>
             <form action="/auth/sign-up/" method="get" className="flex items-center w-full md:w-auto md:min-w-[400px] bg-[var(--ins-color-promo-solid)] border border-[var(--ins-border-hover)] rounded-xl overflow-hidden focus-within:border-[var(--ins-color-teal-600)]/60 transition-colors">
+              <label htmlFor="home-bottom-cta-q" className="sr-only">Ask a question</label>
               <input
+                id="home-bottom-cta-q"
                 name="q"
                 type="text"
                 required
                 placeholder="Show me MRR by region last quarter"
-                aria-label="Ask a question"
                 className="flex-1 bg-transparent text-sm text-white placeholder-[var(--ins-text-inactive)] px-4 py-3 outline-none min-w-0"
               />
               <button type="submit" className="inline-flex items-center gap-2 px-5 py-2.5 m-1 text-sm font-medium text-white bg-gradient-to-r from-[var(--ins-color-teal-600)] to-[var(--ins-color-teal-500)] rounded-lg hover:shadow-[0_0_24px_rgba(7,128,126,0.5)] transition-all flex-shrink-0">
