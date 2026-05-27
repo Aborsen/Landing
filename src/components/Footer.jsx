@@ -49,7 +49,7 @@ export default function Footer() {
               <Logo height={26}/>
             </a>
             <p className="text-xs font-medium text-text-highlight uppercase tracking-wider mb-2">AI Analytics Workspace for instant insights</p>
-            <p className="text-sm text-text-disabled leading-relaxed" style={{ textWrap: 'pretty' }}>Built by the Devart team — the trusted data partner of 40,000+ companies worldwide for over 28 years.</p>
+            <p className="text-sm text-text-secondary leading-relaxed" style={{ textWrap: 'pretty' }}>Built by the Devart team — the trusted data partner of 40,000+ companies worldwide for over 28 years.</p>
           </div>
 
           {/* 5 text columns — pushed to the right edge */}
@@ -57,37 +57,37 @@ export default function Footer() {
 
             {/* Platform */}
             <div>
-              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-muted mb-4 whitespace-nowrap">Platform</h3>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-primary mb-4 whitespace-nowrap">Platform</h3>
               <ul className="flex flex-col gap-2.5">
                 {['AI Chat', 'Integrations', 'Semantic Layer'].map(link => (
-                  <li key={link}><a href={linkUrls[link] || '#'} className="text-sm text-text-muted hover:text-text-primary transition-colors whitespace-nowrap">{link}</a></li>
+                  <li key={link}><a href={linkUrls[link] || '#'} className="text-sm text-text-secondary hover:text-text-primary transition-colors whitespace-nowrap">{link}</a></li>
                 ))}
               </ul>
             </div>
 
             {/* Solutions */}
             <div>
-              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-muted mb-4 whitespace-nowrap">Solutions</h3>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-primary mb-4 whitespace-nowrap">Solutions</h3>
               <ul className="flex flex-col gap-2.5">
                 {['For RevOps & BizOps', 'For Founders & CEOs', 'For CMOs & Marketers', 'For Product Teams', 'For Data & Analytics Teams', 'For Operations & Finance'].map(link => (
-                  <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-text-muted hover:text-text-primary transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                  <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-text-secondary hover:text-text-primary transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
               </ul>
             </div>
 
             {/* Resources */}
             <div>
-              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-muted mb-4 whitespace-nowrap">Resources</h3>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-primary mb-4 whitespace-nowrap">Resources</h3>
               <ul className="flex flex-col gap-2.5">
                 {['Documentation', 'Prompt Library', 'Blog', 'Support Center', 'Roadmap', 'Data Connectors'].map(link => (
-                  <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-text-muted hover:text-text-primary transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                  <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-text-secondary hover:text-text-primary transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
               </ul>
             </div>
 
             {/* Company */}
             <div>
-              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-muted mb-4 whitespace-nowrap">Company</h3>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-primary mb-4 whitespace-nowrap">Company</h3>
               <ul className="flex flex-col gap-2.5">
                 {[
                   { label: 'About Insightis', href: '../Company/About Insightis' },
@@ -95,14 +95,14 @@ export default function Footer() {
                   { label: 'Careers', href: 'https://www.devart.com/vacancies/' },
                   { label: 'Contacts', href: '../Company/Contacts' },
                 ].map(link => (
-                  <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-text-muted hover:text-text-primary transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                  <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-text-secondary hover:text-text-primary transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
               </ul>
             </div>
 
             {/* Legal */}
             <div>
-              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-muted mb-4 whitespace-nowrap">Legal</h3>
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-primary mb-4 whitespace-nowrap">Legal</h3>
               <ul className="flex flex-col gap-2.5">
                 {[
                   { label: 'Privacy', href: '../Security/Privacy' },
@@ -110,7 +110,7 @@ export default function Footer() {
                   { label: 'Security', href: '../Security/Security' },
                   { label: 'Cookie Settings', href: '../Security/Cookie Settings' },
                 ].map(link => (
-                  <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-text-muted hover:text-text-primary transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                  <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-text-secondary hover:text-text-primary transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
               </ul>
             </div>
@@ -120,7 +120,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-border-strong pt-6 flex items-center justify-between">
-          <p className="text-xs text-text-disabled">&copy; Devart 2026</p>
+          <p className="text-xs text-text-secondary">&copy; Devart 2026</p>
           <div className="flex items-center gap-4 text-text-disabled">
             <a href="https://x.com/Insightisai" target="_blank" rel="noopener noreferrer" aria-label="Insightis on X (formerly Twitter)" className="hover:text-text-secondary transition-colors"><TwitterXIcon size={18} /></a>
             <a href="https://www.tiktok.com/@insightisai" target="_blank" rel="noopener noreferrer" aria-label="Insightis on TikTok" className="hover:text-text-secondary transition-colors"><TikTokIcon size={18} /></a>

@@ -223,8 +223,11 @@ function Hero() {
 
         {/* Description */}
         <FadeUp delay={0.17}>
-          <p className="ins-text-body-lg max-w-2xl mx-auto mb-8" style={{color:'var(--ins-text-body)'}}>
-            Insightis connects your real data and delivers answers <span style={{color:'var(--ins-text-highlight)', fontWeight:500}}>3x more accurate</span> with AI Semantic Layer
+          <p className="ins-text-body-lg max-w-2xl mx-auto mb-3" style={{color:'var(--ins-text-body)'}}>
+            Insightis connects your real data and delivers answers <span style={{color:'var(--ins-text-highlight)', fontWeight:500}}>3× more accurate</span> than spreadsheets.
+          </p>
+          <p className="text-sm max-w-2xl mx-auto mb-8" style={{color:'var(--ins-text-inactive)'}}>
+            Powered by your <span style={{color:'var(--ins-text-body)'}}>semantic layer</span> — a unified dictionary of every metric, dimension, and join in your data.
           </p>
         </FadeUp>
         {/* Chat Mockup */}
@@ -405,12 +408,18 @@ function Hero() {
           </div>
         </FadeUp>
 
-        {/* Trust line */}
+        {/* Trust line — restructured as 3-pill strip per ISS-39 for fast scanning */}
         <FadeUp delay={0.3}>
-          <p className="text-xs text-[var(--ins-text-inactive)] flex items-center justify-center gap-2">
-            <CheckIcon size={14} color="var(--ins-status-success-fg)" />
-            Built by the Devart team — the trusted data partner of 40,000+ companies worldwide for over 28 years.
-          </p>
+          <div className="text-xs text-[var(--ins-text-inactive)] flex items-center justify-center gap-3 flex-wrap">
+            <span className="flex items-center gap-2">
+              <CheckIcon size={14} color="var(--ins-status-success-fg)" />
+              Built by <strong className="font-medium text-[var(--ins-text-body)]">Devart</strong>
+            </span>
+            <span aria-hidden="true" className="text-[var(--ins-text-disabled)]">·</span>
+            <span><strong className="font-medium text-[var(--ins-text-body)]">40,000+</strong> companies</span>
+            <span aria-hidden="true" className="text-[var(--ins-text-disabled)]">·</span>
+            <span><strong className="font-medium text-[var(--ins-text-body)]">28&nbsp;yrs</strong> of data tooling</span>
+          </div>
         </FadeUp>
       </div>
     </section>
@@ -590,7 +599,7 @@ function Architecture() {
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[var(--ins-text-highlight)]"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
               <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">Architecture</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-medium text-white mb-4 tracking-tight">The Semantic Intelligence Layer</h2>
+            <h2 className="text-4xl md:text-5xl font-medium text-white mb-4 tracking-tight">The semantic intelligence layer</h2>
             <p className="text-white/80 text-base md:text-lg max-w-2xl mx-auto">
               Bring all your data sources into a single AI-ready layer, turning fragmented systems into a trusted semantic foundation that delivers consistent meaning, and business clarity across your organization.
             </p>
@@ -790,7 +799,7 @@ function HowItWorks() {
   }, []);
   const steps = [
     { n: '01', title: 'Connect your data', desc: 'OAuth or API key. Most connectors live in under 5 minutes — read-only and SOC 2 secured.' },
-    { n: '02', title: 'Configure the Semantic Layer', desc: 'Map your fields to certified metrics — MRR, CAC, NRR, WAU. One trusted truth across every source.' },
+    { n: '02', title: 'Configure the semantic layer', desc: 'Map your fields to certified metrics — MRR, CAC, NRR, WAU. One trusted truth across every source.' },
     { n: '03', title: 'Ask in plain English', desc: 'Your team asks questions. Insightis queries the right sources and returns precise answers in seconds.' },
     { n: '04', title: 'Get instant insights', desc: 'Charts, contributing factors, and follow-up suggestions — saved as live reports in one click.' },
     { n: '05', title: 'Share with your team', desc: 'Publish answers to Slack, dashboards, or Teams. Every figure stays linked to its source.' },
@@ -864,7 +873,7 @@ function Testimonials() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
             {testimonials.map((t, i) => (
               <div key={i} className="bg-[var(--ins-surface-card)] border border-[var(--ins-border-default)] rounded-2xl p-6 relative hover:border-[var(--ins-border-hover)] transition-colors">
-                <div className="absolute top-5 right-5" style={{color:'var(--ins-text-inactive)',fontSize:'24px',fontFamily:'var(--ins-font-family-sans)',lineHeight:1}}>99</div>
+                <div aria-hidden="true" className="absolute top-5 right-5" style={{color:'var(--ins-text-inactive)',fontSize:'34px',fontFamily:'var(--ins-font-family-sans)',lineHeight:1,opacity:.5}}>&ldquo;</div>
                 <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, j) => <StarIcon key={j} size={13} color="var(--ins-color-amber-400)" />)}
                 </div>
@@ -1087,7 +1096,7 @@ function SubscribeBanner() {
 
             <div className="relative z-10">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-white mb-3 tracking-tight leading-tight">
-                Start Making Smarter Decisions <span className="text-[var(--ins-color-teal-400)]">Today</span>
+                Start making smarter decisions <span className="text-[var(--ins-color-teal-400)]">today</span>
               </h2>
               <p className="text-sm md:text-base mb-7 max-w-lg mx-auto leading-relaxed" style={{color:'rgba(255,255,255,0.6)'}}>
                 Join 1,200+ data-driven teams. Set up in minutes, no credit card required, and cancel anytime.
