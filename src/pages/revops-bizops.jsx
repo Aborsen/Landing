@@ -8,6 +8,7 @@ import IntegrationsStrip from '../components/IntegrationsStrip';
 import CodeChip from '../components/CodeChip';
 import BottomCTA from '../components/BottomCTA';
 import FAQAccordion from '../components/FAQAccordion';
+import PainPointGrid from '../components/PainPointGrid';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -399,27 +400,27 @@ function PainPoints() {
   const pains = [
     {
       title: 'Pipeline visibility takes days',
-      desc: 'Pulling Salesforce, cross-referencing Stripe, reconciling in spreadsheets — by the time the report is done, the data is stale.',
+      body: 'Pulling Salesforce, cross-referencing Stripe, reconciling in spreadsheets — by the time the report is done, the data is stale.',
     },
     {
       title: 'Revenue metrics never match',
-      desc: 'Marketing says MRR is $48K. Finance says $46.5K. The board says $47.2K — nobody agrees because every team calculates it differently.',
+      body: 'Marketing says MRR is $48K. Finance says $46.5K. The board says $47.2K — nobody agrees because every team calculates it differently.',
     },
     {
       title: 'Forecasting is pure guesswork',
-      desc: 'Without real-time pipeline data correlated with historical close rates, revenue forecasts become quarterly guesses — not data-driven calls.',
+      body: 'Without real-time pipeline data correlated with historical close rates, revenue forecasts become quarterly guesses — not data-driven calls.',
     },
     {
       title: 'Cross-source analysis is impossible',
-      desc: 'Correlating CRM with billing and product usage requires SQL, an analyst, and a two-week turnaround — by then the question has moved on.',
+      body: 'Correlating CRM with billing and product usage requires SQL, an analyst, and a two-week turnaround — by then the question has moved on.',
     },
     {
       title: 'Reports are always out of date',
-      desc: 'By the time a dashboard is built and shared, the data has shifted. Static reports create a false sense of confidence in the room.',
+      body: 'By the time a dashboard is built and shared, the data has shifted. Static reports create a false sense of confidence in the room.',
     },
     {
       title: 'Leadership questions go unanswered',
-      desc: 'When the CEO asks "Why did churn spike?" you need the answer in seconds — not after a Jira ticket and a tired weekend analyst.',
+      body: 'When the CEO asks "Why did churn spike?" you need the answer in seconds — not after a Jira ticket and a tired weekend analyst.',
     },
   ];
 
@@ -439,51 +440,7 @@ function PainPoints() {
           </p>
         </div>
 
-        <div data-pain-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'20px'}}>
-          {pains.map((p,i) => (
-            <div key={i}
-              style={{
-                background:'rgba(13,17,23,.6)',
-                border:'1px solid rgba(255,255,255,.06)',
-                borderRadius:'16px',padding:'28px',
-                position:'relative',overflow:'hidden',
-              }}
-            >
-              {/* Top line accent */}
-              <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(248,113,113,.45),transparent)'}}/>
-
-              {/* Indicator + title */}
-              <div style={{display:'flex',alignItems:'center',gap:'12px',marginBottom:'12px'}}>
-                <div style={{
-                  width:'30px',height:'30px',borderRadius:'50%',
-                  border:'1px solid rgba(248,113,113,.4)',
-                  background:'radial-gradient(circle at 50% 30%, rgba(248,113,113,.18) 0%, rgba(13,17,23,.95) 75%)',
-                  display:'flex',alignItems:'center',justifyContent:'center',
-                  flexShrink:0,
-                  boxShadow:'0 0 16px rgba(248,113,113,.18), inset 0 1px 0 rgba(255,255,255,.05)',
-                }}>
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="var(--ins-status-error-fg)" strokeWidth="2.5" strokeLinecap="round"/></svg>
-                </div>
-                <h3 style={{fontSize:'16px',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'var(--ins-color-gray-100)',letterSpacing:'-.01em',margin:0,lineHeight:1.3}}>{p.title}</h3>
-              </div>
-              <p style={{fontSize:'14px',color:'var(--ins-text-inactive)',lineHeight:1.7,margin:0}}>{p.desc}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Responsive overrides */}
-        <style>{`
-          @media (max-width: 1024px) {
-            [data-pain-grid] {
-              grid-template-columns: repeat(2, 1fr) !important;
-            }
-          }
-          @media (max-width: 640px) {
-            [data-pain-grid] {
-              grid-template-columns: 1fr !important;
-            }
-          }
-        `}</style>
+        <PainPointGrid items={pains} />
       </div>
     </section>
   );

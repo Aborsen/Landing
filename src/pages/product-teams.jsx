@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import Button from '../components/Button';
 import BottomCTA from '../components/BottomCTA';
 import FAQAccordion from '../components/FAQAccordion';
+import PainPointGrid from '../components/PainPointGrid';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -291,54 +292,28 @@ function Hero() {
 function PainPoints() {
   const pains = [
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/>
-        <path d="M9 8h6M9 12h6M9 16h4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M12 4v4M9 6h6" stroke="var(--ins-text-highlight)" strokeWidth="1.3" strokeLinecap="round" opacity=".5"/>
-      </svg>,
       title: '90% of requests are repetitive',
-      desc: 'Your team spends most of its time answering the same questions from sales, marketing, and product — questions that should be self-serve but aren\'t.',
+      body: 'Your team spends most of its time answering the same questions from sales, marketing, and product — questions that should be self-serve but aren\'t.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M8 3H5a2 2 0 0 0-2 2v3m6-5h6M8 3v18m8-18v18M16 3h3a2 2 0 0 1 2 2v3M2 9h20M2 15h20M2 21h3m16 0h3" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>,
       title: 'Every team defines metrics differently',
-      desc: 'Marketing defines CAC one way. Finance defines it another. Without a governed Semantic Layer, every team has their own version of the truth.',
+      body: 'Marketing defines CAC one way. Finance defines it another. Without a governed Semantic Layer, every team has their own version of the truth.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>,
       title: 'Pipeline monitoring is reactive',
-      desc: 'You find out about data freshness issues and pipeline failures when a stakeholder complains that their dashboard is showing wrong numbers.',
+      body: 'You find out about data freshness issues and pipeline failures when a stakeholder complains that their dashboard is showing wrong numbers.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/>
-        <path d="M7 9h10M7 13h6" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>,
       title: 'Ad hoc SQL requests never stop',
-      desc: 'Every strategic question that can\'t be answered by an existing dashboard becomes an ad hoc SQL ticket. The backlog grows faster than it can be cleared.',
+      body: 'Every strategic question that can\'t be answered by an existing dashboard becomes an ad hoc SQL ticket. The backlog grows faster than it can be cleared.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/>
-        <line x1="12" y1="9" x2="12" y2="13" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="12" y1="17" x2="12.01" y2="17" stroke="var(--ins-text-highlight)" strokeWidth="2" strokeLinecap="round"/>
-      </svg>,
       title: 'Schema drift breaks things silently',
-      desc: 'When an upstream source changes a column name, your downstream models break — and nobody notices until a key metric drops to zero.',
+      body: 'When an upstream source changes a column name, your downstream models break — and nobody notices until a key metric drops to zero.',
     },
     {
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <rect x="2" y="12" width="4" height="9" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/>
-        <rect x="9" y="7" width="4" height="14" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/>
-        <rect x="16" y="3" width="4" height="18" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/>
-      </svg>,
       title: 'You can\'t show ROI on the data platform',
-      desc: 'Leadership asks what the data team delivered this quarter. You know you unblocked dozens of decisions, but quantifying that impact is nearly impossible.',
+      body: 'Leadership asks what the data team delivered this quarter. You know you unblocked dozens of decisions, but quantifying that impact is nearly impossible.',
     },
   ];
 
@@ -358,28 +333,7 @@ function PainPoints() {
           </p>
         </div>
 
-        <div data-pain-grid style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:'16px'}}>
-          {pains.map((p,i) => (
-            <div key={i}
-              style={{
-                background:'rgba(13,17,23,.6)',
-                border:'1px solid rgba(255,255,255,.06)',
-                borderRadius:'16px',padding:'28px',
-                position:'relative',overflow:'hidden',
-                transition:'all .2s',
-              }}
-              onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-              onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}
-            >
-              <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
-              <div style={{width:'40px',height:'40px',borderRadius:'10px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'16px'}}>
-                {p.icon}
-              </div>
-              <h3 style={{fontSize:'16px',fontWeight:600,color:'var(--ins-color-gray-100)',marginBottom:'8px'}}>{p.title}</h3>
-              <p style={{fontSize:'14px',color:'var(--ins-text-inactive)',lineHeight:1.65}}>{p.desc}</p>
-            </div>
-          ))}
-        </div>
+        <PainPointGrid items={pains} />
       </div>
     </section>
   );

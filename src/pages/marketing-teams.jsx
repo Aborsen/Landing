@@ -8,6 +8,7 @@ import IntegrationsStrip from '../components/IntegrationsStrip';
 import CodeChip from '../components/CodeChip';
 import BottomCTA from '../components/BottomCTA';
 import FAQAccordion from '../components/FAQAccordion';
+import PainPointGrid from '../components/PainPointGrid';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -459,27 +460,27 @@ function PainPoints() {
   const pains = [
     {
       title: 'Attribution lives in three tools',
-      desc: 'Google Analytics, the ads platforms, and the CRM each report a different number. Every Monday review starts with deciding which one to trust this week.',
+      body: 'Google Analytics, the ads platforms, and the CRM each report a different number. Every Monday review starts with deciding which one to trust this week.',
     },
     {
       title: 'ROAS dashboards refresh weekly',
-      desc: 'Spend decisions get made on data that\'s four to seven days old. By the time a campaign tanks, most of the budget is already burnt.',
+      body: 'Spend decisions get made on data that\'s four to seven days old. By the time a campaign tanks, most of the budget is already burnt.',
     },
     {
       title: 'Funnel breaks are invisible',
-      desc: 'MQL → SQL drop-offs only surface in the monthly QBR. By then the lost pipeline is already a hole in next quarter\'s number — and nobody saw it forming.',
+      body: 'MQL → SQL drop-offs only surface in the monthly QBR. By then the lost pipeline is already a hole in next quarter\'s number — and nobody saw it forming.',
     },
     {
       title: 'Pipeline credit gets fought over',
-      desc: 'Sales says marketing took the leads. Marketing says sales fumbled them. Nobody can prove either side because the attribution model lives in a slide deck.',
+      body: 'Sales says marketing took the leads. Marketing says sales fumbled them. Nobody can prove either side because the attribution model lives in a slide deck.',
     },
     {
       title: 'Campaign learnings come too late',
-      desc: 'By the time the analyst pulls cohort lift for the Q3 campaign, Q4 has already kicked off — repeating mistakes nobody had time to surface in time.',
+      body: 'By the time the analyst pulls cohort lift for the Q3 campaign, Q4 has already kicked off — repeating mistakes nobody had time to surface in time.',
     },
     {
       title: 'CAC creep shows up at quarter-end',
-      desc: 'Channel-level CAC drift hides under blended numbers until close. The board asks why CAC is up 30% — and the answer takes a week.',
+      body: 'Channel-level CAC drift hides under blended numbers until close. The board asks why CAC is up 30% — and the answer takes a week.',
     },
   ];
 
@@ -499,51 +500,7 @@ function PainPoints() {
           </p>
         </div>
 
-        <div data-pain-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'20px'}}>
-          {pains.map((p,i) => (
-            <div key={i}
-              style={{
-                background:'rgba(13,17,23,.6)',
-                border:'1px solid rgba(255,255,255,.06)',
-                borderRadius:'16px',padding:'28px',
-                position:'relative',overflow:'hidden',
-              }}
-            >
-              {/* Top line accent */}
-              <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(248,113,113,.45),transparent)'}}/>
-
-              {/* Indicator + title */}
-              <div style={{display:'flex',alignItems:'center',gap:'12px',marginBottom:'12px'}}>
-                <div style={{
-                  width:'30px',height:'30px',borderRadius:'50%',
-                  border:'1px solid rgba(248,113,113,.4)',
-                  background:'radial-gradient(circle at 50% 30%, rgba(248,113,113,.18) 0%, rgba(13,17,23,.95) 75%)',
-                  display:'flex',alignItems:'center',justifyContent:'center',
-                  flexShrink:0,
-                  boxShadow:'0 0 16px rgba(248,113,113,.18), inset 0 1px 0 rgba(255,255,255,.05)',
-                }}>
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="var(--ins-status-error-fg)" strokeWidth="2.5" strokeLinecap="round"/></svg>
-                </div>
-                <h3 style={{fontSize:'16px',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'var(--ins-color-gray-100)',letterSpacing:'-.01em',margin:0,lineHeight:1.3}}>{p.title}</h3>
-              </div>
-              <p style={{fontSize:'14px',color:'var(--ins-text-inactive)',lineHeight:1.7,margin:0}}>{p.desc}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Responsive overrides */}
-        <style>{`
-          @media (max-width: 1024px) {
-            [data-pain-grid] {
-              grid-template-columns: repeat(2, 1fr) !important;
-            }
-          }
-          @media (max-width: 640px) {
-            [data-pain-grid] {
-              grid-template-columns: 1fr !important;
-            }
-          }
-        `}</style>
+        <PainPointGrid items={pains} />
       </div>
     </section>
   );

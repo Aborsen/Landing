@@ -8,6 +8,7 @@ import IntegrationsStrip from '../components/IntegrationsStrip';
 import CodeChip from '../components/CodeChip';
 import BottomCTA from '../components/BottomCTA';
 import FAQAccordion from '../components/FAQAccordion';
+import PainPointGrid from '../components/PainPointGrid';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -431,27 +432,27 @@ function PainPoints() {
   const pains = [
     {
       title: 'Board prep eats your week',
-      desc: 'Pulling ARR, runway, NRR, and burn for the deck means stitching exports from finance, ops, and sales — by Sunday they\'re already stale.',
+      body: 'Pulling ARR, runway, NRR, and burn for the deck means stitching exports from finance, ops, and sales — by Sunday they\'re already stale.',
     },
     {
       title: 'Numbers never agree across teams',
-      desc: 'Finance says $4.2M. RevOps says $4.4M. The deck rounds to $4.3M — every team calculates ARR a slightly different way, and you sign off on all three.',
+      body: 'Finance says $4.2M. RevOps says $4.4M. The deck rounds to $4.3M — every team calculates ARR a slightly different way, and you sign off on all three.',
     },
     {
       title: 'Strategic questions wait for days',
-      desc: 'When an investor asks why NRR slipped 3 points, you need the answer in the call — not after a Jira ticket and a tired analyst.',
+      body: 'When an investor asks why NRR slipped 3 points, you need the answer in the call — not after a Jira ticket and a tired analyst.',
     },
     {
       title: 'No live picture of company health',
-      desc: 'Dashboards refresh weekly at best. Between updates the board, finance, and you all guess at what\'s happening.',
+      body: 'Dashboards refresh weekly at best. Between updates the board, finance, and you all guess at what\'s happening.',
     },
     {
       title: 'Forecasting always needs an analyst',
-      desc: 'Building a credible 12-month plan means cornering an analyst, defending the assumptions, and waiting two weeks. The model lands already out of date.',
+      body: 'Building a credible 12-month plan means cornering an analyst, defending the assumptions, and waiting two weeks. The model lands already out of date.',
     },
     {
       title: 'Cohort signals get lost in tabs',
-      desc: 'Retention curves, magic number, CAC payback — they live in five spreadsheets and BI tools. The pattern is buried.',
+      body: 'Retention curves, magic number, CAC payback — they live in five spreadsheets and BI tools. The pattern is buried.',
     },
   ];
 
@@ -471,51 +472,7 @@ function PainPoints() {
           </p>
         </div>
 
-        <div data-pain-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'20px'}}>
-          {pains.map((p,i) => (
-            <div key={i}
-              style={{
-                background:'rgba(13,17,23,.6)',
-                border:'1px solid rgba(255,255,255,.06)',
-                borderRadius:'16px',padding:'28px',
-                position:'relative',overflow:'hidden',
-              }}
-            >
-              {/* Top line accent */}
-              <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(248,113,113,.45),transparent)'}}/>
-
-              {/* Indicator + title */}
-              <div style={{display:'flex',alignItems:'center',gap:'12px',marginBottom:'12px'}}>
-                <div style={{
-                  width:'30px',height:'30px',borderRadius:'50%',
-                  border:'1px solid rgba(248,113,113,.4)',
-                  background:'radial-gradient(circle at 50% 30%, rgba(248,113,113,.18) 0%, rgba(13,17,23,.95) 75%)',
-                  display:'flex',alignItems:'center',justifyContent:'center',
-                  flexShrink:0,
-                  boxShadow:'0 0 16px rgba(248,113,113,.18), inset 0 1px 0 rgba(255,255,255,.05)',
-                }}>
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="var(--ins-status-error-fg)" strokeWidth="2.5" strokeLinecap="round"/></svg>
-                </div>
-                <h3 style={{fontSize:'16px',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'var(--ins-color-gray-100)',letterSpacing:'-.01em',margin:0,lineHeight:1.3}}>{p.title}</h3>
-              </div>
-              <p style={{fontSize:'14px',color:'var(--ins-text-inactive)',lineHeight:1.7,margin:0}}>{p.desc}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Responsive overrides */}
-        <style>{`
-          @media (max-width: 1024px) {
-            [data-pain-grid] {
-              grid-template-columns: repeat(2, 1fr) !important;
-            }
-          }
-          @media (max-width: 640px) {
-            [data-pain-grid] {
-              grid-template-columns: 1fr !important;
-            }
-          }
-        `}</style>
+        <PainPointGrid items={pains} />
       </div>
     </section>
   );
