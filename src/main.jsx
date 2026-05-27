@@ -1017,20 +1017,20 @@ function Pricing() {
         {/* Comparison cards */}
         <FadeUp delay={0.1}>
           <div className="grid md:grid-cols-2 gap-5">
-            {/* Traditional / Red */}
-            <div className="rounded-2xl p-6 md:p-7 bg-[var(--ins-surface-card)]" style={{border: '1px solid rgba(248,113,113,0.2)'}}>
+            {/* Traditional / Red — Glow card pattern (ISS-40 + ISS-66 + ISS-96) */}
+            <div className="rounded-2xl p-6 md:p-7" style={{background:'rgba(248,113,113,0.06)', border: '1px solid rgba(248,113,113,0.25)', boxShadow:'0 0 40px rgba(248,113,113,0.06)'}}>
               <div className="flex items-center gap-3 mb-7">
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{background: 'rgba(248,113,113,0.1)', border: '1px solid rgba(248,113,113,0.2)'}}>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{background: 'rgba(248,113,113,0.12)', border: '1px solid rgba(248,113,113,0.25)'}}>
                   <XIcon size={18} color="var(--ins-status-error-fg)" />
                 </div>
                 <div>
                   <h3 className="text-base font-medium text-white">Traditional Approach</h3>
-                  <p className="text-xs text-[var(--ins-text-inactive)]">Manual, slow, expensive</p>
+                  <p className="text-xs text-[var(--ins-text-body)]">Manual, slow, expensive</p>
                 </div>
               </div>
               <ul className="flex flex-col gap-4">
                 {traditional.map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm text-[var(--ins-text-inactive)]">
+                  <li key={i} className="flex items-center gap-3 text-sm text-[var(--ins-text-body)]">
                     <XIcon size={14} color="var(--ins-status-error-fg)" className="flex-shrink-0" />
                     {item}
                   </li>
@@ -1038,20 +1038,20 @@ function Pricing() {
               </ul>
             </div>
 
-            {/* Insightis / Green */}
-            <div className="rounded-2xl p-6 md:p-7 bg-[var(--ins-surface-card)]" style={{border: '1px solid rgba(7,128,126,0.4)', boxShadow:'0 0 40px rgba(7,128,126,0.08)'}}>
+            {/* Insightis / Teal — Glow card pattern (ISS-40 + ISS-66 + ISS-96) */}
+            <div className="rounded-2xl p-6 md:p-7" style={{background:'rgba(14,196,193,0.08)', border: '1px solid rgba(14,196,193,0.25)', boxShadow:'0 0 40px rgba(14,196,193,0.10)'}}>
               <div className="flex items-center gap-3 mb-7">
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{background: 'rgba(7,128,126,0.15)', border: '1px solid rgba(7,128,126,0.3)'}}>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{background: 'rgba(14,196,193,0.15)', border: '1px solid rgba(14,196,193,0.30)'}}>
                   <CheckIcon size={18} color="var(--ins-color-teal-400)" />
                 </div>
                 <div>
                   <h3 className="text-base font-medium text-white">With Insightis</h3>
-                  <p className="text-xs text-[var(--ins-text-inactive)]">Automated, instant, scalable</p>
+                  <p className="text-xs text-[var(--ins-text-body)]">Automated, instant, scalable</p>
                 </div>
               </div>
               <ul className="flex flex-col gap-4">
                 {insightis.map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm text-[var(--ins-text-inactive)]">
+                  <li key={i} className="flex items-center gap-3 text-sm text-[var(--ins-text-body)]">
                     <CheckIcon size={14} color="var(--ins-color-teal-400)" className="flex-shrink-0" />
                     {item}
                   </li>
