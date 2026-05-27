@@ -290,8 +290,8 @@ function Hero() {
                   {/* Connectors button */}
                   <div className="relative">
                     <button
-                      className="flex items-center gap-1.5 px-3 py-2 rounded-lg transition-all duration-150"
-                      style={{ color: tooltip === 'connectors' ? 'var(--ins-text-highlight)' : 'var(--ins-text-inactive)', background: tooltip === 'connectors' ? 'var(--ins-surface-brand-tint)' : 'transparent' }}
+                      className="flex items-center gap-1.5 px-3 py-2 rounded-lg transition-all duration-150 hover:bg-white/5"
+                      style={{ color: tooltip === 'connectors' ? 'var(--ins-text-highlight)' : 'var(--ins-text-body)', background: tooltip === 'connectors' ? 'var(--ins-surface-brand-tint)' : 'transparent' }}
                       onClick={e => { e.stopPropagation(); setTooltip(tooltip === 'connectors' ? null : 'connectors'); }}
                     >
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
@@ -340,8 +340,8 @@ function Hero() {
                   {/* Model selector */}
                   <div className="relative">
                     <button
-                      className="flex items-center gap-1.5 px-3 py-2 rounded-lg transition-all duration-150"
-                      style={{ color: tooltip === 'model' ? 'var(--ins-text-highlight)' : 'var(--ins-text-inactive)', background: tooltip === 'model' ? 'var(--ins-surface-brand-tint)' : 'transparent' }}
+                      className="flex items-center gap-1.5 px-3 py-2 rounded-lg transition-all duration-150 hover:bg-white/5"
+                      style={{ color: tooltip === 'model' ? 'var(--ins-text-highlight)' : 'var(--ins-text-body)', background: tooltip === 'model' ? 'var(--ins-surface-brand-tint)' : 'transparent' }}
                       onClick={e => { e.stopPropagation(); setTooltip(tooltip === 'model' ? null : 'model'); }}
                     >
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
