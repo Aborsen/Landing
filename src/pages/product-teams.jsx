@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
 import BottomCTA from '../components/BottomCTA';
+import FAQAccordion from '../components/FAQAccordion';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -1395,7 +1396,6 @@ function Testimonials() {
 
 /* ── FAQ ── */
 function FAQ() {
-  const [open, setOpen] = useState(0);
   const items = [
     {
       q:'Does this replace Mixpanel or Amplitude?',
@@ -1436,22 +1436,7 @@ function FAQ() {
           </h2>
         </div>
 
-        <div>
-          {items.map((it, i) => {
-            const isOpen = open === i;
-            return (
-              <div key={i} className="faq-row">
-                <button className={`faq-q${isOpen ? ' open' : ''}`} onClick={()=>setOpen(isOpen ? -1 : i)}>
-                  {it.q}
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                </button>
-                <div className={`faq-a${isOpen ? ' open' : ''}`}>
-                  {it.a}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        <FAQAccordion items={items} />
       </div>
     </section>
   );

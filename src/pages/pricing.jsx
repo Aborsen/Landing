@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import BottomCTA from '../components/BottomCTA';
+import FAQAccordion from '../components/FAQAccordion';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -373,17 +374,7 @@ function FAQ() {
         <div style={{textAlign:'center',marginBottom:'40px'}}>
           <h2 style={{fontSize:'clamp(26px,3.4vw,38px)',fontWeight:500,color:'#fff',letterSpacing:'-.025em',marginBottom:'10px'}}>Frequently asked questions</h2>
         </div>
-        <div style={{display:'flex',flexDirection:'column',gap:'10px'}}>
-          {items.map((item,i) => (
-            <details key={i} style={{background:'rgba(13,17,23,0.6)',border:'1px solid rgba(255,255,255,0.07)',borderRadius:'12px',padding:'14px 18px'}}>
-              <summary style={{cursor:'pointer',fontSize:'15px',fontWeight:500,color:'var(--ins-color-gray-100)',listStyle:'none',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                <span>{item.q}</span>
-                <span style={{color:'var(--ins-text-highlight)',fontSize:'16px',marginLeft:'12px'}}>+</span>
-              </summary>
-              <p style={{marginTop:'12px',fontSize:'14px',color:'rgba(255,255,255,0.65)',lineHeight:1.65}}>{item.a}</p>
-            </details>
-          ))}
-        </div>
+        <FAQAccordion items={items} />
       </div>
     </section>
   );

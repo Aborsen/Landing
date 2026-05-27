@@ -7,6 +7,7 @@ import Button from '../components/Button';
 import IntegrationsStrip from '../components/IntegrationsStrip';
 import CodeChip from '../components/CodeChip';
 import BottomCTA from '../components/BottomCTA';
+import FAQAccordion from '../components/FAQAccordion';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -737,7 +738,6 @@ function FAQ() {
       a: 'Your data stays in your warehouse. Insightis runs queries on top via secure read-only connectors, with SOC 2 Type II, single sign-on, and row-level access controls. Nothing leaves your environment unless you explicitly share it.',
     },
   ];
-  const [openIdx, setOpenIdx] = React.useState(0);
 
   return (
     <section style={{padding:'100px 0',background:'linear-gradient(180deg,var(--ins-surface-container) 0%,#101620 100%)'}}>
@@ -755,43 +755,7 @@ function FAQ() {
           </p>
         </div>
 
-        <div style={{display:'flex',flexDirection:'column',gap:'8px'}}>
-          {items.map((item, i) => {
-            const isOpen = openIdx === i;
-            return (
-              <div key={i} style={{
-                background:'rgba(13,17,23,.6)',
-                border:`1px solid ${isOpen?'rgba(9,160,157,.3)':'rgba(255,255,255,.06)'}`,
-                borderRadius:'12px',
-                overflow:'hidden',
-                transition:'border-color .2s',
-              }}>
-                <button onClick={() => setOpenIdx(isOpen ? -1 : i)} style={{
-                  width:'100%',padding:'18px 24px',
-                  background:'transparent',border:'none',
-                  color:'var(--ins-color-gray-100)',fontSize:'16px',fontWeight:500,
-                  textAlign:'left',cursor:'pointer',
-                  display:'flex',justifyContent:'space-between',alignItems:'center',gap:'16px',
-                  fontFamily:'Geist,sans-serif',letterSpacing:'-.005em',
-                }}>
-                  <span>{item.q}</span>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={isOpen?'var(--ins-text-highlight)':'var(--ins-text-inactive)'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0,transform:isOpen?'rotate(180deg)':'rotate(0)',transition:'transform .25s'}}>
-                    <polyline points="6 9 12 15 18 9"/>
-                  </svg>
-                </button>
-                {isOpen && (
-                  <div style={{
-                    padding:'0 24px 20px 24px',
-                    fontSize:'14px',color:'var(--ins-text-inactive)',
-                    lineHeight:1.7,
-                  }}>
-                    {item.a}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
+        <FAQAccordion items={items} />
       </div>
     </section>
   );
