@@ -4,6 +4,7 @@ import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
+import Card from '../components/Card';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -1075,7 +1076,7 @@ function AccuracyComparison() {
         */}
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'16px',alignItems:'stretch'}}>
           {/* Generic AI */}
-          <div className="compare-card" style={{background:'rgba(248,113,113,.04)',border:'1px solid rgba(248,113,113,.15)',borderRadius:'16px',padding:'32px',display:'flex',flexDirection:'column'}}>
+          <Card variant="glow" className="compare-card" style={{padding:'32px',display:'flex',flexDirection:'column',background:'var(--ins-color-red-a-06)',borderColor:'var(--ins-color-red-a-25)'}}>
             <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'22px'}}>
               <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-status-error-fg)'}}/>
               <span style={{fontSize:'13px',fontWeight:600,color:'var(--ins-status-error-fg)'}}>Generic AI</span>
@@ -1087,11 +1088,10 @@ function AccuracyComparison() {
               </div>
             </div>
             <p style={{fontSize:'12px',color:'rgba(248,113,113,.6)',fontStyle:'italic'}}>Searches the internet. Returns industry averages. Not your numbers.</p>
-          </div>
+          </Card>
 
           {/* Insightis */}
-          <div className="compare-card" style={{background:'rgba(9,160,157,.05)',border:'1px solid rgba(9,160,157,.25)',borderRadius:'16px',padding:'32px',position:'relative',boxShadow:'0 8px 40px rgba(9,160,157,0.06)',display:'flex',flexDirection:'column'}}>
-            <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.6),transparent)',borderRadius:'16px 16px 0 0'}}/>
+          <Card variant="glow" className="compare-card" style={{padding:'32px',display:'flex',flexDirection:'column'}}>
             <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'22px'}}>
               <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-text-highlight)',boxShadow:'0 0 8px var(--ins-text-highlight)'}}/>
               <span style={{fontSize:'13px',fontWeight:500,color:'var(--ins-text-highlight)'}}>Insightis</span>
@@ -1103,7 +1103,7 @@ function AccuracyComparison() {
               </div>
             </div>
             <p style={{fontSize:'12px',color:'rgba(9,160,157,.6)',fontStyle:'italic'}}>Queries your Stripe + PostgreSQL through Semantic Layer. Always your numbers.</p>
-          </div>
+          </Card>
         </div>
 
         {/* 3x badge */}

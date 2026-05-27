@@ -4,6 +4,7 @@ import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
+import Card from '../components/Card';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -169,15 +170,13 @@ function PricingCards() {
           {plans.map((plan,i) => {
             const isHighlight = plan.highlight;
             return (
-              <div key={plan.name} className={`fu${i}`} style={{
-                position:'relative',
-                background: isHighlight ? 'linear-gradient(180deg, rgba(9,160,157,0.06) 0%, rgba(13,17,23,0.9) 100%)' : 'rgba(13,17,23,0.7)',
-                border: isHighlight ? '1px solid rgba(9,160,157,0.5)' : '1px solid rgba(255,255,255,0.08)',
-                borderRadius:'18px',
-                padding:'28px 22px',
-                display:'flex',flexDirection:'column',
-                boxShadow: isHighlight ? '0 8px 32px rgba(9,160,157,0.08)' : 'none',
-              }}>
+              <Card
+                key={plan.name}
+                variant="pricing"
+                selected={isHighlight}
+                className={`fu${i}`}
+                style={{position:'relative',padding:'28px 22px'}}
+              >
                 {isHighlight && (
                   <div style={{position:'absolute',top:0,left:'50%',transform:'translate(-50%,-50%)',padding:'4px 12px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',color:'#fff',fontSize:'11px',fontWeight:500,letterSpacing:'.05em',borderRadius:'999px',textTransform:'uppercase'}}>
                     Most popular
@@ -231,7 +230,7 @@ function PricingCards() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </Card>
             );
           })}
         </div>

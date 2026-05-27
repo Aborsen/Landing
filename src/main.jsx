@@ -4,6 +4,7 @@ import './app.css'
 import Header from './components/Header';
 import Footer from './components/Footer';
 import IntegrationsStrip from './components/IntegrationsStrip';
+import Card from './components/Card';
 
 /* Single shared IntersectionObserver for all fade-ups.
    Replaces 33 per-component framer-motion `useInView` observers + re-render cascades.
@@ -1027,7 +1028,7 @@ function Pricing() {
         <FadeUp delay={0.1}>
           <div className="grid md:grid-cols-2 gap-5">
             {/* Traditional / Red — Glow card pattern (ISS-40 + ISS-66 + ISS-96) */}
-            <div className="rounded-2xl p-6 md:p-7" style={{background:'rgba(248,113,113,0.06)', border: '1px solid rgba(248,113,113,0.25)', boxShadow:'0 0 40px rgba(248,113,113,0.06)'}}>
+            <Card variant="glow" className="p-6 md:p-7" style={{background:'var(--ins-color-red-a-06)', borderColor:'var(--ins-color-red-a-25)'}}>
               <div className="flex items-center gap-3 mb-7">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{background: 'rgba(248,113,113,0.12)', border: '1px solid rgba(248,113,113,0.25)'}}>
                   <XIcon size={18} color="var(--ins-status-error-fg)" />
@@ -1045,10 +1046,10 @@ function Pricing() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </Card>
 
             {/* Insightis / Teal — Glow card pattern (ISS-40 + ISS-66 + ISS-96) */}
-            <div className="rounded-2xl p-6 md:p-7" style={{background:'rgba(14,196,193,0.08)', border: '1px solid rgba(14,196,193,0.25)', boxShadow:'0 0 40px rgba(14,196,193,0.10)'}}>
+            <Card variant="glow" className="p-6 md:p-7">
               <div className="flex items-center gap-3 mb-7">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{background: 'rgba(14,196,193,0.15)', border: '1px solid rgba(14,196,193,0.30)'}}>
                   <CheckIcon size={18} color="var(--ins-color-teal-400)" />
@@ -1066,7 +1067,7 @@ function Pricing() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </Card>
           </div>
         </FadeUp>
 
