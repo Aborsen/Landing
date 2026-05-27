@@ -202,7 +202,7 @@ function Hero() {
       <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-[var(--ins-color-gray-800)] border-l border-t border-[var(--ins-border-hover)] rotate-45 mb-[-5px]"></div>
       <p className="text-white text-sm font-medium mb-1">Unlock full access</p>
       <p className="text-[var(--ins-text-inactive)] text-xs mb-3">Get more after registration — connect your data sources and explore AI insights.</p>
-      <a href="/auth/sign-up/" className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-[var(--ins-color-teal-500)] to-[var(--ins-color-teal-600)] rounded-lg text-white text-xs font-medium hover:shadow-[0_0_16px_rgba(7,128,126,0.4)] transition-shadow">Sign Up Free <ArrowRightIcon size={12} /></a>
+      <a href="/auth/sign-up/" className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-[var(--ins-color-teal-500)] to-[var(--ins-color-teal-600)] rounded-lg text-white text-xs font-medium hover:shadow-[0_0_16px_rgba(7,128,126,0.4)] transition-shadow">Sign Up Free</a>
     </div>
   );
 
@@ -587,7 +587,7 @@ function Architecture() {
         <FadeUp>
           <div className="text-center mb-16 arch-heading">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-4" style={{background: 'rgba(7,128,126,0.1)', border: '1px solid rgba(7,128,126,0.4)'}}>
-              <span className="text-[var(--ins-text-highlight)] text-sm">✦</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[var(--ins-text-highlight)]"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
               <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">Architecture</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-medium text-white mb-4 tracking-tight">The Semantic Intelligence Layer</h2>
@@ -801,7 +801,7 @@ function HowItWorks() {
       <div className="how-it-works-text-only" style={{display:'none', maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
         <div style={{textAlign:'center', marginBottom:'40px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'var(--ins-surface-brand-tint)',border:'1px solid var(--ins-border-brand)',borderRadius:'999px',marginBottom:'14px'}}>
-            <span style={{color:'var(--ins-text-highlight)',fontSize:'12px'}}>✦</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{color:'var(--ins-text-highlight)'}}><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)'}}>How it works</span>
           </div>
           <h2 style={{fontSize:'clamp(1.8rem,6vw,2.4rem)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.02em',lineHeight:1.15}}>From your stack to a precise answer</h2>
@@ -852,7 +852,7 @@ function Testimonials() {
         <FadeUp>
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-4" style={{background: 'rgba(7,128,126,0.1)', border: '1px solid rgba(7,128,126,0.4)'}}>
-              <span className="text-[var(--ins-text-highlight)] text-sm">✦</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[var(--ins-text-highlight)]"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
               <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">Verified Impact</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight">Loved by a community</h2>
@@ -942,7 +942,7 @@ function WhatIsInsightis() {
         <FadeUp>
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5" style={{background: 'rgba(7,128,126,0.1)', border: '1px solid rgba(7,128,126,0.4)'}}>
-              <span className="text-[var(--ins-text-highlight)] text-sm">✦</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[var(--ins-text-highlight)]"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
               <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">By the numbers</span>
             </div>
             <h2 className="text-4xl md:text-[48px] font-medium text-white tracking-tight leading-[1.1]">What is Insightis</h2>
@@ -957,7 +957,7 @@ function WhatIsInsightis() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x md:divide-[var(--ins-border-default)]">
               {stats.map((s, i) => (
                 <div key={i} className="text-center px-4">
-                  <p className="text-4xl md:text-5xl font-medium text-[var(--ins-color-teal-400)] tracking-tight leading-none mb-3">
+                  <p className="text-4xl md:text-5xl font-bold text-[var(--ins-color-teal-400)] tracking-tight leading-none mb-3">
                     <AnimatedStat target={s.target} suffix={s.suffix} prefix={s.prefix} duration={1800 + i * 150} />
                   </p>
                   <p className="text-sm font-medium text-white mb-1">{s.label}</p>
@@ -1054,7 +1054,7 @@ function Pricing() {
         <FadeUp delay={0.25}>
           <div className="text-center mt-10">
             <a href="/Pricing" className="ins-btn ins-btn--secondary ins-btn--lg">
-              Explore Pricing <ArrowRightIcon size={16} />
+              Explore Pricing
             </a>
           </div>
         </FadeUp>
@@ -1083,7 +1083,7 @@ function SubscribeBanner() {
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                 <a href="/auth/sign-up/" className="sm:w-auto px-8 py-3 text-sm font-medium text-white bg-gradient-to-r from-[var(--ins-color-teal-600)] to-[var(--ins-color-teal-500)] rounded-xl hover:shadow-[0_0_32px_rgba(7,128,126,0.5)] transition-all inline-flex items-center justify-center gap-2">
-                  Start Free Trial <span>&rarr;</span>
+                  Start Free Trial
                 </a>
               </div>
             </div>
@@ -1104,20 +1104,19 @@ function BottomCTA() {
           <div className="relative rounded-2xl border border-[var(--ins-border-default)] py-8 px-8 md:px-12 overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6" style={{background:'linear-gradient(135deg, rgba(18,18,31,0.95) 0%, rgba(13,13,26,0.98) 50%, rgba(18,18,31,0.95) 100%)'}}>
             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--ins-color-teal-600)]/30 to-transparent"></div>
             <h2 className="text-2xl md:text-3xl font-medium text-white tracking-tight leading-tight flex-shrink-0">
-              Still waiting on <span style={{color:'rgba(7, 128, 126)'}}> insights</span> that take <span style={{color:'rgba(7, 128, 126)'}}> days?</span>
+              Still waiting on <span style={{color:'var(--ins-text-highlight)'}}>insights</span> that take <span style={{color:'var(--ins-text-highlight)'}}>days?</span>
             </h2>
             <form action="/auth/sign-up/" method="get" className="flex items-center w-full md:w-auto md:min-w-[400px] bg-[var(--ins-color-promo-solid)] border border-[var(--ins-border-hover)] rounded-xl overflow-hidden focus-within:border-[var(--ins-color-teal-600)]/60 transition-colors">
               <input
                 name="q"
                 type="text"
                 required
-                placeholder="What info are you looking for?"
-                aria-label="What info are you looking for?"
+                placeholder="Show me MRR by region last quarter"
+                aria-label="Ask a question"
                 className="flex-1 bg-transparent text-sm text-white placeholder-[var(--ins-text-inactive)] px-4 py-3 outline-none min-w-0"
               />
               <button type="submit" className="inline-flex items-center gap-2 px-5 py-2.5 m-1 text-sm font-medium text-white bg-gradient-to-r from-[var(--ins-color-teal-600)] to-[var(--ins-color-teal-500)] rounded-lg hover:shadow-[0_0_24px_rgba(7,128,126,0.5)] transition-all flex-shrink-0">
-                Get Insight
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                Get insights
               </button>
             </form>
           </div>
