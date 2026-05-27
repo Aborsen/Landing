@@ -625,7 +625,11 @@ export default function BlogPost({ markdown, slug }) {
   // emitted alongside the article.
   const faqItems = [];
   html = html.replace(
-    /<h2(\s[^>]*)?>\s*(?:[\s\S]*?(?:FAQ(?:\s+Section)?)[\s\S]*?)<\/h2>([\s\S]*?)(?=<h2[\s>]|$)/i,
+    // Anchored: the h2's inner text must literally start with "FAQ"
+    // (optionally followed by "Section"). Without this anchor the
+    // `[\s\S]*?` would slurp from the article's first h2 all the way
+    // through to the FAQ h2 and destroy every section in between.
+    /<h2(\s[^>]*)?>\s*FAQ(?:\s+Section)?\s*<\/h2>([\s\S]*?)(?=<h2[\s>]|$)/i,
     (_m, h2Attrs, faqBody) => {
       // Pair every <h3>...</h3> with the HTML that follows it until the next <h3> (or end).
       const pairRe = /<h3(?:\s[^>]*)?>([\s\S]*?)<\/h3>([\s\S]*?)(?=<h3[\s>]|$)/g;
