@@ -93,7 +93,7 @@ export default function Header() {
         { heading: 'FEATURES', items: [
           { label: 'AI Connect', desc: 'Bring Insightis to your favorite AI tools', icon: 'pulse', comingSoon: true, notClickable: true },
           { label: 'Advanced Reports', desc: 'Rich, interactive reporting', icon: 'file', comingSoon: true, notClickable: true },
-          { label: 'Memory & Storage', desc: 'Your business context, always remembered', icon: 'box', comingSoon: true },
+          { label: 'Memory & Storage', desc: 'Your business context, always remembered', icon: 'box', comingSoon: true, notClickable: true },
         ]},
       ]
     },
