@@ -169,7 +169,7 @@ function SecurityContent() {
                   {v.icon}
                 </div>
                 <h3 style={{fontSize:'17px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'8px'}}>{v.title}</h3>
-                <p style={{fontSize:'14px', color:'var(--ins-text-inactive)', lineHeight:1.65}}>{v.desc}</p>
+                <p style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.65}}>{v.desc}</p>
               </div>
             ))}
           </div>
@@ -196,7 +196,7 @@ function SecurityContent() {
                   {c.icon}
                 </div>
                 <h3 style={{fontSize:'17px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'8px'}}>{c.title}</h3>
-                <p style={{fontSize:'14px', color:'var(--ins-text-inactive)', lineHeight:1.65}}>{c.desc}</p>
+                <p style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.65}}>{c.desc}</p>
               </div>
             ))}
           </div>
@@ -245,13 +245,13 @@ function SecurityContent() {
                   style={{width:'100%', display:'flex', alignItems:'center', justifyContent:'space-between', padding:'18px 24px', background:'transparent', border:'none', cursor:'pointer', textAlign:'left'}}
                 >
                   <span style={{fontSize:'15px', fontWeight:500, color:'var(--ins-color-gray-100)'}}>{faq.q}</span>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0, marginLeft:'16px', transition:'transform .25s', transform: openFaq === i ? 'rotate(180deg)' : 'rotate(0deg)'}}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-body)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0, marginLeft:'16px', transition:'transform .25s', transform: openFaq === i ? 'rotate(180deg)' : 'rotate(0deg)'}}>
                     <polyline points="6 9 12 15 18 9"/>
                   </svg>
                 </button>
                 {openFaq === i && (
                   <div style={{padding:'0 24px 18px'}}>
-                    <p style={{fontSize:'14px', color:'var(--ins-text-inactive)', lineHeight:1.7}}>{faq.a}</p>
+                    <p style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.7}}>{faq.a}</p>
                   </div>
                 )}
               </div>

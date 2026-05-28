@@ -45,7 +45,7 @@ function ContactOptions({ onOpenDemo, onOpenSupport }) {
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             </div>
             <h3 style={{fontSize:'18px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'10px'}}>Talk to Sales</h3>
-            <p style={{fontSize:'14px', color:'var(--ins-text-inactive)', lineHeight:1.65, marginBottom:'20px'}}>Get a personalized demo of Insightis for your team. We'll show you exactly how it works with your data sources.</p>
+            <p style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.65, marginBottom:'20px'}}>Get a personalized demo of Insightis for your team. We'll show you exactly how it works with your data sources.</p>
             <button onClick={onOpenDemo} style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'13px', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'999px', border:'none', cursor:'pointer', fontFamily:'Geist,sans-serif'}}>
               Book a Demo
             </button>
@@ -61,7 +61,7 @@ function ContactOptions({ onOpenDemo, onOpenSupport }) {
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
             </div>
             <h3 style={{fontSize:'18px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'10px'}}>Get Support</h3>
-            <p style={{fontSize:'14px', color:'var(--ins-text-inactive)', lineHeight:1.65, marginBottom:'20px'}}>Already using Insightis? Our support team can help with setup, integrations, troubleshooting, and best practices.</p>
+            <p style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.65, marginBottom:'20px'}}>Already using Insightis? Our support team can help with setup, integrations, troubleshooting, and best practices.</p>
             <button onClick={onOpenSupport} style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'13px', fontWeight:600, color:'var(--ins-color-gray-100)', background:'transparent', borderRadius:'999px', border:'1px solid rgba(255,255,255,.12)', cursor:'pointer', fontFamily:'Geist,sans-serif', transition:'all .15s'}}
               onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.4)';e.currentTarget.style.color='var(--ins-text-highlight)';}}
               onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.12)';e.currentTarget.style.color='var(--ins-color-gray-100)';}}>
@@ -79,7 +79,7 @@ function ContactOptions({ onOpenDemo, onOpenSupport }) {
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
             </div>
             <h3 style={{fontSize:'18px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'10px'}}>Help Center</h3>
-            <p style={{fontSize:'14px', color:'var(--ins-text-inactive)', lineHeight:1.65, marginBottom:'20px'}}>Browse our knowledge base for guides, FAQs, troubleshooting tips, and everything you need to get the most out of Insightis.</p>
+            <p style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.65, marginBottom:'20px'}}>Browse our knowledge base for guides, FAQs, troubleshooting tips, and everything you need to get the most out of Insightis.</p>
             <a href="../Resources/Contact Support" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'13px', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'999px', border:'none', cursor:'pointer', fontFamily:'Geist,sans-serif', textDecoration:'none'}}>
               Visit Help Center
             </a>
@@ -117,7 +117,7 @@ function ModalForm({ open, onClose, type }) {
   };
   const labelStyle = {
     display:'block', fontSize:'11px', fontWeight:600, letterSpacing:'.08em',
-    textTransform:'uppercase', color:'var(--ins-text-inactive)', fontFamily:'Geist Mono,monospace',
+    textTransform:'uppercase', color:'var(--ins-text-body)', fontFamily:'Geist Mono,monospace',
     marginBottom:'6px',
   };
   const selectStyle = {...inputStyle, appearance:'none', backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237FA0AC' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E\")", backgroundRepeat:'no-repeat', backgroundPosition:'right 16px center'};
@@ -131,7 +131,7 @@ function ModalForm({ open, onClose, type }) {
       <div style={{position:'relative', width:'100%', maxWidth:'520px', maxHeight:'90vh', overflowY:'auto', background:'var(--ins-surface-container)', border:'1px solid rgba(255,255,255,.08)', borderRadius:'20px', padding:'36px'}}
         onClick={e => e.stopPropagation()}>
         {/* Close button */}
-        <button onClick={onClose} style={{position:'absolute', top:'16px', right:'16px', background:'none', border:'none', cursor:'pointer', padding:'4px', color:'var(--ins-text-inactive)'}}>
+        <button onClick={onClose} style={{position:'absolute', top:'16px', right:'16px', background:'none', border:'none', cursor:'pointer', padding:'4px', color:'var(--ins-text-body)'}}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
 
@@ -280,7 +280,7 @@ function QuickLinks() {
                 {l.icon}
               </div>
               <h3 style={{fontSize:'16px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'8px'}}>{l.title}</h3>
-              <p style={{fontSize:'13px', color:'var(--ins-text-inactive)', lineHeight:1.6}}>{l.desc}</p>
+              <p style={{fontSize:'13px', color:'var(--ins-text-body)', lineHeight:1.6}}>{l.desc}</p>
             </a>
           ))}
         </div>

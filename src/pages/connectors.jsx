@@ -56,7 +56,7 @@ function FloatingChat({ onSubmit }) {
           backdropFilter:'blur(10px)',
           WebkitBackdropFilter:'blur(10px)',
         }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-body)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
           </svg>
           <input
@@ -164,7 +164,7 @@ function AIAssistantPanel({ query, onClose }) {
       background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
       color:'#5E8290', transition:'color .15s',
     }}
-    onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-text-inactive)'}
+    onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-text-body)'}
     onMouseLeave={e => e.currentTarget.style.color = '#5E8290'}
     >
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -392,15 +392,15 @@ function ConnectorsHero() {
 
         {/* LEFT — text */}
         <div>
-          <div className="fu0" style={{fontSize:'12px', color:'var(--ins-text-inactive)', letterSpacing:'0.04em', marginBottom:'18px'}}>
-            <a href="/" style={{color:'var(--ins-text-inactive)', textDecoration:'none'}}>Home</a>
+          <div className="fu0" style={{fontSize:'12px', color:'var(--ins-text-body)', letterSpacing:'0.04em', marginBottom:'18px'}}>
+            <a href="/" style={{color:'var(--ins-text-body)', textDecoration:'none'}}>Home</a>
             <span style={{margin:'0 6px', opacity:0.5}}>/</span>
             <span style={{color:'var(--ins-color-gray-100)'}}>Connectors</span>
             <span style={{margin:'0 6px', opacity:0.5}}>/</span>
           </div>
           <h1 className="fu1" style={{fontSize:'clamp(2.4rem,3.6vw,4rem)', fontWeight:700, fontFamily:"var(--ins-font-family-sans)", letterSpacing:'-.04em', lineHeight:1.05, marginBottom:'22px', textWrap:'balance'}}>
             <span style={{color:'var(--ins-text-highlight)'}}>Connect</span>{' '}
-            <span style={{color:'var(--ins-color-gray-100)'}}>to any source.</span>
+            <span style={{color:'var(--ins-text-heading-soft)'}}>to any source.</span>
           </h1>
           <p className="fu2" style={{fontSize:'17px', color:'#8AA6B3', lineHeight:1.6, maxWidth:'520px', marginBottom:'30px'}}>
             Explore 200+ prebuilt connectors, create custom ones with REST and GraphQL connectors, or request the data source you're missing.
@@ -462,7 +462,7 @@ function ConnectorCategorySidebar({ active, setActive, counts, onRequestConnecto
         borderTop:'1px solid rgba(255,255,255,0.055)',
       }}>
         <p style={{
-          fontSize:'11.5px', color:'var(--ins-text-inactive)', lineHeight:1.5, marginBottom:'10px',
+          fontSize:'11.5px', color:'var(--ins-text-body)', lineHeight:1.5, marginBottom:'10px',
         }}>
           Don't see what you need?
         </p>
@@ -535,7 +535,7 @@ function ConnectorGrid({ items, onAskChat, onConnect }) {
       <div style={{
         padding:'40px 24px', textAlign:'center',
         border:'1px dashed rgba(255,255,255,0.08)', borderRadius:'12px',
-        color:'var(--ins-text-inactive)', fontSize:'14px',
+        color:'var(--ins-text-body)', fontSize:'14px',
       }}>
         No connectors match your search.
       </div>
@@ -593,7 +593,7 @@ function App() {
         />
         <div className="connectors-content">
           <div className="connector-search fu2">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-body)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
             </svg>
             <input
@@ -603,7 +603,7 @@ function App() {
               onChange={(e) => setQuery(e.target.value)}
             />
             {query && (
-              <button onClick={() => setQuery('')} style={{background:'none',border:'none',color:'var(--ins-text-inactive)',cursor:'pointer',padding:'2px 6px',fontSize:'12px'}}>
+              <button onClick={() => setQuery('')} style={{background:'none',border:'none',color:'var(--ins-text-body)',cursor:'pointer',padding:'2px 6px',fontSize:'12px'}}>
                 Clear
               </button>
             )}
@@ -623,7 +623,7 @@ function App() {
               <h3 style={{fontSize:'16px', fontWeight:500, color:'var(--ins-color-gray-100)', marginBottom:'4px', letterSpacing:'-.01em'}}>
                 Can't find your tool?
               </h3>
-              <p style={{fontSize:'13.5px', color:'var(--ins-text-inactive)', lineHeight:1.5}}>
+              <p style={{fontSize:'13.5px', color:'var(--ins-text-body)', lineHeight:1.5}}>
                 Tell us what you use and we'll prioritize the connector.
               </p>
             </div>

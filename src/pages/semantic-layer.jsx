@@ -184,7 +184,7 @@ function SemanticLayerMockAnimation() {
                       display:'flex', alignItems:'center', justifyContent:'center',
                       fontSize:'8.5px', fontWeight:700, color:m.color, fontFamily:'Geist Mono,monospace',
                     }}>{m.short}</span>
-                    <span style={{fontSize:'10.5px', color:'rgba(255,255,255,0.7)', fontFamily:'Geist Mono,monospace', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}>{m.source}</span>
+                    <span style={{fontSize:'10.5px', color:'var(--ins-text-body)', fontFamily:'Geist Mono,monospace', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}>{m.source}</span>
                   </div>
                   <span style={{fontSize:'12px', color:'#D2E2E8', fontWeight:500}}>{m.name}</span>
                   <span style={{
@@ -269,7 +269,7 @@ function SemanticLayerMockAnimation() {
                   </span>
                   <span style={{
                     fontSize:'12.5px',
-                    color: done ? 'rgba(14,196,193,0.85)' : (active ? '#E0EDF2' : 'var(--ins-text-inactive)'),
+                    color: done ? 'rgba(14,196,193,0.85)' : (active ? '#E0EDF2' : 'var(--ins-text-body)'),
                     fontWeight: active ? 500 : 400,
                     transition:'color .35s ease',
                   }}>
@@ -351,7 +351,7 @@ function Hero() {
           padding: '24px 0',
         }}>
           <h1 style={{fontSize:'clamp(2.2rem,3.2vw,3.6rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",letterSpacing:'-.04em',lineHeight:1.1,marginBottom:'22px'}}>
-            <span style={{color:'#FFFFFF'}}>One platform.</span><br/>
+            <span style={{color:'var(--ins-text-heading-soft)'}}>One platform.</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>Every team's</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>numbers.</span>
           </h1>
@@ -624,7 +624,7 @@ function Panel1() {
           </div>
           <div style={{fontSize:'12px',color:'rgba(232,242,245,.85)',fontWeight:500,whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',paddingRight:'8px'}}>{m.name}</div>
           <div style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-highlight)',background:'rgba(9,160,157,.07)',padding:'2px 6px',borderRadius:'4px',width:'fit-content'}}>{m.short}</div>
-          <div style={{fontSize:'11px',padding:'2px 8px',borderRadius:'4px',background:CAT_COLORS[m.cat]||'rgba(255,255,255,.06)',color:CAT_TEXT[m.cat]||'var(--ins-text-inactive)',width:'fit-content'}}>{m.cat}</div>
+          <div style={{fontSize:'11px',padding:'2px 8px',borderRadius:'4px',background:CAT_COLORS[m.cat]||'rgba(255,255,255,.06)',color:CAT_TEXT[m.cat]||'var(--ins-text-body)',width:'fit-content'}}>{m.cat}</div>
           <div style={{fontSize:'11px',color:'rgba(255,255,255,.4)',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{m.src}</div>
           <div style={{color:'rgba(255,255,255,.2)',fontSize:'14px',cursor:'pointer'}}>···</div>
         </div>
@@ -660,7 +660,7 @@ function Panel2() {
 
       <div style={{fontSize:'12px',color:'rgba(255,255,255,.35)',marginBottom:'12px',fontFamily:'Geist Mono,monospace'}}>Customer Acquisition Cost → CAC</div>
 
-      <div style={{fontSize:'11.5px',color:'rgba(255,255,255,.7)',marginBottom:'12px',lineHeight:1.6}}>
+      <div style={{fontSize:'11.5px',color:'var(--ins-text-body)',marginBottom:'12px',lineHeight:1.6}}>
         Connecting <span style={{color:'var(--ins-text-highlight)'}}>(@marketing_spend + @sales_spend) / @new_customers</span>
       </div>
 
@@ -870,7 +870,7 @@ function Panel5() {
             {' '}rose to <strong style={{color:'var(--ins-color-gray-100)'}}>$431</strong> in Nov — up from $394 in Oct (+9.4%). Main driver: <strong style={{color:'var(--ins-color-gray-100)'}}>@Marketing_Spend</strong> increased $4.2K while <strong style={{color:'var(--ins-color-gray-100)'}}>@New_Customers</strong> grew only 3%.
             <div style={{marginTop:'8px',display:'flex',gap:5}}>
               {['Stripe','HubSpot','PostgreSQL'].map(s=>(
-                <span key={s} style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',padding:'2px 6px',borderRadius:'4px',background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.07)',color:'var(--ins-text-inactive)'}}>{s}</span>
+                <span key={s} style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',padding:'2px 6px',borderRadius:'4px',background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.07)',color:'var(--ins-text-body)'}}>{s}</span>
               ))}
             </div>
           </div>
@@ -879,7 +879,7 @@ function Panel5() {
 
       {/* Input */}
       <div style={{padding:'10px 14px',borderTop:'1px solid rgba(255,255,255,.06)',display:'flex',alignItems:'center',gap:'8px'}}>
-        <div style={{flex:1,background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.08)',borderRadius:'8px',padding:'8px 12px',fontSize:'12.5px',color:'var(--ins-text-inactive)',fontFamily:'Geist,sans-serif'}}>
+        <div style={{flex:1,background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.08)',borderRadius:'8px',padding:'8px 12px',fontSize:'12.5px',color:'var(--ins-text-body)',fontFamily:'Geist,sans-serif'}}>
           Ask anything... use <span style={{color:'rgba(9,160,157,.5)',fontFamily:'Geist Mono,monospace'}}>@</span> to reference metrics
         </div>
         <div style={{width:'26px',height:'26px',borderRadius:'7px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
@@ -944,7 +944,7 @@ function ConnectorGallery() {
               cursor:'pointer',fontFamily:'Geist,sans-serif',transition:'all .15s',
               border:`1px solid ${cat===activeCat?'rgba(9,160,157,.5)':'rgba(255,255,255,.08)'}`,
               background: cat===activeCat?'rgba(9,160,157,.08)':'transparent',
-              color: cat===activeCat?'var(--ins-text-highlight)':'var(--ins-text-inactive)',
+              color: cat===activeCat?'var(--ins-text-highlight)':'var(--ins-text-body)',
             }}>
               {cat}
             </button>
@@ -1039,7 +1039,7 @@ function BeforeAfter() {
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
             <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>5×</span>
-            <span style={{fontSize:'15px',color:'var(--ins-text-inactive)',whiteSpace:'nowrap'}}>faster reporting because every metric is certified once, used everywhere.</span>
+            <span style={{fontSize:'15px',color:'var(--ins-text-body)',whiteSpace:'nowrap'}}>faster reporting because every metric is certified once, used everywhere.</span>
           </div>
         </div>
       </div>

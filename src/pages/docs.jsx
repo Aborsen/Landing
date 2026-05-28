@@ -148,7 +148,7 @@ function DocsTabs({ activeTab, setActiveTab }) {
                 padding:'12px 18px',
                 fontSize:'13.5px',
                 fontWeight: activeTab === tab.id ? 500 : 400,
-                color: activeTab === tab.id ? 'var(--ins-color-gray-100)' : 'var(--ins-text-inactive)',
+                color: activeTab === tab.id ? 'var(--ins-color-gray-100)' : 'var(--ins-text-body)',
                 background: 'transparent',
                 border: 'none',
                 borderBottom: activeTab === tab.id ? '2px solid var(--ins-color-teal-700)' : '2px solid transparent',
@@ -159,7 +159,7 @@ function DocsTabs({ activeTab, setActiveTab }) {
                 marginBottom: '-1px',
               }}
               onMouseEnter={(e) => { if (activeTab !== tab.id) e.currentTarget.style.color = 'var(--ins-color-gray-100)'; }}
-              onMouseLeave={(e) => { if (activeTab !== tab.id) e.currentTarget.style.color = 'var(--ins-text-inactive)'; }}
+              onMouseLeave={(e) => { if (activeTab !== tab.id) e.currentTarget.style.color = 'var(--ins-text-body)'; }}
             >
               {tab.label}
             </button>
@@ -243,14 +243,14 @@ function DocsSidebar({ activePage, setActivePage, expandedSections, setExpandedS
                     background: activePage === item.id ? 'rgba(10,152,150,0.08)' : 'transparent',
                     border:'none',
                     borderLeft: activePage === item.id ? '2px solid var(--ins-color-teal-700)' : '2px solid transparent',
-                    color: activePage === item.id ? 'var(--ins-color-gray-100)' : 'var(--ins-text-inactive)',
+                    color: activePage === item.id ? 'var(--ins-color-gray-100)' : 'var(--ins-text-body)',
                     fontSize:'13px', cursor:'pointer',
                     transition:'all 0.15s',
                     fontFamily:'Geist,sans-serif',
                     lineHeight: 1.5,
                   }}
                   onMouseEnter={(e) => { if (activePage !== item.id) { e.currentTarget.style.color = 'var(--ins-color-gray-100)'; e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; }}}
-                  onMouseLeave={(e) => { if (activePage !== item.id) { e.currentTarget.style.color = 'var(--ins-text-inactive)'; e.currentTarget.style.background = 'transparent'; }}}
+                  onMouseLeave={(e) => { if (activePage !== item.id) { e.currentTarget.style.color = 'var(--ins-text-body)'; e.currentTarget.style.background = 'transparent'; }}}
                 >
                   {item.label}
                 </button>
@@ -297,7 +297,7 @@ function DocsTOC({ toc, activeSection, setActiveSection }) {
               transition:'color 0.15s, border-color 0.15s',
               lineHeight:1.5,
             }}
-            onMouseEnter={(e) => { if (activeSection !== item.id) e.currentTarget.style.color = 'var(--ins-text-inactive)'; }}
+            onMouseEnter={(e) => { if (activeSection !== item.id) e.currentTarget.style.color = 'var(--ins-text-body)'; }}
             onMouseLeave={(e) => { if (activeSection !== item.id) e.currentTarget.style.color = '#5E8290'; }}
           >
             {item.label}
@@ -333,7 +333,7 @@ function DocsAskQuestion() {
         borderRadius:'10px',
         padding:'4px 4px 4px 14px',
       }}>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-body)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
         </svg>
         <input
@@ -411,7 +411,7 @@ function PageFeedback() {
                   cursor:'pointer', fontSize:'12px', fontFamily:'Geist,sans-serif',
                   transition:'all .15s',
                 }}
-                onMouseEnter={e => { if (vote !== 'up') { e.currentTarget.style.background='rgba(255,255,255,0.07)'; e.currentTarget.style.color='var(--ins-text-inactive)'; }}}
+                onMouseEnter={e => { if (vote !== 'up') { e.currentTarget.style.background='rgba(255,255,255,0.07)'; e.currentTarget.style.color='var(--ins-text-body)'; }}}
                 onMouseLeave={e => { if (vote !== 'up') { e.currentTarget.style.background='rgba(255,255,255,0.04)'; e.currentTarget.style.color='#5E8290'; }}}
               >
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -431,7 +431,7 @@ function PageFeedback() {
                   cursor:'pointer', fontSize:'12px', fontFamily:'Geist,sans-serif',
                   transition:'all .15s',
                 }}
-                onMouseEnter={e => { if (vote !== 'down') { e.currentTarget.style.background='rgba(255,255,255,0.07)'; e.currentTarget.style.color='var(--ins-text-inactive)'; }}}
+                onMouseEnter={e => { if (vote !== 'down') { e.currentTarget.style.background='rgba(255,255,255,0.07)'; e.currentTarget.style.color='var(--ins-text-body)'; }}}
                 onMouseLeave={e => { if (vote !== 'down') { e.currentTarget.style.background='rgba(255,255,255,0.04)'; e.currentTarget.style.color='#5E8290'; }}}
               >
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -453,7 +453,7 @@ function PageFeedback() {
               animation:'fadeUp .2s ease',
             }}>
               <form onSubmit={handleSubmit}>
-                <label style={{ display:'block', fontSize:'13px', color:'var(--ins-text-inactive)', fontWeight:500, marginBottom:'10px' }}>
+                <label style={{ display:'block', fontSize:'13px', color:'var(--ins-text-body)', fontWeight:500, marginBottom:'10px' }}>
                   {prompts[vote].label}
                 </label>
                 <textarea
@@ -481,7 +481,7 @@ function PageFeedback() {
                     color:'#5E8290', fontSize:'12px', cursor:'pointer',
                     fontFamily:'Geist,sans-serif', transition:'color .15s',
                   }}
-                  onMouseEnter={e => e.currentTarget.style.color='var(--ins-text-inactive)'}
+                  onMouseEnter={e => e.currentTarget.style.color='var(--ins-text-body)'}
                   onMouseLeave={e => e.currentTarget.style.color='#5E8290'}
                   >
                     Skip
@@ -533,7 +533,7 @@ function CopyPageButton({ page }) {
         fontFamily:'inherit', flexShrink:0,
         transition:'all .15s',
       }}
-      onMouseEnter={(e) => { if (!copied) { e.currentTarget.style.background='rgba(255,255,255,.08)'; e.currentTarget.style.color='var(--ins-text-inactive)'; }}}
+      onMouseEnter={(e) => { if (!copied) { e.currentTarget.style.background='rgba(255,255,255,.08)'; e.currentTarget.style.color='var(--ins-text-body)'; }}}
       onMouseLeave={(e) => { if (!copied) { e.currentTarget.style.background='rgba(255,255,255,.05)'; e.currentTarget.style.color='#5E8290'; }}}
     >
       {copied ? (
@@ -567,7 +567,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
         {page.breadcrumb.map((crumb, i) => (
           <React.Fragment key={i}>
             {i > 0 && <span style={{ color:'#3A5260', fontSize:'13px' }}>/</span>}
-            <span style={{ fontSize:'13px', color: i === page.breadcrumb.length - 1 ? 'var(--ins-text-inactive)' : '#5E8290' }}>{crumb}</span>
+            <span style={{ fontSize:'13px', color: i === page.breadcrumb.length - 1 ? 'var(--ins-text-body)' : '#5E8290' }}>{crumb}</span>
           </React.Fragment>
         ))}
       </div>
@@ -576,7 +576,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'16px' }}>
         <h1 style={{
           fontSize:'32px', fontWeight:700, letterSpacing:'-0.02em',
-          color:'var(--ins-color-gray-100)', lineHeight:1.2, margin:0,
+          color:'var(--ins-text-heading-soft)', lineHeight:1.2, margin:0,
         }}>
           {page.title}
         </h1>
@@ -585,7 +585,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
 
       {/* Description */}
       <p style={{
-        fontSize:'16px', color:'var(--ins-text-inactive)', lineHeight:1.75,
+        fontSize:'16px', color:'var(--ins-text-body)', lineHeight:1.75,
         marginBottom:'36px',
       }}>
         {page.description}
@@ -657,7 +657,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
                 dangerouslySetInnerHTML={{ __html: section.html }}
               />
             ) : (
-              <p style={{ fontSize:'15px', color:'var(--ins-text-inactive)', lineHeight:1.8 }}>
+              <p style={{ fontSize:'15px', color:'var(--ins-text-body)', lineHeight:1.8 }}>
                 {section.content}
               </p>
             )}
@@ -765,7 +765,7 @@ function FloatingChat({ onSubmit }) {
           padding:'10px 10px 10px 16px',
           transition:'border-color .2s',
         }}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-body)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
           </svg>
           <input
@@ -873,7 +873,7 @@ function AIAssistantPanel({ query, onClose }) {
       background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
       color:'#5E8290', transition:'color .15s',
     }}
-    onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-text-inactive)'}
+    onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-text-body)'}
     onMouseLeave={e => e.currentTarget.style.color = '#5E8290'}
     >
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">

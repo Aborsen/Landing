@@ -52,7 +52,7 @@ function BillingToggle({ cycle, onChange }) {
           borderRadius: '999px',
           border: 'none',
           background: active ? 'var(--ins-surface-elevated)' : 'transparent',
-          color: active ? 'var(--ins-text-heading)' : 'var(--ins-text-inactive)',
+          color: active ? 'var(--ins-text-heading)' : 'var(--ins-text-body)',
           fontSize: '13px',
           fontWeight: 500,
           fontFamily: 'var(--ins-font-family-sans)',

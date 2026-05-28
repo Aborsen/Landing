@@ -95,7 +95,7 @@ function PieChart({ slices }) {
         {paths.map((p,i) => (
           <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
             <div style={{width:'12px',height:'12px',borderRadius:'3px',background:p.color,flexShrink:0}}/>
-            <span style={{fontSize:'14px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',flex:1}}>{p.label}</span>
+            <span style={{fontSize:'14px',color:'var(--ins-text-body)',fontFamily:'Geist Mono,monospace',flex:1}}>{p.label}</span>
             <span style={{fontSize:'14px',color:'var(--ins-color-gray-100)',fontFamily:'Geist Mono,monospace',fontWeight:500}}>{p.pct}%</span>
           </div>
         ))}
@@ -110,7 +110,7 @@ function HorizontalBarChart({ bars }) {
     <div style={{display:'flex',flexDirection:'column',gap:'10px',margin:'12px 0'}}>
       {bars.map((b,i) => (
         <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
-          <span style={{fontSize:'12px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',minWidth:'180px',textAlign:'right',flexShrink:0}}>{b.label}</span>
+          <span style={{fontSize:'12px',color:'var(--ins-text-body)',fontFamily:'Geist Mono,monospace',minWidth:'180px',textAlign:'right',flexShrink:0}}>{b.label}</span>
           <div style={{flex:1,background:'rgba(255,255,255,.04)',borderRadius:'4px',height:'22px',position:'relative',overflow:'hidden'}}>
             <div style={{
               width:`${(Math.abs(b.value)/maxVal)*100}%`,
@@ -261,13 +261,13 @@ function FoundersHeroIllustration() {
         <circle cx="70" cy="62" r="4" fill="#FF5F57" opacity="0.55"/>
         <circle cx="84" cy="62" r="4" fill="#FFBD2E" opacity="0.55"/>
         <circle cx="98" cy="62" r="4" fill="#28C840" opacity="0.55"/>
-        <text x="310" y="66" textAnchor="middle" fontFamily="Geist Mono, monospace" fontSize="11" fill="var(--ins-text-inactive)">Company health · Live</text>
+        <text x="310" y="66" textAnchor="middle" fontFamily="Geist Mono, monospace" fontSize="11" fill="var(--ins-text-body)">Company health · Live</text>
         <rect x="478" y="55" width="76" height="18" rx="5" fill="rgba(9,160,157,0.12)" stroke="rgba(9,160,157,0.35)" strokeWidth="0.5"/>
         <circle cx="488" cy="64" r="2.5" fill="var(--ins-status-success-fg)"/>
         <text x="496" y="67" fontFamily="Geist Mono, monospace" fontSize="9" fill="var(--ins-text-highlight)" fontWeight="500">AI active</text>
 
         {/* Section title row */}
-        <text x="68" y="112" fontFamily="Geist Mono,monospace" fontSize="10" fill="var(--ins-text-inactive)" letterSpacing="1.5">COHORT RETENTION</text>
+        <text x="68" y="112" fontFamily="Geist Mono,monospace" fontSize="10" fill="var(--ins-text-body)" letterSpacing="1.5">COHORT RETENTION</text>
         <text x="552" y="112" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-highlight)" letterSpacing="1">▲ Net retention 112%</text>
 
         {/* Column headers */}
@@ -292,7 +292,7 @@ function FoundersHeroIllustration() {
               textAnchor="end"
               fontFamily="Geist Mono,monospace"
               fontSize="10"
-              fill="var(--ins-text-inactive)"
+              fill="var(--ins-text-body)"
               fontWeight="500"
             >{c.label}</text>
             {c.v.map((val, j) => (
@@ -322,41 +322,41 @@ function FoundersHeroIllustration() {
         ))}
 
         {/* Summary line */}
-        <text x="68" y="412" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-inactive)" letterSpacing="1">142 customers · 5 cohorts · M0–M12 retention</text>
+        <text x="68" y="412" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)" letterSpacing="1">142 customers · 5 cohorts · M0–M12 retention</text>
       </g>
 
       {/* Floating donut card — bottom-left, partially overlapping */}
       <g transform="translate(14, 358)">
         <rect x="0" y="0" width="180" height="158" rx="14" fill="rgba(15,20,25,0.97)" stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
-        <text x="14" y="24" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-inactive)" letterSpacing="1.5">REVENUE BY SEGMENT</text>
+        <text x="14" y="24" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)" letterSpacing="1.5">REVENUE BY SEGMENT</text>
 
         {/* Donut */}
         <g transform="translate(46, 92) rotate(-90)">
           <circle r="22" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="14" strokeDasharray="69.12 138.23" strokeDashoffset="0"/>
           <circle r="22" fill="none" stroke="#34D399" strokeWidth="14" strokeDasharray="41.47 138.23" strokeDashoffset="-69.12"/>
-          <circle r="22" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="14" strokeDasharray="27.65 138.23" strokeDashoffset="-110.59"/>
+          <circle r="22" fill="none" stroke="var(--ins-text-body)" strokeWidth="14" strokeDasharray="27.65 138.23" strokeDashoffset="-110.59"/>
         </g>
         {/* Donut center */}
-        <text x="46" y="89" textAnchor="middle" fontFamily="Geist Mono,monospace" fontSize="8" fill="var(--ins-text-inactive)">ARR</text>
+        <text x="46" y="89" textAnchor="middle" fontFamily="Geist Mono,monospace" fontSize="8" fill="var(--ins-text-body)">ARR</text>
         <text x="46" y="103" textAnchor="middle" fontFamily="Geist,sans-serif" fontSize="12" fontWeight="600" fill="var(--ins-color-gray-100)">$24M</text>
 
         {/* Legend */}
         <g transform="translate(86, 56)">
           <circle cx="0" cy="0" r="3" fill="var(--ins-text-highlight)"/>
           <text x="9" y="3" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-color-gray-100)">Enterprise</text>
-          <text x="84" y="3" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-inactive)">50%</text>
+          <text x="84" y="3" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)">50%</text>
 
           <circle cx="0" cy="22" r="3" fill="#34D399"/>
           <text x="9" y="25" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-color-gray-100)">Mid-market</text>
-          <text x="84" y="25" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-inactive)">30%</text>
+          <text x="84" y="25" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)">30%</text>
 
-          <circle cx="0" cy="44" r="3" fill="var(--ins-text-inactive)"/>
+          <circle cx="0" cy="44" r="3" fill="var(--ins-text-body)"/>
           <text x="9" y="47" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-color-gray-100)">SMB</text>
-          <text x="84" y="47" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-inactive)">20%</text>
+          <text x="84" y="47" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)">20%</text>
         </g>
 
         {/* Footer */}
-        <text x="14" y="146" fontFamily="Geist Mono,monospace" fontSize="8" fill="var(--ins-text-inactive)">ACV $42K · 142 customers</text>
+        <text x="14" y="146" fontFamily="Geist Mono,monospace" fontSize="8" fill="var(--ins-text-body)">ACV $42K · 142 customers</text>
       </g>
 
       {/* Floating AI insight card — bottom-right, partially overlapping */}
@@ -369,7 +369,7 @@ function FoundersHeroIllustration() {
         <text x="48" y="26" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-highlight)" fontWeight="500" letterSpacing="1">INSIGHT · LIVE</text>
         <text x="48" y="46" fontFamily="Geist,sans-serif" fontSize="12" fill="var(--ins-color-gray-100)" fontWeight="500">Q3 cohort retains 12 pp</text>
         <text x="48" y="62" fontFamily="Geist,sans-serif" fontSize="12" fill="var(--ins-color-gray-100)" fontWeight="500">better — onboarding wins.</text>
-        <text x="48" y="78" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-inactive)">Enterprise mix +8 pp →</text>
+        <text x="48" y="78" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)">Enterprise mix +8 pp →</text>
       </g>
     </svg>
   );
@@ -398,13 +398,13 @@ function Hero() {
                 lineHeight:1.05,
                 marginBottom:'24px',
               }}>
-                <span style={{color:'var(--ins-color-gray-100)'}}>AI analytics for </span>
+                <span style={{color:'var(--ins-text-heading-soft)'}}>AI analytics for </span>
                 <span style={{color:'var(--ins-text-highlight)'}}>Founders &amp; CEOs</span>
               </h1>
 
               <p className="fu2" style={{
                 fontSize:'clamp(16px,1.25vw,19px)',
-                color:'rgba(255,255,255,.68)',
+                color:'var(--ins-text-body)',
                 lineHeight:1.6,
                 marginBottom:'36px',
                 maxWidth:'520px',
@@ -470,7 +470,7 @@ function PainPoints() {
           <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'var(--ins-text-body)',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
             Founders fly blind between board meetings
           </h2>
-          <p style={{fontSize:'16px',color:'rgba(255,255,255,.7)',maxWidth:'480px',margin:'0 auto',lineHeight:1.65}}>
+          <p style={{fontSize:'16px',color:'var(--ins-text-body)',maxWidth:'480px',margin:'0 auto',lineHeight:1.65}}>
             Sound familiar? These are the problems Insightis eliminates.
           </p>
         </div>
@@ -591,7 +591,7 @@ function BeforeAfter() {
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
             <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>7×</span>
-            <span style={{fontSize:'15px',color:'var(--ins-text-inactive)',whiteSpace:'nowrap'}}>faster strategic answers. Zero analyst handoffs.</span>
+            <span style={{fontSize:'15px',color:'var(--ins-text-body)',whiteSpace:'nowrap'}}>faster strategic answers. Zero analyst handoffs.</span>
           </div>
         </div>
       </div>
@@ -639,7 +639,7 @@ function FAQ() {
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.03em',marginBottom:'12px'}}>
             What founders and CEOs ask first
           </h2>
-          <p style={{fontSize:'16px',color:'rgba(255,255,255,.7)',maxWidth:'560px',margin:'0 auto',lineHeight:1.65}}>
+          <p style={{fontSize:'16px',color:'var(--ins-text-body)',maxWidth:'560px',margin:'0 auto',lineHeight:1.65}}>
             Six things on every founder’s mind before bringing Insightis into the boardroom.
           </p>
         </div>

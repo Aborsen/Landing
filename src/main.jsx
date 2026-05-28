@@ -133,7 +133,7 @@ function ConnectorPill({ name, small = false }) {
       <div className={`${small ? 'w-5 h-5' : 'w-6 h-6'} flex items-center justify-center`}>
         <ConnectorIcon name={name} size={small ? 16 : 18} />
       </div>
-      <span className={`${small ? 'text-xs' : 'text-sm'} text-[var(--ins-text-inactive)] font-medium whitespace-nowrap`}>{name}</span>
+      <span className={`${small ? 'text-xs' : 'text-sm'} text-[var(--ins-text-body)] font-medium whitespace-nowrap`}>{name}</span>
     </div>
   );
 }
@@ -204,7 +204,7 @@ function Hero() {
     <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-56 bg-[var(--ins-color-gray-800)] border border-[var(--ins-border-hover)] rounded-xl p-4 z-[100]" onClick={e => e.stopPropagation()} style={{ boxShadow: 'none' }}>
       <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-[var(--ins-color-gray-800)] border-l border-t border-[var(--ins-border-hover)] rotate-45 mb-[-5px]"></div>
       <p className="text-[var(--ins-text-heading)] text-sm font-medium mb-1">Unlock full access</p>
-      <p className="text-[var(--ins-text-inactive)] text-xs mb-3">Get more after registration — connect your data sources and explore AI insights.</p>
+      <p className="text-[var(--ins-text-body)] text-xs mb-3">Get more after registration — connect your data sources and explore AI insights.</p>
       <Button as="a" href="/auth/sign-up/" variant="primary" size="sm">Sign Up Free</Button>
     </div>
   );
@@ -219,7 +219,7 @@ function Hero() {
         {/* Headline */}
         <FadeUp delay={0.1}>
           <h1 className="text-center mb-6" style={{fontSize:'clamp(2.2rem,3.2vw,3.6rem)',fontWeight:700,fontFamily:'var(--ins-font-family-sans)',letterSpacing:'-.04em',lineHeight:1.1,textWrap:'balance'}}>
-            <span style={{display:'block'}} className="text-[var(--ins-text-heading)]">Your data knows the answer</span>
+            <span style={{display:'block'}} className="text-[var(--ins-text-heading-soft)]">Your data knows the answer</span>
             <span style={{display:'block',color:'var(--ins-text-highlight)'}}>Now you can ask it</span>
           </h1>
         </FadeUp>
@@ -229,7 +229,7 @@ function Hero() {
           <p className="ins-text-body-lg max-w-2xl mx-auto mb-3" style={{color:'var(--ins-text-body)'}}>
             Insightis connects your real data and delivers answers <span style={{color:'var(--ins-text-highlight)', fontWeight:500}}>3× more accurate</span> than spreadsheets.
           </p>
-          <p className="text-sm max-w-2xl mx-auto mb-8" style={{color:'var(--ins-text-inactive)'}}>
+          <p className="text-sm max-w-2xl mx-auto mb-8" style={{color:'var(--ins-text-body)'}}>
             Powered by your <span style={{color:'var(--ins-text-body)'}}>semantic layer</span> — a unified dictionary of every metric, dimension, and join in your data.
           </p>
         </FadeUp>
@@ -248,7 +248,7 @@ function Hero() {
                       onChange={e => setUserText(e.target.value)}
                       placeholder="Ask anything about your data..."
                       aria-label="Ask anything about your data"
-                      className="flex-1 bg-transparent text-[var(--ins-text-heading)] text-base outline-none placeholder-[var(--ins-text-inactive)] resize-none h-[160px]"
+                      className="flex-1 bg-transparent text-[var(--ins-text-heading)] text-base outline-none placeholder-[var(--ins-text-body)] resize-none h-[160px]"
                       onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && userText.trim()) { e.preventDefault(); window.location.href = '#pricing'; } }}
                     />
                   ) : (
@@ -268,7 +268,7 @@ function Hero() {
                   <div className="relative">
                     <button
                       className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-150"
-                      style={{ color: tooltip === 'attach' ? 'var(--ins-text-highlight)' : 'var(--ins-text-inactive)', background: tooltip === 'attach' ? 'var(--ins-surface-brand-tint)' : 'transparent' }}
+                      style={{ color: tooltip === 'attach' ? 'var(--ins-text-highlight)' : 'var(--ins-text-body)', background: tooltip === 'attach' ? 'var(--ins-surface-brand-tint)' : 'transparent' }}
                       onClick={e => { e.stopPropagation(); setTooltip(tooltip === 'attach' ? null : 'attach'); }}
                       aria-label="Attach file"
                     >
@@ -286,7 +286,7 @@ function Hero() {
                             <div className="w-9 h-9 rounded-xl bg-[var(--ins-border-default)] border border-[var(--ins-border-hover)] flex items-center justify-center flex-shrink-0">
                               <svg width="18" height="20" viewBox="0 0 18 20" fill="none" style={{color:'var(--ins-text-disabled)'}}><path d="M11 1H3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7L11 1z" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/><path d="M11 1v6h6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
                             </div>
-                            <span className="text-xs text-[var(--ins-text-inactive)]">{f.label}</span>
+                            <span className="text-xs text-[var(--ins-text-body)]">{f.label}</span>
                           </div>
                         ))}
                       </div>
@@ -307,7 +307,7 @@ function Hero() {
                     {tooltip === 'connectors' && (
                       <div className="absolute bottom-full left-0 mb-2 w-64 bg-[var(--ins-surface-card)] border border-[var(--ins-border-hover)] rounded-2xl shadow-2xl z-[100] overflow-hidden" onClick={e => e.stopPropagation()}>
                         <div className="px-3 pt-3 pb-1">
-                          <p className="text-[10px] font-medium text-[var(--ins-text-inactive)] uppercase tracking-wider px-1 mb-2">Not configured</p>
+                          <p className="text-[10px] font-medium text-[var(--ins-text-body)] uppercase tracking-wider px-1 mb-2">Not configured</p>
                           {[
                             { name: 'PostgreSQL' },
                             { name: 'SQL Server' },
@@ -325,7 +325,7 @@ function Hero() {
                                 <div className="w-6 h-6 rounded-md bg-[var(--ins-border-default)] border border-[var(--ins-border-hover)] flex items-center justify-center flex-shrink-0">
                                   <ConnectorIcon name={c.name} size={14} />
                                 </div>
-                                <span className="text-sm text-[var(--ins-text-inactive)] group-hover:text-[var(--ins-text-heading)] transition-colors">{c.name}</span>
+                                <span className="text-sm text-[var(--ins-text-body)] group-hover:text-[var(--ins-text-heading)] transition-colors">{c.name}</span>
                               </div>
                               <div className="w-9 h-5 rounded-full flex-shrink-0" style={{ background: 'var(--ins-border-default)', border: '1px solid var(--ins-border-hover)', position: 'relative' }}>
                                 <div className="w-3.5 h-3.5 rounded-full bg-[var(--ins-border-hover)] absolute top-[2px] left-[2px]"></div>
@@ -357,7 +357,7 @@ function Hero() {
                     {tooltip === 'model' && (
                       <div className="absolute bottom-full left-0 mb-2 w-60 bg-[var(--ins-surface-card)] border border-[var(--ins-border-hover)] rounded-2xl shadow-2xl z-[100] overflow-hidden" onClick={e => e.stopPropagation()}>
                         <div className="p-3">
-                          <p className="text-[10px] font-medium text-[var(--ins-text-inactive)] uppercase tracking-wider px-1 mb-2">Select model</p>
+                          <p className="text-[10px] font-medium text-[var(--ins-text-body)] uppercase tracking-wider px-1 mb-2">Select model</p>
                           {[
                             { name: 'Gemini Pro', tag: 'Google', active: true },
                             { name: 'GPT-4o', tag: 'OpenAI', active: false },
@@ -373,8 +373,8 @@ function Hero() {
                                   <div className="w-2 h-2 rounded-full" style={{ background: m.active ? 'var(--ins-color-teal-500)' : 'var(--ins-border-hover)' }}></div>
                                 </div>
                                 <div>
-                                  <span className="text-sm block" style={{ color: m.active ? 'white' : 'var(--ins-text-inactive)' }}>{m.name}</span>
-                                  <span className="text-[10px] text-[var(--ins-text-inactive)]">{m.tag}</span>
+                                  <span className="text-sm block" style={{ color: m.active ? 'white' : 'var(--ins-text-body)' }}>{m.name}</span>
+                                  <span className="text-[10px] text-[var(--ins-text-body)]">{m.tag}</span>
                                 </div>
                               </div>
                               <div className="w-9 h-5 rounded-full relative flex-shrink-0 transition-all"
@@ -398,7 +398,7 @@ function Hero() {
                     background: userText.trim() ? 'linear-gradient(135deg, var(--ins-color-teal-500), var(--ins-color-teal-600))' : 'rgba(255,255,255,0.08)',
                     boxShadow: userText.trim() ? '0 0 16px rgba(7,128,126,0.35)' : 'none',
                     cursor: userText.trim() ? 'pointer' : 'default',
-                    color: userText.trim() ? 'white' : 'var(--ins-text-inactive)'
+                    color: userText.trim() ? 'white' : 'var(--ins-text-body)'
                   }}
                   onClick={() => { if (userText.trim()) window.location.href = '#pricing'; }}
                 >
@@ -413,7 +413,7 @@ function Hero() {
 
         {/* Trust line — restructured as 3-pill strip per ISS-39 for fast scanning */}
         <FadeUp delay={0.3}>
-          <div className="text-xs text-[var(--ins-text-inactive)] flex items-center justify-center gap-3 flex-wrap">
+          <div className="text-xs text-[var(--ins-text-body)] flex items-center justify-center gap-3 flex-wrap">
             <span className="flex items-center gap-2">
               <CheckIcon size={14} color="var(--ins-text-highlight)" />
               Built by <span className="text-[var(--ins-text-body)]">Devart</span>
@@ -507,7 +507,7 @@ function ArchRight({ outputs }) {
               <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{background: 'rgba(7,128,126,0.15)', border: '1px solid rgba(7,128,126,0.3)'}}>{o.icon}</div>
               <div>
                 <p className="text-sm font-medium text-[var(--ins-text-heading)]">{o.title}</p>
-                <p className="text-xs text-[var(--ins-text-inactive)]">{o.desc}</p>
+                <p className="text-xs text-[var(--ins-text-body)]">{o.desc}</p>
               </div>
             </div>
           );
@@ -767,7 +767,7 @@ function Architecture() {
                   <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{background: 'rgba(7,128,126,0.15)', border: '1px solid rgba(7,128,126,0.3)'}}>{o.icon}</div>
                   <div>
                     <p className="text-sm font-medium text-[var(--ins-text-heading)]">{o.title}</p>
-                    <p className="text-xs text-[var(--ins-text-inactive)]">{o.desc}</p>
+                    <p className="text-xs text-[var(--ins-text-body)]">{o.desc}</p>
                   </div>
                 </div>
               ))}
@@ -976,7 +976,7 @@ function WhatIsInsightis() {
                     <AnimatedStat target={s.target} suffix={s.suffix} prefix={s.prefix} duration={1800 + i * 150} />
                   </p>
                   <p className="text-sm font-medium text-[var(--ins-text-heading)] mb-1">{s.label}</p>
-                  <p className="text-xs text-[var(--ins-text-inactive)]">{s.sub}</p>
+                  <p className="text-xs text-[var(--ins-text-body)]">{s.sub}</p>
                 </div>
               ))}
             </div>

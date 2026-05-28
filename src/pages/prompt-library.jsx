@@ -19,13 +19,13 @@ function PromptLibraryHero() {
   return (
     <section style={{padding:'80px 0 40px', textAlign:'center', position:'relative'}}>
       <div style={{maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
-        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid rgba(255,255,255,.07)', background:'rgba(255,255,255,.03)', fontSize:'12px', color:'var(--ins-text-inactive)', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
+        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid rgba(255,255,255,.07)', background:'rgba(255,255,255,.03)', fontSize:'12px', color:'var(--ins-text-body)', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
           ✦ PROMPT LIBRARY
         </div>
-        <h1 className="fu1" style={{fontSize:'clamp(36px,5vw,56px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'var(--ins-color-gray-100)', marginBottom:'20px'}}>
+        <h1 className="fu1" style={{fontSize:'clamp(36px,5vw,56px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'var(--ins-text-heading-soft)', marginBottom:'20px'}}>
           Prompts for every team.
         </h1>
-        <p className="fu2" style={{fontSize:'17px', color:'var(--ins-text-inactive)', lineHeight:1.6, maxWidth:'560px', margin:'0 auto'}}>
+        <p className="fu2" style={{fontSize:'17px', color:'var(--ins-text-body)', lineHeight:1.6, maxWidth:'560px', margin:'0 auto'}}>
           Curated prompt templates for analytics, ops, and go-to-market teams — connected to the tools you already use.
         </p>
       </div>
@@ -612,7 +612,7 @@ function FloatingChat({ onSubmit }) {
           backdropFilter:'blur(10px)',
           WebkitBackdropFilter:'blur(10px)',
         }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-body)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
           </svg>
           <input
@@ -720,7 +720,7 @@ function AIAssistantPanel({ query, onClose }) {
       background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
       color:'#5E8290', transition:'color .15s',
     }}
-    onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-text-inactive)'}
+    onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-text-body)'}
     onMouseLeave={e => e.currentTarget.style.color = '#5E8290'}
     >
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -939,7 +939,7 @@ function App() {
             marginBottom:'20px',
             transition:'border-color .2s',
           }}>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-body)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
               <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
             </svg>
             <input
@@ -957,7 +957,7 @@ function App() {
             {query && (
               <button onClick={() => setQuery('')} style={{
                 background:'none', border:'none', cursor:'pointer',
-                color:'var(--ins-text-inactive)', padding:'2px 6px', fontSize:'12px',
+                color:'var(--ins-text-body)', padding:'2px 6px', fontSize:'12px',
                 fontFamily:"'Geist', sans-serif",
               }}>
                 Clear
@@ -979,7 +979,7 @@ function App() {
             <div style={{
               padding:'40px 24px', textAlign:'center',
               border:'1px dashed rgba(255,255,255,0.08)', borderRadius:'12px',
-              color:'var(--ins-text-inactive)', fontSize:'14px',
+              color:'var(--ins-text-body)', fontSize:'14px',
             }}>
               No prompts match your search — try different keywords or clear a filter.
             </div>

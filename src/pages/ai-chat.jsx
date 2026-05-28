@@ -180,7 +180,7 @@ function ChatMock() {
               <>
                 <span>{typedA}</span>
                 {phase === 'typing-a' && (
-                  <span style={{display:'inline-block',width:'2px',height:'13px',background:'var(--ins-text-inactive)',marginLeft:'2px',verticalAlign:'middle',animation:'blink .7s ease-in-out infinite'}}/>
+                  <span style={{display:'inline-block',width:'2px',height:'13px',background:'var(--ins-text-body)',marginLeft:'2px',verticalAlign:'middle',animation:'blink .7s ease-in-out infinite'}}/>
                 )}
                 {showChart && conv.chart && (
                   <MiniBarChart data={conv.chartData} color={conv.chartColor}/>
@@ -278,7 +278,7 @@ function PieChart({ slices }) {
         {paths.map((p,i) => (
           <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
             <div style={{width:'12px',height:'12px',borderRadius:'3px',background:p.color,flexShrink:0}}/>
-            <span style={{fontSize:'14px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',flex:1}}>{p.label}</span>
+            <span style={{fontSize:'14px',color:'var(--ins-text-body)',fontFamily:'Geist Mono,monospace',flex:1}}>{p.label}</span>
             <span style={{fontSize:'14px',color:'var(--ins-color-gray-100)',fontFamily:'Geist Mono,monospace',fontWeight:500}}>{p.pct}%</span>
           </div>
         ))}
@@ -293,7 +293,7 @@ function HorizontalBarChart({ bars }) {
     <div style={{display:'flex',flexDirection:'column',gap:'10px',margin:'12px 0'}}>
       {bars.map((b,i) => (
         <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
-          <span style={{fontSize:'12px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',minWidth:'180px',textAlign:'right',flexShrink:0}}>{b.label}</span>
+          <span style={{fontSize:'12px',color:'var(--ins-text-body)',fontFamily:'Geist Mono,monospace',minWidth:'180px',textAlign:'right',flexShrink:0}}>{b.label}</span>
           <div style={{flex:1,background:'rgba(255,255,255,.04)',borderRadius:'4px',height:'22px',position:'relative',overflow:'hidden'}}>
             <div style={{
               width:`${(Math.abs(b.value)/maxVal)*100}%`,
@@ -340,7 +340,7 @@ function GroupedBarChart({ groups }) {
     <div style={{display:'flex',flexDirection:'column',gap:'10px',margin:'12px 0'}}>
       {groups.map((g,i) => (
         <div key={i}>
-          <div style={{fontSize:'11px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',marginBottom:'4px'}}>{g.label}</div>
+          <div style={{fontSize:'11px',color:'var(--ins-text-body)',fontFamily:'Geist Mono,monospace',marginBottom:'4px'}}>{g.label}</div>
           <div style={{display:'flex',gap:'4px',flexDirection:'column'}}>
             <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
               <div style={{width:'100%',background:'rgba(255,255,255,.04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
@@ -371,7 +371,7 @@ function RetainedVsChurnedChart({ bars }) {
     <div style={{display:'flex',flexDirection:'column',gap:'10px',margin:'12px 0'}}>
       {bars.map((b,i) => (
         <div key={i}>
-          <div style={{fontSize:'11px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',marginBottom:'4px'}}>{b.label}</div>
+          <div style={{fontSize:'11px',color:'var(--ins-text-body)',fontFamily:'Geist Mono,monospace',marginBottom:'4px'}}>{b.label}</div>
           <div style={{display:'flex',gap:'4px',flexDirection:'column'}}>
             <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
               <div style={{width:'100%',background:'rgba(255,255,255,.04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
@@ -824,7 +824,7 @@ function QuestionsGallery() {
               cursor:'pointer',fontFamily:'Geist,sans-serif',transition:'all .15s',
               border:`1px solid ${c===activeCat?'rgba(9,160,157,.5)':'rgba(255,255,255,.08)'}`,
               background: c===activeCat?'rgba(9,160,157,.08)':'transparent',
-              color: c===activeCat?'#fff':'var(--ins-text-inactive)',
+              color: c===activeCat?'#fff':'var(--ins-text-body)',
             }}>
               {c}
             </button>
@@ -911,7 +911,7 @@ function QuestionsGallery() {
                 {cat.replies[activeQ].action && (
                   <div style={{display:'flex',alignItems:'flex-start',gap:'8px',background:'rgba(9,160,157,.05)',border:'1px solid rgba(9,160,157,.15)',borderRadius:'10px',padding:'12px 16px',marginTop:'16px'}}>
                     <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'13px',flexShrink:0}}>{"\u2606"}</span>
-                    <span style={{fontSize:'13px',color:'var(--ins-text-inactive)',lineHeight:1.55}}>{"\u2192"} {cat.replies[activeQ].action}</span>
+                    <span style={{fontSize:'13px',color:'var(--ins-text-body)',lineHeight:1.55}}>{"\u2192"} {cat.replies[activeQ].action}</span>
                   </div>
                 )}
               </div>
@@ -1046,7 +1046,7 @@ function AccuracyComparison() {
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
             <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>3×</span>
-            <span style={{fontSize:'15px',color:'var(--ins-text-inactive)',whiteSpace:'nowrap'}}>more accurate because it knows your data, not the internet's.</span>
+            <span style={{fontSize:'15px',color:'var(--ins-text-body)',whiteSpace:'nowrap'}}>more accurate because it knows your data, not the internet's.</span>
           </div>
         </div>
       </div>
@@ -1260,7 +1260,7 @@ function ChatMockAnimationInner() {
                   { visible: showStep2, done: step2Done, label: 'Analyzing last week activity' },
                   { visible: showStep3, done: step3Done, label: 'Checking results' },
                 ].filter(s => s.visible).map(({done, label}, i) => (
-                  <div key={label} style={{display:'flex', alignItems:'center', gap:'7px', fontSize:'12px', color: done ? 'rgba(14,196,193,0.75)' : 'var(--ins-text-inactive)', animation:'slideUp .22s ease both', transition:'color .3s ease'}}>
+                  <div key={label} style={{display:'flex', alignItems:'center', gap:'7px', fontSize:'12px', color: done ? 'rgba(14,196,193,0.75)' : 'var(--ins-text-body)', animation:'slideUp .22s ease both', transition:'color .3s ease'}}>
                     <span style={{
                       width:'16px', height:'16px', borderRadius:'4px', flexShrink:0,
                       display:'flex', alignItems:'center', justifyContent:'center',
@@ -1399,7 +1399,7 @@ function Hero() {
           padding: '24px 0',
         }}>
           <h1 style={{fontSize:'clamp(2.2rem,3.2vw,3.6rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",letterSpacing:'-.04em',lineHeight:1.1,marginBottom:'22px'}}>
-            <span style={{color:'#FFFFFF'}}>Ask anything.</span><br/>
+            <span style={{color:'var(--ins-text-heading-soft)'}}>Ask anything.</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>Get answers in</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>seconds.</span>
           </h1>

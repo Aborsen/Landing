@@ -130,7 +130,7 @@ function ShareButtons({ slug, title }) {
 
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px', margin: '32px 0', paddingTop: '24px', borderTop: '1px solid var(--ins-border-default)' }}>
-      <span style={{ fontSize: '13px', color: 'var(--ins-text-inactive)', marginRight: '4px' }}>Share</span>
+      <span style={{ fontSize: '13px', color: 'var(--ins-text-body)', marginRight: '4px' }}>Share</span>
       <a href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`} target="_blank" rel="noopener noreferrer" aria-label="Share on X" style={baseBtn}><XIcon /> X</a>
       <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`} target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" style={baseBtn}><LinkedInIcon /> LinkedIn</a>
       <a href={`https://reddit.com/submit?url=${encodedUrl}&title=${encodedTitle}`} target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit" style={baseBtn}><RedditIcon /> Reddit</a>
@@ -188,7 +188,7 @@ function TableOfContents({ items }) {
         {/* On this page (TOC) */}
         {items.length > 0 && (
           <div>
-            <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-inactive)', marginBottom: '12px' }}>On this page</p>
+            <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-body)', marginBottom: '12px' }}>On this page</p>
             {/* src/app.css:119 has a global `nav { display:flex; padding:0 48px;
                 height:58px; ... }` rule originally for the site-wide top nav.
                 Inside this TOC sidebar `<nav>` it nukes layout — the 96px
@@ -227,7 +227,7 @@ function TableOfContents({ items }) {
                         borderLeftColor: active === item.id ? 'var(--ins-text-highlight)' : 'transparent',
                         fontSize: '13px',
                         lineHeight: 1.45,
-                        color: active === item.id ? 'var(--ins-text-heading)' : 'var(--ins-text-inactive)',
+                        color: active === item.id ? 'var(--ins-text-heading)' : 'var(--ins-text-body)',
                         textDecoration: 'none',
                         transition: 'color 150ms, border-color 150ms',
                         wordBreak: 'break-word',
@@ -242,7 +242,7 @@ function TableOfContents({ items }) {
 
         {/* Topics */}
         <div>
-          <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-inactive)', marginBottom: '12px' }}>Topics</p>
+          <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-body)', marginBottom: '12px' }}>Topics</p>
           <ul style={{
             listStyle: 'none',
             padding: 0,
@@ -284,7 +284,7 @@ function TableOfContents({ items }) {
 
         {/* Social */}
         <div>
-          <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-inactive)', marginBottom: '12px' }}>Social</p>
+          <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-body)', marginBottom: '12px' }}>Social</p>
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
             {socials.map(({ label, href, Icon }) => (
               <a
@@ -302,7 +302,7 @@ function TableOfContents({ items }) {
                   borderRadius: '50%',
                   background: 'var(--ins-surface-card)',
                   border: '1px solid var(--ins-border-default)',
-                  color: 'var(--ins-text-inactive)',
+                  color: 'var(--ins-text-body)',
                   textDecoration: 'none',
                   transition: 'color 150ms, border-color 150ms',
                 }}
@@ -343,7 +343,7 @@ function TopicsSidebar({ currentSlug }) {
       }}>
         {/* Topics */}
         <div>
-          <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-inactive)', marginBottom: '12px' }}>Topics</p>
+          <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-body)', marginBottom: '12px' }}>Topics</p>
           <ul style={{
             listStyle: 'none',
             padding: 0,
@@ -385,7 +385,7 @@ function TopicsSidebar({ currentSlug }) {
 
         {/* Social */}
         <div style={{ marginTop: '32px' }}>
-          <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-inactive)', marginBottom: '12px' }}>Social</p>
+          <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-body)', marginBottom: '12px' }}>Social</p>
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
             {socials.map(({ label, href, Icon }) => (
               <a
@@ -403,7 +403,7 @@ function TopicsSidebar({ currentSlug }) {
                   borderRadius: '50%',
                   background: 'var(--ins-surface-card)',
                   border: '1px solid var(--ins-border-default)',
-                  color: 'var(--ins-text-inactive)',
+                  color: 'var(--ins-text-body)',
                   textDecoration: 'none',
                   transition: 'color 150ms, border-color 150ms',
                 }}
@@ -442,7 +442,7 @@ function BackToTop() {
         borderRadius: '50%',
         background: 'var(--ins-surface-card)',
         border: '1px solid var(--ins-border-default)',
-        color: 'var(--ins-text-inactive)',
+        color: 'var(--ins-text-body)',
         cursor: 'pointer',
         display: 'flex',
         alignItems: 'center',
@@ -455,7 +455,7 @@ function BackToTop() {
         transition: 'opacity 200ms ease, transform 200ms ease, color 150ms, border-color 150ms',
       }}
       onMouseEnter={e => { e.currentTarget.style.color = 'var(--ins-text-heading)'; e.currentTarget.style.borderColor = 'var(--ins-border-hover)'; }}
-      onMouseLeave={e => { e.currentTarget.style.color = 'var(--ins-text-inactive)'; e.currentTarget.style.borderColor = 'var(--ins-border-default)'; }}
+      onMouseLeave={e => { e.currentTarget.style.color = 'var(--ins-text-body)'; e.currentTarget.style.borderColor = 'var(--ins-border-default)'; }}
     >
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <line x1="12" y1="19" x2="12" y2="5"/>
@@ -514,7 +514,7 @@ function RelatedArticles({ currentSlug }) {
         fontWeight: 500,
         letterSpacing: '0.12em',
         textTransform: 'uppercase',
-        color: 'var(--ins-text-inactive)',
+        color: 'var(--ins-text-body)',
         marginBottom: '20px',
       }}>Related articles</div>
       <div className="blog-related-grid">
@@ -794,15 +794,15 @@ export default function BlogPost({ markdown, slug }) {
                 alignItems: 'center',
                 gap: '6px',
                 fontSize: '13px',
-                color: 'var(--ins-text-inactive)',
+                color: 'var(--ins-text-body)',
                 lineHeight: 1.4,
               }}>
                 <li>
-                  <a href="/" style={{ color: 'var(--ins-text-inactive)', textDecoration: 'none' }}>Home</a>
+                  <a href="/" style={{ color: 'var(--ins-text-body)', textDecoration: 'none' }}>Home</a>
                 </li>
                 <li aria-hidden="true" style={{ color: 'var(--ins-text-disabled)' }}>›</li>
                 <li>
-                  <a href="/blog/" style={{ color: 'var(--ins-text-inactive)', textDecoration: 'none' }}>Blog</a>
+                  <a href="/blog/" style={{ color: 'var(--ins-text-body)', textDecoration: 'none' }}>Blog</a>
                 </li>
                 <li aria-hidden="true" style={{ color: 'var(--ins-text-disabled)' }}>›</li>
                 <li aria-current="page" style={{
@@ -833,7 +833,7 @@ export default function BlogPost({ markdown, slug }) {
             )}
 
             {/* Meta strip */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px', marginBottom: '20px', fontSize: '13px', color: 'var(--ins-text-inactive)' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px', marginBottom: '20px', fontSize: '13px', color: 'var(--ins-text-body)' }}>
               {meta.category && (
                 <span style={{
                   padding: '4px 10px',
@@ -857,7 +857,7 @@ export default function BlogPost({ markdown, slug }) {
               fontWeight: 700,
               lineHeight: 1.15,
               letterSpacing: '-0.03em',
-              color: 'var(--ins-text-heading)',
+              color: 'var(--ins-text-heading-soft)',
               marginBottom: '16px',
               textWrap: 'balance',
             }}>{meta.title || 'Untitled'}</h1>
@@ -883,12 +883,12 @@ export default function BlogPost({ markdown, slug }) {
                     borderRadius: 'var(--ins-radius-pill)',
                     background: 'var(--ins-surface-card)',
                     border: '1px solid var(--ins-border-default)',
-                    color: 'var(--ins-text-inactive)',
+                    color: 'var(--ins-text-body)',
                     textDecoration: 'none',
                     transition: 'all .15s ease',
                   }}
                   onMouseEnter={e => { e.currentTarget.style.color = 'var(--ins-text-highlight)'; e.currentTarget.style.borderColor = 'var(--ins-border-brand)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.color = 'var(--ins-text-inactive)'; e.currentTarget.style.borderColor = 'var(--ins-border-default)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.color = 'var(--ins-text-body)'; e.currentTarget.style.borderColor = 'var(--ins-border-default)'; }}
                   >#{t}</a>
                 ))}
               </div>
@@ -901,7 +901,7 @@ export default function BlogPost({ markdown, slug }) {
                 alignItems: 'center',
                 gap: '10px',
                 fontSize: '13px',
-                color: 'var(--ins-text-inactive)',
+                color: 'var(--ins-text-body)',
                 marginBottom: '32px',
                 paddingBottom: '24px',
                 borderBottom: '1px solid var(--ins-border-default)',
@@ -1137,7 +1137,7 @@ export default function BlogPost({ markdown, slug }) {
           border-left: 3px solid var(--ins-border-brand);
           padding: 4px 16px;
           margin-left: 0;
-          color: var(--ins-text-inactive);
+          color: var(--ins-text-body);
           font-style: italic;
         }
         .blog-prose hr {

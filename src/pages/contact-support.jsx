@@ -26,7 +26,7 @@ function SupportHero({ search, setSearch }) {
             flexShrink:0,
           }} />
           <span style={{ fontFamily:'Geist Mono, monospace' }}>All systems operational</span>
-          <span style={{ color:'var(--ins-text-inactive)', fontWeight:400 }}>· Last checked: 2 minutes ago</span>
+          <span style={{ color:'var(--ins-text-body)', fontWeight:400 }}>· Last checked: 2 minutes ago</span>
         </div>
 
         <h1 className="fu1" style={{
@@ -38,7 +38,7 @@ function SupportHero({ search, setSearch }) {
         </h1>
 
         <p className="fu2" style={{
-          fontSize:'17px', color:'var(--ins-text-inactive)', lineHeight:1.6,
+          fontSize:'17px', color:'var(--ins-text-body)', lineHeight:1.6,
           maxWidth:'520px', margin:'0 auto 32px',
         }}>
           Search our help resources or reach out to the support team directly.
@@ -193,12 +193,12 @@ function HelpTopics({ search }) {
                   display:'flex', alignItems:'center', justifyContent:'space-between',
                   padding:'5px 0',
                   borderBottom: j < topic.items.length - 1 ? '1px solid rgba(255,255,255,.04)' : 'none',
-                  fontSize:'13px', color:'var(--ins-text-inactive)',
+                  fontSize:'13px', color:'var(--ins-text-body)',
                   textDecoration:'none',
                   transition:'color .15s',
                 }}
                 onMouseEnter={e => { e.currentTarget.style.color = 'var(--ins-text-highlight)'; }}
-                onMouseLeave={e => { e.currentTarget.style.color = 'var(--ins-text-inactive)'; }}
+                onMouseLeave={e => { e.currentTarget.style.color = 'var(--ins-text-body)'; }}
                 >
                   <span>{item}</span>
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink:0, opacity:.5 }}>
@@ -272,7 +272,7 @@ function FloatingChat({ onSubmit, hidden }) {
           padding:'10px 10px 10px 16px',
           transition:'border-color .2s',
         }}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-body)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
           </svg>
           <input
@@ -380,7 +380,7 @@ function AIAssistantPanel({ query, onClose }) {
       background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
       color:'#5E8290', transition:'color .15s',
     }}
-    onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-text-inactive)'}
+    onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-text-body)'}
     onMouseLeave={e => e.currentTarget.style.color = '#5E8290'}
     >
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -687,7 +687,7 @@ function ContactSupport() {
               </div>
               <div>
                 <div style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ins-color-gray-100)', marginBottom: '2px' }}>Still need help?</div>
-                <div style={{ fontSize: '13px', color: 'var(--ins-text-inactive)' }}>Our support team is here — reach out and we'll respond within 24 hours.</div>
+                <div style={{ fontSize: '13px', color: 'var(--ins-text-body)' }}>Our support team is here — reach out and we'll respond within 24 hours.</div>
               </div>
             </div>
             <button
@@ -763,7 +763,7 @@ function ContactSupport() {
                   </div>
                   <div>
                     <div style={{ fontSize: '16px', fontWeight: 700, color: 'var(--ins-color-gray-100)' }}>Contact Support</div>
-                    <div style={{ fontSize: '13px', color: 'var(--ins-text-inactive)', marginTop: '2px' }}>We'll get back to you as soon as possible.</div>
+                    <div style={{ fontSize: '13px', color: 'var(--ins-text-body)', marginTop: '2px' }}>We'll get back to you as soon as possible.</div>
                   </div>
                 </div>
 
@@ -784,13 +784,13 @@ function ContactSupport() {
                               padding: '5px 12px', borderRadius: '999px',
                               background: active ? `rgba(${c.id === 'bug' ? '239,68,68' : c.id === 'billing' ? '129,140,248' : c.id === 'connection' ? '20,168,185' : c.id === 'feature' ? '249,115,22' : c.id === 'other' ? '107,114,128' : '14,196,193'},0.12)` : 'rgba(255,255,255,.04)',
                               border: active ? `1px solid ${c.color}44` : '1px solid rgba(255,255,255,.07)',
-                              color: active ? c.color : 'var(--ins-text-inactive)',
+                              color: active ? c.color : 'var(--ins-text-body)',
                               fontSize: '12px', fontWeight: active ? 600 : 400,
                               fontFamily: 'inherit', cursor: 'pointer',
                               transition: 'all .15s',
                             }}
                             onMouseEnter={e => { if (!active) { e.currentTarget.style.borderColor = 'rgba(255,255,255,.14)'; e.currentTarget.style.color = '#C8E6EA'; } }}
-                            onMouseLeave={e => { if (!active) { e.currentTarget.style.borderColor = 'rgba(255,255,255,.07)'; e.currentTarget.style.color = 'var(--ins-text-inactive)'; } }}
+                            onMouseLeave={e => { if (!active) { e.currentTarget.style.borderColor = 'rgba(255,255,255,.07)'; e.currentTarget.style.color = 'var(--ins-text-body)'; } }}
                           >
                             <span style={{ lineHeight: 0 }}>{c.icon}</span>
                             {c.label}
@@ -904,7 +904,7 @@ function ContactSupport() {
                     style={{
                       flex: 1, padding: '11px', borderRadius: '9px',
                       background: 'rgba(255,255,255,.05)', border: '1px solid rgba(255,255,255,.08)',
-                      color: 'var(--ins-text-inactive)', fontSize: '14px', fontWeight: 500,
+                      color: 'var(--ins-text-body)', fontSize: '14px', fontWeight: 500,
                       fontFamily: 'inherit', cursor: 'pointer',
                     }}
                     onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,.08)'}
@@ -938,7 +938,7 @@ function ContactSupport() {
                   <CheckIcon size={22} color="currentColor" strokeWidth={2} />
                 </div>
                 <div style={{ fontSize: '17px', fontWeight: 700, color: 'var(--ins-color-gray-100)', marginBottom: '8px' }}>Request submitted</div>
-                <div style={{ fontSize: '14px', color: 'var(--ins-text-inactive)', lineHeight: 1.6, marginBottom: '28px' }}>
+                <div style={{ fontSize: '14px', color: 'var(--ins-text-body)', lineHeight: 1.6, marginBottom: '28px' }}>
                   Thanks for reaching out. Our team will review your request and follow up shortly.
                 </div>
                 <button

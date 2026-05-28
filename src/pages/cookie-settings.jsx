@@ -118,7 +118,7 @@ function CookieContent() {
               <div style={{display:'flex', alignItems:'flex-start', gap:'20px'}}>
                 <div style={{flex:1}}>
                   <div style={{fontSize:'16px', fontWeight:600, color:'var(--ins-color-gray-100)'}}>{cat.title}</div>
-                  <div style={{fontSize:'14px', color:'var(--ins-text-inactive)', lineHeight:1.6, marginTop:'4px'}}>{cat.description}</div>
+                  <div style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.6, marginTop:'4px'}}>{cat.description}</div>
                   {cat.examples && (
                     <div style={{fontSize:'13px', color:'rgba(255,255,255,.35)', marginTop:'8px'}}>Examples: {cat.examples}</div>
                   )}
@@ -217,9 +217,9 @@ function CookieContent() {
                   {cookieTable.map((row, i) => (
                     <tr key={i} style={{background: i % 2 === 1 ? 'rgba(255,255,255,.02)' : 'transparent'}}>
                       <td style={{padding:'10px 16px', color:'var(--ins-text-highlight)', fontFamily:'Geist Mono, monospace', fontSize:'13px', borderBottom:'1px solid rgba(255,255,255,.04)'}}>{row.name}</td>
-                      <td style={{padding:'10px 16px', color:'var(--ins-text-inactive)', borderBottom:'1px solid rgba(255,255,255,.04)'}}>{row.provider}</td>
-                      <td style={{padding:'10px 16px', color:'var(--ins-text-inactive)', borderBottom:'1px solid rgba(255,255,255,.04)'}}>{row.purpose}</td>
-                      <td style={{padding:'10px 16px', color:'var(--ins-text-inactive)', borderBottom:'1px solid rgba(255,255,255,.04)', whiteSpace:'nowrap'}}>{row.duration}</td>
+                      <td style={{padding:'10px 16px', color:'var(--ins-text-body)', borderBottom:'1px solid rgba(255,255,255,.04)'}}>{row.provider}</td>
+                      <td style={{padding:'10px 16px', color:'var(--ins-text-body)', borderBottom:'1px solid rgba(255,255,255,.04)'}}>{row.purpose}</td>
+                      <td style={{padding:'10px 16px', color:'var(--ins-text-body)', borderBottom:'1px solid rgba(255,255,255,.04)', whiteSpace:'nowrap'}}>{row.duration}</td>
                     </tr>
                   ))}
                 </tbody>

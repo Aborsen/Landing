@@ -83,7 +83,7 @@ function MissionValues() {
                 {v.icon}
               </div>
               <h3 style={{fontSize:'17px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'8px'}}>{v.title}</h3>
-              <p style={{fontSize:'14px', color:'var(--ins-text-inactive)', lineHeight:1.65}}>{v.desc}</p>
+              <p style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.65}}>{v.desc}</p>
             </div>
           ))}
         </div>
@@ -120,7 +120,7 @@ function WhatWeBuilt() {
                   {p.icon}
                 </div>
                 <h4 style={{fontSize:'15px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'4px'}}>{p.name}</h4>
-                <p style={{fontSize:'12px', color:'var(--ins-text-inactive)', lineHeight:1.5}}>{p.desc}</p>
+                <p style={{fontSize:'12px', color:'var(--ins-text-body)', lineHeight:1.5}}>{p.desc}</p>
               </div>
               {i < pillars.length - 1 && (
                 <div style={{display:'flex', alignItems:'center', paddingTop:'24px', flexShrink:0, minWidth:'32px', flex:'0 0 auto'}}>
@@ -139,7 +139,7 @@ function WhatWeBuilt() {
                 </div>
                 <div>
                   <h4 style={{fontSize:'14px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'2px'}}>{p.name}</h4>
-                  <p style={{fontSize:'12px', color:'var(--ins-text-inactive)', lineHeight:1.5}}>{p.desc}</p>
+                  <p style={{fontSize:'12px', color:'var(--ins-text-body)', lineHeight:1.5}}>{p.desc}</p>
                 </div>
               </div>
               {i < pillars.length - 1 && (
@@ -236,7 +236,7 @@ function OurStory() {
                 <div style={{flex:1, paddingLeft:'40px'}}>
                   <div className="md:hidden" style={{fontSize: m.year === '∞' ? '24px' : '12px', fontWeight:600, color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace', marginBottom:'6px', letterSpacing:'.04em', lineHeight:1}}>{m.year}</div>
                   <h3 style={{fontSize:'18px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'8px', letterSpacing:'-.01em'}}>{m.title}</h3>
-                  <p style={{fontSize:'15px', color:'var(--ins-text-inactive)', lineHeight:1.7, maxWidth:'680px'}}>{m.desc}</p>
+                  <p style={{fontSize:'15px', color:'var(--ins-text-body)', lineHeight:1.7, maxWidth:'680px'}}>{m.desc}</p>
                 </div>
               </div>
             ))}
@@ -270,7 +270,7 @@ function ConnectorPill({ name }) {
       <div className="w-5 h-5 flex items-center justify-center">
         <ConnectorIcon name={name} size={16} />
       </div>
-      <span className="text-xs text-[var(--ins-text-inactive)] font-medium whitespace-nowrap">{name}</span>
+      <span className="text-xs text-[var(--ins-text-body)] font-medium whitespace-nowrap">{name}</span>
     </div>
   );
 }
@@ -300,7 +300,7 @@ function CompanyPill({ name }) {
       <div className="w-5 h-5 flex items-center justify-center">
         <CompanyIcon name={name} size={16} />
       </div>
-      <span className="text-xs text-[var(--ins-text-inactive)] font-medium whitespace-nowrap">{name}</span>
+      <span className="text-xs text-[var(--ins-text-body)] font-medium whitespace-nowrap">{name}</span>
     </div>
   );
 }

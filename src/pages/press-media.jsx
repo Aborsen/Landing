@@ -112,7 +112,7 @@ function BrandAssets() {
             {colors.map((c, ci) => (
               <div key={ci} style={{textAlign:'center'}}>
                 <div style={{width:'44px', height:'44px', borderRadius:'8px', background:c.hex, border:'1px solid rgba(255,255,255,.1)', marginBottom:'6px'}}/>
-                <div style={{fontSize:'9px', color:'var(--ins-text-inactive)', fontFamily:'Geist Mono,monospace'}}>{c.hex}</div>
+                <div style={{fontSize:'9px', color:'var(--ins-text-body)', fontFamily:'Geist Mono,monospace'}}>{c.hex}</div>
               </div>
             ))}
           </div>
@@ -211,7 +211,7 @@ function CompanyFacts() {
             <div style={{borderTop:'1px solid rgba(255,255,255,0.08)', marginTop:'8px', marginBottom:'24px'}} />
             {facts.map((f, i) => (
               <div key={i} style={{display:'flex', padding:'14px 0', borderBottom:'1px solid rgba(255,255,255,.04)'}}>
-                <div style={{width:'200px', flexShrink:0, fontSize:'12px', fontFamily:'Geist Mono,monospace', color:'var(--ins-text-inactive)', textTransform:'uppercase'}}>{f.label}</div>
+                <div style={{width:'200px', flexShrink:0, fontSize:'12px', fontFamily:'Geist Mono,monospace', color:'var(--ins-text-body)', textTransform:'uppercase'}}>{f.label}</div>
                 <div style={{fontSize:'14px', color:'var(--ins-color-gray-100)'}}>{f.value}</div>
               </div>
             ))}

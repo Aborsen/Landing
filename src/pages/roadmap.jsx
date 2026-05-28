@@ -19,7 +19,7 @@ function TreeHero() {
     { id: 'MVP', label: 'Insightis Public MVP', sub: 'Q2 2026',                   x: 120, dir: null,   color: 'var(--ins-text-highlight)' },
     { id: 'V1',  label: 'V1',                   sub: 'DWH & Team Support',        x: 308, dir: 'up',   color: '#A78BFA' },
     { id: 'V2',  label: 'V2',                   sub: 'MCP & Advanced Dashboards', x: 490, dir: 'down', color: '#A78BFA' },
-    { id: 'V3',  label: 'V3',                   sub: 'Signals & Automations',     x: 672, dir: 'up',   color: 'var(--ins-text-inactive)' },
+    { id: 'V3',  label: 'V3',                   sub: 'Signals & Automations',     x: 672, dir: 'up',   color: 'var(--ins-text-body)' },
     { id: 'V4',  label: 'V4',                   sub: 'Custom Agents',             x: 854, dir: 'down', color: '#5E8290' },
   ];
 
@@ -33,11 +33,11 @@ function TreeHero() {
     <section style={{padding:'110px 0 48px', position:'relative', zIndex:1}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', textAlign:'center'}}>
 
-        <h1 className="fu1" style={{fontSize:'clamp(38px,5vw,60px)', fontWeight:600, letterSpacing:'-.03em', lineHeight:1.1, color:'var(--ins-color-gray-100)', marginBottom:20}}>
+        <h1 className="fu1" style={{fontSize:'clamp(38px,5vw,60px)', fontWeight:600, letterSpacing:'-.03em', lineHeight:1.1, color:'var(--ins-text-heading-soft)', marginBottom:20}}>
           Our product roadmap.
         </h1>
 
-        <p className="fu2" style={{fontSize:'clamp(15px,1.2vw,17px)', color:'var(--ins-text-inactive)', lineHeight:1.6, maxWidth:560, margin:'0 auto 52px'}}>
+        <p className="fu2" style={{fontSize:'clamp(15px,1.2vw,17px)', color:'var(--ins-text-body)', lineHeight:1.6, maxWidth:560, margin:'0 auto 52px'}}>
           Where we're headed. The features and improvements ahead, and what we've already shipped.
         </p>
 
@@ -248,7 +248,7 @@ function TreeHero() {
                       {m.label}
                     </text>
                     <text x={m.x} y={cardTopY + 37}
-                      textAnchor="middle" fill="var(--ins-text-inactive)" fontSize="10"
+                      textAnchor="middle" fill="var(--ins-text-body)" fontSize="10"
                       fontFamily="Geist,sans-serif">
                       {m.sub}
                     </text>
@@ -319,7 +319,7 @@ const ROADMAP_COLUMNS = [
   {
     key: 'later',
     label: 'Later',
-    color: 'var(--ins-text-inactive)',
+    color: 'var(--ins-text-body)',
     glow: 'rgba(127,160,172,.08)',
     items: [
       { title: 'Multi-Workspace Support',       desc: 'Manage multiple companies or business units from one account.' },
@@ -345,7 +345,7 @@ function RoadmapSections() {
           <h2 style={{fontSize:'clamp(28px,3.5vw,42px)', fontWeight:600, letterSpacing:'-.03em', lineHeight:1.15, color:'var(--ins-color-gray-100)', marginBottom:12}}>
             What's on deck.
           </h2>
-          <p style={{fontSize:'clamp(14px,1.1vw,16px)', color:'var(--ins-text-inactive)', lineHeight:1.6, maxWidth:520, margin:0}}>
+          <p style={{fontSize:'clamp(14px,1.1vw,16px)', color:'var(--ins-text-body)', lineHeight:1.6, maxWidth:520, margin:0}}>
             A curated look at what we're building. Curated by hand — not auto-generated.
           </p>
         </div>
@@ -366,7 +366,7 @@ function RoadmapSections() {
                 {col.items.map((item, i) => (
                   <div key={i} className="roadmap-card" style={{'--card-glow': col.glow}}>
                     <h3 style={{fontSize:14, fontWeight:500, color:'var(--ins-color-gray-100)', lineHeight:1.4, marginBottom:6}}>{item.title}</h3>
-                    <p style={{fontSize:12, color:'var(--ins-text-inactive)', lineHeight:1.55, margin:0}}>{item.desc}</p>
+                    <p style={{fontSize:12, color:'var(--ins-text-body)', lineHeight:1.55, margin:0}}>{item.desc}</p>
                   </div>
                 ))}
               </div>
@@ -390,7 +390,7 @@ function RoadmapSections() {
                 </span>
                 <div style={{minWidth:0}}>
                   <span style={{fontSize:13, fontWeight:500, color:'var(--ins-color-gray-100)'}}>{item.title}</span>
-                  <span style={{fontSize:13, color:'var(--ins-text-inactive)'}}> — {item.desc}</span>
+                  <span style={{fontSize:13, color:'var(--ins-text-body)'}}> — {item.desc}</span>
                 </div>
               </div>
             ))}
@@ -468,7 +468,7 @@ function SuggestCTA() {
               <h3 style={{fontSize:'clamp(18px,2.5vw,24px)', fontWeight:500, color:'var(--ins-color-gray-100)', letterSpacing:'-.02em', marginBottom:8}}>
                 Missing something? <span style={{color:'var(--ins-button-primary-bg)'}}>Suggest a feature.</span>
               </h3>
-              <p style={{fontSize:14, color:'var(--ins-text-inactive)', lineHeight:1.6}}>
+              <p style={{fontSize:14, color:'var(--ins-text-body)', lineHeight:1.6}}>
                 Tell us what you'd like to see in Insightis. We review every suggestion.
               </p>
             </div>
@@ -514,7 +514,7 @@ function SuggestCTA() {
             <div style={{padding:'22px 28px 0', display:'flex', alignItems:'flex-start', justifyContent:'space-between'}}>
               <div>
                 <h2 style={{fontSize:18, fontWeight:600, color:'var(--ins-color-gray-100)', letterSpacing:'-.02em', margin:0}}>Request a Feature</h2>
-                <p style={{fontSize:13, color:'var(--ins-text-inactive)', margin:'4px 0 0'}}>Describe what you need — we read every request.</p>
+                <p style={{fontSize:13, color:'var(--ins-text-body)', margin:'4px 0 0'}}>Describe what you need — we read every request.</p>
               </div>
               <button onClick={() => { if (!sent) setOpen(false); }} style={{
                 background:'none', border:'none', cursor:'pointer',
@@ -540,7 +540,7 @@ function SuggestCTA() {
                   <CheckIcon size={24} color="var(--ins-status-success-fg)" />
                 </div>
                 <h3 style={{fontSize:20, fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:8, letterSpacing:'-.02em'}}>Thanks for your feedback!</h3>
-                <p style={{fontSize:14, color:'var(--ins-text-inactive)', lineHeight:1.6, maxWidth:340, margin:'0 auto'}}>
+                <p style={{fontSize:14, color:'var(--ins-text-body)', lineHeight:1.6, maxWidth:340, margin:'0 auto'}}>
                   We've received your feature request and will review it shortly.
                 </p>
               </div>
@@ -550,7 +550,7 @@ function SuggestCTA() {
 
                 {/* textarea */}
                 <div style={{marginBottom:16}}>
-                  <label style={{display:'block', fontSize:12, fontWeight:500, color:'var(--ins-text-inactive)', letterSpacing:'.04em', marginBottom:8, textTransform:'uppercase'}}>
+                  <label style={{display:'block', fontSize:12, fontWeight:500, color:'var(--ins-text-body)', letterSpacing:'.04em', marginBottom:8, textTransform:'uppercase'}}>
                     Description <span style={{color:'var(--ins-text-highlight)'}}>*</span>
                   </label>
                   <textarea
@@ -573,7 +573,7 @@ function SuggestCTA() {
 
                 {/* drop zone */}
                 <div style={{marginBottom:20}}>
-                  <label style={{display:'block', fontSize:12, fontWeight:500, color:'var(--ins-text-inactive)', letterSpacing:'.04em', marginBottom:8, textTransform:'uppercase'}}>
+                  <label style={{display:'block', fontSize:12, fontWeight:500, color:'var(--ins-text-body)', letterSpacing:'.04em', marginBottom:8, textTransform:'uppercase'}}>
                     Attachments <span style={{color:'#5E8290', fontWeight:400, textTransform:'none', letterSpacing:0}}>(optional)</span>
                   </label>
                   <div
@@ -589,7 +589,7 @@ function SuggestCTA() {
                     }}
                   >
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5E8290" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{marginBottom:6}}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-                    <p style={{fontSize:12, color:'var(--ins-text-inactive)', margin:0}}>
+                    <p style={{fontSize:12, color:'var(--ins-text-body)', margin:0}}>
                       Drag & drop files or <span style={{color:'var(--ins-text-highlight)'}}>browse</span>
                     </p>
                     <p style={{fontSize:11, color:'#5E8290', margin:'4px 0 0'}}>Images, PDFs, or any file — up to 20 MB each</p>
@@ -606,7 +606,7 @@ function SuggestCTA() {
                           background:'rgba(255,255,255,.04)', border:'1px solid rgba(255,255,255,.06)',
                         }}>
                           <div style={{display:'flex', alignItems:'center', gap:8, minWidth:0}}>
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-body)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
                             <span style={{fontSize:12, color:'var(--ins-color-gray-100)', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap'}}>{f.name}</span>
                             <span style={{fontSize:11, color:'#5E8290', flexShrink:0}}>{fmtSize(f.size)}</span>
                           </div>
@@ -630,11 +630,11 @@ function SuggestCTA() {
                 <div style={{display:'flex', gap:10, justifyContent:'flex-end'}}>
                   <button onClick={() => setOpen(false)} style={{
                     padding:'10px 20px', borderRadius:9, border:'1px solid rgba(255,255,255,.08)',
-                    background:'transparent', color:'var(--ins-text-inactive)', fontSize:13, fontWeight:500,
+                    background:'transparent', color:'var(--ins-text-body)', fontSize:13, fontWeight:500,
                     cursor:'pointer', fontFamily:'Geist,sans-serif', transition:'all .15s',
                   }}
                     onMouseEnter={e => { e.currentTarget.style.background='rgba(255,255,255,.05)'; e.currentTarget.style.color='var(--ins-color-gray-100)'; }}
-                    onMouseLeave={e => { e.currentTarget.style.background='transparent'; e.currentTarget.style.color='var(--ins-text-inactive)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.background='transparent'; e.currentTarget.style.color='var(--ins-text-body)'; }}
                   >
                     Cancel
                   </button>

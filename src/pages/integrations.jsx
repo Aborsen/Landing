@@ -359,7 +359,7 @@ function Hero() {
           padding: '24px 0',
         }}>
           <h1 style={{fontSize:'clamp(2.2rem,3.2vw,3.6rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",letterSpacing:'-.04em',lineHeight:1.1,marginBottom:'22px'}}>
-            <span style={{color:'#FFFFFF'}}>Connect everything.</span><br/>
+            <span style={{color:'var(--ins-text-heading-soft)'}}>Connect everything.</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>Understand</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>anything.</span>
           </h1>
@@ -738,7 +738,7 @@ function IntegrationImpact() {
         <div style={{textAlign:'center',marginTop:'40px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'14px',flexWrap:'wrap',justifyContent:'center'}}>
             <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>60s</span>
-            <span style={{fontSize:'15px',color:'var(--ins-text-inactive)',whiteSpace:'nowrap'}}>to connect a new source — OAuth, no pipelines to maintain.</span>
+            <span style={{fontSize:'15px',color:'var(--ins-text-body)',whiteSpace:'nowrap'}}>to connect a new source — OAuth, no pipelines to maintain.</span>
           </div>
         </div>
 

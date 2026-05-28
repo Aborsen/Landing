@@ -55,7 +55,7 @@ function Hero() {
             </div>
 
             <h1 className="fu1" style={{fontSize:'clamp(36px,4.5vw,58px)',fontWeight:500,letterSpacing:'-.03em',lineHeight:1.12,marginBottom:'20px'}}>
-              <span style={{color:'var(--ins-color-gray-100)'}}>Stop answering</span>
+              <span style={{color:'var(--ins-text-heading-soft)'}}>Stop answering</span>
               <br/>
               <span style={{color:'var(--ins-text-highlight)'}}>repeat questions.</span>
             </h1>
@@ -131,7 +131,7 @@ function Hero() {
                   transform:'translate(-50%,-50%)',
                   fontFamily:'Geist Mono,monospace',
                   fontSize:'10.5px',
-                  color:'var(--ins-text-inactive)',
+                  color:'var(--ins-text-body)',
                   letterSpacing:'.08em',
                   whiteSpace:'nowrap',
                 }}>Insightis — For Data Analytics</span>
@@ -141,7 +141,7 @@ function Hero() {
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'18px'}}>
                 <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
                   <div style={{width:'6px',height:'6px',borderRadius:'50%',background:'var(--ins-status-success-fg)',boxShadow:'0 0 8px var(--ins-status-success-fg)'}}/>
-                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10.5px',color:'var(--ins-text-inactive)',letterSpacing:'.08em',textTransform:'uppercase'}}>Live insight · 2m ago</span>
+                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10.5px',color:'var(--ins-text-body)',letterSpacing:'.08em',textTransform:'uppercase'}}>Live insight · 2m ago</span>
                 </div>
                 <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-highlight)',padding:'3px 9px',borderRadius:'999px',background:'rgba(9,160,157,.1)',border:'1px solid rgba(9,160,157,.25)',letterSpacing:'.08em',textTransform:'uppercase'}}>auto</span>
               </div>
@@ -150,7 +150,7 @@ function Hero() {
               <h3 style={{fontSize:'17px',fontWeight:500,color:'var(--ins-color-gray-100)',marginBottom:'8px',letterSpacing:'-.015em',lineHeight:1.35}}>
                 Paid acquisition decelerating mid-funnel
               </h3>
-              <p style={{fontSize:'12.5px',color:'var(--ins-text-inactive)',lineHeight:1.6,marginBottom:'18px'}}>
+              <p style={{fontSize:'12.5px',color:'var(--ins-text-body)',lineHeight:1.6,marginBottom:'18px'}}>
                 <span style={{color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',fontSize:'11.5px'}}>checkout_complete</span> dropped <span style={{color:'var(--ins-status-error-fg)',fontWeight:500}}>−41%</span> between 14:00–16:00 UTC. Linked to a Stripe webhook delay. Resolved at 18:30 UTC.
               </p>
 
@@ -165,7 +165,7 @@ function Hero() {
               }}>
                 <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'8px'}}>
                   <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#8AA6B3',letterSpacing:'.06em',textTransform:'uppercase'}}>events / 30min</span>
-                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-inactive)'}}>last 24h</span>
+                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-body)'}}>last 24h</span>
                 </div>
                 <svg viewBox="0 0 280 84" width="100%" height="84" preserveAspectRatio="none" style={{display:'block'}}>
                   <defs>
@@ -310,7 +310,7 @@ function PainPoints() {
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.03em',marginBottom:'12px'}}>
             Data teams spend 80% of time on reporting
           </h2>
-          <p style={{fontSize:'16px',color:'rgba(255,255,255,.7)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
+          <p style={{fontSize:'16px',color:'var(--ins-text-body)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
             Sound familiar? These are the problems Insightis eliminates.
           </p>
         </div>
@@ -494,7 +494,7 @@ function RelevantIntegrations() {
         <div style={{textAlign:'center'}}>
           <a href="/Resources/Connectors" style={{
             display:'inline-flex',alignItems:'center',gap:'6px',
-            fontSize:'13px',color:'var(--ins-text-inactive)',
+            fontSize:'13px',color:'var(--ins-text-body)',
             textDecoration:'none',
             border:'1px solid rgba(255,255,255,.07)',
             borderRadius:'999px',
@@ -503,7 +503,7 @@ function RelevantIntegrations() {
             transition:'all .15s',
           }}
           onMouseEnter={e=>{e.currentTarget.style.color='var(--ins-text-highlight)';e.currentTarget.style.borderColor='rgba(9,160,157,.3)';}}
-          onMouseLeave={e=>{e.currentTarget.style.color='var(--ins-text-inactive)';e.currentTarget.style.borderColor='rgba(255,255,255,.07)';}}
+          onMouseLeave={e=>{e.currentTarget.style.color='var(--ins-text-body)';e.currentTarget.style.borderColor='rgba(255,255,255,.07)';}}
           >
             See all 200+ integrations
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -535,7 +535,7 @@ function Metrics() {
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.03em',marginBottom:'12px'}}>
             Every KPI a data team monitors
           </h2>
-          <p style={{fontSize:'16px',color:'rgba(255,255,255,.7)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
+          <p style={{fontSize:'16px',color:'var(--ins-text-body)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
             Ask about any of these — or any metric you define — in plain English.
           </p>
         </div>
@@ -597,7 +597,7 @@ function BeforeAfter() {
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
             <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>4×</span>
-            <span style={{fontSize:'15px',color:'var(--ins-text-inactive)',whiteSpace:'nowrap'}}>more time for real analysis. Self-serve deflects 80% of ad hoc requests.</span>
+            <span style={{fontSize:'15px',color:'var(--ins-text-body)',whiteSpace:'nowrap'}}>more time for real analysis. Self-serve deflects 80% of ad hoc requests.</span>
           </div>
         </div>
       </div>
@@ -757,7 +757,7 @@ function SpotlightSemantic() {
           lineHeight:1.6,
           color:'var(--ins-color-gray-200)',
         }}>
-          <span style={{color:'var(--ins-text-inactive)'}}>SUM</span>(<span style={{color:'var(--ins-text-highlight)'}}>marketing_spend</span>) <span style={{color:'var(--ins-text-inactive)'}}>/</span> <span style={{color:'var(--ins-text-inactive)'}}>COUNT</span>(<span style={{color:'var(--ins-text-highlight)'}}>new_customers</span>)
+          <span style={{color:'var(--ins-text-body)'}}>SUM</span>(<span style={{color:'var(--ins-text-highlight)'}}>marketing_spend</span>) <span style={{color:'var(--ins-text-body)'}}>/</span> <span style={{color:'var(--ins-text-body)'}}>COUNT</span>(<span style={{color:'var(--ins-text-highlight)'}}>new_customers</span>)
         </div>
         <div style={{display:'flex',flexDirection:'column',gap:'8px'}}>
           {[
@@ -1115,7 +1115,7 @@ function UseCases() {
               <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'8px'}}>
                 See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own data</span>.
               </h3>
-              <p style={{fontSize:'14px',color:'var(--ins-text-inactive)',lineHeight:1.6}}>
+              <p style={{fontSize:'14px',color:'var(--ins-text-body)',lineHeight:1.6}}>
                 Connect your warehouse and ask Insightis a real question your team gets every week.
               </p>
             </div>
@@ -1150,7 +1150,7 @@ function UseCases() {
                 {c.icon}
               </div>
               <h3 style={{fontSize:'15px',fontWeight:600,color:'var(--ins-color-gray-100)',marginBottom:'6px'}}>{c.title}</h3>
-              <p style={{fontSize:'13.5px',color:'var(--ins-text-inactive)',lineHeight:1.6}}>{c.desc}</p>
+              <p style={{fontSize:'13.5px',color:'var(--ins-text-body)',lineHeight:1.6}}>{c.desc}</p>
             </div>
           ))}
         </div>

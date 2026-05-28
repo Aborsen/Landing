@@ -52,7 +52,7 @@ function Hero() {
             </div>
 
             <h1 className="fu1" style={{fontSize:'clamp(36px,4.5vw,58px)',fontWeight:500,letterSpacing:'-.03em',lineHeight:1.12,marginBottom:'20px'}}>
-              <span style={{color:'var(--ins-color-gray-100)'}}>Stop chasing numbers</span>
+              <span style={{color:'var(--ins-text-heading-soft)'}}>Stop chasing numbers</span>
               <br/>
               <span style={{color:'var(--ins-text-highlight)'}}>across spreadsheets.</span>
             </h1>
@@ -128,7 +128,7 @@ function Hero() {
                   transform:'translate(-50%,-50%)',
                   fontFamily:'Geist Mono,monospace',
                   fontSize:'10.5px',
-                  color:'var(--ins-text-inactive)',
+                  color:'var(--ins-text-body)',
                   letterSpacing:'.08em',
                   whiteSpace:'nowrap',
                 }}>Insightis — For Operations &amp; Finance</span>
@@ -138,7 +138,7 @@ function Hero() {
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'14px'}}>
                 <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
                   <div style={{width:'6px',height:'6px',borderRadius:'50%',background:'var(--ins-status-warning-fg)',boxShadow:'0 0 8px rgba(251,191,36,.6)'}}/>
-                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10.5px',color:'var(--ins-text-inactive)',letterSpacing:'.08em',textTransform:'uppercase'}}>Q2 budget · MTD</span>
+                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10.5px',color:'var(--ins-text-body)',letterSpacing:'.08em',textTransform:'uppercase'}}>Q2 budget · MTD</span>
                 </div>
                 <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-status-warning-fg)',padding:'3px 9px',borderRadius:'999px',background:'rgba(251,191,36,.1)',border:'1px solid rgba(251,191,36,.3)',letterSpacing:'.08em',textTransform:'uppercase'}}>variance</span>
               </div>
@@ -147,7 +147,7 @@ function Hero() {
               <h3 style={{fontSize:'17px',fontWeight:500,color:'var(--ins-color-gray-100)',marginBottom:'6px',letterSpacing:'-.015em',lineHeight:1.35}}>
                 Cloud infra running <span style={{color:'var(--ins-status-error-fg)'}}>+41%</span> over budget
               </h3>
-              <p style={{fontSize:'12.5px',color:'var(--ins-text-inactive)',lineHeight:1.6,marginBottom:'16px'}}>
+              <p style={{fontSize:'12.5px',color:'var(--ins-text-body)',lineHeight:1.6,marginBottom:'16px'}}>
                 Reconciled across <span style={{color:'var(--ins-status-warning-fg)',fontFamily:'Geist Mono,monospace',fontSize:'11.5px'}}>AP · HR · Billing</span> in real time. Two categories tracking past plan; rest on or under.
               </p>
 
@@ -161,7 +161,7 @@ function Hero() {
               }}>
                 <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'10px'}}>
                   <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#8AA6B3',letterSpacing:'.06em',textTransform:'uppercase'}}>variance · vs plan</span>
-                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-inactive)'}}>Q2 · MTD</span>
+                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-body)'}}>Q2 · MTD</span>
                 </div>
 
                 {/* Axis header: −50% / plan / +50% */}
@@ -189,7 +189,7 @@ function Hero() {
                     const isOver = r.v > 1;
                     const isUnder = r.v < -1;
                     const isNeutral = !isOver && !isUnder;
-                    const labelColor = isOver ? 'var(--ins-status-error-fg)' : isNeutral ? 'var(--ins-color-gray-200)' : 'var(--ins-text-inactive)';
+                    const labelColor = isOver ? 'var(--ins-status-error-fg)' : isNeutral ? 'var(--ins-color-gray-200)' : 'var(--ins-text-body)';
                     const valColor = isOver ? 'var(--ins-status-error-fg)' : isNeutral ? 'var(--ins-color-gray-200)' : 'var(--ins-status-success-fg)';
                     return (
                       <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
@@ -320,7 +320,7 @@ function Hero() {
                     }}>
                       {s.done && <svg width="6" height="6" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
                     </div>
-                    <span style={{fontSize:'10.5px',color:s.done?'var(--ins-color-gray-200)':'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace'}}>{s.step}</span>
+                    <span style={{fontSize:'10.5px',color:s.done?'var(--ins-color-gray-200)':'var(--ins-text-body)',fontFamily:'Geist Mono,monospace'}}>{s.step}</span>
                   </div>
                 ))}
               </div>
@@ -418,7 +418,7 @@ function SpotlightChat() {
             <span style={{color:'var(--ins-text-highlight)'}}>↳</span>
             <span style={{color:'var(--ins-color-gray-100)'}}>$187K</span>
             <span style={{color:'#8AA6B3'}}>vs</span>
-            <span style={{color:'var(--ins-text-inactive)'}}>$178K plan</span>
+            <span style={{color:'var(--ins-text-body)'}}>$178K plan</span>
             <span style={{color:'#8AA6B3'}}>·</span>
             <span style={{color:'var(--ins-status-error-fg)',fontWeight:500}}>+$9K (cloud_infra)</span>
           </div>
@@ -450,7 +450,7 @@ function SpotlightChat() {
                 <span style={{fontSize:'11px',fontWeight:500,color:'var(--ins-color-gray-200)',whiteSpace:'nowrap'}}>{r.who}</span>
                 <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:'#8AA6B3'}}>{r.when}</span>
               </div>
-              <div style={{fontSize:'11px',color:'var(--ins-text-inactive)',marginTop:'1px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>"{r.q}"</div>
+              <div style={{fontSize:'11px',color:'var(--ins-text-body)',marginTop:'1px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>"{r.q}"</div>
             </div>
             <span style={{
               fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-status-success-fg)',flexShrink:0,
@@ -485,7 +485,7 @@ function SpotlightSemantic() {
         {/* Eyebrow */}
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'14px'}}>
           <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#8AA6B3',letterSpacing:'.1em',textTransform:'uppercase'}}>version history</span>
-          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-inactive)'}}>4 revisions</span>
+          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-body)'}}>4 revisions</span>
         </div>
 
         {/* Vertical timeline */}
@@ -532,14 +532,14 @@ function SpotlightSemantic() {
                         }}>certified</span>
                       )}
                       {!isCertified && (
-                        <span style={{fontFamily:'Geist Mono,monospace',fontSize:'8.5px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>deprecated</span>
+                        <span style={{fontFamily:'Geist Mono,monospace',fontSize:'8.5px',color:'var(--ins-text-body)',letterSpacing:'.1em',textTransform:'uppercase'}}>deprecated</span>
                       )}
                     </div>
                     <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#8AA6B3',whiteSpace:'nowrap'}}>{v.owner} · {v.when}</span>
                   </div>
                   <div style={{
                     fontSize:'11px',
-                    color:isCertified?'var(--ins-color-gray-200)':'var(--ins-text-inactive)',
+                    color:isCertified?'var(--ins-color-gray-200)':'var(--ins-text-body)',
                     fontFamily: isCertified ? 'Geist Mono,monospace' : 'inherit',
                   }}>{v.note}</div>
                 </div>
@@ -622,7 +622,7 @@ function SpotlightAnomalies() {
                       letterSpacing:'.04em',
                     }}>{it.tag}</span>
                   </div>
-                  <div style={{fontSize:'10.5px',color:'var(--ins-text-inactive)',marginTop:'2px'}}>{it.why}</div>
+                  <div style={{fontSize:'10.5px',color:'var(--ins-text-body)',marginTop:'2px'}}>{it.why}</div>
                 </div>
 
                 {/* Timestamp */}
@@ -674,7 +674,7 @@ function SpotlightStack() {
           <div style={{minWidth:0}}>
             <div style={{display:'flex',alignItems:'baseline',gap:'10px'}}>
               <span style={{fontFamily:'Geist Mono,monospace',fontSize:'22px',fontWeight:500,color:'var(--ins-color-gray-100)',letterSpacing:'-.01em'}}>$187K</span>
-              <span style={{fontFamily:'Geist Mono,monospace',fontSize:'11px',color:'var(--ins-text-inactive)'}}>gross_burn · Q2 MTD</span>
+              <span style={{fontFamily:'Geist Mono,monospace',fontSize:'11px',color:'var(--ins-text-body)'}}>gross_burn · Q2 MTD</span>
             </div>
             <div style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#8AA6B3',letterSpacing:'.06em',textTransform:'uppercase',marginTop:'4px'}}>
               FP&amp;A · v3.2 · 4 source systems
@@ -695,7 +695,7 @@ function SpotlightStack() {
         {/* Trace eyebrow */}
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'7px'}}>
           <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#8AA6B3',letterSpacing:'.1em',textTransform:'uppercase'}}>↳ trace to source</span>
-          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-inactive)'}}>4 components</span>
+          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-body)'}}>4 components</span>
         </div>
 
         {/* Lineage rows */}
@@ -726,7 +726,7 @@ function SpotlightStack() {
               }}>
                 <span style={{fontSize:'11.5px',color:'var(--ins-color-gray-100)',fontWeight:500,minWidth:'92px',flexShrink:0}}>{t.label}</span>
                 <span style={{fontFamily:'Geist Mono,monospace',fontSize:'12px',color:'var(--ins-text-highlight)',fontWeight:500,minWidth:'46px',flexShrink:0}}>{t.amt}</span>
-                <div style={{flex:1,minWidth:0,display:'flex',alignItems:'center',gap:'6px',fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-inactive)'}}>
+                <div style={{flex:1,minWidth:0,display:'flex',alignItems:'center',gap:'6px',fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-body)'}}>
                   <span style={{
                     color:'var(--ins-status-warning-fg)',
                     padding:'1px 6px',borderRadius:'4px',
@@ -907,7 +907,7 @@ function UseCases() {
               <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'8px'}}>
                 See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own ledger</span>.
               </h3>
-              <p style={{fontSize:'14px',color:'var(--ins-text-inactive)',lineHeight:1.6}}>
+              <p style={{fontSize:'14px',color:'var(--ins-text-body)',lineHeight:1.6}}>
                 Connect QuickBooks or Xero and ask Insightis the cost question that always takes too long to answer.
               </p>
             </div>
@@ -942,7 +942,7 @@ function UseCases() {
                 {c.icon}
               </div>
               <h3 style={{fontSize:'15px',fontWeight:600,color:'var(--ins-color-gray-100)',marginBottom:'6px'}}>{c.title}</h3>
-              <p style={{fontSize:'13.5px',color:'var(--ins-text-inactive)',lineHeight:1.6}}>{c.desc}</p>
+              <p style={{fontSize:'13.5px',color:'var(--ins-text-body)',lineHeight:1.6}}>{c.desc}</p>
             </div>
           ))}
         </div>
@@ -1128,7 +1128,7 @@ function RelevantIntegrations() {
         <div style={{textAlign:'center'}}>
           <a href="/Resources/Connectors" style={{
             display:'inline-flex',alignItems:'center',gap:'6px',
-            fontSize:'13px',color:'var(--ins-text-inactive)',
+            fontSize:'13px',color:'var(--ins-text-body)',
             textDecoration:'none',
             border:'1px solid rgba(255,255,255,.07)',
             borderRadius:'999px',
@@ -1137,7 +1137,7 @@ function RelevantIntegrations() {
             transition:'all .15s',
           }}
           onMouseEnter={e=>{e.currentTarget.style.color='var(--ins-text-highlight)';e.currentTarget.style.borderColor='rgba(9,160,157,.3)';}}
-          onMouseLeave={e=>{e.currentTarget.style.color='var(--ins-text-inactive)';e.currentTarget.style.borderColor='rgba(255,255,255,.07)';}}
+          onMouseLeave={e=>{e.currentTarget.style.color='var(--ins-text-body)';e.currentTarget.style.borderColor='rgba(255,255,255,.07)';}}
           >
             See all 200+ integrations
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>

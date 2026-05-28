@@ -167,7 +167,7 @@ export default function IntegrationsStrip() {
   return (
     <div className="w-full border-t border-b border-[var(--ins-border-default)] bg-white/[0.02] py-5 relative z-10">
       <div className="max-w-7xl mx-auto px-6 flex items-center gap-6">
-        <span className="text-[10.5px] font-medium uppercase tracking-[0.12em] text-[var(--ins-text-inactive)] whitespace-nowrap flex-shrink-0">
+        <span className="text-[10.5px] font-medium uppercase tracking-[0.12em] text-[var(--ins-text-body)] whitespace-nowrap flex-shrink-0">
           200+ Integrations
         </span>
         <div

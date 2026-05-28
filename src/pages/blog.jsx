@@ -29,13 +29,13 @@ function BlogHero() {
   return (
     <section style={{padding:'120px 0 60px', textAlign:'center', position:'relative'}}>
       <div style={{maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
-        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid rgba(255,255,255,.07)', background:'rgba(255,255,255,.03)', fontSize:'12px', color:'var(--ins-text-inactive)', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
+        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid rgba(255,255,255,.07)', background:'rgba(255,255,255,.03)', fontSize:'12px', color:'var(--ins-text-body)', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
           ✦ BLOG
         </div>
-        <h1 className="fu1" style={{fontSize:'clamp(36px,5vw,56px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'var(--ins-color-gray-100)', marginBottom:'20px'}}>
+        <h1 className="fu1" style={{fontSize:'clamp(36px,5vw,56px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'var(--ins-text-heading-soft)', marginBottom:'20px'}}>
           Insights about insights.
         </h1>
-        <p className="fu2" style={{fontSize:'17px', color:'var(--ins-text-inactive)', lineHeight:1.6, maxWidth:'540px', margin:'0 auto'}}>
+        <p className="fu2" style={{fontSize:'17px', color:'var(--ins-text-body)', lineHeight:1.6, maxWidth:'540px', margin:'0 auto'}}>
           Data analytics tips, product updates, and deep dives into how teams are using AI to replace spreadsheet chaos.
         </p>
       </div>
@@ -68,7 +68,7 @@ function FeaturedPost() {
               <h2 style={{fontSize:'24px', fontWeight:500, color:'var(--ins-color-gray-100)', lineHeight:1.35, letterSpacing:'-.02em'}}>
                 Introducing Insights Engine: From Surface Answers to Root Causes
               </h2>
-              <p style={{fontSize:'14px', color:'var(--ins-text-inactive)', lineHeight:1.6}}>
+              <p style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.6}}>
                 AI Chat gives you the what. Insights Engine tells you the why. Today we're launching the deep analysis layer that connects dots across your entire data ecosystem.
               </p>
               <div style={{fontSize:'12px', color:'var(--ins-text-disabled)', fontFamily:"'Geist Mono', monospace"}}>
@@ -178,7 +178,7 @@ function BlogGrid({ activeCategory, activeTag }) {
                 <h3 style={{fontSize:'16px', fontWeight:500, color:'var(--ins-color-gray-100)', lineHeight:1.4, marginBottom:'8px', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:2, WebkitBoxOrient:'vertical'}}>
                   {article.title}
                 </h3>
-                <p style={{fontSize:'13px', color:'var(--ins-text-inactive)', lineHeight:1.5, marginBottom:'12px', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:3, WebkitBoxOrient:'vertical'}}>
+                <p style={{fontSize:'13px', color:'var(--ins-text-body)', lineHeight:1.5, marginBottom:'12px', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:3, WebkitBoxOrient:'vertical'}}>
                   {article.description}
                 </p>
                 <div style={{fontSize:'11px', color:'var(--ins-text-disabled)', fontFamily:"'Geist Mono', monospace", marginTop:'auto'}}>

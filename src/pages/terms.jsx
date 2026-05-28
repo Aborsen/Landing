@@ -41,7 +41,7 @@ function TermsContent() {
       {/* Hero */}
       <div style={{padding:'120px 0 60px'}}>
         <div style={{maxWidth:'800px', margin:'0 auto', padding:'0 24px', textAlign:'center'}}>
-          <h1 className="fu1" style={{fontSize:'clamp(32px,5vw,48px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'16px', color:'var(--ins-color-gray-100)'}}>Terms of Service</h1>
+          <h1 className="fu1" style={{fontSize:'clamp(32px,5vw,48px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'16px', color:'var(--ins-text-heading-soft)'}}>Terms of Service</h1>
           <p className="fu2" style={{fontSize:'14px', color:'rgba(255,255,255,.35)', fontFamily:'Geist Mono, monospace', marginBottom:'20px'}}>Effective Date: April 6, 2026</p>
           <p className="fu3" style={pStyle}>These Terms of Service govern your access to and use of the Insightis platform, an AI-powered analytics workspace developed and operated by Devart. By accessing or using Insightis, you agree to be bound by these Terms. Please read them carefully before using the Service.</p>
         </div>
@@ -144,10 +144,10 @@ function TermsContent() {
           <h2 style={h2Style}>7. Subscription and Billing</h2>
           <p style={pStyle}>Insightis offers various subscription plans as described on our <a href="../Pricing" style={{color:'var(--ins-text-highlight)', textDecoration:'none', borderBottom:'1px solid rgba(14,196,193,.3)'}}>Pricing</a> page. By subscribing to a paid plan, you agree to pay all applicable fees in accordance with the billing terms presented at the time of purchase.</p>
           <ul style={ulStyle}>
-            <li><strong style={{color:'rgba(255,255,255,.7)'}}>Auto-Renewal:</strong> Paid subscriptions automatically renew at the end of each billing cycle (monthly or annually) unless you cancel before the renewal date.</li>
-            <li><strong style={{color:'rgba(255,255,255,.7)'}}>Cancellation:</strong> You may cancel your subscription at any time through your account settings. Cancellation takes effect at the end of the current billing period. You will continue to have access to paid features until the end of that period.</li>
-            <li><strong style={{color:'rgba(255,255,255,.7)'}}>Refunds:</strong> Fees are generally non-refundable except where required by applicable law. If you believe you are entitled to a refund, please contact us at <a href="mailto:legal@insightis.ai" style={{color:'var(--ins-text-highlight)', textDecoration:'none', borderBottom:'1px solid rgba(14,196,193,.3)'}}>legal@insightis.ai</a>.</li>
-            <li><strong style={{color:'rgba(255,255,255,.7)'}}>Price Changes:</strong> Insightis reserves the right to modify pricing. We will provide at least 30 days' notice before any price increase takes effect on your account.</li>
+            <li><strong style={{color:'var(--ins-text-body)'}}>Auto-Renewal:</strong> Paid subscriptions automatically renew at the end of each billing cycle (monthly or annually) unless you cancel before the renewal date.</li>
+            <li><strong style={{color:'var(--ins-text-body)'}}>Cancellation:</strong> You may cancel your subscription at any time through your account settings. Cancellation takes effect at the end of the current billing period. You will continue to have access to paid features until the end of that period.</li>
+            <li><strong style={{color:'var(--ins-text-body)'}}>Refunds:</strong> Fees are generally non-refundable except where required by applicable law. If you believe you are entitled to a refund, please contact us at <a href="mailto:legal@insightis.ai" style={{color:'var(--ins-text-highlight)', textDecoration:'none', borderBottom:'1px solid rgba(14,196,193,.3)'}}>legal@insightis.ai</a>.</li>
+            <li><strong style={{color:'var(--ins-text-body)'}}>Price Changes:</strong> Insightis reserves the right to modify pricing. We will provide at least 30 days' notice before any price increase takes effect on your account.</li>
           </ul>
         </div>
 
@@ -213,7 +213,7 @@ function TermsContent() {
           <p style={pStyle}>If you have any questions, concerns, or requests regarding these Terms of Service, please contact us at:</p>
           <div style={{background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)', borderRadius:'12px', padding:'20px 24px', marginTop:'8px'}}>
             <p style={{fontSize:'15px', color:'rgba(255,255,255,.55)', lineHeight:1.8, margin:0}}>
-              <strong style={{color:'rgba(255,255,255,.7)'}}>Insightis Legal Team</strong><br/>
+              <strong style={{color:'var(--ins-text-body)'}}>Insightis Legal Team</strong><br/>
               Email: <a href="mailto:legal@insightis.ai" style={{color:'var(--ins-text-highlight)', textDecoration:'none', borderBottom:'1px solid rgba(14,196,193,.3)'}}>legal@insightis.ai</a><br/>
               Operated by Devart, Czech Republic
             </p>

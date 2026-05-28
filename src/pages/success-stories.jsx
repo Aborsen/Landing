@@ -59,7 +59,7 @@ function StoriesHero() {
                 {/* Content */}
                 <div style={{padding:'20px'}}>
                   <h3 style={{fontSize:'15px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'8px'}}>{story.company}</h3>
-                  <p style={{fontSize:'13px', color:'var(--ins-text-inactive)', lineHeight:1.65, marginBottom:'16px', fontStyle:'italic'}}>{story.quote}</p>
+                  <p style={{fontSize:'13px', color:'var(--ins-text-body)', lineHeight:1.65, marginBottom:'16px', fontStyle:'italic'}}>{story.quote}</p>
                   <div style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'5px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.18)', borderRadius:'999px'}}>
                     <span style={{width:'6px', height:'6px', borderRadius:'50%', background:'var(--ins-text-highlight)', flexShrink:0}}/>
                     <span style={{fontSize:'11px', fontWeight:500, color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>{story.product}</span>
@@ -109,10 +109,10 @@ function StoryGrid() {
                 <span style={{fontSize:'11px', padding:'3px 10px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.15)', borderRadius:'999px', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>{s.type}</span>
                 <span style={{fontSize:'10px', color:'var(--ins-text-disabled)', fontFamily:'Geist Mono,monospace'}}>{s.size}</span>
               </div>
-              <p style={{fontSize:'13px', color:'var(--ins-text-inactive)', lineHeight:1.6, marginBottom:'12px'}}>{s.challenge}</p>
+              <p style={{fontSize:'13px', color:'var(--ins-text-body)', lineHeight:1.6, marginBottom:'12px'}}>{s.challenge}</p>
               <p style={{fontSize:'13px', color:'var(--ins-color-gray-200)', lineHeight:1.6, marginBottom:'20px'}}>{s.solution}</p>
               <div style={{fontSize:'28px', fontWeight:500, color:'var(--ins-text-highlight)', fontFamily:'Geist Mono,monospace', marginBottom:'4px'}}>{s.result}</div>
-              <div style={{fontSize:'12px', color:'var(--ins-text-inactive)', fontFamily:'Geist Mono,monospace', marginBottom:'16px'}}>{s.resultLabel}</div>
+              <div style={{fontSize:'12px', color:'var(--ins-text-body)', fontFamily:'Geist Mono,monospace', marginBottom:'16px'}}>{s.resultLabel}</div>
               <div style={{fontSize:'11px', color:'var(--ins-text-disabled)', fontFamily:'Geist Mono,monospace', paddingTop:'12px', borderTop:'1px solid rgba(255,255,255,.06)'}}>{s.team}</div>
               </div>
             </div>
@@ -163,7 +163,7 @@ function AnimatedStat({ num, prefix, suffix, label, started, delay }) {
           fontFamily:'Geist Mono,monospace',
         }}>{prefix}{count}{suffix}</span>
       </div>
-      <div style={{fontSize:'13px', color:'var(--ins-text-inactive)', lineHeight:1.5}}>{label}</div>
+      <div style={{fontSize:'13px', color:'var(--ins-text-body)', lineHeight:1.5}}>{label}</div>
     </div>
   );
 }
@@ -210,7 +210,7 @@ function TextStat({ from, to, label, started, delay }) {
           {to}
         </span>
       </div>
-      <div style={{fontSize:'13px', color:'var(--ins-text-inactive)', lineHeight:1.5}}>{label}</div>
+      <div style={{fontSize:'13px', color:'var(--ins-text-body)', lineHeight:1.5}}>{label}</div>
     </div>
   );
 }

@@ -95,7 +95,7 @@ function PieChart({ slices }) {
         {paths.map((p,i) => (
           <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
             <div style={{width:'12px',height:'12px',borderRadius:'3px',background:p.color,flexShrink:0}}/>
-            <span style={{fontSize:'14px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',flex:1}}>{p.label}</span>
+            <span style={{fontSize:'14px',color:'var(--ins-text-body)',fontFamily:'Geist Mono,monospace',flex:1}}>{p.label}</span>
             <span style={{fontSize:'14px',color:'var(--ins-color-gray-100)',fontFamily:'Geist Mono,monospace',fontWeight:500}}>{p.pct}%</span>
           </div>
         ))}
@@ -110,7 +110,7 @@ function HorizontalBarChart({ bars }) {
     <div style={{display:'flex',flexDirection:'column',gap:'10px',margin:'12px 0'}}>
       {bars.map((b,i) => (
         <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
-          <span style={{fontSize:'12px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',minWidth:'180px',textAlign:'right',flexShrink:0}}>{b.label}</span>
+          <span style={{fontSize:'12px',color:'var(--ins-text-body)',fontFamily:'Geist Mono,monospace',minWidth:'180px',textAlign:'right',flexShrink:0}}>{b.label}</span>
           <div style={{flex:1,background:'rgba(255,255,255,.04)',borderRadius:'4px',height:'22px',position:'relative',overflow:'hidden'}}>
             <div style={{
               width:`${(Math.abs(b.value)/maxVal)*100}%`,
@@ -254,7 +254,7 @@ function RevOpsHeroIllustration() {
         <circle cx="70" cy="62" r="4" fill="#FF5F57" opacity="0.55"/>
         <circle cx="84" cy="62" r="4" fill="#FFBD2E" opacity="0.55"/>
         <circle cx="98" cy="62" r="4" fill="#28C840" opacity="0.55"/>
-        <text x="310" y="66" textAnchor="middle" fontFamily="Geist Mono, monospace" fontSize="11" fill="var(--ins-text-inactive)">Revenue overview · Last 30 days</text>
+        <text x="310" y="66" textAnchor="middle" fontFamily="Geist Mono, monospace" fontSize="11" fill="var(--ins-text-body)">Revenue overview · Last 30 days</text>
         {/* AI active badge */}
         <rect x="478" y="55" width="76" height="18" rx="5" fill="rgba(9,160,157,0.12)" stroke="rgba(9,160,157,0.35)" strokeWidth="0.5"/>
         <circle cx="488" cy="64" r="2.5" fill="var(--ins-status-success-fg)"/>
@@ -263,26 +263,26 @@ function RevOpsHeroIllustration() {
         {/* KPI tiles */}
         <g>
           <rect x="68" y="100" width="156" height="86" rx="11" fill="url(#ro_kpiBg)" stroke="rgba(255,255,255,0.06)"/>
-          <text x="84" y="124" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-inactive)" letterSpacing="1.5">ARR</text>
+          <text x="84" y="124" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)" letterSpacing="1.5">ARR</text>
           <text x="84" y="156" fontFamily="Geist,sans-serif" fontSize="24" fill="var(--ins-color-gray-100)" fontWeight="600">$4.2M</text>
           <path d="M84 173 L88 168 L92 173" stroke="#34D399" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
           <text x="98" y="175" fontFamily="Geist Mono,monospace" fontSize="10" fill="#34D399" fontWeight="500">+12.4%</text>
 
           <rect x="232" y="100" width="156" height="86" rx="11" fill="url(#ro_kpiBg)" stroke="rgba(255,255,255,0.06)"/>
-          <text x="248" y="124" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-inactive)" letterSpacing="1.5">PIPELINE</text>
+          <text x="248" y="124" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)" letterSpacing="1.5">PIPELINE</text>
           <text x="248" y="156" fontFamily="Geist,sans-serif" fontSize="24" fill="var(--ins-color-gray-100)" fontWeight="600">$8.7M</text>
           <path d="M248 173 L252 168 L256 173" stroke="#34D399" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
           <text x="262" y="175" fontFamily="Geist Mono,monospace" fontSize="10" fill="#34D399" fontWeight="500">+8.2%</text>
 
           <rect x="396" y="100" width="156" height="86" rx="11" fill="url(#ro_kpiBg)" stroke="rgba(255,255,255,0.06)"/>
-          <text x="412" y="124" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-inactive)" letterSpacing="1.5">WIN RATE</text>
+          <text x="412" y="124" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)" letterSpacing="1.5">WIN RATE</text>
           <text x="412" y="156" fontFamily="Geist,sans-serif" fontSize="24" fill="var(--ins-color-gray-100)" fontWeight="600">32.4%</text>
           <path d="M412 168 L416 173 L420 168" stroke="var(--ins-status-error-fg)" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
           <text x="426" y="175" fontFamily="Geist Mono,monospace" fontSize="10" fill="var(--ins-status-error-fg)" fontWeight="500">-1.8%</text>
         </g>
 
         {/* Revenue trend label */}
-        <text x="68" y="218" fontFamily="Geist Mono,monospace" fontSize="10" fill="var(--ins-text-inactive)" letterSpacing="1.5">REVENUE TREND</text>
+        <text x="68" y="218" fontFamily="Geist Mono,monospace" fontSize="10" fill="var(--ins-text-body)" letterSpacing="1.5">REVENUE TREND</text>
         <text x="552" y="218" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-highlight)" letterSpacing="1">▲ TRENDING UP</text>
 
         {/* Grid lines */}
@@ -315,7 +315,7 @@ function RevOpsHeroIllustration() {
       {/* Floating funnel card — bottom-left, partially overlapping */}
       <g transform="translate(20,360)">
         <rect x="0" y="0" width="138" height="138" rx="14" fill="rgba(15,20,25,0.97)" stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
-        <text x="16" y="24" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-inactive)" letterSpacing="1.5">PIPELINE FUNNEL</text>
+        <text x="16" y="24" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)" letterSpacing="1.5">PIPELINE FUNNEL</text>
         <rect x="16" y="36" width="106" height="16" rx="3" fill="rgba(14,196,193,0.85)"/>
         <rect x="24" y="58" width="90" height="16" rx="3" fill="rgba(14,196,193,0.62)"/>
         <rect x="34" y="80" width="68" height="16" rx="3" fill="rgba(14,196,193,0.4)"/>
@@ -324,7 +324,7 @@ function RevOpsHeroIllustration() {
         <text x="110" y="70" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-color-gray-100)" fontWeight="500">980</text>
         <text x="98" y="92" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-color-gray-200)" fontWeight="500">412</text>
         <text x="82" y="114" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-color-gray-200)" fontWeight="500">133</text>
-        <text x="16" y="130" fontFamily="Geist Mono,monospace" fontSize="8" fill="var(--ins-text-inactive)">Conversion · 5.5%</text>
+        <text x="16" y="130" fontFamily="Geist Mono,monospace" fontSize="8" fill="var(--ins-text-body)">Conversion · 5.5%</text>
       </g>
 
       {/* Floating AI insight card — bottom-right, partially overlapping */}
@@ -337,7 +337,7 @@ function RevOpsHeroIllustration() {
         <text x="48" y="26" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-highlight)" fontWeight="500" letterSpacing="1">INSIGHT · LIVE</text>
         <text x="48" y="46" fontFamily="Geist,sans-serif" fontSize="12" fill="var(--ins-color-gray-100)" fontWeight="500">Enterprise pipeline grew</text>
         <text x="48" y="62" fontFamily="Geist,sans-serif" fontSize="12" fill="var(--ins-color-gray-100)" fontWeight="500">23% this quarter.</text>
-        <text x="48" y="78" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-inactive)">2 churn risks flagged →</text>
+        <text x="48" y="78" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)">2 churn risks flagged →</text>
       </g>
     </svg>
   );
@@ -366,13 +366,13 @@ function Hero() {
                 lineHeight:1.05,
                 marginBottom:'24px',
               }}>
-                <span style={{color:'var(--ins-color-gray-100)'}}>AI analytics for </span>
+                <span style={{color:'var(--ins-text-heading-soft)'}}>AI analytics for </span>
                 <span style={{color:'var(--ins-text-highlight)'}}>RevOps &amp; BizOps</span>
               </h1>
 
               <p className="fu2" style={{
                 fontSize:'clamp(16px,1.25vw,19px)',
-                color:'rgba(255,255,255,.68)',
+                color:'var(--ins-text-body)',
                 lineHeight:1.6,
                 marginBottom:'36px',
                 maxWidth:'520px',
@@ -438,7 +438,7 @@ function PainPoints() {
           <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'var(--ins-text-body)',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
             RevOps is drowning in manual work
           </h2>
-          <p style={{fontSize:'16px',color:'rgba(255,255,255,.7)',maxWidth:'480px',margin:'0 auto',lineHeight:1.65}}>
+          <p style={{fontSize:'16px',color:'var(--ins-text-body)',maxWidth:'480px',margin:'0 auto',lineHeight:1.65}}>
             Sound familiar? These are the problems Insightis eliminates.
           </p>
         </div>
@@ -559,7 +559,7 @@ function BeforeAfter() {
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
             <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>5×</span>
-            <span style={{fontSize:'15px',color:'var(--ins-text-inactive)',whiteSpace:'nowrap'}}>faster revenue reporting. Zero spreadsheet wrangling.</span>
+            <span style={{fontSize:'15px',color:'var(--ins-text-body)',whiteSpace:'nowrap'}}>faster revenue reporting. Zero spreadsheet wrangling.</span>
           </div>
         </div>
       </div>
@@ -607,7 +607,7 @@ function FAQ() {
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.03em',marginBottom:'12px'}}>
             Common questions from RevOps leads
           </h2>
-          <p style={{fontSize:'16px',color:'rgba(255,255,255,.7)',maxWidth:'560px',margin:'0 auto',lineHeight:1.65}}>
+          <p style={{fontSize:'16px',color:'var(--ins-text-body)',maxWidth:'560px',margin:'0 auto',lineHeight:1.65}}>
             Everything you need to know before plugging Insightis into your revenue stack.
           </p>
         </div>

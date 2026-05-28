@@ -55,7 +55,7 @@ function Hero() {
             </div>
 
             <h1 className="fu1" style={{fontSize:'clamp(36px,4.5vw,58px)',fontWeight:500,letterSpacing:'-.03em',lineHeight:1.12,marginBottom:'20px'}}>
-              <span style={{color:'var(--ins-color-gray-100)'}}>Stop guessing</span>
+              <span style={{color:'var(--ins-text-heading-soft)'}}>Stop guessing</span>
               <br/>
               <span style={{color:'var(--ins-text-highlight)'}}>what users actually do.</span>
             </h1>
@@ -131,7 +131,7 @@ function Hero() {
                   transform:'translate(-50%,-50%)',
                   fontFamily:'Geist Mono,monospace',
                   fontSize:'10.5px',
-                  color:'var(--ins-text-inactive)',
+                  color:'var(--ins-text-body)',
                   letterSpacing:'.08em',
                   whiteSpace:'nowrap',
                 }}>Insightis — For Product Teams</span>
@@ -141,7 +141,7 @@ function Hero() {
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'14px'}}>
                 <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
                   <div style={{width:'6px',height:'6px',borderRadius:'50%',background:'#A78BFA',boxShadow:'0 0 8px rgba(167,139,250,.6)'}}/>
-                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10.5px',color:'var(--ins-text-inactive)',letterSpacing:'.08em',textTransform:'uppercase'}}>Funnel · May cohort</span>
+                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10.5px',color:'var(--ins-text-body)',letterSpacing:'.08em',textTransform:'uppercase'}}>Funnel · May cohort</span>
                 </div>
                 <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#A78BFA',padding:'3px 9px',borderRadius:'999px',background:'rgba(167,139,250,.1)',border:'1px solid rgba(167,139,250,.25)',letterSpacing:'.08em',textTransform:'uppercase'}}>cohort</span>
               </div>
@@ -150,7 +150,7 @@ function Hero() {
               <h3 style={{fontSize:'17px',fontWeight:500,color:'var(--ins-color-gray-100)',marginBottom:'6px',letterSpacing:'-.015em',lineHeight:1.35}}>
                 Onboarding cliff at <span style={{color:'#A78BFA'}}>step 3</span>
               </h3>
-              <p style={{fontSize:'12.5px',color:'var(--ins-text-inactive)',lineHeight:1.6,marginBottom:'16px'}}>
+              <p style={{fontSize:'12.5px',color:'var(--ins-text-body)',lineHeight:1.6,marginBottom:'16px'}}>
                 <span style={{color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',fontSize:'11.5px'}}>workspace_created</span> dropped <span style={{color:'var(--ins-status-error-fg)',fontWeight:500}}>−41%</span>. 87% on mobile. New invite flow shipped Tuesday.
               </p>
 
@@ -164,7 +164,7 @@ function Hero() {
               }}>
                 <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'12px'}}>
                   <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#8AA6B3',letterSpacing:'.06em',textTransform:'uppercase'}}>activation funnel</span>
-                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-inactive)'}}>n = 12,840</span>
+                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-body)'}}>n = 12,840</span>
                 </div>
                 <div style={{display:'flex',flexDirection:'column',gap:'7px'}}>
                   {[
@@ -178,7 +178,7 @@ function Hero() {
                       <span style={{
                         fontFamily:'Geist Mono,monospace',
                         fontSize:'10px',
-                        color:s.cliff?'var(--ins-status-error-fg)':'var(--ins-text-inactive)',
+                        color:s.cliff?'var(--ins-status-error-fg)':'var(--ins-text-body)',
                         width:'112px',flexShrink:0,
                         whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',
                       }}>{s.label}</span>
@@ -332,7 +332,7 @@ function PainPoints() {
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.03em',marginBottom:'12px'}}>
             Data teams spend 80% of time on reporting
           </h2>
-          <p style={{fontSize:'16px',color:'rgba(255,255,255,.7)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
+          <p style={{fontSize:'16px',color:'var(--ins-text-body)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
             Sound familiar? These are the problems Insightis eliminates.
           </p>
         </div>
@@ -502,7 +502,7 @@ function RelevantIntegrations() {
         <div style={{textAlign:'center'}}>
           <a href="/Resources/Connectors" style={{
             display:'inline-flex',alignItems:'center',gap:'6px',
-            fontSize:'13px',color:'var(--ins-text-inactive)',
+            fontSize:'13px',color:'var(--ins-text-body)',
             textDecoration:'none',
             border:'1px solid rgba(255,255,255,.07)',
             borderRadius:'999px',
@@ -511,7 +511,7 @@ function RelevantIntegrations() {
             transition:'all .15s',
           }}
           onMouseEnter={e=>{e.currentTarget.style.color='var(--ins-text-highlight)';e.currentTarget.style.borderColor='rgba(9,160,157,.3)';}}
-          onMouseLeave={e=>{e.currentTarget.style.color='var(--ins-text-inactive)';e.currentTarget.style.borderColor='rgba(255,255,255,.07)';}}
+          onMouseLeave={e=>{e.currentTarget.style.color='var(--ins-text-body)';e.currentTarget.style.borderColor='rgba(255,255,255,.07)';}}
           >
             See all 200+ integrations
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -543,7 +543,7 @@ function Metrics() {
           <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.03em',marginBottom:'12px'}}>
             Every KPI a data team monitors
           </h2>
-          <p style={{fontSize:'16px',color:'rgba(255,255,255,.7)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
+          <p style={{fontSize:'16px',color:'var(--ins-text-body)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
             Ask about any of these — or any metric you define — in plain English.
           </p>
         </div>
@@ -605,7 +605,7 @@ function BeforeAfter() {
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
             <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>4×</span>
-            <span style={{fontSize:'15px',color:'var(--ins-text-inactive)',whiteSpace:'nowrap'}}>more time for real analysis. Self-serve deflects 80% of ad hoc requests.</span>
+            <span style={{fontSize:'15px',color:'var(--ins-text-body)',whiteSpace:'nowrap'}}>more time for real analysis. Self-serve deflects 80% of ad hoc requests.</span>
           </div>
         </div>
       </div>
@@ -711,7 +711,7 @@ function SpotlightChat() {
               }}>
                 <div style={{fontSize:'9px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'3px'}}>{k.label}</div>
                 <div style={{fontSize:'13.5px',fontWeight:500,color:k.color,fontFamily:'Geist Mono,monospace',letterSpacing:'-.01em',marginBottom:'2px'}}>{k.val}</div>
-                <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)'}}>{k.sub}</div>
+                <div style={{fontSize:'9.5px',color:'var(--ins-text-body)'}}>{k.sub}</div>
               </div>
             ))}
           </div>
@@ -828,7 +828,7 @@ function SpotlightSemantic() {
             marginBottom:'10px',
             lineHeight:1.5,
           }}>
-            <span style={{color:'var(--ins-text-inactive)'}}>users with</span> <span style={{color:'var(--ins-text-highlight)'}}>core_action</span> <span style={{color:'var(--ins-text-inactive)'}}>in 7d / new_signups</span>
+            <span style={{color:'var(--ins-text-body)'}}>users with</span> <span style={{color:'var(--ins-text-highlight)'}}>core_action</span> <span style={{color:'var(--ins-text-body)'}}>in 7d / new_signups</span>
           </div>
           <div style={{display:'flex',justifyContent:'space-between',gap:'10px',fontSize:'10.5px',color:'var(--ins-color-gray-200)'}}>
             <span><span style={{color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.06em',textTransform:'uppercase',fontSize:'9px',marginRight:'5px'}}>Owned</span>Product Analytics</span>
@@ -844,7 +844,7 @@ function SpotlightAnomalies() {
   const segments = [
     {seg:'Mobile · iOS',     val:'−67%', color:'var(--ins-status-error-fg)', bad:true},
     {seg:'Mobile · Android', val:'−41%', color:'var(--ins-status-error-fg)', bad:true},
-    {seg:'Web',              val:'−2%',  color:'var(--ins-text-inactive)', bad:false},
+    {seg:'Web',              val:'−2%',  color:'var(--ins-text-body)', bad:false},
   ];
   return (
     <div style={{
@@ -879,7 +879,7 @@ function SpotlightAnomalies() {
               <span style={{color:'var(--ins-status-error-fg)',display:'inline-flex',alignItems:'center',gap:'4px'}}><span style={{width:'10px',height:'2px',background:'var(--ins-status-error-fg)',borderRadius:'1px'}}/>May</span>
               <span style={{color:'var(--ins-text-highlight)',display:'inline-flex',alignItems:'center',gap:'4px'}}><span style={{width:'10px',height:'2px',background:'var(--ins-text-highlight)',borderRadius:'1px'}}/>Jun</span>
             </div>
-            <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-inactive)'}}>activation · D7</span>
+            <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-body)'}}>activation · D7</span>
           </div>
           <svg viewBox="0 0 280 60" width="100%" height="60" preserveAspectRatio="none" style={{display:'block'}}>
             <line x1="0" y1="18" x2="280" y2="18" stroke="rgba(255,255,255,0.04)" strokeDasharray="2,3"/>
@@ -1198,7 +1198,7 @@ function UseCases() {
               <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'8px'}}>
                 Ship faster with <span style={{color:'var(--ins-button-primary-bg)'}}>better data</span>.
               </h3>
-              <p style={{fontSize:'14px',color:'var(--ins-text-inactive)',lineHeight:1.6}}>
+              <p style={{fontSize:'14px',color:'var(--ins-text-body)',lineHeight:1.6}}>
                 Connect Mixpanel, your warehouse, and Stripe — and ask the next product question yourself.
               </p>
             </div>
@@ -1233,7 +1233,7 @@ function UseCases() {
                 {c.icon}
               </div>
               <h3 style={{fontSize:'15px',fontWeight:600,color:'var(--ins-color-gray-100)',marginBottom:'6px'}}>{c.title}</h3>
-              <p style={{fontSize:'13.5px',color:'var(--ins-text-inactive)',lineHeight:1.6}}>{c.desc}</p>
+              <p style={{fontSize:'13.5px',color:'var(--ins-text-body)',lineHeight:1.6}}>{c.desc}</p>
             </div>
           ))}
         </div>

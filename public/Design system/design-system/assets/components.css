@@ -172,7 +172,7 @@
 }
 
 .ins-input::placeholder,
-.ins-textarea::placeholder { color: var(--ins-text-inactive); }
+.ins-textarea::placeholder { color: var(--ins-text-disabled); }
 
 /* STATE PRIORITY:
    disabled > error > focus > hover > default
@@ -2233,6 +2233,18 @@ kbd, .ins-kbd {
   line-height: 1.5;
 }
 
+/* Showcase context — inline chips become interactive (hover/click affordance). */
+.showcase .ins-code-chip--inline {
+  cursor: pointer;
+  transition: background var(--ins-duration-base) var(--ins-easing-standard),
+              color var(--ins-duration-base) var(--ins-easing-standard);
+}
+.showcase .ins-code-chip--inline:hover {
+  background: var(--ins-color-white-a-06);
+  color: var(--ins-text-body);
+  border-color: var(--ins-color-white-a-12);
+}
+
 
 /* ══════════════════════════════════════════════════════════════════
    34. BOTTOM CTA (PR 7)
@@ -2248,6 +2260,7 @@ kbd, .ins-kbd {
   position: relative;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   gap: var(--ins-space-xl);
   padding: var(--ins-space-3xl) var(--ins-space-xl);
@@ -2333,7 +2346,7 @@ kbd, .ins-kbd {
               box-shadow   var(--ins-duration-base) var(--ins-easing-standard);
 }
 @media (min-width: 768px) {
-  .ins-bottom-cta__form { width: auto; min-width: 400px; }
+  .ins-bottom-cta__form { width: auto; min-width: 0; flex: 1 1 400px; }
 }
 .ins-bottom-cta__form:focus-within {
   border-color: var(--ins-border-focus);
@@ -2352,7 +2365,7 @@ kbd, .ins-kbd {
   color: var(--ins-text-heading);
 }
 .ins-bottom-cta__form .ins-bottom-cta__input::placeholder {
-  color: var(--ins-text-inactive);
+  color: var(--ins-text-disabled);
 }
 .ins-bottom-cta__form .ins-bottom-cta__input:focus-visible {
   box-shadow: none;
