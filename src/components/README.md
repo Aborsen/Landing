@@ -104,7 +104,7 @@ import SectionHeader from './SectionHeader';
 | `title` | string \| ReactNode | required | The heading. Pass JSX (`<>…<span>…</span>…</>`) for inline highlight spans |
 | `lede` | string | — | Optional paragraph below the heading |
 | `align` | `'center' \| 'left'` | `'center'` | Header alignment |
-| `size` | `'md' \| 'lg'` | `'md'` | `md` → `.ins-text-display` (36/48 px); `lg` → `.ins-text-display-xl` (44/60 px) for hero scale |
+| `size` | `'md' \| 'lg'` | `'md'` | Both render at `.ins-text-display` (36/48 px); `lg` adds slightly tighter letter-spacing for hero-prominence sections |
 | `as` | `'h1' \| 'h2' \| 'h3'` | `'h2'` | Heading level — use `h1` only for page hero |
 | `sparkle` | boolean | `false` | Prefix the eyebrow with the `✦` sparkle icon |
 | `eyebrowVariant` | `'pill' \| 'plain'` | `'pill'` | Pill outline around the eyebrow |

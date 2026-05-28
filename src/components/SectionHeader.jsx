@@ -40,9 +40,10 @@ function SectionHeader({
     marginInline: align === 'center' ? 'auto' : 0,
   };
 
-  // Marketing pages need bigger headings than the app DS provides.
-  // size="md" → .ins-text-display (36/48 px). size="lg" → .ins-text-display-xl (44/60 px).
-  const titleClass = size === 'lg' ? 'ins-text-display-xl' : 'ins-text-display';
+  // Both sizes render at the .ins-text-display scale (36 px mobile / 48 px desktop).
+  // The size prop now only tunes letter-spacing — `lg` gets a slightly tighter track
+  // for hero-prominence sections.
+  const titleClass = 'ins-text-display';
   const titleStyle = {
     color: 'var(--ins-text-heading)',
     letterSpacing: size === 'lg' ? '-0.04em' : '-0.03em',
