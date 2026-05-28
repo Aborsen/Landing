@@ -1050,32 +1050,14 @@ function BeforeAfter() {
 /* ── MID-PAGE CTA BANNER ── */
 function MidCTA() {
   return (
-    <section style={{padding:'80px 0',position:'relative',overflow:'hidden'}}>
-      {/* Soft teal glow */}
-      <div style={{
-        position:'absolute',top:'50%',left:'50%',
-        transform:'translate(-50%,-50%)',
-        width:'700px',height:'420px',
-        background:'radial-gradient(ellipse, rgba(9,160,157,0.13) 0%, transparent 70%)',
-        pointerEvents:'none',
-      }}/>
-
-      <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px',position:'relative',textAlign:'center'}}>
-        <h2 style={{
-          fontSize:'clamp(22px,2.6vw,34px)',
-          fontWeight:500,
-          letterSpacing:'-.025em',
-          lineHeight:1.2,
-          marginBottom:'32px',
-          whiteSpace:'nowrap',
-        }}>
-          <span style={{color:'var(--ins-color-gray-100)'}}>Skip the metric debates. </span>
-          <span style={{color:'var(--ins-text-highlight)'}}>Start asking.</span>
-        </h2>
-        <div style={{display:'flex',justifyContent:'center'}}>
-          <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
-            Get started for free
-          </Button>
+    <section className="pt-16 pb-16 relative">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="fade-up is-visible">
+          <BottomCTA
+            variant="text"
+            title={<>Skip the metric debates. <BottomCTA.Highlight>Start asking.</BottomCTA.Highlight></>}
+            ctaLabel="Get started for free"
+          />
         </div>
       </div>
     </section>
