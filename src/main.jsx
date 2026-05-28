@@ -962,7 +962,7 @@ function WhatIsInsightis() {
               <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">By the numbers</span>
             </div>
             <h2 className="text-4xl md:text-[48px] font-medium text-white tracking-tight leading-[1.1]">What is Insightis</h2>
-            <p className="text-base mt-4 max-w-xl mx-auto" style={{color:'rgba(255,255,255,0.8)'}}>
+            <p className="text-base mt-4 max-w-xl mx-auto" style={{color:'var(--ins-text-body)'}}>
               The AI analytics workspace that turns raw data into clear decisions — instantly, accurately, and without SQL.
             </p>
           </div>
@@ -1013,7 +1013,7 @@ function Pricing() {
         <FadeUp>
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white tracking-tight mb-4">Why teams switch to Insightis</h2>
-            <p className="text-base max-w-2xl mx-auto" style={{color:'rgba(255,255,255,0.8)'}}>
+            <p className="text-base max-w-2xl mx-auto" style={{color:'var(--ins-text-body)'}}>
               Instead of charging for every person in your company, Insightis ties cost to actual AI activity and the storage you need — so pricing stays fair, scalable, and aligned with value.
             </p>
           </div>

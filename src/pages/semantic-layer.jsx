@@ -779,7 +779,7 @@ function Panel4() {
       {/* Formula */}
       <div style={{background:'rgba(255,255,255,.03)',border:'1px solid rgba(255,255,255,.07)',borderRadius:'10px',padding:'14px 16px',marginBottom:'16px'}}>
         <div style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'rgba(255,255,255,.3)',marginBottom:'8px',textTransform:'uppercase',letterSpacing:'.08em'}}>Formula</div>
-        <div style={{fontSize:'13px',fontFamily:'Geist Mono,monospace',color:'rgba(255,255,255,.8)',lineHeight:1.6}}>
+        <div style={{fontSize:'13px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-body)',lineHeight:1.6}}>
           <span style={{color:'#6772E5'}}>@Marketing_Spend</span>
           <span style={{color:'rgba(255,255,255,.35)'}}> + </span>
           <span style={{color:'#FF7A59'}}>@Sales_Spend</span>
