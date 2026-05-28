@@ -530,7 +530,7 @@ function BottomCTA() {
           {/* Top shimmer */}
           <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
 
-          <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',lineHeight:1.2,flexShrink:0}}>
+          <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.03em',lineHeight:1.2,flexShrink:0}}>
             Stop reading about <span style={{color:'var(--ins-text-highlight)'}}>analytics.</span> Start doing it.
           </h3>
 
@@ -545,7 +545,7 @@ function BottomCTA() {
               type="text"
               placeholder="Enter your work email"
               style={{
-                flex:1,background:'transparent',fontSize:'14px',color:'#fff',
+                flex:1,background:'transparent',fontSize:'14px',color:'var(--ins-text-body)',
                 padding:'12px 16px',outline:'none',border:'none',
                 fontFamily:'Geist,sans-serif',minWidth:0,
               }}
@@ -553,7 +553,7 @@ function BottomCTA() {
             <button style={{
               display:'inline-flex',alignItems:'center',gap:'8px',
               padding:'10px 20px',margin:'4px',
-              fontSize:'13px',fontWeight:500,color:'#fff',
+              fontSize:'13px',fontWeight:500,color:'var(--ins-text-body)',
               background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))',
               borderRadius:'8px',border:'none',cursor:'pointer',
               whiteSpace:'nowrap',flexShrink:0,

@@ -632,7 +632,7 @@ function App() {
               style={{
                 display:'inline-flex', alignItems:'center', gap:'8px',
                 padding:'10px 18px', borderRadius:'8px',
-                border:'none', background:'var(--ins-button-primary-bg)', color:'#fff',
+                border:'none', background:'var(--ins-button-primary-bg)', color:'var(--ins-text-body)',
                 fontSize:'13px', fontWeight:600, fontFamily:'Geist,sans-serif',
                 cursor:'pointer', transition:'background .15s',
               }}

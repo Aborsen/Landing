@@ -50,7 +50,7 @@ export default function AuthCard({ mode, title, googleLabel, tailLeading, tailLi
       >
         {/* Heading */}
         <h1 style={{
-          fontSize:'22px', fontWeight:600, color:'#fff',
+          fontSize:'22px', fontWeight:600, color:'var(--ins-text-body)',
           textAlign:'center', marginBottom:'24px',
           fontFamily:"var(--ins-font-family-sans)", letterSpacing:'-.01em',
         }}>{title}</h1>
@@ -94,7 +94,7 @@ export default function AuthCard({ mode, title, googleLabel, tailLeading, tailLi
             border: 'none',
             borderRadius: '10px',
             background: 'linear-gradient(180deg, #0EC4C1 0%, #07807E 100%)',
-            color: '#fff',
+            color: 'var(--ins-text-body)',
             fontSize: '14px',
             fontWeight: 600,
             cursor: 'pointer',

@@ -467,7 +467,7 @@ function PainPoints() {
             <span style={{color:'var(--ins-status-error-fg)',fontSize:'12px'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-status-error-fg)',fontFamily:'Geist Mono,monospace'}}>The Problem</span>
           </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'#fff',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
+          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'var(--ins-text-body)',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
             Founders fly blind between board meetings
           </h2>
           <p style={{fontSize:'16px',color:'rgba(255,255,255,.7)',maxWidth:'480px',margin:'0 auto',lineHeight:1.65}}>
@@ -636,7 +636,7 @@ function FAQ() {
             <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>FAQ</span>
           </div>
-          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'#fff',letterSpacing:'-.03em',marginBottom:'12px'}}>
+          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.03em',marginBottom:'12px'}}>
             What founders and CEOs ask first
           </h2>
           <p style={{fontSize:'16px',color:'rgba(255,255,255,.7)',maxWidth:'560px',margin:'0 auto',lineHeight:1.65}}>

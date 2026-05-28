@@ -135,7 +135,7 @@ function SecurityContent() {
             Your data stays yours. Insightis is built with enterprise-grade security at every layer — from encryption and access controls to compliance certifications and continuous monitoring.
           </p>
           <div className="fu3" style={{display:'flex', justifyContent:'center', gap:'12px', marginTop:'32px', flexWrap:'wrap'}}>
-            <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'12px 28px', fontSize:'14px', fontWeight:600, color:'#fff', background:'var(--ins-button-primary-bg)', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
+            <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'12px 28px', fontSize:'14px', fontWeight:600, color:'var(--ins-text-body)', background:'var(--ins-button-primary-bg)', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
               onMouseEnter={e=>e.currentTarget.style.background='var(--ins-button-primary-bg-hover)'}
               onMouseLeave={e=>e.currentTarget.style.background='var(--ins-button-primary-bg)'}>
               Contact Security Team
@@ -235,7 +235,7 @@ function SecurityContent() {
       <section style={{padding:'80px 0'}}>
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
           <div style={{textAlign:'center', marginBottom:'56px'}}>
-            <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'#fff', letterSpacing:'-.03em'}}>Frequently asked questions</h2>
+            <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'var(--ins-text-body)', letterSpacing:'-.03em'}}>Frequently asked questions</h2>
           </div>
           <div style={{maxWidth:'760px', margin:'0 auto', display:'flex', flexDirection:'column', gap:'8px'}}>
             {faqs.map((faq, i) => (
@@ -267,13 +267,13 @@ function SecurityContent() {
             <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.4),transparent)'}}/>
             <div style={{position:'absolute', inset:0, background:'radial-gradient(ellipse 50% 60% at 50% 0%, rgba(9,160,157,.08) 0%, transparent 70%)', pointerEvents:'none'}}/>
             <div style={{position:'relative'}}>
-              <h3 style={{fontSize:'clamp(24px,3.5vw,36px)', fontWeight:500, color:'#fff', letterSpacing:'-.02em', marginBottom:'16px'}}>
+              <h3 style={{fontSize:'clamp(24px,3.5vw,36px)', fontWeight:500, color:'var(--ins-text-body)', letterSpacing:'-.02em', marginBottom:'16px'}}>
                 Have security questions?
               </h3>
               <p style={{fontSize:'16px', color:'rgba(255,255,255,.5)', maxWidth:'520px', margin:'0 auto 32px', lineHeight:1.65}}>
                 Our security team is here to help with assessments, compliance documentation, and custom security requirements.
               </p>
-              <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'14px 32px', fontSize:'14px', fontWeight:600, color:'#fff', background:'var(--ins-button-primary-bg)', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
+              <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'14px 32px', fontSize:'14px', fontWeight:600, color:'var(--ins-text-body)', background:'var(--ins-button-primary-bg)', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
                 onMouseEnter={e=>e.currentTarget.style.background='var(--ins-button-primary-bg-hover)'}
                 onMouseLeave={e=>e.currentTarget.style.background='var(--ins-button-primary-bg)'}>
                 Contact Security Team

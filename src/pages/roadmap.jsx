@@ -474,7 +474,7 @@ function SuggestCTA() {
             <button onClick={() => setOpen(true)} style={{
               display:'inline-flex', alignItems:'center', gap:8,
               padding:'12px 24px', flexShrink:0,
-              fontSize:13, fontWeight:500, color:'#fff',
+              fontSize:13, fontWeight:500, color:'var(--ins-text-body)',
               background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))',
               borderRadius:10, border:'none', cursor:'pointer',
               fontFamily:'Geist,sans-serif', letterSpacing:'.01em',

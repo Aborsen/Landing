@@ -178,22 +178,22 @@ function PricingCards() {
                 style={{position:'relative',padding:'28px 22px'}}
               >
                 {isHighlight && (
-                  <div style={{position:'absolute',top:0,left:'50%',transform:'translate(-50%,-50%)',padding:'4px 12px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',color:'#fff',fontSize:'11px',fontWeight:500,letterSpacing:'.05em',borderRadius:'999px',textTransform:'uppercase'}}>
+                  <div style={{position:'absolute',top:0,left:'50%',transform:'translate(-50%,-50%)',padding:'4px 12px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',color:'var(--ins-text-body)',fontSize:'11px',fontWeight:500,letterSpacing:'.05em',borderRadius:'999px',textTransform:'uppercase'}}>
                     Most popular
                   </div>
                 )}
-                <h3 style={{fontSize:'22px',fontWeight:600,color:'#fff',marginBottom:'4px',letterSpacing:'-0.02em'}}>{plan.name}</h3>
+                <h3 style={{fontSize:'22px',fontWeight:600,color:'var(--ins-text-body)',marginBottom:'4px',letterSpacing:'-0.02em'}}>{plan.name}</h3>
                 <p style={{fontSize:'13px',color:'rgba(255,255,255,0.7)',marginBottom:'24px'}}>{plan.tag}</p>
                 <div style={{marginBottom:'24px',minHeight:'120px'}}>
                   {plan.price === 0 ? (
                     <div>
-                      <span style={{fontSize:'40px',fontWeight:500,color:'#fff',letterSpacing:'-0.03em'}}>$0</span>
+                      <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-0.03em'}}>$0</span>
                       <span style={{fontSize:'14px',color:'rgba(255,255,255,0.7)',marginLeft:'6px'}}>forever</span>
                     </div>
                   ) : (
                     <div>
                       <div style={{display:'flex',alignItems:'baseline',gap:'10px',flexWrap:'wrap'}}>
-                        <span style={{fontSize:'40px',fontWeight:500,color:'#fff',letterSpacing:'-0.03em'}}>${displayPrice(plan.price)}</span>
+                        <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-0.03em'}}>${displayPrice(plan.price)}</span>
                         {plan.originalPrice && (
                           <span style={{fontSize:'18px',color:'rgba(255,255,255,0.35)',textDecoration:'line-through'}}>${plan.originalPrice}</span>
                         )}
@@ -287,7 +287,7 @@ function FeatureComparison() {
     <section style={{padding:'80px 0 60px'}}>
       <div style={{maxWidth:'1100px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'48px'}}>
-          <h2 style={{fontSize:'clamp(26px,3.4vw,38px)',fontWeight:500,color:'#fff',letterSpacing:'-.025em',marginBottom:'10px'}}>Compare features</h2>
+          <h2 style={{fontSize:'clamp(26px,3.4vw,38px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.025em',marginBottom:'10px'}}>Compare features</h2>
           <p style={{fontSize:'15px',color:'rgba(255,255,255,.55)'}}>Everything you get on every plan.</p>
         </div>
         <div data-compare-wrap style={{border:'1px solid rgba(255,255,255,0.08)',borderRadius:'16px',overflow:'hidden',background:'rgba(13,17,23,0.5)'}}>
@@ -295,7 +295,7 @@ function FeatureComparison() {
           <div style={{display:'grid',gridTemplateColumns:cols,padding:'18px 20px',background:'rgba(255,255,255,0.025)',borderBottom:'1px solid rgba(255,255,255,0.06)'}}>
             <span style={{fontSize:'12px',fontWeight:500,letterSpacing:'.08em',textTransform:'uppercase',color:'rgba(255,255,255,0.7)',fontFamily:'Geist Mono,monospace'}}>Feature</span>
             {['Free','Starter','Pro'].map(p => (
-              <span key={p} style={{textAlign:'center',fontSize:'13px',fontWeight:600,color:'#fff'}}>{p}</span>
+              <span key={p} style={{textAlign:'center',fontSize:'13px',fontWeight:600,color:'var(--ins-text-body)'}}>{p}</span>
             ))}
           </div>
           {/* Sectioned rows */}
@@ -370,7 +370,7 @@ function FAQ() {
     <section style={{padding:'60px 0 80px'}}>
       <div style={{maxWidth:'880px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'40px'}}>
-          <h2 style={{fontSize:'clamp(26px,3.4vw,38px)',fontWeight:500,color:'#fff',letterSpacing:'-.025em',marginBottom:'10px'}}>Frequently asked questions</h2>
+          <h2 style={{fontSize:'clamp(26px,3.4vw,38px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.025em',marginBottom:'10px'}}>Frequently asked questions</h2>
         </div>
         <FAQAccordion items={items} />
       </div>

@@ -754,7 +754,7 @@ function Panel3() {
       </div>
       <div style={{display:'flex',gap:'8px',marginTop:'16px'}}>
         <div style={{flex:1,padding:'9px',borderRadius:'8px',border:'1px solid rgba(255,255,255,.1)',textAlign:'center',fontSize:'13px',color:'rgba(255,255,255,.4)',cursor:'pointer'}}>Cancel</div>
-        <div style={{flex:1,padding:'9px',borderRadius:'8px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',textAlign:'center',fontSize:'13px',fontWeight:600,color:'#fff',cursor:'pointer',boxShadow:'0 0 12px rgba(9,160,157,.3)'}}>Create Metric</div>
+        <div style={{flex:1,padding:'9px',borderRadius:'8px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',textAlign:'center',fontSize:'13px',fontWeight:600,color:'var(--ins-text-body)',cursor:'pointer',boxShadow:'0 0 12px rgba(9,160,157,.3)'}}>Create Metric</div>
       </div>
     </div>
   );
@@ -973,7 +973,7 @@ function ConnectorGallery() {
                 @
               </div>
               <div style={{minWidth:0}}>
-                <div style={{fontSize:'0.875rem',fontWeight:500,color:'#fff',marginBottom:'3px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>@{c.name}</div>
+                <div style={{fontSize:'0.875rem',fontWeight:500,color:'var(--ins-text-body)',marginBottom:'3px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>@{c.name}</div>
                 <div style={{fontSize:'12px',color:'#8A9BA4',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{c.desc}</div>
               </div>
               <div style={{marginLeft:'auto',flexShrink:0,width:6,height:6,borderRadius:'50%',background:'var(--ins-status-success-fg)',boxShadow:'0 0 6px rgba(34,197,94,.6)'}}/>

@@ -147,7 +147,7 @@ function CookieContent() {
               style={{
                 display:'inline-flex', alignItems:'center', gap:'8px',
                 padding:'12px 32px', fontSize:'15px', fontWeight:600,
-                color:'#fff', background:'var(--ins-button-primary-bg)', borderRadius:'50px',
+                color:'var(--ins-text-body)', background:'var(--ins-button-primary-bg)', borderRadius:'50px',
                 border:'none', cursor:'pointer', transition:'background 0.2s',
                 fontFamily:'Geist,sans-serif',
               }}

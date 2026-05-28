@@ -204,7 +204,7 @@ function Hero() {
   const TooltipPopup = () => (
     <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-56 bg-[var(--ins-color-gray-800)] border border-[var(--ins-border-hover)] rounded-xl p-4 z-[100]" onClick={e => e.stopPropagation()} style={{ boxShadow: 'none' }}>
       <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-[var(--ins-color-gray-800)] border-l border-t border-[var(--ins-border-hover)] rotate-45 mb-[-5px]"></div>
-      <p className="text-white text-sm font-medium mb-1">Unlock full access</p>
+      <p className="text-[var(--ins-text-heading)] text-sm font-medium mb-1">Unlock full access</p>
       <p className="text-[var(--ins-text-inactive)] text-xs mb-3">Get more after registration — connect your data sources and explore AI insights.</p>
       <Button as="a" href="/auth/sign-up/" variant="primary" size="sm">Sign Up Free</Button>
     </div>
@@ -220,7 +220,7 @@ function Hero() {
         {/* Headline */}
         <FadeUp delay={0.1}>
           <h1 className="text-center mb-6" style={{fontSize:'clamp(2.2rem,3.2vw,3.6rem)',fontWeight:700,fontFamily:'var(--ins-font-family-sans)',letterSpacing:'-.04em',lineHeight:1.1,textWrap:'balance'}}>
-            <span style={{display:'block'}} className="text-white">Your data knows the answer</span>
+            <span style={{display:'block'}} className="text-[var(--ins-text-heading)]">Your data knows the answer</span>
             <span style={{display:'block',color:'var(--ins-text-highlight)'}}>Now you can ask it</span>
           </h1>
         </FadeUp>
@@ -249,7 +249,7 @@ function Hero() {
                       onChange={e => setUserText(e.target.value)}
                       placeholder="Ask anything about your data..."
                       aria-label="Ask anything about your data"
-                      className="flex-1 bg-transparent text-white text-base outline-none placeholder-[var(--ins-text-inactive)] resize-none h-[160px]"
+                      className="flex-1 bg-transparent text-[var(--ins-text-heading)] text-base outline-none placeholder-[var(--ins-text-inactive)] resize-none h-[160px]"
                       onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && userText.trim()) { e.preventDefault(); window.location.href = '#pricing'; } }}
                     />
                   ) : (
@@ -326,7 +326,7 @@ function Hero() {
                                 <div className="w-6 h-6 rounded-md bg-[var(--ins-border-default)] border border-[var(--ins-border-hover)] flex items-center justify-center flex-shrink-0">
                                   <ConnectorIcon name={c.name} size={14} />
                                 </div>
-                                <span className="text-sm text-[var(--ins-text-inactive)] group-hover:text-white transition-colors">{c.name}</span>
+                                <span className="text-sm text-[var(--ins-text-inactive)] group-hover:text-[var(--ins-text-heading)] transition-colors">{c.name}</span>
                               </div>
                               <div className="w-9 h-5 rounded-full flex-shrink-0" style={{ background: 'var(--ins-border-default)', border: '1px solid var(--ins-border-hover)', position: 'relative' }}>
                                 <div className="w-3.5 h-3.5 rounded-full bg-[var(--ins-border-hover)] absolute top-[2px] left-[2px]"></div>
@@ -394,7 +394,7 @@ function Hero() {
 
                 {/* Send button — grey when empty, teal when has text */}
                 <button
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl text-white text-sm font-medium transition-all duration-200"
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl text-[var(--ins-text-heading)] text-sm font-medium transition-all duration-200"
                   style={{
                     background: userText.trim() ? 'linear-gradient(135deg, var(--ins-color-teal-500), var(--ins-color-teal-600))' : 'rgba(255,255,255,0.08)',
                     boxShadow: userText.trim() ? '0 0 16px rgba(7,128,126,0.35)' : 'none',
@@ -507,7 +507,7 @@ function ArchRight({ outputs }) {
             }}>
               <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{background: 'rgba(7,128,126,0.15)', border: '1px solid rgba(7,128,126,0.3)'}}>{o.icon}</div>
               <div>
-                <p className="text-sm font-medium text-white">{o.title}</p>
+                <p className="text-sm font-medium text-[var(--ins-text-heading)]">{o.title}</p>
                 <p className="text-xs text-[var(--ins-text-inactive)]">{o.desc}</p>
               </div>
             </div>
@@ -603,7 +603,7 @@ function Architecture() {
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[var(--ins-text-highlight)]"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
               <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">Architecture</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-medium text-white mb-4 tracking-tight">The semantic intelligence layer</h2>
+            <h2 className="text-4xl md:text-5xl font-medium text-[var(--ins-text-heading)] mb-4 tracking-tight">The semantic intelligence layer</h2>
             <p className="text-white/80 text-base md:text-lg max-w-2xl mx-auto">
               Bring all your data sources into a single AI-ready layer, turning fragmented systems into a trusted semantic foundation that delivers consistent meaning, and business clarity across your organization.
             </p>
@@ -767,7 +767,7 @@ function Architecture() {
                 <div key={o.title} className="flex items-center gap-3 px-4 py-3 bg-[var(--ins-surface-card)] border border-[var(--ins-border-default)] rounded-card">
                   <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{background: 'rgba(7,128,126,0.15)', border: '1px solid rgba(7,128,126,0.3)'}}>{o.icon}</div>
                   <div>
-                    <p className="text-sm font-medium text-white">{o.title}</p>
+                    <p className="text-sm font-medium text-[var(--ins-text-heading)]">{o.title}</p>
                     <p className="text-xs text-[var(--ins-text-inactive)]">{o.desc}</p>
                   </div>
                 </div>
@@ -868,7 +868,7 @@ function Testimonials() {
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[var(--ins-text-highlight)]"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
               <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">Verified Impact</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight">Loved by a community</h2>
+            <h2 className="text-4xl md:text-5xl font-medium text-[var(--ins-text-heading)] tracking-tight">Loved by a community</h2>
           </div>
         </FadeUp>
 
@@ -961,7 +961,7 @@ function WhatIsInsightis() {
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[var(--ins-text-highlight)]"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
               <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">By the numbers</span>
             </div>
-            <h2 className="text-4xl md:text-[48px] font-medium text-white tracking-tight leading-[1.1]">What is Insightis</h2>
+            <h2 className="text-4xl md:text-[48px] font-medium text-[var(--ins-text-heading)] tracking-tight leading-[1.1]">What is Insightis</h2>
             <p className="text-base mt-4 max-w-xl mx-auto" style={{color:'var(--ins-text-body)'}}>
               The AI analytics workspace that turns raw data into clear decisions — instantly, accurately, and without SQL.
             </p>
@@ -976,7 +976,7 @@ function WhatIsInsightis() {
                   <p className="text-4xl md:text-5xl font-bold text-[var(--ins-color-teal-400)] tracking-tight leading-none mb-3">
                     <AnimatedStat target={s.target} suffix={s.suffix} prefix={s.prefix} duration={1800 + i * 150} />
                   </p>
-                  <p className="text-sm font-medium text-white mb-1">{s.label}</p>
+                  <p className="text-sm font-medium text-[var(--ins-text-heading)] mb-1">{s.label}</p>
                   <p className="text-xs text-[var(--ins-text-inactive)]">{s.sub}</p>
                 </div>
               ))}
@@ -1012,7 +1012,7 @@ function Pricing() {
       <div className="max-w-7xl mx-auto px-6">
         <FadeUp>
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white tracking-tight mb-4">Why teams switch to Insightis</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-[var(--ins-text-heading)] tracking-tight mb-4">Why teams switch to Insightis</h2>
             <p className="text-base max-w-2xl mx-auto" style={{color:'var(--ins-text-body)'}}>
               Instead of charging for every person in your company, Insightis ties cost to actual AI activity and the storage you need — so pricing stays fair, scalable, and aligned with value.
             </p>
@@ -1029,7 +1029,7 @@ function Pricing() {
                   <XIcon size={18} color="var(--ins-status-error-fg)" />
                 </div>
                 <div>
-                  <h3 className="text-base font-medium text-white">Traditional Approach</h3>
+                  <h3 className="text-base font-medium text-[var(--ins-text-heading)]">Traditional Approach</h3>
                   <p className="text-xs text-[var(--ins-text-body)]">Manual, slow, expensive</p>
                 </div>
               </div>
@@ -1050,7 +1050,7 @@ function Pricing() {
                   <CheckIcon size={18} color="var(--ins-color-teal-400)" />
                 </div>
                 <div>
-                  <h3 className="text-base font-medium text-white">With Insightis</h3>
+                  <h3 className="text-base font-medium text-[var(--ins-text-heading)]">With Insightis</h3>
                   <p className="text-xs text-[var(--ins-text-body)]">Automated, instant, scalable</p>
                 </div>
               </div>
@@ -1091,7 +1091,7 @@ function SubscribeBanner() {
             <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-[var(--ins-color-teal-600)]/10 to-transparent pointer-events-none"></div>
 
             <div className="relative z-10">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-white mb-3 tracking-tight leading-tight">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[var(--ins-text-heading)] mb-3 tracking-tight leading-tight">
                 Start making smarter decisions <span className="text-[var(--ins-text-highlight)]">today</span>
               </h2>
               <p className="text-sm md:text-base mb-7 max-w-lg mx-auto leading-relaxed" style={{color:'var(--ins-text-body)'}}>

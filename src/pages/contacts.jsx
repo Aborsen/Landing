@@ -46,7 +46,7 @@ function ContactOptions({ onOpenDemo, onOpenSupport }) {
             </div>
             <h3 style={{fontSize:'18px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'10px'}}>Talk to Sales</h3>
             <p style={{fontSize:'14px', color:'var(--ins-text-inactive)', lineHeight:1.65, marginBottom:'20px'}}>Get a personalized demo of Insightis for your team. We'll show you exactly how it works with your data sources.</p>
-            <button onClick={onOpenDemo} style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'13px', fontWeight:600, color:'#fff', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'999px', border:'none', cursor:'pointer', fontFamily:'Geist,sans-serif'}}>
+            <button onClick={onOpenDemo} style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'13px', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'999px', border:'none', cursor:'pointer', fontFamily:'Geist,sans-serif'}}>
               Book a Demo
             </button>
             <p style={{fontSize:'11px', color:'var(--ins-text-disabled)', fontFamily:'Geist Mono,monospace', marginTop:'14px'}}>Typically responds within 2 hours</p>
@@ -80,7 +80,7 @@ function ContactOptions({ onOpenDemo, onOpenSupport }) {
             </div>
             <h3 style={{fontSize:'18px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'10px'}}>Help Center</h3>
             <p style={{fontSize:'14px', color:'var(--ins-text-inactive)', lineHeight:1.65, marginBottom:'20px'}}>Browse our knowledge base for guides, FAQs, troubleshooting tips, and everything you need to get the most out of Insightis.</p>
-            <a href="../Resources/Contact Support" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'13px', fontWeight:600, color:'#fff', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'999px', border:'none', cursor:'pointer', fontFamily:'Geist,sans-serif', textDecoration:'none'}}>
+            <a href="../Resources/Contact Support" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'13px', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'999px', border:'none', cursor:'pointer', fontFamily:'Geist,sans-serif', textDecoration:'none'}}>
               Visit Help Center
             </a>
             <p style={{fontSize:'11px', color:'var(--ins-text-disabled)', fontFamily:'Geist Mono,monospace', marginTop:'14px'}}>Guides, FAQs & troubleshooting</p>
@@ -142,7 +142,7 @@ function ModalForm({ open, onClose, type }) {
               {isDemo ? 'Demo Request' : 'Support Ticket'}
             </span>
           </div>
-          <h2 style={{fontSize:'24px', fontWeight:500, color:'#fff', letterSpacing:'-.02em'}}>
+          <h2 style={{fontSize:'24px', fontWeight:500, color:'var(--ins-text-body)', letterSpacing:'-.02em'}}>
             {isDemo ? 'Book a personalized demo' : 'Submit a support ticket'}
           </h2>
           <p style={{fontSize:'14px', color:'rgba(255,255,255,.45)', marginTop:'8px', lineHeight:1.6}}>
@@ -359,7 +359,7 @@ function CtaBanner() {
         <div style={{position:'relative', overflow:'hidden', borderRadius:'16px', padding:'32px', background:'linear-gradient(135deg, rgba(18,18,31,.95) 0%, rgba(13,13,26,.98) 50%, rgba(18,18,31,.95) 100%)', border:'1px solid rgba(30,30,48,1)', display:'flex', flexWrap:'wrap', alignItems:'center', justifyContent:'space-between', gap:'20px'}}>
           <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
           <div style={{flexShrink:0}}>
-            <h3 style={{fontSize:'clamp(18px,2.5vw,26px)', fontWeight:500, color:'#fff', letterSpacing:'-.02em', lineHeight:1.3, marginBottom:'6px'}}>
+            <h3 style={{fontSize:'clamp(18px,2.5vw,26px)', fontWeight:500, color:'var(--ins-text-body)', letterSpacing:'-.02em', lineHeight:1.3, marginBottom:'6px'}}>
               Still have questions?
             </h3>
             <p style={{fontSize:'13px', color:'rgba(255,255,255,.4)', fontFamily:'Geist Mono,monospace'}}>Drop your email — we'll get back to you ASAP.</p>
