@@ -2251,12 +2251,31 @@ kbd, .ins-kbd {
   align-items: center;
   gap: var(--ins-space-xl);
   padding: var(--ins-space-3xl) var(--ins-space-xl);
-  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  border: var(--ins-border-width-1) solid rgba(7, 128, 126, 0.30);
   border-radius: var(--ins-radius-2xl);
   overflow: hidden;
   background:
-    linear-gradient(135deg, rgba(18, 18, 31, 0.95) 0%, rgba(13, 13, 26, 0.98) 50%, rgba(18, 18, 31, 0.95) 100%);
+    linear-gradient(135deg,
+      rgba(7, 128, 126, 0.12) 0%,
+      rgba(13, 13, 26, 0.90) 40%,
+      rgba(10, 18, 32, 0.85) 70%,
+      rgba(7, 128, 126, 0.08) 100%);
 }
+
+/* Left-side teal glow overlay — soft "light from the left" feel.
+   Inherits the SubscribeBanner recipe. */
+.ins-bottom-cta::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 33.333%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(7, 128, 126, 0.10), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+/* Make sure the content layers above both ::before (top line) and ::after (left glow) */
+.ins-bottom-cta > * { position: relative; z-index: 1; }
 @media (min-width: 768px) {
   .ins-bottom-cta {
     flex-direction: row;
