@@ -176,7 +176,12 @@ import Card from './Card';
 | `selected` | boolean | `false` | Brand-tinted border + bg (e.g., highlighted pricing tier) |
 | `as` | tag name | `'div'` | |
 
-`variant="glow"` adds a brand-tinted background + top brand-glow line via `::before` pseudo-element. To recolor (e.g., red "Generic AI" panel), pass `style={{background:'var(--ins-color-red-a-06)', borderColor:'var(--ins-color-red-a-25)'}}`.
+`variant="glow"` adds a brand-tinted background + top brand-glow line via `::before` pseudo-element. To pick a theme, append a DS modifier class via `className`:
+
+- `className="ins-card--glow--brand"` — teal brand-tint + brand glow shadow (default visual for AI responses, branded callouts)
+- `className="ins-card--glow--error"` — red error-tint + red border + red glow shadow (negative outcomes, warnings, drops)
+
+Do NOT use inline `style={{background:..., borderColor:...}}` overrides — the DS modifiers carry the canonical bg + border + shadow + top gradient-line all together.
 
 ---
 

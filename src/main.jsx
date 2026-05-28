@@ -1023,7 +1023,7 @@ function Pricing() {
         <FadeUp delay={0.1}>
           <div className="grid md:grid-cols-2 gap-5">
             {/* Traditional / Red — Glow card pattern (ISS-40 + ISS-66 + ISS-96) */}
-            <Card variant="glow" className="p-6 md:p-7" style={{background:'var(--ins-color-red-a-06)', borderColor:'var(--ins-color-red-a-25)'}}>
+            <Card variant="glow" className="ins-card--glow--error p-6 md:p-7">
               <div className="flex items-center gap-3 mb-7">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{background: 'rgba(248,113,113,0.12)', border: '1px solid rgba(248,113,113,0.25)'}}>
                   <XIcon size={18} color="var(--ins-status-error-fg)" />
@@ -1044,7 +1044,7 @@ function Pricing() {
             </Card>
 
             {/* Insightis / Teal — Glow card pattern (ISS-40 + ISS-66 + ISS-96) */}
-            <Card variant="glow" className="p-6 md:p-7">
+            <Card variant="glow" className="ins-card--glow--brand p-6 md:p-7">
               <div className="flex items-center gap-3 mb-7">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{background: 'rgba(14,196,193,0.15)', border: '1px solid rgba(14,196,193,0.30)'}}>
                   <CheckIcon size={18} color="var(--ins-color-teal-400)" />

@@ -1024,7 +1024,7 @@ function AccuracyComparison() {
         */}
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'16px',alignItems:'stretch'}}>
           {/* Generic AI */}
-          <Card variant="glow" className="compare-card" style={{padding:'32px',display:'flex',flexDirection:'column',background:'var(--ins-color-red-a-06)',borderColor:'var(--ins-color-red-a-25)'}}>
+          <Card variant="glow" className="ins-card--glow--error compare-card" style={{padding:'32px',display:'flex',flexDirection:'column'}}>
             <Chip variant="error" dot dotPulse style={{fontSize:'13px',fontWeight:600,marginBottom:'22px'}}>Generic AI</Chip>
             <CodeChip
               variant="panel"
@@ -1036,7 +1036,7 @@ function AccuracyComparison() {
           </Card>
 
           {/* Insightis */}
-          <Card variant="glow" className="compare-card" style={{padding:'32px',display:'flex',flexDirection:'column'}}>
+          <Card variant="glow" className="ins-card--glow--brand compare-card" style={{padding:'32px',display:'flex',flexDirection:'column'}}>
             <Chip variant="brand" dot dotPulse style={{fontSize:'13px',fontWeight:500,marginBottom:'22px'}}>Insightis</Chip>
             <CodeChip
               variant="panel"
