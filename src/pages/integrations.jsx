@@ -362,7 +362,7 @@ function Hero() {
             <span style={{color:'var(--ins-text-highlight)'}}>Understand</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>anything.</span>
           </h1>
-          <p style={{fontSize:'clamp(16px,1.2vw,18px)',color:'rgba(255,255,255,.75)',lineHeight:1.7,marginBottom:'36px',maxWidth:'480px'}}>
+          <p style={{fontSize:'clamp(16px,1.2vw,18px)',color:'var(--ins-text-body)',lineHeight:1.7,marginBottom:'36px',maxWidth:'480px'}}>
             Plug in your CRM, warehouse, ads and product tools. Query every source in plain English — no SQL, no waiting.
           </p>
           <div style={{display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap',marginBottom:'24px'}}>
@@ -373,7 +373,7 @@ function Hero() {
           <div style={{display:'flex',alignItems:'center',gap:'18px',flexWrap:'wrap'}}>
             {['Free plan','No SQL required','Setup in minutes'].map(t=>(
               <span key={t} style={{display:'flex',alignItems:'center',gap:'5px',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',fontVariantNumeric:'tabular-nums'}}>
-                <span style={{color:'var(--ins-button-primary-bg-hover)'}}>✓</span>{t}
+                <span style={{color:'var(--ins-text-highlight)'}}>✓</span>{t}
               </span>
             ))}
           </div>

@@ -305,15 +305,13 @@ nav{
    These selectors had no consumers in src/ (verified via grep) and are now expressed via
    the DS-compliant CodeChip primitive. */
 
-.sc-steps{display:flex;flex-direction:column;background:rgba(10,14,19,.9);border-right:1px solid rgba(255,255,255,.05);text-align:left}
+.sc-steps{display:flex;flex-direction:column;gap:12px;background:rgba(10,14,19,.9);border-right:1px solid rgba(255,255,255,.05);text-align:left;padding:12px 0}
 .sc-step{
-  flex:1;padding:0 28px;
+  padding:12px 28px;
   display:flex;flex-direction:column;justify-content:center;
-  border-bottom:1px solid var(--ins-border-default);
-  cursor:pointer;min-height:80px;
+  cursor:pointer;
   transition:background .2s var(--ins-easing-standard);position:relative
 }
-.sc-step:last-child{border-bottom:none}
 .sc-step:hover{background:rgba(255,255,255,.03)}
 .sc-step.active{background:rgba(7,128,126,.12);box-shadow:inset 0 0 24px rgba(7,128,126,.08)}
 .sc-num{display:none}

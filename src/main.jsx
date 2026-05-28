@@ -416,13 +416,13 @@ function Hero() {
         <FadeUp delay={0.3}>
           <div className="text-xs text-[var(--ins-text-inactive)] flex items-center justify-center gap-3 flex-wrap">
             <span className="flex items-center gap-2">
-              <CheckIcon size={14} color="var(--ins-status-success-fg)" />
-              Built by <strong className="font-medium text-[var(--ins-text-body)]">Devart</strong>
+              <CheckIcon size={14} color="var(--ins-text-highlight)" />
+              Built by <span className="text-[var(--ins-text-body)]">Devart</span>
             </span>
-            <span aria-hidden="true" className="text-[var(--ins-text-disabled)]">·</span>
-            <span><strong className="font-medium text-[var(--ins-text-body)]">40,000+</strong> companies</span>
-            <span aria-hidden="true" className="text-[var(--ins-text-disabled)]">·</span>
-            <span><strong className="font-medium text-[var(--ins-text-body)]">28&nbsp;yrs</strong> of data tooling</span>
+            <span aria-hidden="true" className="text-[var(--ins-text-disabled)] text-lg leading-none">·</span>
+            <span><span className="text-[var(--ins-text-body)]">40,000+</span> companies</span>
+            <span aria-hidden="true" className="text-[var(--ins-text-disabled)] text-lg leading-none">·</span>
+            <span><span className="text-[var(--ins-text-body)]">28&nbsp;yrs</span> of data tooling</span>
           </div>
         </FadeUp>
       </div>
