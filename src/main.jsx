@@ -4,6 +4,7 @@ import './app.css'
 import Header from './components/Header';
 import Footer from './components/Footer';
 import IntegrationsStrip from './components/IntegrationsStrip';
+import Button from './components/Button';
 import Card from './components/Card';
 import BottomCTA from './components/BottomCTA';
 import TestimonialCard from './components/TestimonialCard';
@@ -205,7 +206,7 @@ function Hero() {
       <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-[var(--ins-color-gray-800)] border-l border-t border-[var(--ins-border-hover)] rotate-45 mb-[-5px]"></div>
       <p className="text-white text-sm font-medium mb-1">Unlock full access</p>
       <p className="text-[var(--ins-text-inactive)] text-xs mb-3">Get more after registration — connect your data sources and explore AI insights.</p>
-      <a href="/auth/sign-up/" className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-[var(--ins-color-teal-500)] to-[var(--ins-color-teal-600)] rounded-lg text-white text-xs font-medium hover:shadow-[0_0_16px_rgba(7,128,126,0.4)] transition-shadow">Sign Up Free</a>
+      <Button as="a" href="/auth/sign-up/" variant="primary" size="sm">Sign Up Free</Button>
     </div>
   );
 
@@ -1097,9 +1098,7 @@ function SubscribeBanner() {
                 Join 1,200+ data-driven teams. Set up in minutes, no credit card required, and cancel anytime.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <a href="/auth/sign-up/" className="sm:w-auto px-8 py-3 text-sm font-medium text-white bg-gradient-to-r from-[var(--ins-color-teal-600)] to-[var(--ins-color-teal-500)] rounded-xl hover:shadow-[0_0_32px_rgba(7,128,126,0.5)] transition-all inline-flex items-center justify-center gap-2">
-                  Start Free Trial
-                </a>
+                <Button as="a" href="/auth/sign-up/" variant="primary" size="lg">Start Free Trial</Button>
               </div>
             </div>
           </div>
