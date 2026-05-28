@@ -495,7 +495,7 @@ function PainPoints() {
             <span style={{color:'var(--ins-status-error-fg)',fontSize:'12px'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-status-error-fg)',fontFamily:'Geist Mono,monospace'}}>The Problem</span>
           </div>
-          <h2 style={{fontSize:'clamp(2.25rem,4vw,3.25rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",color:'var(--ins-text-body)',letterSpacing:'-.04em',lineHeight:1.05,marginBottom:'14px',textWrap:'balance'}}>
+          <h2 className="ins-text-display" style={{marginBottom:'14px',textWrap:'balance'}}>
             Marketing decisions wait on the data team
           </h2>
           <p style={{fontSize:'16px',color:'var(--ins-text-body)',maxWidth:'480px',margin:'0 auto',lineHeight:1.65}}>
