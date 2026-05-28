@@ -90,9 +90,8 @@ function BottomCTA({
             type="submit"
             variant="primary"
             size="sm"
-            radius="lg"
             iconEnd={<ArrowRightIcon />}
-            className="m-1 flex-shrink-0"
+            className="flex-shrink-0"
           >
             {ctaLabel}
           </Button>
