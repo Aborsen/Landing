@@ -590,7 +590,7 @@
 .ins-card--glow--brand { box-shadow: var(--ins-shadow-glow-brand); }
 .ins-card--glow--error {
   background: var(--ins-status-error-bg);
-  border-color: var(--ins-status-error-fg);
+  border-color: var(--ins-color-red-a-25);
   box-shadow: var(--ins-glow-error);
 }
 .ins-card--glow--error::before { background: linear-gradient(90deg, transparent, var(--ins-color-red-a-30), transparent); }
