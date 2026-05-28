@@ -199,9 +199,9 @@
   --ins-elevation-3: 0 2px 4px rgba(0,0,0,0.40), 0 8px 24px rgba(0,0,0,0.30);
   --ins-elevation-4: 0 16px 48px -8px rgba(0,0,0,0.45);
   /* Glow variants — reserve for colored / branded / highlighted blocks (not for default UI) */
-  --ins-glow-brand:   0 0 24px rgba(14, 196, 193, 0.30);
+  --ins-glow-brand:   0 0 12px rgba(14, 196, 193, 0.30);
   --ins-glow-success: 0 0 20px rgba(34, 197, 94, 0.28);
-  --ins-glow-error:   0 0 24px rgba(248, 113, 113, 0.30);
+  --ins-glow-error:   0 0 12px rgba(248, 113, 113, 0.30);
   --ins-glow-dot:     0 0 8px currentColor;
 
   /* ─ Border width primitives ─ */
