@@ -1092,9 +1092,9 @@ function SubscribeBanner() {
 
             <div className="relative z-10">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-white mb-3 tracking-tight leading-tight">
-                Start making smarter decisions <span className="text-[var(--ins-color-teal-400)]">today</span>
+                Start making smarter decisions <span className="text-[var(--ins-text-highlight)]">today</span>
               </h2>
-              <p className="text-sm md:text-base mb-7 max-w-lg mx-auto leading-relaxed" style={{color:'rgba(255,255,255,0.6)'}}>
+              <p className="text-sm md:text-base mb-7 max-w-lg mx-auto leading-relaxed" style={{color:'var(--ins-text-body)'}}>
                 Join 1,200+ data-driven teams. Set up in minutes, no credit card required, and cancel anytime.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">

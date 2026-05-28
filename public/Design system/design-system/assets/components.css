@@ -2745,10 +2745,10 @@ kbd, .ins-kbd {
 /* Decorative corner mark (homepage variant) */
 .ins-testimonial__corner {
   position: absolute;
-  top: var(--ins-space-lg);
+  top: var(--ins-space-md);
   right: var(--ins-space-lg);
   font-family: var(--ins-font-family-sans);
-  font-size: 34px;
+  font-size: 60px;
   line-height: 1;
   color: var(--ins-text-inactive);
   opacity: 0.5;
@@ -2799,7 +2799,7 @@ kbd, .ins-kbd {
 
 .ins-testimonial__name {
   font-size: var(--ins-font-size-14);
-  color: var(--ins-color-gray-100);
+  color: var(--ins-text-heading);
   font-weight: var(--ins-font-weight-500);
 }
 .ins-testimonial__role {
