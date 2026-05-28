@@ -63,8 +63,7 @@ a {
   color: var(--ins-text-highlight);
   text-decoration: none;
 }
-a:hover { color: var(--ins-color-teal-300); text-decoration: none;
-  }
+a:not(.ins-btn):hover { color: var(--ins-color-teal-300); text-decoration: none; }
 a svg { vertical-align: middle; color: currentColor; }
 
 /* Brand/highlight link (opt-in via .ins-link--brand or when .ins-text-highlight context) */
