@@ -10,6 +10,7 @@ import CodeChip from '../components/CodeChip';
 import BottomCTA from '../components/BottomCTA';
 import StepsProcess from '../components/StepsProcess';
 import SectionHeader from '../components/SectionHeader';
+import CheckIcon from '../components/CheckIcon';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -831,14 +832,7 @@ function QuestionsGallery() {
         </div>
 
         {/* Grid: left tabs + right chat panel */}
-        <div data-gallery-grid style={{
-          display:'grid', gridTemplateColumns:'280px 1fr',
-          borderRadius:'16px', overflow:'hidden',
-          border:'1px solid rgba(255,255,255,.07)',
-          boxShadow:'none',
-          height:'520px', margin:'0 auto',
-          position:'relative',
-        }}>
+        <div data-gallery-grid className="showcase fade-in visible">
           <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.6),rgba(255,255,255,.1),rgba(9,160,157,.6),transparent)',zIndex:20,pointerEvents:'none'}}/>
 
           {/* LEFT */}
@@ -1248,7 +1242,7 @@ function ChatMockAnimationInner() {
                   ))}
                 </div>
               ) : (
-                <span style={{width:'14px',height:'14px',borderRadius:'50%',background:'rgba(14,196,193,0.12)',border:'1px solid rgba(14,196,193,0.28)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'8px',fontWeight:700,color:'var(--ins-text-highlight)',flexShrink:0}}>✓</span>
+                <span style={{width:'14px',height:'14px',borderRadius:'50%',background:'rgba(14,196,193,0.12)',border:'1px solid rgba(14,196,193,0.28)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'8px',fontWeight:700,color:'var(--ins-text-highlight)',flexShrink:0}}><CheckIcon size={8} color="currentColor" /></span>
               )}
             </div>
             {/* Steps list — collapses when thinking is done */}
@@ -1420,7 +1414,7 @@ function Hero() {
           <div style={{display:'flex',alignItems:'center',gap:'18px',flexWrap:'wrap'}}>
             {['Free plan','No SQL required','Setup in minutes'].map(t=>(
               <span key={t} style={{display:'flex',alignItems:'center',gap:'5px',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',fontVariantNumeric:'tabular-nums'}}>
-                <span style={{color:'var(--ins-text-highlight)'}}>✓</span>{t}
+                <CheckIcon size={12} />{t}
               </span>
             ))}
           </div>

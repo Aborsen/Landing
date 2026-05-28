@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { marked } from 'marked';
 import Header from './Header';
 import Footer from './Footer';
+import CheckIcon from './CheckIcon';
 
 import whatIsAiMd           from '../../blog/Articles/what-is-ai-data-analysis.md?raw';
 import bestAiToolsMd        from '../../blog/Articles/best-ai-data-analysis-tools.md?raw';
@@ -92,7 +93,7 @@ function YouTubeIcon({ size = 16 }) { return <svg width={size} height={size} vie
 function TikTokIcon({ size = 16 }) { return <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.43v-7.15a8.16 8.16 0 005.58 2.17v-3.4a4.85 4.85 0 01-1-.16l.01-.02V6.69h.99z"/></svg>; }
 function RedditIcon({ size = 16 }) { return <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.067 13.137a1.624 1.624 0 0 1-1.624 1.624c-.42 0-.8-.16-1.085-.42-1.058.762-2.518 1.252-4.143 1.314l.7-3.293 2.287.48a1.16 1.16 0 1 0 .115-.55l-2.554-.543a.275.275 0 0 0-.325.213l-.778 3.66c-1.652-.054-3.138-.545-4.207-1.315a1.62 1.62 0 0 1-1.084.42 1.624 1.624 0 0 1-.66-3.107c-.054-.21-.082-.43-.082-.658 0-2.227 2.59-4.033 5.78-4.033 3.19 0 5.78 1.806 5.78 4.033 0 .224-.028.443-.082.65a1.622 1.622 0 0 1 .961 1.485zm-9.78-.13a1.16 1.16 0 1 1 2.32 0 1.16 1.16 0 0 1-2.32 0zm6.59 2.65a4.65 4.65 0 0 1-2.873.954 4.65 4.65 0 0 1-2.872-.953.275.275 0 1 1 .354-.42 4.1 4.1 0 0 0 2.518.83 4.1 4.1 0 0 0 2.519-.83.275.275 0 0 1 .354.42zm.092-1.49a1.16 1.16 0 1 1 0-2.32 1.16 1.16 0 0 1 0 2.32z"/></svg>; }
 function LinkIcon({ size = 16 })  { return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>; }
-function CheckIcon({ size = 16 }) { return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>; }
+// CheckIcon imported from ./CheckIcon (canonical recipe).
 function ArrowRightIcon({ size = 16 }) { return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>; }
 
 /* ───────────────────────── sub-components ───────────────────────── */

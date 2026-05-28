@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import CheckIcon from '../components/CheckIcon';
 
 /* ── SUPPORT HERO ── */
 function SupportHero({ search, setSearch }) {
@@ -934,9 +935,7 @@ function ContactSupport() {
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   margin: '0 auto 20px', color: 'var(--ins-text-highlight)',
                 }}>
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12"/>
-                  </svg>
+                  <CheckIcon size={22} color="currentColor" strokeWidth={2} />
                 </div>
                 <div style={{ fontSize: '17px', fontWeight: 700, color: 'var(--ins-color-gray-100)', marginBottom: '8px' }}>Request submitted</div>
                 <div style={{ fontSize: '14px', color: 'var(--ins-text-inactive)', lineHeight: 1.6, marginBottom: '28px' }}>

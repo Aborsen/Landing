@@ -8,6 +8,7 @@ import Card from '../components/Card';
 import BottomCTA from '../components/BottomCTA';
 import FAQAccordion from '../components/FAQAccordion';
 import SectionHeader from '../components/SectionHeader';
+import CheckIcon from '../components/CheckIcon';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -225,7 +226,7 @@ function PricingCards() {
                 <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px',padding:0,margin:0}}>
                   {plan.features.map((f,fi) => (
                     <li key={fi} style={{display:'flex',alignItems:'flex-start',gap:'9px',fontSize:'13.5px',color:'var(--ins-color-gray-200)',lineHeight:1.55}}>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0,marginTop:'3px'}}><polyline points="20 6 9 17 4 12"/></svg>
+                      <CheckIcon size={14} style={{flexShrink:0,marginTop:'3px'}} />
                       {f}
                     </li>
                   ))}
@@ -280,7 +281,6 @@ function FeatureComparison() {
       ]
     },
   ];
-  const Check = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>;
   const Dash = () => <span style={{color:'rgba(255,255,255,0.18)'}}>—</span>;
   const cols = '1.6fr 1fr 1fr 1fr';
   return (
@@ -311,7 +311,7 @@ function FeatureComparison() {
                   <span style={{fontSize:'14px',color:'var(--ins-color-gray-200)'}}>{row.label}</span>
                   {row.values.map((v, vi) => (
                     <span key={vi} style={{display:'flex',justifyContent:'center',alignItems:'center',fontSize:'13.5px',color:'var(--ins-color-gray-200)'}}>
-                      {v === true ? <Check /> : v === false ? <Dash /> : v}
+                      {v === true ? <CheckIcon size={16} /> : v === false ? <Dash /> : v}
                     </span>
                   ))}
                 </div>

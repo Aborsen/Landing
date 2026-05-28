@@ -7,6 +7,7 @@ import Button from '../components/Button';
 import BottomCTA from '../components/BottomCTA';
 import FAQAccordion from '../components/FAQAccordion';
 import SectionHeader from '../components/SectionHeader';
+import CheckIcon from '../components/CheckIcon';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -453,7 +454,7 @@ function SpotlightChat() {
             </div>
             <span style={{
               fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-status-success-fg)',flexShrink:0,
-            }}>✓</span>
+            }}><CheckIcon size={8} color="currentColor" /></span>
           </div>
         ))}
       </div>
@@ -831,7 +832,7 @@ function FeatureSpotlights() {
                   <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px'}}>
                     {s.bullets.map((b,bi) => (
                       <li key={bi} style={{display:'flex',alignItems:'flex-start',gap:'10px',fontSize:'14px',color:'var(--ins-color-gray-200)',lineHeight:1.55}}>
-                        <span style={{color:'var(--ins-text-highlight)',flexShrink:0,marginTop:'1px'}}>✓</span>
+                        <CheckIcon size={12} style={{flexShrink:0,marginTop:'1px'}} />
                         {b}
                       </li>
                     ))}

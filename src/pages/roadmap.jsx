@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import CheckIcon from '../components/CheckIcon';
 
 /* ── ICONS ── */
 
@@ -385,7 +386,7 @@ function RoadmapSections() {
                 <span style={{flexShrink:0, marginTop:3, width:18, height:18, borderRadius:'50%',
                   background:'rgba(34,197,94,.1)', border:'1px solid rgba(34,197,94,.25)',
                   display:'inline-flex', alignItems:'center', justifyContent:'center'}}>
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ins-status-success-fg)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <CheckIcon size={10} color="var(--ins-status-success-fg)" />
                 </span>
                 <div style={{minWidth:0}}>
                   <span style={{fontSize:13, fontWeight:500, color:'var(--ins-color-gray-100)'}}>{item.title}</span>
@@ -536,7 +537,7 @@ function SuggestCTA() {
                   display:'flex', alignItems:'center', justifyContent:'center',
                   animation:'nodeAppear .4s ease',
                 }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ins-status-success-fg)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <CheckIcon size={24} color="var(--ins-status-success-fg)" />
                 </div>
                 <h3 style={{fontSize:20, fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:8, letterSpacing:'-.02em'}}>Thanks for your feedback!</h3>
                 <p style={{fontSize:14, color:'var(--ins-text-inactive)', lineHeight:1.6, maxWidth:340, margin:'0 auto'}}>

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import CheckIcon from '../components/CheckIcon';
 
 /* ── INSIGHTIS LOGO MARK SVG ── */
 function InsightisLogoMark({ size = 60, opacity = 1 }) {
@@ -381,9 +382,7 @@ function PromptLibrarySidebar({ selectedTeams, toggleTeam, clearAll }) {
       />
       <span className="filter-checkbox">
         {checked && (
-          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="var(--ins-surface-page)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="20 6 9 17 4 12"/>
-          </svg>
+          <CheckIcon size={9} color="var(--ins-surface-page)" strokeWidth={3.5} />
         )}
       </span>
       {leading}
@@ -491,7 +490,7 @@ function PromptCard({ entry, index, isExpanded, onToggle }) {
             >
               {copied ? (
                 <>
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <CheckIcon size={11} color="currentColor" />
                   Copied
                 </>
               ) : (

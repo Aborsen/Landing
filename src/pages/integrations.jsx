@@ -13,6 +13,7 @@ import CodeChip from '../components/CodeChip';
 import BottomCTA from '../components/BottomCTA';
 import StepsProcess from '../components/StepsProcess';
 import SectionHeader from '../components/SectionHeader';
+import CheckIcon from '../components/CheckIcon';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -373,7 +374,7 @@ function Hero() {
           <div style={{display:'flex',alignItems:'center',gap:'18px',flexWrap:'wrap'}}>
             {['Free plan','No SQL required','Setup in minutes'].map(t=>(
               <span key={t} style={{display:'flex',alignItems:'center',gap:'5px',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',fontVariantNumeric:'tabular-nums'}}>
-                <span style={{color:'var(--ins-text-highlight)'}}>✓</span>{t}
+                <CheckIcon size={12} />{t}
               </span>
             ))}
           </div>

@@ -8,6 +8,7 @@ import Button from './components/Button';
 import Card from './components/Card';
 import BottomCTA from './components/BottomCTA';
 import TestimonialCard from './components/TestimonialCard';
+import CheckIcon from './components/CheckIcon';
 
 /* Single shared IntersectionObserver for all fade-ups.
    Replaces 33 per-component framer-motion `useInView` observers + re-render cascades.
@@ -46,9 +47,7 @@ function FadeUp({ children, delay = 0, className = '' }) {
 }
 
 // ─── ICONS (SVG inline, replacing Lucide) ───
-function CheckIcon({ size = 20, color = "var(--ins-color-teal-600)", className = "" }) {
-  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="20 6 9 17 4 12"/></svg>;
-}
+// CheckIcon is imported from src/components/CheckIcon.jsx (canonical recipe).
 function ArrowRightIcon({ size = 20, color = "#fff" }) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>;
 }
