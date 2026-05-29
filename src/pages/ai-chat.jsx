@@ -837,24 +837,11 @@ function QuestionsGallery() {
           <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.6),rgba(255,255,255,.1),rgba(9,160,157,.6),transparent)',zIndex:20,pointerEvents:'none'}}/>
 
           {/* LEFT */}
-          <div data-gallery-left style={{display:'flex',flexDirection:'column',background:'rgba(10,14,19,.95)',borderRight:'1px solid rgba(255,255,255,.05)'}}>
+          <div data-gallery-left className="sc-steps">
             <div style={{flex:1,display:'flex',flexDirection:'column'}}>
               {cat.questions.map((q,i) => (
-                <div key={activeCat+i} onClick={() => setActiveQ(i)} style={{
-                  flex:1, padding:'0 24px',
-                  display:'flex', flexDirection:'column', justifyContent:'center',
-                  borderBottom: i<cat.questions.length-1?'1px solid rgba(255,255,255,.04)':'none',
-                  cursor:'pointer', transition:'background .18s',
-                  background: i===activeQ?'rgba(7,128,126,.1)':'transparent',
-                  position:'relative',
-                }}>
-                  <span style={{
-                    fontSize:'13px',fontWeight: i===activeQ?500:400,
-                    color: i===activeQ?'var(--ins-color-gray-100)':'#8AA6B3',
-                    lineHeight:1.45,
-                    transition:'color .18s, font-weight .18s',
-                    whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',display:'block',
-                  }}>{q}</span>
+                <div key={activeCat+i} onClick={() => setActiveQ(i)} className={`sc-step${i===activeQ ? ' active' : ''}`}>
+                  <span className="sc-lbl" style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',display:'block'}}>{q}</span>
                 </div>
               ))}
             </div>
