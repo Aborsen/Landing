@@ -939,15 +939,16 @@ function ConnectorGallery() {
         {/* Category tabs */}
         <div style={{display:'flex',justifyContent:'center',gap:'8px',marginBottom:'28px',flexWrap:'wrap'}}>
           {cats.map(cat => (
-            <button key={cat} onClick={() => setActiveCat(cat)} style={{
-              padding:'7px 18px',borderRadius:'999px',fontSize:'13px',fontWeight:500,
-              cursor:'pointer',fontFamily:'Geist,sans-serif',transition:'all .15s',
-              border:`1px solid ${cat===activeCat?'rgba(9,160,157,.5)':'rgba(255,255,255,.08)'}`,
-              background: cat===activeCat?'rgba(9,160,157,.08)':'transparent',
-              color: cat===activeCat?'var(--ins-text-highlight)':'var(--ins-text-body)',
-            }}>
+            <Chip
+              key={cat}
+              as="button"
+              variant="tab"
+              onClick={() => setActiveCat(cat)}
+              aria-pressed={cat === activeCat}
+              style={{padding:'7px 18px', fontSize:'13px', fontWeight:500}}
+            >
               {cat}
-            </button>
+            </Chip>
           ))}
         </div>
 

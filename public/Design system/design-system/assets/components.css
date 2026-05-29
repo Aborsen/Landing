@@ -1177,6 +1177,28 @@
 .ins-badge--planned { background: var(--ins-status-planned-bg); color: var(--ins-status-planned-fg); }
 .ins-badge--shipped { background: var(--ins-status-shipped-bg); color: var(--ins-status-shipped-fg); }
 .ins-badge--brand   { background: var(--ins-surface-brand-tint); border-color: var(--ins-border-brand); color: var(--ins-color-teal-400); }
+/* Interactive filter/category tab — one control everywhere (integrations, ai-chat, semantic-layer).
+   Inactive: visible border + transparent bg, brightens bg on hover.
+   Active (aria-pressed="true"): brand-tinted, matching .ins-badge--brand. */
+.ins-badge--tab {
+  cursor: pointer;
+  border-color: var(--ins-border-default);
+  background: transparent;
+  color: var(--ins-text-body);
+  transition: background var(--ins-duration-base) var(--ins-easing-standard),
+              border-color var(--ins-duration-base) var(--ins-easing-standard),
+              color var(--ins-duration-base) var(--ins-easing-standard);
+}
+.ins-badge--tab:hover {
+  background: var(--ins-color-white-a-06);
+  border-color: var(--ins-border-hover);
+  color: var(--ins-text-heading);
+}
+.ins-badge--tab[aria-pressed="true"] {
+  background: var(--ins-surface-brand-tint);
+  border-color: var(--ins-border-brand);
+  color: var(--ins-color-teal-400);
+}
 .ins-badge--count   { background: var(--ins-surface-elevated); color: var(--ins-text-heading); min-width: 20px; justify-content: center; }
 .ins-badge--trend {
   font-family: var(--ins-font-family-mono);
@@ -2765,8 +2787,8 @@ kbd, .ins-kbd {
   font-family: var(--ins-font-family-sans);
   font-size: 60px;
   line-height: 1;
-  color: var(--ins-text-inactive);
-  opacity: 0.5;
+  color: var(--ins-text-body);
+  opacity: 0.85;
   pointer-events: none;
 }
 

@@ -819,15 +819,16 @@ function QuestionsGallery() {
         {/* Category pills */}
         <div style={{display:'flex',justifyContent:'center',gap:'8px',marginBottom:'24px',flexWrap:'wrap'}}>
           {cats.map(c => (
-            <button key={c} onClick={() => handleCat(c)} style={{
-              padding:'7px 18px',borderRadius:'999px',fontSize:'13px',fontWeight:500,
-              cursor:'pointer',fontFamily:'Geist,sans-serif',transition:'all .15s',
-              border:`1px solid ${c===activeCat?'rgba(9,160,157,.5)':'rgba(255,255,255,.08)'}`,
-              background: c===activeCat?'rgba(9,160,157,.08)':'transparent',
-              color: c===activeCat?'#fff':'var(--ins-text-body)',
-            }}>
+            <Chip
+              key={c}
+              as="button"
+              variant="tab"
+              onClick={() => handleCat(c)}
+              aria-pressed={c === activeCat}
+              style={{padding:'7px 18px', fontSize:'13px', fontWeight:500}}
+            >
               {c}
-            </button>
+            </Chip>
           ))}
         </div>
 

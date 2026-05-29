@@ -553,10 +553,10 @@ function ConnectorsGallery() {
               <Chip
                 key={cat}
                 as="button"
-                variant={isActive ? 'brand' : 'neutral'}
+                variant="tab"
                 onClick={() => setActiveCat(cat)}
                 aria-pressed={isActive}
-                style={{padding:'7px 18px', fontSize:'13px', fontWeight:500, cursor:'pointer'}}
+                style={{padding:'7px 18px', fontSize:'13px', fontWeight:500}}
               >
                 {cat}
               </Chip>
@@ -588,9 +588,9 @@ function ConnectorsGallery() {
 
         {/* Footer note */}
         <div style={{textAlign:'center',marginTop:'32px'}}>
-          <span style={{fontSize:'12.5px',color:'#8A9BA4',fontFamily:'Geist Mono,monospace'}}>
+          <span style={{fontSize:'12.5px',color:'var(--ins-text-body)',fontFamily:'Geist Mono,monospace'}}>
             + 200 more connectors available ·{' '}
-            <a href="/Resources/Connectors" style={{color:'rgba(9,160,157,.7)',textDecoration:'none'}}>see full list →</a>
+            <a href="/Resources/Connectors" style={{color:'var(--ins-text-highlight)',textDecoration:'none'}}>see full list →</a>
           </span>
         </div>
       </div>
@@ -655,7 +655,7 @@ function IntegrationImpact() {
         {/* Heading */}
         <div style={{marginBottom:'56px'}}>
           <SectionHeader
-            eyebrow="Why direct integration matters"
+            eyebrow="Direct integration"
             title="Tools guess. Insightis answers."
             lede="One source of truth. Answers in seconds."
             sparkle
