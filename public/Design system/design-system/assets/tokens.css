@@ -286,6 +286,10 @@
   --ins-text-inactive:     var(--ins-color-gray-300);  /* #7FA0AC — AA on page, marginal on card */
   --ins-text-disabled:     var(--ins-color-gray-400);  /* #6E8D9A — exempt from AA */
   --ins-text-highlight:    var(--ins-color-teal-400);
+  /* Muted caption foregrounds — negative (red) vs positive (teal) comparison captions.
+     60% alpha is intrinsic to the muted treatment, so it is baked into the token. */
+  --ins-text-error:           rgba(248, 113, 113, 0.60);  /* red-400 @ 60% */
+  --ins-text-highlight-muted: rgba(9, 160, 157, 0.60);    /* dark-teal @ 60% */
 
   /* ─ Surface ─ */
   --ins-surface-page:       var(--ins-color-gray-950);

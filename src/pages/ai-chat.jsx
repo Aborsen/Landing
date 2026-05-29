@@ -1026,7 +1026,7 @@ function AccuracyComparison() {
               query="What's our churn rate?"
               response={<span style={{color:'#505068'}}>The average SaaS churn rate is typically between <span style={{color:'var(--ins-status-error-fg)'}}>3–8% monthly</span>, depending on your segment and pricing tier. Companies in the SMB market typically see higher rates. This estimate may or may not reflect your situation.</span>}
             />
-            <p style={{fontSize:'12px',color:'rgba(248,113,113,.6)',fontStyle:'italic'}}>Searches the internet. Returns industry averages. Not your numbers.</p>
+            <p style={{fontSize:'12px',color:'var(--ins-text-error)',fontStyle:'italic'}}>Searches the internet. Returns industry averages. Not your numbers.</p>
           </Card>
 
           {/* Insightis */}
@@ -1038,7 +1038,7 @@ function AccuracyComparison() {
               query="What's our churn rate?"
               response={<>Your churn rate in March was <CodeChip.Highlight>2.1%</CodeChip.Highlight> — down from 2.8% in February. Main driver: reduced churn in Starter plan (↓ 0.9pp). 3 accounts churned vs 5 last month.</>}
             />
-            <p style={{fontSize:'12px',color:'rgba(9,160,157,.6)',fontStyle:'italic'}}>Queries your Stripe + PostgreSQL through Semantic Layer. Always your numbers.</p>
+            <p style={{fontSize:'12px',color:'var(--ins-text-highlight-muted)',fontStyle:'italic'}}>Queries your Stripe + PostgreSQL through Semantic Layer. Always your numbers.</p>
           </Card>
         </div>
 

@@ -700,7 +700,7 @@ function IntegrationImpact() {
                 </div>
               }
             />
-            <p style={{fontSize:'12px',color:'rgba(248,113,113,.6)',fontStyle:'italic'}}>Exports, manual joins, copy-pasted dashboards. Stale by the time they land.</p>
+            <p style={{fontSize:'12px',color:'var(--ins-text-error)',fontStyle:'italic'}}>Exports, manual joins, copy-pasted dashboards. Stale by the time they land.</p>
           </Card>
 
           {/* Insightis */}
@@ -730,7 +730,7 @@ function IntegrationImpact() {
                 </>
               }
             />
-            <p style={{fontSize:'12px',color:'rgba(9,160,157,.6)',fontStyle:'italic'}}>Direct connectors + Semantic Layer. Real numbers, refreshed continuously.</p>
+            <p style={{fontSize:'12px',color:'var(--ins-text-highlight-muted)',fontStyle:'italic'}}>Direct connectors + Semantic Layer. Real numbers, refreshed continuously.</p>
           </Card>
         </div>
 
