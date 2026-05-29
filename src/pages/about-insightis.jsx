@@ -164,7 +164,7 @@ function BackedBy() {
             <span style={{color:'var(--ins-button-primary-bg-hover)', fontSize:'12px'}}>✦</span>
             <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Our Mission</span>
           </div>
-          <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'var(--ins-text-body)', letterSpacing:'-.03em', maxWidth:'700px'}}>Precise analytics for everyone</h2>
+          <h2 className="ins-text-display" style={{maxWidth:'700px'}}>Precise analytics for everyone</h2>
         </div>
         {/* Two-column text grid */}
         <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'24px 48px'}}>

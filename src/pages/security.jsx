@@ -235,7 +235,7 @@ function SecurityContent() {
       <section style={{padding:'80px 0'}}>
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
           <div style={{textAlign:'center', marginBottom:'56px'}}>
-            <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'var(--ins-text-body)', letterSpacing:'-.03em'}}>Frequently asked questions</h2>
+            <h2 className="ins-text-display">Frequently asked questions</h2>
           </div>
           <div style={{maxWidth:'760px', margin:'0 auto', display:'flex', flexDirection:'column', gap:'8px'}}>
             {faqs.map((faq, i) => (
