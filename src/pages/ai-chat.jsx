@@ -845,16 +845,10 @@ function QuestionsGallery() {
                   display:'flex', flexDirection:'column', justifyContent:'center',
                   borderBottom: i<cat.questions.length-1?'1px solid rgba(255,255,255,.04)':'none',
                   cursor:'pointer', transition:'background .18s',
-                  background: i===activeQ?'rgba(7,128,126,.1)':'transparent',
+                  background: i===activeQ?'rgba(7,128,126,.12)':'transparent',
                   position:'relative',
                 }}>
-                  <span style={{
-                    fontSize:'13px',fontWeight: i===activeQ?500:400,
-                    color: i===activeQ?'var(--ins-color-gray-100)':'#8AA6B3',
-                    lineHeight:1.45,
-                    transition:'color .18s, font-weight .18s',
-                    whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',display:'block',
-                  }}>{q}</span>
+                  <span className="sc-lbl" style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',display:'block'}}>{q}</span>
                 </div>
               ))}
             </div>
