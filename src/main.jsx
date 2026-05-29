@@ -854,7 +854,7 @@ function Testimonials() {
   const stats = [
     { value: "10x", label: "Faster Insights", sub: "vs. traditional BI tools" },
     { value: "80%", label: "Time Saved", sub: "on data analysis tasks" },
-    { value: "1,200+", label: "Companies", sub: "across 60+ countries" },
+    { value: "200+", label: "Connectors", sub: "supported out-of-the-box" },
     { value: "99.9%", label: "Uptime SLA", sub: "enterprise-grade reliability" },
   ];
 
@@ -947,7 +947,7 @@ function WhatIsInsightis() {
   const stats = [
     { target: 10,   suffix: "x",  prefix: "",  label: "Faster Insights",  sub: "vs. traditional BI tools" },
     { target: 80,   suffix: "%",  prefix: "",  label: "Time Saved",        sub: "on data analysis tasks" },
-    { target: 1200, suffix: "+",  prefix: "",  label: "Companies",         sub: "across 60+ countries" },
+    { target: 200,  suffix: "+",  prefix: "",  label: "Connectors",        sub: "supported out-of-the-box" },
     { target: 99,   suffix: ".9%",prefix: "",  label: "Uptime SLA",        sub: "enterprise-grade reliability" },
   ];
 
