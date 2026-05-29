@@ -802,7 +802,7 @@ function QuestionsGallery() {
   };
 
   return (
-    <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,var(--ins-surface-container) 0%,#101620 100%)'}}>
+    <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Heading */}
@@ -989,7 +989,7 @@ function HowItWorks() {
 /* ── ACCURACY COMPARISON ── */
 function AccuracyComparison() {
   return (
-    <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,#101620 0%,var(--ins-surface-page) 100%)'}}>
+    <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div className="max-w-7xl mx-auto px-6">
         <div style={{marginBottom:'56px'}}>
           <SectionHeader

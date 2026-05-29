@@ -404,7 +404,7 @@ function WhatItDoes() {
   ];
 
   return (
-    <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,var(--ins-surface-page) 0%,var(--ins-surface-container) 100%)'}}>
+    <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div className="max-w-7xl mx-auto px-6">
         {/* PR 1 canary — replaces hand-rolled eyebrow + h2 with <SectionHeader> */}
         <div style={{marginBottom:'64px'}}>
@@ -899,7 +899,7 @@ const SHOWCASE_STEPS = [
 ];
 function FeaturesShowcase() {
   return (
-    <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,var(--ins-surface-page) 0%,var(--ins-surface-container) 100%)'}}>
+    <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div className="max-w-7xl mx-auto px-6">
         <div style={{marginBottom:'64px'}}>
           <SectionHeader
@@ -922,7 +922,7 @@ function ConnectorGallery() {
   const [activeCat, setActiveCat] = useState(cats[0]);
 
   return (
-    <section style={{padding:'80px 0 100px', background:'linear-gradient(180deg,var(--ins-surface-container) 0%,#101620 100%)'}}>
+    <section style={{padding:'80px 0 100px', background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div className="max-w-7xl mx-auto px-6">
 
         {/* PR 1 canary — replaces hand-rolled eyebrow + h2 + lede with <SectionHeader> */}
@@ -998,7 +998,7 @@ function ConnectorGallery() {
 /* ── BEFORE / AFTER — Without vs With Semantic Layer ── */
 function BeforeAfter() {
   return (
-    <section style={{padding:'120px 0 140px',background:'linear-gradient(180deg,#101620 0%,var(--ins-surface-page) 100%)'}}>
+    <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div className="max-w-7xl mx-auto px-6">
         <div style={{marginBottom:'56px'}}>
           <SectionHeader
