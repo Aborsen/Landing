@@ -56,6 +56,16 @@ button, input, select, textarea {
 
 button { background: none; border: none; cursor: pointer; }
 
+/* Disabled interactive elements (buttons, menu items, inputs, …) show the
+   not-allowed cursor on hover. Element-qualified :disabled selectors are needed
+   to beat Tailwind preflight's `:disabled { cursor: default }` (equal specificity
+   otherwise); aria-disabled="true" covers non-clickable menu rows. */
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled,
+[aria-disabled="true"] { cursor: not-allowed; }
+
 /* Inline text links (default for links inside body).
    Underline at 30% opacity makes the link identifiable without relying on color alone (accessibility).
    Hover lifts both underline + text color — icons inside inherit via currentColor. */

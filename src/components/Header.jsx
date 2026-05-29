@@ -244,7 +244,7 @@ export default function Header() {
                           </div>
                         </>);
                         return item.notClickable ? (
-                          <div key={ii} className="flex items-start gap-3 px-3 py-2.5 rounded-xl group" style={{cursor:'default'}}>{inner}</div>
+                          <div key={ii} className="flex items-start gap-3 px-3 py-2.5 rounded-xl group" aria-disabled="true">{inner}</div>
                         ) : (
                           <a key={ii} href={linkUrls[item.label] || '#'} {...(item.external ? {target:'_blank', rel:'noopener noreferrer'} : {})} onClick={() => setActiveDropdown(null)}
                             className="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-surface-hover transition-colors group">{inner}</a>
@@ -284,7 +284,7 @@ export default function Header() {
                   <div style={{paddingLeft:'12px',paddingBottom:'8px'}}>
                     {dd.sections.flatMap(s => s.items).map(item => (
                       item.notClickable
-                        ? <div key={item.label} className="block py-2 text-sm text-text-disabled">{item.label}{item.comingSoon && <Chip variant="brand" className="ml-2" style={{ fontSize: '9px' }}>Coming soon</Chip>}</div>
+                        ? <div key={item.label} aria-disabled="true" className="block py-2 text-sm text-text-disabled">{item.label}{item.comingSoon && <Chip variant="brand" className="ml-2" style={{ fontSize: '9px' }}>Coming soon</Chip>}</div>
                         : <a key={item.label} href={linkUrls[item.label] || '#'} className={`block py-2 text-sm hover:text-text-primary transition-colors ${item.comingSoon ? 'text-text-disabled' : 'text-text-muted'}`}>{item.label}{item.comingSoon && <Chip variant="brand" className="ml-2" style={{ fontSize: '9px' }}>Coming soon</Chip>}</a>
                     ))}
                   </div>

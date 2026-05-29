@@ -2566,7 +2566,7 @@ kbd, .ins-kbd {
 .ins-compare {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--ins-space-md);
+  gap: 1.25rem; /* match homepage comparison grid (Tailwind gap-5 = 20px) */
 }
 @media (min-width: 768px) {
   .ins-compare { grid-template-columns: 1fr 1fr; }
