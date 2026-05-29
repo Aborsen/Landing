@@ -226,11 +226,8 @@ function Hero() {
 
         {/* Description */}
         <FadeUp delay={0.17}>
-          <p className="ins-text-body-lg max-w-2xl mx-auto mb-3" style={{color:'var(--ins-text-body)'}}>
+          <p className="ins-text-body-lg max-w-2xl mx-auto mb-8" style={{color:'var(--ins-text-body)'}}>
             Insightis connects your real data and delivers answers <span style={{color:'var(--ins-text-highlight)', fontWeight:500}}>3× more accurate</span> than spreadsheets.
-          </p>
-          <p className="text-sm max-w-2xl mx-auto mb-8" style={{color:'var(--ins-text-body)'}}>
-            Powered by your <span style={{color:'var(--ins-text-body)'}}>semantic layer</span> — a unified dictionary of every metric, dimension, and join in your data.
           </p>
         </FadeUp>
         {/* Chat Mockup */}
