@@ -365,7 +365,7 @@ function Hero() {
           </div>
           <div style={{display:'flex',alignItems:'center',gap:'18px',flexWrap:'wrap'}}>
             {['Single source of truth','Zero conflicting numbers','Every team aligned'].map(t=>(
-              <span key={t} style={{display:'flex',alignItems:'center',gap:'5px',fontSize:'12px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',fontVariantNumeric:'tabular-nums'}}>
+              <span key={t} className="ins-text-caption ins-text--mono" style={{display:'flex',alignItems:'center',gap:'5px'}}>
                 <CheckIcon size={12} />{t}
               </span>
             ))}
