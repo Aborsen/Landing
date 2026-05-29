@@ -968,7 +968,7 @@ function HowItWorks() {
   ];
 
   return (
-    <section style={{padding:'120px 0 140px'}}>
+    <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div className="max-w-7xl mx-auto px-6">
         <div style={{marginBottom:'64px'}}>
           <SectionHeader
