@@ -57,7 +57,7 @@ function Hero() {
               <span style={{color:'var(--ins-text-highlight)'}}>across spreadsheets.</span>
             </h1>
 
-            <p className="fu2 ins-text-body-lg" style={{marginBottom:'28px',maxWidth:'480px'}}>
+            <p className="fu2 ins-text-body-xl" style={{marginBottom:'28px',maxWidth:'480px'}}>
               Stop reconciling AP, HR, and billing tools by hand. Ask any cost question in plain English — Insightis consolidates spend instantly.
             </p>
 

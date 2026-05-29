@@ -35,7 +35,7 @@ function BlogHero() {
         <h1 className="fu1" style={{fontSize:'clamp(36px,5vw,56px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'var(--ins-text-heading-soft)', marginBottom:'20px'}}>
           Insights about insights.
         </h1>
-        <p className="fu2 ins-text-body-lg" style={{maxWidth:'540px', margin:'0 auto'}}>
+        <p className="fu2 ins-text-body-xl" style={{maxWidth:'540px', margin:'0 auto'}}>
           Data analytics tips, product updates, and deep dives into how teams are using AI to replace spreadsheet chaos.
         </p>
       </div>

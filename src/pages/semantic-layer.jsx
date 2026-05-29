@@ -355,7 +355,7 @@ function Hero() {
             <span style={{color:'var(--ins-text-highlight)'}}>Every team's</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>numbers.</span>
           </h1>
-          <p className="ins-text-body-lg" style={{marginBottom:'36px',maxWidth:'520px'}}>
+          <p className="ins-text-body-xl" style={{marginBottom:'36px',maxWidth:'520px'}}>
             Your Semantic Layer certifies every metric once. Not generic guesses — your actual data, your exact logic.
           </p>
           <div style={{display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap',marginBottom:'24px'}}>

@@ -396,7 +396,7 @@ function Hero() {
                 <span style={{color:'var(--ins-text-highlight)'}}>Founders &amp; CEOs</span>
               </h1>
 
-              <p className="fu2 ins-text-body-lg" style={{marginBottom:'36px',
+              <p className="fu2 ins-text-body-xl" style={{marginBottom:'36px',
                 maxWidth:'520px'}}>
                 Strategic answers in seconds. Ask in plain English — runway, ARR growth, NRR, burn — and walk into your board meeting with live numbers, not last week's deck.
               </p>

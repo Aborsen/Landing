@@ -37,7 +37,7 @@ function SupportHero({ search, setSearch }) {
           How can we help?
         </h1>
 
-        <p className="fu2 ins-text-body-lg" style={{maxWidth:'520px', margin:'0 auto 32px'}}>
+        <p className="fu2 ins-text-body-xl" style={{maxWidth:'520px', margin:'0 auto 32px'}}>
           Search our help resources or reach out to the support team directly.
         </p>
 

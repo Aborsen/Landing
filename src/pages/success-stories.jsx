@@ -39,7 +39,7 @@ function StoriesHero() {
           <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',fontSize:'clamp(32px,5vw,52px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'20px'}}>
             <span style={{color:'var(--ins-text-highlight)'}}>100+</span> companies use Insightis to accomplish more
           </h1>
-          <p className="fu2 ins-text-body-lg ins-text--muted">
+          <p className="fu2 ins-text-body-xl ins-text--muted">
             Read the stories of our customers on how they saved time, became more productive, and transformed the way they work with Insightis.
           </p>
         </div>

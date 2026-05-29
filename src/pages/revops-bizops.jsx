@@ -364,7 +364,7 @@ function Hero() {
                 <span style={{color:'var(--ins-text-highlight)'}}>RevOps &amp; BizOps</span>
               </h1>
 
-              <p className="fu2 ins-text-body-lg" style={{marginBottom:'36px',
+              <p className="fu2 ins-text-body-xl" style={{marginBottom:'36px',
                 maxWidth:'520px'}}>
                 Ask revenue questions in plain English. Insightis answers instantly from your CRM, billing, and product data — no SQL, no dashboards to build.
               </p>

@@ -184,6 +184,8 @@ h1, h2, h3, h4, h5, h6 { font-weight: inherit; font-size: inherit; }
   color: var(--ins-text-heading);
 }
 
+/* Largest lead paragraph — hero subtitles. Scales 16→19px with viewport. */
+.ins-text-body-xl { font-size: clamp(16px, 1.25vw, 19px); line-height: 1.6; color: var(--ins-text-body); }
 .ins-text-body-lg { font-size: var(--ins-font-size-16); line-height: 1.6; color: var(--ins-text-body); }
 .ins-text-body    { font-size: var(--ins-font-size-14); line-height: 1.6; color: var(--ins-text-body); }
 .ins-text-body-sm { font-size: var(--ins-font-size-12); line-height: 1.5; color: var(--ins-text-body); }

@@ -60,7 +60,7 @@ function Hero() {
               <span style={{color:'var(--ins-text-highlight)'}}>what users actually do.</span>
             </h1>
 
-            <p className="fu2 ins-text-body-lg" style={{marginBottom:'28px',maxWidth:'480px'}}>
+            <p className="fu2 ins-text-body-xl" style={{marginBottom:'28px',maxWidth:'480px'}}>
               Stop waiting two weeks for a data pull. Ask any product question in plain English — Insightis answers from your events, billing, and CRM in seconds.
             </p>
 

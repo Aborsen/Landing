@@ -363,7 +363,7 @@ function Hero() {
             <span style={{color:'var(--ins-text-highlight)'}}>Understand</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>anything.</span>
           </h1>
-          <p className="ins-text-body-lg" style={{marginBottom:'36px',maxWidth:'520px'}}>
+          <p className="ins-text-body-xl" style={{marginBottom:'36px',maxWidth:'520px'}}>
             Plug in your CRM, warehouse, ads and product tools. Query every source in plain English — no SQL, no waiting.
           </p>
           <div style={{display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap',marginBottom:'24px'}}>

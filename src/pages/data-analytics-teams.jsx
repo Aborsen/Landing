@@ -60,7 +60,7 @@ function Hero() {
               <span style={{color:'var(--ins-text-highlight)'}}>repeat questions.</span>
             </h1>
 
-            <p className="fu2 ins-text-body-lg" style={{marginBottom:'28px',maxWidth:'480px'}}>
+            <p className="fu2 ins-text-body-xl" style={{marginBottom:'28px',maxWidth:'480px'}}>
               Empower every team to self-serve their data. Insightis sits on top of your Semantic Layer and answers questions in plain English — so you focus on analysis, not reporting.
             </p>
 
