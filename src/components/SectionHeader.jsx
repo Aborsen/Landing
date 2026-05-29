@@ -70,7 +70,7 @@ function SectionHeader({
       )}
       <Heading className={titleClass} style={titleStyle}>{title}</Heading>
       {lede && (
-        <p className="ins-text-lede" style={{ color: 'var(--ins-text-body)', fontSize: '16px', lineHeight: 1.65, margin: 0, maxWidth: align === 'center' ? '640px' : 'none' }}>
+        <p className="ins-text-lede" style={{ margin: 0, maxWidth: align === 'center' ? '640px' : 'none' }}>
           {lede}
         </p>
       )}
