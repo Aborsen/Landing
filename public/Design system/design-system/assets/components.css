@@ -2473,6 +2473,7 @@ kbd, .ins-kbd {
   line-height: 1.4;
 }
 .ins-faq__question:hover { color: var(--ins-text-heading); }
+.ins-faq__row.is-open .ins-faq__question { color: var(--ins-text-heading); }
 .ins-faq__question:focus-visible {
   outline: none;
   box-shadow: inset 0 0 0 2px var(--ins-border-focus);
