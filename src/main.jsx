@@ -1004,8 +1004,9 @@ function Pricing() {
 
 
   return (
-    <section className="py-24 relative">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-24 relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 50% 40% at 50% 50%, rgba(7,128,126,0.06) 0%, transparent 70%)' }}></div>
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <FadeUp>
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-[var(--ins-text-heading)] tracking-tight mb-4">Why teams switch to Insightis</h2>
