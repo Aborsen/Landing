@@ -391,13 +391,7 @@ function Hero() {
         }}>
             {/* Left: text */}
             <div>
-              <h1 className="fu0" style={{
-                fontSize:'clamp(40px,5.2vw,68px)',
-                fontWeight:500,
-                letterSpacing:'-.035em',
-                lineHeight:1.05,
-                marginBottom:'24px',
-              }}>
+              <h1 className="fu0 ins-text-display-xl">
                 <span style={{color:'var(--ins-text-heading-soft)'}}>AI analytics for </span>
                 <span style={{color:'var(--ins-text-highlight)'}}>Founders &amp; CEOs</span>
               </h1>

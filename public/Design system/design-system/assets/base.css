@@ -120,10 +120,11 @@ h1, h2, h3, h4, h5, h6 { font-weight: inherit; font-size: inherit; }
 
 .ins-text-display-xl {
   font-family: var(--ins-font-family-sans);
-  font-size: var(--ins-font-size-44);
-  line-height: 48px;
-  font-weight: var(--ins-font-weight-700);
-  letter-spacing: var(--ins-letter-spacing-tighter);
+  font-size: clamp(40px, 5.2vw, 68px);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  margin-bottom: 24px;
   color: var(--ins-text-heading);
 }
 .ins-text-display {
@@ -210,15 +211,11 @@ h1, h2, h3, h4, h5, h6 { font-weight: inherit; font-size: inherit; }
 
 /* Responsive escalations */
 @media (min-width: 768px) {
-  .ins-text-display-xl { font-size: var(--ins-font-size-60); line-height: 64px; }
   .ins-text-display    { font-size: var(--ins-font-size-48); line-height: 52px; }
   .ins-text-h1         { font-size: var(--ins-font-size-36); line-height: 40px; }
   .ins-text-h2         { font-size: var(--ins-font-size-24); line-height: 28px; }
   .ins-text-body-lg    { font-size: var(--ins-font-size-17); }
   .ins-stat            { font-size: var(--ins-font-size-48); }
-}
-@media (min-width: 1280px) {
-  .ins-text-display-xl { font-size: var(--ins-font-size-76); line-height: 84px; }
 }
 
 

@@ -1399,7 +1399,7 @@ function Hero() {
           justifyContent: 'space-between',
           padding: '24px 0',
         }}>
-          <h1 style={{fontSize:'clamp(40px,5.2vw,68px)',fontWeight:500,letterSpacing:'-.035em',lineHeight:1.05,marginBottom:'24px'}}>
+          <h1 className="ins-text-display-xl">
             <span style={{color:'var(--ins-text-heading-soft)'}}>Ask anything.</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>Get answers in</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>seconds.</span>
