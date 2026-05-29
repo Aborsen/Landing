@@ -110,7 +110,7 @@ function StoryGrid() {
                 <span style={{fontSize:'10px', color:'var(--ins-text-disabled)', fontFamily:'Geist Mono,monospace'}}>{s.size}</span>
               </div>
               <p style={{fontSize:'13px', color:'var(--ins-text-body)', lineHeight:1.6, marginBottom:'12px'}}>{s.challenge}</p>
-              <p style={{fontSize:'13px', color:'var(--ins-color-gray-200)', lineHeight:1.6, marginBottom:'20px'}}>{s.solution}</p>
+              <p style={{fontSize:'13px', color:'var(--ins-text-body)', lineHeight:1.6, marginBottom:'20px'}}>{s.solution}</p>
               <div style={{fontSize:'28px', fontWeight:500, color:'var(--ins-text-highlight)', fontFamily:'Geist Mono,monospace', marginBottom:'4px'}}>{s.result}</div>
               <div style={{fontSize:'12px', color:'var(--ins-text-body)', fontFamily:'Geist Mono,monospace', marginBottom:'16px'}}>{s.resultLabel}</div>
               <div style={{fontSize:'11px', color:'var(--ins-text-disabled)', fontFamily:'Geist Mono,monospace', paddingTop:'12px', borderTop:'1px solid rgba(255,255,255,.06)'}}>{s.team}</div>

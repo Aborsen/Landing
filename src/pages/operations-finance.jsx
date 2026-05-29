@@ -149,7 +149,7 @@ function Hero() {
                 marginBottom:'14px',
               }}>
                 <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'10px'}}>
-                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#8AA6B3',letterSpacing:'.06em',textTransform:'uppercase'}}>variance · vs plan</span>
+                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.06em',textTransform:'uppercase'}}>variance · vs plan</span>
                   <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-body)'}}>Q2 · MTD</span>
                 </div>
 
@@ -157,9 +157,9 @@ function Hero() {
                 <div style={{display:'flex',alignItems:'center',gap:'10px',marginBottom:'6px'}}>
                   <span style={{width:'92px',flexShrink:0}}/>
                   <div style={{flex:1,display:'flex',justifyContent:'space-between'}}>
-                    <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:'#8AA6B3',letterSpacing:'.06em'}}>−50%</span>
+                    <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:'var(--ins-text-inactive)',letterSpacing:'.06em'}}>−50%</span>
                     <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:'var(--ins-status-warning-fg)',letterSpacing:'.06em',fontWeight:500}}>plan</span>
-                    <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:'#8AA6B3',letterSpacing:'.06em'}}>+50%</span>
+                    <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:'var(--ins-text-inactive)',letterSpacing:'.06em'}}>+50%</span>
                   </div>
                   <span style={{width:'48px',flexShrink:0}}/>
                 </div>
@@ -178,8 +178,8 @@ function Hero() {
                     const isOver = r.v > 1;
                     const isUnder = r.v < -1;
                     const isNeutral = !isOver && !isUnder;
-                    const labelColor = isOver ? 'var(--ins-status-error-fg)' : isNeutral ? 'var(--ins-color-gray-200)' : 'var(--ins-text-body)';
-                    const valColor = isOver ? 'var(--ins-status-error-fg)' : isNeutral ? 'var(--ins-color-gray-200)' : 'var(--ins-status-success-fg)';
+                    const labelColor = isOver ? 'var(--ins-status-error-fg)' : isNeutral ? 'var(--ins-text-body)' : 'var(--ins-text-body)';
+                    const valColor = isOver ? 'var(--ins-status-error-fg)' : isNeutral ? 'var(--ins-text-body)' : 'var(--ins-status-success-fg)';
                     return (
                       <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
                         <span style={{
@@ -240,7 +240,7 @@ function Hero() {
                     borderRadius:'10px',
                     padding:'10px 12px',
                   }}>
-                    <div style={{fontSize:'9.5px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'4px'}}>{m.label}</div>
+                    <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'4px'}}>{m.label}</div>
                     <div style={{fontSize:m.val.length>8?'11.5px':'14px',fontWeight:500,color:m.color,fontFamily:'Geist Mono,monospace',letterSpacing:'-.01em'}}>{m.val}</div>
                   </div>
                 ))}
@@ -268,7 +268,7 @@ function Hero() {
                 flexShrink:0,
               }}/>
               <div>
-                <div style={{fontSize:'9.5px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase'}}>Over budget</div>
+                <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase'}}>Over budget</div>
                 <div style={{fontSize:'12.5px',color:'var(--ins-status-warning-fg)',fontWeight:500,fontFamily:'Geist Mono,monospace',marginTop:'1px'}}>cloud_infra +$24K</div>
               </div>
             </div>
@@ -290,7 +290,7 @@ function Hero() {
               zIndex:2,
             }}>
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'8px'}}>
-                <span style={{fontSize:'9.5px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase'}}>Q2 close</span>
+                <span style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase'}}>Q2 close</span>
                 <span style={{fontSize:'10.5px',color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',fontWeight:500}}>5 / 7 done</span>
               </div>
               <div style={{display:'flex',flexDirection:'column',gap:'3px'}}>
@@ -309,7 +309,7 @@ function Hero() {
                     }}>
                       {s.done && <svg width="6" height="6" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
                     </div>
-                    <span style={{fontSize:'10.5px',color:s.done?'var(--ins-color-gray-200)':'var(--ins-text-body)',fontFamily:'Geist Mono,monospace'}}>{s.step}</span>
+                    <span style={{fontSize:'10.5px',color:s.done?'var(--ins-text-body)':'var(--ins-text-body)',fontFamily:'Geist Mono,monospace'}}>{s.step}</span>
                   </div>
                 ))}
               </div>
@@ -330,7 +330,7 @@ function ChromeHeader({ label }) {
           <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
         ))}
       </div>
-      <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono, monospace'}}>
+      <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono, monospace'}}>
         {label}
       </div>
     </div>
@@ -354,7 +354,7 @@ function SpotlightChat() {
 
         {/* Inbox header */}
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'12px'}}>
-          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#8AA6B3',letterSpacing:'.1em',textTransform:'uppercase'}}>requests · today</span>
+          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>requests · today</span>
           <span style={{
             fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-status-success-fg)',
             padding:'2px 8px',borderRadius:'999px',
@@ -382,7 +382,7 @@ function SpotlightChat() {
                 flexShrink:0,
               }}>CF</div>
               <span style={{fontSize:'11.5px',fontWeight:500,color:'var(--ins-color-gray-100)'}}>CFO</span>
-              <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#8AA6B3'}}>10:42</span>
+              <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-inactive)'}}>10:42</span>
             </div>
             <span style={{
               fontFamily:'Geist Mono,monospace',fontSize:'9px',color:'var(--ins-status-success-fg)',
@@ -393,7 +393,7 @@ function SpotlightChat() {
           </div>
 
           {/* Question */}
-          <div style={{fontSize:'12.5px',color:'var(--ins-color-gray-200)',marginBottom:'8px',lineHeight:1.5}}>
+          <div style={{fontSize:'12.5px',color:'var(--ins-text-body)',marginBottom:'8px',lineHeight:1.5}}>
             "Where are we vs plan this month?"
           </div>
 
@@ -406,9 +406,9 @@ function SpotlightChat() {
           }}>
             <span style={{color:'var(--ins-text-highlight)'}}>↳</span>
             <span style={{color:'var(--ins-color-gray-100)'}}>$187K</span>
-            <span style={{color:'#8AA6B3'}}>vs</span>
+            <span style={{color:'var(--ins-text-inactive)'}}>vs</span>
             <span style={{color:'var(--ins-text-body)'}}>$178K plan</span>
-            <span style={{color:'#8AA6B3'}}>·</span>
+            <span style={{color:'var(--ins-text-inactive)'}}>·</span>
             <span style={{color:'var(--ins-status-error-fg)',fontWeight:500}}>+$9K (cloud_infra)</span>
           </div>
         </div>
@@ -436,8 +436,8 @@ function SpotlightChat() {
             }}>{r.init}</div>
             <div style={{flex:1,minWidth:0}}>
               <div style={{display:'flex',alignItems:'center',gap:'6px'}}>
-                <span style={{fontSize:'11px',fontWeight:500,color:'var(--ins-color-gray-200)',whiteSpace:'nowrap'}}>{r.who}</span>
-                <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:'#8AA6B3'}}>{r.when}</span>
+                <span style={{fontSize:'11px',fontWeight:500,color:'var(--ins-text-body)',whiteSpace:'nowrap'}}>{r.who}</span>
+                <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:'var(--ins-text-inactive)'}}>{r.when}</span>
               </div>
               <div style={{fontSize:'11px',color:'var(--ins-text-body)',marginTop:'1px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>"{r.q}"</div>
             </div>
@@ -473,7 +473,7 @@ function SpotlightSemantic() {
       <div style={{padding:'22px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
         {/* Eyebrow */}
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'14px'}}>
-          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#8AA6B3',letterSpacing:'.1em',textTransform:'uppercase'}}>version history</span>
+          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>version history</span>
           <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-body)'}}>4 revisions</span>
         </div>
 
@@ -524,11 +524,11 @@ function SpotlightSemantic() {
                         <span style={{fontFamily:'Geist Mono,monospace',fontSize:'8.5px',color:'var(--ins-text-body)',letterSpacing:'.1em',textTransform:'uppercase'}}>deprecated</span>
                       )}
                     </div>
-                    <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#8AA6B3',whiteSpace:'nowrap'}}>{v.owner} · {v.when}</span>
+                    <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-inactive)',whiteSpace:'nowrap'}}>{v.owner} · {v.when}</span>
                   </div>
                   <div style={{
                     fontSize:'11px',
-                    color:isCertified?'var(--ins-color-gray-200)':'var(--ins-text-body)',
+                    color:isCertified?'var(--ins-text-body)':'var(--ins-text-body)',
                     fontFamily: isCertified ? 'Geist Mono,monospace' : 'inherit',
                   }}>{v.note}</div>
                 </div>
@@ -568,7 +568,7 @@ function SpotlightAnomalies() {
       <div style={{padding:'20px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
         {/* Eyebrow row */}
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'12px'}}>
-          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#8AA6B3',letterSpacing:'.1em',textTransform:'uppercase'}}>flagged before close</span>
+          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>flagged before close</span>
           <div style={{display:'flex',gap:'10px',fontFamily:'Geist Mono,monospace',fontSize:'9.5px'}}>
             <span style={{color:'var(--ins-status-error-fg)'}}>● 1 high</span>
             <span style={{color:'var(--ins-status-warning-fg)'}}>● 2 med</span>
@@ -605,7 +605,7 @@ function SpotlightAnomalies() {
                     <span style={{fontSize:'12px',color:'var(--ins-color-gray-100)',fontWeight:500}}>{it.label}</span>
                     <span style={{
                       fontFamily:'Geist Mono,monospace',fontSize:'8.5px',
-                      color:'#8AA6B3',
+                      color:'var(--ins-text-inactive)',
                       padding:'2px 6px',borderRadius:'4px',
                       background:'rgba(255,255,255,.04)',
                       letterSpacing:'.04em',
@@ -617,7 +617,7 @@ function SpotlightAnomalies() {
                 {/* Timestamp */}
                 <span style={{
                   fontFamily:'Geist Mono,monospace',
-                  fontSize:'10px',color:'#8AA6B3',
+                  fontSize:'10px',color:'var(--ins-text-inactive)',
                   flexShrink:0,
                   letterSpacing:'.04em',
                 }}>{it.when}</span>
@@ -665,7 +665,7 @@ function SpotlightStack() {
               <span style={{fontFamily:'Geist Mono,monospace',fontSize:'22px',fontWeight:500,color:'var(--ins-color-gray-100)',letterSpacing:'-.01em'}}>$187K</span>
               <span style={{fontFamily:'Geist Mono,monospace',fontSize:'11px',color:'var(--ins-text-body)'}}>gross_burn · Q2 MTD</span>
             </div>
-            <div style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#8AA6B3',letterSpacing:'.06em',textTransform:'uppercase',marginTop:'4px'}}>
+            <div style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.06em',textTransform:'uppercase',marginTop:'4px'}}>
               FP&amp;A · v3.2 · 4 source systems
             </div>
           </div>
@@ -683,7 +683,7 @@ function SpotlightStack() {
 
         {/* Trace eyebrow */}
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'7px'}}>
-          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#8AA6B3',letterSpacing:'.1em',textTransform:'uppercase'}}>↳ trace to source</span>
+          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>↳ trace to source</span>
           <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-body)'}}>4 components</span>
         </div>
 
@@ -726,7 +726,7 @@ function SpotlightStack() {
                   }}>{t.src}</span>
                   <span style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{t.detail} · {t.owner}</span>
                 </div>
-                <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:'#8AA6B3',whiteSpace:'nowrap',flexShrink:0,letterSpacing:'.04em'}}>{t.ts}</span>
+                <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:'var(--ins-text-inactive)',whiteSpace:'nowrap',flexShrink:0,letterSpacing:'.04em'}}>{t.ts}</span>
               </div>
             </div>
           ))}
@@ -738,7 +738,7 @@ function SpotlightStack() {
           paddingTop:'10px',
           borderTop:'1px dashed rgba(255,255,255,.06)',
           display:'flex',alignItems:'center',justifyContent:'space-between',
-          fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#8AA6B3',
+          fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-inactive)',
           letterSpacing:'.04em',
         }}>
           <span style={{display:'inline-flex',alignItems:'center',gap:'6px'}}>
@@ -820,7 +820,7 @@ function FeatureSpotlights() {
                   </p>
                   <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px'}}>
                     {s.bullets.map((b,bi) => (
-                      <li key={bi} style={{display:'flex',alignItems:'flex-start',gap:'10px',fontSize:'14px',color:'var(--ins-color-gray-200)',lineHeight:1.55}}>
+                      <li key={bi} style={{display:'flex',alignItems:'flex-start',gap:'10px',fontSize:'14px',color:'var(--ins-text-body)',lineHeight:1.55}}>
                         <CheckIcon size={12} style={{flexShrink:0,marginTop:'1px'}} />
                         {b}
                       </li>
@@ -1108,7 +1108,7 @@ function RelevantIntegrations() {
               </div>
               <div>
                 <div style={{fontSize:'13px',fontWeight:500,color:'var(--ins-color-gray-100)'}}>{c.name}</div>
-                <div style={{fontSize:'11px',color:'#8AA6B3',marginTop:'2px'}}>{c.desc}</div>
+                <div style={{fontSize:'11px',color:'var(--ins-text-inactive)',marginTop:'2px'}}>{c.desc}</div>
               </div>
             </div>
           ))}

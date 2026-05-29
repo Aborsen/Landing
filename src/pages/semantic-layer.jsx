@@ -132,7 +132,7 @@ function SemanticLayerMockAnimation() {
             <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
           ))}
         </div>
-        <div style={{flex:1, textAlign:'center', fontSize:'12px', color:'#8AA6B3', fontFamily:'Geist Mono, monospace', letterSpacing:'.02em'}}>
+        <div style={{flex:1, textAlign:'center', fontSize:'12px', color:'var(--ins-text-inactive)', fontFamily:'Geist Mono, monospace', letterSpacing:'.02em'}}>
           insightis — semantic layer
         </div>
         <div style={{width:'46px'}}/>
@@ -261,7 +261,7 @@ function SemanticLayerMockAnimation() {
                     fontSize:'9px', fontWeight:800,
                     background: done ? 'rgba(14,196,193,0.18)' : (active ? 'transparent' : 'rgba(255,255,255,0.04)'),
                     border: done ? '1px solid rgba(14,196,193,0.45)' : (active ? '1.5px solid rgba(14,196,193,0.7)' : '1px solid rgba(255,255,255,0.1)'),
-                    color: done ? 'var(--ins-text-highlight)' : (active ? 'var(--ins-text-highlight)' : '#8AA6B3'),
+                    color: done ? 'var(--ins-text-highlight)' : (active ? 'var(--ins-text-highlight)' : 'var(--ins-text-inactive)'),
                     transition:'all .3s ease',
                     animation: active ? 'pulse 1.3s ease-in-out infinite' : 'none',
                   }}>
@@ -365,7 +365,7 @@ function Hero() {
           </div>
           <div style={{display:'flex',alignItems:'center',gap:'18px',flexWrap:'wrap'}}>
             {['Single source of truth','Zero conflicting numbers','Every team aligned'].map(t=>(
-              <span key={t} style={{display:'flex',alignItems:'center',gap:'5px',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',fontVariantNumeric:'tabular-nums'}}>
+              <span key={t} style={{display:'flex',alignItems:'center',gap:'5px',fontSize:'12px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',fontVariantNumeric:'tabular-nums'}}>
                 <CheckIcon size={12} />{t}
               </span>
             ))}
@@ -865,7 +865,7 @@ function Panel5() {
 
         {/* AI answer */}
         {step >= 3 && (
-          <div style={{alignSelf:'flex-start',background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.07)',borderRadius:'3px 14px 14px 14px',padding:'10px 13px',fontSize:'13px',color:'var(--ins-color-gray-200)',maxWidth:'95%',lineHeight:1.65,animation:'slideUp .2s ease both'}}>
+          <div style={{alignSelf:'flex-start',background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.07)',borderRadius:'3px 14px 14px 14px',padding:'10px 13px',fontSize:'13px',color:'var(--ins-text-body)',maxWidth:'95%',lineHeight:1.65,animation:'slideUp .2s ease both'}}>
             <span style={{color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',fontSize:'12px',fontWeight:600,background:'rgba(9,160,157,.08)',padding:'1px 6px',borderRadius:'4px'}}>@CAC</span>
             {' '}rose to <strong style={{color:'var(--ins-color-gray-100)'}}>$431</strong> in Nov — up from $394 in Oct (+9.4%). Main driver: <strong style={{color:'var(--ins-color-gray-100)'}}>@Marketing_Spend</strong> increased $4.2K while <strong style={{color:'var(--ins-color-gray-100)'}}>@New_Customers</strong> grew only 3%.
             <div style={{marginTop:'8px',display:'flex',gap:5}}>

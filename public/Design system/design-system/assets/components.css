@@ -2822,7 +2822,7 @@ kbd, .ins-kbd {
 
 .ins-testimonial__quote {
   font-size: var(--ins-font-size-15);
-  color: var(--ins-color-gray-200);
+  color: var(--ins-text-body);
   line-height: 1.6;
   margin: 0 0 var(--ins-space-xl);
   flex: 1;

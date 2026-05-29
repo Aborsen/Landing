@@ -152,7 +152,7 @@ function Hero() {
                 marginBottom:'14px',
               }}>
                 <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'12px'}}>
-                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#8AA6B3',letterSpacing:'.06em',textTransform:'uppercase'}}>activation funnel</span>
+                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.06em',textTransform:'uppercase'}}>activation funnel</span>
                   <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-body)'}}>n = 12,840</span>
                 </div>
                 <div style={{display:'flex',flexDirection:'column',gap:'7px'}}>
@@ -184,7 +184,7 @@ function Hero() {
                       <span style={{
                         fontFamily:'Geist Mono,monospace',
                         fontSize:'10.5px',
-                        color:s.cliff?'var(--ins-status-error-fg)':'var(--ins-color-gray-200)',
+                        color:s.cliff?'var(--ins-status-error-fg)':'var(--ins-text-body)',
                         width:'34px',textAlign:'right',flexShrink:0,
                       }}>{s.pct}%</span>
                     </div>
@@ -205,7 +205,7 @@ function Hero() {
                     borderRadius:'10px',
                     padding:'10px 12px',
                   }}>
-                    <div style={{fontSize:'9.5px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'4px'}}>{m.label}</div>
+                    <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'4px'}}>{m.label}</div>
                     <div style={{fontSize:'14px',fontWeight:500,color:m.color,fontFamily:'Geist Mono,monospace',letterSpacing:'-.01em'}}>{m.val}</div>
                   </div>
                 ))}
@@ -233,7 +233,7 @@ function Hero() {
                 flexShrink:0,
               }}/>
               <div>
-                <div style={{fontSize:'9.5px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase'}}>Experiment</div>
+                <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase'}}>Experiment</div>
                 <div style={{fontSize:'12.5px',color:'#A78BFA',fontWeight:500,fontFamily:'Geist Mono,monospace',marginTop:'1px'}}>onboarding_v3</div>
               </div>
             </div>
@@ -255,7 +255,7 @@ function Hero() {
               zIndex:2,
             }}>
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'8px'}}>
-                <span style={{fontSize:'9.5px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase'}}>Retention</span>
+                <span style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase'}}>Retention</span>
                 <span style={{fontSize:'10.5px',color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',fontWeight:500}}>W12 · 28%</span>
               </div>
               <svg viewBox="0 0 140 32" width="100%" height="28" preserveAspectRatio="none" style={{display:'block',marginBottom:'4px'}}>
@@ -270,7 +270,7 @@ function Hero() {
                 <circle cx="0" cy="2" r="2" fill="var(--ins-text-highlight)"/>
                 <circle cx="140" cy="28" r="2" fill="var(--ins-text-highlight)"/>
               </svg>
-              <div style={{display:'flex',justifyContent:'space-between',fontSize:'9px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.04em'}}>
+              <div style={{display:'flex',justifyContent:'space-between',fontSize:'9px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.04em'}}>
                 <span>W0</span><span>W4</span><span>W8</span><span>W12</span>
               </div>
             </div>
@@ -482,7 +482,7 @@ function RelevantIntegrations() {
               </div>
               <div>
                 <div style={{fontSize:'13px',fontWeight:500,color:'var(--ins-color-gray-100)'}}>{c.name}</div>
-                <div style={{fontSize:'11px',color:'#8AA6B3',marginTop:'2px'}}>{c.desc}</div>
+                <div style={{fontSize:'11px',color:'var(--ins-text-inactive)',marginTop:'2px'}}>{c.desc}</div>
               </div>
             </div>
           ))}
@@ -543,7 +543,7 @@ function Metrics() {
           ))}
         </div>
 
-        <p style={{textAlign:'center',fontSize:'13px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',fontStyle:'italic'}}>
+        <p style={{textAlign:'center',fontSize:'13px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',fontStyle:'italic'}}>
           These are just examples — ask about any metric in plain English.
         </p>
       </div>
@@ -644,7 +644,7 @@ function Positioning() {
           display:'inline-flex',alignItems:'center',gap:'8px',
           padding:'10px 20px',borderRadius:'999px',
           border:'1px solid rgba(255,255,255,.12)',
-          color:'var(--ins-color-gray-200)',fontSize:'14px',fontWeight:400,
+          color:'var(--ins-text-body)',fontSize:'14px',fontWeight:400,
           textDecoration:'none',
           background:'rgba(255,255,255,.03)',
           transition:'all .2s',
@@ -698,7 +698,7 @@ function SpotlightChat() {
                 borderRadius:'9px',
                 padding:'8px 10px',
               }}>
-                <div style={{fontSize:'9px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'3px'}}>{k.label}</div>
+                <div style={{fontSize:'9px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'3px'}}>{k.label}</div>
                 <div style={{fontSize:'13.5px',fontWeight:500,color:k.color,fontFamily:'Geist Mono,monospace',letterSpacing:'-.01em',marginBottom:'2px'}}>{k.val}</div>
                 <div style={{fontSize:'9.5px',color:'var(--ins-text-body)'}}>{k.sub}</div>
               </div>
@@ -710,7 +710,7 @@ function SpotlightChat() {
             display:'flex',alignItems:'center',gap:'6px',
             paddingTop:'8px',
             borderTop:'1px solid rgba(255,255,255,.05)',
-            fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#8AA6B3',
+            fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-inactive)',
           }}>
             <span style={{letterSpacing:'.06em',textTransform:'uppercase'}}>Source</span>
             <span style={{color:'var(--ins-text-highlight)'}}>events.fct_feature_use</span>
@@ -731,7 +731,7 @@ function ChromeHeader({ label }) {
           <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
         ))}
       </div>
-      <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono, monospace'}}>
+      <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono, monospace'}}>
         {label}
       </div>
     </div>
@@ -759,7 +759,7 @@ function SpotlightSemantic() {
       <div style={{padding:'22px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
         {/* Section eyebrow */}
         <div style={{textAlign:'center',marginBottom:'12px'}}>
-          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#8AA6B3',letterSpacing:'.1em',textTransform:'uppercase'}}>three teams · three definitions</span>
+          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>three teams · three definitions</span>
         </div>
 
         {/* Three conflicting team definitions */}
@@ -773,7 +773,7 @@ function SpotlightSemantic() {
               textAlign:'center',
             }}>
               <div style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:t.color,letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'5px'}}>{t.team}</div>
-              <div style={{fontSize:'11.5px',color:'var(--ins-color-gray-200)'}}>{t.def}</div>
+              <div style={{fontSize:'11.5px',color:'var(--ins-text-body)'}}>{t.def}</div>
             </div>
           ))}
         </div>
@@ -809,7 +809,7 @@ function SpotlightSemantic() {
           <div style={{
             fontFamily:'Geist Mono,monospace',
             fontSize:'11.5px',
-            color:'var(--ins-color-gray-200)',
+            color:'var(--ins-text-body)',
             background:'rgba(0,0,0,.2)',
             border:'1px solid rgba(255,255,255,.04)',
             borderRadius:'7px',
@@ -819,9 +819,9 @@ function SpotlightSemantic() {
           }}>
             <span style={{color:'var(--ins-text-body)'}}>users with</span> <span style={{color:'var(--ins-text-highlight)'}}>core_action</span> <span style={{color:'var(--ins-text-body)'}}>in 7d / new_signups</span>
           </div>
-          <div style={{display:'flex',justifyContent:'space-between',gap:'10px',fontSize:'10.5px',color:'var(--ins-color-gray-200)'}}>
-            <span><span style={{color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.06em',textTransform:'uppercase',fontSize:'9px',marginRight:'5px'}}>Owned</span>Product Analytics</span>
-            <span><span style={{color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.06em',textTransform:'uppercase',fontSize:'9px',marginRight:'5px'}}>Used by</span>12 reports · 3 teams</span>
+          <div style={{display:'flex',justifyContent:'space-between',gap:'10px',fontSize:'10.5px',color:'var(--ins-text-body)'}}>
+            <span><span style={{color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.06em',textTransform:'uppercase',fontSize:'9px',marginRight:'5px'}}>Owned</span>Product Analytics</span>
+            <span><span style={{color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.06em',textTransform:'uppercase',fontSize:'9px',marginRight:'5px'}}>Used by</span>12 reports · 3 teams</span>
           </div>
         </div>
       </div>
@@ -850,8 +850,8 @@ function SpotlightAnomalies() {
       <div style={{padding:'20px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
         {/* User question */}
         <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'12px'}}>
-          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#8AA6B3',letterSpacing:'.08em',textTransform:'uppercase'}}>asked</span>
-          <span style={{fontSize:'12.5px',color:'var(--ins-color-gray-200)'}}>"Which cohort is dragging activation?"</span>
+          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.08em',textTransform:'uppercase'}}>asked</span>
+          <span style={{fontSize:'12.5px',color:'var(--ins-text-body)'}}>"Which cohort is dragging activation?"</span>
         </div>
 
         {/* Multi-cohort line chart */}
@@ -897,7 +897,7 @@ function SpotlightAnomalies() {
                 width:'6px',height:'6px',borderRadius:'50%',
                 background:r.color,flexShrink:0,
               }}/>
-              <span style={{fontSize:'11.5px',color:'var(--ins-color-gray-200)',flex:1,fontFamily:'Geist Mono,monospace'}}>{r.seg}</span>
+              <span style={{fontSize:'11.5px',color:'var(--ins-text-body)',flex:1,fontFamily:'Geist Mono,monospace'}}>{r.seg}</span>
               <span style={{fontSize:'12px',fontWeight:500,color:r.color,fontFamily:'Geist Mono,monospace'}}>{r.val}</span>
             </div>
           ))}
@@ -953,7 +953,7 @@ function SpotlightStack() {
       <div style={{padding:'20px 20px',flex:1,display:'flex',alignItems:'center',gap:'4px',position:'relative'}}>
         {/* Left column: source tiles stacked vertically */}
         <div style={{flex:'1 1 46%',display:'flex',flexDirection:'column',gap:'7px',position:'relative',zIndex:2}}>
-          <div style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:'#8AA6B3',letterSpacing:'.12em',textTransform:'uppercase',marginBottom:'2px'}}>your stack</div>
+          <div style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:'var(--ins-text-inactive)',letterSpacing:'.12em',textTransform:'uppercase',marginBottom:'2px'}}>your stack</div>
           {sources.map((s,i) => (
             <div key={i} style={{
               display:'flex',alignItems:'center',gap:'10px',
@@ -971,7 +971,7 @@ function SpotlightStack() {
               }}>{s.icon}</div>
               <div style={{minWidth:0,flex:1}}>
                 <div style={{fontSize:'11.5px',fontWeight:500,color:'var(--ins-color-gray-100)',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{s.name}</div>
-                <div style={{fontFamily:'Geist Mono,monospace',fontSize:'8.5px',color:'#8AA6B3',letterSpacing:'.08em',textTransform:'uppercase'}}>{s.kind}</div>
+                <div style={{fontFamily:'Geist Mono,monospace',fontSize:'8.5px',color:'var(--ins-text-inactive)',letterSpacing:'.08em',textTransform:'uppercase'}}>{s.kind}</div>
               </div>
               <div style={{
                 width:'7px',height:'7px',borderRadius:'50%',
@@ -1027,7 +1027,7 @@ function SpotlightStack() {
             </div>
             <div>
               <div style={{fontSize:'13.5px',fontWeight:600,color:'var(--ins-color-gray-100)'}}>Insightis</div>
-              <div style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#8AA6B3',letterSpacing:'.08em',textTransform:'uppercase',marginTop:'2px'}}>Semantic Layer</div>
+              <div style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.08em',textTransform:'uppercase',marginTop:'2px'}}>Semantic Layer</div>
             </div>
             <span style={{
               fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-highlight)',
@@ -1111,7 +1111,7 @@ function FeatureSpotlights() {
                   </p>
                   <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px'}}>
                     {s.bullets.map((b,bi) => (
-                      <li key={bi} style={{display:'flex',alignItems:'flex-start',gap:'10px',fontSize:'14px',color:'var(--ins-color-gray-200)',lineHeight:1.55}}>
+                      <li key={bi} style={{display:'flex',alignItems:'flex-start',gap:'10px',fontSize:'14px',color:'var(--ins-text-body)',lineHeight:1.55}}>
                         <CheckIcon size={12} style={{flexShrink:0,marginTop:'1px'}} />
                         {b}
                       </li>

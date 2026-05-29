@@ -145,7 +145,7 @@ function LineChart({ points, labels }) {
         <path d={area} fill="url(#areaFill)"/>
         <path d={line} fill="none" stroke="var(--ins-text-highlight)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         {coords.map((c,i) => <circle key={i} cx={c.x} cy={c.y} r="3" fill="var(--ins-text-highlight)" stroke="var(--ins-surface-page)" strokeWidth="1.5"/>)}
-        {labels && labels.map((l,i) => <text key={i} x={coords[i].x} y={h-1} textAnchor="middle" style={{fontSize:'9px',fill:'#8AA6B3',fontFamily:'Geist Mono,monospace'}}>{l}</text>)}
+        {labels && labels.map((l,i) => <text key={i} x={coords[i].x} y={h-1} textAnchor="middle" style={{fontSize:'9px',fill:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace'}}>{l}</text>)}
       </svg>
     </div>
   );
@@ -322,8 +322,8 @@ function RevOpsHeroIllustration() {
         <rect x="46" y="102" width="40" height="16" rx="3" fill="rgba(14,196,193,0.22)"/>
         <text x="118" y="48" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-color-gray-100)" fontWeight="500">2,400</text>
         <text x="110" y="70" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-color-gray-100)" fontWeight="500">980</text>
-        <text x="98" y="92" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-color-gray-200)" fontWeight="500">412</text>
-        <text x="82" y="114" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-color-gray-200)" fontWeight="500">133</text>
+        <text x="98" y="92" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)" fontWeight="500">412</text>
+        <text x="82" y="114" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)" fontWeight="500">133</text>
         <text x="16" y="130" fontFamily="Geist Mono,monospace" fontSize="8" fill="var(--ins-text-body)">Conversion · 5.5%</text>
       </g>
 

@@ -240,7 +240,7 @@ function ConnectionChatAnimation() {
             <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
           ))}
         </div>
-        <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono, monospace',letterSpacing:'.02em'}}>
+        <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono, monospace',letterSpacing:'.02em'}}>
           insightis — integrations
         </div>
         <div style={{width:'46px'}}/>
@@ -373,7 +373,7 @@ function Hero() {
           </div>
           <div style={{display:'flex',alignItems:'center',gap:'18px',flexWrap:'wrap'}}>
             {['Free plan','No SQL required','Setup in minutes'].map(t=>(
-              <span key={t} style={{display:'flex',alignItems:'center',gap:'5px',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',fontVariantNumeric:'tabular-nums'}}>
+              <span key={t} style={{display:'flex',alignItems:'center',gap:'5px',fontSize:'12px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',fontVariantNumeric:'tabular-nums'}}>
                 <CheckIcon size={12} />{t}
               </span>
             ))}
@@ -692,8 +692,8 @@ function IntegrationImpact() {
                         {s.display}
                       </span>
                       <span style={{minWidth:0}}>
-                        <span style={{color:'#8A8A9A'}}>{s.label}</span>
-                        <span style={{color:'#5E5E70'}}> — {s.sub}</span>
+                        <span style={{color:'var(--ins-text-body)'}}>{s.label}</span>
+                        <span style={{color:'var(--ins-text-inactive)'}}> — {s.sub}</span>
                       </span>
                     </div>
                   ))}
@@ -711,7 +711,7 @@ function IntegrationImpact() {
               style={{flex:1,marginBottom:'12px'}}
               response={
                 <>
-                  <div style={{fontSize:'12.5px',color:'var(--ins-color-gray-200)',lineHeight:1.6,marginBottom:'14px'}}>
+                  <div style={{fontSize:'12.5px',color:'var(--ins-text-body)',lineHeight:1.6,marginBottom:'14px'}}>
                     Answered in seconds. What direct integration unlocks:
                   </div>
                   <div style={{display:'flex',flexDirection:'column',gap:'10px'}}>
@@ -721,8 +721,8 @@ function IntegrationImpact() {
                           {s.display}
                         </span>
                         <span style={{minWidth:0}}>
-                          <span style={{color:'var(--ins-color-gray-200)'}}>{s.label}</span>
-                          <span style={{color:'#8AA6B3'}}> — {s.sub}</span>
+                          <span style={{color:'var(--ins-text-body)'}}>{s.label}</span>
+                          <span style={{color:'var(--ins-text-inactive)'}}> — {s.sub}</span>
                         </span>
                       </div>
                     ))}

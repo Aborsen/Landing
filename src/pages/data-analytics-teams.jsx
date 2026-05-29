@@ -153,7 +153,7 @@ function Hero() {
                 position:'relative',
               }}>
                 <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'8px'}}>
-                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#8AA6B3',letterSpacing:'.06em',textTransform:'uppercase'}}>events / 30min</span>
+                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.06em',textTransform:'uppercase'}}>events / 30min</span>
                   <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-body)'}}>last 24h</span>
                 </div>
                 <svg viewBox="0 0 280 84" width="100%" height="84" preserveAspectRatio="none" style={{display:'block'}}>
@@ -186,7 +186,7 @@ function Hero() {
                     borderRadius:'10px',
                     padding:'10px 12px',
                   }}>
-                    <div style={{fontSize:'9.5px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'4px'}}>{m.label}</div>
+                    <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'4px'}}>{m.label}</div>
                     <div style={{fontSize:'14px',fontWeight:500,color:m.color,fontFamily:'Geist Mono,monospace',letterSpacing:'-.01em'}}>{m.val}</div>
                   </div>
                 ))}
@@ -214,7 +214,7 @@ function Hero() {
                 flexShrink:0,
               }}/>
               <div>
-                <div style={{fontSize:'9.5px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase'}}>Resolved</div>
+                <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase'}}>Resolved</div>
                 <div style={{fontSize:'12.5px',color:'var(--ins-status-success-fg)',fontWeight:500,fontFamily:'Geist Mono,monospace',marginTop:'1px'}}>checkout_complete</div>
               </div>
             </div>
@@ -236,7 +236,7 @@ function Hero() {
               zIndex:2,
             }}>
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'8px'}}>
-                <span style={{fontSize:'9.5px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase'}}>Self-serve</span>
+                <span style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase'}}>Self-serve</span>
                 <span style={{fontSize:'10.5px',color:'var(--ins-status-success-fg)',fontFamily:'Geist Mono,monospace',fontWeight:500}}>+72%</span>
               </div>
               <div style={{display:'flex',alignItems:'flex-end',gap:'2.5px',height:'24px',marginBottom:'6px'}}>
@@ -250,7 +250,7 @@ function Hero() {
                   }}/>
                 ))}
               </div>
-              <div style={{fontSize:'11px',color:'var(--ins-color-gray-200)',fontWeight:400}}>Ad hoc tickets ↓ this week</div>
+              <div style={{fontSize:'11px',color:'var(--ins-text-body)',fontWeight:400}}>Ad hoc tickets ↓ this week</div>
             </div>
           </div>
         </div>
@@ -474,7 +474,7 @@ function RelevantIntegrations() {
               </div>
               <div>
                 <div style={{fontSize:'13px',fontWeight:500,color:'var(--ins-color-gray-100)'}}>{c.name}</div>
-                <div style={{fontSize:'11px',color:'#8AA6B3',marginTop:'2px'}}>{c.desc}</div>
+                <div style={{fontSize:'11px',color:'var(--ins-text-inactive)',marginTop:'2px'}}>{c.desc}</div>
               </div>
             </div>
           ))}
@@ -535,7 +535,7 @@ function Metrics() {
           ))}
         </div>
 
-        <p style={{textAlign:'center',fontSize:'13px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',fontStyle:'italic'}}>
+        <p style={{textAlign:'center',fontSize:'13px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',fontStyle:'italic'}}>
           These are just examples — ask about any metric in plain English.
         </p>
       </div>
@@ -636,7 +636,7 @@ function Positioning() {
           display:'inline-flex',alignItems:'center',gap:'8px',
           padding:'10px 20px',borderRadius:'999px',
           border:'1px solid rgba(255,255,255,.12)',
-          color:'var(--ins-color-gray-200)',fontSize:'14px',fontWeight:400,
+          color:'var(--ins-text-body)',fontSize:'14px',fontWeight:400,
           textDecoration:'none',
           background:'rgba(255,255,255,.03)',
           transition:'all .2s',
@@ -668,7 +668,7 @@ function SpotlightChat() {
             <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
           ))}
         </div>
-        <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono, monospace'}}>
+        <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono, monospace'}}>
           self-serve · marketing
         </div>
       </div>
@@ -693,7 +693,7 @@ function ChromeHeader({ label }) {
           <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
         ))}
       </div>
-      <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono, monospace'}}>
+      <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono, monospace'}}>
         {label}
       </div>
     </div>
@@ -721,7 +721,7 @@ function SpotlightSemantic() {
             </div>
             <div>
               <div style={{fontFamily:'Geist Mono,monospace',fontSize:'14px',color:'var(--ins-color-gray-100)',fontWeight:500}}>customer_acquisition_cost</div>
-              <div style={{fontSize:'11px',color:'#8AA6B3',marginTop:'2px'}}>Owned by Data Engineering · v3.2</div>
+              <div style={{fontSize:'11px',color:'var(--ins-text-inactive)',marginTop:'2px'}}>Owned by Data Engineering · v3.2</div>
             </div>
           </div>
           <span style={{
@@ -744,7 +744,7 @@ function SpotlightSemantic() {
           fontFamily:'Geist Mono,monospace',
           fontSize:'12.5px',
           lineHeight:1.6,
-          color:'var(--ins-color-gray-200)',
+          color:'var(--ins-text-body)',
         }}>
           <span style={{color:'var(--ins-text-body)'}}>SUM</span>(<span style={{color:'var(--ins-text-highlight)'}}>marketing_spend</span>) <span style={{color:'var(--ins-text-body)'}}>/</span> <span style={{color:'var(--ins-text-body)'}}>COUNT</span>(<span style={{color:'var(--ins-text-highlight)'}}>new_customers</span>)
         </div>
@@ -755,8 +755,8 @@ function SpotlightSemantic() {
             {label:'Used by', val:'17 reports · 4 teams'},
           ].map((row,i) => (
             <div key={i} style={{display:'flex',gap:'12px',fontSize:'12px'}}>
-              <span style={{minWidth:'70px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.04em',textTransform:'uppercase',fontSize:'10px',paddingTop:'2px'}}>{row.label}</span>
-              <span style={{color:'var(--ins-color-gray-200)'}}>{row.val}</span>
+              <span style={{minWidth:'70px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.04em',textTransform:'uppercase',fontSize:'10px',paddingTop:'2px'}}>{row.label}</span>
+              <span style={{color:'var(--ins-text-body)'}}>{row.val}</span>
             </div>
           ))}
         </div>
@@ -781,8 +781,8 @@ function SpotlightAnomalies() {
       <div style={{padding:'20px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
         {/* User question */}
         <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'10px'}}>
-          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#8AA6B3',letterSpacing:'.08em',textTransform:'uppercase'}}>asked</span>
-          <span style={{fontSize:'12.5px',color:'var(--ins-color-gray-200)'}}>"Why was revenue lower last week?"</span>
+          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.08em',textTransform:'uppercase'}}>asked</span>
+          <span style={{fontSize:'12.5px',color:'var(--ins-text-body)'}}>"Why was revenue lower last week?"</span>
         </div>
 
         {/* Headline finding */}
@@ -839,7 +839,7 @@ function SpotlightAnomalies() {
             borderRadius:'10px',
             padding:'9px 11px',
           }}>
-            <div style={{fontSize:'9.5px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'3px'}}>Where</div>
+            <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'3px'}}>Where</div>
             <div style={{fontSize:'12px',color:'var(--ins-color-gray-100)'}}>87% on mobile</div>
           </div>
           <div style={{
@@ -848,7 +848,7 @@ function SpotlightAnomalies() {
             borderRadius:'10px',
             padding:'9px 11px',
           }}>
-            <div style={{fontSize:'9.5px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'3px'}}>Recovered</div>
+            <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'3px'}}>Recovered</div>
             <div style={{fontSize:'12px',color:'var(--ins-status-success-fg)'}}>18:30 UTC</div>
           </div>
         </div>
@@ -901,7 +901,7 @@ function SpotlightStack() {
       <div style={{padding:'24px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center',position:'relative'}}>
         {/* Section label */}
         <div style={{display:'flex',justifyContent:'center',marginBottom:'10px'}}>
-          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'#8AA6B3',letterSpacing:'.1em',textTransform:'uppercase'}}>your warehouse</span>
+          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>your warehouse</span>
         </div>
 
         {/* Source tiles row */}
@@ -951,7 +951,7 @@ function SpotlightStack() {
           </div>
           <div style={{flex:1,minWidth:0}}>
             <div style={{fontSize:'13px',fontWeight:600,color:'var(--ins-color-gray-100)'}}>Insightis</div>
-            <div style={{fontSize:'10.5px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',letterSpacing:'.04em',textTransform:'uppercase',marginTop:'2px'}}>Semantic Layer</div>
+            <div style={{fontSize:'10.5px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.04em',textTransform:'uppercase',marginTop:'2px'}}>Semantic Layer</div>
           </div>
           <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-highlight)',padding:'3px 9px',borderRadius:'999px',background:'rgba(9,160,157,.1)',border:'1px solid rgba(9,160,157,.25)',letterSpacing:'.08em',textTransform:'uppercase'}}>connected</span>
         </div>
@@ -1028,7 +1028,7 @@ function FeatureSpotlights() {
                   </p>
                   <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px'}}>
                     {s.bullets.map((b,bi) => (
-                      <li key={bi} style={{display:'flex',alignItems:'flex-start',gap:'10px',fontSize:'14px',color:'var(--ins-color-gray-200)',lineHeight:1.55}}>
+                      <li key={bi} style={{display:'flex',alignItems:'flex-start',gap:'10px',fontSize:'14px',color:'var(--ins-text-body)',lineHeight:1.55}}>
                         <CheckIcon size={12} style={{flexShrink:0,marginTop:'1px'}} />
                         {b}
                       </li>

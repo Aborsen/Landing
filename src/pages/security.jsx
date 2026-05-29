@@ -222,7 +222,7 @@ function SecurityContent() {
                     <div style={{flexShrink:0, marginTop:'2px'}}>
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                     </div>
-                    <p style={{fontSize:'15px', color:'var(--ins-color-gray-200)', lineHeight:1.6}}>{p}</p>
+                    <p style={{fontSize:'15px', color:'var(--ins-text-body)', lineHeight:1.6}}>{p}</p>
                   </div>
                 ))}
               </div>

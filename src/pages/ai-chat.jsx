@@ -146,7 +146,7 @@ function ChatMock() {
             <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
           ))}
         </div>
-        <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono, monospace'}}>
+        <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono, monospace'}}>
           insightis — ai chat
         </div>
         <div style={{display:'flex',alignItems:'center',gap:5,padding:'3px 8px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'5px'}}>
@@ -192,7 +192,7 @@ function ChatMock() {
 
         {/* Idle state */}
         {phase === 'idle' && (
-          <div style={{flex:1,display:'flex',alignItems:'center',justifyContent:'center',color:'#8AA6B3',fontSize:'12px',fontFamily:'Geist Mono,monospace'}}>
+          <div style={{flex:1,display:'flex',alignItems:'center',justifyContent:'center',color:'var(--ins-text-inactive)',fontSize:'12px',fontFamily:'Geist Mono,monospace'}}>
             Ask anything about your data...
           </div>
         )}
@@ -200,12 +200,12 @@ function ChatMock() {
 
       {/* Input bar */}
       <div style={{padding:'12px 16px',borderTop:'1px solid rgba(255,255,255,0.06)',display:'flex',alignItems:'center',gap:'8px'}}>
-        <div style={{flex:1,background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.08)',borderRadius:'10px',padding:'9px 12px',fontSize:'13px',color:'#8AA6B3',fontFamily:'Geist,sans-serif'}}>
+        <div style={{flex:1,background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.08)',borderRadius:'10px',padding:'9px 12px',fontSize:'13px',color:'var(--ins-text-inactive)',fontFamily:'Geist,sans-serif'}}>
           Ask anything about your data…
         </div>
         <div style={{display:'flex',alignItems:'center',gap:'5px'}}>
           <div style={{width:'28px',height:'28px',borderRadius:'7px',background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.08)',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer'}}>
-            <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M14 10a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h1l2-2h2l2 2h1a2 2 0 012 2v4z" stroke="#8AA6B3" strokeWidth="1.3"/></svg>
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M14 10a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h1l2-2h2l2 2h1a2 2 0 012 2v4z" stroke="var(--ins-text-inactive)" strokeWidth="1.3"/></svg>
           </div>
           <div style={{width:'28px',height:'28px',borderRadius:'7px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer',boxShadow:'0 0 10px rgba(9,160,157,.3)'}}>
             <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -328,7 +328,7 @@ function LineChart({ points, labels }) {
         <path d={area} fill="url(#areaFill)"/>
         <path d={line} fill="none" stroke="var(--ins-text-highlight)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         {coords.map((c,i) => <circle key={i} cx={c.x} cy={c.y} r="3" fill="var(--ins-text-highlight)" stroke="var(--ins-surface-page)" strokeWidth="1.5"/>)}
-        {labels && labels.map((l,i) => <text key={i} x={coords[i].x} y={h-1} textAnchor="middle" style={{fontSize:'9px',fill:'#8AA6B3',fontFamily:'Geist Mono,monospace'}}>{l}</text>)}
+        {labels && labels.map((l,i) => <text key={i} x={coords[i].x} y={h-1} textAnchor="middle" style={{fontSize:'9px',fill:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace'}}>{l}</text>)}
       </svg>
     </div>
   );
@@ -352,14 +352,14 @@ function GroupedBarChart({ groups }) {
               <div style={{width:'100%',background:'rgba(255,255,255,.04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
                 <div style={{width:`${(g.budget/maxVal)*100}%`,height:'100%',borderRadius:'3px',background:'rgba(255,255,255,.12)'}}/>
               </div>
-              <span style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color:'#8AA6B3',minWidth:'40px',flexShrink:0}}>${g.budget}K</span>
+              <span style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-inactive)',minWidth:'40px',flexShrink:0}}>${g.budget}K</span>
             </div>
           </div>
         </div>
       ))}
       <div style={{display:'flex',gap:'16px',marginTop:'4px'}}>
-        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(9,160,157,.55)'}}/><span style={{fontSize:'10px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace'}}>Actual</span></div>
-        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(255,255,255,.12)'}}/><span style={{fontSize:'10px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace'}}>Budget</span></div>
+        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(9,160,157,.55)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace'}}>Actual</span></div>
+        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(255,255,255,.12)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace'}}>Budget</span></div>
       </div>
     </div>
   );
@@ -389,8 +389,8 @@ function RetainedVsChurnedChart({ bars }) {
         </div>
       ))}
       <div style={{display:'flex',gap:'16px',marginTop:'4px'}}>
-        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(9,160,157,.6)'}}/><span style={{fontSize:'10px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace'}}>Retained (12+ mo)</span></div>
-        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(220,80,80,.55)'}}/><span style={{fontSize:'10px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace'}}>Churned</span></div>
+        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(9,160,157,.6)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace'}}>Retained (12+ mo)</span></div>
+        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(220,80,80,.55)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace'}}>Churned</span></div>
       </div>
     </div>
   );
@@ -778,7 +778,7 @@ function QuestionsGallery() {
 
   const renderReply = (reply) => {
     if (reply.type === 'paragraph') {
-      return <p style={{fontSize:'16px',color:'var(--ins-color-gray-200)',lineHeight:2.0}}>{reply.text}</p>;
+      return <p style={{fontSize:'16px',color:'var(--ins-text-body)',lineHeight:2.0}}>{reply.text}</p>;
     }
     if (reply.chart === 'horizontalBar') {
       return <HorizontalBarChart bars={reply.chartData}/>;
@@ -888,7 +888,7 @@ function QuestionsGallery() {
                     <svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z" stroke="var(--ins-text-highlight)" strokeWidth="1.2" strokeLinejoin="round"/></svg>
                   </div>
                   <span style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-highlight)',fontWeight:500}}>Insightis</span>
-                  <div style={{marginLeft:'auto',fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'#8AA6B3',display:'flex',alignItems:'center',gap:4}}>
+                  <div style={{marginLeft:'auto',fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-inactive)',display:'flex',alignItems:'center',gap:4}}>
                     <div style={{width:5,height:5,borderRadius:'50%',background:'var(--ins-status-success-fg)',boxShadow:'0 0 5px var(--ins-status-success-fg)'}}/>
                     live data
                   </div>
@@ -1203,7 +1203,7 @@ function ChatMockAnimationInner() {
             <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
           ))}
         </div>
-        <div style={{flex:1, textAlign:'center', fontSize:'12px', color:'#8AA6B3', fontFamily:'Geist Mono, monospace', letterSpacing:'.02em'}}>
+        <div style={{flex:1, textAlign:'center', fontSize:'12px', color:'var(--ins-text-inactive)', fontFamily:'Geist Mono, monospace', letterSpacing:'.02em'}}>
           insightis — ai chat
         </div>
         <div style={{width:'46px'}}/>
@@ -1262,7 +1262,7 @@ function ChatMockAnimationInner() {
                       fontSize:'9px', fontWeight:700,
                       background: done ? 'rgba(14,196,193,0.12)' : 'rgba(255,255,255,0.04)',
                       border: done ? '1px solid rgba(14,196,193,0.28)' : '1px solid rgba(255,255,255,0.09)',
-                      color: done ? 'var(--ins-text-highlight)' : '#8AA6B3',
+                      color: done ? 'var(--ins-text-highlight)' : 'var(--ins-text-inactive)',
                       transition:'all .3s ease',
                     }}>
                       {done ? '✓' : (i + 1)}
@@ -1408,7 +1408,7 @@ function Hero() {
           </div>
           <div style={{display:'flex',alignItems:'center',gap:'18px',flexWrap:'wrap'}}>
             {['Free plan','No SQL required','Setup in minutes'].map(t=>(
-              <span key={t} style={{display:'flex',alignItems:'center',gap:'5px',fontSize:'12px',color:'#8AA6B3',fontFamily:'Geist Mono,monospace',fontVariantNumeric:'tabular-nums'}}>
+              <span key={t} style={{display:'flex',alignItems:'center',gap:'5px',fontSize:'12px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',fontVariantNumeric:'tabular-nums'}}>
                 <CheckIcon size={12} />{t}
               </span>
             ))}

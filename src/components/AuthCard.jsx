@@ -56,7 +56,7 @@ export default function AuthCard({ mode, title, googleLabel, tailLeading, tailLi
         }}>{title}</h1>
 
         {/* Email */}
-        <label style={{display:'block', fontSize:'12px', color:'#8AA6B3', marginBottom:'6px'}}>Email</label>
+        <label style={{display:'block', fontSize:'12px', color:'var(--ins-text-inactive)', marginBottom:'6px'}}>Email</label>
         <InputRow icon={<MailIcon/>}>
           <input
             type="email"
@@ -67,7 +67,7 @@ export default function AuthCard({ mode, title, googleLabel, tailLeading, tailLi
         </InputRow>
 
         {/* Password */}
-        <label style={{display:'block', fontSize:'12px', color:'#8AA6B3', marginTop:'14px', marginBottom:'6px'}}>Password</label>
+        <label style={{display:'block', fontSize:'12px', color:'var(--ins-text-inactive)', marginTop:'14px', marginBottom:'6px'}}>Password</label>
         <InputRow icon={<LockIcon/>} trailing={
           <button
             type="button"
@@ -139,7 +139,7 @@ export default function AuthCard({ mode, title, googleLabel, tailLeading, tailLi
         </button>
 
         {/* Tail link */}
-        <div style={{textAlign:'center', marginTop:'20px', fontSize:'13px', color:'#8AA6B3'}}>
+        <div style={{textAlign:'center', marginTop:'20px', fontSize:'13px', color:'var(--ins-text-inactive)'}}>
           {tailLeading}{' '}
           <a href={tailHref} style={{color:'#0EC4C1', textDecoration:'none', fontWeight:500}}>{tailLinkText}</a>
         </div>

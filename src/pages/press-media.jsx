@@ -257,7 +257,7 @@ function Boilerplate() {
               <button onClick={handleCopy} style={{position:'absolute', top:'16px', right:'16px', fontSize:'12px', fontWeight:500, color: copied ? 'var(--ins-status-success-fg)' : 'var(--ins-text-highlight)', background:'transparent', border:'1px solid ' + (copied ? 'rgba(34,197,94,.3)' : 'rgba(14,196,193,.2)'), borderRadius:'8px', padding:'6px 12px', cursor:'pointer', fontFamily:'Geist Mono,monospace', transition:'all .15s'}}>
                 {copied ? 'Copied \u2713' : 'Copy to clipboard'}
               </button>
-              <p style={{fontSize:'15px', color:'var(--ins-color-gray-200)', lineHeight:1.75, paddingRight:'120px'}}>
+              <p style={{fontSize:'15px', color:'var(--ins-text-body)', lineHeight:1.75, paddingRight:'120px'}}>
                 {boilerplateText}
               </p>
             </div>

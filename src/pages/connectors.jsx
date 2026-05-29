@@ -402,7 +402,7 @@ function ConnectorsHero() {
             <span style={{color:'var(--ins-text-highlight)'}}>Connect</span>{' '}
             <span style={{color:'var(--ins-text-heading-soft)'}}>to any source.</span>
           </h1>
-          <p className="fu2" style={{fontSize:'17px', color:'#8AA6B3', lineHeight:1.6, maxWidth:'520px', marginBottom:'30px'}}>
+          <p className="fu2" style={{fontSize:'17px', color:'var(--ins-text-inactive)', lineHeight:1.6, maxWidth:'520px', marginBottom:'30px'}}>
             Explore 200+ prebuilt connectors, create custom ones with REST and GraphQL connectors, or request the data source you're missing.
           </p>
           <Button as="a" href="/auth/sign-up/" variant="primary" size="md" iconEnd={<ArrowRightIcon />} className="fu3">

@@ -49,7 +49,7 @@ function SupportHero({ search, setSearch }) {
           background:'rgba(255,255,255,.025)', border:'1px solid rgba(255,255,255,.06)',
           borderRadius:'12px', padding:'4px', maxWidth:'580px', margin:'0 auto',
         }}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8AA6B3" strokeWidth="2" style={{marginLeft:'14px',flexShrink:0}}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="2" style={{marginLeft:'14px',flexShrink:0}}>
             <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
           </svg>
           <input
@@ -575,7 +575,7 @@ function SupportStatus() {
           fontFamily:'Geist Mono, monospace',
         }}>All systems operational</span>
         <span style={{
-          fontSize:'11px', color:'#8AA6B3',
+          fontSize:'11px', color:'var(--ins-text-inactive)',
         }}>Last checked: 2 minutes ago</span>
       </div>
     </div>

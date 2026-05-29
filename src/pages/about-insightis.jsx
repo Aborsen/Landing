@@ -168,28 +168,28 @@ function BackedBy() {
         </div>
         {/* Two-column text grid */}
         <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'24px 48px'}}>
-          <p style={{fontSize:'16px', color:'var(--ins-color-gray-200)', lineHeight:1.75}}>
+          <p style={{fontSize:'16px', color:'var(--ins-text-body)', lineHeight:1.75}}>
             Backed by <span style={{color:'var(--ins-text-highlight)', fontWeight:500}}>Devart</span> and 25+ years of data expertise, we built Insightis with a single mission: make precise, trustworthy analytics accessible to every person in every team — no technical skills required.
           </p>
-          <p style={{fontSize:'16px', color:'var(--ins-color-gray-200)', lineHeight:1.75}}>
+          <p style={{fontSize:'16px', color:'var(--ins-text-body)', lineHeight:1.75}}>
             We believe data insights shouldn't be locked behind complex dashboards or reserved for analysts. Every founder, marketer, operator, and team lead deserves instant, accurate answers from their own data — in plain English, in seconds. That's the future we're building.
           </p>
-          <p style={{fontSize:'16px', color:'var(--ins-color-gray-200)', lineHeight:1.75}}>
+          <p style={{fontSize:'16px', color:'var(--ins-text-body)', lineHeight:1.75}}>
             Insightis combines AI that understands your questions with a certified Semantic Layer that guarantees accuracy. The result: analytics you can trust, delivered at the speed of conversation — so you can focus on making decisions, not waiting for reports.
           </p>
-          <p style={{fontSize:'16px', color:'var(--ins-color-gray-200)', lineHeight:1.75}}>
+          <p style={{fontSize:'16px', color:'var(--ins-text-body)', lineHeight:1.75}}>
             We connect to over 200 data sources, unify metrics through a single source of truth, and let AI handle the complexity — from cross-source joins to deep root-cause analysis. Every answer is grounded in your real data, fully traceable, and gets smarter with every conversation.
           </p>
-          <p style={{fontSize:'16px', color:'var(--ins-color-gray-200)', lineHeight:1.75}}>
+          <p style={{fontSize:'16px', color:'var(--ins-text-body)', lineHeight:1.75}}>
             Our goal is simple: eliminate the gap between having data and understanding it. Whether you're tracking revenue, monitoring churn, or exploring a new market segment — Insightis turns your questions into answers in seconds, not days.
           </p>
-          <p style={{fontSize:'16px', color:'var(--ins-color-gray-200)', lineHeight:1.75}}>
+          <p style={{fontSize:'16px', color:'var(--ins-text-body)', lineHeight:1.75}}>
             We're not building another BI tool. We're building the analytics layer that every modern business deserves — one that speaks your language, learns your business, and delivers the right answer every time you ask.
           </p>
-          <p style={{fontSize:'16px', color:'var(--ins-color-gray-200)', lineHeight:1.75}}>
+          <p style={{fontSize:'16px', color:'var(--ins-text-body)', lineHeight:1.75}}>
             Speed matters. The organizations that act on data fastest win. Insightis removes every bottleneck between a question and its answer — no waiting for a data engineer, no building a dashboard, no interpreting raw query results. Just ask, and know.
           </p>
-          <p style={{fontSize:'16px', color:'var(--ins-color-gray-200)', lineHeight:1.75}}>
+          <p style={{fontSize:'16px', color:'var(--ins-text-body)', lineHeight:1.75}}>
             Trust matters even more. Every insight Insightis delivers is backed by your certified data model — not AI guesswork. You always know where the answer came from, what data it's based on, and how confident you should be. That's what precision analytics means to us.
           </p>
         </div>
