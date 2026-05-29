@@ -47,8 +47,8 @@ function Hero() {
           {/* Left: text */}
           <div>
             <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'20px'}}>
-              <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
-              <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>For Operations &amp; Finance</span>
+              <span style={{fontSize:'12px'}}>✦</span>
+              <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'Geist Mono,monospace'}}>For Operations &amp; Finance</span>
             </div>
 
             <h1 className="fu1" style={{fontSize:'clamp(36px,4.5vw,58px)',fontWeight:500,color:'var(--ins-text-heading-soft)',letterSpacing:'-.03em',lineHeight:1.12,marginBottom:'20px'}}>
@@ -809,8 +809,8 @@ function FeatureSpotlights() {
               }}>
                 <div data-spotlight-text style={{order: reverse ? 2 : 0}}>
                   <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'18px'}}>
-                    <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
-                    <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>{s.eyebrow}</span>
+                    <span style={{fontSize:'12px'}}>✦</span>
+                    <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'Geist Mono,monospace'}}>{s.eyebrow}</span>
                   </div>
                   <h3 className="ins-text-h2" style={{marginBottom:'18px'}}>
                     {s.title}
@@ -1171,8 +1171,8 @@ function FAQ() {
       <div style={{maxWidth:'880px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'52px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
-            <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>FAQ</span>
+            <span style={{fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'Geist Mono,monospace'}}>FAQ</span>
           </div>
           <h2 className="ins-text-display mb-3">
             Questions ops &amp; finance teams ask

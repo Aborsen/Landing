@@ -161,8 +161,8 @@ function BackedBy() {
         {/* Header row */}
         <div style={{marginBottom:'48px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'16px'}}>
-            <span style={{color:'var(--ins-button-primary-bg-hover)', fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Our Mission</span>
+            <span style={{fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', fontFamily:'Geist Mono,monospace'}}>Our Mission</span>
           </div>
           <h2 className="ins-text-display" style={{maxWidth:'700px'}}>Precise analytics for everyone</h2>
         </div>
