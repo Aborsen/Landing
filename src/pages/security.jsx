@@ -124,7 +124,7 @@ function SecurityContent() {
       <section style={{padding:'120px 0 60px', position:'relative'}}>
         <div style={{position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:'100%', height:'100%', background:'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(9,160,157,.06) 0%, transparent 70%)', pointerEvents:'none'}}/>
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', textAlign:'center', position:'relative'}}>
-          <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'20px'}}>
+          <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'20px'}}>
             <span style={{color:'var(--ins-button-primary-bg-hover)', fontSize:'12px'}}>&#x2726;</span>
             <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Security</span>
           </div>

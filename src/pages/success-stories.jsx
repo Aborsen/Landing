@@ -261,7 +261,7 @@ function ResultsBanner() {
     }}>
       <div style={{maxWidth:'1240px', width:'calc(100% - 32px)', margin:'0 auto'}}>
         <div style={{textAlign:'center', marginBottom:'40px'}}>
-          <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
+          <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
             <span style={{color:'var(--ins-button-primary-bg-hover)', fontSize:'12px'}}>&#10022;</span>
             <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Verified Impact</span>
           </div>

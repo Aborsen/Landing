@@ -137,7 +137,7 @@ function ModalForm({ open, onClose, type }) {
 
         {/* Header */}
         <div style={{marginBottom:'28px'}}>
-          <div style={{display:'inline-flex', alignItems:'center', gap:5, padding:'4px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'999px', marginBottom:'14px'}}>
+          <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
             <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>
               {isDemo ? 'Demo Request' : 'Support Ticket'}
             </span>
