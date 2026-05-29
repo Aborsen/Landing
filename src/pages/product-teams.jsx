@@ -318,7 +318,7 @@ function PainPoints() {
             <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>The Problem</span>
           </div>
-          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.03em',marginBottom:'12px'}}>
+          <h2 className="ins-text-display mb-3">
             Data teams spend 80% of time on reporting
           </h2>
           <p style={{fontSize:'16px',color:'var(--ins-text-body)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
@@ -529,7 +529,7 @@ function Metrics() {
             <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>Metrics That Matter</span>
           </div>
-          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.03em',marginBottom:'12px'}}>
+          <h2 className="ins-text-display mb-3">
             Every KPI a data team monitors
           </h2>
           <p style={{fontSize:'16px',color:'var(--ins-text-body)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
@@ -561,7 +561,7 @@ function BeforeAfter() {
             <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>The Difference</span>
           </div>
-          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.03em',marginBottom:'12px'}}>
+          <h2 className="ins-text-display mb-3">
             Data teams before vs. after Insightis
           </h2>
         </div>
@@ -1262,7 +1262,7 @@ function Testimonials() {
             <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>Stories</span>
           </div>
-          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.03em',marginBottom:'12px'}}>
+          <h2 className="ins-text-display mb-3">
             Data teams who stopped firefighting
           </h2>
         </div>
@@ -1320,7 +1320,7 @@ function FAQ() {
             <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>FAQ</span>
           </div>
-          <h2 style={{fontSize:'clamp(28px,4vw,44px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.03em',marginBottom:'12px'}}>
+          <h2 className="ins-text-display mb-3">
             Questions product teams ask
           </h2>
         </div>
