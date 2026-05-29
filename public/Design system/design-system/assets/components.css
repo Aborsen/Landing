@@ -2685,12 +2685,18 @@ kbd, .ins-kbd {
   padding: 0 var(--ins-space-sm);
 }
 
-/* Connector — sits behind the circle, joins to the next cell. */
+/* Connector — sits behind the circle, joins to the next cell.
+   Centered between the two circles: each end sits 36px from its circle's
+   center (= 8px clear of the 56px circle), so the gap is identical on both
+   sides regardless of step count. The right edge subtracts the grid gap
+   (--ins-space-2xl) because `right: -50%` only reaches the next cell's centre
+   when cells are touching; without the correction the line hugged the left
+   circle (8px) and floated a full grid-gap (40px) off the right one. */
 .ins-steps__connector {
   position: absolute;
   top: 28px;
   left: calc(50% + 36px);
-  right: calc(-50% + 36px);
+  right: calc(-50% + 36px - var(--ins-space-2xl));
   height: 1px;
   background: linear-gradient(90deg, var(--ins-color-teal-a-40) 0%, var(--ins-color-teal-a-15) 100%);
   z-index: 0;
