@@ -3,7 +3,7 @@ import React from 'react';
 /**
  * SectionHeader — DS-compliant eyebrow + heading + lede triplet.
  *
- * Composes .ins-eyebrow + heading + .ins-text-lede. Replaces 22+ hand-rolled
+ * Composes .ins-eyebrow + heading + .ins-text-body-lg. Replaces 22+ hand-rolled
  * occurrences of the same pattern across src/pages/*.jsx and src/main.jsx.
  *
  * Props
@@ -70,7 +70,7 @@ function SectionHeader({
       )}
       <Heading className={titleClass} style={titleStyle}>{title}</Heading>
       {lede && (
-        <p className="ins-text-lede" style={{ margin: 0, maxWidth: align === 'center' ? '640px' : 'none' }}>
+        <p className="ins-text-body-lg" style={{ margin: 0, maxWidth: align === 'center' ? '640px' : 'none' }}>
           {lede}
         </p>
       )}

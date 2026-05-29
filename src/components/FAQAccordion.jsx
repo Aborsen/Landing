@@ -75,7 +75,7 @@ function FAQAccordion({
                 </svg>
               </button>
               {isOpen && (
-                <div className="ins-faq__answer">
+                <div className="ins-text-body ins-faq__answer">
                   {item.a}
                 </div>
               )}

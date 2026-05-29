@@ -612,7 +612,7 @@
   background: currentColor;
   box-shadow: var(--ins-glow-dot);
 }
-.ins-card--glow--error .ins-card__header { color: var(--ins-status-error-fg); }
+.ins-card--glow--error .ins-card__header { color: var(--ins-status-error-fg); font-weight: var(--ins-font-weight-600); }
 
 /* Console slot — mono dark panel inside a card (chat answer console) */
 .ins-card__console {
@@ -2492,11 +2492,9 @@ kbd, .ins-kbd {
   color: var(--ins-text-highlight);
 }
 
+/* Type from .ins-text-body (applied on the element); layout only here. */
 .ins-faq__answer {
   padding: 0 var(--ins-space-xl) var(--ins-space-lg) var(--ins-space-xl);
-  font-size: var(--ins-font-size-14);
-  color: var(--ins-text-body);
-  line-height: 1.7;
 }
 
 
@@ -2549,10 +2547,8 @@ kbd, .ins-kbd {
   margin: 0;
   line-height: 1.3;
 }
+/* Type from .ins-text-body (applied on the element); layout only here. */
 .ins-pain-card__body {
-  font-size: var(--ins-font-size-14);
-  color: var(--ins-text-body);
-  line-height: 1.7;
   margin: 0;
 }
 
@@ -2738,10 +2734,8 @@ kbd, .ins-kbd {
   line-height: 1.2;
 }
 
+/* Type from .ins-text-body (applied on the element); layout only here. */
 .ins-steps__body {
-  font-size: var(--ins-font-size-14);
-  color: var(--ins-text-body);
-  line-height: 1.7;
   margin: 0 0 var(--ins-space-md);
   width: 100%;
   max-width: 360px;

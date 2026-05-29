@@ -25,7 +25,7 @@ function PromptLibraryHero() {
         <h1 className="fu1" style={{fontSize:'clamp(36px,5vw,56px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'var(--ins-text-heading-soft)', marginBottom:'20px'}}>
           Prompts for every team.
         </h1>
-        <p className="fu2 ins-text-lede" style={{maxWidth:'560px', margin:'0 auto'}}>
+        <p className="fu2 ins-text-body-lg" style={{maxWidth:'560px', margin:'0 auto'}}>
           Curated prompt templates for analytics, ops, and go-to-market teams — connected to the tools you already use.
         </p>
       </div>

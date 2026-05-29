@@ -424,7 +424,7 @@ function Hero() {
                 <span style={{color:'var(--ins-text-highlight)'}}>CMOs &amp; Marketers</span>
               </h1>
 
-              <p className="fu2 ins-text-lede" style={{marginBottom:'36px',
+              <p className="fu2 ins-text-body-lg" style={{marginBottom:'36px',
                 maxWidth:'520px'}}>
                 Live answers about every campaign, channel, and dollar of spend. Ask in plain English — ROAS, CAC, attribution, funnel — and stop the Monday-morning data dumps.
               </p>
@@ -608,7 +608,7 @@ function BeforeAfter() {
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
             <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>8×</span>
-            <span style={{fontSize:'15px',color:'var(--ins-text-body)',whiteSpace:'nowrap'}}>faster campaign answers. Zero data-team handoffs.</span>
+            <span className="ins-text-body-lg" style={{whiteSpace:'nowrap'}}>faster campaign answers. Zero data-team handoffs.</span>
           </div>
         </div>
       </div>

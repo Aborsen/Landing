@@ -46,7 +46,7 @@ function StepsProcess({
             <span className="ins-steps__num">{s.n}</span>
           </div>
           <h3 className="ins-steps__title">{s.title}</h3>
-          <p className="ins-steps__body">{s.body}</p>
+          <p className="ins-text-body ins-steps__body">{s.body}</p>
           {s.example && (
             <CodeChip variant="inline">{s.example}</CodeChip>
           )}

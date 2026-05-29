@@ -37,7 +37,7 @@ function TreeHero() {
           Our product roadmap.
         </h1>
 
-        <p className="fu2 ins-text-lede" style={{maxWidth:560, margin:'0 auto 52px'}}>
+        <p className="fu2 ins-text-body-lg" style={{maxWidth:560, margin:'0 auto 52px'}}>
           Where we're headed. The features and improvements ahead, and what we've already shipped.
         </p>
 

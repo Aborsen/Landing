@@ -60,7 +60,7 @@ function Hero() {
               <span style={{color:'var(--ins-text-highlight)'}}>repeat questions.</span>
             </h1>
 
-            <p className="fu2 ins-text-lede" style={{marginBottom:'28px',maxWidth:'480px'}}>
+            <p className="fu2 ins-text-body-lg" style={{marginBottom:'28px',maxWidth:'480px'}}>
               Empower every team to self-serve their data. Insightis sits on top of your Semantic Layer and answers questions in plain English — so you focus on analysis, not reporting.
             </p>
 
@@ -586,7 +586,7 @@ function BeforeAfter() {
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
             <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>4×</span>
-            <span style={{fontSize:'15px',color:'var(--ins-text-body)',whiteSpace:'nowrap'}}>more time for real analysis. Self-serve deflects 80% of ad hoc requests.</span>
+            <span className="ins-text-body-lg" style={{whiteSpace:'nowrap'}}>more time for real analysis. Self-serve deflects 80% of ad hoc requests.</span>
           </div>
         </div>
       </div>
@@ -629,7 +629,7 @@ function Positioning() {
         }}>
           Stop being a <span style={{color:'var(--ins-text-highlight)'}}>reporting service.</span> Start doing <span style={{color:'var(--ins-text-highlight)'}}>real analysis.</span>
         </h2>
-        <p className="ins-text-lede" style={{marginBottom:'28px'}}>
+        <p className="ins-text-body-lg" style={{marginBottom:'28px'}}>
           Sound familiar? These are the problems Insightis eliminates.
         </p>
         <a href="#spotlights" style={{

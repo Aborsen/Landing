@@ -860,7 +860,7 @@ export default function BlogPost({ markdown, slug }) {
 
             {/* Description */}
             {meta.description && (
-              <p className="ins-text-lede" style={{marginBottom: '24px',
+              <p className="ins-text-body-lg" style={{marginBottom: '24px',
                 textWrap: 'pretty'}}>{meta.description}</p>
             )}
 

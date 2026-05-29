@@ -355,7 +355,7 @@ function Hero() {
             <span style={{color:'var(--ins-text-highlight)'}}>Every team's</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>numbers.</span>
           </h1>
-          <p className="ins-text-lede" style={{marginBottom:'36px',maxWidth:'520px'}}>
+          <p className="ins-text-body-lg" style={{marginBottom:'36px',maxWidth:'520px'}}>
             Your Semantic Layer certifies every metric once. Not generic guesses — your actual data, your exact logic.
           </p>
           <div style={{display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap',marginBottom:'24px'}}>
@@ -1012,7 +1012,7 @@ function BeforeAfter() {
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'16px',alignItems:'stretch'}}>
           {/* Without */}
           <Card variant="glow" className="ins-card--glow--error compare-card" style={{padding:'32px',display:'flex',flexDirection:'column'}}>
-            <div className="ins-card__header" style={{fontSize:'13px',fontWeight:600,marginBottom:'22px'}}>Without Semantic Layer</div>
+            <div className="ins-card__header" style={{marginBottom:'22px'}}>Without Semantic Layer</div>
             <CodeChip
               variant="panel"
               style={{flex:1,marginBottom:'12px'}}
@@ -1024,7 +1024,7 @@ function BeforeAfter() {
 
           {/* With Insightis */}
           <Card variant="glow" className="ins-card--glow--brand compare-card" style={{padding:'32px',display:'flex',flexDirection:'column'}}>
-            <div className="ins-card__header" style={{fontSize:'13px',fontWeight:500,marginBottom:'22px'}}>With Insightis Semantic Layer</div>
+            <div className="ins-card__header" style={{marginBottom:'22px'}}>With Insightis Semantic Layer</div>
             <CodeChip
               variant="panel"
               style={{flex:1,marginBottom:'12px'}}
@@ -1039,7 +1039,7 @@ function BeforeAfter() {
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
             <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>5×</span>
-            <span style={{fontSize:'15px',color:'var(--ins-text-body)',whiteSpace:'nowrap'}}>faster reporting because every metric is certified once, used everywhere.</span>
+            <span className="ins-text-body-lg" style={{whiteSpace:'nowrap'}}>faster reporting because every metric is certified once, used everywhere.</span>
           </div>
         </div>
       </div>

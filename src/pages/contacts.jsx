@@ -19,7 +19,7 @@ function ContactHero() {
         <h1 className="fu0" style={{fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'20px'}}>
           Let's talk.
         </h1>
-        <p className="fu1 ins-text-lede" style={{maxWidth:'520px', margin:'0 auto'}}>
+        <p className="fu1 ins-text-body-lg" style={{maxWidth:'520px', margin:'0 auto'}}>
           Whether you have a question, need a demo, or want to discuss Enterprise pricing — we'd love to hear from you.
         </p>
       </div>

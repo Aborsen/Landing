@@ -364,7 +364,7 @@ function Hero() {
                 <span style={{color:'var(--ins-text-highlight)'}}>RevOps &amp; BizOps</span>
               </h1>
 
-              <p className="fu2 ins-text-lede" style={{marginBottom:'36px',
+              <p className="fu2 ins-text-body-lg" style={{marginBottom:'36px',
                 maxWidth:'520px'}}>
                 Ask revenue questions in plain English. Insightis answers instantly from your CRM, billing, and product data — no SQL, no dashboards to build.
               </p>
@@ -548,7 +548,7 @@ function BeforeAfter() {
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
             <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>5×</span>
-            <span style={{fontSize:'15px',color:'var(--ins-text-body)',whiteSpace:'nowrap'}}>faster revenue reporting. Zero spreadsheet wrangling.</span>
+            <span className="ins-text-body-lg" style={{whiteSpace:'nowrap'}}>faster revenue reporting. Zero spreadsheet wrangling.</span>
           </div>
         </div>
       </div>

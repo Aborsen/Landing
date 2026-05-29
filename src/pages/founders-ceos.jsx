@@ -396,7 +396,7 @@ function Hero() {
                 <span style={{color:'var(--ins-text-highlight)'}}>Founders &amp; CEOs</span>
               </h1>
 
-              <p className="fu2 ins-text-lede" style={{marginBottom:'36px',
+              <p className="fu2 ins-text-body-lg" style={{marginBottom:'36px',
                 maxWidth:'520px'}}>
                 Strategic answers in seconds. Ask in plain English — runway, ARR growth, NRR, burn — and walk into your board meeting with live numbers, not last week's deck.
               </p>
@@ -580,7 +580,7 @@ function BeforeAfter() {
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
             <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>7×</span>
-            <span style={{fontSize:'15px',color:'var(--ins-text-body)',whiteSpace:'nowrap'}}>faster strategic answers. Zero analyst handoffs.</span>
+            <span className="ins-text-body-lg" style={{whiteSpace:'nowrap'}}>faster strategic answers. Zero analyst handoffs.</span>
           </div>
         </div>
       </div>

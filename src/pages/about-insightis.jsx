@@ -27,7 +27,7 @@ function AboutHero() {
           Every dataset has an insight.<br/>
           <span style={{color:'var(--ins-text-highlight)'}}>We help you find it.</span>
         </h1>
-        <p className="fu2 ins-text-lede" style={{maxWidth:'580px', margin:'0 auto'}}>
+        <p className="fu2 ins-text-body-lg" style={{maxWidth:'580px', margin:'0 auto'}}>
           Insightis is the AI analytics workspace that lets anyone — not just analysts — ask questions about their data and get instant, accurate answers. No SQL. No dashboards. No waiting.
         </p>
         <div className="fu3" style={{display:'flex', justifyContent:'center', gap:'0', marginTop:'56px', borderTop:'1px solid rgba(255,255,255,.06)', borderBottom:'1px solid rgba(255,255,255,.06)', flexWrap:'wrap'}}>

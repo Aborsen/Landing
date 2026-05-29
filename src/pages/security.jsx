@@ -131,7 +131,7 @@ function SecurityContent() {
           <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'20px'}}>
             Secure by design
           </h1>
-          <p className="fu2 ins-text-lede" style={{maxWidth:'640px', margin:'0 auto'}}>
+          <p className="fu2 ins-text-body-lg" style={{maxWidth:'640px', margin:'0 auto'}}>
             Your data stays yours. Insightis is built with enterprise-grade security at every layer — from encryption and access controls to compliance certifications and continuous monitoring.
           </p>
           <div className="fu3" style={{display:'flex', justifyContent:'center', gap:'12px', marginTop:'32px', flexWrap:'wrap'}}>

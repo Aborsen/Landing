@@ -45,7 +45,7 @@ function PainPointGrid({
             <IconBadge tone="red" size="sm" icon={<XIcon />} />
             <h3 className="ins-pain-card__title">{p.title}</h3>
           </div>
-          <p className="ins-pain-card__body">{p.body}</p>
+          <p className="ins-text-body ins-pain-card__body">{p.body}</p>
         </div>
       ))}
     </div>

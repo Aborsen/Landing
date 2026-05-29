@@ -1014,7 +1014,7 @@ function AccuracyComparison() {
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'16px',alignItems:'stretch'}}>
           {/* Generic AI */}
           <Card variant="glow" className="ins-card--glow--error compare-card" style={{padding:'32px',display:'flex',flexDirection:'column'}}>
-            <div className="ins-card__header" style={{fontSize:'13px',fontWeight:600,marginBottom:'22px'}}>Generic AI</div>
+            <div className="ins-card__header" style={{marginBottom:'22px'}}>Generic AI</div>
             <CodeChip
               variant="panel"
               style={{flex:1,marginBottom:'12px'}}
@@ -1026,7 +1026,7 @@ function AccuracyComparison() {
 
           {/* Insightis */}
           <Card variant="glow" className="ins-card--glow--brand compare-card" style={{padding:'32px',display:'flex',flexDirection:'column'}}>
-            <div className="ins-card__header" style={{fontSize:'13px',fontWeight:500,marginBottom:'22px'}}>Insightis</div>
+            <div className="ins-card__header" style={{marginBottom:'22px'}}>Insightis</div>
             <CodeChip
               variant="panel"
               style={{flex:1,marginBottom:'12px'}}
@@ -1041,7 +1041,7 @@ function AccuracyComparison() {
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
             <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>3×</span>
-            <span style={{fontSize:'15px',color:'var(--ins-text-body)',whiteSpace:'nowrap'}}>more accurate because it knows your data, not the internet's.</span>
+            <span className="ins-text-body-lg" style={{whiteSpace:'nowrap'}}>more accurate because it knows your data, not the internet's.</span>
           </div>
         </div>
       </div>
@@ -1398,7 +1398,7 @@ function Hero() {
             <span style={{color:'var(--ins-text-highlight)'}}>Get answers in</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>seconds.</span>
           </h1>
-          <p className="ins-text-lede" style={{marginBottom:'36px',maxWidth:'520px'}}>
+          <p className="ins-text-body-lg" style={{marginBottom:'36px',maxWidth:'520px'}}>
             Type any business question in plain English. Insightis queries your real data — no SQL, no analyst, no waiting.
           </p>
           <div style={{display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap',marginBottom:'24px'}}>

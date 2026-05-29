@@ -363,7 +363,7 @@ function Hero() {
             <span style={{color:'var(--ins-text-highlight)'}}>Understand</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>anything.</span>
           </h1>
-          <p className="ins-text-lede" style={{marginBottom:'36px',maxWidth:'520px'}}>
+          <p className="ins-text-body-lg" style={{marginBottom:'36px',maxWidth:'520px'}}>
             Plug in your CRM, warehouse, ads and product tools. Query every source in plain English — no SQL, no waiting.
           </p>
           <div style={{display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap',marginBottom:'24px'}}>
@@ -675,7 +675,7 @@ function IntegrationImpact() {
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'16px',alignItems:'stretch'}}>
           {/* Disconnected data */}
           <Card variant="glow" className="ins-card--glow--error compare-card" style={{padding:'32px',display:'flex',flexDirection:'column'}}>
-            <div className="ins-card__header" style={{fontSize:'13px',fontWeight:600,marginBottom:'22px'}}>Disconnected data</div>
+            <div className="ins-card__header" style={{marginBottom:'22px'}}>Disconnected data</div>
             <CodeChip
               variant="panel"
               style={{flex:1,marginBottom:'12px'}}
@@ -704,7 +704,7 @@ function IntegrationImpact() {
 
           {/* Insightis */}
           <Card variant="glow" className="ins-card--glow--brand compare-card" style={{padding:'32px',display:'flex',flexDirection:'column'}}>
-            <div className="ins-card__header" style={{fontSize:'13px',fontWeight:500,marginBottom:'22px'}}>Insightis</div>
+            <div className="ins-card__header" style={{marginBottom:'22px'}}>Insightis</div>
             <CodeChip
               variant="panel"
               style={{flex:1,marginBottom:'12px'}}
@@ -737,7 +737,7 @@ function IntegrationImpact() {
         <div style={{textAlign:'center',marginTop:'40px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'14px',flexWrap:'wrap',justifyContent:'center'}}>
             <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>60s</span>
-            <span style={{fontSize:'15px',color:'var(--ins-text-body)',whiteSpace:'nowrap'}}>to connect a new source — OAuth, no pipelines to maintain.</span>
+            <span className="ins-text-body-lg" style={{whiteSpace:'nowrap'}}>to connect a new source — OAuth, no pipelines to maintain.</span>
           </div>
         </div>
 
