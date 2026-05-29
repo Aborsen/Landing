@@ -137,6 +137,15 @@ h1, h2, h3, h4, h5, h6 { font-weight: inherit; font-size: inherit; }
   margin-bottom: 24px;
   color: var(--ins-text-heading);
 }
+.ins-text-hero {
+  font-family: var(--ins-font-family-sans);
+  font-size: clamp(2.2rem, 3.2vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  text-wrap: balance;
+  color: var(--ins-text-heading);
+}
 .ins-text-display {
   font-family: var(--ins-font-family-sans);
   font-size: var(--ins-font-size-36);
