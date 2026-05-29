@@ -602,7 +602,7 @@ function BottomCTASection() {
         <BottomCTA
           variant="form"
           title={<>Stop being a <BottomCTA.Highlight>reporting service.</BottomCTA.Highlight> Start doing <BottomCTA.Highlight> real analysis.</BottomCTA.Highlight></>}
-          inputPlaceholder="What data question can Insightis answer for your team?..."
+          inputPlaceholder="What data question can Insightis answer for your team..."
           ctaLabel="Get Started"
         />
       </div>

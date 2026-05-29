@@ -1074,7 +1074,7 @@ function BottomCTASection() {
         <BottomCTA
           variant="form"
           title={<>Stop arguing about <BottomCTA.Highlight> which number</BottomCTA.Highlight> is right.</>}
-          inputPlaceholder="What metric do you want to unify?..."
+          inputPlaceholder="What metric do you want to unify..."
           ctaLabel="Get Started"
         />
       </div>
