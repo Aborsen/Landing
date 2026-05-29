@@ -226,7 +226,7 @@ function Hero() {
 
         {/* Description */}
         <FadeUp delay={0.17}>
-          <p className="ins-text-body-lg max-w-2xl mx-auto mb-8" style={{color:'var(--ins-text-body)'}}>
+          <p className="ins-text-body-lg max-w-2xl mx-auto mb-8">
             Insightis connects your real data and delivers answers <span style={{color:'var(--ins-text-highlight)', fontWeight:500}}>3× more accurate</span> than spreadsheets.
           </p>
         </FadeUp>
@@ -600,7 +600,7 @@ function Architecture() {
               <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">Architecture</span>
             </div>
             <h2 className="ins-text-display mb-4">The semantic intelligence layer</h2>
-            <p className="text-base md:text-lg max-w-2xl mx-auto" style={{color:'var(--ins-text-body)'}}>
+            <p className="ins-text-body-lg max-w-2xl mx-auto">
               Bring all your data sources into a single AI-ready layer, turning fragmented systems into a trusted semantic foundation that delivers consistent meaning, and business clarity across your organization.
             </p>
           </div>
@@ -958,7 +958,7 @@ function WhatIsInsightis() {
               <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">By the numbers</span>
             </div>
             <h2 className="text-4xl md:text-[48px] font-medium text-[var(--ins-text-heading)] tracking-tight leading-[1.1]">What is Insightis</h2>
-            <p className="text-base mt-4 max-w-xl mx-auto" style={{color:'var(--ins-text-body)'}}>
+            <p className="ins-text-body-lg mt-4 max-w-xl mx-auto">
               The AI analytics workspace that turns raw data into clear decisions — instantly, accurately, and without SQL.
             </p>
           </div>
@@ -1010,7 +1010,7 @@ function Pricing() {
         <FadeUp>
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-[var(--ins-text-heading)] tracking-tight mb-4">Why teams switch to Insightis</h2>
-            <p className="text-base max-w-2xl mx-auto" style={{color:'var(--ins-text-body)'}}>
+            <p className="ins-text-body-lg max-w-2xl mx-auto">
               Instead of charging for every person in your company, Insightis ties cost to actual AI activity and the storage you need — so pricing stays fair, scalable, and aligned with value.
             </p>
           </div>
