@@ -338,7 +338,7 @@ function FoundersHeroIllustration() {
         </g>
         {/* Donut center */}
         <text x="46" y="89" textAnchor="middle" fontFamily="Geist Mono,monospace" fontSize="8" fill="var(--ins-text-body)">ARR</text>
-        <text x="46" y="103" textAnchor="middle" fontFamily="Geist,sans-serif" fontSize="12" fontWeight="600" fill="var(--ins-color-gray-100)">$24M</text>
+        <text x="46" y="101" textAnchor="middle" fontFamily="Geist,sans-serif" fontSize="8.5" fontWeight="600" fill="var(--ins-color-gray-100)">$24M</text>
 
         {/* Legend */}
         <g transform="translate(86, 56)">
