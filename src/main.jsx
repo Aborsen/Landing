@@ -1115,7 +1115,7 @@ function BottomCTASection() {
           <BottomCTA
             variant="form"
             title={<>Still waiting on <BottomCTA.Highlight>insights</BottomCTA.Highlight> that take <BottomCTA.Highlight>days?</BottomCTA.Highlight></>}
-            inputPlaceholder="Show me MRR by region last quarter"
+            inputPlaceholder="Show me MRR by region last quarter..."
             inputAriaLabel="Ask a question"
             ctaLabel="Get insights"
           />

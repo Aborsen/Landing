@@ -60,7 +60,7 @@ export default function AuthCard({ mode, title, googleLabel, tailLeading, tailLi
         <InputRow icon={<MailIcon/>}>
           <input
             type="email"
-            placeholder="Enter your email"
+            placeholder="Enter your email..."
             autoComplete="email"
             style={inputStyle}
           />
@@ -78,7 +78,7 @@ export default function AuthCard({ mode, title, googleLabel, tailLeading, tailLi
         }>
           <input
             type={showPw ? 'text' : 'password'}
-            placeholder="Enter your password"
+            placeholder="Enter your password..."
             autoComplete={mode === 'sign-in' ? 'current-password' : 'new-password'}
             style={inputStyle}
           />

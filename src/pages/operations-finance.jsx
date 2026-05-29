@@ -1193,7 +1193,7 @@ function BottomCTASection() {
         <BottomCTA
           variant="form"
           title={<>Stop reconciling <BottomCTA.Highlight>spreadsheets.</BottomCTA.Highlight> Start controlling <BottomCTA.Highlight> costs.</BottomCTA.Highlight></>}
-          inputPlaceholder="What cost or finance question can Insightis answer for your team?"
+          inputPlaceholder="What cost or finance question can Insightis answer for your team?..."
           ctaLabel="Get Started"
         />
       </div>

@@ -587,37 +587,37 @@ function ContactSupport() {
   const CATEGORIES = [
     {
       id: 'general', label: 'General Question', color: 'var(--ins-text-highlight)',
-      subjectPlaceholder: 'e.g. How do I export a report as PDF?',
+      subjectPlaceholder: 'e.g. How do I export a report as PDF?...',
       descLabel: 'DETAILS', descPlaceholder: 'Any additional context...',
       icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>,
     },
     {
       id: 'bug', label: 'Report a Bug', color: '#EF4444',
-      subjectPlaceholder: 'e.g. Chart not loading on Reports page',
-      descLabel: 'STEPS TO REPRODUCE', descPlaceholder: '1. Go to Reports tab\n2. Click Export\n3. See error',
+      subjectPlaceholder: 'e.g. Chart not loading on Reports page...',
+      descLabel: 'STEPS TO REPRODUCE', descPlaceholder: '1. Go to Reports tab\n2. Click Export\n3. See error...',
       icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>,
     },
     {
       id: 'billing', label: 'Billing & Account', color: '#818CF8',
-      subjectPlaceholder: 'e.g. I was charged twice this month',
+      subjectPlaceholder: 'e.g. I was charged twice this month...',
       descLabel: 'DETAILS', descPlaceholder: 'Any additional context...',
       icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>,
     },
     {
       id: 'connection', label: 'Data Connections', color: '#14A8B9',
-      subjectPlaceholder: 'e.g. My Salesforce connection keeps failing',
+      subjectPlaceholder: 'e.g. My Salesforce connection keeps failing...',
       descLabel: 'DETAILS', descPlaceholder: 'Any additional context...',
       icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>,
     },
     {
       id: 'feature', label: 'Feature Request', color: '#F97316',
-      subjectPlaceholder: "e.g. I'd love to see scheduled email reports",
+      subjectPlaceholder: "e.g. I'd love to see scheduled email reports...",
       descLabel: 'TELL US MORE', descPlaceholder: 'Describe the feature and why it matters to you...',
       icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
     },
     {
       id: 'other', label: 'Other', color: '#6B7280',
-      subjectPlaceholder: 'e.g. Brief description of your request',
+      subjectPlaceholder: 'e.g. Brief description of your request...',
       descLabel: 'DETAILS', descPlaceholder: 'Any additional context...',
       icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>,
     },
@@ -836,7 +836,7 @@ function ContactSupport() {
                       onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
                       onFocus={() => setFocused('email')}
                       onBlur={() => setFocused(null)}
-                      placeholder="you@company.com"
+                      placeholder="you@company.com..."
                       style={inputStyle('email')}
                     />
                   </div>

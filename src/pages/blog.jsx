@@ -233,7 +233,7 @@ function BottomCTA() {
               hideLabel
               label="Your work email"
               type="text"
-              placeholder="Enter your work email"
+              placeholder="Enter your work email..."
               style={{
                 flex:1,background:'transparent',fontSize:'14px',color:'var(--ins-text-body)',
                 padding:'12px 16px',outline:'none',border:'none',

@@ -152,19 +152,19 @@ function ModalForm({ open, onClose, type }) {
 
         <form onSubmit={handleSubmit} style={{display:'flex', flexDirection:'column', gap:'18px'}}>
           <div>
-            <Input label="Name" type="text" placeholder="Your name" />
+            <Input label="Name" type="text" placeholder="Your name..." />
           </div>
           <div>
-            <Input label="Work Email" type="email" placeholder="you@company.com" />
+            <Input label="Work Email" type="email" placeholder="you@company.com..." />
           </div>
           <div>
-            <Input label="Company" type="text" placeholder="Your company name" />
+            <Input label="Company" type="text" placeholder="Your company name..." />
           </div>
 
           {isDemo ? (
             <>
               <div>
-                <Input label="Job Title" type="text" placeholder="e.g. Data Lead, CTO" />
+                <Input label="Job Title" type="text" placeholder="e.g. Data Lead, CTO..." />
               </div>
               <div>
                 <label style={labelStyle}>Team Size</label>
@@ -181,7 +181,7 @@ function ModalForm({ open, onClose, type }) {
                 <Input
                   multiline
                   label={<>Message <span style={{fontWeight:400, textTransform:'none', letterSpacing:0}}>(optional)</span></>}
-                  placeholder="Anything specific you'd like us to cover?"
+                  placeholder="Anything specific you'd like us to cover?..."
                   rows={3}
                 />
               </div>
@@ -210,7 +210,7 @@ function ModalForm({ open, onClose, type }) {
                 </select>
               </div>
               <div>
-                <Input label="Subject" type="text" placeholder="Brief summary of your issue" />
+                <Input label="Subject" type="text" placeholder="Brief summary of your issue..." />
               </div>
               <div>
                 <Input multiline label="Description" placeholder="Describe the issue in detail..." rows={4} />
@@ -372,7 +372,7 @@ function CtaBanner() {
                 hideLabel
                 label="Your email address"
                 type="email"
-                placeholder="you@company.com"
+                placeholder="you@company.com..."
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 required
