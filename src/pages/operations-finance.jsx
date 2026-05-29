@@ -65,17 +65,6 @@ function Hero() {
               <Button as="a" href="/auth/sign-up/" variant="primary" size="md" iconEnd={<ArrowRightIcon />}>
                 Start for Free
               </Button>
-              <a href="#" style={{
-                display:'inline-flex',alignItems:'center',gap:'8px',
-                padding:'12px 24px',borderRadius:'999px',
-                border:'1px solid rgba(255,255,255,.12)',
-                color:'var(--ins-color-gray-200)',fontSize:'14px',fontWeight:400,
-                textDecoration:'none',
-                background:'rgba(255,255,255,.03)',
-                transition:'all .2s',
-              }}>
-                See how it works
-              </a>
             </div>
 
           </div>
