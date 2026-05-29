@@ -350,16 +350,16 @@ function Hero() {
           justifyContent: 'space-between',
           padding: '24px 0',
         }}>
-          <h1 style={{fontSize:'clamp(2.2rem,3.2vw,3.6rem)',fontWeight:700,fontFamily:"var(--ins-font-family-sans)",letterSpacing:'-.04em',lineHeight:1.1,marginBottom:'22px'}}>
+          <h1 style={{fontSize:'clamp(40px,5.2vw,68px)',fontWeight:500,letterSpacing:'-.035em',lineHeight:1.05,marginBottom:'24px'}}>
             <span style={{color:'var(--ins-text-heading-soft)'}}>One platform.</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>Every team's</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>numbers.</span>
           </h1>
-          <p style={{fontSize:'clamp(16px,1.2vw,18px)',color:'var(--ins-text-body)',lineHeight:1.7,marginBottom:'36px',maxWidth:'480px'}}>
+          <p style={{fontSize:'clamp(16px,1.25vw,19px)',color:'var(--ins-text-body)',lineHeight:1.6,marginBottom:'36px',maxWidth:'520px'}}>
             Your Semantic Layer certifies every metric once. Not generic guesses — your actual data, your exact logic.
           </p>
           <div style={{display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap',marginBottom:'24px'}}>
-            <Button as="a" href="/auth/sign-up/" variant="primary" size="md" iconEnd={<ArrowRightIcon />}>
+            <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
               Start for free
             </Button>
           </div>
