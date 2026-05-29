@@ -1088,7 +1088,7 @@ function SubscribeBanner() {
             <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-[var(--ins-color-teal-600)]/10 to-transparent pointer-events-none"></div>
 
             <div className="relative z-10">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[var(--ins-text-heading)] mb-3 tracking-tight leading-tight">
+              <h2 className="ins-bottom-cta__title text-center mb-3">
                 Start making smarter decisions <span className="text-[var(--ins-text-highlight)]">today</span>
               </h2>
               <p className="text-sm md:text-base mb-7 max-w-lg mx-auto leading-relaxed" style={{color:'var(--ins-text-body)'}}>
