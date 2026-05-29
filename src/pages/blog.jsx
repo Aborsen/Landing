@@ -65,7 +65,7 @@ function FeaturedPost() {
               <div>
                 <span style={{fontSize:'11px', padding:'4px 10px', borderRadius:'999px', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.25)', color:'var(--ins-text-highlight)', fontWeight:500, letterSpacing:'0.04em'}}>Product Update</span>
               </div>
-              <h2 style={{fontSize:'24px', fontWeight:500, color:'var(--ins-color-gray-100)', lineHeight:1.35, letterSpacing:'-.02em'}}>
+              <h2 style={{fontSize:'24px', fontWeight:500, color:'var(--ins-text-heading-soft)', lineHeight:1.35, letterSpacing:'-.02em'}}>
                 Introducing Insights Engine: From Surface Answers to Root Causes
               </h2>
               <p style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.6}}>
@@ -175,7 +175,7 @@ function BlogGrid({ activeCategory, activeTag }) {
                 <div style={{marginBottom:'10px'}}>
                   <span style={{fontSize:'10px', padding:'3px 8px', borderRadius:'999px', background:'var(--ins-surface-brand-tint)', border:'1px solid var(--ins-border-brand)', color:'var(--ins-text-highlight)', fontWeight:500, letterSpacing:'0.04em'}}>{article.category}</span>
                 </div>
-                <h3 style={{fontSize:'16px', fontWeight:500, color:'var(--ins-color-gray-100)', lineHeight:1.4, marginBottom:'8px', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:2, WebkitBoxOrient:'vertical'}}>
+                <h3 style={{fontSize:'16px', fontWeight:500, color:'var(--ins-text-heading-soft)', lineHeight:1.4, marginBottom:'8px', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:2, WebkitBoxOrient:'vertical'}}>
                   {article.title}
                 </h3>
                 <p style={{fontSize:'13px', color:'var(--ins-text-body)', lineHeight:1.5, marginBottom:'12px', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:3, WebkitBoxOrient:'vertical'}}>
@@ -218,7 +218,7 @@ function BottomCTA() {
           {/* Top shimmer */}
           <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
 
-          <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.03em',lineHeight:1.2,flexShrink:0}}>
+          <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.03em',lineHeight:1.2,flexShrink:0}}>
             Stop reading about <span style={{color:'var(--ins-text-highlight)'}}>analytics.</span> Start doing it.
           </h3>
 

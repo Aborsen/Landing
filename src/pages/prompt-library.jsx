@@ -446,7 +446,7 @@ function PromptCard({ entry, index, isExpanded, onToggle }) {
     <article className="prompt-card" style={{ animationDelay:`${Math.min(index,8) * 0.04}s` }}>
       <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', gap:'20px', flexWrap:'wrap' }}>
         <div style={{ flex:'1 1 320px', minWidth:0 }}>
-          <h3 style={{ fontSize:'15.5px', fontWeight:500, color:'var(--ins-color-gray-100)', lineHeight:1.4, marginBottom:'10px', letterSpacing:'-.01em' }}>
+          <h3 style={{ fontSize:'15.5px', fontWeight:500, color:'var(--ins-text-heading-soft)', lineHeight:1.4, marginBottom:'10px', letterSpacing:'-.01em' }}>
             {entry.title}
           </h3>
           <div style={{ display:'flex', flexWrap:'wrap', gap:'6px', marginBottom:'10px' }}>
@@ -529,7 +529,7 @@ function BottomCTA() {
           {/* Top shimmer */}
           <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
 
-          <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.03em',lineHeight:1.2,flexShrink:0}}>
+          <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.03em',lineHeight:1.2,flexShrink:0}}>
             Stop reading about <span style={{color:'var(--ins-text-highlight)'}}>analytics.</span> Start doing it.
           </h3>
 

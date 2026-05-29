@@ -98,7 +98,7 @@ function CookieContent() {
       {/* Hero */}
       <section style={{padding:'120px 0 60px', position:'relative'}}>
         <div style={{maxWidth:'800px', margin:'0 auto', padding:'0 24px', textAlign:'center', position:'relative'}}>
-          <h1 className="fu1" style={{fontSize:'clamp(32px,5vw,48px)', fontWeight:500, letterSpacing:'-.02em', lineHeight:1.15}}>
+          <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',fontSize:'clamp(32px,5vw,48px)', fontWeight:500, letterSpacing:'-.02em', lineHeight:1.15}}>
             Cookie Settings
           </h1>
           <p className="fu2" style={{fontSize:'15px', color:'rgba(255,255,255,.55)', lineHeight:1.8, marginTop:'16px', maxWidth:'640px', margin:'16px auto 0'}}>

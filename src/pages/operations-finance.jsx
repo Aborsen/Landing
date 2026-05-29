@@ -51,7 +51,7 @@ function Hero() {
               <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>For Operations &amp; Finance</span>
             </div>
 
-            <h1 className="fu1" style={{fontSize:'clamp(36px,4.5vw,58px)',fontWeight:500,letterSpacing:'-.03em',lineHeight:1.12,marginBottom:'20px'}}>
+            <h1 className="fu1" style={{fontSize:'clamp(36px,4.5vw,58px)',fontWeight:500,color:'var(--ins-text-heading-soft)',letterSpacing:'-.03em',lineHeight:1.12,marginBottom:'20px'}}>
               <span style={{color:'var(--ins-text-heading-soft)'}}>Stop chasing numbers</span>
               <br/>
               <span style={{color:'var(--ins-text-highlight)'}}>across spreadsheets.</span>
@@ -133,7 +133,7 @@ function Hero() {
               </div>
 
               {/* Headline + caption */}
-              <h3 style={{fontSize:'17px',fontWeight:500,color:'var(--ins-color-gray-100)',marginBottom:'6px',letterSpacing:'-.015em',lineHeight:1.35}}>
+              <h3 style={{fontSize:'17px',fontWeight:500,color:'var(--ins-text-heading-soft)',marginBottom:'6px',letterSpacing:'-.015em',lineHeight:1.35}}>
                 Cloud infra running <span style={{color:'var(--ins-status-error-fg)'}}>+41%</span> over budget
               </h3>
               <p style={{fontSize:'12.5px',color:'var(--ins-text-body)',lineHeight:1.6,marginBottom:'16px'}}>
@@ -812,7 +812,7 @@ function FeatureSpotlights() {
                     <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'12px'}}>✦</span>
                     <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-button-primary-bg-hover)',fontFamily:'Geist Mono,monospace'}}>{s.eyebrow}</span>
                   </div>
-                  <h3 style={{fontSize:'clamp(24px,2.6vw,34px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.025em',lineHeight:1.18,marginBottom:'18px'}}>
+                  <h3 className="ins-text-h2" style={{marginBottom:'18px'}}>
                     {s.title}
                   </h3>
                   <p style={{fontSize:'16px',color:'var(--ins-text-body)',lineHeight:1.65,marginBottom:'22px'}}>
@@ -893,7 +893,7 @@ function UseCases() {
           }}>
             <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
             <div style={{flex:'1 1 360px',minWidth:0}}>
-              <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'8px'}}>
+              <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'8px'}}>
                 See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own ledger</span>.
               </h3>
               <p style={{fontSize:'14px',color:'var(--ins-text-body)',lineHeight:1.6}}>
@@ -930,7 +930,7 @@ function UseCases() {
               <div style={{width:'38px',height:'38px',borderRadius:'10px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'14px'}}>
                 {c.icon}
               </div>
-              <h3 style={{fontSize:'15px',fontWeight:600,color:'var(--ins-color-gray-100)',marginBottom:'6px'}}>{c.title}</h3>
+              <h3 style={{fontSize:'15px',fontWeight:600,color:'var(--ins-text-heading-soft)',marginBottom:'6px'}}>{c.title}</h3>
               <p style={{fontSize:'13.5px',color:'var(--ins-text-body)',lineHeight:1.6}}>{c.desc}</p>
             </div>
           ))}

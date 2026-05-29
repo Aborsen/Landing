@@ -34,7 +34,7 @@ function MediaContact() {
             <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'var(--ins-text-highlight)', letterSpacing:'-.03em', lineHeight:1.15}}>
               Media Contact
             </h2>
-            <h3 style={{fontSize:'20px', fontWeight:600, color:'var(--ins-color-gray-100)', marginTop:'12px', marginBottom:'12px'}}>
+            <h3 style={{fontSize:'20px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginTop:'12px', marginBottom:'12px'}}>
               Get in touch
             </h3>
             <p style={{fontSize:'15px', color:'rgba(255,255,255,.5)', lineHeight:1.65}}>
@@ -140,7 +140,7 @@ function BrandAssets() {
             <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'var(--ins-text-highlight)', letterSpacing:'-.03em', lineHeight:1.15}}>
               Brand Assets
             </h2>
-            <h3 style={{fontSize:'20px', fontWeight:600, color:'var(--ins-color-gray-100)', marginTop:'12px', marginBottom:'12px'}}>
+            <h3 style={{fontSize:'20px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginTop:'12px', marginBottom:'12px'}}>
               Logos and brand resources
             </h3>
             <p style={{fontSize:'15px', color:'rgba(255,255,255,.5)', lineHeight:1.65}}>
@@ -198,7 +198,7 @@ function CompanyFacts() {
             <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'var(--ins-text-highlight)', letterSpacing:'-.03em', lineHeight:1.15}}>
               Company Facts
             </h2>
-            <h3 style={{fontSize:'20px', fontWeight:600, color:'var(--ins-color-gray-100)', marginTop:'12px', marginBottom:'12px'}}>
+            <h3 style={{fontSize:'20px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginTop:'12px', marginBottom:'12px'}}>
               Quick reference
             </h3>
             <p style={{fontSize:'15px', color:'rgba(255,255,255,.5)', lineHeight:1.65}}>
@@ -242,7 +242,7 @@ function Boilerplate() {
             <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'var(--ins-text-highlight)', letterSpacing:'-.03em', lineHeight:1.15}}>
               Boilerplate
             </h2>
-            <h3 style={{fontSize:'20px', fontWeight:600, color:'var(--ins-color-gray-100)', marginTop:'12px', marginBottom:'12px'}}>
+            <h3 style={{fontSize:'20px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginTop:'12px', marginBottom:'12px'}}>
               About Insightis
             </h3>
             <p style={{fontSize:'15px', color:'rgba(255,255,255,.5)', lineHeight:1.65}}>
@@ -275,7 +275,7 @@ function BottomCTA() {
       <div className="max-w-7xl mx-auto px-6">
         <div style={{position:'relative', borderRadius:'16px', border:'1px solid rgba(30,30,48,1)', padding:'32px 48px', overflow:'hidden', display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:'24px', flexWrap:'wrap', background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)'}}>
           <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
-          <h3 style={{fontSize:'clamp(22px,3vw,30px)', fontWeight:500, color:'var(--ins-text-body)', letterSpacing:'-.03em', lineHeight:1.2, flexShrink:0}}>
+          <h3 style={{fontSize:'clamp(22px,3vw,30px)', fontWeight:500, color:'var(--ins-text-heading)', letterSpacing:'-.03em', lineHeight:1.2, flexShrink:0}}>
             Ready to see your data <span style={{color:'var(--ins-button-primary-bg)'}}>clearly?</span>
           </h3>
           <div style={{display:'flex', alignItems:'center', width:'100%', maxWidth:'420px', background:'#0D0D1A', border:'1px solid rgba(46,46,64,1)', borderRadius:'12px', overflow:'hidden', flex:'1 1 340px'}}>

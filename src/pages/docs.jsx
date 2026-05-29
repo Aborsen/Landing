@@ -644,7 +644,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
               id={section.id}
               className="doc-section-heading"
               style={{
-                fontSize:'21px', fontWeight:600, color:'var(--ins-color-gray-100)',
+                fontSize:'21px', fontWeight:600, color:'var(--ins-text-heading-soft)',
                 letterSpacing:'-0.01em', marginBottom:'12px',
                 scrollMarginTop:'140px',
               }}

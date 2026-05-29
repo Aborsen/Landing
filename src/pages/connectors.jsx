@@ -398,7 +398,7 @@ function ConnectorsHero() {
             <span style={{color:'var(--ins-color-gray-100)'}}>Connectors</span>
             <span style={{margin:'0 6px', opacity:0.5}}>/</span>
           </div>
-          <h1 className="fu1" style={{fontSize:'clamp(2.4rem,3.6vw,4rem)', fontWeight:700, fontFamily:"var(--ins-font-family-sans)", letterSpacing:'-.04em', lineHeight:1.05, marginBottom:'22px', textWrap:'balance'}}>
+          <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',fontSize:'clamp(2.4rem,3.6vw,4rem)', fontWeight:700, fontFamily:"var(--ins-font-family-sans)", letterSpacing:'-.04em', lineHeight:1.05, marginBottom:'22px', textWrap:'balance'}}>
             <span style={{color:'var(--ins-text-highlight)'}}>Connect</span>{' '}
             <span style={{color:'var(--ins-text-heading-soft)'}}>to any source.</span>
           </h1>
@@ -620,7 +620,7 @@ function App() {
             gap:'16px', flexWrap:'wrap',
           }}>
             <div>
-              <h3 style={{fontSize:'16px', fontWeight:500, color:'var(--ins-color-gray-100)', marginBottom:'4px', letterSpacing:'-.01em'}}>
+              <h3 style={{fontSize:'16px', fontWeight:500, color:'var(--ins-text-heading-soft)', marginBottom:'4px', letterSpacing:'-.01em'}}>
                 Can't find your tool?
               </h3>
               <p style={{fontSize:'13.5px', color:'var(--ins-text-body)', lineHeight:1.5}}>

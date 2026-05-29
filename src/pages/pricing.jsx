@@ -183,7 +183,7 @@ function PricingCards() {
                     Most popular
                   </div>
                 )}
-                <h3 style={{fontSize:'22px',fontWeight:600,color:'var(--ins-text-body)',marginBottom:'4px',letterSpacing:'-0.02em'}}>{plan.name}</h3>
+                <h3 style={{fontSize:'22px',fontWeight:600,color:'var(--ins-text-heading)',marginBottom:'4px',letterSpacing:'-0.02em'}}>{plan.name}</h3>
                 <p style={{fontSize:'13px',color:'rgba(255,255,255,0.7)',marginBottom:'24px'}}>{plan.tag}</p>
                 <div style={{marginBottom:'24px',minHeight:'120px'}}>
                   {plan.price === 0 ? (
@@ -287,7 +287,7 @@ function FeatureComparison() {
     <section style={{padding:'80px 0 60px'}}>
       <div style={{maxWidth:'1100px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'48px'}}>
-          <h2 style={{fontSize:'clamp(26px,3.4vw,38px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.025em',marginBottom:'10px'}}>Compare features</h2>
+          <h2 style={{fontSize:'clamp(26px,3.4vw,38px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.025em',marginBottom:'10px'}}>Compare features</h2>
           <p style={{fontSize:'15px',color:'rgba(255,255,255,.55)'}}>Everything you get on every plan.</p>
         </div>
         <div data-compare-wrap style={{border:'1px solid rgba(255,255,255,0.08)',borderRadius:'16px',overflow:'hidden',background:'rgba(13,17,23,0.5)'}}>
@@ -370,7 +370,7 @@ function FAQ() {
     <section style={{padding:'60px 0 80px'}}>
       <div style={{maxWidth:'880px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'40px'}}>
-          <h2 style={{fontSize:'clamp(26px,3.4vw,38px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.025em',marginBottom:'10px'}}>Frequently asked questions</h2>
+          <h2 style={{fontSize:'clamp(26px,3.4vw,38px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.025em',marginBottom:'10px'}}>Frequently asked questions</h2>
         </div>
         <FAQAccordion items={items} />
       </div>

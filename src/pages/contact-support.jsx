@@ -29,7 +29,7 @@ function SupportHero({ search, setSearch }) {
           <span style={{ color:'var(--ins-text-body)', fontWeight:400 }}>· Last checked: 2 minutes ago</span>
         </div>
 
-        <h1 className="fu1" style={{
+        <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',
           fontSize:'clamp(32px,5vw,52px)', fontWeight:700,
           lineHeight:1.1, letterSpacing:'-0.03em',
           marginBottom:'16px',
@@ -184,7 +184,7 @@ function HelpTopics({ search }) {
               }}>
                 {topic.icon}
               </div>
-              <h3 style={{ fontSize:'14px', fontWeight:600, color:'var(--ins-color-gray-100)' }}>{topic.title}</h3>
+              <h3 style={{ fontSize:'14px', fontWeight:600, color:'var(--ins-text-heading-soft)' }}>{topic.title}</h3>
             </div>
 
             <div style={{ display:'flex', flexDirection:'column', gap:'0px' }}>

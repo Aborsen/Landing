@@ -23,7 +23,7 @@ function AboutHero() {
     <section style={{padding:'120px 0 80px', position:'relative'}}>
       <div style={{position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:'100%', height:'100%', background:'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(9,160,157,.06) 0%, transparent 70%)', pointerEvents:'none'}}/>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', textAlign:'center', position:'relative'}}>
-        <h1 className="fu1" style={{fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'20px'}}>
+        <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'20px'}}>
           Every dataset has an insight.<br/>
           <span style={{color:'var(--ins-text-highlight)'}}>We help you find it.</span>
         </h1>
@@ -82,7 +82,7 @@ function MissionValues() {
               <div style={{width:'40px', height:'40px', borderRadius:'10px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'16px'}}>
                 {v.icon}
               </div>
-              <h3 style={{fontSize:'17px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'8px'}}>{v.title}</h3>
+              <h3 style={{fontSize:'17px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{v.title}</h3>
               <p style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.65}}>{v.desc}</p>
             </div>
           ))}
@@ -119,7 +119,7 @@ function WhatWeBuilt() {
                 <div className="hb" style={{width:'64px', height:'64px', borderRadius:'16px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'14px', animationDelay:`${i * 0.4}s`}}>
                   {p.icon}
                 </div>
-                <h4 style={{fontSize:'15px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'4px'}}>{p.name}</h4>
+                <h4 style={{fontSize:'15px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'4px'}}>{p.name}</h4>
                 <p style={{fontSize:'12px', color:'var(--ins-text-body)', lineHeight:1.5}}>{p.desc}</p>
               </div>
               {i < pillars.length - 1 && (
@@ -138,7 +138,7 @@ function WhatWeBuilt() {
                   {p.icon}
                 </div>
                 <div>
-                  <h4 style={{fontSize:'14px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'2px'}}>{p.name}</h4>
+                  <h4 style={{fontSize:'14px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'2px'}}>{p.name}</h4>
                   <p style={{fontSize:'12px', color:'var(--ins-text-body)', lineHeight:1.5}}>{p.desc}</p>
                 </div>
               </div>
@@ -235,7 +235,7 @@ function OurStory() {
                 {/* Content */}
                 <div style={{flex:1, paddingLeft:'40px'}}>
                   <div className="md:hidden" style={{fontSize: m.year === '∞' ? '24px' : '12px', fontWeight:600, color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace', marginBottom:'6px', letterSpacing:'.04em', lineHeight:1}}>{m.year}</div>
-                  <h3 style={{fontSize:'18px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'8px', letterSpacing:'-.01em'}}>{m.title}</h3>
+                  <h3 style={{fontSize:'18px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px', letterSpacing:'-.01em'}}>{m.title}</h3>
                   <p style={{fontSize:'15px', color:'var(--ins-text-body)', lineHeight:1.7, maxWidth:'680px'}}>{m.desc}</p>
                 </div>
               </div>
@@ -330,7 +330,7 @@ function BottomCTA() {
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
         <div style={{position:'relative', borderRadius:'16px', border:'1px solid rgba(30,30,48,1)', padding:'32px 48px', overflow:'hidden', display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:'24px', flexWrap:'wrap', background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)'}}>
           <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
-          <h3 style={{fontSize:'clamp(22px,3vw,30px)', fontWeight:500, color:'var(--ins-text-body)', letterSpacing:'-.03em', lineHeight:1.2, flexShrink:0}}>
+          <h3 style={{fontSize:'clamp(22px,3vw,30px)', fontWeight:500, color:'var(--ins-text-heading)', letterSpacing:'-.03em', lineHeight:1.2, flexShrink:0}}>
             Ready to see your data <span style={{color:'var(--ins-button-primary-bg)'}}>clearly?</span>
           </h3>
           <div style={{display:'flex', alignItems:'center', width:'100%', maxWidth:'420px', background:'#0D0D1A', border:'1px solid rgba(46,46,64,1)', borderRadius:'12px', overflow:'hidden', flex:'1 1 340px'}}>

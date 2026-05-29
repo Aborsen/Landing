@@ -40,7 +40,7 @@ function PrivacyContent() {
       {/* Hero */}
       <div style={{ padding: '120px 0 60px' }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
-          <h1 className="fu1" style={{ fontSize: 'clamp(32px,5vw,48px)', fontWeight: 500, letterSpacing: '-.02em', lineHeight: 1.15 }}>
+          <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)', fontSize: 'clamp(32px,5vw,48px)', fontWeight: 500, letterSpacing: '-.02em', lineHeight: 1.15 }}>
             Privacy Policy
           </h1>
           <p className="fu2" style={{ fontSize: '14px', color: 'rgba(255,255,255,.4)', marginTop: '12px' }}>

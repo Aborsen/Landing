@@ -342,7 +342,7 @@ function RoadmapSections() {
 
         {/* Section heading */}
         <div style={{marginBottom:40}}>
-          <h2 style={{fontSize:'clamp(28px,3.5vw,42px)', fontWeight:600, letterSpacing:'-.03em', lineHeight:1.15, color:'var(--ins-color-gray-100)', marginBottom:12}}>
+          <h2 style={{fontSize:'clamp(28px,3.5vw,42px)', fontWeight:600, letterSpacing:'-.03em', lineHeight:1.15, color:'var(--ins-text-heading-soft)', marginBottom:12}}>
             What's on deck.
           </h2>
           <p style={{fontSize:'clamp(14px,1.1vw,16px)', color:'var(--ins-text-body)', lineHeight:1.6, maxWidth:520, margin:0}}>
@@ -365,7 +365,7 @@ function RoadmapSections() {
               <div style={{display:'flex', flexDirection:'column', gap:10}}>
                 {col.items.map((item, i) => (
                   <div key={i} className="roadmap-card" style={{'--card-glow': col.glow}}>
-                    <h3 style={{fontSize:14, fontWeight:500, color:'var(--ins-color-gray-100)', lineHeight:1.4, marginBottom:6}}>{item.title}</h3>
+                    <h3 style={{fontSize:14, fontWeight:500, color:'var(--ins-text-heading-soft)', lineHeight:1.4, marginBottom:6}}>{item.title}</h3>
                     <p style={{fontSize:12, color:'var(--ins-text-body)', lineHeight:1.55, margin:0}}>{item.desc}</p>
                   </div>
                 ))}
@@ -465,7 +465,7 @@ function SuggestCTA() {
           }}>
             <div style={{position:'absolute',top:0,left:0,right:0,height:1,background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
             <div style={{maxWidth:520}}>
-              <h3 style={{fontSize:'clamp(18px,2.5vw,24px)', fontWeight:500, color:'var(--ins-color-gray-100)', letterSpacing:'-.02em', marginBottom:8}}>
+              <h3 style={{fontSize:'clamp(18px,2.5vw,24px)', fontWeight:500, color:'var(--ins-text-heading-soft)', letterSpacing:'-.02em', marginBottom:8}}>
                 Missing something? <span style={{color:'var(--ins-button-primary-bg)'}}>Suggest a feature.</span>
               </h3>
               <p style={{fontSize:14, color:'var(--ins-text-body)', lineHeight:1.6}}>
@@ -513,7 +513,7 @@ function SuggestCTA() {
             {/* header */}
             <div style={{padding:'22px 28px 0', display:'flex', alignItems:'flex-start', justifyContent:'space-between'}}>
               <div>
-                <h2 style={{fontSize:18, fontWeight:600, color:'var(--ins-color-gray-100)', letterSpacing:'-.02em', margin:0}}>Request a Feature</h2>
+                <h2 style={{fontSize:18, fontWeight:600, color:'var(--ins-text-heading-soft)', letterSpacing:'-.02em', margin:0}}>Request a Feature</h2>
                 <p style={{fontSize:13, color:'var(--ins-text-body)', margin:'4px 0 0'}}>Describe what you need — we read every request.</p>
               </div>
               <button onClick={() => { if (!sent) setOpen(false); }} style={{
@@ -539,7 +539,7 @@ function SuggestCTA() {
                 }}>
                   <CheckIcon size={24} color="var(--ins-status-success-fg)" />
                 </div>
-                <h3 style={{fontSize:20, fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:8, letterSpacing:'-.02em'}}>Thanks for your feedback!</h3>
+                <h3 style={{fontSize:20, fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:8, letterSpacing:'-.02em'}}>Thanks for your feedback!</h3>
                 <p style={{fontSize:14, color:'var(--ins-text-body)', lineHeight:1.6, maxWidth:340, margin:'0 auto'}}>
                   We've received your feature request and will review it shortly.
                 </p>

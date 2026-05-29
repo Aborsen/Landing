@@ -128,7 +128,7 @@ function SecurityContent() {
             <span style={{color:'var(--ins-button-primary-bg-hover)', fontSize:'12px'}}>&#x2726;</span>
             <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Security</span>
           </div>
-          <h1 className="fu1" style={{fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'20px'}}>
+          <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'20px'}}>
             Secure by design
           </h1>
           <p className="fu2" style={{fontSize:'17px', color:'rgba(255,255,255,.5)', maxWidth:'640px', margin:'0 auto', lineHeight:1.65}}>
@@ -168,7 +168,7 @@ function SecurityContent() {
                 <div style={{width:'40px', height:'40px', borderRadius:'10px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'16px'}}>
                   {v.icon}
                 </div>
-                <h3 style={{fontSize:'17px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'8px'}}>{v.title}</h3>
+                <h3 style={{fontSize:'17px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{v.title}</h3>
                 <p style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.65}}>{v.desc}</p>
               </div>
             ))}
@@ -195,7 +195,7 @@ function SecurityContent() {
                 <div style={{display:'flex', justifyContent:'center', marginBottom:'20px'}}>
                   {c.icon}
                 </div>
-                <h3 style={{fontSize:'17px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'8px'}}>{c.title}</h3>
+                <h3 style={{fontSize:'17px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{c.title}</h3>
                 <p style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.65}}>{c.desc}</p>
               </div>
             ))}
@@ -267,7 +267,7 @@ function SecurityContent() {
             <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.4),transparent)'}}/>
             <div style={{position:'absolute', inset:0, background:'radial-gradient(ellipse 50% 60% at 50% 0%, rgba(9,160,157,.08) 0%, transparent 70%)', pointerEvents:'none'}}/>
             <div style={{position:'relative'}}>
-              <h3 style={{fontSize:'clamp(24px,3.5vw,36px)', fontWeight:500, color:'var(--ins-text-body)', letterSpacing:'-.02em', marginBottom:'16px'}}>
+              <h3 style={{fontSize:'clamp(24px,3.5vw,36px)', fontWeight:500, color:'var(--ins-text-heading)', letterSpacing:'-.02em', marginBottom:'16px'}}>
                 Have security questions?
               </h3>
               <p style={{fontSize:'16px', color:'rgba(255,255,255,.5)', maxWidth:'520px', margin:'0 auto 32px', lineHeight:1.65}}>
