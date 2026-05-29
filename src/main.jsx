@@ -1025,7 +1025,7 @@ function Pricing() {
                   <XIcon size={18} color="var(--ins-status-error-fg)" />
                 </div>
                 <div>
-                  <h3 className="text-base font-medium text-[var(--ins-text-heading)]">Traditional Approach</h3>
+                  <h3 className="text-base font-medium" style={{color:'var(--ins-text-heading)'}}>Traditional Approach</h3>
                   <p className="text-xs text-[var(--ins-text-body)]">Manual, slow, expensive</p>
                 </div>
               </div>
@@ -1046,7 +1046,7 @@ function Pricing() {
                   <CheckIcon size={18} color="var(--ins-color-teal-400)" />
                 </div>
                 <div>
-                  <h3 className="text-base font-medium text-[var(--ins-text-heading)]">With Insightis</h3>
+                  <h3 className="text-base font-medium" style={{color:'var(--ins-text-heading)'}}>With Insightis</h3>
                   <p className="text-xs text-[var(--ins-text-body)]">Automated, instant, scalable</p>
                 </div>
               </div>
@@ -1065,7 +1065,7 @@ function Pricing() {
 
         <FadeUp delay={0.25}>
           <div className="text-center mt-10">
-            <a href="/Pricing" className="ins-btn ins-btn--primary ins-btn--lg">
+            <a href="/Pricing" className="ins-btn ins-btn--secondary ins-btn--lg">
               Explore Pricing
             </a>
           </div>
