@@ -805,7 +805,7 @@ function HowItWorks() {
     { n: '05', title: 'Share with your team', desc: 'Publish answers to Slack, dashboards, or Teams. Every figure stays linked to its source.' },
   ];
   return (
-    <section id="how-it-works" style={{padding:'100px 0', background:'linear-gradient(180deg,var(--ins-color-gray-900) 0%,var(--ins-color-gray-900) 100%)', position:'relative'}}>
+    <section id="how-it-works" style={{padding:'100px 0', background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)', position:'relative'}}>
       {/* Mobile / reduced-motion text-only summary — hidden on desktop via responsive.css */}
       <div className="how-it-works-text-only" style={{display:'none', maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
         <div style={{textAlign:'center', marginBottom:'40px'}}>
@@ -949,7 +949,7 @@ function WhatIsInsightis() {
   ];
 
   return (
-    <section className="py-24 relative" style={{ background: 'linear-gradient(180deg, var(--ins-color-gray-900) 0%, var(--ins-color-promo-solid) 100%)' }}>
+    <section className="py-24 relative" style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)' }}>
       <div className="max-w-7xl mx-auto px-6">
         <FadeUp>
           <div className="text-center mb-14">
