@@ -815,7 +815,7 @@ function FeatureSpotlights() {
                   <h3 style={{fontSize:'clamp(24px,2.6vw,34px)',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-.025em',lineHeight:1.18,marginBottom:'18px'}}>
                     {s.title}
                   </h3>
-                  <p style={{fontSize:'16px',color:'rgba(255,255,255,.62)',lineHeight:1.65,marginBottom:'22px'}}>
+                  <p style={{fontSize:'16px',color:'var(--ins-text-body)',lineHeight:1.65,marginBottom:'22px'}}>
                     {s.body}
                   </p>
                   <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px'}}>
