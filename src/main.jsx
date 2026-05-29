@@ -245,7 +245,7 @@ function Hero() {
                       onChange={e => setUserText(e.target.value)}
                       placeholder="Ask anything about your data..."
                       aria-label="Ask anything about your data"
-                      className="flex-1 bg-transparent text-[var(--ins-text-heading)] text-base outline-none placeholder-[var(--ins-text-body)] resize-none h-[160px]"
+                      className="flex-1 bg-transparent text-[var(--ins-text-heading)] text-base outline-none placeholder-[var(--ins-text-disabled)] resize-none h-[160px]"
                       onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && userText.trim()) { e.preventDefault(); window.location.href = '#pricing'; } }}
                     />
                   ) : (
@@ -599,8 +599,8 @@ function Architecture() {
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[var(--ins-text-highlight)]"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
               <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">Architecture</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-medium text-[var(--ins-text-heading)] mb-4 tracking-tight">The semantic intelligence layer</h2>
-            <p className="text-white/80 text-base md:text-lg max-w-2xl mx-auto">
+            <h2 className="ins-text-display mb-4">The semantic intelligence layer</h2>
+            <p className="text-base md:text-lg max-w-2xl mx-auto" style={{color:'var(--ins-text-body)'}}>
               Bring all your data sources into a single AI-ready layer, turning fragmented systems into a trusted semantic foundation that delivers consistent meaning, and business clarity across your organization.
             </p>
           </div>
@@ -1031,7 +1031,7 @@ function Pricing() {
               </div>
               <ul className="flex flex-col gap-4">
                 {traditional.map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm text-[var(--ins-text-body)]">
+                  <li key={i} className="flex items-center gap-3 text-sm text-[var(--ins-text-heading)]">
                     <XIcon size={14} color="var(--ins-status-error-fg)" className="flex-shrink-0" />
                     {item}
                   </li>
@@ -1052,7 +1052,7 @@ function Pricing() {
               </div>
               <ul className="flex flex-col gap-4">
                 {insightis.map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm text-[var(--ins-text-body)]">
+                  <li key={i} className="flex items-center gap-3 text-sm text-[var(--ins-text-heading)]">
                     <CheckIcon size={14} color="var(--ins-color-teal-400)" className="flex-shrink-0" />
                     {item}
                   </li>
@@ -1065,7 +1065,7 @@ function Pricing() {
 
         <FadeUp delay={0.25}>
           <div className="text-center mt-10">
-            <a href="/Pricing" className="ins-btn ins-btn--secondary ins-btn--lg">
+            <a href="/Pricing" className="ins-btn ins-btn--primary ins-btn--lg">
               Explore Pricing
             </a>
           </div>

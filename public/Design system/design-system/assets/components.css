@@ -2210,7 +2210,7 @@ kbd, .ins-kbd {
 }
 .ins-code-chip--panel .ins-code-chip__response {
   font-size: 12.5px;
-  color: var(--ins-color-gray-200);
+  color: var(--ins-text-body);
   line-height: 1.7;
 }
 .ins-code-chip__highlight {

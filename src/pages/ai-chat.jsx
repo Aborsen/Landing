@@ -1367,7 +1367,7 @@ function ChatMockAnimationInner() {
           {inputText ? (
             <span>{inputText}</span>
           ) : (
-            <span style={{color:'rgba(255,255,255,0.55)', fontSize:'13px'}}>Ask anything…</span>
+            <span style={{color:'var(--ins-text-disabled)', fontSize:'13px'}}>Ask anything…</span>
           )}
           {showCursor && (
             <span style={{display:'inline-block',width:'1.5px',height:'15px',background:'var(--ins-text-highlight)',marginLeft:'1px',animation:'blink 1s step-end infinite',verticalAlign:'middle'}}/>
