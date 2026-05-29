@@ -414,7 +414,7 @@ function Hero() {
 
               <div className="fu3">
                 <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
-                  Start free
+                  Start for Free
                 </Button>
               </div>
             </div>

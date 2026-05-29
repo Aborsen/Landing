@@ -103,7 +103,7 @@ function PricingCards() {
       name:'Free',
       tag:'For getting started',
       price:0,
-      cta:'Start for free',
+      cta:'Start for Free',
       ctaStyle:'outline',
       features:[
         '1 user',
