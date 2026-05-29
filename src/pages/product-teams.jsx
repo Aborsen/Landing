@@ -1112,7 +1112,7 @@ function FeatureSpotlights() {
                   <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px'}}>
                     {s.bullets.map((b,bi) => (
                       <li key={bi} style={{display:'flex',alignItems:'flex-start',gap:'10px',fontSize:'14px',color:'var(--ins-text-body)',lineHeight:1.55}}>
-                        <CheckIcon size={12} style={{flexShrink:0,marginTop:'1px'}} />
+                        <CheckIcon size={12} style={{flexShrink:0,marginTop:'4px'}} />
                         {b}
                       </li>
                     ))}
