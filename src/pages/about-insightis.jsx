@@ -27,7 +27,7 @@ function AboutHero() {
           Every dataset has an insight.<br/>
           <span style={{color:'var(--ins-text-highlight)'}}>We help you find it.</span>
         </h1>
-        <p className="fu2" style={{fontSize:'17px', color:'rgba(255,255,255,.5)', maxWidth:'580px', margin:'0 auto', lineHeight:1.65}}>
+        <p className="fu2 ins-text-lede" style={{maxWidth:'580px', margin:'0 auto'}}>
           Insightis is the AI analytics workspace that lets anyone — not just analysts — ask questions about their data and get instant, accurate answers. No SQL. No dashboards. No waiting.
         </p>
         <div className="fu3" style={{display:'flex', justifyContent:'center', gap:'0', marginTop:'56px', borderTop:'1px solid rgba(255,255,255,.06)', borderBottom:'1px solid rgba(255,255,255,.06)', flexWrap:'wrap'}}>
@@ -83,7 +83,7 @@ function MissionValues() {
                 {v.icon}
               </div>
               <h3 style={{fontSize:'17px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{v.title}</h3>
-              <p style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.65}}>{v.desc}</p>
+              <p className="ins-text-body">{v.desc}</p>
             </div>
           ))}
         </div>
@@ -120,7 +120,7 @@ function WhatWeBuilt() {
                   {p.icon}
                 </div>
                 <h4 style={{fontSize:'15px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'4px'}}>{p.name}</h4>
-                <p style={{fontSize:'12px', color:'var(--ins-text-body)', lineHeight:1.5}}>{p.desc}</p>
+                <p className="ins-text-body-sm">{p.desc}</p>
               </div>
               {i < pillars.length - 1 && (
                 <div style={{display:'flex', alignItems:'center', paddingTop:'24px', flexShrink:0, minWidth:'32px', flex:'0 0 auto'}}>
@@ -139,7 +139,7 @@ function WhatWeBuilt() {
                 </div>
                 <div>
                   <h4 style={{fontSize:'14px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'2px'}}>{p.name}</h4>
-                  <p style={{fontSize:'12px', color:'var(--ins-text-body)', lineHeight:1.5}}>{p.desc}</p>
+                  <p className="ins-text-body-sm">{p.desc}</p>
                 </div>
               </div>
               {i < pillars.length - 1 && (
@@ -168,28 +168,28 @@ function BackedBy() {
         </div>
         {/* Two-column text grid */}
         <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'24px 48px'}}>
-          <p style={{fontSize:'16px', color:'var(--ins-text-body)', lineHeight:1.75}}>
+          <p className="ins-text-body-lg">
             Backed by <span style={{color:'var(--ins-text-highlight)', fontWeight:500}}>Devart</span> and 25+ years of data expertise, we built Insightis with a single mission: make precise, trustworthy analytics accessible to every person in every team — no technical skills required.
           </p>
-          <p style={{fontSize:'16px', color:'var(--ins-text-body)', lineHeight:1.75}}>
+          <p className="ins-text-body-lg">
             We believe data insights shouldn't be locked behind complex dashboards or reserved for analysts. Every founder, marketer, operator, and team lead deserves instant, accurate answers from their own data — in plain English, in seconds. That's the future we're building.
           </p>
-          <p style={{fontSize:'16px', color:'var(--ins-text-body)', lineHeight:1.75}}>
+          <p className="ins-text-body-lg">
             Insightis combines AI that understands your questions with a certified Semantic Layer that guarantees accuracy. The result: analytics you can trust, delivered at the speed of conversation — so you can focus on making decisions, not waiting for reports.
           </p>
-          <p style={{fontSize:'16px', color:'var(--ins-text-body)', lineHeight:1.75}}>
+          <p className="ins-text-body-lg">
             We connect to over 200 data sources, unify metrics through a single source of truth, and let AI handle the complexity — from cross-source joins to deep root-cause analysis. Every answer is grounded in your real data, fully traceable, and gets smarter with every conversation.
           </p>
-          <p style={{fontSize:'16px', color:'var(--ins-text-body)', lineHeight:1.75}}>
+          <p className="ins-text-body-lg">
             Our goal is simple: eliminate the gap between having data and understanding it. Whether you're tracking revenue, monitoring churn, or exploring a new market segment — Insightis turns your questions into answers in seconds, not days.
           </p>
-          <p style={{fontSize:'16px', color:'var(--ins-text-body)', lineHeight:1.75}}>
+          <p className="ins-text-body-lg">
             We're not building another BI tool. We're building the analytics layer that every modern business deserves — one that speaks your language, learns your business, and delivers the right answer every time you ask.
           </p>
-          <p style={{fontSize:'16px', color:'var(--ins-text-body)', lineHeight:1.75}}>
+          <p className="ins-text-body-lg">
             Speed matters. The organizations that act on data fastest win. Insightis removes every bottleneck between a question and its answer — no waiting for a data engineer, no building a dashboard, no interpreting raw query results. Just ask, and know.
           </p>
-          <p style={{fontSize:'16px', color:'var(--ins-text-body)', lineHeight:1.75}}>
+          <p className="ins-text-body-lg">
             Trust matters even more. Every insight Insightis delivers is backed by your certified data model — not AI guesswork. You always know where the answer came from, what data it's based on, and how confident you should be. That's what precision analytics means to us.
           </p>
         </div>
@@ -236,7 +236,7 @@ function OurStory() {
                 <div style={{flex:1, paddingLeft:'40px'}}>
                   <div className="md:hidden" style={{fontSize: m.year === '∞' ? '24px' : '12px', fontWeight:600, color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace', marginBottom:'6px', letterSpacing:'.04em', lineHeight:1}}>{m.year}</div>
                   <h3 style={{fontSize:'18px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px', letterSpacing:'-.01em'}}>{m.title}</h3>
-                  <p style={{fontSize:'15px', color:'var(--ins-text-body)', lineHeight:1.7, maxWidth:'680px'}}>{m.desc}</p>
+                  <p className="ins-text-body-lg" style={{maxWidth:'680px'}}>{m.desc}</p>
                 </div>
               </div>
             ))}

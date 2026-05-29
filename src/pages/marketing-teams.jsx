@@ -424,13 +424,8 @@ function Hero() {
                 <span style={{color:'var(--ins-text-highlight)'}}>CMOs &amp; Marketers</span>
               </h1>
 
-              <p className="fu2" style={{
-                fontSize:'clamp(16px,1.25vw,19px)',
-                color:'var(--ins-text-body)',
-                lineHeight:1.6,
-                marginBottom:'36px',
-                maxWidth:'520px',
-              }}>
+              <p className="fu2 ins-text-lede" style={{marginBottom:'36px',
+                maxWidth:'520px'}}>
                 Live answers about every campaign, channel, and dollar of spend. Ask in plain English — ROAS, CAC, attribution, funnel — and stop the Monday-morning data dumps.
               </p>
 
@@ -492,7 +487,7 @@ function PainPoints() {
           <h2 className="ins-text-display" style={{marginBottom:'14px',textWrap:'balance'}}>
             Marketing decisions wait on the data team
           </h2>
-          <p style={{fontSize:'16px',color:'var(--ins-text-body)',maxWidth:'480px',margin:'0 auto',lineHeight:1.65}}>
+          <p className="ins-text-body-lg" style={{maxWidth:'480px',margin:'0 auto'}}>
             Sound familiar? These are the problems Insightis eliminates.
           </p>
         </div>
@@ -661,7 +656,7 @@ function FAQ() {
           <h2 className="ins-text-display mb-3">
             Questions every CMO asks first
           </h2>
-          <p style={{fontSize:'16px',color:'var(--ins-text-body)',maxWidth:'560px',margin:'0 auto',lineHeight:1.65}}>
+          <p className="ins-text-body-lg" style={{maxWidth:'560px',margin:'0 auto'}}>
             What attribution, integrations, and time-to-value look like once Insightis is in the marketing stack.
           </p>
         </div>

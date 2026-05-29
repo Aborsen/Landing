@@ -19,7 +19,7 @@ function ContactHero() {
         <h1 className="fu0" style={{fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'20px'}}>
           Let's talk.
         </h1>
-        <p className="fu1" style={{fontSize:'17px', color:'rgba(255,255,255,.5)', maxWidth:'520px', margin:'0 auto', lineHeight:1.65}}>
+        <p className="fu1 ins-text-lede" style={{maxWidth:'520px', margin:'0 auto'}}>
           Whether you have a question, need a demo, or want to discuss Enterprise pricing — we'd love to hear from you.
         </p>
       </div>
@@ -45,11 +45,11 @@ function ContactOptions({ onOpenDemo, onOpenSupport }) {
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             </div>
             <h3 style={{fontSize:'18px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'10px'}}>Talk to Sales</h3>
-            <p style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.65, marginBottom:'20px'}}>Get a personalized demo of Insightis for your team. We'll show you exactly how it works with your data sources.</p>
+            <p className="ins-text-body" style={{marginBottom:'20px'}}>Get a personalized demo of Insightis for your team. We'll show you exactly how it works with your data sources.</p>
             <button onClick={onOpenDemo} style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'13px', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'999px', border:'none', cursor:'pointer', fontFamily:'Geist,sans-serif'}}>
               Book a Demo
             </button>
-            <p style={{fontSize:'11px', color:'var(--ins-text-disabled)', fontFamily:'Geist Mono,monospace', marginTop:'14px'}}>Typically responds within 2 hours</p>
+            <p className="ins-text-body-xs ins-text--muted ins-text--mono" style={{marginTop:'14px'}}>Typically responds within 2 hours</p>
           </div>
 
           {/* Get Support */}
@@ -61,13 +61,13 @@ function ContactOptions({ onOpenDemo, onOpenSupport }) {
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
             </div>
             <h3 style={{fontSize:'18px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'10px'}}>Get Support</h3>
-            <p style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.65, marginBottom:'20px'}}>Already using Insightis? Our support team can help with setup, integrations, troubleshooting, and best practices.</p>
+            <p className="ins-text-body" style={{marginBottom:'20px'}}>Already using Insightis? Our support team can help with setup, integrations, troubleshooting, and best practices.</p>
             <button onClick={onOpenSupport} style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'13px', fontWeight:600, color:'var(--ins-color-gray-100)', background:'transparent', borderRadius:'999px', border:'1px solid rgba(255,255,255,.12)', cursor:'pointer', fontFamily:'Geist,sans-serif', transition:'all .15s'}}
               onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.4)';e.currentTarget.style.color='var(--ins-text-highlight)';}}
               onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.12)';e.currentTarget.style.color='var(--ins-color-gray-100)';}}>
               Open Support Ticket
             </button>
-            <p style={{fontSize:'11px', color:'var(--ins-text-disabled)', fontFamily:'Geist Mono,monospace', marginTop:'14px'}}>Pro & Team: priority support included</p>
+            <p className="ins-text-body-xs ins-text--muted ins-text--mono" style={{marginTop:'14px'}}>Pro & Team: priority support included</p>
           </div>
 
           {/* Help Center */}
@@ -79,11 +79,11 @@ function ContactOptions({ onOpenDemo, onOpenSupport }) {
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
             </div>
             <h3 style={{fontSize:'18px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'10px'}}>Help Center</h3>
-            <p style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.65, marginBottom:'20px'}}>Browse our knowledge base for guides, FAQs, troubleshooting tips, and everything you need to get the most out of Insightis.</p>
+            <p className="ins-text-body" style={{marginBottom:'20px'}}>Browse our knowledge base for guides, FAQs, troubleshooting tips, and everything you need to get the most out of Insightis.</p>
             <a href="../Resources/Contact Support" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'13px', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'999px', border:'none', cursor:'pointer', fontFamily:'Geist,sans-serif', textDecoration:'none'}}>
               Visit Help Center
             </a>
-            <p style={{fontSize:'11px', color:'var(--ins-text-disabled)', fontFamily:'Geist Mono,monospace', marginTop:'14px'}}>Guides, FAQs & troubleshooting</p>
+            <p className="ins-text-body-xs ins-text--muted ins-text--mono" style={{marginTop:'14px'}}>Guides, FAQs & troubleshooting</p>
           </div>
 
         </div>
@@ -145,7 +145,7 @@ function ModalForm({ open, onClose, type }) {
           <h2 style={{fontSize:'24px', fontWeight:500, color:'var(--ins-text-heading)', letterSpacing:'-.02em'}}>
             {isDemo ? 'Book a personalized demo' : 'Submit a support ticket'}
           </h2>
-          <p style={{fontSize:'14px', color:'rgba(255,255,255,.45)', marginTop:'8px', lineHeight:1.6}}>
+          <p className="ins-text-body ins-text--muted" style={{marginTop:'8px'}}>
             {isDemo ? 'Tell us about your team and we\'ll tailor the demo to your needs.' : 'Describe your issue and our team will get back to you as soon as possible.'}
           </p>
         </div>
@@ -222,7 +222,7 @@ function ModalForm({ open, onClose, type }) {
             {isDemo ? 'Request Demo' : 'Submit Ticket'}
           </Button>
           {submitted && (
-            <p style={{textAlign:'center', fontSize:'14px', color:'var(--ins-status-success-fg)', fontWeight:500}}>
+            <p className="ins-text-body ins-text--success" style={{textAlign:'center', fontWeight:500}}>
               {isDemo ? 'Demo request sent! We\'ll be in touch shortly.' : 'Ticket submitted! Our team will respond soon.'}
             </p>
           )}
@@ -280,7 +280,7 @@ function QuickLinks() {
                 {l.icon}
               </div>
               <h3 style={{fontSize:'16px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{l.title}</h3>
-              <p style={{fontSize:'13px', color:'var(--ins-text-body)', lineHeight:1.6}}>{l.desc}</p>
+              <p className="ins-text-body">{l.desc}</p>
             </a>
           ))}
         </div>
@@ -329,9 +329,9 @@ function OurOffices() {
               <div style={{width:'36px', height:'36px', borderRadius:'50%', overflow:'hidden', border:'1px solid rgba(255,255,255,.1)', marginBottom:'14px', flexShrink:0}}>
                 <img src={`https://flagcdn.com/w80/${o.code}.png`} alt={o.country} style={{width:'100%', height:'100%', objectFit:'cover'}} />
               </div>
-              <p style={{fontSize:'14px', fontWeight:600, color:'var(--ins-color-gray-100)', marginBottom:'10px'}}>{o.country}</p>
+              <p className="ins-text-body" style={{fontWeight:600, marginBottom:'10px'}}>{o.country}</p>
               {o.lines.map((line, j) => (
-                <p key={j} style={{fontSize:'13px', color:'var(--ins-text-disabled)', lineHeight:1.7, fontFamily:'Geist Mono,monospace'}}>{line}</p>
+                <p className="ins-text-body-sm ins-text--muted ins-text--mono" key={j}>{line}</p>
               ))}
             </div>
           ))}
@@ -362,7 +362,7 @@ function CtaBanner() {
             <h3 style={{fontSize:'clamp(18px,2.5vw,26px)', fontWeight:500, color:'var(--ins-text-heading)', letterSpacing:'-.02em', lineHeight:1.3, marginBottom:'6px'}}>
               Still have questions?
             </h3>
-            <p style={{fontSize:'13px', color:'rgba(255,255,255,.4)', fontFamily:'Geist Mono,monospace'}}>Drop your email — we'll get back to you ASAP.</p>
+            <p className="ins-text-body-sm ins-text--muted ins-text--mono">Drop your email — we'll get back to you ASAP.</p>
           </div>
           {!submitted ? (
             <form onSubmit={handleSubmit} style={{display:'flex', alignItems:'center', flex:'1 1 400px', maxWidth:'460px', background:'rgba(13,13,26,1)', border:'1px solid rgba(46,46,64,1)', borderRadius:'12px', overflow:'hidden', transition:'border-color .15s'}}
@@ -385,7 +385,7 @@ function CtaBanner() {
           ) : (
             <div style={{display:'flex', alignItems:'center', gap:'8px'}}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ins-status-success-fg)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              <p style={{fontSize:'14px', color:'var(--ins-status-success-fg)', fontWeight:500}}>Thanks! We'll be in touch shortly.</p>
+              <p className="ins-text-body ins-text--success" style={{fontWeight:500}}>Thanks! We'll be in touch shortly.</p>
             </div>
           )}
         </div>

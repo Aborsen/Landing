@@ -57,7 +57,7 @@ function Hero() {
               <span style={{color:'var(--ins-text-highlight)'}}>across spreadsheets.</span>
             </h1>
 
-            <p className="fu2" style={{fontSize:'clamp(16px,1.2vw,18px)',color:'rgba(255,255,255,.65)',lineHeight:1.65,marginBottom:'28px',maxWidth:'480px'}}>
+            <p className="fu2 ins-text-lede" style={{marginBottom:'28px',maxWidth:'480px'}}>
               Stop reconciling AP, HR, and billing tools by hand. Ask any cost question in plain English — Insightis consolidates spend instantly.
             </p>
 
@@ -136,7 +136,7 @@ function Hero() {
               <h3 style={{fontSize:'17px',fontWeight:500,color:'var(--ins-text-heading-soft)',marginBottom:'6px',letterSpacing:'-.015em',lineHeight:1.35}}>
                 Cloud infra running <span style={{color:'var(--ins-status-error-fg)'}}>+41%</span> over budget
               </h3>
-              <p style={{fontSize:'12.5px',color:'var(--ins-text-body)',lineHeight:1.6,marginBottom:'16px'}}>
+              <p className="ins-text-body-sm" style={{marginBottom:'16px'}}>
                 Reconciled across <span style={{color:'var(--ins-status-warning-fg)',fontFamily:'Geist Mono,monospace',fontSize:'11.5px'}}>AP · HR · Billing</span> in real time. Two categories tracking past plan; rest on or under.
               </p>
 
@@ -815,7 +815,7 @@ function FeatureSpotlights() {
                   <h3 className="ins-text-h2" style={{marginBottom:'18px'}}>
                     {s.title}
                   </h3>
-                  <p style={{fontSize:'16px',color:'var(--ins-text-body)',lineHeight:1.65,marginBottom:'22px'}}>
+                  <p className="ins-text-body-lg" style={{marginBottom:'22px'}}>
                     {s.body}
                   </p>
                   <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px'}}>
@@ -896,7 +896,7 @@ function UseCases() {
               <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'8px'}}>
                 See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own ledger</span>.
               </h3>
-              <p style={{fontSize:'14px',color:'var(--ins-text-body)',lineHeight:1.6}}>
+              <p className="ins-text-body">
                 Connect QuickBooks or Xero and ask Insightis the cost question that always takes too long to answer.
               </p>
             </div>
@@ -931,7 +931,7 @@ function UseCases() {
                 {c.icon}
               </div>
               <h3 style={{fontSize:'15px',fontWeight:600,color:'var(--ins-text-heading-soft)',marginBottom:'6px'}}>{c.title}</h3>
-              <p style={{fontSize:'13.5px',color:'var(--ins-text-body)',lineHeight:1.6}}>{c.desc}</p>
+              <p className="ins-text-body">{c.desc}</p>
             </div>
           ))}
         </div>

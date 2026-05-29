@@ -584,10 +584,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
       </div>
 
       {/* Description */}
-      <p style={{
-        fontSize:'16px', color:'var(--ins-text-body)', lineHeight:1.75,
-        marginBottom:'36px',
-      }}>
+      <p className="ins-text-body-lg" style={{marginBottom:'36px'}}>
         {page.description}
       </p>
 
@@ -657,7 +654,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
                 dangerouslySetInnerHTML={{ __html: section.html }}
               />
             ) : (
-              <p style={{ fontSize:'15px', color:'var(--ins-text-body)', lineHeight:1.8 }}>
+              <p className="ins-text-body-lg">
                 {section.content}
               </p>
             )}

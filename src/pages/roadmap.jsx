@@ -37,7 +37,7 @@ function TreeHero() {
           Our product roadmap.
         </h1>
 
-        <p className="fu2" style={{fontSize:'clamp(15px,1.2vw,17px)', color:'var(--ins-text-body)', lineHeight:1.6, maxWidth:560, margin:'0 auto 52px'}}>
+        <p className="fu2 ins-text-lede" style={{maxWidth:560, margin:'0 auto 52px'}}>
           Where we're headed. The features and improvements ahead, and what we've already shipped.
         </p>
 
@@ -345,7 +345,7 @@ function RoadmapSections() {
           <h2 style={{fontSize:'clamp(28px,3.5vw,42px)', fontWeight:600, letterSpacing:'-.03em', lineHeight:1.15, color:'var(--ins-text-heading-soft)', marginBottom:12}}>
             What's on deck.
           </h2>
-          <p style={{fontSize:'clamp(14px,1.1vw,16px)', color:'var(--ins-text-body)', lineHeight:1.6, maxWidth:520, margin:0}}>
+          <p className="ins-text-body-lg" style={{maxWidth:520, margin:0}}>
             A curated look at what we're building. Curated by hand — not auto-generated.
           </p>
         </div>
@@ -366,7 +366,7 @@ function RoadmapSections() {
                 {col.items.map((item, i) => (
                   <div key={i} className="roadmap-card" style={{'--card-glow': col.glow}}>
                     <h3 style={{fontSize:14, fontWeight:500, color:'var(--ins-text-heading-soft)', lineHeight:1.4, marginBottom:6}}>{item.title}</h3>
-                    <p style={{fontSize:12, color:'var(--ins-text-body)', lineHeight:1.55, margin:0}}>{item.desc}</p>
+                    <p className="ins-text-body-sm" style={{margin:0}}>{item.desc}</p>
                   </div>
                 ))}
               </div>
@@ -468,7 +468,7 @@ function SuggestCTA() {
               <h3 style={{fontSize:'clamp(18px,2.5vw,24px)', fontWeight:500, color:'var(--ins-text-heading-soft)', letterSpacing:'-.02em', marginBottom:8}}>
                 Missing something? <span style={{color:'var(--ins-button-primary-bg)'}}>Suggest a feature.</span>
               </h3>
-              <p style={{fontSize:14, color:'var(--ins-text-body)', lineHeight:1.6}}>
+              <p className="ins-text-body">
                 Tell us what you'd like to see in Insightis. We review every suggestion.
               </p>
             </div>
@@ -514,7 +514,7 @@ function SuggestCTA() {
             <div style={{padding:'22px 28px 0', display:'flex', alignItems:'flex-start', justifyContent:'space-between'}}>
               <div>
                 <h2 style={{fontSize:18, fontWeight:600, color:'var(--ins-text-heading-soft)', letterSpacing:'-.02em', margin:0}}>Request a Feature</h2>
-                <p style={{fontSize:13, color:'var(--ins-text-body)', margin:'4px 0 0'}}>Describe what you need — we read every request.</p>
+                <p className="ins-text-body" style={{margin:'4px 0 0'}}>Describe what you need — we read every request.</p>
               </div>
               <button onClick={() => { if (!sent) setOpen(false); }} style={{
                 background:'none', border:'none', cursor:'pointer',
@@ -540,7 +540,7 @@ function SuggestCTA() {
                   <CheckIcon size={24} color="var(--ins-status-success-fg)" />
                 </div>
                 <h3 style={{fontSize:20, fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:8, letterSpacing:'-.02em'}}>Thanks for your feedback!</h3>
-                <p style={{fontSize:14, color:'var(--ins-text-body)', lineHeight:1.6, maxWidth:340, margin:'0 auto'}}>
+                <p className="ins-text-body" style={{maxWidth:340, margin:'0 auto'}}>
                   We've received your feature request and will review it shortly.
                 </p>
               </div>
@@ -589,7 +589,7 @@ function SuggestCTA() {
                     }}
                   >
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5E8290" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{marginBottom:6}}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-                    <p style={{fontSize:12, color:'var(--ins-text-body)', margin:0}}>
+                    <p className="ins-text-body-sm" style={{margin:0}}>
                       Drag & drop files or <span style={{color:'var(--ins-text-highlight)'}}>browse</span>
                     </p>
                     <p style={{fontSize:11, color:'#5E8290', margin:'4px 0 0'}}>Images, PDFs, or any file — up to 20 MB each</p>

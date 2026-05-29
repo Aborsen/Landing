@@ -778,7 +778,7 @@ function QuestionsGallery() {
 
   const renderReply = (reply) => {
     if (reply.type === 'paragraph') {
-      return <p style={{fontSize:'16px',color:'var(--ins-text-body)',lineHeight:2.0}}>{reply.text}</p>;
+      return <p className="ins-text-body-lg">{reply.text}</p>;
     }
     if (reply.chart === 'horizontalBar') {
       return <HorizontalBarChart bars={reply.chartData}/>;
@@ -1021,7 +1021,7 @@ function AccuracyComparison() {
               query="What's our churn rate?"
               response={<span style={{color:'#505068'}}>The average SaaS churn rate is typically between <span style={{color:'var(--ins-status-error-fg)'}}>3–8% monthly</span>, depending on your segment and pricing tier. Companies in the SMB market typically see higher rates. This estimate may or may not reflect your situation.</span>}
             />
-            <p style={{fontSize:'12px',color:'var(--ins-text-error)',fontStyle:'italic'}}>Searches the internet. Returns industry averages. Not your numbers.</p>
+            <p className="ins-text-body-sm ins-text--italic" style={{color:'var(--ins-text-error)'}}>Searches the internet. Returns industry averages. Not your numbers.</p>
           </Card>
 
           {/* Insightis */}
@@ -1033,7 +1033,7 @@ function AccuracyComparison() {
               query="What's our churn rate?"
               response={<>Your churn rate in March was <CodeChip.Highlight>2.1%</CodeChip.Highlight> — down from 2.8% in February. Main driver: reduced churn in Starter plan (↓ 0.9pp). 3 accounts churned vs 5 last month.</>}
             />
-            <p style={{fontSize:'12px',color:'var(--ins-text-highlight-muted)',fontStyle:'italic'}}>Queries your Stripe + PostgreSQL through Semantic Layer. Always your numbers.</p>
+            <p className="ins-text-body-sm ins-text--italic" style={{color:'var(--ins-text-highlight-muted)'}}>Queries your Stripe + PostgreSQL through Semantic Layer. Always your numbers.</p>
           </Card>
         </div>
 
@@ -1398,7 +1398,7 @@ function Hero() {
             <span style={{color:'var(--ins-text-highlight)'}}>Get answers in</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>seconds.</span>
           </h1>
-          <p style={{fontSize:'clamp(16px,1.25vw,19px)',color:'var(--ins-text-body)',lineHeight:1.6,marginBottom:'36px',maxWidth:'520px'}}>
+          <p className="ins-text-lede" style={{marginBottom:'36px',maxWidth:'520px'}}>
             Type any business question in plain English. Insightis queries your real data — no SQL, no analyst, no waiting.
           </p>
           <div style={{display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap',marginBottom:'24px'}}>

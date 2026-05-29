@@ -42,7 +42,7 @@ function TermsContent() {
       <div style={{padding:'120px 0 60px'}}>
         <div style={{maxWidth:'800px', margin:'0 auto', padding:'0 24px', textAlign:'center'}}>
           <h1 className="fu1" style={{fontSize:'clamp(32px,5vw,48px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'16px', color:'var(--ins-text-heading-soft)'}}>Terms of Service</h1>
-          <p className="fu2" style={{fontSize:'14px', color:'rgba(255,255,255,.35)', fontFamily:'Geist Mono, monospace', marginBottom:'20px'}}>Effective Date: April 6, 2026</p>
+          <p className="fu2 ins-text-body ins-text--muted ins-text--mono" style={{marginBottom:'20px'}}>Effective Date: April 6, 2026</p>
           <p className="fu3" style={pStyle}>These Terms of Service govern your access to and use of the Insightis platform, an AI-powered analytics workspace developed and operated by Devart. By accessing or using Insightis, you agree to be bound by these Terms. Please read them carefully before using the Service.</p>
         </div>
       </div>
@@ -52,7 +52,7 @@ function TermsContent() {
 
         {/* Sticky TOC */}
         <div className="hidden md:block" style={{ width: '200px', flexShrink: 0, position: 'sticky', top: '90px' }}>
-          <p style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--ins-text-disabled)', marginBottom: '16px' }}>On this page</p>
+          <p className="ins-text-overline" style={{marginBottom: '16px'}}>On this page</p>
           <nav style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
             {sections.map(s => (
               <a key={s.id} href={`#${s.id}`} style={{ fontSize: '13px', color: activeSection === s.id ? 'var(--ins-text-highlight)' : 'rgba(255,255,255,.4)', padding: '5px 0 5px 12px', borderLeft: `2px solid ${activeSection === s.id ? 'var(--ins-button-primary-bg)' : 'rgba(255,255,255,.08)'}`, transition: 'all .15s', textDecoration: 'none', display: 'block', lineHeight: 1.5 }}>
@@ -212,7 +212,7 @@ function TermsContent() {
           <h2 style={h2Style}>14. Contact Us</h2>
           <p style={pStyle}>If you have any questions, concerns, or requests regarding these Terms of Service, please contact us at:</p>
           <div style={{background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)', borderRadius:'12px', padding:'20px 24px', marginTop:'8px'}}>
-            <p style={{fontSize:'15px', color:'rgba(255,255,255,.55)', lineHeight:1.8, margin:0}}>
+            <p className="ins-text-body-lg ins-text--muted" style={{margin:0}}>
               <strong style={{color:'var(--ins-text-body)'}}>Insightis Legal Team</strong><br/>
               Email: <a href="mailto:legal@insightis.ai" style={{color:'var(--ins-text-highlight)', textDecoration:'none', borderBottom:'1px solid rgba(14,196,193,.3)'}}>legal@insightis.ai</a><br/>
               Operated by Devart, Czech Republic

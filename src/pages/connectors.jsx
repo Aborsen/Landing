@@ -402,7 +402,7 @@ function ConnectorsHero() {
             <span style={{color:'var(--ins-text-highlight)'}}>Connect</span>{' '}
             <span style={{color:'var(--ins-text-heading-soft)'}}>to any source.</span>
           </h1>
-          <p className="fu2" style={{fontSize:'17px', color:'var(--ins-text-inactive)', lineHeight:1.6, maxWidth:'520px', marginBottom:'30px'}}>
+          <p className="fu2 ins-text-lede ins-text--muted" style={{maxWidth:'520px', marginBottom:'30px'}}>
             Explore 200+ prebuilt connectors, create custom ones with REST and GraphQL connectors, or request the data source you're missing.
           </p>
           <Button as="a" href="/auth/sign-up/" variant="primary" size="md" iconEnd={<ArrowRightIcon />} className="fu3">
@@ -461,9 +461,7 @@ function ConnectorCategorySidebar({ active, setActive, counts, onRequestConnecto
         marginTop:'20px', padding:'16px',
         borderTop:'1px solid rgba(255,255,255,0.055)',
       }}>
-        <p style={{
-          fontSize:'11.5px', color:'var(--ins-text-body)', lineHeight:1.5, marginBottom:'10px',
-        }}>
+        <p className="ins-text-body-sm" style={{marginBottom:'10px'}}>
           Don't see what you need?
         </p>
         <button
@@ -623,7 +621,7 @@ function App() {
               <h3 style={{fontSize:'16px', fontWeight:500, color:'var(--ins-text-heading-soft)', marginBottom:'4px', letterSpacing:'-.01em'}}>
                 Can't find your tool?
               </h3>
-              <p style={{fontSize:'13.5px', color:'var(--ins-text-body)', lineHeight:1.5}}>
+              <p className="ins-text-body">
                 Tell us what you use and we'll prioritize the connector.
               </p>
             </div>

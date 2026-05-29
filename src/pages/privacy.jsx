@@ -43,10 +43,10 @@ function PrivacyContent() {
           <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)', fontSize: 'clamp(32px,5vw,48px)', fontWeight: 500, letterSpacing: '-.02em', lineHeight: 1.15 }}>
             Privacy Policy
           </h1>
-          <p className="fu2" style={{ fontSize: '14px', color: 'rgba(255,255,255,.4)', marginTop: '12px' }}>
+          <p className="fu2 ins-text-body ins-text--muted" style={{marginTop: '12px'}}>
             Effective Date: April 6, 2026
           </p>
-          <p className="fu3" style={{ fontSize: '15px', color: 'rgba(255,255,255,.55)', lineHeight: 1.8, marginTop: '32px' }}>
+          <p className="fu3 ins-text-body-lg ins-text--muted" style={{marginTop: '32px'}}>
             At Insightis, a product by Devart, we are committed to protecting your privacy and ensuring the security of the personal information you share with us. This Privacy Policy describes how we collect, use, disclose, and safeguard your data when you use the Insightis AI analytics workspace, our website, and related services.
           </p>
         </div>
@@ -57,7 +57,7 @@ function PrivacyContent() {
 
         {/* Sticky TOC */}
         <div className="hidden md:block" style={{ width: '200px', flexShrink: 0, position: 'sticky', top: '90px' }}>
-          <p style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--ins-text-disabled)', marginBottom: '16px' }}>On this page</p>
+          <p className="ins-text-overline" style={{marginBottom: '16px'}}>On this page</p>
           <nav style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
             {sections.map(s => (
               <a key={s.id} href={`#${s.id}`} style={{ fontSize: '13px', color: activeSection === s.id ? 'var(--ins-text-highlight)' : 'rgba(255,255,255,.4)', padding: '5px 0 5px 12px', borderLeft: `2px solid ${activeSection === s.id ? 'var(--ins-button-primary-bg)' : 'rgba(255,255,255,.08)'}`, transition: 'all .15s', textDecoration: 'none', display: 'block', lineHeight: 1.5 }}>

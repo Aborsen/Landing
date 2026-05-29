@@ -60,7 +60,7 @@ function Hero() {
               <span style={{color:'var(--ins-text-highlight)'}}>repeat questions.</span>
             </h1>
 
-            <p className="fu2" style={{fontSize:'clamp(16px,1.2vw,18px)',color:'rgba(255,255,255,.65)',lineHeight:1.65,marginBottom:'28px',maxWidth:'480px'}}>
+            <p className="fu2 ins-text-lede" style={{marginBottom:'28px',maxWidth:'480px'}}>
               Empower every team to self-serve their data. Insightis sits on top of your Semantic Layer and answers questions in plain English — so you focus on analysis, not reporting.
             </p>
 
@@ -139,7 +139,7 @@ function Hero() {
               <h3 style={{fontSize:'17px',fontWeight:500,color:'var(--ins-text-heading-soft)',marginBottom:'8px',letterSpacing:'-.015em',lineHeight:1.35}}>
                 Paid acquisition decelerating mid-funnel
               </h3>
-              <p style={{fontSize:'12.5px',color:'var(--ins-text-body)',lineHeight:1.6,marginBottom:'18px'}}>
+              <p className="ins-text-body-sm" style={{marginBottom:'18px'}}>
                 <span style={{color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',fontSize:'11.5px'}}>checkout_complete</span> dropped <span style={{color:'var(--ins-status-error-fg)',fontWeight:500}}>−41%</span> between 14:00–16:00 UTC. Linked to a Stripe webhook delay. Resolved at 18:30 UTC.
               </p>
 
@@ -299,7 +299,7 @@ function PainPoints() {
           <h2 className="ins-text-display mb-3">
             Data teams spend 80% of time on reporting
           </h2>
-          <p style={{fontSize:'16px',color:'var(--ins-text-body)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
+          <p className="ins-text-body-lg" style={{maxWidth:'460px',margin:'0 auto'}}>
             Sound familiar? These are the problems Insightis eliminates.
           </p>
         </div>
@@ -524,7 +524,7 @@ function Metrics() {
           <h2 className="ins-text-display mb-3">
             Every KPI a data team monitors
           </h2>
-          <p style={{fontSize:'16px',color:'var(--ins-text-body)',maxWidth:'460px',margin:'0 auto',lineHeight:1.65}}>
+          <p className="ins-text-body-lg" style={{maxWidth:'460px',margin:'0 auto'}}>
             Ask about any of these — or any metric you define — in plain English.
           </p>
         </div>
@@ -535,7 +535,7 @@ function Metrics() {
           ))}
         </div>
 
-        <p style={{textAlign:'center',fontSize:'13px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',fontStyle:'italic'}}>
+        <p className="ins-text-body-sm ins-text--muted ins-text--mono ins-text--italic" style={{textAlign:'center'}}>
           These are just examples — ask about any metric in plain English.
         </p>
       </div>
@@ -629,7 +629,7 @@ function Positioning() {
         }}>
           Stop being a <span style={{color:'var(--ins-text-highlight)'}}>reporting service.</span> Start doing <span style={{color:'var(--ins-text-highlight)'}}>real analysis.</span>
         </h2>
-        <p style={{fontSize:'17px',color:'rgba(255,255,255,.6)',lineHeight:1.65,marginBottom:'28px'}}>
+        <p className="ins-text-lede" style={{marginBottom:'28px'}}>
           Sound familiar? These are the problems Insightis eliminates.
         </p>
         <a href="#spotlights" style={{
@@ -1023,7 +1023,7 @@ function FeatureSpotlights() {
                   <h3 className="ins-text-h2" style={{marginBottom:'18px'}}>
                     {s.title}
                   </h3>
-                  <p style={{fontSize:'16px',color:'var(--ins-text-body)',lineHeight:1.65,marginBottom:'22px'}}>
+                  <p className="ins-text-body-lg" style={{marginBottom:'22px'}}>
                     {s.body}
                   </p>
                   <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px'}}>
@@ -1104,7 +1104,7 @@ function UseCases() {
               <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'8px'}}>
                 See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own data</span>.
               </h3>
-              <p style={{fontSize:'14px',color:'var(--ins-text-body)',lineHeight:1.6}}>
+              <p className="ins-text-body">
                 Connect your warehouse and ask Insightis a real question your team gets every week.
               </p>
             </div>
@@ -1139,7 +1139,7 @@ function UseCases() {
                 {c.icon}
               </div>
               <h3 style={{fontSize:'15px',fontWeight:600,color:'var(--ins-text-heading-soft)',marginBottom:'6px'}}>{c.title}</h3>
-              <p style={{fontSize:'13.5px',color:'var(--ins-text-body)',lineHeight:1.6}}>{c.desc}</p>
+              <p className="ins-text-body">{c.desc}</p>
             </div>
           ))}
         </div>

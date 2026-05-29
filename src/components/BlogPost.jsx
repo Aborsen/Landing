@@ -188,7 +188,7 @@ function TableOfContents({ items }) {
         {/* On this page (TOC) */}
         {items.length > 0 && (
           <div>
-            <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-body)', marginBottom: '12px' }}>On this page</p>
+            <p className="ins-text-overline" style={{marginBottom: '12px'}}>On this page</p>
             {/* src/app.css:119 has a global `nav { display:flex; padding:0 48px;
                 height:58px; ... }` rule originally for the site-wide top nav.
                 Inside this TOC sidebar `<nav>` it nukes layout — the 96px
@@ -242,7 +242,7 @@ function TableOfContents({ items }) {
 
         {/* Topics */}
         <div>
-          <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-body)', marginBottom: '12px' }}>Topics</p>
+          <p className="ins-text-overline" style={{marginBottom: '12px'}}>Topics</p>
           <ul style={{
             listStyle: 'none',
             padding: 0,
@@ -284,7 +284,7 @@ function TableOfContents({ items }) {
 
         {/* Social */}
         <div>
-          <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-body)', marginBottom: '12px' }}>Social</p>
+          <p className="ins-text-overline" style={{marginBottom: '12px'}}>Social</p>
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
             {socials.map(({ label, href, Icon }) => (
               <a
@@ -343,7 +343,7 @@ function TopicsSidebar({ currentSlug }) {
       }}>
         {/* Topics */}
         <div>
-          <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-body)', marginBottom: '12px' }}>Topics</p>
+          <p className="ins-text-overline" style={{marginBottom: '12px'}}>Topics</p>
           <ul style={{
             listStyle: 'none',
             padding: 0,
@@ -385,7 +385,7 @@ function TopicsSidebar({ currentSlug }) {
 
         {/* Social */}
         <div style={{ marginTop: '32px' }}>
-          <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ins-text-body)', marginBottom: '12px' }}>Social</p>
+          <p className="ins-text-overline" style={{marginBottom: '12px'}}>Social</p>
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
             {socials.map(({ label, href, Icon }) => (
               <a
@@ -486,7 +486,7 @@ function CTABanner() {
             letterSpacing: '-0.02em',
             marginBottom: '8px',
           }}>Ready to stop exporting CSVs?</h3>
-          <p style={{ fontSize: '14px', color: 'var(--ins-text-body)', lineHeight: 1.55, maxWidth: '420px' }}>
+          <p className="ins-text-body" style={{maxWidth: '420px'}}>
             Insightis connects your stack and gives every team instant, governed answers — no SQL, no analyst queue. Free to start.
           </p>
         </div>
@@ -864,13 +864,8 @@ export default function BlogPost({ markdown, slug }) {
 
             {/* Description */}
             {meta.description && (
-              <p style={{
-                fontSize: '17px',
-                lineHeight: 1.55,
-                color: 'var(--ins-text-body)',
-                marginBottom: '24px',
-                textWrap: 'pretty',
-              }}>{meta.description}</p>
+              <p className="ins-text-lede" style={{marginBottom: '24px',
+                textWrap: 'pretty'}}>{meta.description}</p>
             )}
 
             {/* Tags — clickable, route to /blog/?tag=... to filter the index */}

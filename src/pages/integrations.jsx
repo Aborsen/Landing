@@ -363,7 +363,7 @@ function Hero() {
             <span style={{color:'var(--ins-text-highlight)'}}>Understand</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>anything.</span>
           </h1>
-          <p style={{fontSize:'clamp(16px,1.25vw,19px)',color:'var(--ins-text-body)',lineHeight:1.6,marginBottom:'36px',maxWidth:'520px'}}>
+          <p className="ins-text-lede" style={{marginBottom:'36px',maxWidth:'520px'}}>
             Plug in your CRM, warehouse, ads and product tools. Query every source in plain English — no SQL, no waiting.
           </p>
           <div style={{display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap',marginBottom:'24px'}}>
@@ -699,7 +699,7 @@ function IntegrationImpact() {
                 </div>
               }
             />
-            <p style={{fontSize:'12px',color:'var(--ins-text-error)',fontStyle:'italic'}}>Exports, manual joins, copy-pasted dashboards. Stale by the time they land.</p>
+            <p className="ins-text-body-sm ins-text--italic" style={{color:'var(--ins-text-error)'}}>Exports, manual joins, copy-pasted dashboards. Stale by the time they land.</p>
           </Card>
 
           {/* Insightis */}
@@ -729,7 +729,7 @@ function IntegrationImpact() {
                 </>
               }
             />
-            <p style={{fontSize:'12px',color:'var(--ins-text-highlight-muted)',fontStyle:'italic'}}>Direct connectors + Semantic Layer. Real numbers, refreshed continuously.</p>
+            <p className="ins-text-body-sm ins-text--italic" style={{color:'var(--ins-text-highlight-muted)'}}>Direct connectors + Semantic Layer. Real numbers, refreshed continuously.</p>
           </Card>
         </div>
 

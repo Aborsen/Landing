@@ -364,13 +364,8 @@ function Hero() {
                 <span style={{color:'var(--ins-text-highlight)'}}>RevOps &amp; BizOps</span>
               </h1>
 
-              <p className="fu2" style={{
-                fontSize:'clamp(16px,1.25vw,19px)',
-                color:'var(--ins-text-body)',
-                lineHeight:1.6,
-                marginBottom:'36px',
-                maxWidth:'520px',
-              }}>
+              <p className="fu2 ins-text-lede" style={{marginBottom:'36px',
+                maxWidth:'520px'}}>
                 Ask revenue questions in plain English. Insightis answers instantly from your CRM, billing, and product data — no SQL, no dashboards to build.
               </p>
 
@@ -432,7 +427,7 @@ function PainPoints() {
           <h2 className="ins-text-display" style={{marginBottom:'14px',textWrap:'balance'}}>
             RevOps is drowning in manual work
           </h2>
-          <p style={{fontSize:'16px',color:'var(--ins-text-body)',maxWidth:'480px',margin:'0 auto',lineHeight:1.65}}>
+          <p className="ins-text-body-lg" style={{maxWidth:'480px',margin:'0 auto'}}>
             Sound familiar? These are the problems Insightis eliminates.
           </p>
         </div>
@@ -601,7 +596,7 @@ function FAQ() {
           <h2 className="ins-text-display mb-3">
             Common questions from RevOps leads
           </h2>
-          <p style={{fontSize:'16px',color:'var(--ins-text-body)',maxWidth:'560px',margin:'0 auto',lineHeight:1.65}}>
+          <p className="ins-text-body-lg" style={{maxWidth:'560px',margin:'0 auto'}}>
             Everything you need to know before plugging Insightis into your revenue stack.
           </p>
         </div>

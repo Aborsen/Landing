@@ -355,7 +355,7 @@ function Hero() {
             <span style={{color:'var(--ins-text-highlight)'}}>Every team's</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>numbers.</span>
           </h1>
-          <p style={{fontSize:'clamp(16px,1.25vw,19px)',color:'var(--ins-text-body)',lineHeight:1.6,marginBottom:'36px',maxWidth:'520px'}}>
+          <p className="ins-text-lede" style={{marginBottom:'36px',maxWidth:'520px'}}>
             Your Semantic Layer certifies every metric once. Not generic guesses — your actual data, your exact logic.
           </p>
           <div style={{display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap',marginBottom:'24px'}}>
@@ -1019,7 +1019,7 @@ function BeforeAfter() {
               query="What's our MRR this month?"
               response={<span style={{color:'#505068'}}>Finance says <span style={{color:'var(--ins-status-error-fg)'}}>$52,000</span>. RevOps says <span style={{color:'var(--ins-status-error-fg)'}}>$47,200</span>. The CEO dashboard shows <span style={{color:'var(--ins-status-error-fg)'}}>$44,800</span>. Analysts spend Monday reconciling four spreadsheets before anyone can answer.</span>}
             />
-            <p style={{fontSize:'12px',color:'var(--ins-text-error)',fontStyle:'italic'}}>Four definitions of "revenue". Four dashboards. Four different numbers.</p>
+            <p className="ins-text-body-sm ins-text--italic" style={{color:'var(--ins-text-error)'}}>Four definitions of "revenue". Four dashboards. Four different numbers.</p>
           </Card>
 
           {/* With Insightis */}
@@ -1031,7 +1031,7 @@ function BeforeAfter() {
               query="What's our MRR this month?"
               response={<>@MRR = <CodeChip.Highlight>$42,400</CodeChip.Highlight> — March, blended across Stripe + HubSpot + Postgres. Every dashboard, chat, and board deck reads the same certified definition. Analysts ship insights, not reconciliations.</>}
             />
-            <p style={{fontSize:'12px',color:'var(--ins-text-highlight-muted)',fontStyle:'italic'}}>One certified definition. Queried through the Semantic Layer. Always your numbers.</p>
+            <p className="ins-text-body-sm ins-text--italic" style={{color:'var(--ins-text-highlight-muted)'}}>One certified definition. Queried through the Semantic Layer. Always your numbers.</p>
           </Card>
         </div>
 

@@ -101,7 +101,7 @@ function CookieContent() {
           <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',fontSize:'clamp(32px,5vw,48px)', fontWeight:500, letterSpacing:'-.02em', lineHeight:1.15}}>
             Cookie Settings
           </h1>
-          <p className="fu2" style={{fontSize:'15px', color:'rgba(255,255,255,.55)', lineHeight:1.8, marginTop:'16px', maxWidth:'640px', margin:'16px auto 0'}}>
+          <p className="fu2 ins-text-body-lg ins-text--muted" style={{marginTop:'16px', maxWidth:'640px', margin:'16px auto 0'}}>
             We use cookies to enhance your experience, analyze site traffic, and personalize content. You can manage your cookie preferences below.
           </p>
         </div>
@@ -245,7 +245,7 @@ function CookieContent() {
             </p>
           </div>
 
-          <p style={{fontSize:'13px', color:'rgba(255,255,255,.3)', marginTop:'20px'}}>Last updated: April 2026</p>
+          <p className="ins-text-body ins-text--muted" style={{marginTop:'20px'}}>Last updated: April 2026</p>
 
         </div>
       </section>

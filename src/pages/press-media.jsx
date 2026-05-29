@@ -37,7 +37,7 @@ function MediaContact() {
             <h3 style={{fontSize:'20px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginTop:'12px', marginBottom:'12px'}}>
               Get in touch
             </h3>
-            <p style={{fontSize:'15px', color:'rgba(255,255,255,.5)', lineHeight:1.65}}>
+            <p className="ins-text-body-lg ins-text--muted">
               For press inquiries, interviews, or partnership announcements — reach our communications team.
             </p>
           </div>
@@ -55,7 +55,7 @@ function MediaContact() {
                   <a href="mailto:press@insightis.io" style={{display:'block', fontSize:'18px', fontWeight:500, color:'var(--ins-text-highlight)', fontFamily:'Geist Mono,monospace', textDecoration:'none'}}>
                     press@insightis.io
                   </a>
-                  <p style={{fontSize:'12px', color:'var(--ins-text-disabled)', fontFamily:'Geist Mono,monospace', marginTop:'4px'}}>We aim to respond within 4 hours for press inquiries</p>
+                  <p className="ins-text-body-sm ins-text--muted ins-text--mono" style={{marginTop:'4px'}}>We aim to respond within 4 hours for press inquiries</p>
                 </div>
               </div>
             </div>
@@ -119,7 +119,7 @@ function BrandAssets() {
         )}
       </div>
       <div style={{padding:'16px'}}>
-        <p style={{fontSize:'13px', color:'var(--ins-color-gray-100)', marginBottom:'4px'}}>{a.label}</p>
+        <p className="ins-text-body" style={{marginBottom:'4px'}}>{a.label}</p>
         {a.formats && (
           <div style={{display:'flex', gap:'12px'}}>
             {a.formats.split('  ').map((f, fi) => (
@@ -143,7 +143,7 @@ function BrandAssets() {
             <h3 style={{fontSize:'20px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginTop:'12px', marginBottom:'12px'}}>
               Logos and brand resources
             </h3>
-            <p style={{fontSize:'15px', color:'rgba(255,255,255,.5)', lineHeight:1.65}}>
+            <p className="ins-text-body-lg ins-text--muted">
               Download official Insightis logos and brand assets for your coverage.
             </p>
           </div>
@@ -201,7 +201,7 @@ function CompanyFacts() {
             <h3 style={{fontSize:'20px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginTop:'12px', marginBottom:'12px'}}>
               Quick reference
             </h3>
-            <p style={{fontSize:'15px', color:'rgba(255,255,255,.5)', lineHeight:1.65}}>
+            <p className="ins-text-body-lg ins-text--muted">
               Key information about Insightis for press coverage and reference.
             </p>
           </div>
@@ -245,7 +245,7 @@ function Boilerplate() {
             <h3 style={{fontSize:'20px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginTop:'12px', marginBottom:'12px'}}>
               About Insightis
             </h3>
-            <p style={{fontSize:'15px', color:'rgba(255,255,255,.5)', lineHeight:1.65}}>
+            <p className="ins-text-body-lg ins-text--muted">
               Copy-ready for press releases and articles.
             </p>
           </div>
@@ -257,7 +257,7 @@ function Boilerplate() {
               <button onClick={handleCopy} style={{position:'absolute', top:'16px', right:'16px', fontSize:'12px', fontWeight:500, color: copied ? 'var(--ins-status-success-fg)' : 'var(--ins-text-highlight)', background:'transparent', border:'1px solid ' + (copied ? 'rgba(34,197,94,.3)' : 'rgba(14,196,193,.2)'), borderRadius:'8px', padding:'6px 12px', cursor:'pointer', fontFamily:'Geist Mono,monospace', transition:'all .15s'}}>
                 {copied ? 'Copied \u2713' : 'Copy to clipboard'}
               </button>
-              <p style={{fontSize:'15px', color:'var(--ins-text-body)', lineHeight:1.75, paddingRight:'120px'}}>
+              <p className="ins-text-body-lg" style={{paddingRight:'120px'}}>
                 {boilerplateText}
               </p>
             </div>

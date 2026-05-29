@@ -131,7 +131,7 @@ function SecurityContent() {
           <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'20px'}}>
             Secure by design
           </h1>
-          <p className="fu2" style={{fontSize:'17px', color:'rgba(255,255,255,.5)', maxWidth:'640px', margin:'0 auto', lineHeight:1.65}}>
+          <p className="fu2 ins-text-lede" style={{maxWidth:'640px', margin:'0 auto'}}>
             Your data stays yours. Insightis is built with enterprise-grade security at every layer — from encryption and access controls to compliance certifications and continuous monitoring.
           </p>
           <div className="fu3" style={{display:'flex', justifyContent:'center', gap:'12px', marginTop:'32px', flexWrap:'wrap'}}>
@@ -169,7 +169,7 @@ function SecurityContent() {
                   {v.icon}
                 </div>
                 <h3 style={{fontSize:'17px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{v.title}</h3>
-                <p style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.65}}>{v.desc}</p>
+                <p className="ins-text-body">{v.desc}</p>
               </div>
             ))}
           </div>
@@ -196,7 +196,7 @@ function SecurityContent() {
                   {c.icon}
                 </div>
                 <h3 style={{fontSize:'17px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{c.title}</h3>
-                <p style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.65}}>{c.desc}</p>
+                <p className="ins-text-body">{c.desc}</p>
               </div>
             ))}
           </div>
@@ -222,7 +222,7 @@ function SecurityContent() {
                     <div style={{flexShrink:0, marginTop:'2px'}}>
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                     </div>
-                    <p style={{fontSize:'15px', color:'var(--ins-text-body)', lineHeight:1.6}}>{p}</p>
+                    <p className="ins-text-body-lg">{p}</p>
                   </div>
                 ))}
               </div>
@@ -251,7 +251,7 @@ function SecurityContent() {
                 </button>
                 {openFaq === i && (
                   <div style={{padding:'0 24px 18px'}}>
-                    <p style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.7}}>{faq.a}</p>
+                    <p className="ins-text-body">{faq.a}</p>
                   </div>
                 )}
               </div>
@@ -270,7 +270,7 @@ function SecurityContent() {
               <h3 style={{fontSize:'clamp(24px,3.5vw,36px)', fontWeight:500, color:'var(--ins-text-heading)', letterSpacing:'-.02em', marginBottom:'16px'}}>
                 Have security questions?
               </h3>
-              <p style={{fontSize:'16px', color:'rgba(255,255,255,.5)', maxWidth:'520px', margin:'0 auto 32px', lineHeight:1.65}}>
+              <p className="ins-text-body-lg ins-text--muted" style={{maxWidth:'520px', margin:'0 auto 32px'}}>
                 Our security team is here to help with assessments, compliance documentation, and custom security requirements.
               </p>
               <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'14px 32px', fontSize:'14px', fontWeight:600, color:'var(--ins-text-body)', background:'var(--ins-button-primary-bg)', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
@@ -279,7 +279,7 @@ function SecurityContent() {
                 Contact Security Team
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
               </a>
-              <p style={{fontSize:'13px', color:'rgba(255,255,255,.35)', marginTop:'16px'}}>security@insightis.ai</p>
+              <p className="ins-text-body ins-text--muted" style={{marginTop:'16px'}}>security@insightis.ai</p>
             </div>
           </div>
         </div>
