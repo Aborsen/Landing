@@ -1,11 +1,5 @@
 import React from 'react';
-import IconBadge from './IconBadge';
-
-const XIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M6 6l12 12M18 6L6 18" />
-  </svg>
-);
+import XIcon from './XIcon';
 
 /**
  * PainPointGrid — DS-compliant 2×3 grid of pain cards.
@@ -42,7 +36,9 @@ function PainPointGrid({
       {items.map((p, i) => (
         <div key={i} className="ins-pain-card">
           <div className="ins-pain-card__header">
-            <IconBadge tone="red" size="sm" icon={<XIcon />} />
+            <span className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(248,113,113,0.12)', border: '1px solid rgba(248,113,113,0.25)' }}>
+              <XIcon size={18} color="var(--ins-status-error-fg)" />
+            </span>
             <h3 className="ins-pain-card__title">{p.title}</h3>
           </div>
           <p className="ins-text-body ins-pain-card__body">{p.body}</p>
