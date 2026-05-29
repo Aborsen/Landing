@@ -222,7 +222,7 @@ function ModalForm({ open, onClose, type }) {
             {isDemo ? 'Request Demo' : 'Submit Ticket'}
           </Button>
           {submitted && (
-            <p className="ins-text-body ins-text--success" style={{textAlign:'center', fontWeight:500}}>
+            <p className="ins-text-body ins-text--success ins-text--medium" style={{textAlign:'center'}}>
               {isDemo ? 'Demo request sent! We\'ll be in touch shortly.' : 'Ticket submitted! Our team will respond soon.'}
             </p>
           )}
@@ -329,7 +329,7 @@ function OurOffices() {
               <div style={{width:'36px', height:'36px', borderRadius:'50%', overflow:'hidden', border:'1px solid rgba(255,255,255,.1)', marginBottom:'14px', flexShrink:0}}>
                 <img src={`https://flagcdn.com/w80/${o.code}.png`} alt={o.country} style={{width:'100%', height:'100%', objectFit:'cover'}} />
               </div>
-              <p className="ins-text-body" style={{fontWeight:600, marginBottom:'10px'}}>{o.country}</p>
+              <p className="ins-text-body ins-text--semibold" style={{marginBottom:'10px'}}>{o.country}</p>
               {o.lines.map((line, j) => (
                 <p className="ins-text-body-sm ins-text--muted ins-text--mono" key={j}>{line}</p>
               ))}
@@ -385,7 +385,7 @@ function CtaBanner() {
           ) : (
             <div style={{display:'flex', alignItems:'center', gap:'8px'}}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ins-status-success-fg)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              <p className="ins-text-body ins-text--success" style={{fontWeight:500}}>Thanks! We'll be in touch shortly.</p>
+              <p className="ins-text-body ins-text--success ins-text--medium">Thanks! We'll be in touch shortly.</p>
             </div>
           )}
         </div>

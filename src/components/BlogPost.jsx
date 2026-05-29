@@ -536,11 +536,7 @@ function RelatedArticles({ currentSlug }) {
                 letterSpacing: '0.04em',
               }}>{p.category}</span>
               {/* p (not h3) for the same reason — keeps article outline clean. */}
-              <p style={{
-                fontSize: '15px',
-                fontWeight: 500,
-                color: 'var(--ins-text-heading)',
-                lineHeight: 1.4,
+              <p className="ins-text-h4" style={{
                 display: '-webkit-box',
                 WebkitLineClamp: 2,
                 WebkitBoxOrient: 'vertical',

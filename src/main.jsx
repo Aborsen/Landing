@@ -818,7 +818,7 @@ function HowItWorks() {
             <li key={s.n} style={{display:'flex',gap:'14px',alignItems:'flex-start'}}>
               <span style={{flexShrink:0,width:'36px',height:'36px',borderRadius:'50%',border:'1px solid var(--ins-border-brand)',background:'var(--ins-surface-brand-tint)',display:'flex',alignItems:'center',justifyContent:'center',fontFamily:'var(--ins-font-family-mono)',fontSize:'13px',fontWeight:500,color:'var(--ins-text-highlight)'}}>{s.n}</span>
               <div>
-                <p style={{fontSize:'15px',fontWeight:600,color:'var(--ins-text-heading)',marginBottom:'4px',lineHeight:1.3}}>{s.title}</p>
+                <p className="ins-text-h4" style={{marginBottom:'4px'}}>{s.title}</p>
                 <p className="ins-text-body">{s.desc}</p>
               </div>
             </li>

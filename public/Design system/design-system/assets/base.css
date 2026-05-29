@@ -200,6 +200,8 @@ h1, h2, h3, h4, h5, h6 { font-weight: inherit; font-size: inherit; }
 .ins-text--italic  { font-style: italic; }
 .ins-text--mono    { font-family: var(--ins-font-family-mono); font-variant-numeric: tabular-nums; }
 .ins-text--success { color: var(--ins-status-success-fg); }
+.ins-text--medium   { font-weight: var(--ins-font-weight-500); }
+.ins-text--semibold { font-weight: var(--ins-font-weight-600); }
 
 .ins-text-label-lg { font-size: var(--ins-font-size-16); line-height: 24px; font-weight: var(--ins-font-weight-500); letter-spacing: var(--ins-letter-spacing-wide); color: var(--ins-text-heading); }
 .ins-text-label    { font-size: var(--ins-font-size-14); line-height: 20px; font-weight: var(--ins-font-weight-500); letter-spacing: var(--ins-letter-spacing-wide); color: var(--ins-text-heading); }
