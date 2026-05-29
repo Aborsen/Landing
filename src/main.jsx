@@ -9,6 +9,7 @@ import Card from './components/Card';
 import BottomCTA from './components/BottomCTA';
 import TestimonialCard from './components/TestimonialCard';
 import CheckIcon from './components/CheckIcon';
+import ComparisonCards from './components/ComparisonCards';
 
 /* Single shared IntersectionObserver for all fade-ups.
    Replaces 33 per-component framer-motion `useInView` observers + re-render cascades.
@@ -77,9 +78,6 @@ function BellIcon({ size = 16, color = "var(--ins-color-teal-600)" }) {
 }
 function DatabaseIcon({ size = 16, color = "var(--ins-color-teal-600)" }) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>;
-}
-function XIcon({ size = 16, color = "var(--ins-status-error-fg)" }) {
-  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>;
 }
 function UsersIcon({ size = 16, color = "var(--ins-color-teal-600)" }) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>;
@@ -1018,49 +1016,10 @@ function Pricing() {
 
         {/* Comparison cards */}
         <FadeUp delay={0.1}>
-          <div className="grid md:grid-cols-2 gap-5">
-            {/* Traditional / Red — Glow card pattern (ISS-40 + ISS-66 + ISS-96) */}
-            <Card variant="glow" className="ins-card--glow--error p-6 md:p-7">
-              <div className="flex items-center gap-3 mb-7">
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{background: 'rgba(248,113,113,0.12)', border: '1px solid rgba(248,113,113,0.25)'}}>
-                  <XIcon size={18} color="var(--ins-status-error-fg)" />
-                </div>
-                <div>
-                  <h3 className="text-base font-medium" style={{color:'var(--ins-text-heading)'}}>Traditional Approach</h3>
-                  <p className="text-xs text-[var(--ins-text-body)]">Manual, slow, expensive</p>
-                </div>
-              </div>
-              <ul className="flex flex-col gap-4">
-                {traditional.map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm text-[var(--ins-text-heading)]">
-                    <XIcon size={14} color="var(--ins-status-error-fg)" className="flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </Card>
-
-            {/* Insightis / Teal — Glow card pattern (ISS-40 + ISS-66 + ISS-96) */}
-            <Card variant="glow" className="ins-card--glow--brand p-6 md:p-7">
-              <div className="flex items-center gap-3 mb-7">
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{background: 'rgba(14,196,193,0.15)', border: '1px solid rgba(14,196,193,0.30)'}}>
-                  <CheckIcon size={18} color="var(--ins-color-teal-400)" />
-                </div>
-                <div>
-                  <h3 className="text-base font-medium" style={{color:'var(--ins-text-heading)'}}>With Insightis</h3>
-                  <p className="text-xs text-[var(--ins-text-body)]">Automated, instant, scalable</p>
-                </div>
-              </div>
-              <ul className="flex flex-col gap-4">
-                {insightis.map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm text-[var(--ins-text-heading)]">
-                    <CheckIcon size={14} color="var(--ins-color-teal-400)" className="flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </Card>
-          </div>
+          <ComparisonCards
+            before={{ label: 'Traditional Approach', subtitle: 'Manual, slow, expensive', items: traditional }}
+            after={{ label: 'With Insightis', subtitle: 'Automated, instant, scalable', items: insightis }}
+          />
         </FadeUp>
 
 
