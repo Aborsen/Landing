@@ -975,10 +975,9 @@ function ConnectorGallery() {
                 @
               </div>
               <div style={{minWidth:0}}>
-                <div style={{fontSize:'0.875rem',fontWeight:500,color:'var(--ins-text-body)',marginBottom:'3px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>@{c.name}</div>
+                <div className="ins-text-h4" style={{marginBottom:'3px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>@{c.name}</div>
                 <div style={{fontSize:'12px',color:'#8A9BA4',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{c.desc}</div>
               </div>
-              <div style={{marginLeft:'auto',flexShrink:0,width:6,height:6,borderRadius:'50%',background:'var(--ins-status-success-fg)',boxShadow:'0 0 6px rgba(34,197,94,.6)'}}/>
             </div>
           ))}
         </div>
