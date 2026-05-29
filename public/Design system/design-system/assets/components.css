@@ -2550,7 +2550,7 @@ kbd, .ins-kbd {
 }
 .ins-pain-card__body {
   font-size: var(--ins-font-size-14);
-  color: var(--ins-text-inactive);
+  color: var(--ins-text-body);
   line-height: 1.7;
   margin: 0;
 }
