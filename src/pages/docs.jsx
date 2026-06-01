@@ -636,12 +636,8 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
           <div key={section.id} style={{ marginBottom:'40px' }}>
             <h2
               id={section.id}
-              className="doc-section-heading"
-              style={{
-                fontSize:'21px', fontWeight:600, color:'var(--ins-text-heading-soft)',
-                letterSpacing:'-0.01em', marginBottom:'12px',
-                scrollMarginTop:'140px',
-              }}
+              className="doc-section-heading ins-text-h2"
+              style={{ marginBottom:'12px', scrollMarginTop:'140px' }}
             >
               {section.heading}
             </h2>
