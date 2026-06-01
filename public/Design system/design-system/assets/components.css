@@ -1393,15 +1393,16 @@
   font-family: var(--ins-font-family-sans);
   font-size: var(--ins-font-size-14);
   line-height: 1.5;
-  color: var(--ins-text-body);
+  color: var(--ins-text-inactive);
   cursor: pointer;
   transition: color .15s, background-color .15s, border-color .15s;
 }
 .ins-doc-nav__item:hover { color: var(--ins-color-gray-100); background-color: var(--ins-color-white-a-04); }
 .ins-doc-nav__item.is-active {
-  color: var(--ins-color-gray-100);
+  color: var(--ins-text-highlight);
   background-color: var(--ins-surface-brand-tint);
-  border-left-color: var(--ins-color-teal-700);
+  border-left-color: var(--ins-color-teal-400);
+  font-weight: var(--ins-font-weight-500);
 }
 
 

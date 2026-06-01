@@ -188,25 +188,29 @@ function DocsSidebar({ activePage, setActivePage, expandedSections, setExpandedS
     <div className="docs-sidebar-col">
       {/* Search */}
       <div style={{ padding:'0 16px 20px' }}>
-        <div style={{
-          display:'flex', alignItems:'center', gap:'8px',
-          background:'rgba(255,255,255,0.04)',
-          border:'1px solid rgba(255,255,255,0.08)',
-          borderRadius:'8px',
-          padding:'7px 10px',
-        }}>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5E8290" strokeWidth="2" style={{flexShrink:0}}>
+        <div className="ins-input-wrap">
+          <svg className="ins-input-wrap__icon ins-input-wrap__icon--leading" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
           </svg>
           <input
+            className={'ins-input ins-input--sm ins-input--with-leading' + (sidebarSearch ? ' ins-input--with-trailing is-filled' : '')}
             placeholder="Search..."
             value={sidebarSearch}
             onChange={(e) => setSidebarSearch(e.target.value)}
-            style={{
-              flex:1, background:'transparent', border:'none', outline:'none',
-              fontSize:'13px', color:'var(--ins-color-gray-100)', fontFamily:'Geist,sans-serif',
-            }}
+            aria-label="Search documentation"
           />
+          {sidebarSearch && (
+            <button
+              type="button"
+              className="ins-input-wrap__action"
+              onClick={() => setSidebarSearch('')}
+              aria-label="Clear search"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          )}
         </div>
       </div>
 
@@ -239,6 +243,12 @@ function DocsSidebar({ activePage, setActivePage, expandedSections, setExpandedS
           )}
         </div>
       ))}
+
+      {q && filteredNav.length === 0 && (
+        <p className="ins-text-caption" style={{ padding: '4px 16px' }}>
+          No results for &ldquo;{sidebarSearch.trim()}&rdquo;
+        </p>
+      )}
     </div>
   );
 }
