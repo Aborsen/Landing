@@ -574,10 +574,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
 
       {/* Title */}
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'16px' }}>
-        <h1 style={{
-          fontSize:'32px', fontWeight:700, letterSpacing:'-0.02em',
-          color:'var(--ins-text-heading-soft)', lineHeight:1.2, margin:0,
-        }}>
+        <h1 className="ins-text-h1" style={{ margin: 0 }}>
           {page.title}
         </h1>
         <CopyPageButton page={page} />
