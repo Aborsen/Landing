@@ -201,7 +201,7 @@ function Hero() {
   const TooltipPopup = () => (
     <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-56 bg-[var(--ins-color-gray-800)] border border-[var(--ins-border-hover)] rounded-xl p-4 z-[100]" onClick={e => e.stopPropagation()} style={{ boxShadow: 'none' }}>
       <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-[var(--ins-color-gray-800)] border-l border-t border-[var(--ins-border-hover)] rotate-45 mb-[-5px]"></div>
-      <p className="text-[var(--ins-text-heading)] text-sm font-medium mb-1">Unlock full access</p>
+      <p className="ins-text-emphasise-sm mb-1">Unlock full access</p>
       <p className="text-[var(--ins-text-body)] text-xs mb-3">Get more after registration — connect your data sources and explore AI insights.</p>
       <Button as="a" href="/auth/sign-up/" variant="primary" size="sm">Sign Up Free</Button>
     </div>
@@ -388,7 +388,7 @@ function Hero() {
 
                 {/* Send button — grey when empty, teal when has text */}
                 <button
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl text-[var(--ins-text-heading)] text-sm font-medium transition-all duration-200"
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl ins-text-emphasise-sm transition-all duration-200"
                   style={{
                     background: userText.trim() ? 'linear-gradient(135deg, var(--ins-color-teal-500), var(--ins-color-teal-600))' : 'rgba(255,255,255,0.08)',
                     boxShadow: userText.trim() ? '0 0 16px rgba(7,128,126,0.35)' : 'none',
@@ -501,7 +501,7 @@ function ArchRight({ outputs }) {
             }}>
               <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{background: 'rgba(7,128,126,0.15)', border: '1px solid rgba(7,128,126,0.3)'}}>{o.icon}</div>
               <div>
-                <p className="text-sm font-medium text-[var(--ins-text-heading)]">{o.title}</p>
+                <p className="ins-text-emphasise-sm">{o.title}</p>
                 <p className="text-xs text-[var(--ins-text-body)]">{o.desc}</p>
               </div>
             </div>
@@ -761,7 +761,7 @@ function Architecture() {
                 <div key={o.title} className="flex items-center gap-3 px-4 py-3 bg-[var(--ins-surface-card)] border border-[var(--ins-border-default)] rounded-card">
                   <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{background: 'rgba(7,128,126,0.15)', border: '1px solid rgba(7,128,126,0.3)'}}>{o.icon}</div>
                   <div>
-                    <p className="text-sm font-medium text-[var(--ins-text-heading)]">{o.title}</p>
+                    <p className="ins-text-emphasise-sm">{o.title}</p>
                     <p className="text-xs text-[var(--ins-text-body)]">{o.desc}</p>
                   </div>
                 </div>
@@ -970,7 +970,7 @@ function WhatIsInsightis() {
                   <p className="text-4xl md:text-5xl font-bold text-[var(--ins-color-teal-400)] tracking-tight leading-none mb-3">
                     <AnimatedStat target={s.target} suffix={s.suffix} prefix={s.prefix} duration={1800 + i * 150} />
                   </p>
-                  <p className="text-sm font-medium text-[var(--ins-text-heading)] mb-1">{s.label}</p>
+                  <p className="ins-text-emphasise-sm mb-1">{s.label}</p>
                   <p className="text-xs text-[var(--ins-text-body)]">{s.sub}</p>
                 </div>
               ))}

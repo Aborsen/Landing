@@ -206,6 +206,9 @@ h1, h2, h3, h4, h5, h6 { font-weight: inherit; font-size: inherit; }
 .ins-text-label    { font-size: var(--ins-font-size-14); line-height: 20px; font-weight: var(--ins-font-weight-500); letter-spacing: var(--ins-letter-spacing-wide); color: var(--ins-text-heading); }
 .ins-text-label-sm { font-size: var(--ins-font-size-12); line-height: 16px; font-weight: var(--ins-font-weight-500); letter-spacing: var(--ins-letter-spacing-wide); color: var(--ins-text-heading); }
 
+/* Emphasised small text — replaces the text-sm + font-medium + heading utility combo. */
+.ins-text-emphasise-sm { font-size: var(--ins-font-size-14); line-height: 20px; font-weight: var(--ins-font-weight-500); color: var(--ins-text-heading); }
+
 .ins-text-caption  { font-size: var(--ins-font-size-12); line-height: 16px; color: var(--ins-text-inactive); }
 .ins-text-overline {
   font-size: var(--ins-font-size-11);
