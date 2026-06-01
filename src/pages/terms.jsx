@@ -51,7 +51,7 @@ function TermsContent() {
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px 100px', display: 'flex', gap: '56px', alignItems: 'flex-start' }}>
 
         {/* Sticky TOC */}
-        <nav className="ins-toc hidden md:block" style={{ width: '200px', flexShrink: 0 }}>
+        <div role="navigation" aria-label="On this page" className="hidden md:block" style={{ width: '200px', flexShrink: 0, position: 'sticky', top: '90px' }}>
           <p className="ins-toc__title">On this page</p>
           <div className="ins-toc__list">
             {sections.map(s => (
@@ -60,7 +60,7 @@ function TermsContent() {
               </a>
             ))}
           </div>
-        </nav>
+        </div>
 
         {/* Content */}
         <div style={{ flex: 1, minWidth: 0 }}>
