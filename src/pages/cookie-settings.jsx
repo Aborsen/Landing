@@ -90,7 +90,7 @@ function CookieContent() {
     fontSize: '20px', fontWeight: 600, color: 'var(--ins-color-gray-100)', marginBottom: '12px', letterSpacing: '-.01em',
   };
   const paraStyle = {
-    fontSize: '15px', color: 'rgba(255,255,255,.55)', lineHeight: 1.8,
+    fontSize: '15px', color: 'var(--ins-text-body)', lineHeight: 1.8,
   };
 
   return (
@@ -120,7 +120,7 @@ function CookieContent() {
                   <div style={{fontSize:'16px', fontWeight:600, color:'var(--ins-color-gray-100)'}}>{cat.title}</div>
                   <div style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.6, marginTop:'4px'}}>{cat.description}</div>
                   {cat.examples && (
-                    <div style={{fontSize:'13px', color:'rgba(255,255,255,.35)', marginTop:'8px'}}>Examples: {cat.examples}</div>
+                    <div style={{fontSize:'13px', color:'var(--ins-text-inactive)', marginTop:'8px'}}>Examples: {cat.examples}</div>
                   )}
                 </div>
                 <div style={{display:'flex', alignItems:'center', gap:'10px', paddingTop:'2px'}}>

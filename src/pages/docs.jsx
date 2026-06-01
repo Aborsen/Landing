@@ -212,17 +212,10 @@ function DocsSidebar({ activePage, setActivePage, expandedSections, setExpandedS
 
       {/* Nav sections */}
       {filteredNav.map((group) => (
-        <div key={group.section} style={{ marginBottom:'4px' }}>
+        <div key={group.section} className="ins-doc-nav__group">
           <button
             onClick={() => toggleSection(group.section)}
-            style={{
-              display:'flex', alignItems:'center', justifyContent:'space-between',
-              width:'100%', padding:'6px 16px',
-              background:'transparent', border:'none', cursor:'pointer',
-              color:'#5E8290', fontSize:'11px', fontWeight:600,
-              textTransform:'uppercase', letterSpacing:'0.08em',
-              fontFamily:'Geist,sans-serif',
-            }}
+            className="ins-text-overline ins-doc-nav__group-toggle"
           >
             {group.section}
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
@@ -237,20 +230,7 @@ function DocsSidebar({ activePage, setActivePage, expandedSections, setExpandedS
                 <button
                   key={item.id}
                   onClick={() => setActivePage(item.id)}
-                  style={{
-                    display:'block', width:'100%', textAlign:'left',
-                    padding:'6px 16px 6px 20px',
-                    background: activePage === item.id ? 'rgba(10,152,150,0.08)' : 'transparent',
-                    border:'none',
-                    borderLeft: activePage === item.id ? '2px solid var(--ins-color-teal-700)' : '2px solid transparent',
-                    color: activePage === item.id ? 'var(--ins-color-gray-100)' : 'var(--ins-text-body)',
-                    fontSize:'13px', cursor:'pointer',
-                    transition:'all 0.15s',
-                    fontFamily:'Geist,sans-serif',
-                    lineHeight: 1.5,
-                  }}
-                  onMouseEnter={(e) => { if (activePage !== item.id) { e.currentTarget.style.color = 'var(--ins-color-gray-100)'; e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; }}}
-                  onMouseLeave={(e) => { if (activePage !== item.id) { e.currentTarget.style.color = 'var(--ins-text-body)'; e.currentTarget.style.background = 'transparent'; }}}
+                  className={'ins-doc-nav__item' + (activePage === item.id ? ' is-active' : '')}
                 >
                   {item.label}
                 </button>
@@ -269,36 +249,19 @@ function DocsTOC({ toc, activeSection, setActiveSection }) {
   if (!toc || !toc.length) return <div className="docs-toc-col" />;
   return (
     <div className="docs-toc-col">
-      <p style={{
-        fontSize:'11px', fontWeight:600, color:'#5E8290',
-        textTransform:'uppercase', letterSpacing:'0.08em',
-        marginBottom:'14px',
-      }}>
-        On this page
-      </p>
-      <div style={{ display:'flex', flexDirection:'column', gap:'1px' }}>
+      <p className="ins-toc__title">On this page</p>
+      <div className="ins-toc__list">
         {toc.map(item => (
           <a
             key={item.id}
             href={`#${item.id}`}
+            className={'ins-toc__link' + (activeSection === item.id ? ' is-active' : '')}
             onClick={(e) => {
               e.preventDefault();
               setActiveSection(item.id);
               const el = document.getElementById(item.id);
               if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
             }}
-            style={{
-              display:'block',
-              padding:'5px 0 5px 12px',
-              fontSize:'13px',
-              color: activeSection === item.id ? 'var(--ins-text-highlight)' : '#5E8290',
-              borderLeft: activeSection === item.id ? '2px solid var(--ins-color-teal-700)' : '2px solid transparent',
-              textDecoration:'none',
-              transition:'color 0.15s, border-color 0.15s',
-              lineHeight:1.5,
-            }}
-            onMouseEnter={(e) => { if (activeSection !== item.id) e.currentTarget.style.color = 'var(--ins-text-body)'; }}
-            onMouseLeave={(e) => { if (activeSection !== item.id) e.currentTarget.style.color = '#5E8290'; }}
           >
             {item.label}
           </a>
