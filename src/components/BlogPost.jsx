@@ -1099,8 +1099,8 @@ export default function BlogPost({ markdown, slug }) {
         .blog-prose p  { color: var(--ins-text-body); }
         .blog-prose a  { color: var(--ins-text-highlight); text-decoration: underline; text-decoration-color: var(--ins-color-teal-a-50); text-underline-offset: 3px; }
         .blog-prose a:hover { color: var(--ins-color-teal-300); text-decoration-color: currentColor; }
-        .blog-prose strong { color: var(--ins-text-heading); font-weight: 600; }
-        .blog-prose em { color: var(--ins-text-heading); font-style: italic; }
+        .blog-prose strong { color: var(--ins-text-body); font-weight: 600; }
+        .blog-prose em { color: var(--ins-text-body); font-style: italic; }
         .blog-prose code {
           font-family: var(--ins-font-family-mono);
           font-size: 0.92em;
