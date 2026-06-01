@@ -1372,7 +1372,7 @@
 .ins-breadcrumbs__item { display: inline-flex; align-items: center; gap: var(--ins-space-xs); }
 .ins-breadcrumbs__item a { color: var(--ins-text-body); }
 .ins-breadcrumbs__item a:hover { color: var(--ins-text-highlight); }
-.ins-breadcrumbs__item[aria-current="page"] { color: var(--ins-text-heading); }
+.ins-breadcrumbs__item[aria-current="page"] { color: var(--ins-text-body); }
 .ins-breadcrumbs__separator { color: var(--ins-text-inactive); }
 
 

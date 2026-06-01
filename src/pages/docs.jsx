@@ -393,53 +393,41 @@ function PageFeedback() {
       {submitted ? (
         <div style={{ display:'flex', alignItems:'center', gap:'8px' }}>
           <CheckIcon size={16} strokeWidth={2} />
-          <span style={{ fontSize:'13px', color:'#5E8290' }}>Thanks for your feedback!</span>
+          <span className="ins-text-body">Thanks for your feedback!</span>
         </div>
       ) : (
         <>
           <div style={{ display:'flex', alignItems:'center', gap:'12px' }}>
-            <span style={{ fontSize:'13px', color:'#5E8290' }}>Was this page helpful?</span>
+            <span className="ins-text-body">Was this page helpful?</span>
             <div style={{ display:'flex', gap:'6px' }}>
-              <button
+              <Button
+                variant="secondary"
+                size="sm"
+                radius="md"
                 onClick={() => handleVote('up')}
-                style={{
-                  display:'flex', alignItems:'center', gap:'5px',
-                  padding:'5px 12px', borderRadius:'6px',
-                  background: vote === 'up' ? 'rgba(14,196,193,0.15)' : 'rgba(255,255,255,0.04)',
-                  border: vote === 'up' ? '1px solid rgba(14,196,193,0.4)' : '1px solid rgba(255,255,255,0.08)',
-                  color: vote === 'up' ? 'var(--ins-text-highlight)' : '#5E8290',
-                  cursor:'pointer', fontSize:'12px', fontFamily:'Geist,sans-serif',
-                  transition:'all .15s',
-                }}
-                onMouseEnter={e => { if (vote !== 'up') { e.currentTarget.style.background='rgba(255,255,255,0.07)'; e.currentTarget.style.color='var(--ins-text-body)'; }}}
-                onMouseLeave={e => { if (vote !== 'up') { e.currentTarget.style.background='rgba(255,255,255,0.04)'; e.currentTarget.style.color='#5E8290'; }}}
+                iconStart={
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/>
+                    <path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+                  </svg>
+                }
               >
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/>
-                  <path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
-                </svg>
                 Yes
-              </button>
-              <button
+              </Button>
+              <Button
+                variant="secondary"
+                size="sm"
+                radius="md"
                 onClick={() => handleVote('down')}
-                style={{
-                  display:'flex', alignItems:'center', gap:'5px',
-                  padding:'5px 12px', borderRadius:'6px',
-                  background: vote === 'down' ? 'rgba(220,80,80,0.12)' : 'rgba(255,255,255,0.04)',
-                  border: vote === 'down' ? '1px solid rgba(220,80,80,0.35)' : '1px solid rgba(255,255,255,0.08)',
-                  color: vote === 'down' ? '#E07070' : '#5E8290',
-                  cursor:'pointer', fontSize:'12px', fontFamily:'Geist,sans-serif',
-                  transition:'all .15s',
-                }}
-                onMouseEnter={e => { if (vote !== 'down') { e.currentTarget.style.background='rgba(255,255,255,0.07)'; e.currentTarget.style.color='var(--ins-text-body)'; }}}
-                onMouseLeave={e => { if (vote !== 'down') { e.currentTarget.style.background='rgba(255,255,255,0.04)'; e.currentTarget.style.color='#5E8290'; }}}
+                iconStart={
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/>
+                    <path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/>
+                  </svg>
+                }
               >
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/>
-                  <path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/>
-                </svg>
                 No
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -563,14 +551,17 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
   return (
     <div className="docs-content-col">
       {/* Breadcrumb */}
-      <div style={{ display:'flex', alignItems:'center', gap:'6px', marginBottom:'28px', flexWrap:'wrap' }}>
-        {page.breadcrumb.map((crumb, i) => (
-          <React.Fragment key={i}>
-            {i > 0 && <span style={{ color:'#3A5260', fontSize:'13px' }}>/</span>}
-            <span style={{ fontSize:'13px', color: i === page.breadcrumb.length - 1 ? 'var(--ins-text-body)' : '#5E8290' }}>{crumb}</span>
-          </React.Fragment>
-        ))}
-      </div>
+      <nav className="ins-breadcrumbs" aria-label="Breadcrumb" style={{ marginBottom:'28px' }}>
+        {page.breadcrumb.map((crumb, i) => {
+          const isCurrent = i === page.breadcrumb.length - 1;
+          return (
+            <React.Fragment key={i}>
+              {i > 0 && <span className="ins-breadcrumbs__separator" aria-hidden="true">/</span>}
+              <span className="ins-breadcrumbs__item" {...(isCurrent ? { 'aria-current': 'page' } : {})}>{crumb}</span>
+            </React.Fragment>
+          );
+        })}
+      </nav>
 
       {/* Title */}
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'16px' }}>
