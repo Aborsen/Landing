@@ -336,61 +336,13 @@ function AIAssistantPanel({ query, onClose }) {
 
 /* ── CONNECTORS DATA ── */
 /* ── CONNECTORS HERO ── */
-// 24 hero-matrix picks — a curated grid of recognizable brands across the
-// catalog. Names match entries in the CONNECTORS list so ConnectorIcon
-// resolves the same way as the gallery tiles below.
-const HERO_MATRIX = [
-  { name:'HubSpot',          domain:'hubspot.com'    },
-  { name:'Salesforce',       domain:'salesforce.com' },
-  { name:'Stripe',           domain:'stripe.com'     },
-  { name:'Slack',            domain:'slack.com'      },
-  { name:'PostgreSQL',       domain:'postgresql.org' },
-  { name:'Snowflake',        domain:'snowflake.com'  },
-  { name:'Google BigQuery',  domain:'cloud.google.com' },
-  { name:'Amazon Redshift',  domain:'aws.amazon.com' },
-  { name:'Google Analytics', domain:'analytics.google.com' },
-  { name:'Mixpanel',         domain:'mixpanel.com'   },
-  { name:'Intercom',         domain:'intercom.com'   },
-  { name:'Shopify',          domain:'shopify.com'    },
-  { name:'Jira',             domain:'atlassian.com'  },
-  { name:'Asana',            domain:'asana.com'      },
-  { name:'Notion',           domain:'notion.com'     },
-  { name:'Monday.com',       domain:'monday.com'     },
-  { name:'Pipedrive',        domain:'pipedrive.com'  },
-  { name:'Calendly',         domain:'acuityscheduling.com' },
-  { name:'Zendesk',          domain:'zendesk.com'    },
-  { name:'Zoho CRM',         domain:'zoho.com'       },
-  { name:'Mailchimp',        domain:'mailchimp.com'  },
-  { name:'Dropbox',          domain:'dropbox.com'    },
-  { name:'GitHub',           domain:'github.com'     },
-  { name:'Twilio',           domain:'twilio.com'     },
-];
-
-// Each row offset slightly to produce a "scattered cluster" instead of a strict grid.
-// indent = how many cells to shift right (0 = flush, 1 = half-cell, etc.)
-const HERO_MATRIX_ROWS = [
-  { indent: 2, picks: ['Snowflake', 'Mailchimp', 'QuickBooks Online'] },
-  { indent: 1, picks: ['Shopify', 'Stripe', 'Pipedrive', 'FTP'] },
-  { indent: 0, picks: ['HubSpot', 'Amazon Redshift', 'Salesforce', 'PostgreSQL', 'Google BigQuery', 'Slack'] },
-  { indent: 0, picks: ['Mixpanel', 'Airtable', 'Calendly', 'GitHub', 'Notion'] },
-  { indent: 1, picks: ['Google Sheets', 'Zapier-like-bolt', 'Slack'] },
-  { indent: 3, picks: ['Salesforce'] },
-];
 
 function ConnectorsHero() {
-  // Flatten the picks into a {name, domain} list using the existing CONNECTORS catalog.
-  // Falls back to a sensible domain for the synthetic 'Zapier-like-bolt' bolt icon.
-  const resolve = (name) => {
-    const c = CONNECTORS.find(c => c.name === name);
-    if (c) return { name, domain: c.domain };
-    return { name, domain: null };
-  };
-
   return (
     <section style={{padding:'72px 0 36px', position:'relative', zIndex:1}}>
-      <div style={{maxWidth:'1240px', margin:'0 auto', padding:'0 24px', display:'grid', gridTemplateColumns:'minmax(0, 1fr) minmax(0, 1fr)', gap:'48px', alignItems:'center'}}>
+      <div style={{maxWidth:'1240px', margin:'0 auto', padding:'0 24px'}}>
 
-        {/* LEFT — text */}
+        {/* text */}
         <div>
           <div className="fu0" style={{fontSize:'12px', color:'var(--ins-text-body)', letterSpacing:'0.04em', marginBottom:'18px'}}>
             <a href="/" style={{color:'var(--ins-text-body)', textDecoration:'none'}}>Home</a>
@@ -408,30 +360,6 @@ function ConnectorsHero() {
           <Button as="a" href="https://insightis-app.devart.info/register" variant="primary" size="md" iconEnd={<ArrowRightIcon />} className="fu3">
             Start for Free
           </Button>
-        </div>
-
-        {/* RIGHT — scattered connector cluster */}
-        <div className="fu4" style={{display:'flex', flexDirection:'column', gap:'12px', justifySelf:'end', width:'100%', maxWidth:'520px'}}>
-          {HERO_MATRIX_ROWS.map((row, ri) => (
-            <div key={ri} style={{display:'flex', gap:'12px', marginLeft:`${row.indent * 48}px`}}>
-              {row.picks.map((name, ci) => {
-                const c = resolve(name);
-                return (
-                  <div key={`${ri}-${ci}-${name}`} title={c.name} style={{
-                    width:'56px', height:'56px',
-                    borderRadius:'50%',
-                    background:'rgba(255,255,255,0.04)',
-                    border:'1px solid rgba(255,255,255,0.08)',
-                    display:'flex', alignItems:'center', justifyContent:'center',
-                    flexShrink:0,
-                    boxShadow:'0 4px 12px rgba(0,0,0,0.25)',
-                  }}>
-                    <ConnectorIcon name={c.name} slug={c.slug} domain={c.domain} bg="transparent" size={28}/>
-                  </div>
-                );
-              })}
-            </div>
-          ))}
         </div>
       </div>
     </section>
