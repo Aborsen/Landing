@@ -439,16 +439,14 @@ function ConnectorTile({ c, index, onAskChat, onConnect }) {
       </div>
 
       <div className="connector-overlay">
-        <button className="overlay-btn primary" onClick={(e) => { e.stopPropagation(); onAskChat(c); }}>
-          Open in a new chat
-        </button>
-        <button className="overlay-btn secondary" onClick={(e) => { e.stopPropagation(); onConnect(c); }}>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/>
-            <path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/>
+        <a className="overlay-btn primary" href="https://insightis-identity-api.devart.info/Account/Login" onClick={(e) => e.stopPropagation()}>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+            <polyline points="10 17 15 12 10 7"/>
+            <line x1="15" y1="12" x2="3" y2="12"/>
           </svg>
-          Connect
-        </button>
+          Sign in to connect
+        </a>
       </div>
     </div>
   );
