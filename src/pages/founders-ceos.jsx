@@ -288,11 +288,11 @@ function FoundersHeroIllustration() {
 
       {/* Floating donut card — bottom-left, partially overlapping */}
       <g transform="translate(14, 358)">
-        <rect x="0" y="0" width="180" height="158" rx="14" fill="rgba(15,20,25,0.97)" stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
+        <rect x="0" y="0" width="200" height="158" rx="14" fill="rgba(15,20,25,0.97)" stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
         <text x="14" y="24" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)" letterSpacing="1.5">CASH &amp; RUNWAY</text>
 
         {/* Runway ring (static ~86% fill) */}
-        <g transform="translate(90, 84)">
+        <g transform="translate(100, 84)">
           <circle r={RING_R} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="9"/>
           <circle r={RING_R} fill="none" stroke="var(--ins-text-highlight)" strokeWidth="9" strokeLinecap="round"
             strokeDasharray={RING_C} strokeDashoffset={ringOffset} transform="rotate(-90)"/>
@@ -301,7 +301,7 @@ function FoundersHeroIllustration() {
         </g>
 
         {/* Footer */}
-        <text x="90" y="148" textAnchor="middle" fontFamily="Geist Mono,monospace" fontSize="8.5" fill="var(--ins-text-body)">Cash $19M · Burn $610K/mo</text>
+        <text x="100" y="148" textAnchor="middle" fontFamily="Geist Mono,monospace" fontSize="8.5" fill="var(--ins-text-body)">Cash $19M · Burn $610K/mo</text>
       </g>
 
       {/* Floating AI insight card — bottom-right, partially overlapping */}

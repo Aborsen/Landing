@@ -313,18 +313,18 @@ function RevOpsHeroIllustration() {
       </g>
 
       {/* Floating funnel card — bottom-left, partially overlapping */}
-      <g transform="translate(20,360)">
-        <rect x="0" y="0" width="138" height="138" rx="14" fill="rgba(15,20,25,0.97)" stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
+      <g transform="translate(14, 358)">
+        <rect x="0" y="0" width="200" height="158" rx="14" fill="rgba(15,20,25,0.97)" stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
         <text x="16" y="24" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)" letterSpacing="1.5">PIPELINE FUNNEL</text>
-        <rect x="16" y="36" width="106" height="16" rx="3" fill="rgba(14,196,193,0.85)"/>
-        <rect x="24" y="58" width="90" height="16" rx="3" fill="rgba(14,196,193,0.62)"/>
-        <rect x="34" y="80" width="68" height="16" rx="3" fill="rgba(14,196,193,0.4)"/>
-        <rect x="46" y="102" width="40" height="16" rx="3" fill="rgba(14,196,193,0.22)"/>
-        <text x="118" y="48" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-color-gray-100)" fontWeight="500">2,400</text>
-        <text x="110" y="70" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-color-gray-100)" fontWeight="500">980</text>
-        <text x="98" y="92" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)" fontWeight="500">412</text>
-        <text x="82" y="114" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)" fontWeight="500">133</text>
-        <text x="16" y="130" fontFamily="Geist Mono,monospace" fontSize="8" fill="var(--ins-text-body)">Conversion · 5.5%</text>
+        <rect x="16" y="42" width="164" height="17" rx="3" fill="rgba(14,196,193,0.85)"/>
+        <rect x="22" y="66" width="138" height="17" rx="3" fill="rgba(14,196,193,0.62)"/>
+        <rect x="30" y="90" width="106" height="17" rx="3" fill="rgba(14,196,193,0.4)"/>
+        <rect x="40" y="114" width="70" height="17" rx="3" fill="rgba(14,196,193,0.22)"/>
+        <text x="172" y="54" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-color-gray-100)" fontWeight="600">2,400</text>
+        <text x="152" y="78" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-color-gray-100)" fontWeight="600">980</text>
+        <text x="128" y="102" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)" fontWeight="500">412</text>
+        <text x="102" y="126" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)" fontWeight="500">133</text>
+        <text x="16" y="146" fontFamily="Geist Mono,monospace" fontSize="8" fill="var(--ins-text-body)">Conversion · 5.5%</text>
       </g>
 
       {/* Floating AI insight card — bottom-right, partially overlapping */}
