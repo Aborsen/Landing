@@ -49,9 +49,9 @@ function StoriesHero() {
           <h2 className="fu2" style={{fontSize:'22px', fontWeight:500, color:'var(--ins-text-heading-soft)', letterSpacing:'-.02em', marginBottom:'28px'}}>Featured success stories</h2>
           <div style={{display:'grid', gap:'20px'}} className="md:grid-cols-3 grid-cols-1">
             {featuredStories.map((story, i) => (
-              <div key={i} className={`fu${i+2}`} style={{background:'rgba(255,255,255,.03)', border:'1px solid rgba(255,255,255,.07)', borderRadius:'16px', overflow:'hidden', transition:'all .25s'}}
+              <div key={i} className={`fu${i+2}`} style={{background:'var(--ins-color-white-a-03)', border:'1px solid var(--ins-color-white-a-07)', borderRadius:'16px', overflow:'hidden', transition:'all .25s'}}
                 onMouseEnter={e => { e.currentTarget.style.borderColor='rgba(9,160,157,.3)'; e.currentTarget.style.transform='translateY(-2px)'; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor='rgba(255,255,255,.07)'; e.currentTarget.style.transform='translateY(0)'; }}>
+                onMouseLeave={e => { e.currentTarget.style.borderColor='var(--ins-color-white-a-07)'; e.currentTarget.style.transform='translateY(0)'; }}>
                 {/* Image cover */}
                 <div style={{height:'180px', position:'relative', overflow:'hidden'}}>
                   <img src={story.image} alt={story.company} style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}} />
@@ -60,9 +60,9 @@ function StoriesHero() {
                 <div style={{padding:'20px'}}>
                   <h3 style={{fontSize:'15px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{story.company}</h3>
                   <p className="ins-text-body ins-text--italic" style={{marginBottom:'16px'}}>{story.quote}</p>
-                  <div style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'5px 12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.18)', borderRadius:'999px'}}>
+                  <div style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'5px 12px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.18)', borderRadius:'999px'}}>
                     <span style={{width:'6px', height:'6px', borderRadius:'50%', background:'var(--ins-text-highlight)', flexShrink:0}}/>
-                    <span style={{fontSize:'11px', fontWeight:500, color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>{story.product}</span>
+                    <span style={{fontSize:'11px', fontWeight:500, color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)'}}>{story.product}</span>
                   </div>
                 </div>
               </div>
@@ -98,22 +98,22 @@ function StoryGrid() {
         </div>
         <div style={{display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'16px'}} className="md:grid-cols-3 grid-cols-1">
           {stories.map((s, i) => (
-            <div key={i} style={{background:'rgba(255,255,255,.03)', border:'1px solid rgba(255,255,255,.07)', borderRadius:'16px', overflow:'hidden', transition:'all .2s'}}
+            <div key={i} style={{background:'var(--ins-color-white-a-03)', border:'1px solid var(--ins-color-white-a-07)', borderRadius:'16px', overflow:'hidden', transition:'all .2s'}}
               onMouseEnter={e=>e.currentTarget.style.borderColor='rgba(9,160,157,.3)'}
-              onMouseLeave={e=>e.currentTarget.style.borderColor='rgba(255,255,255,.07)'}>
+              onMouseLeave={e=>e.currentTarget.style.borderColor='var(--ins-color-white-a-07)'}>
               <div style={{height:'140px', overflow:'hidden'}}>
                 <img src={s.image} alt={s.type} style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}} />
               </div>
               <div style={{padding:'28px'}}>
               <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'16px'}}>
-                <span style={{fontSize:'11px', padding:'3px 10px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.15)', borderRadius:'999px', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>{s.type}</span>
-                <span style={{fontSize:'10px', color:'var(--ins-text-disabled)', fontFamily:'Geist Mono,monospace'}}>{s.size}</span>
+                <span style={{fontSize:'11px', padding:'3px 10px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.15)', borderRadius:'999px', color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)'}}>{s.type}</span>
+                <span style={{fontSize:'10px', color:'var(--ins-text-disabled)', fontFamily:'var(--ins-font-family-mono)'}}>{s.size}</span>
               </div>
               <p className="ins-text-body" style={{marginBottom:'12px'}}>{s.challenge}</p>
               <p className="ins-text-body" style={{marginBottom:'20px'}}>{s.solution}</p>
-              <div style={{fontSize:'28px', fontWeight:500, color:'var(--ins-text-highlight)', fontFamily:'Geist Mono,monospace', marginBottom:'4px'}}>{s.result}</div>
-              <div style={{fontSize:'12px', color:'var(--ins-text-body)', fontFamily:'Geist Mono,monospace', marginBottom:'16px'}}>{s.resultLabel}</div>
-              <div style={{fontSize:'11px', color:'var(--ins-text-disabled)', fontFamily:'Geist Mono,monospace', paddingTop:'12px', borderTop:'1px solid rgba(255,255,255,.06)'}}>{s.team}</div>
+              <div style={{fontSize:'28px', fontWeight:500, color:'var(--ins-text-highlight)', fontFamily:'var(--ins-font-family-mono)', marginBottom:'4px'}}>{s.result}</div>
+              <div style={{fontSize:'12px', color:'var(--ins-text-body)', fontFamily:'var(--ins-font-family-mono)', marginBottom:'16px'}}>{s.resultLabel}</div>
+              <div style={{fontSize:'11px', color:'var(--ins-text-disabled)', fontFamily:'var(--ins-font-family-mono)', paddingTop:'12px', borderTop:'1px solid var(--ins-border-default)'}}>{s.team}</div>
               </div>
             </div>
           ))}
@@ -160,10 +160,10 @@ function AnimatedStat({ num, prefix, suffix, label, started, delay }) {
       }}>
         <span style={{
           fontSize:'clamp(28px,3.5vw,40px)', fontWeight:500, color:'var(--ins-text-highlight)',
-          fontFamily:'Geist Mono,monospace',
+          fontFamily:'var(--ins-font-family-mono)',
         }}>{prefix}{count}{suffix}</span>
       </div>
-      <div style={{fontSize:'13px', color:'var(--ins-text-body)', lineHeight:1.5}}>{label}</div>
+      <div style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.5}}>{label}</div>
     </div>
   );
 }
@@ -188,17 +188,17 @@ function TextStat({ from, to, label, started, delay }) {
         {/* "3 days" — fades in then gets struck through */}
         <span style={{
           fontSize:'clamp(16px,2vw,20px)', fontWeight:500,
-          fontFamily:'Geist Mono,monospace',
+          fontFamily:'var(--ins-font-family-mono)',
           color: phase === 2 ? 'rgba(14,196,193,.35)' : 'var(--ins-text-highlight)',
           textDecoration: phase === 2 ? 'line-through' : 'none',
-          textDecorationColor: 'rgba(14,196,193,.4)',
+          textDecorationColor: 'var(--ins-color-teal-a-40)',
           opacity: phase >= 1 ? 1 : 0,
           transition:'opacity .35s, color .4s, text-decoration .4s',
         }}>{from}</span>
         {/* "→ minutes" — slides up and fades in */}
         <span style={{
           fontSize:'clamp(22px,2.8vw,34px)', fontWeight:500,
-          fontFamily:'Geist Mono,monospace', color:'var(--ins-text-highlight)',
+          fontFamily:'var(--ins-font-family-mono)', color:'var(--ins-text-highlight)',
           display:'inline-flex', alignItems:'center', gap:'6px',
           opacity: phase === 2 ? 1 : 0,
           transform: phase === 2 ? 'translateY(0)' : 'translateY(6px)',
@@ -210,7 +210,7 @@ function TextStat({ from, to, label, started, delay }) {
           {to}
         </span>
       </div>
-      <div style={{fontSize:'13px', color:'var(--ins-text-body)', lineHeight:1.5}}>{label}</div>
+      <div style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.5}}>{label}</div>
     </div>
   );
 }
@@ -263,7 +263,7 @@ function ResultsBanner() {
         <div style={{textAlign:'center', marginBottom:'40px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
             <span style={{fontSize:'12px'}}>&#10022;</span>
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', fontFamily:'Geist Mono,monospace'}}>Verified Impact</span>
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', fontFamily:'var(--ins-font-family-mono)'}}>Verified Impact</span>
           </div>
         </div>
         <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', gap:'clamp(32px,6vw,80px)', flexWrap:'wrap'}}>
@@ -288,8 +288,8 @@ function BottomCTA() {
             Join teams who <span style={{color:'var(--ins-button-primary-bg)'}}>stopped guessing.</span>
           </h3>
           <div style={{display:'flex', alignItems:'center', width:'100%', maxWidth:'420px', background:'#0D0D1A', border:'1px solid rgba(46,46,64,1)', borderRadius:'12px', overflow:'hidden', flex:'1 1 340px'}}>
-            <input type="email" placeholder="Enter your work email..." style={{flex:1, background:'transparent', fontSize:'14px', color:'var(--ins-text-body)', padding:'12px 16px', outline:'none', border:'none', fontFamily:'Geist,sans-serif', minWidth:0}} />
-            <button style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 20px', margin:'4px', fontSize:'13px', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'8px', border:'none', cursor:'pointer', whiteSpace:'nowrap', flexShrink:0, fontFamily:'Geist,sans-serif'}}>
+            <input type="email" placeholder="Enter your work email..." style={{flex:1, background:'transparent', fontSize:'14px', color:'var(--ins-text-body)', padding:'12px 16px', outline:'none', border:'none', fontFamily:'var(--ins-font-family-sans)', minWidth:0}} />
+            <button style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 20px', margin:'4px', fontSize:'12px', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'8px', border:'none', cursor:'pointer', whiteSpace:'nowrap', flexShrink:0, fontFamily:'var(--ins-font-family-sans)'}}>
               Start for Free
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </button>

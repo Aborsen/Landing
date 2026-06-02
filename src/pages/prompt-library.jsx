@@ -19,7 +19,7 @@ function PromptLibraryHero() {
   return (
     <section style={{padding:'80px 0 40px', textAlign:'center', position:'relative'}}>
       <div style={{maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
-        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid rgba(255,255,255,.07)', background:'rgba(255,255,255,.03)', fontSize:'12px', color:'var(--ins-text-body)', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
+        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid var(--ins-color-white-a-07)', background:'var(--ins-color-white-a-03)', fontSize:'12px', color:'var(--ins-text-body)', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
           ✦ PROMPT LIBRARY
         </div>
         <h1 className="fu1" style={{fontSize:'clamp(36px,5vw,56px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'var(--ins-text-heading-soft)', marginBottom:'20px'}}>
@@ -356,9 +356,9 @@ function PromptLibrarySidebar({ selectedTeams, toggleTeam, clearAll }) {
         display:'flex', alignItems:'center', justifyContent:'space-between',
         width:'100%', padding:'6px 16px',
         background:'transparent', border:'none', cursor:'pointer',
-        color:'#5E8290', fontSize:'11px', fontWeight:600,
+        color:'var(--ins-text-disabled)', fontSize:'11px', fontWeight:600,
         textTransform:'uppercase', letterSpacing:'0.08em',
-        fontFamily:'Geist,sans-serif',
+        fontFamily:'var(--ins-font-family-sans)',
       }}
     >
       {label}
@@ -399,8 +399,8 @@ function PromptLibrarySidebar({ selectedTeams, toggleTeam, clearAll }) {
           aria-hidden={total === 0}
           tabIndex={total === 0 ? -1 : 0}
           style={{
-            fontSize:'11.5px', fontFamily:'Geist,sans-serif',
-            background:'rgba(9,160,157,.08)', color:'var(--ins-text-highlight)',
+            fontSize:'12px', fontFamily:'var(--ins-font-family-sans)',
+            background:'var(--ins-surface-brand-tint)', color:'var(--ins-text-highlight)',
             border:'1px solid rgba(9,160,157,.25)',
             borderRadius:'6px', padding:'5px 10px', cursor:'pointer',
             display:'inline-flex', alignItems:'center', gap:'6px',
@@ -446,7 +446,7 @@ function PromptCard({ entry, index, isExpanded, onToggle }) {
     <article className="prompt-card" style={{ animationDelay:`${Math.min(index,8) * 0.04}s` }}>
       <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', gap:'20px', flexWrap:'wrap' }}>
         <div style={{ flex:'1 1 320px', minWidth:0 }}>
-          <h3 style={{ fontSize:'15.5px', fontWeight:500, color:'var(--ins-text-heading-soft)', lineHeight:1.4, marginBottom:'10px', letterSpacing:'-.01em' }}>
+          <h3 style={{ fontSize:'16px', fontWeight:500, color:'var(--ins-text-heading-soft)', lineHeight:1.4, marginBottom:'10px', letterSpacing:'-.01em' }}>
             {entry.title}
           </h3>
           <div style={{ display:'flex', flexWrap:'wrap', gap:'6px', marginBottom:'10px' }}>
@@ -474,7 +474,7 @@ function PromptCard({ entry, index, isExpanded, onToggle }) {
           animation:'cardFadeIn .2s ease',
         }}>
           <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'10px' }}>
-            <span style={{ fontSize:'10.5px', fontWeight:600, letterSpacing:'.08em', textTransform:'uppercase', color:'#5E8290' }}>
+            <span style={{ fontSize:'11px', fontWeight:600, letterSpacing:'.08em', textTransform:'uppercase', color:'var(--ins-text-disabled)' }}>
               Prompt
             </span>
             <button
@@ -484,8 +484,8 @@ function PromptCard({ entry, index, isExpanded, onToggle }) {
                 background:'transparent', border:'1px solid rgba(9,160,157,.25)',
                 color: copied ? '#8EDDBF' : 'var(--ins-text-highlight)',
                 borderRadius:'6px', padding:'4px 10px',
-                fontSize:'11.5px', fontWeight:500, cursor:'pointer',
-                fontFamily:'Geist,sans-serif',
+                fontSize:'12px', fontWeight:500, cursor:'pointer',
+                fontFamily:'var(--ins-font-family-sans)',
               }}
             >
               {copied ? (
@@ -502,7 +502,7 @@ function PromptCard({ entry, index, isExpanded, onToggle }) {
             </button>
           </div>
           <p style={{
-            fontSize:'13.5px', color:'#B5CCD2', lineHeight:1.65,
+            fontSize:'14px', color:'#B5CCD2', lineHeight:1.65,
             whiteSpace:'pre-wrap', margin:0,
           }}>
             {entry.prompt}
@@ -529,7 +529,7 @@ function BottomCTA() {
           {/* Top shimmer */}
           <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
 
-          <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.03em',lineHeight:1.2,flexShrink:0}}>
+          <h3 style={{fontSize:'clamp(22px,3vw,32px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.03em',lineHeight:1.2,flexShrink:0}}>
             Stop reading about <span style={{color:'var(--ins-text-highlight)'}}>analytics.</span> Start doing it.
           </h3>
 
@@ -546,17 +546,17 @@ function BottomCTA() {
               style={{
                 flex:1,background:'transparent',fontSize:'14px',color:'var(--ins-text-body)',
                 padding:'12px 16px',outline:'none',border:'none',
-                fontFamily:'Geist,sans-serif',minWidth:0,
+                fontFamily:'var(--ins-font-family-sans)',minWidth:0,
               }}
             />
             <button style={{
               display:'inline-flex',alignItems:'center',gap:'8px',
               padding:'10px 20px',margin:'4px',
-              fontSize:'13px',fontWeight:500,color:'var(--ins-text-body)',
+              fontSize:'14px',fontWeight:500,color:'var(--ins-text-body)',
               background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))',
               borderRadius:'8px',border:'none',cursor:'pointer',
               whiteSpace:'nowrap',flexShrink:0,
-              fontFamily:'Geist,sans-serif',
+              fontFamily:'var(--ins-font-family-sans)',
             }}>
               Start for Free
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -604,7 +604,7 @@ function FloatingChat({ onSubmit }) {
         <div style={{
           display:'flex', alignItems:'center', gap:'8px',
           background:'rgba(16,22,30,0.96)',
-          border: focused ? '1px solid rgba(9,160,157,.5)' : '1px solid rgba(255,255,255,.09)',
+          border: focused ? '1px solid var(--ins-color-teal-a-50)' : '1px solid var(--ins-color-white-a-10)',
           borderRadius:'12px',
           padding:'6px 6px 6px 12px',
           transition:'border-color .2s',
@@ -625,7 +625,7 @@ function FloatingChat({ onSubmit }) {
             placeholder="Ask for a prompt or a custom workflow..."
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
-              fontSize:'13px', color:'var(--ins-color-gray-100)',
+              fontSize:'14px', color:'var(--ins-color-gray-100)',
               fontFamily:'inherit',
             }}
           />
@@ -635,7 +635,7 @@ function FloatingChat({ onSubmit }) {
               flexShrink:0,
               padding:'6px 14px', borderRadius:'7px',
               background: value.trim() ? 'var(--ins-button-primary-bg)' : 'rgba(9,160,157,.15)',
-              color: value.trim() ? '#fff' : '#4A9EA0',
+              color: value.trim() ? 'var(--ins-text-heading)' : 'var(--ins-text-disabled)',
               border:'none', cursor: value.trim() ? 'pointer' : 'default',
               fontSize:'12px', fontWeight:600,
               fontFamily:'inherit',
@@ -718,10 +718,10 @@ function AIAssistantPanel({ query, onClose }) {
       if (title === 'Copy') { navigator.clipboard?.writeText(''); setCopied(true); setTimeout(() => setCopied(false), 2000); }
     }} style={{
       background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
-      color:'#5E8290', transition:'color .15s',
+      color:'var(--ins-text-disabled)', transition:'color .15s',
     }}
     onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-text-body)'}
-    onMouseLeave={e => e.currentTarget.style.color = '#5E8290'}
+    onMouseLeave={e => e.currentTarget.style.color = 'var(--ins-text-disabled)'}
     >
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d={path}/>
@@ -733,7 +733,7 @@ function AIAssistantPanel({ query, onClose }) {
     <div style={{
       position:'fixed', right:0, top:0, bottom:0, width:'320px',
       background:'#0B0F16',
-      borderLeft:'1px solid rgba(255,255,255,0.07)',
+      borderLeft:'1px solid var(--ins-color-white-a-07)',
       display:'flex', flexDirection:'column',
       zIndex:200,
       animation:'slideInRight .25s ease',
@@ -741,22 +741,22 @@ function AIAssistantPanel({ query, onClose }) {
       {/* Header */}
       <div style={{
         display:'flex', alignItems:'center', justifyContent:'space-between',
-        padding:'12px 14px', borderBottom:'1px solid rgba(255,255,255,0.07)',
+        padding:'12px 14px', borderBottom:'1px solid var(--ins-color-white-a-07)',
         flexShrink:0,
       }}>
         <div style={{ display:'flex', alignItems:'center', gap:'7px' }}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
           </svg>
-          <span style={{ fontSize:'13px', fontWeight:600, color:'var(--ins-color-gray-100)' }}>Assistant</span>
+          <span style={{ fontSize:'14px', fontWeight:600, color:'var(--ins-color-gray-100)' }}>Assistant</span>
         </div>
         <div style={{ display:'flex', gap:'2px' }}>
           <button onClick={onClose} style={{
             background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
-            color:'#5E8290', transition:'color .15s', display:'flex',
+            color:'var(--ins-text-disabled)', transition:'color .15s', display:'flex',
           }}
           onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-color-gray-100)'}
-          onMouseLeave={e => e.currentTarget.style.color = '#5E8290'}
+          onMouseLeave={e => e.currentTarget.style.color = 'var(--ins-text-disabled)'}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
@@ -776,7 +776,7 @@ function AIAssistantPanel({ query, onClose }) {
                   border:'1px solid rgba(9,160,157,0.25)',
                   borderRadius:'10px 10px 2px 10px',
                   padding:'8px 12px',
-                  fontSize:'13px', color:'#C8E6EA', maxWidth:'90%',
+                  fontSize:'14px', color:'#C8E6EA', maxWidth:'90%',
                   lineHeight:1.5,
                 }}>
                   {msg.text}
@@ -794,18 +794,18 @@ function AIAssistantPanel({ query, onClose }) {
                     Scanned 15 templates
                   </div>
                 </div>
-                <p style={{ fontSize:'13px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'10px' }}>
+                <p style={{ fontSize:'14px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'10px' }}>
                   <AssistantResponseText text={msg.response.intro} />
                 </p>
                 <ul style={{ margin:'0 0 10px 0', padding:'0', listStyle:'none', display:'flex', flexDirection:'column', gap:'5px' }}>
                   {msg.response.bullets.map((b, i) => (
-                    <li key={i} style={{ fontSize:'13px', color:'#8AAAB8', lineHeight:1.6, paddingLeft:'14px', position:'relative' }}>
+                    <li key={i} style={{ fontSize:'14px', color:'#8AAAB8', lineHeight:1.6, paddingLeft:'14px', position:'relative' }}>
                       <span style={{ position:'absolute', left:0, color:'var(--ins-text-highlight)', fontWeight:700 }}>·</span>
                       <strong style={{ color:'#C8E6EA' }}>{b.bold}</strong>{b.text}
                     </li>
                   ))}
                 </ul>
-                <p style={{ fontSize:'13px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'12px' }}>
+                <p style={{ fontSize:'14px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'12px' }}>
                   {msg.response.outro}
                 </p>
                 <div style={{ display:'flex', flexDirection:'column', gap:'4px', marginBottom:'12px' }}>
@@ -849,12 +849,12 @@ function AIAssistantPanel({ query, onClose }) {
 
       {/* Follow-up input */}
       <div style={{
-        padding:'10px 14px 18px', borderTop:'1px solid rgba(255,255,255,0.07)', flexShrink:0,
+        padding:'10px 14px 18px', borderTop:'1px solid var(--ins-color-white-a-07)', flexShrink:0,
       }}>
         <div style={{
           display:'flex', alignItems:'center', gap:'8px',
-          background:'rgba(255,255,255,0.04)',
-          border: inputFocused ? '1px solid rgba(9,160,157,.4)' : '1px solid rgba(255,255,255,.07)',
+          background:'var(--ins-color-white-a-04)',
+          border: inputFocused ? '1px solid rgba(9,160,157,.4)' : '1px solid var(--ins-color-white-a-07)',
           borderRadius:'10px',
           padding:'8px 8px 8px 12px',
           transition:'border-color .2s',
@@ -868,7 +868,7 @@ function AIAssistantPanel({ query, onClose }) {
             placeholder="Ask a follow-up..."
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
-              fontSize:'13px', color:'var(--ins-color-gray-100)', fontFamily:'Geist,sans-serif',
+              fontSize:'14px', color:'var(--ins-color-gray-100)', fontFamily:'var(--ins-font-family-sans)',
             }}
           />
           <button onClick={handleFollowUp} style={{
@@ -878,7 +878,7 @@ function AIAssistantPanel({ query, onClose }) {
             display:'flex', alignItems:'center', justifyContent:'center',
             transition:'background .2s',
           }}>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={input.trim() ? '#fff' : '#3A7080'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={input.trim() ? 'var(--ins-color-white)' : '#3A7080'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>
             </svg>
           </button>
@@ -932,7 +932,7 @@ function App() {
           <div style={{
             display:'flex', alignItems:'center', gap:'10px',
             background:'rgba(16,22,30,0.7)',
-            border: searchFocused ? '1px solid rgba(9,160,157,.5)' : '1px solid rgba(255,255,255,0.07)',
+            border: searchFocused ? '1px solid var(--ins-color-teal-a-50)' : '1px solid var(--ins-color-white-a-07)',
             borderRadius:'12px',
             padding:'11px 14px',
             width:'100%',
@@ -951,14 +951,14 @@ function App() {
               onBlur={() => setSearchFocused(false)}
               style={{
                 flex:1, background:'transparent', border:'none', outline:'none',
-                fontSize:'14px', color:'var(--ins-color-gray-100)', fontFamily:"'Geist', sans-serif",
+                fontSize:'14px', color:'var(--ins-color-gray-100)', fontFamily:'var(--ins-font-family-sans)',
               }}
             />
             {query && (
               <button onClick={() => setQuery('')} style={{
                 background:'none', border:'none', cursor:'pointer',
                 color:'var(--ins-text-body)', padding:'2px 6px', fontSize:'12px',
-                fontFamily:"'Geist', sans-serif",
+                fontFamily:'var(--ins-font-family-sans)',
               }}>
                 Clear
               </button>
@@ -978,7 +978,7 @@ function App() {
           ) : (
             <div style={{
               padding:'40px 24px', textAlign:'center',
-              border:'1px dashed rgba(255,255,255,0.08)', borderRadius:'12px',
+              border:'1px dashed var(--ins-color-white-a-08)', borderRadius:'12px',
               color:'var(--ins-text-body)', fontSize:'14px',
             }}>
               No prompts match your search — try different keywords or clear a filter.

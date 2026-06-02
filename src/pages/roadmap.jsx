@@ -99,10 +99,10 @@ function TreeHero() {
             <g opacity="0">
               <animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="0.7s" fill="freeze"/>
               <path d={`M ${930},${spineY-5} L ${941},${spineY} L ${930},${spineY+5}`}
-                fill="none" stroke="#5E8290" strokeWidth="1.5" strokeOpacity="0.3"
+                fill="none" stroke="var(--ins-text-disabled)" strokeWidth="1.5" strokeOpacity="0.3"
                 strokeLinecap="round" strokeLinejoin="round"/>
-              <text x={955} y={spineY+4} fill="#5E8290" fontSize="12" opacity="0.3"
-                fontFamily="Geist Mono,monospace">…</text>
+              <text x={955} y={spineY+4} fill="var(--ins-text-disabled)" fontSize="12" opacity="0.3"
+                fontFamily="var(--ins-font-family-mono)">…</text>
             </g>
 
             {/* ── 5. MILESTONES: each triggered when dot arrives ── */}
@@ -243,13 +243,13 @@ function TreeHero() {
                     }
                     <text x={m.x} y={cardTopY + 19}
                       textAnchor="middle" fill={m.color}
-                      fontSize={isMVP ? '10.5' : '11'} fontWeight="600"
-                      fontFamily="Geist Mono,monospace" letterSpacing="0.04em">
+                      fontSize={isMVP ? '11' : '11'} fontWeight="600"
+                      fontFamily="var(--ins-font-family-mono)" letterSpacing="0.04em">
                       {m.label}
                     </text>
                     <text x={m.x} y={cardTopY + 37}
                       textAnchor="middle" fill="var(--ins-text-body)" fontSize="10"
-                      fontFamily="Geist,sans-serif">
+                      fontFamily="var(--ins-font-family-sans)">
                       {m.sub}
                     </text>
                   </g>
@@ -298,7 +298,7 @@ const ROADMAP_COLUMNS = [
     key: 'now',
     label: 'Now',
     color: 'var(--ins-text-highlight)',
-    glow: 'rgba(14,196,193,.15)',
+    glow: 'var(--ins-color-teal-a-15)',
     items: [
       { title: 'AI Connect — Private Beta',     desc: 'Pipe your Insightis data into Claude, ChatGPT, and custom agents.' },
       { title: 'Memory & Storage',              desc: 'Long-term business context so Insightis learns your company over time.' },
@@ -351,7 +351,7 @@ function RoadmapSections() {
         </div>
 
         {/* Divider */}
-        <div style={{height:1, background:'linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent)', marginBottom:32}}/>
+        <div style={{height:1, background:'linear-gradient(90deg,transparent,var(--ins-color-white-a-06),transparent)', marginBottom:32}}/>
 
         {/* Now / Next / Later */}
         <div className="kanban-grid" style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:20}}>
@@ -389,8 +389,8 @@ function RoadmapSections() {
                   <CheckIcon size={10} color="var(--ins-status-success-fg)" />
                 </span>
                 <div style={{minWidth:0}}>
-                  <span style={{fontSize:13, fontWeight:500, color:'var(--ins-color-gray-100)'}}>{item.title}</span>
-                  <span style={{fontSize:13, color:'var(--ins-text-body)'}}> — {item.desc}</span>
+                  <span style={{fontSize:14, fontWeight:500, color:'var(--ins-color-gray-100)'}}>{item.title}</span>
+                  <span style={{fontSize:14, color:'var(--ins-text-body)'}}> — {item.desc}</span>
                 </div>
               </div>
             ))}
@@ -475,10 +475,10 @@ function SuggestCTA() {
             <button onClick={() => setOpen(true)} style={{
               display:'inline-flex', alignItems:'center', gap:8,
               padding:'12px 24px', flexShrink:0,
-              fontSize:13, fontWeight:500, color:'var(--ins-text-body)',
+              fontSize:14, fontWeight:500, color:'var(--ins-text-body)',
               background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))',
               borderRadius:10, border:'none', cursor:'pointer',
-              fontFamily:'Geist,sans-serif', letterSpacing:'.01em',
+              fontFamily:'var(--ins-font-family-sans)', letterSpacing:'.01em',
               boxShadow:'0 0 24px rgba(9,160,157,.18)',
               transition:'opacity .15s',
             }}
@@ -504,7 +504,7 @@ function SuggestCTA() {
           <div style={{
             width:'100%', maxWidth:520,
             background:'linear-gradient(145deg,#0E1420,var(--ins-surface-page))',
-            border:'1px solid rgba(255,255,255,.07)',
+            border:'1px solid var(--ins-color-white-a-07)',
             borderRadius:18, overflow:'hidden',
             boxShadow:'none',
             animation:'modalSlideUp .25s cubic-bezier(.22,1,.36,1)',
@@ -518,11 +518,11 @@ function SuggestCTA() {
               </div>
               <button onClick={() => { if (!sent) setOpen(false); }} style={{
                 background:'none', border:'none', cursor:'pointer',
-                color:'#5E8290', padding:4, marginTop:-2,
+                color:'var(--ins-text-disabled)', padding:4, marginTop:-2,
                 transition:'color .15s',
               }}
                 onMouseEnter={e => e.currentTarget.style.color='var(--ins-color-gray-100)'}
-                onMouseLeave={e => e.currentTarget.style.color='#5E8290'}
+                onMouseLeave={e => e.currentTarget.style.color='var(--ins-text-disabled)'}
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
               </button>
@@ -560,21 +560,21 @@ function SuggestCTA() {
                     rows={5}
                     style={{
                       width:'100%', boxSizing:'border-box',
-                      background:'rgba(255,255,255,.03)', border:'1px solid rgba(255,255,255,.08)',
+                      background:'var(--ins-color-white-a-03)', border:'1px solid var(--ins-color-white-a-08)',
                       borderRadius:10, padding:'12px 14px',
-                      fontSize:13, color:'var(--ins-color-gray-100)', lineHeight:1.6,
-                      fontFamily:'Geist,sans-serif', resize:'vertical',
+                      fontSize:14, color:'var(--ins-color-gray-100)', lineHeight:1.6,
+                      fontFamily:'var(--ins-font-family-sans)', resize:'vertical',
                       outline:'none', transition:'border-color .15s',
                     }}
                     onFocus={e => e.target.style.borderColor='rgba(14,196,193,.35)'}
-                    onBlur={e => e.target.style.borderColor='rgba(255,255,255,.08)'}
+                    onBlur={e => e.target.style.borderColor='var(--ins-color-white-a-08)'}
                   />
                 </div>
 
                 {/* drop zone */}
                 <div style={{marginBottom:20}}>
                   <label style={{display:'block', fontSize:12, fontWeight:500, color:'var(--ins-text-body)', letterSpacing:'.04em', marginBottom:8, textTransform:'uppercase'}}>
-                    Attachments <span style={{color:'#5E8290', fontWeight:400, textTransform:'none', letterSpacing:0}}>(optional)</span>
+                    Attachments <span style={{color:'var(--ins-text-disabled)', fontWeight:400, textTransform:'none', letterSpacing:0}}>(optional)</span>
                   </label>
                   <div
                     onDragOver={e => { e.preventDefault(); setDragging(true); }}
@@ -583,16 +583,16 @@ function SuggestCTA() {
                     onClick={() => fileRef.current.click()}
                     style={{
                       borderRadius:10, padding:'18px 14px',
-                      border: dragging ? '1.5px dashed rgba(14,196,193,.5)' : '1.5px dashed rgba(255,255,255,.1)',
-                      background: dragging ? 'rgba(14,196,193,.05)' : 'rgba(255,255,255,.02)',
+                      border: dragging ? '1.5px dashed rgba(14,196,193,.5)' : '1.5px dashed var(--ins-color-white-a-10)',
+                      background: dragging ? 'rgba(14,196,193,.05)' : 'var(--ins-color-white-a-02)',
                       cursor:'pointer', textAlign:'center', transition:'all .15s',
                     }}
                   >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5E8290" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{marginBottom:6}}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-disabled)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{marginBottom:6}}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
                     <p className="ins-text-body-sm" style={{margin:0}}>
                       Drag & drop files or <span style={{color:'var(--ins-text-highlight)'}}>browse</span>
                     </p>
-                    <p style={{fontSize:11, color:'#5E8290', margin:'4px 0 0'}}>Images, PDFs, or any file — up to 20 MB each</p>
+                    <p style={{fontSize:11, color:'var(--ins-text-disabled)', margin:'4px 0 0'}}>Images, PDFs, or any file — up to 20 MB each</p>
                   </div>
                   <input ref={fileRef} type="file" multiple style={{display:'none'}} onChange={e => handleFiles(e.target.files)} />
 
@@ -603,20 +603,20 @@ function SuggestCTA() {
                         <div key={i} style={{
                           display:'flex', alignItems:'center', justifyContent:'space-between',
                           padding:'7px 12px', borderRadius:8,
-                          background:'rgba(255,255,255,.04)', border:'1px solid rgba(255,255,255,.06)',
+                          background:'var(--ins-color-white-a-04)', border:'1px solid var(--ins-border-default)',
                         }}>
                           <div style={{display:'flex', alignItems:'center', gap:8, minWidth:0}}>
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-body)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
                             <span style={{fontSize:12, color:'var(--ins-color-gray-100)', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap'}}>{f.name}</span>
-                            <span style={{fontSize:11, color:'#5E8290', flexShrink:0}}>{fmtSize(f.size)}</span>
+                            <span style={{fontSize:11, color:'var(--ins-text-disabled)', flexShrink:0}}>{fmtSize(f.size)}</span>
                           </div>
                           <button onClick={() => removeFile(i)} style={{
                             background:'none', border:'none', cursor:'pointer',
-                            color:'#5E8290', padding:'0 2px', flexShrink:0,
+                            color:'var(--ins-text-disabled)', padding:'0 2px', flexShrink:0,
                             transition:'color .15s',
                           }}
                             onMouseEnter={e => e.currentTarget.style.color='var(--ins-color-gray-100)'}
-                            onMouseLeave={e => e.currentTarget.style.color='#5E8290'}
+                            onMouseLeave={e => e.currentTarget.style.color='var(--ins-text-disabled)'}
                           >
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                           </button>
@@ -629,21 +629,21 @@ function SuggestCTA() {
                 {/* actions */}
                 <div style={{display:'flex', gap:10, justifyContent:'flex-end'}}>
                   <button onClick={() => setOpen(false)} style={{
-                    padding:'10px 20px', borderRadius:9, border:'1px solid rgba(255,255,255,.08)',
-                    background:'transparent', color:'var(--ins-text-body)', fontSize:13, fontWeight:500,
-                    cursor:'pointer', fontFamily:'Geist,sans-serif', transition:'all .15s',
+                    padding:'10px 20px', borderRadius:9, border:'1px solid var(--ins-color-white-a-08)',
+                    background:'transparent', color:'var(--ins-text-body)', fontSize:14, fontWeight:500,
+                    cursor:'pointer', fontFamily:'var(--ins-font-family-sans)', transition:'all .15s',
                   }}
-                    onMouseEnter={e => { e.currentTarget.style.background='rgba(255,255,255,.05)'; e.currentTarget.style.color='var(--ins-color-gray-100)'; }}
+                    onMouseEnter={e => { e.currentTarget.style.background='var(--ins-color-white-a-05)'; e.currentTarget.style.color='var(--ins-color-gray-100)'; }}
                     onMouseLeave={e => { e.currentTarget.style.background='transparent'; e.currentTarget.style.color='var(--ins-text-body)'; }}
                   >
                     Cancel
                   </button>
                   <button onClick={handleSubmit} disabled={!canSubmit} style={{
                     padding:'10px 24px', borderRadius:9, border:'none',
-                    background: canSubmit ? 'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))' : 'rgba(255,255,255,.05)',
-                    color: canSubmit ? '#fff' : '#5E8290',
-                    fontSize:13, fontWeight:500, cursor: canSubmit ? 'pointer' : 'default',
-                    fontFamily:'Geist,sans-serif', transition:'all .2s',
+                    background: canSubmit ? 'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))' : 'var(--ins-color-white-a-05)',
+                    color: canSubmit ? 'var(--ins-text-heading)' : 'var(--ins-text-disabled)',
+                    fontSize:14, fontWeight:500, cursor: canSubmit ? 'pointer' : 'default',
+                    fontFamily:'var(--ins-font-family-sans)', transition:'all .2s',
                     boxShadow: canSubmit ? '0 0 20px rgba(9,160,157,.2)' : 'none',
                     display:'inline-flex', alignItems:'center', gap:7,
                   }}>

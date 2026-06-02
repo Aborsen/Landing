@@ -11,7 +11,7 @@ function ToggleSwitch({ enabled, onChange, disabled = false }) {
       onClick={() => !disabled && onChange(!enabled)}
       style={{
         width: '44px', height: '24px', borderRadius: '12px',
-        background: enabled ? 'var(--ins-button-primary-bg)' : 'rgba(255,255,255,.15)',
+        background: enabled ? 'var(--ins-button-primary-bg)' : 'var(--ins-color-white-a-12)',
         border: 'none', cursor: disabled ? 'not-allowed' : 'pointer',
         position: 'relative', transition: 'background 0.2s',
         opacity: disabled ? 0.6 : 1,
@@ -20,7 +20,7 @@ function ToggleSwitch({ enabled, onChange, disabled = false }) {
     >
       <div style={{
         width: '18px', height: '18px', borderRadius: '50%',
-        background: '#fff', position: 'absolute', top: '3px',
+        background: 'var(--ins-color-white)', position: 'absolute', top: '3px',
         left: enabled ? '23px' : '3px', transition: 'left 0.2s',
         boxShadow: '0 1px 3px rgba(0,0,0,.3)',
       }} />
@@ -112,7 +112,7 @@ function CookieContent() {
         <div style={{maxWidth:'800px', margin:'0 auto', padding:'0 24px'}}>
           {categories.map((cat, i) => (
             <div key={cat.key} className={`fu${Math.min(i+1, 3)}`} style={{
-              background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)',
+              background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)',
               borderRadius:'16px', padding:'24px', marginBottom:'16px',
             }}>
               <div style={{display:'flex', alignItems:'flex-start', gap:'20px'}}>
@@ -120,7 +120,7 @@ function CookieContent() {
                   <div style={{fontSize:'16px', fontWeight:600, color:'var(--ins-color-gray-100)'}}>{cat.title}</div>
                   <div style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.6, marginTop:'4px'}}>{cat.description}</div>
                   {cat.examples && (
-                    <div style={{fontSize:'13px', color:'var(--ins-text-inactive)', marginTop:'8px'}}>Examples: {cat.examples}</div>
+                    <div style={{fontSize:'12px', color:'var(--ins-text-inactive)', marginTop:'8px'}}>Examples: {cat.examples}</div>
                   )}
                 </div>
                 <div style={{display:'flex', alignItems:'center', gap:'10px', paddingTop:'2px'}}>
@@ -149,7 +149,7 @@ function CookieContent() {
                 padding:'12px 32px', fontSize:'15px', fontWeight:600,
                 color:'var(--ins-text-body)', background:'var(--ins-button-primary-bg)', borderRadius:'50px',
                 border:'none', cursor:'pointer', transition:'background 0.2s',
-                fontFamily:'Geist,sans-serif',
+                fontFamily:'var(--ins-font-family-sans)',
               }}
               onMouseEnter={(e) => e.currentTarget.style.background = 'var(--ins-button-primary-bg-hover)'}
               onMouseLeave={(e) => e.currentTarget.style.background = 'var(--ins-button-primary-bg)'}
@@ -203,23 +203,23 @@ function CookieContent() {
             <p style={{...paraStyle, marginBottom:'16px'}}>
               The following table lists the cookies used on our website, their provider, purpose, and duration.
             </p>
-            <div style={{overflowX:'auto', borderRadius:'12px', border:'1px solid rgba(255,255,255,.06)'}}>
+            <div style={{overflowX:'auto', borderRadius:'12px', border:'1px solid var(--ins-border-default)'}}>
               <table style={{width:'100%', borderCollapse:'collapse', fontSize:'14px'}}>
                 <thead>
-                  <tr style={{background:'rgba(255,255,255,.04)'}}>
-                    <th style={{padding:'12px 16px', textAlign:'left', color:'var(--ins-color-gray-100)', fontWeight:600, borderBottom:'1px solid rgba(255,255,255,.06)', whiteSpace:'nowrap'}}>Cookie Name</th>
-                    <th style={{padding:'12px 16px', textAlign:'left', color:'var(--ins-color-gray-100)', fontWeight:600, borderBottom:'1px solid rgba(255,255,255,.06)', whiteSpace:'nowrap'}}>Provider</th>
-                    <th style={{padding:'12px 16px', textAlign:'left', color:'var(--ins-color-gray-100)', fontWeight:600, borderBottom:'1px solid rgba(255,255,255,.06)', whiteSpace:'nowrap'}}>Purpose</th>
-                    <th style={{padding:'12px 16px', textAlign:'left', color:'var(--ins-color-gray-100)', fontWeight:600, borderBottom:'1px solid rgba(255,255,255,.06)', whiteSpace:'nowrap'}}>Duration</th>
+                  <tr style={{background:'var(--ins-color-white-a-04)'}}>
+                    <th style={{padding:'12px 16px', textAlign:'left', color:'var(--ins-color-gray-100)', fontWeight:600, borderBottom:'1px solid var(--ins-border-default)', whiteSpace:'nowrap'}}>Cookie Name</th>
+                    <th style={{padding:'12px 16px', textAlign:'left', color:'var(--ins-color-gray-100)', fontWeight:600, borderBottom:'1px solid var(--ins-border-default)', whiteSpace:'nowrap'}}>Provider</th>
+                    <th style={{padding:'12px 16px', textAlign:'left', color:'var(--ins-color-gray-100)', fontWeight:600, borderBottom:'1px solid var(--ins-border-default)', whiteSpace:'nowrap'}}>Purpose</th>
+                    <th style={{padding:'12px 16px', textAlign:'left', color:'var(--ins-color-gray-100)', fontWeight:600, borderBottom:'1px solid var(--ins-border-default)', whiteSpace:'nowrap'}}>Duration</th>
                   </tr>
                 </thead>
                 <tbody>
                   {cookieTable.map((row, i) => (
-                    <tr key={i} style={{background: i % 2 === 1 ? 'rgba(255,255,255,.02)' : 'transparent'}}>
-                      <td style={{padding:'10px 16px', color:'var(--ins-text-highlight)', fontFamily:'Geist Mono, monospace', fontSize:'13px', borderBottom:'1px solid rgba(255,255,255,.04)'}}>{row.name}</td>
-                      <td style={{padding:'10px 16px', color:'var(--ins-text-body)', borderBottom:'1px solid rgba(255,255,255,.04)'}}>{row.provider}</td>
-                      <td style={{padding:'10px 16px', color:'var(--ins-text-body)', borderBottom:'1px solid rgba(255,255,255,.04)'}}>{row.purpose}</td>
-                      <td style={{padding:'10px 16px', color:'var(--ins-text-body)', borderBottom:'1px solid rgba(255,255,255,.04)', whiteSpace:'nowrap'}}>{row.duration}</td>
+                    <tr key={i} style={{background: i % 2 === 1 ? 'var(--ins-color-white-a-02)' : 'transparent'}}>
+                      <td style={{padding:'10px 16px', color:'var(--ins-text-highlight)', fontFamily:'var(--ins-font-family-mono)', fontSize:'12px', borderBottom:'1px solid var(--ins-color-white-a-04)'}}>{row.name}</td>
+                      <td style={{padding:'10px 16px', color:'var(--ins-text-body)', borderBottom:'1px solid var(--ins-color-white-a-04)'}}>{row.provider}</td>
+                      <td style={{padding:'10px 16px', color:'var(--ins-text-body)', borderBottom:'1px solid var(--ins-color-white-a-04)'}}>{row.purpose}</td>
+                      <td style={{padding:'10px 16px', color:'var(--ins-text-body)', borderBottom:'1px solid var(--ins-color-white-a-04)', whiteSpace:'nowrap'}}>{row.duration}</td>
                     </tr>
                   ))}
                 </tbody>

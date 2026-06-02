@@ -126,7 +126,7 @@ function SecurityContent() {
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', textAlign:'center', position:'relative'}}>
           <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'20px'}}>
             <span style={{fontSize:'12px'}}>&#x2726;</span>
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', fontFamily:'Geist Mono,monospace'}}>Security</span>
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', fontFamily:'var(--ins-font-family-mono)'}}>Security</span>
           </div>
           <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'20px'}}>
             Secure by design
@@ -140,9 +140,9 @@ function SecurityContent() {
               onMouseLeave={e=>e.currentTarget.style.background='var(--ins-button-primary-bg)'}>
               Contact Security Team
             </a>
-            <a href="Privacy" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'12px 28px', fontSize:'14px', fontWeight:600, color:'var(--ins-color-gray-100)', border:'1px solid rgba(255,255,255,.15)', borderRadius:'999px', textDecoration:'none', transition:'border-color .2s'}}
+            <a href="Privacy" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'12px 28px', fontSize:'14px', fontWeight:600, color:'var(--ins-color-gray-100)', border:'1px solid var(--ins-color-white-a-12)', borderRadius:'999px', textDecoration:'none', transition:'border-color .2s'}}
               onMouseEnter={e=>e.currentTarget.style.borderColor='rgba(255,255,255,.35)'}
-              onMouseLeave={e=>e.currentTarget.style.borderColor='rgba(255,255,255,.15)'}>
+              onMouseLeave={e=>e.currentTarget.style.borderColor='var(--ins-color-white-a-12)'}>
               View Privacy Policy
             </a>
           </div>
@@ -161,11 +161,11 @@ function SecurityContent() {
           </div>
           <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))', gap:'16px'}}>
             {securityCards.map((v, i) => (
-              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)', borderRadius:'16px', padding:'28px', position:'relative', overflow:'hidden', transition:'all .2s'}}
+              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'16px', padding:'28px', position:'relative', overflow:'hidden', transition:'all .2s'}}
                 onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-                onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
+                onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-border-default)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
                 <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
-                <div style={{width:'40px', height:'40px', borderRadius:'10px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'16px'}}>
+                <div style={{width:'40px', height:'40px', borderRadius:'10px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'16px'}}>
                   {v.icon}
                 </div>
                 <h3 style={{fontSize:'17px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{v.title}</h3>
@@ -188,9 +188,9 @@ function SecurityContent() {
           </div>
           <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))', gap:'16px', maxWidth:'960px', margin:'0 auto'}}>
             {complianceCards.map((c, i) => (
-              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)', borderRadius:'16px', padding:'36px 28px', position:'relative', overflow:'hidden', textAlign:'center', transition:'all .2s'}}
+              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'16px', padding:'36px 28px', position:'relative', overflow:'hidden', textAlign:'center', transition:'all .2s'}}
                 onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-                onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
+                onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-border-default)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
                 <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
                 <div style={{display:'flex', justifyContent:'center', marginBottom:'20px'}}>
                   {c.icon}
@@ -214,7 +214,7 @@ function SecurityContent() {
             />
           </div>
           <div style={{maxWidth:'720px', margin:'0 auto'}}>
-            <div style={{background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)', borderRadius:'16px', padding:'36px', position:'relative', overflow:'hidden'}}>
+            <div style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'16px', padding:'36px', position:'relative', overflow:'hidden'}}>
               <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
               <div style={{display:'flex', flexDirection:'column', gap:'20px'}}>
                 {promises.map((p, i) => (
@@ -239,7 +239,7 @@ function SecurityContent() {
           </div>
           <div style={{maxWidth:'760px', margin:'0 auto', display:'flex', flexDirection:'column', gap:'8px'}}>
             {faqs.map((faq, i) => (
-              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)', borderRadius:'12px', overflow:'hidden', transition:'all .2s'}}>
+              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'12px', overflow:'hidden', transition:'all .2s'}}>
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   style={{width:'100%', display:'flex', alignItems:'center', justifyContent:'space-between', padding:'18px 24px', background:'transparent', border:'none', cursor:'pointer', textAlign:'left'}}
@@ -265,7 +265,7 @@ function SecurityContent() {
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
           <div style={{background:'rgba(9,160,157,.04)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'24px', padding:'64px 32px', textAlign:'center', position:'relative', overflow:'hidden'}}>
             <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.4),transparent)'}}/>
-            <div style={{position:'absolute', inset:0, background:'radial-gradient(ellipse 50% 60% at 50% 0%, rgba(9,160,157,.08) 0%, transparent 70%)', pointerEvents:'none'}}/>
+            <div style={{position:'absolute', inset:0, background:'radial-gradient(ellipse 50% 60% at 50% 0%, var(--ins-surface-brand-tint) 0%, transparent 70%)', pointerEvents:'none'}}/>
             <div style={{position:'relative'}}>
               <h3 style={{fontSize:'clamp(24px,3.5vw,36px)', fontWeight:500, color:'var(--ins-text-heading)', letterSpacing:'-.02em', marginBottom:'16px'}}>
                 Have security questions?

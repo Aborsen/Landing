@@ -43,8 +43,8 @@ function MediaContact() {
           </div>
           {/* Right column */}
           <div className="md:w-[65%]">
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Contact</span>
-            <div style={{borderTop:'1px solid rgba(255,255,255,0.08)', marginTop:'8px', marginBottom:'24px'}} />
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)'}}>Contact</span>
+            <div style={{borderTop:'1px solid var(--ins-color-white-a-08)', marginTop:'8px', marginBottom:'24px'}} />
             <div style={{background:'rgba(9,160,157,.04)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'16px', padding:'32px', position:'relative', overflow:'hidden'}}>
               <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.4),transparent)'}}/>
               <div style={{display:'flex', alignItems:'center', gap:'16px', marginBottom:'16px'}}>
@@ -52,7 +52,7 @@ function MediaContact() {
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 </div>
                 <div>
-                  <a href="mailto:press@insightis.io" style={{display:'block', fontSize:'18px', fontWeight:500, color:'var(--ins-text-highlight)', fontFamily:'Geist Mono,monospace', textDecoration:'none'}}>
+                  <a href="mailto:press@insightis.io" style={{display:'block', fontSize:'18px', fontWeight:500, color:'var(--ins-text-highlight)', fontFamily:'var(--ins-font-family-mono)', textDecoration:'none'}}>
                     press@insightis.io
                   </a>
                   <p className="ins-text-body-sm ins-text--muted ins-text--mono" style={{marginTop:'4px'}}>We aim to respond within 4 hours for press inquiries</p>
@@ -102,8 +102,8 @@ function BrandAssets() {
   ];
 
   const AssetCard = ({ a }) => (
-    <div style={{background:'rgba(255,255,255,.03)', border:'1px solid rgba(255,255,255,.07)', borderRadius:'12px', overflow:'hidden'}}>
-      <div style={{height:'140px', display:'flex', alignItems:'center', justifyContent:'center', background: a.preview === 'light' ? '#F0F0F0' : a.preview === 'colors' ? 'rgba(255,255,255,.03)' : 'rgba(10,14,19,.8)'}}>
+    <div style={{background:'var(--ins-color-white-a-03)', border:'1px solid var(--ins-color-white-a-07)', borderRadius:'12px', overflow:'hidden'}}>
+      <div style={{height:'140px', display:'flex', alignItems:'center', justifyContent:'center', background: a.preview === 'light' ? '#F0F0F0' : a.preview === 'colors' ? 'var(--ins-color-white-a-03)' : 'rgba(10,14,19,.8)'}}>
         {a.preview === 'dark' && <LogoSVG inverted={false} />}
         {a.preview === 'light' && <LogoSVG inverted={true} />}
         {a.preview === 'icon' && <IconMark />}
@@ -111,8 +111,8 @@ function BrandAssets() {
           <div style={{display:'flex', gap:'16px', alignItems:'center'}}>
             {colors.map((c, ci) => (
               <div key={ci} style={{textAlign:'center'}}>
-                <div style={{width:'44px', height:'44px', borderRadius:'8px', background:c.hex, border:'1px solid rgba(255,255,255,.1)', marginBottom:'6px'}}/>
-                <div style={{fontSize:'9px', color:'var(--ins-text-body)', fontFamily:'Geist Mono,monospace'}}>{c.hex}</div>
+                <div style={{width:'44px', height:'44px', borderRadius:'8px', background:c.hex, border:'1px solid var(--ins-color-white-a-10)', marginBottom:'6px'}}/>
+                <div style={{fontSize:'10px', color:'var(--ins-text-body)', fontFamily:'var(--ins-font-family-mono)'}}>{c.hex}</div>
               </div>
             ))}
           </div>
@@ -123,7 +123,7 @@ function BrandAssets() {
         {a.formats && (
           <div style={{display:'flex', gap:'12px'}}>
             {a.formats.split('  ').map((f, fi) => (
-              <span key={fi} style={{fontSize:'12px', color:'var(--ins-text-highlight)', fontFamily:'Geist Mono,monospace', cursor:'pointer'}}>{f}</span>
+              <span key={fi} style={{fontSize:'12px', color:'var(--ins-text-highlight)', fontFamily:'var(--ins-font-family-mono)', cursor:'pointer'}}>{f}</span>
             ))}
           </div>
         )}
@@ -150,23 +150,23 @@ function BrandAssets() {
           {/* Right column */}
           <div className="md:w-[65%]">
             {/* Logo Assets */}
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Logo Assets</span>
-            <div style={{borderTop:'1px solid rgba(255,255,255,0.08)', marginTop:'8px', marginBottom:'24px'}} />
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)'}}>Logo Assets</span>
+            <div style={{borderTop:'1px solid var(--ins-color-white-a-08)', marginTop:'8px', marginBottom:'24px'}} />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{marginBottom:'32px'}}>
               <AssetCard a={assets[0]} />
               <AssetCard a={assets[1]} />
             </div>
 
             {/* Icon Mark */}
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Icon Mark</span>
-            <div style={{borderTop:'1px solid rgba(255,255,255,0.08)', marginTop:'8px', marginBottom:'24px'}} />
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)'}}>Icon Mark</span>
+            <div style={{borderTop:'1px solid var(--ins-color-white-a-08)', marginTop:'8px', marginBottom:'24px'}} />
             <div style={{marginBottom:'32px', maxWidth:'380px'}}>
               <AssetCard a={assets[2]} />
             </div>
 
             {/* Brand Colors */}
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Brand Colors</span>
-            <div style={{borderTop:'1px solid rgba(255,255,255,0.08)', marginTop:'8px', marginBottom:'24px'}} />
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)'}}>Brand Colors</span>
+            <div style={{borderTop:'1px solid var(--ins-color-white-a-08)', marginTop:'8px', marginBottom:'24px'}} />
             <AssetCard a={assets[3]} />
           </div>
         </div>
@@ -207,11 +207,11 @@ function CompanyFacts() {
           </div>
           {/* Right column */}
           <div className="md:w-[65%]">
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Fact Sheet</span>
-            <div style={{borderTop:'1px solid rgba(255,255,255,0.08)', marginTop:'8px', marginBottom:'24px'}} />
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)'}}>Fact Sheet</span>
+            <div style={{borderTop:'1px solid var(--ins-color-white-a-08)', marginTop:'8px', marginBottom:'24px'}} />
             {facts.map((f, i) => (
-              <div key={i} style={{display:'flex', padding:'14px 0', borderBottom:'1px solid rgba(255,255,255,.04)'}}>
-                <div style={{width:'200px', flexShrink:0, fontSize:'12px', fontFamily:'Geist Mono,monospace', color:'var(--ins-text-body)', textTransform:'uppercase'}}>{f.label}</div>
+              <div key={i} style={{display:'flex', padding:'14px 0', borderBottom:'1px solid var(--ins-color-white-a-04)'}}>
+                <div style={{width:'200px', flexShrink:0, fontSize:'12px', fontFamily:'var(--ins-font-family-mono)', color:'var(--ins-text-body)', textTransform:'uppercase'}}>{f.label}</div>
                 <div style={{fontSize:'14px', color:'var(--ins-color-gray-100)'}}>{f.value}</div>
               </div>
             ))}
@@ -251,10 +251,10 @@ function Boilerplate() {
           </div>
           {/* Right column */}
           <div className="md:w-[65%]">
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace'}}>Press Copy</span>
-            <div style={{borderTop:'1px solid rgba(255,255,255,0.08)', marginTop:'8px', marginBottom:'24px'}} />
-            <div style={{background:'rgba(255,255,255,.03)', border:'1px solid rgba(255,255,255,.07)', borderRadius:'16px', padding:'32px', position:'relative'}}>
-              <button onClick={handleCopy} style={{position:'absolute', top:'16px', right:'16px', fontSize:'12px', fontWeight:500, color: copied ? 'var(--ins-status-success-fg)' : 'var(--ins-text-highlight)', background:'transparent', border:'1px solid ' + (copied ? 'rgba(34,197,94,.3)' : 'rgba(14,196,193,.2)'), borderRadius:'8px', padding:'6px 12px', cursor:'pointer', fontFamily:'Geist Mono,monospace', transition:'all .15s'}}>
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)'}}>Press Copy</span>
+            <div style={{borderTop:'1px solid var(--ins-color-white-a-08)', marginTop:'8px', marginBottom:'24px'}} />
+            <div style={{background:'var(--ins-color-white-a-03)', border:'1px solid var(--ins-color-white-a-07)', borderRadius:'16px', padding:'32px', position:'relative'}}>
+              <button onClick={handleCopy} style={{position:'absolute', top:'16px', right:'16px', fontSize:'12px', fontWeight:500, color: copied ? 'var(--ins-status-success-fg)' : 'var(--ins-text-highlight)', background:'transparent', border:'1px solid ' + (copied ? 'rgba(34,197,94,.3)' : 'var(--ins-border-brand)'), borderRadius:'8px', padding:'6px 12px', cursor:'pointer', fontFamily:'var(--ins-font-family-mono)', transition:'all .15s'}}>
                 {copied ? 'Copied \u2713' : 'Copy to clipboard'}
               </button>
               <p className="ins-text-body-lg" style={{paddingRight:'120px'}}>
@@ -279,8 +279,8 @@ function BottomCTA() {
             Ready to see your data <span style={{color:'var(--ins-button-primary-bg)'}}>clearly?</span>
           </h3>
           <div style={{display:'flex', alignItems:'center', width:'100%', maxWidth:'420px', background:'#0D0D1A', border:'1px solid rgba(46,46,64,1)', borderRadius:'12px', overflow:'hidden', flex:'1 1 340px'}}>
-            <input type="email" placeholder="Enter your work email..." style={{flex:1, background:'transparent', fontSize:'14px', color:'var(--ins-text-body)', padding:'12px 16px', outline:'none', border:'none', fontFamily:'Geist,sans-serif', minWidth:0}} />
-            <button style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 20px', margin:'4px', fontSize:'13px', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'8px', border:'none', cursor:'pointer', whiteSpace:'nowrap', flexShrink:0, fontFamily:'Geist,sans-serif'}}>
+            <input type="email" placeholder="Enter your work email..." style={{flex:1, background:'transparent', fontSize:'14px', color:'var(--ins-text-body)', padding:'12px 16px', outline:'none', border:'none', fontFamily:'var(--ins-font-family-sans)', minWidth:0}} />
+            <button style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 20px', margin:'4px', fontSize:'12px', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'8px', border:'none', cursor:'pointer', whiteSpace:'nowrap', flexShrink:0, fontFamily:'var(--ins-font-family-sans)'}}>
               Start for Free
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </button>

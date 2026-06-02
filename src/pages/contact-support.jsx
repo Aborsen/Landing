@@ -13,8 +13,8 @@ function SupportHero({ search, setSearch }) {
         <div className="fu0" style={{
           display:'inline-flex', alignItems:'center', gap:'8px',
           padding:'6px 14px', borderRadius:'999px',
-          border:'1px solid rgba(255,255,255,.06)',
-          background:'rgba(255,255,255,.02)',
+          border:'1px solid var(--ins-border-default)',
+          background:'var(--ins-color-white-a-02)',
           fontSize:'12px', color:'var(--ins-status-success-fg)', fontWeight:500,
           marginBottom:'24px',
         }}>
@@ -25,7 +25,7 @@ function SupportHero({ search, setSearch }) {
             animation:'statusPulse 2s ease infinite',
             flexShrink:0,
           }} />
-          <span style={{ fontFamily:'Geist Mono, monospace' }}>All systems operational</span>
+          <span style={{ fontFamily:'var(--ins-font-family-mono)' }}>All systems operational</span>
           <span style={{ color:'var(--ins-text-body)', fontWeight:400 }}>· Last checked: 2 minutes ago</span>
         </div>
 
@@ -43,7 +43,7 @@ function SupportHero({ search, setSearch }) {
 
         <div className="fu3" style={{
           display:'flex', alignItems:'center',
-          background:'rgba(255,255,255,.025)', border:'1px solid rgba(255,255,255,.06)',
+          background:'var(--ins-color-white-a-03)', border:'1px solid var(--ins-border-default)',
           borderRadius:'12px', padding:'4px', maxWidth:'580px', margin:'0 auto',
         }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="2" style={{marginLeft:'14px',flexShrink:0}}>
@@ -55,7 +55,7 @@ function SupportHero({ search, setSearch }) {
             value={search}
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
-              padding:'12px 14px', fontSize:'15px', color:'var(--ins-color-gray-100)', fontFamily:'Geist,sans-serif',
+              padding:'12px 14px', fontSize:'15px', color:'var(--ins-color-gray-100)', fontFamily:'var(--ins-font-family-sans)',
             }}
           />
         </div>
@@ -157,8 +157,8 @@ function HelpTopics({ search }) {
       }}>
         {filteredTopics.map((topic, i) => (
           <div key={i} style={{
-            background:'rgba(255,255,255,.02)',
-            border: '1px solid rgba(255,255,255,.05)',
+            background:'var(--ins-color-white-a-02)',
+            border: '1px solid var(--ins-color-white-a-05)',
             borderRadius:'14px',
             overflow:'hidden',
             opacity: topic.visible ? 1 : 0,
@@ -167,8 +167,8 @@ function HelpTopics({ search }) {
             cursor:'default',
             padding:'20px',
           }}
-          onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,.12)'; }}
-          onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,.05)'; }}
+          onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--ins-color-white-a-12)'; }}
+          onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--ins-color-white-a-05)'; }}
           >
             <div style={{ display:'flex', alignItems:'center', gap:'12px', marginBottom:'16px' }}>
               <div style={{
@@ -189,8 +189,8 @@ function HelpTopics({ search }) {
                 <a key={j} href="#" style={{
                   display:'flex', alignItems:'center', justifyContent:'space-between',
                   padding:'5px 0',
-                  borderBottom: j < topic.items.length - 1 ? '1px solid rgba(255,255,255,.04)' : 'none',
-                  fontSize:'13px', color:'var(--ins-text-body)',
+                  borderBottom: j < topic.items.length - 1 ? '1px solid var(--ins-color-white-a-04)' : 'none',
+                  fontSize:'14px', color:'var(--ins-text-body)',
                   textDecoration:'none',
                   transition:'color .15s',
                 }}
@@ -264,7 +264,7 @@ function FloatingChat({ onSubmit, hidden }) {
         <div style={{
           display:'flex', alignItems:'center', gap:'10px',
           background:'rgba(16,22,30,0.96)',
-          border: focused ? '1px solid rgba(9,160,157,.5)' : '1px solid rgba(255,255,255,.09)',
+          border: focused ? '1px solid var(--ins-color-teal-a-50)' : '1px solid var(--ins-color-white-a-10)',
           borderRadius:'14px',
           padding:'10px 10px 10px 16px',
           transition:'border-color .2s',
@@ -292,9 +292,9 @@ function FloatingChat({ onSubmit, hidden }) {
               flexShrink:0,
               padding:'8px 20px', borderRadius:'8px',
               background: value.trim() ? 'var(--ins-button-primary-bg)' : 'rgba(9,160,157,.15)',
-              color: value.trim() ? '#fff' : '#4A9EA0',
+              color: value.trim() ? 'var(--ins-text-heading)' : '#4A9EA0',
               border:'none', cursor: value.trim() ? 'pointer' : 'default',
-              fontSize:'13px', fontWeight:600,
+              fontSize:'14px', fontWeight:600,
               fontFamily:'inherit',
               transition:'background .2s, color .2s',
             }}
@@ -375,10 +375,10 @@ function AIAssistantPanel({ query, onClose }) {
       if (title === 'Copy') { navigator.clipboard?.writeText(''); setCopied(true); setTimeout(() => setCopied(false), 2000); }
     }} style={{
       background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
-      color:'#5E8290', transition:'color .15s',
+      color:'var(--ins-text-disabled)', transition:'color .15s',
     }}
     onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-text-body)'}
-    onMouseLeave={e => e.currentTarget.style.color = '#5E8290'}
+    onMouseLeave={e => e.currentTarget.style.color = 'var(--ins-text-disabled)'}
     >
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d={path}/>
@@ -390,7 +390,7 @@ function AIAssistantPanel({ query, onClose }) {
     <div style={{
       position:'fixed', right:0, top:0, bottom:0, width:'280px',
       background:'#0B0F16',
-      borderLeft:'1px solid rgba(255,255,255,0.07)',
+      borderLeft:'1px solid var(--ins-color-white-a-07)',
       display:'flex', flexDirection:'column',
       zIndex:200,
       animation:'slideInRight .25s ease',
@@ -398,21 +398,21 @@ function AIAssistantPanel({ query, onClose }) {
       {/* Header */}
       <div style={{
         display:'flex', alignItems:'center', justifyContent:'space-between',
-        padding:'12px 14px', borderBottom:'1px solid rgba(255,255,255,0.07)',
+        padding:'12px 14px', borderBottom:'1px solid var(--ins-color-white-a-07)',
         flexShrink:0,
       }}>
         <div style={{ display:'flex', alignItems:'center', gap:'7px' }}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
           </svg>
-          <span style={{ fontSize:'13px', fontWeight:600, color:'var(--ins-color-gray-100)' }}>AI Assistant</span>
+          <span style={{ fontSize:'14px', fontWeight:600, color:'var(--ins-color-gray-100)' }}>AI Assistant</span>
         </div>
         <button onClick={onClose} style={{
           background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
-          color:'#5E8290', transition:'color .15s', display:'flex',
+          color:'var(--ins-text-disabled)', transition:'color .15s', display:'flex',
         }}
         onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-color-gray-100)'}
-        onMouseLeave={e => e.currentTarget.style.color = '#5E8290'}
+        onMouseLeave={e => e.currentTarget.style.color = 'var(--ins-text-disabled)'}
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
@@ -431,7 +431,7 @@ function AIAssistantPanel({ query, onClose }) {
                   border:'1px solid rgba(9,160,157,0.25)',
                   borderRadius:'10px 10px 2px 10px',
                   padding:'8px 12px',
-                  fontSize:'13px', color:'#C8E6EA', maxWidth:'90%',
+                  fontSize:'14px', color:'#C8E6EA', maxWidth:'90%',
                   lineHeight:1.5,
                 }}>
                   {msg.text}
@@ -449,18 +449,18 @@ function AIAssistantPanel({ query, onClose }) {
                     Read 1 file
                   </div>
                 </div>
-                <p style={{ fontSize:'13px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'10px' }}>
+                <p style={{ fontSize:'14px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'10px' }}>
                   <AssistantResponseText text={msg.response.intro} />
                 </p>
                 <ul style={{ margin:'0 0 10px 0', padding:'0', listStyle:'none', display:'flex', flexDirection:'column', gap:'5px' }}>
                   {msg.response.bullets.map((b, i) => (
-                    <li key={i} style={{ fontSize:'13px', color:'#8AAAB8', lineHeight:1.6, paddingLeft:'14px', position:'relative' }}>
+                    <li key={i} style={{ fontSize:'14px', color:'#8AAAB8', lineHeight:1.6, paddingLeft:'14px', position:'relative' }}>
                       <span style={{ position:'absolute', left:0, color:'var(--ins-text-highlight)', fontWeight:700 }}>·</span>
                       <strong style={{ color:'#C8E6EA' }}>{b.bold}</strong>{b.text}
                     </li>
                   ))}
                 </ul>
-                <p style={{ fontSize:'13px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'12px' }}>
+                <p style={{ fontSize:'14px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'12px' }}>
                   {msg.response.outro}
                 </p>
                 <div style={{ display:'flex', flexDirection:'column', gap:'4px', marginBottom:'12px' }}>
@@ -506,12 +506,12 @@ function AIAssistantPanel({ query, onClose }) {
 
       {/* Follow-up input */}
       <div style={{
-        padding:'10px 14px 18px', borderTop:'1px solid rgba(255,255,255,0.07)', flexShrink:0,
+        padding:'10px 14px 18px', borderTop:'1px solid var(--ins-color-white-a-07)', flexShrink:0,
       }}>
         <div style={{
           display:'flex', alignItems:'center', gap:'8px',
-          background:'rgba(255,255,255,0.04)',
-          border: inputFocused ? '1px solid rgba(9,160,157,.4)' : '1px solid rgba(255,255,255,.07)',
+          background:'var(--ins-color-white-a-04)',
+          border: inputFocused ? '1px solid rgba(9,160,157,.4)' : '1px solid var(--ins-color-white-a-07)',
           borderRadius:'10px',
           padding:'8px 8px 8px 12px',
           transition:'border-color .2s',
@@ -525,7 +525,7 @@ function AIAssistantPanel({ query, onClose }) {
             placeholder="Ask a question..."
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
-              fontSize:'13px', color:'var(--ins-color-gray-100)', fontFamily:'Geist,sans-serif',
+              fontSize:'14px', color:'var(--ins-color-gray-100)', fontFamily:'var(--ins-font-family-sans)',
             }}
           />
           <button onClick={handleFollowUp} style={{
@@ -535,7 +535,7 @@ function AIAssistantPanel({ query, onClose }) {
             display:'flex', alignItems:'center', justifyContent:'center',
             transition:'background .2s',
           }}>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={input.trim() ? '#fff' : '#3A7080'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={input.trim() ? 'var(--ins-color-white)' : '#3A7080'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>
             </svg>
           </button>
@@ -568,8 +568,8 @@ function SupportStatus() {
           flexShrink:0,
         }} />
         <span style={{
-          fontSize:'13px', color:'var(--ins-status-success-fg)',
-          fontFamily:'Geist Mono, monospace',
+          fontSize:'12px', color:'var(--ins-status-success-fg)',
+          fontFamily:'var(--ins-font-family-mono)',
         }}>All systems operational</span>
         <span style={{
           fontSize:'11px', color:'var(--ins-text-inactive)',
@@ -648,8 +648,8 @@ function ContactSupport() {
 
   const inputStyle = (field) => ({
     width: '100%', boxSizing: 'border-box',
-    background: 'rgba(255,255,255,.04)',
-    border: focused === field ? '1px solid rgba(9,160,157,.5)' : '1px solid rgba(255,255,255,.08)',
+    background: 'var(--ins-color-white-a-04)',
+    border: focused === field ? '1px solid var(--ins-color-teal-a-50)' : '1px solid var(--ins-color-white-a-08)',
     borderRadius: '10px',
     padding: '10px 14px',
     fontSize: '14px', color: 'var(--ins-color-gray-100)',
@@ -665,8 +665,8 @@ function ContactSupport() {
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px' }}>
           <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px',
-            background: 'rgba(255,255,255,.02)',
-            border: '1px solid rgba(255,255,255,.06)',
+            background: 'var(--ins-color-white-a-02)',
+            border: '1px solid var(--ins-border-default)',
             borderRadius: '12px',
             padding: '16px 20px',
             flexWrap: 'wrap',
@@ -674,7 +674,7 @@ function ContactSupport() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
               <div style={{
                 width: '32px', height: '32px', borderRadius: '10px', flexShrink: 0,
-                background: 'rgba(14,196,193,0.08)', border: '1px solid rgba(14,196,193,0.2)',
+                background: 'rgba(14,196,193,0.08)', border: '1px solid var(--ins-border-brand)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 color: 'var(--ins-text-highlight)',
               }}>
@@ -684,20 +684,20 @@ function ContactSupport() {
               </div>
               <div>
                 <div style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ins-color-gray-100)', marginBottom: '2px' }}>Still need help?</div>
-                <div style={{ fontSize: '13px', color: 'var(--ins-text-body)' }}>Our support team is here — reach out and we'll respond within 24 hours.</div>
+                <div style={{ fontSize: '14px', color: 'var(--ins-text-body)' }}>Our support team is here — reach out and we'll respond within 24 hours.</div>
               </div>
             </div>
             <button
               onClick={() => setOpen(true)}
               style={{
                 padding: '9px 18px', borderRadius: '9px', flexShrink: 0,
-                background: 'rgba(14,196,193,0.08)', border: '1px solid rgba(14,196,193,0.2)',
-                color: 'var(--ins-text-highlight)', fontSize: '13px', fontWeight: 600,
+                background: 'rgba(14,196,193,0.08)', border: '1px solid var(--ins-border-brand)',
+                color: 'var(--ins-text-highlight)', fontSize: '14px', fontWeight: 600,
                 fontFamily: 'inherit', cursor: 'pointer',
                 transition: 'background .18s, border-color .18s',
               }}
               onMouseEnter={e => { e.currentTarget.style.background = 'rgba(14,196,193,0.14)'; e.currentTarget.style.borderColor = 'rgba(14,196,193,0.35)'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(14,196,193,0.08)'; e.currentTarget.style.borderColor = 'rgba(14,196,193,0.2)'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(14,196,193,0.08)'; e.currentTarget.style.borderColor = 'var(--ins-border-brand)'; }}
             >Contact Support →</button>
           </div>
         </div>
@@ -720,7 +720,7 @@ function ContactSupport() {
             onClick={e => e.stopPropagation()}
             style={{
               background: 'var(--ins-surface-container)',
-              border: '1px solid rgba(255,255,255,.08)',
+              border: '1px solid var(--ins-color-white-a-08)',
               borderRadius: '18px',
               width: '100%', maxWidth: '520px',
               padding: '32px',
@@ -735,12 +735,12 @@ function ContactSupport() {
               style={{
                 position: 'absolute', top: '16px', right: '16px',
                 background: 'none', border: 'none', cursor: 'pointer',
-                color: '#4A7A8A', padding: '4px',
+                color: 'var(--ins-text-disabled)', padding: '4px',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 borderRadius: '6px',
               }}
               onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-color-gray-100)'}
-              onMouseLeave={e => e.currentTarget.style.color = '#4A7A8A'}
+              onMouseLeave={e => e.currentTarget.style.color = 'var(--ins-text-disabled)'}
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>
@@ -751,7 +751,7 @@ function ContactSupport() {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
                   <div style={{
                     width: '38px', height: '38px', borderRadius: '10px', flexShrink: 0,
-                    background: 'rgba(14,196,193,0.1)', border: '1px solid rgba(14,196,193,0.22)',
+                    background: 'var(--ins-color-teal-a-10)', border: '1px solid rgba(14,196,193,0.22)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--ins-text-highlight)',
                   }}>
                     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -760,7 +760,7 @@ function ContactSupport() {
                   </div>
                   <div>
                     <div style={{ fontSize: '16px', fontWeight: 700, color: 'var(--ins-color-gray-100)' }}>Contact Support</div>
-                    <div style={{ fontSize: '13px', color: 'var(--ins-text-body)', marginTop: '2px' }}>We'll get back to you as soon as possible.</div>
+                    <div style={{ fontSize: '14px', color: 'var(--ins-text-body)', marginTop: '2px' }}>We'll get back to you as soon as possible.</div>
                   </div>
                 </div>
 
@@ -779,15 +779,15 @@ function ContactSupport() {
                             style={{
                               display: 'inline-flex', alignItems: 'center', gap: '5px',
                               padding: '5px 12px', borderRadius: '999px',
-                              background: active ? `rgba(${c.id === 'bug' ? '239,68,68' : c.id === 'billing' ? '129,140,248' : c.id === 'connection' ? '20,168,185' : c.id === 'feature' ? '249,115,22' : c.id === 'other' ? '107,114,128' : '14,196,193'},0.12)` : 'rgba(255,255,255,.04)',
-                              border: active ? `1px solid ${c.color}44` : '1px solid rgba(255,255,255,.07)',
+                              background: active ? `rgba(${c.id === 'bug' ? '239,68,68' : c.id === 'billing' ? '129,140,248' : c.id === 'connection' ? '20,168,185' : c.id === 'feature' ? '249,115,22' : c.id === 'other' ? '107,114,128' : '14,196,193'},0.12)` : 'var(--ins-color-white-a-04)',
+                              border: active ? `1px solid ${c.color}44` : '1px solid var(--ins-color-white-a-07)',
                               color: active ? c.color : 'var(--ins-text-body)',
                               fontSize: '12px', fontWeight: active ? 600 : 400,
                               fontFamily: 'inherit', cursor: 'pointer',
                               transition: 'all .15s',
                             }}
                             onMouseEnter={e => { if (!active) { e.currentTarget.style.borderColor = 'rgba(255,255,255,.14)'; e.currentTarget.style.color = '#C8E6EA'; } }}
-                            onMouseLeave={e => { if (!active) { e.currentTarget.style.borderColor = 'rgba(255,255,255,.07)'; e.currentTarget.style.color = 'var(--ins-text-body)'; } }}
+                            onMouseLeave={e => { if (!active) { e.currentTarget.style.borderColor = 'var(--ins-color-white-a-07)'; e.currentTarget.style.color = 'var(--ins-text-body)'; } }}
                           >
                             <span style={{ lineHeight: 0 }}>{c.icon}</span>
                             {c.label}
@@ -826,7 +826,7 @@ function ContactSupport() {
 
                   {/* Email */}
                   <div>
-                    <label style={{ fontSize: '12px', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '6px' }}>YOUR EMAIL <span style={{ color: '#4A7A8A', fontWeight: 400 }}>(optional, for follow-up)</span></label>
+                    <label style={{ fontSize: '12px', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '6px' }}>YOUR EMAIL <span style={{ color: 'var(--ins-text-disabled)', fontWeight: 400 }}>(optional, for follow-up)</span></label>
                     <input
                       type="email"
                       value={form.email}
@@ -840,27 +840,27 @@ function ContactSupport() {
 
                   {/* Attachments */}
                   <div>
-                    <label style={{ fontSize: '12px', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '6px' }}>ATTACHMENTS <span style={{ color: '#4A7A8A', fontWeight: 400 }}>(up to 5 files, 10 MB each)</span></label>
+                    <label style={{ fontSize: '12px', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '6px' }}>ATTACHMENTS <span style={{ color: 'var(--ins-text-disabled)', fontWeight: 400 }}>(up to 5 files, 10 MB each)</span></label>
                     <div
                       onClick={() => fileRef.current?.click()}
                       onDragOver={e => { e.preventDefault(); setDragOver(true); }}
                       onDragLeave={() => setDragOver(false)}
                       onDrop={e => { e.preventDefault(); setDragOver(false); addFiles(e.dataTransfer.files); }}
                       style={{
-                        border: dragOver ? '1px dashed rgba(9,160,157,.6)' : '1px dashed rgba(255,255,255,.12)',
+                        border: dragOver ? '1px dashed rgba(9,160,157,.6)' : '1px dashed var(--ins-color-white-a-12)',
                         borderRadius: '10px', padding: '16px',
-                        background: dragOver ? 'rgba(9,160,157,.06)' : 'rgba(255,255,255,.02)',
+                        background: dragOver ? 'rgba(9,160,157,.06)' : 'var(--ins-color-white-a-02)',
                         display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px',
                         cursor: 'pointer', transition: 'border-color .18s, background .18s',
                       }}
                       onMouseEnter={e => { if (!dragOver) e.currentTarget.style.borderColor = 'rgba(255,255,255,.22)'; }}
-                      onMouseLeave={e => { if (!dragOver) e.currentTarget.style.borderColor = 'rgba(255,255,255,.12)'; }}
+                      onMouseLeave={e => { if (!dragOver) e.currentTarget.style.borderColor = 'var(--ins-color-white-a-12)'; }}
                     >
                       <input ref={fileRef} type="file" multiple style={{ display: 'none' }} onChange={e => addFiles(e.target.files)} />
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4A7A8A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-disabled)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
                       </svg>
-                      <span style={{ fontSize: '13px', color: '#4A7A8A' }}>
+                      <span style={{ fontSize: '14px', color: 'var(--ins-text-disabled)' }}>
                         {dragOver ? 'Drop files here' : 'Click or drag files to attach'}
                       </span>
                     </div>
@@ -869,21 +869,21 @@ function ContactSupport() {
                         {files.map(f => (
                           <div key={f.name} style={{
                             display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px',
-                            background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.07)',
+                            background: 'var(--ins-color-white-a-04)', border: '1px solid var(--ins-color-white-a-07)',
                             borderRadius: '8px', padding: '7px 10px',
                           }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0 }}>
-                              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4A7A8A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-disabled)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
                                 <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/>
                               </svg>
-                              <span style={{ fontSize: '13px', color: '#9BBAC5', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{f.name}</span>
-                              <span style={{ fontSize: '11px', color: '#4A7A8A', flexShrink: 0 }}>{fmt(f.size)}</span>
+                              <span style={{ fontSize: '14px', color: '#9BBAC5', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{f.name}</span>
+                              <span style={{ fontSize: '11px', color: 'var(--ins-text-disabled)', flexShrink: 0 }}>{fmt(f.size)}</span>
                             </div>
                             <button
                               onClick={() => removeFile(f.name)}
-                              style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#4A7A8A', padding: '2px', display: 'flex', flexShrink: 0 }}
+                              style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--ins-text-disabled)', padding: '2px', display: 'flex', flexShrink: 0 }}
                               onMouseEnter={e => e.currentTarget.style.color = '#EF4444'}
-                              onMouseLeave={e => e.currentTarget.style.color = '#4A7A8A'}
+                              onMouseLeave={e => e.currentTarget.style.color = 'var(--ins-text-disabled)'}
                             >
                               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                             </button>
@@ -900,12 +900,12 @@ function ContactSupport() {
                     onClick={close}
                     style={{
                       flex: 1, padding: '11px', borderRadius: '9px',
-                      background: 'rgba(255,255,255,.05)', border: '1px solid rgba(255,255,255,.08)',
+                      background: 'var(--ins-color-white-a-05)', border: '1px solid var(--ins-color-white-a-08)',
                       color: 'var(--ins-text-body)', fontSize: '14px', fontWeight: 500,
                       fontFamily: 'inherit', cursor: 'pointer',
                     }}
-                    onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,.08)'}
-                    onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,.05)'}
+                    onMouseEnter={e => e.currentTarget.style.background = 'var(--ins-color-white-a-08)'}
+                    onMouseLeave={e => e.currentTarget.style.background = 'var(--ins-color-white-a-05)'}
                   >Cancel</button>
                   <button
                     onClick={submit}
@@ -913,7 +913,7 @@ function ContactSupport() {
                       flex: 2, padding: '11px', borderRadius: '9px',
                       background: form.title.trim() ? 'var(--ins-button-primary-bg)' : 'rgba(9,160,157,.18)',
                       border: 'none',
-                      color: form.title.trim() ? '#fff' : 'rgba(14,196,193,0.4)',
+                      color: form.title.trim() ? 'var(--ins-text-heading)' : 'var(--ins-color-teal-a-40)',
                       fontSize: '14px', fontWeight: 600,
                       fontFamily: 'inherit', cursor: form.title.trim() ? 'pointer' : 'default',
                       transition: 'background .18s, color .18s',
@@ -928,7 +928,7 @@ function ContactSupport() {
               <div style={{ textAlign: 'center', padding: '16px 0' }}>
                 <div style={{
                   width: '52px', height: '52px', borderRadius: '50%',
-                  background: 'rgba(14,196,193,0.1)', border: '1px solid rgba(14,196,193,0.22)',
+                  background: 'var(--ins-color-teal-a-10)', border: '1px solid rgba(14,196,193,0.22)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   margin: '0 auto 20px', color: 'var(--ins-text-highlight)',
                 }}>
@@ -942,12 +942,12 @@ function ContactSupport() {
                   onClick={close}
                   style={{
                     padding: '10px 28px', borderRadius: '9px',
-                    background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.1)',
+                    background: 'var(--ins-color-white-a-06)', border: '1px solid var(--ins-color-white-a-10)',
                     color: 'var(--ins-color-gray-100)', fontSize: '14px', fontWeight: 500,
                     fontFamily: 'inherit', cursor: 'pointer',
                   }}
-                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,.1)'}
-                  onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,.06)'}
+                  onMouseEnter={e => e.currentTarget.style.background = 'var(--ins-color-white-a-10)'}
+                  onMouseLeave={e => e.currentTarget.style.background = 'var(--ins-color-white-a-06)'}
                 >Done</button>
               </div>
             )}

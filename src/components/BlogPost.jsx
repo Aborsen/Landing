@@ -121,7 +121,7 @@ function ShareButtons({ slug, title }) {
     border: '1px solid var(--ins-border-default)',
     borderRadius: 'var(--ins-radius-pill)',
     color: 'var(--ins-text-body)',
-    fontSize: '13px', fontWeight: 500,
+    fontSize: '14px', fontWeight: 500,
     textDecoration: 'none',
     fontFamily: 'var(--ins-font-family-sans)',
     cursor: 'pointer',
@@ -130,7 +130,7 @@ function ShareButtons({ slug, title }) {
 
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px', margin: '32px 0', paddingTop: '24px', borderTop: '1px solid var(--ins-border-default)' }}>
-      <span style={{ fontSize: '13px', color: 'var(--ins-text-body)', marginRight: '4px' }}>Share</span>
+      <span style={{ fontSize: '14px', color: 'var(--ins-text-body)', marginRight: '4px' }}>Share</span>
       <a href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`} target="_blank" rel="noopener noreferrer" aria-label="Share on X" style={baseBtn}><XIcon /> X</a>
       <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`} target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" style={baseBtn}><LinkedInIcon /> LinkedIn</a>
       <a href={`https://reddit.com/submit?url=${encodedUrl}&title=${encodedTitle}`} target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit" style={baseBtn}><RedditIcon /> Reddit</a>
@@ -225,7 +225,7 @@ function TableOfContents({ items }) {
                         padding: '6px 10px',
                         borderLeft: '2px solid',
                         borderLeftColor: active === item.id ? 'var(--ins-text-highlight)' : 'transparent',
-                        fontSize: '13px',
+                        fontSize: '14px',
                         lineHeight: 1.45,
                         color: active === item.id ? 'var(--ins-text-heading)' : 'var(--ins-text-body)',
                         textDecoration: 'none',
@@ -265,7 +265,7 @@ function TableOfContents({ items }) {
                     gap: '8px',
                     padding: '10px 4px',
                     borderBottom: '1px solid var(--ins-border-default)',
-                    fontSize: '13px',
+                    fontSize: '14px',
                     lineHeight: 1.4,
                     color: 'var(--ins-text-body)',
                     textDecoration: 'none',
@@ -366,7 +366,7 @@ function TopicsSidebar({ currentSlug }) {
                     gap: '8px',
                     padding: '10px 4px',
                     borderBottom: '1px solid var(--ins-border-default)',
-                    fontSize: '13px',
+                    fontSize: '14px',
                     lineHeight: 1.4,
                     color: 'var(--ins-text-body)',
                     textDecoration: 'none',
@@ -789,7 +789,7 @@ export default function BlogPost({ markdown, slug }) {
                 flexWrap: 'wrap',
                 alignItems: 'center',
                 gap: '6px',
-                fontSize: '13px',
+                fontSize: '14px',
                 color: 'var(--ins-text-body)',
                 lineHeight: 1.4,
               }}>
@@ -829,7 +829,7 @@ export default function BlogPost({ markdown, slug }) {
             )}
 
             {/* Meta strip */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px', marginBottom: '20px', fontSize: '13px', color: 'var(--ins-text-body)' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px', marginBottom: '20px', fontSize: '14px', color: 'var(--ins-text-body)' }}>
               {meta.category && (
                 <span style={{
                   padding: '4px 10px',
@@ -891,7 +891,7 @@ export default function BlogPost({ markdown, slug }) {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '10px',
-                fontSize: '13px',
+                fontSize: '14px',
                 color: 'var(--ins-text-body)',
                 marginBottom: '32px',
                 paddingBottom: '24px',
@@ -1059,7 +1059,7 @@ export default function BlogPost({ markdown, slug }) {
           transition: background 180ms;
         }
         .blog-faq-item > summary::-webkit-details-marker { display: none; }
-        .blog-faq-item > summary:hover { background: rgba(255,255,255,0.02); }
+        .blog-faq-item > summary:hover { background: var(--ins-color-white-a-02); }
         .blog-faq-q { flex: 1; }
         .blog-faq-chev {
           font-size: 20px;
@@ -1116,7 +1116,7 @@ export default function BlogPost({ markdown, slug }) {
           border-radius: var(--ins-radius-md);
           padding: 16px;
           overflow-x: auto;
-          font-size: 13px;
+          font-size: 14px;
           line-height: 1.55;
         }
         .blog-prose pre code { background: none; border: none; padding: 0; }

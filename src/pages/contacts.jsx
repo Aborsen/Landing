@@ -29,7 +29,7 @@ function ContactHero() {
 
 /* ── CONTACT OPTIONS ── */
 function ContactOptions({ onOpenDemo, onOpenSupport }) {
-  const cardStyle = {background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)', borderRadius:'16px', padding:'32px', position:'relative', overflow:'hidden', transition:'all .2s'};
+  const cardStyle = {background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'16px', padding:'32px', position:'relative', overflow:'hidden', transition:'all .2s'};
 
   return (
     <section style={{padding:'40px 0 80px'}}>
@@ -39,14 +39,14 @@ function ContactOptions({ onOpenDemo, onOpenSupport }) {
           {/* Talk to Sales */}
           <div style={cardStyle}
             onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-            onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
+            onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-border-default)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
             <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
             <div style={{width:'48px', height:'48px', borderRadius:'50%', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'20px'}}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             </div>
             <h3 style={{fontSize:'18px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'10px'}}>Talk to Sales</h3>
             <p className="ins-text-body" style={{marginBottom:'20px'}}>Get a personalized demo of Insightis for your team. We'll show you exactly how it works with your data sources.</p>
-            <button onClick={onOpenDemo} style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'13px', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'999px', border:'none', cursor:'pointer', fontFamily:'Geist,sans-serif'}}>
+            <button onClick={onOpenDemo} style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'12px', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'999px', border:'none', cursor:'pointer', fontFamily:'var(--ins-font-family-sans)'}}>
               Book a Demo
             </button>
             <p className="ins-text-body-xs ins-text--muted ins-text--mono" style={{marginTop:'14px'}}>Typically responds within 2 hours</p>
@@ -55,16 +55,16 @@ function ContactOptions({ onOpenDemo, onOpenSupport }) {
           {/* Get Support */}
           <div style={cardStyle}
             onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-            onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
+            onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-border-default)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
             <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
             <div style={{width:'48px', height:'48px', borderRadius:'50%', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'20px'}}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
             </div>
             <h3 style={{fontSize:'18px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'10px'}}>Get Support</h3>
             <p className="ins-text-body" style={{marginBottom:'20px'}}>Already using Insightis? Our support team can help with setup, integrations, troubleshooting, and best practices.</p>
-            <button onClick={onOpenSupport} style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'13px', fontWeight:600, color:'var(--ins-color-gray-100)', background:'transparent', borderRadius:'999px', border:'1px solid rgba(255,255,255,.12)', cursor:'pointer', fontFamily:'Geist,sans-serif', transition:'all .15s'}}
+            <button onClick={onOpenSupport} style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'12px', fontWeight:600, color:'var(--ins-color-gray-100)', background:'transparent', borderRadius:'999px', border:'1px solid var(--ins-color-white-a-12)', cursor:'pointer', fontFamily:'var(--ins-font-family-sans)', transition:'all .15s'}}
               onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.4)';e.currentTarget.style.color='var(--ins-text-highlight)';}}
-              onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.12)';e.currentTarget.style.color='var(--ins-color-gray-100)';}}>
+              onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-color-white-a-12)';e.currentTarget.style.color='var(--ins-color-gray-100)';}}>
               Open Support Ticket
             </button>
             <p className="ins-text-body-xs ins-text--muted ins-text--mono" style={{marginTop:'14px'}}>Pro & Team: priority support included</p>
@@ -73,14 +73,14 @@ function ContactOptions({ onOpenDemo, onOpenSupport }) {
           {/* Help Center */}
           <div style={cardStyle}
             onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-            onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
+            onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-border-default)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
             <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
             <div style={{width:'48px', height:'48px', borderRadius:'50%', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'20px'}}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
             </div>
             <h3 style={{fontSize:'18px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'10px'}}>Help Center</h3>
             <p className="ins-text-body" style={{marginBottom:'20px'}}>Browse our knowledge base for guides, FAQs, troubleshooting tips, and everything you need to get the most out of Insightis.</p>
-            <a href="../Resources/Contact Support" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'13px', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'999px', border:'none', cursor:'pointer', fontFamily:'Geist,sans-serif', textDecoration:'none'}}>
+            <a href="../Resources/Contact Support" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'12px', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'999px', border:'none', cursor:'pointer', fontFamily:'var(--ins-font-family-sans)', textDecoration:'none'}}>
               Visit Help Center
             </a>
             <p className="ins-text-body-xs ins-text--muted ins-text--mono" style={{marginTop:'14px'}}>Guides, FAQs & troubleshooting</p>
@@ -111,13 +111,13 @@ function ModalForm({ open, onClose, type }) {
   };
 
   const inputStyle = {
-    width:'100%', background:'rgba(255,255,255,.04)', border:'1px solid rgba(255,255,255,.08)',
+    width:'100%', background:'var(--ins-color-white-a-04)', border:'1px solid var(--ins-color-white-a-08)',
     borderRadius:'10px', padding:'12px 16px', fontSize:'14px', color:'var(--ins-color-gray-100)',
-    fontFamily:'Geist,sans-serif', outline:'none', transition:'border-color .15s',
+    fontFamily:'var(--ins-font-family-sans)', outline:'none', transition:'border-color .15s',
   };
   const labelStyle = {
     display:'block', fontSize:'11px', fontWeight:600, letterSpacing:'.08em',
-    textTransform:'uppercase', color:'var(--ins-text-body)', fontFamily:'Geist Mono,monospace',
+    textTransform:'uppercase', color:'var(--ins-text-body)', fontFamily:'var(--ins-font-family-mono)',
     marginBottom:'6px',
   };
   const selectStyle = {...inputStyle, appearance:'none', backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237FA0AC' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E\")", backgroundRepeat:'no-repeat', backgroundPosition:'right 16px center'};
@@ -128,7 +128,7 @@ function ModalForm({ open, onClose, type }) {
     <div style={{position:'fixed', inset:0, zIndex:9999, display:'flex', alignItems:'center', justifyContent:'center', padding:'24px'}}
       onClick={onClose}>
       <div style={{position:'absolute', inset:0, background:'rgba(0,0,0,.7)', backdropFilter:'blur(6px)'}}/>
-      <div style={{position:'relative', width:'100%', maxWidth:'520px', maxHeight:'90vh', overflowY:'auto', background:'var(--ins-surface-container)', border:'1px solid rgba(255,255,255,.08)', borderRadius:'20px', padding:'36px'}}
+      <div style={{position:'relative', width:'100%', maxWidth:'520px', maxHeight:'90vh', overflowY:'auto', background:'var(--ins-surface-container)', border:'1px solid var(--ins-color-white-a-08)', borderRadius:'20px', padding:'36px'}}
         onClick={e => e.stopPropagation()}>
         {/* Close button */}
         <button onClick={onClose} style={{position:'absolute', top:'16px', right:'16px', background:'none', border:'none', cursor:'pointer', padding:'4px', color:'var(--ins-text-body)'}}>
@@ -138,7 +138,7 @@ function ModalForm({ open, onClose, type }) {
         {/* Header */}
         <div style={{marginBottom:'28px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', fontFamily:'Geist Mono,monospace'}}>
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', fontFamily:'var(--ins-font-family-mono)'}}>
               {isDemo ? 'Demo Request' : 'Support Ticket'}
             </span>
           </div>
@@ -169,7 +169,7 @@ function ModalForm({ open, onClose, type }) {
               <div>
                 <label style={labelStyle}>Team Size</label>
                 <select style={selectStyle}
-                  onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='rgba(255,255,255,.08)'}>
+                  onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='var(--ins-color-white-a-08)'}>
                   <option value="" style={{background:'var(--ins-surface-container)'}}>Select team size</option>
                   <option value="1-10" style={{background:'var(--ins-surface-container)'}}>1–10</option>
                   <option value="11-50" style={{background:'var(--ins-surface-container)'}}>11–50</option>
@@ -191,7 +191,7 @@ function ModalForm({ open, onClose, type }) {
               <div>
                 <label style={labelStyle}>Product</label>
                 <select style={selectStyle}
-                  onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='rgba(255,255,255,.08)'}>
+                  onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='var(--ins-color-white-a-08)'}>
                   <option value="" style={{background:'var(--ins-surface-container)'}}>Select product</option>
                   <option value="insightis" style={{background:'var(--ins-surface-container)'}}>Insightis</option>
                   <option value="ai-connect" style={{background:'var(--ins-surface-container)'}}>AI Connect</option>
@@ -201,7 +201,7 @@ function ModalForm({ open, onClose, type }) {
               <div>
                 <label style={labelStyle}>Priority</label>
                 <select style={selectStyle}
-                  onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='rgba(255,255,255,.08)'}>
+                  onFocus={e=>e.target.style.borderColor='rgba(9,160,157,.4)'} onBlur={e=>e.target.style.borderColor='var(--ins-color-white-a-08)'}>
                   <option value="" style={{background:'var(--ins-surface-container)'}}>Select priority</option>
                   <option value="low" style={{background:'var(--ins-surface-container)'}}>Low</option>
                   <option value="medium" style={{background:'var(--ins-surface-container)'}}>Medium</option>
@@ -272,9 +272,9 @@ function QuickLinks() {
         </div>
         <div style={{display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:'16px'}} className="md:grid-cols-4 sm:grid-cols-2 grid-cols-1">
           {links.map((l, i) => (
-            <a key={i} href={l.href} style={{background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)', borderRadius:'16px', padding:'28px', position:'relative', overflow:'hidden', transition:'all .2s', textDecoration:'none', display:'block'}}
+            <a key={i} href={l.href} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'16px', padding:'28px', position:'relative', overflow:'hidden', transition:'all .2s', textDecoration:'none', display:'block'}}
               onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-              onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
+              onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-border-default)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
               <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
               <div style={{width:'44px', height:'44px', borderRadius:'50%', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'16px'}}>
                 {l.icon}
@@ -326,7 +326,7 @@ function OurOffices() {
         <div style={{display:'grid', gridTemplateColumns:'repeat(5,1fr)', gap:'24px'}}>
           {offices.map((o, i) => (
             <div key={i}>
-              <div style={{width:'36px', height:'36px', borderRadius:'50%', overflow:'hidden', border:'1px solid rgba(255,255,255,.1)', marginBottom:'14px', flexShrink:0}}>
+              <div style={{width:'36px', height:'36px', borderRadius:'50%', overflow:'hidden', border:'1px solid var(--ins-color-white-a-10)', marginBottom:'14px', flexShrink:0}}>
                 <img src={`https://flagcdn.com/w80/${o.code}.png`} alt={o.country} style={{width:'100%', height:'100%', objectFit:'cover'}} />
               </div>
               <p className="ins-text-body ins-text--semibold" style={{marginBottom:'10px'}}>{o.country}</p>
@@ -376,7 +376,7 @@ function CtaBanner() {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 required
-                style={{flex:1, background:'transparent', border:'none', padding:'12px 16px', fontSize:'14px', color:'var(--ins-color-gray-100)', fontFamily:'Geist,sans-serif', outline:'none', minWidth:0, height:'auto', borderRadius:0, boxShadow:'none'}}
+                style={{flex:1, background:'transparent', border:'none', padding:'12px 16px', fontSize:'14px', color:'var(--ins-color-gray-100)', fontFamily:'var(--ins-font-family-sans)', outline:'none', minWidth:0, height:'auto', borderRadius:0, boxShadow:'none'}}
               />
               <Button type="submit" variant="primary" size="sm" radius="lg" iconEnd={<ArrowRightIcon />} className="m-1 flex-shrink-0">
                 Get in Touch

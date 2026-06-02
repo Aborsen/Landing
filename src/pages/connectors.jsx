@@ -48,7 +48,7 @@ function FloatingChat({ onSubmit }) {
         <div style={{
           display:'flex', alignItems:'center', gap:'8px',
           background:'rgba(16,22,30,0.96)',
-          border: focused ? '1px solid rgba(9,160,157,.5)' : '1px solid rgba(255,255,255,.09)',
+          border: focused ? '1px solid var(--ins-color-teal-a-50)' : '1px solid var(--ins-color-white-a-10)',
           borderRadius:'12px',
           padding:'6px 6px 6px 12px',
           transition:'border-color .2s',
@@ -69,7 +69,7 @@ function FloatingChat({ onSubmit }) {
             placeholder="Ask a question..."
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
-              fontSize:'13px', color:'var(--ins-color-gray-100)',
+              fontSize:'14px', color:'var(--ins-color-gray-100)',
               fontFamily:'inherit',
             }}
           />
@@ -79,7 +79,7 @@ function FloatingChat({ onSubmit }) {
               flexShrink:0,
               padding:'6px 14px', borderRadius:'7px',
               background: value.trim() ? 'var(--ins-button-primary-bg)' : 'rgba(9,160,157,.15)',
-              color: value.trim() ? '#fff' : '#4A9EA0',
+              color: value.trim() ? 'var(--ins-text-heading)' : 'var(--ins-text-disabled)',
               border:'none', cursor: value.trim() ? 'pointer' : 'default',
               fontSize:'12px', fontWeight:600,
               fontFamily:'inherit',
@@ -162,10 +162,10 @@ function AIAssistantPanel({ query, onClose }) {
       if (title === 'Copy') { navigator.clipboard?.writeText(''); setCopied(true); setTimeout(() => setCopied(false), 2000); }
     }} style={{
       background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
-      color:'#5E8290', transition:'color .15s',
+      color:'var(--ins-text-disabled)', transition:'color .15s',
     }}
     onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-text-body)'}
-    onMouseLeave={e => e.currentTarget.style.color = '#5E8290'}
+    onMouseLeave={e => e.currentTarget.style.color = 'var(--ins-text-disabled)'}
     >
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d={path}/>
@@ -177,7 +177,7 @@ function AIAssistantPanel({ query, onClose }) {
     <div style={{
       position:'fixed', right:0, top:0, bottom:0, width:'280px',
       background:'#0B0F16',
-      borderLeft:'1px solid rgba(255,255,255,0.07)',
+      borderLeft:'1px solid var(--ins-color-white-a-07)',
       display:'flex', flexDirection:'column',
       zIndex:200,
       animation:'slideInRight .25s ease',
@@ -185,22 +185,22 @@ function AIAssistantPanel({ query, onClose }) {
       {/* Header */}
       <div style={{
         display:'flex', alignItems:'center', justifyContent:'space-between',
-        padding:'12px 14px', borderBottom:'1px solid rgba(255,255,255,0.07)',
+        padding:'12px 14px', borderBottom:'1px solid var(--ins-color-white-a-07)',
         flexShrink:0,
       }}>
         <div style={{ display:'flex', alignItems:'center', gap:'7px' }}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
           </svg>
-          <span style={{ fontSize:'13px', fontWeight:600, color:'var(--ins-color-gray-100)' }}>Assistant</span>
+          <span style={{ fontSize:'14px', fontWeight:600, color:'var(--ins-color-gray-100)' }}>Assistant</span>
         </div>
         <div style={{ display:'flex', gap:'2px' }}>
           <button onClick={onClose} style={{
             background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
-            color:'#5E8290', transition:'color .15s', display:'flex',
+            color:'var(--ins-text-disabled)', transition:'color .15s', display:'flex',
           }}
           onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-color-gray-100)'}
-          onMouseLeave={e => e.currentTarget.style.color = '#5E8290'}
+          onMouseLeave={e => e.currentTarget.style.color = 'var(--ins-text-disabled)'}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
@@ -220,7 +220,7 @@ function AIAssistantPanel({ query, onClose }) {
                   border:'1px solid rgba(9,160,157,0.25)',
                   borderRadius:'10px 10px 2px 10px',
                   padding:'8px 12px',
-                  fontSize:'13px', color:'#C8E6EA', maxWidth:'90%',
+                  fontSize:'14px', color:'#C8E6EA', maxWidth:'90%',
                   lineHeight:1.5,
                 }}>
                   {msg.text}
@@ -238,18 +238,18 @@ function AIAssistantPanel({ query, onClose }) {
                     Read 1 file
                   </div>
                 </div>
-                <p style={{ fontSize:'13px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'10px' }}>
+                <p style={{ fontSize:'14px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'10px' }}>
                   <AssistantResponseText text={msg.response.intro} />
                 </p>
                 <ul style={{ margin:'0 0 10px 0', padding:'0', listStyle:'none', display:'flex', flexDirection:'column', gap:'5px' }}>
                   {msg.response.bullets.map((b, i) => (
-                    <li key={i} style={{ fontSize:'13px', color:'#8AAAB8', lineHeight:1.6, paddingLeft:'14px', position:'relative' }}>
+                    <li key={i} style={{ fontSize:'14px', color:'#8AAAB8', lineHeight:1.6, paddingLeft:'14px', position:'relative' }}>
                       <span style={{ position:'absolute', left:0, color:'var(--ins-text-highlight)', fontWeight:700 }}>·</span>
                       <strong style={{ color:'#C8E6EA' }}>{b.bold}</strong>{b.text}
                     </li>
                   ))}
                 </ul>
-                <p style={{ fontSize:'13px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'12px' }}>
+                <p style={{ fontSize:'14px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'12px' }}>
                   {msg.response.outro}
                 </p>
                 <div style={{ display:'flex', flexDirection:'column', gap:'4px', marginBottom:'12px' }}>
@@ -295,12 +295,12 @@ function AIAssistantPanel({ query, onClose }) {
 
       {/* Follow-up input */}
       <div style={{
-        padding:'10px 14px 18px', borderTop:'1px solid rgba(255,255,255,0.07)', flexShrink:0,
+        padding:'10px 14px 18px', borderTop:'1px solid var(--ins-color-white-a-07)', flexShrink:0,
       }}>
         <div style={{
           display:'flex', alignItems:'center', gap:'8px',
-          background:'rgba(255,255,255,0.04)',
-          border: inputFocused ? '1px solid rgba(9,160,157,.4)' : '1px solid rgba(255,255,255,.07)',
+          background:'var(--ins-color-white-a-04)',
+          border: inputFocused ? '1px solid rgba(9,160,157,.4)' : '1px solid var(--ins-color-white-a-07)',
           borderRadius:'10px',
           padding:'8px 8px 8px 12px',
           transition:'border-color .2s',
@@ -314,7 +314,7 @@ function AIAssistantPanel({ query, onClose }) {
             placeholder="Ask a question..."
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
-              fontSize:'13px', color:'var(--ins-color-gray-100)', fontFamily:'Geist,sans-serif',
+              fontSize:'14px', color:'var(--ins-color-gray-100)', fontFamily:'var(--ins-font-family-sans)',
             }}
           />
           <button onClick={handleFollowUp} style={{
@@ -324,7 +324,7 @@ function AIAssistantPanel({ query, onClose }) {
             display:'flex', alignItems:'center', justifyContent:'center',
             transition:'background .2s',
           }}>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={input.trim() ? '#fff' : '#3A7080'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={input.trim() ? 'var(--ins-color-white)' : '#3A7080'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>
             </svg>
           </button>
@@ -387,7 +387,7 @@ function ConnectorCategorySidebar({ active, setActive, counts, onRequestConnecto
       {/* Request a connector */}
       <div style={{
         marginTop:'20px', padding:'16px',
-        borderTop:'1px solid rgba(255,255,255,0.055)',
+        borderTop:'1px solid var(--ins-border-default)',
       }}>
         <p className="ins-text-body-sm" style={{marginBottom:'10px'}}>
           Don't see what you need?
@@ -399,13 +399,13 @@ function ConnectorCategorySidebar({ active, setActive, counts, onRequestConnecto
             width:'100%', justifyContent:'center',
             padding:'8px 12px', borderRadius:'8px',
             border:'1px solid rgba(9,160,157,.3)',
-            background:'rgba(9,160,157,.08)',
-            color:'var(--ins-text-highlight)', fontSize:'12.5px', fontWeight:500,
-            fontFamily:'Geist, sans-serif', cursor:'pointer',
+            background:'var(--ins-surface-brand-tint)',
+            color:'var(--ins-text-highlight)', fontSize:'12px', fontWeight:500,
+            fontFamily:'var(--ins-font-family-sans)', cursor:'pointer',
             transition:'background .15s, border-color .15s',
           }}
           onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(9,160,157,.15)'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(9,160,157,.08)'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.background = 'var(--ins-surface-brand-tint)'; }}
         >
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
@@ -458,7 +458,7 @@ function ConnectorGrid({ items, onAskChat, onConnect }) {
     return (
       <div style={{
         padding:'40px 24px', textAlign:'center',
-        border:'1px dashed rgba(255,255,255,0.08)', borderRadius:'12px',
+        border:'1px dashed var(--ins-color-white-a-08)', borderRadius:'12px',
         color:'var(--ins-text-body)', fontSize:'14px',
       }}>
         No connectors match your search.
@@ -557,7 +557,7 @@ function App() {
                 display:'inline-flex', alignItems:'center', gap:'8px',
                 padding:'10px 18px', borderRadius:'8px',
                 border:'none', background:'var(--ins-button-primary-bg)', color:'var(--ins-text-body)',
-                fontSize:'13px', fontWeight:600, fontFamily:'Geist,sans-serif',
+                fontSize:'14px', fontWeight:600, fontFamily:'var(--ins-font-family-sans)',
                 cursor:'pointer', transition:'background .15s',
               }}
               onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--ins-button-primary-bg-hover)'; }}

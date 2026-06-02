@@ -29,7 +29,7 @@ function BlogHero() {
   return (
     <section style={{padding:'120px 0 60px', textAlign:'center', position:'relative'}}>
       <div style={{maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
-        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid rgba(255,255,255,.07)', background:'rgba(255,255,255,.03)', fontSize:'12px', color:'var(--ins-text-body)', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
+        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid var(--ins-color-white-a-07)', background:'var(--ins-color-white-a-03)', fontSize:'12px', color:'var(--ins-text-body)', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
           ✦ BLOG
         </div>
         <h1 className="fu1" style={{fontSize:'clamp(36px,5vw,56px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'var(--ins-text-heading-soft)', marginBottom:'20px'}}>
@@ -50,8 +50,8 @@ function FeaturedPost() {
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
         <div style={{
           position:'relative',
-          background:'rgba(255,255,255,.03)',
-          border:'1px solid rgba(255,255,255,.07)',
+          background:'var(--ins-color-white-a-03)',
+          border:'1px solid var(--ins-color-white-a-07)',
           borderRadius:'16px',
           padding:'0',
           overflow:'hidden',
@@ -71,7 +71,7 @@ function FeaturedPost() {
               <p className="ins-text-body">
                 AI Chat gives you the what. Insights Engine tells you the why. Today we're launching the deep analysis layer that connects dots across your entire data ecosystem.
               </p>
-              <div style={{fontSize:'12px', color:'var(--ins-text-disabled)', fontFamily:"'Geist Mono', monospace"}}>
+              <div style={{fontSize:'12px', color:'var(--ins-text-disabled)', fontFamily:'var(--ins-font-family-mono)'}}>
                 Apr 1, 2026 &middot; 6 min read
               </div>
               <a href="#" style={{fontSize:'14px', color:'var(--ins-text-highlight)', textDecoration:'none', fontWeight:500, marginTop:'4px'}}>
@@ -108,7 +108,7 @@ function CategoryFilter({ activeCategory, setActiveCategory }) {
                 variant={isActive ? 'brand' : 'neutral'}
                 onClick={() => setActiveCategory(cat)}
                 aria-pressed={isActive}
-                style={{cursor:'pointer', padding:'8px 14px', fontSize:'13px'}}
+                style={{cursor:'pointer', padding:'8px 14px', fontSize:'12px'}}
               >
                 {cat}
               </Chip>
@@ -181,7 +181,7 @@ function BlogGrid({ activeCategory, activeTag }) {
                 <p className="ins-text-body" style={{marginBottom:'12px', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:3, WebkitBoxOrient:'vertical'}}>
                   {article.description}
                 </p>
-                <div style={{fontSize:'11px', color:'var(--ins-text-disabled)', fontFamily:"'Geist Mono', monospace", marginTop:'auto'}}>
+                <div style={{fontSize:'11px', color:'var(--ins-text-disabled)', fontFamily:'var(--ins-font-family-mono)', marginTop:'auto'}}>
                   {article.date} &middot; {article.readTime} read
                 </div>
               </div>
@@ -237,7 +237,7 @@ function BottomCTA() {
               style={{
                 flex:1,background:'transparent',fontSize:'14px',color:'var(--ins-text-body)',
                 padding:'12px 16px',outline:'none',border:'none',
-                fontFamily:'Geist,sans-serif',minWidth:0,
+                fontFamily:'var(--ins-font-family-sans)',minWidth:0,
                 height:'auto',borderRadius:0,boxShadow:'none',
               }}
             />
@@ -294,7 +294,7 @@ function App() {
             variant="brand"
             onRemove={clearTag}
             aria-label="Clear tag filter"
-            style={{fontSize:'13px', padding:'8px 14px'}}
+            style={{fontSize:'12px', padding:'8px 14px'}}
           >
             Filtered by tag:&nbsp;<strong style={{fontWeight:600}}>#{activeTag}</strong>
           </Chip>

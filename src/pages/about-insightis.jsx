@@ -30,11 +30,11 @@ function AboutHero() {
         <p className="fu2 ins-text-body-xl" style={{maxWidth:'580px', margin:'0 auto'}}>
           Insightis is the AI analytics workspace that lets anyone — not just analysts — ask questions about their data and get instant, accurate answers. No SQL. No dashboards. No waiting.
         </p>
-        <div className="fu3" style={{display:'flex', justifyContent:'center', gap:'0', marginTop:'56px', borderTop:'1px solid rgba(255,255,255,.06)', borderBottom:'1px solid rgba(255,255,255,.06)', flexWrap:'wrap'}}>
+        <div className="fu3" style={{display:'flex', justifyContent:'center', gap:'0', marginTop:'56px', borderTop:'1px solid var(--ins-border-default)', borderBottom:'1px solid var(--ins-border-default)', flexWrap:'wrap'}}>
           {stats.map((s, i) => (
-            <div key={i} style={{flex:'1 1 160px', padding:'28px 24px', textAlign:'center', borderRight: i < stats.length-1 ? '1px solid rgba(255,255,255,.06)' : 'none'}}>
-              <div style={{fontSize:'clamp(28px,3.5vw,42px)', fontWeight:600, color:'var(--ins-text-highlight)', letterSpacing:'-.02em', lineHeight:1}}>{s.num}</div>
-              <div style={{fontSize:'13px', color:'rgba(255,255,255,.4)', marginTop:'8px', letterSpacing:'.02em'}}>{s.label}</div>
+            <div key={i} style={{flex:'1 1 160px', padding:'28px 24px', textAlign:'center', borderRight: i < stats.length-1 ? '1px solid var(--ins-border-default)' : 'none'}}>
+              <div style={{fontSize:'clamp(28px,3.5vw,44px)', fontWeight:600, color:'var(--ins-text-highlight)', letterSpacing:'-.02em', lineHeight:1}}>{s.num}</div>
+              <div style={{fontSize:'12px', color:'var(--ins-color-white-a-45)', marginTop:'8px', letterSpacing:'.02em'}}>{s.label}</div>
             </div>
           ))}
         </div>
@@ -75,11 +75,11 @@ function MissionValues() {
         </div>
         <div style={{display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'16px'}} className="md:grid-cols-3 grid-cols-1" >
           {values.map((v, i) => (
-            <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid rgba(255,255,255,.06)', borderRadius:'16px', padding:'28px', position:'relative', overflow:'hidden', transition:'all .2s'}}
+            <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'16px', padding:'28px', position:'relative', overflow:'hidden', transition:'all .2s'}}
               onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-              onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
+              onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-border-default)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
               <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
-              <div style={{width:'40px', height:'40px', borderRadius:'10px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'16px'}}>
+              <div style={{width:'40px', height:'40px', borderRadius:'10px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'16px'}}>
                 {v.icon}
               </div>
               <h3 style={{fontSize:'17px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{v.title}</h3>
@@ -116,7 +116,7 @@ function WhatWeBuilt() {
           {pillars.map((p, i) => (
             <React.Fragment key={i}>
               <div style={{display:'flex', flexDirection:'column', alignItems: i===0 ? 'flex-start' : i===pillars.length-1 ? 'flex-end' : 'center', textAlign: i===0 ? 'left' : i===pillars.length-1 ? 'right' : 'center', flex:1}}>
-                <div className="hb" style={{width:'64px', height:'64px', borderRadius:'16px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'14px', animationDelay:`${i * 0.4}s`}}>
+                <div className="hb" style={{width:'64px', height:'64px', borderRadius:'16px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'14px', animationDelay:`${i * 0.4}s`}}>
                   {p.icon}
                 </div>
                 <h4 style={{fontSize:'15px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'4px'}}>{p.name}</h4>
@@ -134,7 +134,7 @@ function WhatWeBuilt() {
           {pillars.map((p, i) => (
             <React.Fragment key={i}>
               <div style={{display:'flex', alignItems:'center', gap:'16px', width:'100%', maxWidth:'320px'}}>
-                <div className="hb" style={{width:'48px', height:'48px', borderRadius:'12px', background:'rgba(9,160,157,.08)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, animationDelay:`${i * 0.4}s`}}>
+                <div className="hb" style={{width:'48px', height:'48px', borderRadius:'12px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, animationDelay:`${i * 0.4}s`}}>
                   {p.icon}
                 </div>
                 <div>
@@ -162,7 +162,7 @@ function BackedBy() {
         <div style={{marginBottom:'48px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'16px'}}>
             <span style={{fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', fontFamily:'Geist Mono,monospace'}}>Our Mission</span>
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', fontFamily:'var(--ins-font-family-mono)'}}>Our Mission</span>
           </div>
           <h2 className="ins-text-display" style={{maxWidth:'700px'}}>Precise analytics for everyone</h2>
         </div>
@@ -226,7 +226,7 @@ function OurStory() {
               <div key={i} style={{display:'flex', gap:'0', position:'relative', paddingBottom: i < milestones.length-1 ? '48px' : '0'}}>
                 {/* Year label */}
                 <div className="hidden md:block" style={{width:'120px', flexShrink:0, paddingTop:'4px'}}>
-                  <span style={{fontSize: m.year === '∞' ? '26px' : '13px', fontWeight:600, color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace', letterSpacing:'.04em', lineHeight:1}}>{m.year}</span>
+                  <span style={{fontSize: m.year === '∞' ? '28px' : '12px', fontWeight:600, color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)', letterSpacing:'.04em', lineHeight:1}}>{m.year}</span>
                 </div>
                 {/* Dot */}
                 <div className="hidden md:flex" style={{width:'0', flexShrink:0, position:'relative', justifyContent:'center'}}>
@@ -234,7 +234,7 @@ function OurStory() {
                 </div>
                 {/* Content */}
                 <div style={{flex:1, paddingLeft:'40px'}}>
-                  <div className="md:hidden" style={{fontSize: m.year === '∞' ? '24px' : '12px', fontWeight:600, color:'var(--ins-button-primary-bg-hover)', fontFamily:'Geist Mono,monospace', marginBottom:'6px', letterSpacing:'.04em', lineHeight:1}}>{m.year}</div>
+                  <div className="md:hidden" style={{fontSize: m.year === '∞' ? '24px' : '12px', fontWeight:600, color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)', marginBottom:'6px', letterSpacing:'.04em', lineHeight:1}}>{m.year}</div>
                   <h3 style={{fontSize:'18px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px', letterSpacing:'-.01em'}}>{m.title}</h3>
                   <p className="ins-text-body-lg" style={{maxWidth:'680px'}}>{m.desc}</p>
                 </div>
@@ -309,8 +309,8 @@ function TrustedBy() {
   const companies = ['IBM', 'Amazon', 'Samsung', 'Toyota', 'Microsoft', 'Oracle', 'Siemens', 'Cisco', 'Accenture', 'Deloitte', 'SAP', 'Bosch'];
   return (
     <section style={{padding:'0 16px', margin:'0 auto', maxWidth:'1272px'}}>
-      <div style={{border:'1px solid rgba(255,255,255,.06)', background:'rgba(255,255,255,.02)', borderRadius:'16px', padding:'32px 32px', display:'flex', alignItems:'center', gap:'24px'}}>
-        <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-text-disabled)', whiteSpace:'nowrap', flexShrink:0, fontFamily:'Geist Mono,monospace'}}>Trusted by teams at</span>
+      <div style={{border:'1px solid var(--ins-border-default)', background:'var(--ins-color-white-a-02)', borderRadius:'16px', padding:'32px 32px', display:'flex', alignItems:'center', gap:'24px'}}>
+        <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-text-disabled)', whiteSpace:'nowrap', flexShrink:0, fontFamily:'var(--ins-font-family-mono)'}}>Trusted by teams at</span>
         <div className="overflow-hidden flex-1 marquee-container" style={{maskImage:'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)', WebkitMaskImage:'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)'}}>
           <div className="flex gap-3 marquee-left" style={{width:'max-content'}}>
             {[...companies, ...companies].map((name, i) => (
@@ -334,7 +334,7 @@ function BottomCTA() {
             Ready to see your data <span style={{color:'var(--ins-button-primary-bg)'}}>clearly?</span>
           </h3>
           <div style={{display:'flex', alignItems:'center', width:'100%', maxWidth:'420px', background:'#0D0D1A', border:'1px solid rgba(46,46,64,1)', borderRadius:'12px', overflow:'hidden', flex:'1 1 340px'}}>
-            <Input hideLabel label="Work email" type="email" placeholder="Enter your work email..." style={{flex:1, background:'transparent', fontSize:'14px', color:'var(--ins-text-body)', padding:'12px 16px', outline:'none', border:'none', fontFamily:'Geist,sans-serif', minWidth:0, height:'auto', borderRadius:0, boxShadow:'none'}} />
+            <Input hideLabel label="Work email" type="email" placeholder="Enter your work email..." style={{flex:1, background:'transparent', fontSize:'14px', color:'var(--ins-text-body)', padding:'12px 16px', outline:'none', border:'none', fontFamily:'var(--ins-font-family-sans)', minWidth:0, height:'auto', borderRadius:0, boxShadow:'none'}} />
             <Button variant="primary" size="sm" radius="lg" iconEnd={<ArrowRightIcon />} className="m-1 flex-shrink-0">
               Start for Free
             </Button>
