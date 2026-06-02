@@ -480,7 +480,7 @@ function HowItWorks() {
     },
     {
       n: '04',
-      title: 'Run pipeline reviews on live data',
+      title: 'Run pipelines on live data',
       body: 'Show up to QBRs and forecast calls with charts that update in the room. Argue strategy, not whose number is correct.',
       example: 'QBR deck → live, no rebuild',
     },

@@ -439,7 +439,7 @@ function HowItWorks() {
   const steps = [
     {
       n: '01',
-      title: 'Plug in your entire revenue stack',
+      title: 'Plug in your entire stack',
       body: 'Pull in CRM, billing, accounting, and your warehouse in one click. Every source stays in sync — no late-night CSV exports.',
       example: 'CRM + Billing → in sync',
     },

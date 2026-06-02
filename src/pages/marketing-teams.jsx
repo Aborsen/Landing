@@ -523,13 +523,13 @@ function HowItWorks() {
     {
       n: '01',
       title: 'Stitch every channel together',
-      body: 'Pipe every ad platform, GA4, HubSpot, and CRM into one live feed. Spend and revenue stay reconciled without engineering.',
+      body: 'Pipe every ad platform, GA4, HubSpot, and CRM into one live feed. Spend and revenue stay reconciled.',
       example: 'Google Ads + Meta → live feed',
     },
     {
       n: '02',
       title: 'Lock in one attribution model',
-      body: 'Encode CAC, ROAS, attribution, and funnel stages in a shared layer. Every team pulls the same number — every time.',
+      body: 'Encode CAC, ROAS, attribution, and funnel stages in a shared layer. Every team pulls the same number.',
       example: 'ROAS + CAC → one model',
     },
     {
