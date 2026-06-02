@@ -175,7 +175,7 @@ export default function Header() {
                       </svg>
                     </button>
                   ) : (
-                    <a href={linkUrls[link] || '#'} className="flex items-center px-4 py-1.5 rounded-full text-sm text-text-muted hover:text-text-primary hover:bg-surface-hover transition-colors">
+                    <a href={linkUrls[link] || '#'} className="flex items-center px-4 py-1.5 rounded-full text-sm text-text-muted hover:!text-text-primary hover:bg-surface-hover transition-colors">
                       {link}
                     </a>
                   )}
@@ -273,7 +273,7 @@ export default function Header() {
             {['Platform', 'Solutions', 'Resources', 'Pricing'].map(link => {
               const dd = dropdowns[link];
               if (!dd) {
-                return <a key={link} href={linkUrls[link] || '#'} className="block py-3 text-text-muted hover:text-text-primary transition-colors">{link}</a>;
+                return <a key={link} href={linkUrls[link] || '#'} className="block py-3 text-text-muted hover:!text-text-primary transition-colors">{link}</a>;
               }
               return (
                 <details key={link} name="mobile-nav" style={{borderBottom:'1px solid var(--ins-border-default)'}}>
