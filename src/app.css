@@ -1,6 +1,6 @@
-@import url('../public/Design system/design-system/assets/tokens.css');
-@import url('../public/Design system/design-system/assets/base.css');
-@import url('../public/Design system/design-system/assets/components.css');
+/* Design System — single source of truth (design-system/). Splits into
+   tokens/ (per-concern :root vars), global.css, components.css, animations.css. */
+@import url('../design-system/index.css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
