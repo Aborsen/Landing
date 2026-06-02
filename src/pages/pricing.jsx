@@ -188,20 +188,20 @@ function PricingCards() {
                 <div style={{marginBottom:'24px',minHeight:'128px'}}>
                   {plan.price === 0 ? (
                     <div>
-                      <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-0.03em'}}>$0</span>
-                      <span style={{fontSize:'14px',color:'rgba(255,255,255,0.7)',marginLeft:'6px'}}>forever</span>
+                      <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-0.03em'}}>$0</span>
+                      <span style={{fontSize:'14px',color:'var(--ins-text-body)',marginLeft:'6px'}}>forever</span>
                     </div>
                   ) : (
                     <div>
                       <div style={{display:'flex',alignItems:'baseline',gap:'10px',flexWrap:'wrap'}}>
-                        <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-0.03em'}}>${displayPrice(plan.price)}</span>
+                        <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-0.03em'}}>${displayPrice(plan.price)}</span>
                         {plan.originalPrice && (
-                          <span style={{fontSize:'18px',color:'rgba(255,255,255,0.35)',textDecoration:'line-through'}}>${plan.originalPrice}</span>
+                          <span style={{fontSize:'18px',color:'var(--ins-text-inactive)',textDecoration:'line-through'}}>${plan.originalPrice}</span>
                         )}
                       </div>
-                      <div style={{fontSize:'13px',color:'rgba(255,255,255,0.7)',marginTop:'2px'}}>per user / month</div>
+                      <div style={{fontSize:'13px',color:'var(--ins-text-body)',marginTop:'2px'}}>per user / month</div>
                       {cycle === 'yearly' && (
-                        <div style={{fontSize:'12px',color:'rgba(255,255,255,0.5)',marginTop:'2px'}}>
+                        <div style={{fontSize:'12px',color:'var(--ins-text-inactive)',marginTop:'2px'}}>
                           billed annually · ${yearlyTotal(plan.price).toFixed(2)}/yr
                         </div>
                       )}
@@ -287,21 +287,20 @@ function FeatureComparison() {
       ]
     },
   ];
-  const Dash = () => <span style={{color:'rgba(255,255,255,0.18)'}}>—</span>;
+  const Dash = () => <span style={{color:'var(--ins-text-disabled)'}}>—</span>;
   const cols = '1.6fr 1fr 1fr 1fr';
   return (
     <section style={{padding:'80px 0 60px'}}>
       <div style={{maxWidth:'1100px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'48px'}}>
-          <h2 style={{fontSize:'clamp(26px,3.4vw,38px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.025em',marginBottom:'10px'}}>Compare features</h2>
-          <p className="ins-text-body-lg ins-text--muted">Everything you get on every plan.</p>
+        <div style={{marginBottom:'48px'}}>
+          <SectionHeader title="Compare features" lede="Everything you get on every plan." />
         </div>
         <div data-compare-wrap style={{border:'1px solid rgba(255,255,255,0.08)',borderRadius:'16px',overflow:'hidden',background:'rgba(13,17,23,0.5)'}}>
           {/* Column headers */}
           <div style={{display:'grid',gridTemplateColumns:cols,padding:'18px 20px',background:'rgba(255,255,255,0.025)',borderBottom:'1px solid rgba(255,255,255,0.06)'}}>
-            <span style={{fontSize:'12px',fontWeight:500,letterSpacing:'.08em',textTransform:'uppercase',color:'rgba(255,255,255,0.7)',fontFamily:'Geist Mono,monospace'}}>Feature</span>
+            <span style={{fontSize:'12px',fontWeight:500,letterSpacing:'.08em',textTransform:'uppercase',color:'var(--ins-text-body)',fontFamily:'Geist Mono,monospace'}}>Feature</span>
             {['Free','Starter','Pro'].map(p => (
-              <span key={p} style={{textAlign:'center',fontSize:'13px',fontWeight:600,color:'var(--ins-text-body)'}}>{p}</span>
+              <span key={p} style={{textAlign:'center',fontSize:'13px',fontWeight:600,color:'var(--ins-text-heading)'}}>{p}</span>
             ))}
           </div>
           {/* Sectioned rows */}
@@ -326,7 +325,7 @@ function FeatureComparison() {
           ))}
           {/* Choose-your-plan footer */}
           <div style={{display:'grid',gridTemplateColumns:cols,padding:'18px 20px',background:'rgba(255,255,255,0.025)',borderTop:'1px solid rgba(255,255,255,0.06)',alignItems:'center'}}>
-            <span style={{fontSize:'13px',color:'rgba(255,255,255,0.7)'}}>Choose your plan</span>
+            <span style={{fontSize:'13px',color:'var(--ins-text-body)'}}>Choose your plan</span>
             {[
               { label:'Start for Free',   primary:false },
               { label:'Start Free Trial', primary:false },
@@ -375,8 +374,8 @@ function FAQ() {
   return (
     <section style={{padding:'60px 0 80px'}}>
       <div style={{maxWidth:'880px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'40px'}}>
-          <h2 style={{fontSize:'clamp(26px,3.4vw,38px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.025em',marginBottom:'10px'}}>Frequently asked questions</h2>
+        <div style={{marginBottom:'40px'}}>
+          <SectionHeader title="Frequently asked questions" />
         </div>
         <FAQAccordion items={items} />
       </div>
@@ -387,16 +386,13 @@ function FAQ() {
 /* ── BOTTOM CTA ── */
 function BottomCTASection() {
   return (
-    <section style={{padding:'80px 0 100px',position:'relative',overflow:'hidden'}}>
-      <div style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:'700px',height:'420px',background:'radial-gradient(ellipse, rgba(9,160,157,0.13) 0%, transparent 70%)',pointerEvents:'none'}}/>
-      <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px',position:'relative',textAlign:'center'}}>
+    <section style={{padding:'80px 0 100px'}}>
+      <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
-          variant="buttons"
+          variant="text"
           title={<>Start free. <BottomCTA.Highlight>Upgrade when you're ready.</BottomCTA.Highlight></>}
           ctaLabel="Get started for free"
           ctaHref="https://insightis-app.devart.info/register"
-          secondaryCtaLabel="Talk to sales"
-          secondaryCtaHref="/Company/Contacts"
         />
       </div>
     </section>
