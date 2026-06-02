@@ -8,12 +8,10 @@ function App() {
   return (
     <AuthShell>
       <AuthCard
-        mode="sign-up"
-        title="Create your account"
-        googleLabel="Sign up with Google"
-        tailLeading="Already have an account?"
-        tailLinkText="Sign in"
-        tailHref="/auth/sign-in/"
+        title="Get early access"
+        blurb="Insightis isn't open to the public yet. Drop your email and we'll invite you the moment it goes live."
+        ctaLabel="Request early access"
+        toastMsg="Thanks! We'll email you the moment Insightis is live."
       />
     </AuthShell>
   );
