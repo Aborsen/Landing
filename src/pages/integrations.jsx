@@ -773,7 +773,7 @@ function CTA() {
         <BottomCTA
           variant="form"
           title={<>Your data is already there.<BottomCTA.Highlight> Connect it in minutes.</BottomCTA.Highlight></>}
-          inputPlaceholder="Which tool do you want to connect..."
+          inputPlaceholder="Which tool to connect..."
           ctaLabel="Get Started"
         />
       </div>

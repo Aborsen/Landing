@@ -1074,7 +1074,7 @@ function BottomCTASection() {
         <BottomCTA
           variant="form"
           title={<>Still waiting on <BottomCTA.Highlight> insights</BottomCTA.Highlight> that take <BottomCTA.Highlight> days?</BottomCTA.Highlight></>}
-          inputPlaceholder="What info are you looking for..."
+          inputPlaceholder="What are you looking for..."
           ctaLabel="Get Started"
         />
       </div>

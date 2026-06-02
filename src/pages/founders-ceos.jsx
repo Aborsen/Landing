@@ -592,7 +592,7 @@ function BottomCTASection() {
         <BottomCTA
           variant="form"
           title={<>Stop building <BottomCTA.Highlight>reports.</BottomCTA.Highlight> Start getting <BottomCTA.Highlight>answers.</BottomCTA.Highlight></>}
-          inputPlaceholder="What company question do you need answered..."
+          inputPlaceholder="Show me ARR vs target..."
           ctaLabel="Get Started"
         />
       </div>
