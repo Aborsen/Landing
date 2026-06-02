@@ -43,8 +43,6 @@ const entries = {
   'blog-marketing-analytics-tools':  'blog/marketing-analytics-tools.html',
   'blog-self-service-bi-guide':      'blog/self-service-bi-guide.html',
   'docs':                            'docs/index.html',
-  'sign-in':               'auth/sign-in.html',
-  'sign-up':               'auth/sign-up.html',
 };
 
 // Replace the content inside <div id="root">...</div>, walking nested <div>
