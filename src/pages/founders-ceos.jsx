@@ -228,7 +228,7 @@ function FoundersHeroIllustration() {
   const cardPos = (i) => ({ x: gx + (i % 3) * (colW + gpX), y: gy + Math.floor(i / 3) * (rowH + gpY) });
 
   // Runway ring (bottom-left card)
-  const RING_R = 26, RING_C = 2 * Math.PI * RING_R;
+  const RING_R = 34, RING_C = 2 * Math.PI * RING_R;
   const ringOffset = RING_C * (1 - 31 / 36);   // static ~86% fill
 
   return (
@@ -293,11 +293,11 @@ function FoundersHeroIllustration() {
 
         {/* Runway ring (static ~86% fill) */}
         <g transform="translate(90, 84)">
-          <circle r={RING_R} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="11"/>
-          <circle r={RING_R} fill="none" stroke="var(--ins-text-highlight)" strokeWidth="11" strokeLinecap="round"
+          <circle r={RING_R} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="9"/>
+          <circle r={RING_R} fill="none" stroke="var(--ins-text-highlight)" strokeWidth="9" strokeLinecap="round"
             strokeDasharray={RING_C} strokeDashoffset={ringOffset} transform="rotate(-90)"/>
-          <text x="0" y="2" textAnchor="middle" fontFamily="Geist,sans-serif" fontSize="15" fontWeight="600" fill="var(--ins-color-gray-100)">31 mo</text>
-          <text x="0" y="16" textAnchor="middle" fontFamily="Geist Mono,monospace" fontSize="8" fill="var(--ins-text-body)" letterSpacing="1">runway</text>
+          <text x="0" y="3" textAnchor="middle" fontFamily="Geist,sans-serif" fontSize="17" fontWeight="600" fill="var(--ins-color-gray-100)">31 mo</text>
+          <text x="0" y="18" textAnchor="middle" fontFamily="Geist Mono,monospace" fontSize="8" fill="var(--ins-text-body)" letterSpacing="1">runway</text>
         </g>
 
         {/* Footer */}
