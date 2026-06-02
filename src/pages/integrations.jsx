@@ -606,7 +606,7 @@ function HowSyncWorks() {
       // and use it consistently across hero copy, this step, the FAQ answer, and SoftwareApplication schema.
       // Assumed canonical = "200+" per the audit's "Out of scope" reconciliation note; change if product confirms "40+".
       n:'01', title:'Connect in minutes',
-      body:'Authenticate with OAuth or API key. 200+ read-only connectors live in under 5 minutes — SOC 2 secured.',
+      body:'Authenticate securely with OAuth or API key. 200+ read-only connectors go live instantly in under 5 minutes — SOC 2 secured.',
       example:'OAuth / API key → 200+ connectors in 5 min, read-only & SOC 2 secured',
     },
     {

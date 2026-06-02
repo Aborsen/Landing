@@ -950,7 +950,7 @@ function HowItWorks() {
     {
       n:'01', title:'You ask',
       body:'Type any business question in plain English — the same way you would ask a colleague. No SQL, no dashboards, no analyst required.',
-      example:'"Which channel has the best CAC this quarter?"',
+      example:'"Which acquisition channel has the best CAC this quarter?"',
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinejoin="round"/></svg>,
     },
     {

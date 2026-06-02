@@ -388,17 +388,17 @@ function WhatItDoes() {
   const features = [
     {
       n:'01', title:'Unified metric definitions',
-      body:'Revenue means one thing across every team. One canonical name, one formula, one source of truth — no more four versions of MRR living in four dashboards with three different answers by Monday morning.',
-      example:'Stripe + Sheets + HubSpot Revenue → @Revenue',
+      body:'Revenue means one thing across every team — one canonical name, one formula, one source of truth. No more four versions of MRR in four dashboards.',
+      example:'Stripe + Sheets + HubSpot Revenue → certified @Revenue',
     },
     {
       n:'02', title:'Auto-certified data',
-      body:'Every metric passes validation rules before being served. Freshness, completeness, and business-logic checks run on every query, so if the data is stale or broken you know instantly — not after the board meeting.',
+      body:'Freshness, completeness, and business-logic checks run on every query — so you know the instant data goes stale or breaks, not after the board meeting.',
       example:'freshness · completeness · lineage → certified ✓',
     },
     {
       n:'03', title:'AI-ready foundation',
-      body:'The Semantic Layer feeds every AI Chat answer with your certified logic, not internet averages. It is the reason Insightis answers are 3× more accurate than generic AI on your real business data.',
+      body:'The Semantic Layer feeds every AI Chat answer with your certified logic, not internet averages — the reason Insightis is 3× more accurate on real data.',
       example:'"What\u2019s our churn?" → @Churn = 2.8% (March, blended)',
     },
   ];
