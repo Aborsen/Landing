@@ -65,7 +65,7 @@ function Hero() {
             </p>
 
             <div className="fu3" style={{display:'flex',gap:'12px',flexWrap:'wrap',marginBottom:'28px'}}>
-              <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
+              <Button as="a" href="https://insightis-app.devart.info/register" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
                 Start for Free
               </Button>
             </div>
@@ -1191,7 +1191,7 @@ function UseCases() {
                 Connect Mixpanel, your warehouse, and Stripe — and ask the next product question yourself.
               </p>
             </div>
-            <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
+            <Button as="a" href="https://insightis-app.devart.info/register" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
               Get started for free
             </Button>
           </div>

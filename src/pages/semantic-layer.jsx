@@ -359,7 +359,7 @@ function Hero() {
             Your Semantic Layer certifies every metric once. Not generic guesses — your actual data, your exact logic.
           </p>
           <div style={{display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap',marginBottom:'24px'}}>
-            <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
+            <Button as="a" href="https://insightis-app.devart.info/register" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
               Start for Free
             </Button>
           </div>

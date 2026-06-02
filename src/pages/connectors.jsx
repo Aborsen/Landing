@@ -405,7 +405,7 @@ function ConnectorsHero() {
           <p className="fu2 ins-text-body-xl ins-text--muted" style={{maxWidth:'520px', marginBottom:'30px'}}>
             Explore 200+ prebuilt connectors, create custom ones with REST and GraphQL connectors, or request the data source you're missing.
           </p>
-          <Button as="a" href="/auth/sign-up/" variant="primary" size="md" iconEnd={<ArrowRightIcon />} className="fu3">
+          <Button as="a" href="https://insightis-app.devart.info/register" variant="primary" size="md" iconEnd={<ArrowRightIcon />} className="fu3">
             Start for Free
           </Button>
         </div>

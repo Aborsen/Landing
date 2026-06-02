@@ -215,7 +215,7 @@ function PricingCards() {
                 </div>
                 <Button
                   as="a"
-                  href="/auth/sign-up/"
+                  href="https://insightis-app.devart.info/register"
                   variant={plan.ctaStyle === 'primary' ? 'primary' : 'secondary'}
                   size="md"
                   iconEnd={<ArrowRightIcon />}
@@ -329,7 +329,7 @@ function FeatureComparison() {
               <div key={i} style={{display:'flex',justifyContent:'center'}}>
                 <Button
                   as="a"
-                  href="/auth/sign-up/"
+                  href="https://insightis-app.devart.info/register"
                   variant={cta.primary ? 'primary' : 'secondary'}
                   size="sm"
                 >
@@ -388,7 +388,7 @@ function BottomCTASection() {
           variant="buttons"
           title={<>Start free. <BottomCTA.Highlight>Upgrade when you're ready.</BottomCTA.Highlight></>}
           ctaLabel="Get started for free"
-          ctaHref="/auth/sign-up/"
+          ctaHref="https://insightis-app.devart.info/register"
           secondaryCtaLabel="Talk to sales"
           secondaryCtaHref="/Company/Contacts"
         />

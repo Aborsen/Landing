@@ -491,7 +491,7 @@ function CTABanner() {
           </p>
         </div>
         <a
-          href="/auth/sign-up/"
+          href="https://insightis-app.devart.info/register"
           className="ins-btn ins-btn--primary ins-btn--md"
           style={{ flexShrink: 0 }}
         >

@@ -430,7 +430,7 @@ function Hero() {
               </p>
 
               <div className="fu3">
-                <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
+                <Button as="a" href="https://insightis-app.devart.info/register" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
                   Start for Free
                 </Button>
               </div>

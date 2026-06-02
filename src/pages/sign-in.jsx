@@ -13,7 +13,7 @@ function App() {
         googleLabel="Sign in with Google"
         tailLeading="Don't have an account?"
         tailLinkText="Sign up"
-        tailHref="/auth/sign-up/"
+        tailHref="https://insightis-app.devart.info/register"
       />
     </AuthShell>
   );
