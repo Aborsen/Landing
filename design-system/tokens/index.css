@@ -1,0 +1,16 @@
+/* ============================================================================
+   Insightis Design System — TOKENS (single source of truth).
+   Each concern lives in its own file; this aggregator exposes them all on :root.
+   Order is irrelevant (CSS custom properties resolve lazily at use time), but
+   we keep a stable, readable order. To add/change a token, edit the matching
+   concern file — every consumer (CSS + Tailwind via var()) updates everywhere.
+   ============================================================================ */
+@import url('./colors.css');
+@import url('./typography.css');
+@import url('./spacing.css');
+@import url('./radii.css');
+@import url('./shadows.css');
+@import url('./motion.css');
+@import url('./breakpoints.css');
+@import url('./z-index.css');
+@import url('./misc.css');

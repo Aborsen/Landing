@@ -1,0 +1,15 @@
+:root {
+  /* ─ Motion primitives ─ */
+  --ins-duration-fast:  120ms;
+  --ins-duration-base:  180ms;
+  --ins-duration-slow:  320ms;
+  --ins-duration-xslow: 400ms;
+  --ins-easing-standard:   cubic-bezier(0.4, 0, 0.2, 1);
+  --ins-easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
+  --ins-easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  /* Motion legacy aliases */
+  --ins-ease:        var(--ins-easing-standard);
+  --ins-dur-fast:    var(--ins-duration-fast);
+  --ins-dur-base:    var(--ins-duration-base);
+  --ins-dur-slow:    var(--ins-duration-slow);
+}

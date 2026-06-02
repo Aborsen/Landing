@@ -1,0 +1,30 @@
+:root {
+  /* ─ Elevation primitives ─ */
+  --ins-elevation-0: none;
+  --ins-elevation-1: 0 1px 2px rgba(0,0,0,0.25);
+  --ins-elevation-2: 0 1px 3px rgba(0,0,0,0.30), 0 4px 12px rgba(0,0,0,0.20);
+  --ins-elevation-3: 0 2px 4px rgba(0,0,0,0.40), 0 8px 24px rgba(0,0,0,0.30);
+  --ins-elevation-4: 0 16px 48px -8px rgba(0,0,0,0.45);
+  /* Glow variants — reserve for colored / branded / highlighted blocks (not for default UI) */
+  --ins-glow-brand:   0 0 12px rgba(14, 196, 193, 0.30);
+  --ins-glow-success: 0 0 20px rgba(34, 197, 94, 0.28);
+  --ins-glow-error:   0 0 12px rgba(248, 113, 113, 0.30);
+  --ins-glow-dot:     0 0 8px currentColor;
+  /* ─ Focus rings — two-layer pattern (thin main border + subtle outer glow).
+     Matches the error treatment: `border: 1px solid teal-400` + `box-shadow: 0 0 0 3px teal-a-20`.
+     Components apply both border-color AND this ring for the layered look. */
+  --ins-focus-ring:       0 0 0 var(--ins-border-width-3) var(--ins-color-teal-a-20);
+  --ins-focus-ring-error: 0 0 0 var(--ins-border-width-3) var(--ins-color-red-a-30);
+  /* ─ Elevation semantic aliases ─ */
+  --ins-shadow-xs:          var(--ins-elevation-1);
+  --ins-shadow-sm:          var(--ins-elevation-2);
+  --ins-shadow-md:          var(--ins-elevation-3);
+  --ins-shadow-lg:          var(--ins-elevation-4);
+  --ins-shadow-glow-brand:  var(--ins-glow-brand);    /* colored/brand cards, active chips */
+  --ins-shadow-glow-dot:    var(--ins-glow-dot);      /* badge status dot */
+  --ins-shadow-navbar:      0 4px 24px var(--ins-color-black-a-30), 0 1px 2px rgba(0, 0, 0, 0.20);
+  --ins-shadow-mega-menu:   0 12px 48px var(--ins-color-black-a-50);
+  /* Legacy shadow aliases */
+  --ins-shadow-nav:   var(--ins-shadow-sm);
+  --ins-shadow-menu:  var(--ins-shadow-lg);
+}

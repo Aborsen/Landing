@@ -1,0 +1,11 @@
+:root {
+  /* ─ Z-index primitives ─ */
+  --ins-z-base:     0;
+  --ins-z-dropdown: 100;
+  --ins-z-sticky:   200;
+  --ins-z-fixed:    300;
+  --ins-z-modal:    400;
+  --ins-z-popover:  500;
+  --ins-z-toast:    600;
+  --ins-z-tooltip:  700;
+}

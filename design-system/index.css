@@ -4,6 +4,6 @@
    consumes them (reset + @font-face + type scale), components build on both.
    (animations.css and blocks/ are added during the Phase 3 migration.)
    ============================================================================ */
-@import url('./tokens.css');
+@import url('./tokens/index.css');
 @import url('./global.css');
 @import url('./components.css');

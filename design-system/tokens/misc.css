@@ -1,0 +1,30 @@
+:root {
+  /* ─ Opacity primitives (for CSS `opacity:` property only, NOT for building colors) ─ */
+  --ins-opacity-04: 0.04;
+  --ins-opacity-08: 0.08;
+  --ins-opacity-12: 0.12;
+  --ins-opacity-24: 0.24;
+  --ins-opacity-48: 0.48;
+  --ins-opacity-72: 0.72;
+  --ins-opacity-92: 0.92;
+  /* ─ Border width primitives ─ */
+  --ins-border-width-1:   1px;
+  --ins-border-width-1-5: 1.5px;
+  --ins-border-width-2:   2px;
+  --ins-border-width-3:   3px;
+  /* ─ Blur primitives ─ */
+  --ins-blur-4:   4px;
+  --ins-blur-8:   8px;
+  --ins-blur-16: 16px;
+  --ins-blur-24: 24px;
+  /* ─ Icon-size primitives ─ */
+  --ins-icon-size-12: 12px;
+  --ins-icon-size-14: 14px;
+  --ins-icon-size-16: 16px;
+  --ins-icon-size-20: 20px;
+  --ins-icon-size-24: 24px;
+  --ins-icon-size-32: 32px;
+  --ins-icon-size-48: 48px;
+  --ins-border-width:   var(--ins-border-width-1);
+  --ins-border-focus-w: var(--ins-border-width-1-5);
+}

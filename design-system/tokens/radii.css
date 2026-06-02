@@ -1,0 +1,25 @@
+:root {
+  /* ─ Radius primitives ─ */
+  --ins-radius-2:    2px;
+  --ins-radius-4:    4px;
+  --ins-radius-6:    6px;
+  --ins-radius-8:    8px;
+  --ins-radius-12:  12px;
+  --ins-radius-16:  16px;
+  --ins-radius-20:  20px;
+  --ins-radius-full: 9999px;
+  /* ─ Radius semantic aliases ─ */
+  --ins-radius-xs:   var(--ins-radius-2);   /* badges, tiny indicators */
+  --ins-radius-sm:   var(--ins-radius-4);   /* checkboxes, tags */
+  --ins-radius-md:   var(--ins-radius-6);   /* small inputs */
+  --ins-radius-lg:   var(--ins-radius-8);   /* buttons, inputs, avatars */
+  --ins-radius-xl:   var(--ins-radius-12);  /* cards, panels */
+  --ins-radius-2xl:  var(--ins-radius-16);  /* hero widgets, modals, dropdowns */
+  --ins-radius-3xl:  var(--ins-radius-20);  /* drawers */
+  --ins-radius-pill: var(--ins-radius-full);
+  --ins-radius-badge:  var(--ins-radius-md);
+  --ins-radius-card:   var(--ins-radius-xl);
+  --ins-radius-input:  var(--ins-radius-lg);
+  /* Legacy radius aliases */
+  --ins-radius-3xl:     var(--ins-radius-20);
+}

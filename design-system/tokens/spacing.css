@@ -1,0 +1,77 @@
+:root {
+  /* ─ Spacing primitives (4px base grid; 2px half-step) ─ */
+  --ins-size-0:    0;
+  --ins-size-half: 2px;   /* 2xs — half-step, sparingly */
+  --ins-size-1:    4px;
+  --ins-size-2:    8px;
+  --ins-size-3:   12px;
+  --ins-size-4:   16px;
+  --ins-size-5:   20px;
+  --ins-size-6:   24px;
+  --ins-size-7:   28px;
+  --ins-size-8:   32px;
+  --ins-size-10:  40px;
+  --ins-size-12:  48px;
+  --ins-size-14:  56px;
+  --ins-size-16:  64px;
+  --ins-size-20:  80px;
+  --ins-size-24:  96px;
+  --ins-size-32: 128px;
+  /* ─ Grid primitives ─ */
+  --ins-grid-columns-mobile:  4;
+  --ins-grid-columns-tablet:  8;
+  --ins-grid-columns-laptop:  12;
+  --ins-grid-columns-desktop: 24;
+
+  --ins-grid-gutter-mobile:  16px;
+  --ins-grid-gutter-tablet:  20px;
+  --ins-grid-gutter-desktop: 24px;
+
+  --ins-container-max:              1280px;
+  --ins-container-padding-mobile:   16px;
+  --ins-container-padding-tablet:   24px;
+  --ins-container-padding-desktop:  32px;
+
+  /* Responsive navbar height (used by scroll-margin) */
+  --ins-navbar-height: 52px;
+  /* ─ Spacing semantic aliases (component-level) ─ */
+  --ins-space-2xs: var(--ins-size-half);
+  --ins-space-xs:  var(--ins-size-1);
+  --ins-space-sm:  var(--ins-size-2);
+  --ins-space-md:  var(--ins-size-3);
+  --ins-space-lg:  var(--ins-size-4);
+  --ins-space-xl:  var(--ins-size-6);
+  --ins-space-2xl: var(--ins-size-8);
+  --ins-space-3xl: var(--ins-size-12);
+  --ins-space-4xl: var(--ins-size-16);
+  --ins-space-5xl: var(--ins-size-20);
+  --ins-space-6xl: var(--ins-size-24);
+
+  /* Scroll-margin for anchor targets under sticky nav */
+  --ins-scroll-margin: calc(var(--ins-navbar-height) + var(--ins-space-lg));
+  /* Legacy spacing numeric aliases */
+  --ins-space-none: 0;
+  --ins-space-0:    var(--ins-space-xs);
+  --ins-space-2:    var(--ins-space-2xs);
+  --ins-space-4:    var(--ins-space-xs);
+  --ins-space-8:    var(--ins-space-sm);
+  --ins-space-12:   var(--ins-space-md);
+  --ins-space-16:   var(--ins-space-lg);
+  --ins-space-24:   var(--ins-space-xl);
+  --ins-space-32:   var(--ins-space-2xl);
+  --ins-space-48:   var(--ins-space-3xl);
+  --ins-space-64:   var(--ins-space-4xl);
+  --ins-space-80:   var(--ins-space-5xl);
+  --ins-space-96:   var(--ins-space-6xl);
+
+  --ins-space-inline-gap:     var(--ins-space-sm);
+  --ins-space-card-gap:       var(--ins-space-md);
+  --ins-space-card-padding:   var(--ins-space-lg);
+  --ins-space-page-inset:     var(--ins-space-xl);
+  --ins-space-cta-padding:    var(--ins-space-2xl);
+  --ins-space-section-bottom: var(--ins-space-3xl);
+}
+
+@media (min-width: 768px) {
+  :root { --ins-navbar-height: 56px; }
+}

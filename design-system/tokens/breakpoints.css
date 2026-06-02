@@ -1,0 +1,14 @@
+:root {
+  /* ─ Breakpoint primitives (mobile-first, 4 stops) ─ */
+  --ins-bp-480:  480px;
+  --ins-bp-768:  768px;
+  --ins-bp-1024: 1024px;
+  --ins-bp-1280: 1280px;
+  --ins-min-viewport: 320px;
+  /* Legacy breakpoint primitives */
+  --ins-bp-sm:        var(--ins-bp-480);
+  --ins-bp-md:        var(--ins-bp-768);
+  --ins-bp-lg:        var(--ins-bp-1024);
+  --ins-bp-xl:        var(--ins-bp-1280);
+  --ins-content-max:  var(--ins-container-max);
+}
