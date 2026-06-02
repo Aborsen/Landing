@@ -213,26 +213,23 @@ const REVOPS_QA = {
   ],
 };
 
-/* ── HERO ── */
+/* ── HERO ── (static SVG dashboard, matching the other Solutions pages) */
 function FoundersHeroIllustration() {
-  const cohorts = [
-    { label: "Q1 '25", v: [100, 94, 88, 82, 78, 74] },
-    { label: "Q2 '25", v: [100, 95, 90, 84, 80, null] },
-    { label: "Q3 '25", v: [100, 96, 91, 86, null, null] },
-    { label: "Q4 '25", v: [100, 97, 93, null, null, null] },
-    { label: "Q1 '26", v: [100, null, null, null, null, null] },
+  // KEY METRICS scorecard — 3 cols × 2 rows (static board snapshot).
+  const metrics = [
+    { label: 'ARR',                   target: 24.0, fmt: (v) => `$${v.toFixed(1)}M`, trend: '▲ +118% YoY',  trendFill: 'var(--ins-text-highlight)' },
+    { label: 'NET REVENUE RETENTION', target: 128,  fmt: (v) => `${Math.round(v)}%`, trend: '▲ expansion',  trendFill: 'var(--ins-text-highlight)' },
+    { label: 'RULE OF 40',            target: 67,   fmt: (v) => `${Math.round(v)}`,   sub: '42% growth + 25% FCF margin' },
+    { label: 'BURN MULTIPLE',         target: 0.8,  fmt: (v) => `${v.toFixed(1)}x`,   trend: '▼ efficient',  trendFill: 'var(--ins-status-success-fg)' },
+    { label: 'CAC PAYBACK',           target: 11,   fmt: (v) => `${Math.round(v)} mo`, trend: 'fast payback', trendFill: 'var(--ins-text-body)' },
+    { label: 'RUNWAY',                target: 31,   fmt: (v) => `${Math.round(v)} mo`, trend: '▲ +4 mo',     trendFill: 'var(--ins-text-highlight)' },
   ];
-  const months = ['M0', 'M1', 'M3', 'M6', 'M9', 'M12'];
-  const cellW = 65, cellH = 26, gapX = 4, gapY = 6;
-  const xStart = 140, yStart = 168;
+  const gx = 68, gy = 132, colW = 152, rowH = 120, gpX = 14, gpY = 16;
+  const cardPos = (i) => ({ x: gx + (i % 3) * (colW + gpX), y: gy + Math.floor(i / 3) * (rowH + gpY) });
 
-  const cellFill = (v) => {
-    if (v == null) return 'rgba(255,255,255,0.04)';
-    if (v >= 95) return 'rgba(14,196,193,0.85)';
-    if (v >= 85) return 'rgba(14,196,193,0.6)';
-    if (v >= 75) return 'rgba(14,196,193,0.38)';
-    return 'rgba(14,196,193,0.22)';
-  };
+  // Runway ring (bottom-left card)
+  const RING_R = 26, RING_C = 2 * Math.PI * RING_R;
+  const ringOffset = RING_C * (1 - 31 / 36);   // static ~86% fill
 
   return (
     <svg viewBox="0 0 620 540" width="100%" style={{maxWidth:'580px',height:'auto',display:'block',filter:'drop-shadow(0 30px 60px rgba(0,0,0,0.55))'}} aria-hidden="true">
@@ -267,96 +264,44 @@ function FoundersHeroIllustration() {
         <text x="496" y="67" fontFamily="Geist Mono, monospace" fontSize="9" fill="var(--ins-text-highlight)" fontWeight="500">AI active</text>
 
         {/* Section title row */}
-        <text x="68" y="112" fontFamily="Geist Mono,monospace" fontSize="10" fill="var(--ins-text-body)" letterSpacing="1.5">COHORT RETENTION</text>
-        <text x="552" y="112" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-highlight)" letterSpacing="1">▲ Net retention 112%</text>
+        <text x="68" y="112" fontFamily="Geist Mono,monospace" fontSize="10" fill="var(--ins-text-body)" letterSpacing="1.5">KEY METRICS</text>
+        <text x="552" y="112" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-highlight)" letterSpacing="1">FY2025 · live</text>
 
-        {/* Column headers */}
-        {months.map((m, j) => (
-          <text key={m}
-            x={xStart + j * (cellW + gapX) + cellW / 2}
-            y="142"
-            textAnchor="middle"
-            fontFamily="Geist Mono,monospace"
-            fontSize="10"
-            fill="var(--ins-text-inactive)"
-            fontWeight="500"
-          >{m}</text>
-        ))}
-
-        {/* Cohort rows */}
-        {cohorts.map((c, i) => (
-          <g key={c.label}>
-            <text
-              x="124"
-              y={yStart + i * (cellH + gapY) + cellH / 2 + 4}
-              textAnchor="end"
-              fontFamily="Geist Mono,monospace"
-              fontSize="10"
-              fill="var(--ins-text-body)"
-              fontWeight="500"
-            >{c.label}</text>
-            {c.v.map((val, j) => (
-              <g key={j}>
-                <rect
-                  x={xStart + j * (cellW + gapX)}
-                  y={yStart + i * (cellH + gapY)}
-                  width={cellW}
-                  height={cellH}
-                  rx="4"
-                  fill={cellFill(val)}
-                />
-                {val != null && (
-                  <text
-                    x={xStart + j * (cellW + gapX) + cellW / 2}
-                    y={yStart + i * (cellH + gapY) + cellH / 2 + 4}
-                    textAnchor="middle"
-                    fontFamily="Geist Mono,monospace"
-                    fontSize="10"
-                    fill={val >= 85 ? 'var(--ins-surface-page)' : 'var(--ins-color-gray-100)'}
-                    fontWeight="600"
-                  >{val}%</text>
-                )}
-              </g>
-            ))}
-          </g>
-        ))}
-
-        {/* Summary line */}
-        <text x="68" y="412" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)" letterSpacing="1">142 customers · 5 cohorts · M0–M12 retention</text>
+        {/* Metric scorecard — 3 × 2 (static) */}
+        {metrics.map((m, i) => {
+          const { x, y } = cardPos(i);
+          return (
+            <g key={m.label} transform={`translate(${x}, ${y})`}>
+              <rect x="0" y="0" width={colW} height={rowH} rx="10" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.07)" strokeWidth="1"/>
+              <text x="16" y="28" fontFamily="Geist Mono,monospace" fontSize="8" fill="var(--ins-text-inactive)" letterSpacing="0.5">{m.label}</text>
+              <text x="16" y="70" fontFamily="Geist,sans-serif" fontSize="26" fontWeight="600" fill="var(--ins-text-heading)" letterSpacing="-0.02em">{m.fmt(m.target)}</text>
+              {m.trend && (
+                <text x="16" y="96" fontFamily="Geist Mono,monospace" fontSize="9" fill={m.trendFill} letterSpacing="0.5">{m.trend}</text>
+              )}
+              {m.sub && (
+                <text x="16" y="96" fontFamily="Geist Mono,monospace" fontSize="7.5" fill="var(--ins-text-body)" letterSpacing="0.2">{m.sub}</text>
+              )}
+            </g>
+          );
+        })}
       </g>
 
       {/* Floating donut card — bottom-left, partially overlapping */}
       <g transform="translate(14, 358)">
         <rect x="0" y="0" width="180" height="158" rx="14" fill="rgba(15,20,25,0.97)" stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
-        <text x="14" y="24" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)" letterSpacing="1.5">REVENUE BY SEGMENT</text>
+        <text x="14" y="24" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)" letterSpacing="1.5">CASH &amp; RUNWAY</text>
 
-        {/* Donut */}
-        <g transform="translate(46, 92) rotate(-90)">
-          <circle r="22" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="14" strokeDasharray="69.12 138.23" strokeDashoffset="0"/>
-          <circle r="22" fill="none" stroke="#34D399" strokeWidth="14" strokeDasharray="41.47 138.23" strokeDashoffset="-69.12"/>
-          <circle r="22" fill="none" stroke="var(--ins-text-body)" strokeWidth="14" strokeDasharray="27.65 138.23" strokeDashoffset="-110.59"/>
-        </g>
-        {/* Donut center */}
-        <text x="46" y="89" textAnchor="middle" fontFamily="Geist Mono,monospace" fontSize="8" fill="var(--ins-text-body)">ARR</text>
-        <text x="46" y="101" textAnchor="middle" fontFamily="Geist,sans-serif" fontSize="8.5" fontWeight="600" fill="var(--ins-color-gray-100)">$24M</text>
-
-        {/* Legend */}
-        <g transform="translate(86, 56)">
-          <circle cx="0" cy="0" r="3" fill="var(--ins-text-highlight)"/>
-          <text x="9" y="3" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-color-gray-100)">Enterprise</text>
-          <text x="84" y="3" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)">50%</text>
-
-          <circle cx="0" cy="22" r="3" fill="#34D399"/>
-          <text x="9" y="25" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-color-gray-100)">Mid-market</text>
-          <text x="84" y="25" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)">30%</text>
-
-          <circle cx="0" cy="44" r="3" fill="var(--ins-text-body)"/>
-          <text x="9" y="47" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-color-gray-100)">SMB</text>
-          <text x="84" y="47" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)">20%</text>
+        {/* Runway ring (static ~86% fill) */}
+        <g transform="translate(90, 84)">
+          <circle r={RING_R} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="11"/>
+          <circle r={RING_R} fill="none" stroke="var(--ins-text-highlight)" strokeWidth="11" strokeLinecap="round"
+            strokeDasharray={RING_C} strokeDashoffset={ringOffset} transform="rotate(-90)"/>
+          <text x="0" y="2" textAnchor="middle" fontFamily="Geist,sans-serif" fontSize="15" fontWeight="600" fill="var(--ins-color-gray-100)">31 mo</text>
+          <text x="0" y="16" textAnchor="middle" fontFamily="Geist Mono,monospace" fontSize="8" fill="var(--ins-text-body)" letterSpacing="1">runway</text>
         </g>
 
         {/* Footer */}
-        <text x="14" y="146" fontFamily="Geist Mono,monospace" fontSize="8" fill="var(--ins-text-body)">ACV $42K · 142 customers</text>
+        <text x="90" y="148" textAnchor="middle" fontFamily="Geist Mono,monospace" fontSize="8.5" fill="var(--ins-text-body)">Cash $19M · Burn $610K/mo</text>
       </g>
 
       {/* Floating AI insight card — bottom-right, partially overlapping */}
@@ -367,9 +312,9 @@ function FoundersHeroIllustration() {
           <text x="11" y="16" textAnchor="middle" fontFamily="Geist Mono,monospace" fontSize="10" fontWeight="600" fill="var(--ins-text-highlight)">AI</text>
         </g>
         <text x="48" y="26" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-highlight)" fontWeight="500" letterSpacing="1">INSIGHT · LIVE</text>
-        <text x="48" y="46" fontFamily="Geist,sans-serif" fontSize="12" fill="var(--ins-color-gray-100)" fontWeight="500">Q3 cohort retains 12 pp</text>
-        <text x="48" y="62" fontFamily="Geist,sans-serif" fontSize="12" fill="var(--ins-color-gray-100)" fontWeight="500">better — onboarding wins.</text>
-        <text x="48" y="78" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)">Enterprise mix +8 pp →</text>
+        <text x="48" y="46" fontFamily="Geist,sans-serif" fontSize="12" fill="var(--ins-color-gray-100)" fontWeight="500">Burn multiple down to 0.8x</text>
+        <text x="48" y="62" fontFamily="Geist,sans-serif" fontSize="12" fill="var(--ins-color-gray-100)" fontWeight="500">→ runway extended 4 months</text>
+        <text x="48" y="78" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)">Runway 27 → 31 mo →</text>
       </g>
     </svg>
   );
