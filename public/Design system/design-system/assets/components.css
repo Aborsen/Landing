@@ -2398,7 +2398,7 @@ kbd, .ins-kbd {
               box-shadow   var(--ins-duration-base) var(--ins-easing-standard);
 }
 @media (min-width: 768px) {
-  .ins-bottom-cta__form { width: auto; min-width: 0; flex: 1 1 400px; }
+  .ins-bottom-cta__form { width: auto; min-width: 0; flex: 0 0 auto; }
 }
 .ins-bottom-cta__form:focus-within {
   border-color: var(--ins-border-focus);
@@ -2413,8 +2413,13 @@ kbd, .ins-kbd {
   border: none;
   border-radius: 0;
   box-shadow: none;
-  font-size: var(--ins-font-size-12);
+  font-size: var(--ins-font-size-14);
   color: var(--ins-text-heading);
+}
+@media (min-width: 768px) {
+  /* Desktop: fixed-width input (~280px). Placed AFTER the base flex:1 so it
+     wins the cascade; on mobile the base flex:1 keeps the input full-width. */
+  .ins-bottom-cta__form .ins-bottom-cta__input { flex: 0 0 280px; }
 }
 .ins-bottom-cta__form .ins-bottom-cta__input::placeholder {
   color: var(--ins-text-disabled);
