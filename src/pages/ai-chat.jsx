@@ -840,14 +840,11 @@ function QuestionsGallery() {
           <div data-gallery-left style={{display:'flex',flexDirection:'column',background:'rgba(10,14,19,.95)',borderRight:'1px solid rgba(255,255,255,.05)'}}>
             <div style={{flex:1,display:'flex',flexDirection:'column'}}>
               {cat.questions.map((q,i) => (
-                <div key={activeCat+i} onClick={() => setActiveQ(i)} style={{
-                  flex:1, padding:'0 24px',
-                  display:'flex', flexDirection:'column', justifyContent:'center',
-                  borderBottom: i<cat.questions.length-1?'1px solid rgba(255,255,255,.04)':'none',
-                  cursor:'pointer', transition:'background .18s',
-                  background: i===activeQ?'rgba(7,128,126,.12)':'transparent',
-                  position:'relative',
-                }}>
+                <div
+                  key={activeCat+i}
+                  onClick={() => setActiveQ(i)}
+                  className={i === activeQ ? 'sc-step active' : 'sc-step'}
+                >
                   <span className="sc-lbl" style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',display:'block'}}>{q}</span>
                 </div>
               ))}
