@@ -145,7 +145,6 @@ function PricingCards() {
         'Unlimited data connectors',
         '15-minute data refresh',
         'Full semantic-layer governance',
-        'API access + 99.5% SLA',
         'Email + live-chat support',
       ],
     },
@@ -275,7 +274,7 @@ function FeatureComparison() {
       rows: [
         { label:'Metric definitions',       values:['Read-only', 'Full access', 'Full access'] },
         { label:'Custom metrics',           values:[false, true, true] },
-        { label:'Auto-certification',       values:[false, true, true] },
+        { label:'Predefined Metrics',         values:[true, true, true] },
       ]
     },
     {
