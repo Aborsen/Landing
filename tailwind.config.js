@@ -14,7 +14,6 @@ export default {
   theme: {
     extend: {
       colors: {
-        base:             'var(--ins-surface-page)',
         card:             'var(--ins-surface-card)',
         'card-border':    'var(--ins-border-default)',
         'surface-hover':  'var(--ins-surface-hover)',

@@ -244,7 +244,7 @@ function Hero() {
                       placeholder="Ask anything about your data..."
                       aria-label="Ask anything about your data"
                       className="flex-1 bg-transparent text-[var(--ins-text-heading)] text-base outline-none focus-visible:outline-none focus-visible:shadow-none placeholder-[var(--ins-text-disabled)] resize-none h-[160px]"
-                      onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && userText.trim()) { e.preventDefault(); window.location.href = '#pricing'; } }}
+                      onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && userText.trim()) { e.preventDefault(); window.location.href = 'https://insightis-app.devart.info/register'; } }}
                     />
                   ) : (
                     <div className="flex items-start">
@@ -330,7 +330,7 @@ function Hero() {
                     cursor: userText.trim() ? 'pointer' : 'default',
                     color: userText.trim() ? 'white' : 'var(--ins-text-body)'
                   }}
-                  onClick={() => { if (userText.trim()) window.location.href = '#pricing'; }}
+                  onClick={() => { if (userText.trim()) window.location.href = 'https://insightis-app.devart.info/register'; }}
                 >
                   Send
                 </button>
