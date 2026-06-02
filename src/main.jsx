@@ -259,33 +259,16 @@ function Hero() {
               <div className="flex items-center justify-between px-4 py-3 border-t border-[var(--ins-border-default)]">
                 <div className="flex items-center gap-1">
 
-                  {/* Attach button */}
+                  {/* Attach button — disabled */}
                   <div className="relative">
                     <button
-                      className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-150"
-                      style={{ color: tooltip === 'attach' ? 'var(--ins-text-highlight)' : 'var(--ins-text-body)', background: tooltip === 'attach' ? 'var(--ins-surface-brand-tint)' : 'transparent' }}
-                      onClick={e => { e.stopPropagation(); setTooltip(tooltip === 'attach' ? null : 'attach'); }}
-                      aria-label="Attach file"
+                      className="w-9 h-9 rounded-lg flex items-center justify-center"
+                      style={{ color: 'var(--ins-text-disabled)', background: 'transparent', cursor: 'not-allowed', opacity: 0.6 }}
+                      aria-label="Attach file (unavailable)"
+                      disabled
                     >
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
                     </button>
-                    {tooltip === 'attach' && (
-                      <div className="absolute bottom-full left-0 mb-2 w-48 bg-[var(--ins-surface-card)] border border-[var(--ins-border-hover)] rounded-2xl p-3 shadow-2xl z-[100]" onClick={e => e.stopPropagation()}>
-                        {[
-                          { label: 'CSV / Excel', ext: 'CSV' },
-                          { label: 'PDF Document', ext: 'PDF' },
-                          { label: 'JSON / XML', ext: 'JSON' },
-                          { label: 'Image', ext: 'IMG' },
-                        ].map(f => (
-                          <div key={f.label} className="flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-white/5 cursor-pointer transition-colors" onClick={() => { setTooltip(null); setIsActive(true); setTimeout(() => inputRef.current && inputRef.current.focus(), 50); }}>
-                            <div className="w-9 h-9 rounded-xl bg-[var(--ins-border-default)] border border-[var(--ins-border-hover)] flex items-center justify-center flex-shrink-0">
-                              <svg width="18" height="20" viewBox="0 0 18 20" fill="none" style={{color:'var(--ins-text-disabled)'}}><path d="M11 1H3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7L11 1z" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/><path d="M11 1v6h6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                            </div>
-                            <span className="text-xs text-[var(--ins-text-body)]">{f.label}</span>
-                          </div>
-                        ))}
-                      </div>
-                    )}
                   </div>
 
                   {/* Connectors button */}
@@ -322,63 +305,15 @@ function Hero() {
                                 </div>
                                 <span className="text-sm text-[var(--ins-text-body)] group-hover:text-[var(--ins-text-heading)] transition-colors">{c.name}</span>
                               </div>
-                              <div className="w-9 h-5 rounded-full flex-shrink-0" style={{ background: 'var(--ins-border-default)', border: '1px solid var(--ins-border-hover)', position: 'relative' }}>
-                                <div className="w-3.5 h-3.5 rounded-full bg-[var(--ins-border-hover)] absolute top-[2px] left-[2px]"></div>
-                              </div>
+                              <a href="/auth/sign-in/" onClick={e => e.stopPropagation()} className="text-xs font-medium text-[var(--ins-color-teal-500)] hover:text-[var(--ins-color-teal-400)] transition-colors flex-shrink-0">Sign in</a>
                             </div>
                           ))}
                         </div>
                         <div className="px-4 py-3 border-t border-[var(--ins-border-hover)]">
-                          <a href="#pricing" className="flex items-center gap-1.5 text-xs text-[var(--ins-color-teal-500)] hover:text-[var(--ins-color-teal-400)] transition-colors">
+                          <a href="/Resources/Connectors" className="flex items-center gap-1.5 text-xs text-[var(--ins-color-teal-500)] hover:text-[var(--ins-color-teal-400)] transition-colors">
                             <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>
                             View all 200+ connectors
                           </a>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Model selector */}
-                  <div className="relative">
-                    <button
-                      className="flex items-center gap-1.5 px-3 py-2 rounded-lg transition-all duration-150 hover:bg-white/5"
-                      style={{ color: tooltip === 'model' ? 'var(--ins-text-highlight)' : 'var(--ins-text-body)', background: tooltip === 'model' ? 'var(--ins-surface-brand-tint)' : 'transparent' }}
-                      onClick={e => { e.stopPropagation(); setTooltip(tooltip === 'model' ? null : 'model'); }}
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-                      <span className="text-sm font-medium">Gemini Pro</span>
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                    </button>
-                    {tooltip === 'model' && (
-                      <div className="absolute bottom-full left-0 mb-2 w-60 bg-[var(--ins-surface-card)] border border-[var(--ins-border-hover)] rounded-2xl shadow-2xl z-[100] overflow-hidden" onClick={e => e.stopPropagation()}>
-                        <div className="p-3">
-                          <p className="text-[10px] font-medium text-[var(--ins-text-body)] uppercase tracking-wider px-1 mb-2">Select model</p>
-                          {[
-                            { name: 'Gemini Pro', tag: 'Google', active: true },
-                            { name: 'GPT-4o', tag: 'OpenAI', active: false },
-                            { name: 'Claude 3.5 Sonnet', tag: 'Anthropic', active: false },
-                            { name: 'Llama 3.3', tag: 'Meta', active: false },
-                          ].map(m => (
-                            <div key={m.name}
-                              className="flex items-center justify-between px-2 py-2.5 rounded-xl cursor-pointer transition-colors hover:bg-white/5"
-                              onClick={() => setTooltip(null)}
-                            >
-                              <div className="flex items-center gap-2.5">
-                                <div className="w-6 h-6 rounded-md bg-[var(--ins-border-default)] border border-[var(--ins-border-hover)] flex items-center justify-center flex-shrink-0">
-                                  <div className="w-2 h-2 rounded-full" style={{ background: m.active ? 'var(--ins-color-teal-500)' : 'var(--ins-border-hover)' }}></div>
-                                </div>
-                                <div>
-                                  <span className="text-sm block" style={{ color: m.active ? 'white' : 'var(--ins-text-body)' }}>{m.name}</span>
-                                  <span className="text-[10px] text-[var(--ins-text-body)]">{m.tag}</span>
-                                </div>
-                              </div>
-                              <div className="w-9 h-5 rounded-full relative flex-shrink-0 transition-all"
-                                style={{ background: m.active ? 'var(--ins-color-teal-500)' : 'var(--ins-border-default)', border: `1px solid ${m.active ? 'var(--ins-color-teal-500)' : 'var(--ins-border-hover)'}` }}>
-                                <div className="w-3.5 h-3.5 rounded-full bg-white absolute top-[2px] transition-all"
-                                  style={{ left: m.active ? 'calc(100% - 18px)' : '2px' }}></div>
-                              </div>
-                            </div>
-                          ))}
                         </div>
                       </div>
                     )}
@@ -388,7 +323,7 @@ function Hero() {
 
                 {/* Send button — grey when empty, teal when has text */}
                 <button
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl ins-text-emphasise-sm transition-all duration-200"
+                  className="flex items-center justify-center px-4 py-2 rounded-xl ins-text-emphasise-sm transition-all duration-200"
                   style={{
                     background: userText.trim() ? 'linear-gradient(135deg, var(--ins-color-teal-500), var(--ins-color-teal-600))' : 'rgba(255,255,255,0.08)',
                     boxShadow: userText.trim() ? '0 0 16px rgba(7,128,126,0.35)' : 'none',
@@ -397,7 +332,6 @@ function Hero() {
                   }}
                   onClick={() => { if (userText.trim()) window.location.href = '#pricing'; }}
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                   Send
                 </button>
 
