@@ -243,7 +243,7 @@ function Hero() {
                       onChange={e => setUserText(e.target.value)}
                       placeholder="Ask anything about your data..."
                       aria-label="Ask anything about your data"
-                      className="flex-1 bg-transparent text-[var(--ins-text-heading)] text-base outline-none placeholder-[var(--ins-text-disabled)] resize-none h-[160px]"
+                      className="flex-1 bg-transparent text-[var(--ins-text-heading)] text-base outline-none focus-visible:outline-none focus-visible:shadow-none placeholder-[var(--ins-text-disabled)] resize-none h-[160px]"
                       onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && userText.trim()) { e.preventDefault(); window.location.href = '#pricing'; } }}
                     />
                   ) : (
