@@ -8,10 +8,8 @@ function App() {
   return (
     <AuthShell>
       <AuthCard
-        title="Insightis is launching soon"
-        blurb="Sign-in isn't available just yet. Leave your email and we'll let you know the moment you can log in."
-        ctaLabel="Notify me at launch"
-        toastMsg="Thanks! We'll email you the moment sign-in is ready."
+        title="Sign-in is coming soon"
+        blurb="Insightis isn't live just yet — we're putting the finishing touches on it. Check back shortly to log in."
       />
     </AuthShell>
   );
