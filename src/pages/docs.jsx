@@ -524,7 +524,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
   return (
     <div className="docs-content-col">
       {/* Breadcrumb */}
-      <nav className="ins-breadcrumbs" aria-label="Breadcrumb" style={{ marginBottom:'28px' }}>
+      <div className="ins-breadcrumbs" role="navigation" aria-label="Breadcrumb" style={{ marginBottom:'28px' }}>
         {page.breadcrumb.map((crumb, i) => {
           const isCurrent = i === page.breadcrumb.length - 1;
           return (
@@ -534,7 +534,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
             </React.Fragment>
           );
         })}
-      </nav>
+      </div>
 
       {/* Title */}
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'16px' }}>
