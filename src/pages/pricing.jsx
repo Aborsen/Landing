@@ -185,7 +185,7 @@ function PricingCards() {
                 )}
                 <h3 style={{fontSize:'22px',fontWeight:600,color:'var(--ins-text-heading)',marginBottom:'4px',letterSpacing:'-0.02em'}}>{plan.name}</h3>
                 <p className="ins-text-body ins-text--muted" style={{marginBottom:'24px'}}>{plan.tag}</p>
-                <div style={{marginBottom:'24px',minHeight:'120px'}}>
+                <div style={{marginBottom:'24px',minHeight:'128px'}}>
                   {plan.price === 0 ? (
                     <div>
                       <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-body)',letterSpacing:'-0.03em'}}>$0</span>
@@ -236,6 +236,12 @@ function PricingCards() {
           })}
         </div>
         <style>{`
+          /* Align CTAs across cards: each button sits directly below the
+             equal-height price block. Overrides the DS rule
+             .ins-card--pricing .ins-btn{margin-top:auto} — with the button placed
+             above the feature list, that auto-margin would push each card's button
+             down by its leftover space and misalign them by feature count. */
+          [data-pricing-grid] .ins-card--pricing .ins-btn { margin-top: 0; }
           @media (max-width: 900px) {
             [data-pricing-grid] { grid-template-columns: 1fr !important; max-width: 480px; margin: 0 auto; }
           }
