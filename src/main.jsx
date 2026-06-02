@@ -203,7 +203,7 @@ function Hero() {
       <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-[var(--ins-color-gray-800)] border-l border-t border-[var(--ins-border-hover)] rotate-45 mb-[-5px]"></div>
       <p className="ins-text-emphasise-sm mb-1">Unlock full access</p>
       <p className="text-[var(--ins-text-body)] text-xs mb-3">Get more after registration — connect your data sources and explore AI insights.</p>
-      <Button as="a" href="https://insightis-app.devart.info/register" variant="primary" size="sm">Sign Up Free</Button>
+      <Button as="a" href="/auth/sign-up/" variant="primary" size="sm">Sign Up Free</Button>
     </div>
   );
 
@@ -244,7 +244,7 @@ function Hero() {
                       placeholder="Ask anything about your data..."
                       aria-label="Ask anything about your data"
                       className="flex-1 bg-transparent text-[var(--ins-text-heading)] text-base outline-none focus-visible:outline-none focus-visible:shadow-none placeholder-[var(--ins-text-disabled)] resize-none h-[160px]"
-                      onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && userText.trim()) { e.preventDefault(); window.location.href = 'https://insightis-app.devart.info/register'; } }}
+                      onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && userText.trim()) { e.preventDefault(); window.location.href = '/auth/sign-up/'; } }}
                     />
                   ) : (
                     <div className="flex items-start">
@@ -305,7 +305,7 @@ function Hero() {
                                 </div>
                                 <span className="text-sm text-[var(--ins-text-body)] group-hover:text-[var(--ins-text-heading)] transition-colors">{c.name}</span>
                               </div>
-                              <a href="https://insightis-identity-api.devart.info/Account/Login" onClick={e => e.stopPropagation()} className="text-xs font-medium text-[var(--ins-color-teal-500)] hover:text-[var(--ins-color-teal-400)] transition-colors flex-shrink-0">Sign in</a>
+                              <a href="/auth/sign-in/" onClick={e => e.stopPropagation()} className="text-xs font-medium text-[var(--ins-color-teal-500)] hover:text-[var(--ins-color-teal-400)] transition-colors flex-shrink-0">Sign in</a>
                             </div>
                           ))}
                         </div>
@@ -330,7 +330,7 @@ function Hero() {
                     cursor: userText.trim() ? 'pointer' : 'default',
                     color: userText.trim() ? 'white' : 'var(--ins-text-body)'
                   }}
-                  onClick={() => { if (userText.trim()) window.location.href = 'https://insightis-app.devart.info/register'; }}
+                  onClick={() => { if (userText.trim()) window.location.href = '/auth/sign-up/'; }}
                 >
                   Send
                 </button>
@@ -988,7 +988,7 @@ function SubscribeBanner() {
                 Join 1,200+ data-driven teams. Set up in minutes, no credit card required, and cancel anytime.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <Button as="a" href="https://insightis-app.devart.info/register" variant="primary" size="lg">Start Free Trial</Button>
+                <Button as="a" href="/auth/sign-up/" variant="primary" size="lg">Start Free Trial</Button>
               </div>
             </div>
           </div>

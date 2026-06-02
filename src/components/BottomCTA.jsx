@@ -26,7 +26,7 @@ const ArrowRightIcon = () => (
  *  inputName          string — form input `name` attribute (default: "q")
  *  ctaLabel           string — submit button label (default: "Get Started"
  *                     for form variant; required for other variants)
- *  ctaHref            string — form action / anchor href (default: "https://insightis-app.devart.info/register")
+ *  ctaHref            string — form action / anchor href (default: "/auth/sign-up/")
  *  secondaryCtaLabel  string — for "buttons" variant
  *  secondaryCtaHref   string — for "buttons" variant
  *  className          string — extra classes on outer .ins-bottom-cta
@@ -55,7 +55,7 @@ function BottomCTA({
   inputAriaLabel,
   inputName = 'q',
   ctaLabel = 'Get Started',
-  ctaHref = 'https://insightis-app.devart.info/register',
+  ctaHref = '/auth/sign-up/',
   secondaryCtaLabel,
   secondaryCtaHref,
   className = '',

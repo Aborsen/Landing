@@ -184,8 +184,8 @@ export default function Header() {
             </div>
 
             <div className="hidden md:flex items-center flex-shrink-0" style={{gap:'12px'}}>
-              <Button as="a" href="https://insightis-identity-api.devart.info/Account/Login" variant="ghost" size="sm">Sign In</Button>
-              <Button as="a" href="https://insightis-app.devart.info/register" variant="primary" size="sm">Start for Free</Button>
+              <Button as="a" href="/auth/sign-in/" variant="ghost" size="sm">Sign In</Button>
+              <Button as="a" href="/auth/sign-up/" variant="primary" size="sm">Start for Free</Button>
             </div>
 
             <button
@@ -292,8 +292,8 @@ export default function Header() {
               );
             })}
             <div className="mt-4 pt-4 border-t border-border-strong flex flex-col gap-3">
-              <Button as="a" href="https://insightis-identity-api.devart.info/Account/Login" variant="ghost" size="md" className="text-center">Sign In</Button>
-              <Button as="a" href="https://insightis-app.devart.info/register" variant="primary" size="md" className="text-center">Start for Free</Button>
+              <Button as="a" href="/auth/sign-in/" variant="ghost" size="md" className="text-center">Sign In</Button>
+              <Button as="a" href="/auth/sign-up/" variant="primary" size="md" className="text-center">Start for Free</Button>
             </div>
           </div>
         )}

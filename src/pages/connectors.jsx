@@ -357,7 +357,7 @@ function ConnectorsHero() {
           <p className="fu2 ins-text-body-xl ins-text--muted" style={{maxWidth:'520px', marginBottom:'30px'}}>
             Explore 200+ prebuilt connectors, create custom ones with REST and GraphQL connectors, or request the data source you're missing.
           </p>
-          <Button as="a" href="https://insightis-app.devart.info/register" variant="primary" size="md" iconEnd={<ArrowRightIcon />} className="fu3">
+          <Button as="a" href="/auth/sign-up/" variant="primary" size="md" iconEnd={<ArrowRightIcon />} className="fu3">
             Start for Free
           </Button>
         </div>
@@ -439,7 +439,7 @@ function ConnectorTile({ c, index, onAskChat, onConnect }) {
       </div>
 
       <div className="connector-overlay">
-        <a className="overlay-btn primary" href="https://insightis-identity-api.devart.info/Account/Login" onClick={(e) => e.stopPropagation()}>
+        <a className="overlay-btn primary" href="/auth/sign-in/" onClick={(e) => e.stopPropagation()}>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
             <polyline points="10 17 15 12 10 7"/>

@@ -41,6 +41,9 @@ export default defineConfig({
         'blog-marketing-analytics-tools':  resolve(__dirname, 'blog/marketing-analytics-tools.html'),
         'blog-self-service-bi-guide':      resolve(__dirname, 'blog/self-service-bi-guide.html'),
         'docs':                            resolve(__dirname, 'docs/index.html'),
+        // ── Auth (noindex placeholders) ──
+        'sign-in':                resolve(__dirname, 'auth/sign-in.html'),
+        'sign-up':                resolve(__dirname, 'auth/sign-up.html'),
       }
     }
   }
