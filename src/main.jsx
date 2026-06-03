@@ -350,7 +350,7 @@ function Hero() {
             <span aria-hidden="true" className="text-[var(--ins-text-disabled)] text-lg leading-none">·</span>
             <span><span className="text-[var(--ins-text-body)]">40,000+</span> companies</span>
             <span aria-hidden="true" className="text-[var(--ins-text-disabled)] text-lg leading-none">·</span>
-            <span><span className="text-[var(--ins-text-body)]">28&nbsp;yrs</span> of data tooling</span>
+            <span><span className="text-[var(--ins-text-body)]">28&nbsp;years</span> of data tooling</span>
           </div>
         </FadeUp>
       </div>

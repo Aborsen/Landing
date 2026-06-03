@@ -64,19 +64,6 @@ function BillingToggle({ cycle, onChange }) {
         }}
       >
         {label}
-        {value === 'yearly' && (
-          <span style={{
-            padding: '2px 8px',
-            borderRadius: '999px',
-            background: 'var(--ins-surface-brand-tint)',
-            border: '1px solid var(--ins-border-brand)',
-            color: 'var(--ins-text-highlight)',
-            fontSize: '10px',
-            fontWeight: 600,
-            letterSpacing: '0.04em',
-            fontFamily: 'var(--ins-font-family-mono)',
-          }}>SAVE -{Math.round(YEARLY_DISCOUNT * 100)}%</span>
-        )}
       </button>
     );
   };
@@ -182,13 +169,17 @@ function PricingCards() {
                     Most popular
                   </div>
                 )}
-                <h3 style={{fontSize:'var(--ins-font-size-22)',fontWeight:600,color:'var(--ins-text-heading)',marginBottom:'var(--ins-size-1)',letterSpacing:'-0.02em'}}>{plan.name}</h3>
-                <p className="ins-text-body ins-text--muted" style={{marginBottom:'var(--ins-size-6)'}}>{plan.tag}</p>
+                <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)',marginBottom:'var(--ins-size-1)'}}>
+                  <h3 style={{fontSize:'var(--ins-font-size-22)',fontWeight:600,color:'var(--ins-text-heading)',letterSpacing:'-0.02em',margin:0}}>{plan.name}</h3>
+                  {plan.discount && (
+                    <span style={{display:'inline-flex',alignItems:'center',padding:'2px 8px',background:'var(--ins-surface-brand-tint)',border:'1px solid var(--ins-border-brand)',borderRadius:'var(--ins-radius-sm)',fontSize:'10px',fontFamily:'var(--ins-font-family-mono)',color:'var(--ins-text-highlight)',fontWeight:600,letterSpacing:'.04em'}}>{plan.discount}</span>
+                  )}
+                </div>
+                <p className="ins-text-body" style={{marginBottom:'var(--ins-size-3)'}}>{plan.tag}</p>
                 <div style={{marginBottom:'var(--ins-size-6)',minHeight:'128px'}}>
                   {plan.price === 0 ? (
                     <div>
                       <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-0.03em'}}>$0</span>
-                      <span style={{fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)',marginLeft:'6px'}}>forever</span>
                     </div>
                   ) : (
                     <div>
@@ -202,11 +193,6 @@ function PricingCards() {
                       {cycle === 'yearly' && (
                         <div style={{fontSize:'var(--ins-font-size-12)',color:'var(--ins-text-inactive)',marginTop:'var(--ins-size-half)'}}>
                           billed annually · ${yearlyTotal(plan.price).toFixed(2)}/yr
-                        </div>
-                      )}
-                      {plan.discount && (
-                        <div style={{marginTop:'6px',display:'inline-flex',alignItems:'center',gap:'5px',padding:'2px 8px',background:'var(--ins-surface-brand-tint)',border:'1px solid var(--ins-border-brand)',borderRadius:'var(--ins-radius-sm)',fontSize:'10px',fontFamily:'var(--ins-font-family-mono)',color:'var(--ins-text-highlight)',fontWeight:600,letterSpacing:'.04em'}}>
-                          {plan.discount}
                         </div>
                       )}
                     </div>
