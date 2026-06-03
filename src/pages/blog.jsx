@@ -175,7 +175,7 @@ function BlogGrid({ activeCategory, activeTag }) {
                 <div style={{marginBottom:'10px'}}>
                   <span style={{fontSize:'10px', padding:'3px 8px', borderRadius:'999px', background:'var(--ins-surface-brand-tint)', border:'1px solid var(--ins-border-brand)', color:'var(--ins-text-highlight)', fontWeight:500, letterSpacing:'0.04em'}}>{article.category}</span>
                 </div>
-                <h3 style={{fontSize:'var(--ins-font-size-16)', fontWeight:500, color:'var(--ins-text-heading-soft)', lineHeight:1.4, marginBottom:'var(--ins-size-2)', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:2, WebkitBoxOrient:'vertical'}}>
+                <h3 className="ins-text-h3" style={{marginBottom:'var(--ins-size-2)', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:2, WebkitBoxOrient:'vertical'}}>
                   {article.title}
                 </h3>
                 <p className="ins-text-body" style={{marginBottom:'var(--ins-size-3)', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:3, WebkitBoxOrient:'vertical'}}>

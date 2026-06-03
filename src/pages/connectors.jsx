@@ -350,11 +350,11 @@ function ConnectorsHero() {
             <span style={{color:'var(--ins-color-gray-100)'}}>Connectors</span>
             <span style={{margin:'0 6px', opacity:0.5}}>/</span>
           </div>
-          <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',fontSize:'clamp(2.4rem,3.6vw,4rem)', fontWeight:700, fontFamily:"var(--ins-font-family-sans)", letterSpacing:'-.04em', lineHeight:1.05, marginBottom:'22px', textWrap:'balance'}}>
+          <h1 className="ins-text-display-xl" style={{marginBottom:'22px', textWrap:'balance'}}>
             <span style={{color:'var(--ins-text-highlight)'}}>Connect</span>{' '}
-            <span style={{color:'var(--ins-text-heading-soft)'}}>to any source.</span>
+            <span>to any source</span>
           </h1>
-          <p className="fu2 ins-text-body-xl ins-text--muted" style={{maxWidth:'520px', marginBottom:'30px'}}>
+          <p className="ins-text-body-xl" style={{maxWidth:'520px', marginBottom:'30px'}}>
             Explore 200+ prebuilt connectors, create custom ones with REST and GraphQL connectors, or request the data source you're missing.
           </p>
           <Button as="a" href="/auth/sign-up/" variant="primary" size="md" iconEnd={<ArrowRightIcon />} className="fu3">
