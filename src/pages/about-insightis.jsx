@@ -23,7 +23,7 @@ function AboutHero() {
     <section style={{padding:'120px 0 80px', position:'relative'}}>
       <div style={{position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:'100%', height:'100%', background:'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(9,160,157,.06) 0%, transparent 70%)', pointerEvents:'none'}}/>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', textAlign:'center', position:'relative'}}>
-        <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'var(--ins-size-5)'}}>
+        <h1 className="ins-text-display" style={{marginBottom:'var(--ins-size-5)'}}>
           Every dataset has an insight.<br/>
           <span style={{color:'var(--ins-text-highlight)'}}>We help you find it.</span>
         </h1>

@@ -22,7 +22,7 @@ function PromptLibraryHero() {
         <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid var(--ins-color-white-a-07)', background:'var(--ins-color-white-a-03)', fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-body)', fontWeight:500, letterSpacing:'0.04em', marginBottom:'var(--ins-size-6)'}}>
           ✦ PROMPT LIBRARY
         </div>
-        <h1 className="fu1" style={{fontSize:'clamp(36px,5vw,56px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'var(--ins-text-heading-soft)', marginBottom:'var(--ins-size-5)'}}>
+        <h1 className="ins-text-display" style={{marginBottom:'var(--ins-size-5)'}}>
           Prompts for every team.
         </h1>
         <p className="fu2 ins-text-body-xl" style={{maxWidth:'560px', margin:'0 auto'}}>

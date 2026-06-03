@@ -51,7 +51,7 @@ function Hero() {
               <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>For Operations &amp; Finance</span>
             </div>
 
-            <h1 className="fu1" style={{fontSize:'clamp(36px,4.5vw,58px)',fontWeight:500,color:'var(--ins-text-heading-soft)',letterSpacing:'-.03em',lineHeight:1.12,marginBottom:'var(--ins-size-5)'}}>
+            <h1 className="ins-text-display-xl" style={{marginBottom:'var(--ins-size-5)'}}>
               <span style={{color:'var(--ins-text-heading-soft)'}}>Stop chasing numbers</span>
               <br/>
               <span style={{color:'var(--ins-text-highlight)'}}>across spreadsheets.</span>
