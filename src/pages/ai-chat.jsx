@@ -146,12 +146,12 @@ function ChatMock() {
             <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
           ))}
         </div>
-        <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono, monospace'}}>
+        <div style={{flex:1,textAlign:'center',fontSize:'var(--ins-font-size-12)',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>
           insightis — ai chat
         </div>
         <div style={{display:'flex',alignItems:'center',gap:5,padding:'3px 8px',background:'var(--ins-color-teal-a-08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'5px'}}>
           <div style={{width:'5px',height:'5px',borderRadius:'50%',background:'var(--ins-status-success-fg)',boxShadow:'0 0 6px var(--ins-status-success-fg)'}}/>
-          <span style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-highlight)',fontWeight:500}}>Gemini Pro</span>
+          <span style={{fontSize:'10px',fontFamily:'var(--ins-font-family-mono)',color:'var(--ins-text-highlight)',fontWeight:500}}>Gemini Pro</span>
         </div>
       </div>
 
@@ -192,7 +192,7 @@ function ChatMock() {
 
         {/* Idle state */}
         {phase === 'idle' && (
-          <div style={{flex:1,display:'flex',alignItems:'center',justifyContent:'center',color:'var(--ins-text-inactive)',fontSize:'12px',fontFamily:'Geist Mono,monospace'}}>
+          <div style={{flex:1,display:'flex',alignItems:'center',justifyContent:'center',color:'var(--ins-text-inactive)',fontSize:'var(--ins-font-size-12)',fontFamily:'var(--ins-font-family-mono)'}}>
             Ask anything about your data...
           </div>
         )}
@@ -200,7 +200,7 @@ function ChatMock() {
 
       {/* Input bar */}
       <div style={{padding:'12px 16px',borderTop:'1px solid var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'8px'}}>
-        <div style={{flex:1,background:'var(--ins-color-white-a-04)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'10px',padding:'9px 12px',fontSize:'13px',color:'var(--ins-text-inactive)',fontFamily:'Geist,sans-serif'}}>
+        <div style={{flex:1,background:'var(--ins-color-white-a-04)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'10px',padding:'9px 12px',fontSize:'13px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-sans)'}}>
           Ask anything about your data…
         </div>
         <div style={{display:'flex',alignItems:'center',gap:'5px'}}>
@@ -239,11 +239,11 @@ function TreemapChart({ items }) {
           <g key={i}>
             <rect x={c.x} y={c.y} width={c.w} height={c.h} fill={c.color} opacity=".78" rx="6"/>
             <text x={c.x+c.w/2} y={c.y+c.h/2-(c.h>60?16:0)} textAnchor="middle" dominantBaseline="middle"
-              style={{fontSize:c.w>200?'12px':'11px',fill:'rgba(255,255,255,.8)',fontFamily:'Geist Mono,monospace'}}>
+              style={{fontSize:c.w>200?'12px':'11px',fill:'rgba(255,255,255,.8)',fontFamily:'var(--ins-font-family-mono)'}}>
               {c.item.label}
             </text>
             {c.h>60 && <text x={c.x+c.w/2} y={c.y+c.h/2+18} textAnchor="middle" dominantBaseline="middle"
-              style={{fontSize:'20px',fill:'#fff',fontFamily:'Geist Mono,monospace',fontWeight:500}}>
+              style={{fontSize:'var(--ins-font-size-20)',fill:'#fff',fontFamily:'var(--ins-font-family-mono)',fontWeight:500}}>
               {c.item.display}
             </text>}
           </g>
@@ -278,8 +278,8 @@ function PieChart({ slices }) {
         {paths.map((p,i) => (
           <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
             <div style={{width:'12px',height:'12px',borderRadius:'3px',background:p.color,flexShrink:0}}/>
-            <span style={{fontSize:'14px',color:'var(--ins-text-body)',fontFamily:'Geist Mono,monospace',flex:1}}>{p.label}</span>
-            <span style={{fontSize:'14px',color:'var(--ins-color-gray-100)',fontFamily:'Geist Mono,monospace',fontWeight:500}}>{p.pct}%</span>
+            <span style={{fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)',flex:1}}>{p.label}</span>
+            <span style={{fontSize:'var(--ins-font-size-14)',color:'var(--ins-color-gray-100)',fontFamily:'var(--ins-font-family-mono)',fontWeight:500}}>{p.pct}%</span>
           </div>
         ))}
       </div>
@@ -293,7 +293,7 @@ function HorizontalBarChart({ bars }) {
     <div style={{display:'flex',flexDirection:'column',gap:'10px',margin:'12px 0'}}>
       {bars.map((b,i) => (
         <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
-          <span style={{fontSize:'12px',color:'var(--ins-text-body)',fontFamily:'Geist Mono,monospace',minWidth:'180px',textAlign:'right',flexShrink:0}}>{b.label}</span>
+          <span style={{fontSize:'var(--ins-font-size-12)',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)',minWidth:'180px',textAlign:'right',flexShrink:0}}>{b.label}</span>
           <div style={{flex:1,background:'var(--ins-color-white-a-04)',borderRadius:'4px',height:'22px',position:'relative',overflow:'hidden'}}>
             <div style={{
               width:`${(Math.abs(b.value)/maxVal)*100}%`,
@@ -301,7 +301,7 @@ function HorizontalBarChart({ bars }) {
               background: b.color || (b.value < 0 ? 'rgba(220,80,80,.7)' : 'rgba(9,160,157,.6)'),
             }}/>
           </div>
-          <span style={{fontSize:'12px',fontFamily:'Geist Mono,monospace',color: b.value < 0 ? '#E06060' : 'var(--ins-text-highlight)',minWidth:'60px',flexShrink:0}}>{b.display}</span>
+          <span style={{fontSize:'var(--ins-font-size-12)',fontFamily:'var(--ins-font-family-mono)',color: b.value < 0 ? '#E06060' : 'var(--ins-text-highlight)',minWidth:'60px',flexShrink:0}}>{b.display}</span>
         </div>
       ))}
     </div>
@@ -328,7 +328,7 @@ function LineChart({ points, labels }) {
         <path d={area} fill="url(#areaFill)"/>
         <path d={line} fill="none" stroke="var(--ins-text-highlight)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         {coords.map((c,i) => <circle key={i} cx={c.x} cy={c.y} r="3" fill="var(--ins-text-highlight)" stroke="var(--ins-surface-page)" strokeWidth="1.5"/>)}
-        {labels && labels.map((l,i) => <text key={i} x={coords[i].x} y={h-1} textAnchor="middle" style={{fontSize:'9px',fill:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace'}}>{l}</text>)}
+        {labels && labels.map((l,i) => <text key={i} x={coords[i].x} y={h-1} textAnchor="middle" style={{fontSize:'9px',fill:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>{l}</text>)}
       </svg>
     </div>
   );
@@ -340,26 +340,26 @@ function GroupedBarChart({ groups }) {
     <div style={{display:'flex',flexDirection:'column',gap:'10px',margin:'12px 0'}}>
       {groups.map((g,i) => (
         <div key={i}>
-          <div style={{fontSize:'11px',color:'var(--ins-text-body)',fontFamily:'Geist Mono,monospace',marginBottom:'4px'}}>{g.label}</div>
+          <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)',marginBottom:'4px'}}>{g.label}</div>
           <div style={{display:'flex',gap:'4px',flexDirection:'column'}}>
             <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
               <div style={{width:'100%',background:'var(--ins-color-white-a-04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
                 <div style={{width:`${(g.actual/maxVal)*100}%`,height:'100%',borderRadius:'3px',background: g.actual > g.budget ? 'rgba(220,80,80,.65)' : 'rgba(9,160,157,.55)'}}/>
               </div>
-              <span style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color: g.actual > g.budget ? '#E06060' : 'var(--ins-text-highlight)',minWidth:'40px',flexShrink:0}}>${g.actual}K</span>
+              <span style={{fontSize:'var(--ins-font-size-11)',fontFamily:'var(--ins-font-family-mono)',color: g.actual > g.budget ? '#E06060' : 'var(--ins-text-highlight)',minWidth:'40px',flexShrink:0}}>${g.actual}K</span>
             </div>
             <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
               <div style={{width:'100%',background:'var(--ins-color-white-a-04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
                 <div style={{width:`${(g.budget/maxVal)*100}%`,height:'100%',borderRadius:'3px',background:'var(--ins-color-white-a-12)'}}/>
               </div>
-              <span style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-inactive)',minWidth:'40px',flexShrink:0}}>${g.budget}K</span>
+              <span style={{fontSize:'var(--ins-font-size-11)',fontFamily:'var(--ins-font-family-mono)',color:'var(--ins-text-inactive)',minWidth:'40px',flexShrink:0}}>${g.budget}K</span>
             </div>
           </div>
         </div>
       ))}
       <div style={{display:'flex',gap:'16px',marginTop:'4px'}}>
-        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(9,160,157,.55)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace'}}>Actual</span></div>
-        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'var(--ins-color-white-a-12)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace'}}>Budget</span></div>
+        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(9,160,157,.55)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>Actual</span></div>
+        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'var(--ins-color-white-a-12)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>Budget</span></div>
       </div>
     </div>
   );
@@ -371,26 +371,26 @@ function RetainedVsChurnedChart({ bars }) {
     <div style={{display:'flex',flexDirection:'column',gap:'10px',margin:'12px 0'}}>
       {bars.map((b,i) => (
         <div key={i}>
-          <div style={{fontSize:'11px',color:'var(--ins-text-body)',fontFamily:'Geist Mono,monospace',marginBottom:'4px'}}>{b.label}</div>
+          <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)',marginBottom:'4px'}}>{b.label}</div>
           <div style={{display:'flex',gap:'4px',flexDirection:'column'}}>
             <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
               <div style={{width:'100%',background:'var(--ins-color-white-a-04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
                 <div style={{width:`${(b.retained/maxVal)*100}%`,height:'100%',borderRadius:'3px',background:'rgba(9,160,157,.6)'}}/>
               </div>
-              <span style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-highlight)',minWidth:'35px',flexShrink:0}}>{b.retained}%</span>
+              <span style={{fontSize:'var(--ins-font-size-11)',fontFamily:'var(--ins-font-family-mono)',color:'var(--ins-text-highlight)',minWidth:'35px',flexShrink:0}}>{b.retained}%</span>
             </div>
             <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
               <div style={{width:'100%',background:'var(--ins-color-white-a-04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
                 <div style={{width:`${(b.churned/maxVal)*100}%`,height:'100%',borderRadius:'3px',background:'rgba(220,80,80,.55)'}}/>
               </div>
-              <span style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color:'#E06060',minWidth:'35px',flexShrink:0}}>{b.churned}%</span>
+              <span style={{fontSize:'var(--ins-font-size-11)',fontFamily:'var(--ins-font-family-mono)',color:'#E06060',minWidth:'35px',flexShrink:0}}>{b.churned}%</span>
             </div>
           </div>
         </div>
       ))}
       <div style={{display:'flex',gap:'16px',marginTop:'4px'}}>
-        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(9,160,157,.6)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace'}}>Retained (12+ mo)</span></div>
-        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(220,80,80,.55)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace'}}>Churned</span></div>
+        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(9,160,157,.6)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>Retained (12+ mo)</span></div>
+        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(220,80,80,.55)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>Churned</span></div>
       </div>
     </div>
   );
@@ -865,7 +865,7 @@ function QuestionsGallery() {
                 alignSelf:'flex-end', maxWidth:'80%',
                 background:'rgba(9,160,157,.15)', border:'1px solid rgba(9,160,157,.3)',
                 borderRadius:'16px 16px 4px 16px', padding:'12px 16px',
-                fontSize:'14px', color:'var(--ins-color-gray-100)', lineHeight:1.5,
+                fontSize:'var(--ins-font-size-14)', color:'var(--ins-color-gray-100)', lineHeight:1.5,
               }}>
                 {cat.questions[activeQ]}
               </div>
@@ -884,8 +884,8 @@ function QuestionsGallery() {
                   <div style={{width:'20px',height:'20px',borderRadius:'6px',background:'rgba(9,160,157,.12)',border:'1px solid rgba(9,160,157,.25)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
                     <svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z" stroke="var(--ins-text-highlight)" strokeWidth="1.2" strokeLinejoin="round"/></svg>
                   </div>
-                  <span style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-highlight)',fontWeight:500}}>Insightis</span>
-                  <div style={{marginLeft:'auto',fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-inactive)',display:'flex',alignItems:'center',gap:4}}>
+                  <span style={{fontSize:'var(--ins-font-size-11)',fontFamily:'var(--ins-font-family-mono)',color:'var(--ins-text-highlight)',fontWeight:500}}>Insightis</span>
+                  <div style={{marginLeft:'auto',fontSize:'10px',fontFamily:'var(--ins-font-family-mono)',color:'var(--ins-text-inactive)',display:'flex',alignItems:'center',gap:4}}>
                     <div style={{width:5,height:5,borderRadius:'50%',background:'var(--ins-status-success-fg)',boxShadow:'0 0 5px var(--ins-status-success-fg)'}}/>
                     live data
                   </div>
@@ -895,7 +895,7 @@ function QuestionsGallery() {
                 <>
                   {renderReply(cat.replies[activeQ])}
                   {cat.replies[activeQ].caption && (
-                    <p style={{fontSize:'14px',color:'#8FB8C4',lineHeight:1.6,marginTop:'8px'}}>{cat.replies[activeQ].caption}</p>
+                    <p style={{fontSize:'var(--ins-font-size-14)',color:'#8FB8C4',lineHeight:1.6,marginTop:'8px'}}>{cat.replies[activeQ].caption}</p>
                   )}
                 </>
 
@@ -1037,7 +1037,7 @@ function AccuracyComparison() {
         {/* 3x badge */}
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
-            <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>3×</span>
+            <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',lineHeight:1,flexShrink:0}}>3×</span>
             <span className="ins-text-body-lg" style={{whiteSpace:'nowrap'}}>more accurate because it knows your data, not the internet's.</span>
           </div>
         </div>
@@ -1200,7 +1200,7 @@ function ChatMockAnimationInner() {
             <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
           ))}
         </div>
-        <div style={{flex:1, textAlign:'center', fontSize:'12px', color:'var(--ins-text-inactive)', fontFamily:'Geist Mono, monospace', letterSpacing:'.02em'}}>
+        <div style={{flex:1, textAlign:'center', fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-inactive)', fontFamily:'var(--ins-font-family-mono)', letterSpacing:'.02em'}}>
           insightis — ai chat
         </div>
         <div style={{width:'46px'}}/>
@@ -1252,7 +1252,7 @@ function ChatMockAnimationInner() {
                   { visible: showStep2, done: step2Done, label: 'Analyzing last week activity' },
                   { visible: showStep3, done: step3Done, label: 'Checking results' },
                 ].filter(s => s.visible).map(({done, label}, i) => (
-                  <div key={label} style={{display:'flex', alignItems:'center', gap:'7px', fontSize:'12px', color: done ? 'rgba(14,196,193,0.75)' : 'var(--ins-text-body)', animation:'slideUp .22s ease both', transition:'color .3s ease'}}>
+                  <div key={label} style={{display:'flex', alignItems:'center', gap:'7px', fontSize:'var(--ins-font-size-12)', color: done ? 'rgba(14,196,193,0.75)' : 'var(--ins-text-body)', animation:'slideUp .22s ease both', transition:'color .3s ease'}}>
                     <span style={{
                       width:'16px', height:'16px', borderRadius:'4px', flexShrink:0,
                       display:'flex', alignItems:'center', justifyContent:'center',
@@ -1279,7 +1279,7 @@ function ChatMockAnimationInner() {
               maxWidth:'90%',
               background:'rgba(255,255,255,0.033)', border:'1px solid var(--ins-color-white-a-07)',
               borderRadius:'3px 14px 14px 14px',
-              padding:'11px 14px', fontSize:'12px', color:'#C8DCE4', lineHeight:'1.55',
+              padding:'11px 14px', fontSize:'var(--ins-font-size-12)', color:'#C8DCE4', lineHeight:'1.55',
             }}>
               {REPLY_LINE1.slice(0, l1chars)}
               {l1chars >= REPLY_LINE1.length && l2chars > 0 && (
@@ -1294,8 +1294,8 @@ function ChatMockAnimationInner() {
                 opacity:0, animation:'slideUp .35s ease .1s both',
               }}>
                 <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'6px'}}>
-                  <span style={{fontSize:'9px', color:'rgba(255,255,255,0.3)', fontFamily:'Geist Mono,monospace', letterSpacing:'0.07em', textTransform:'uppercase'}}>MRR · Last 8 weeks</span>
-                  <span style={{fontSize:'10px', fontWeight:700, color:'#FF7070', fontFamily:'Geist Mono,monospace'}}>↓ $1,240</span>
+                  <span style={{fontSize:'9px', color:'rgba(255,255,255,0.3)', fontFamily:'var(--ins-font-family-mono)', letterSpacing:'0.07em', textTransform:'uppercase'}}>MRR · Last 8 weeks</span>
+                  <span style={{fontSize:'10px', fontWeight:700, color:'#FF7070', fontFamily:'var(--ins-font-family-mono)'}}>↓ $1,240</span>
                 </div>
                 <svg width="100%" height="38" viewBox="0 0 240 38" preserveAspectRatio="none" style={{display:'block'}}>
                   <defs>
@@ -1312,8 +1312,8 @@ function ChatMockAnimationInner() {
                   <circle cx="240" cy="38" r="2.5" fill="#FF6B6B"/>
                 </svg>
                 <div style={{display:'flex', justifyContent:'space-between', marginTop:'4px'}}>
-                  <span style={{fontSize:'8px', color:'rgba(255,255,255,0.2)', fontFamily:'Geist Mono'}}>8w ago</span>
-                  <span style={{fontSize:'8px', color:'rgba(255,255,255,0.2)', fontFamily:'Geist Mono'}}>now</span>
+                  <span style={{fontSize:'8px', color:'rgba(255,255,255,0.2)', fontFamily:'var(--ins-font-family-mono)'}}>8w ago</span>
+                  <span style={{fontSize:'8px', color:'rgba(255,255,255,0.2)', fontFamily:'var(--ins-font-family-mono)'}}>now</span>
                 </div>
               </div>
             )}
@@ -1328,7 +1328,7 @@ function ChatMockAnimationInner() {
                 opacity:0, animation:'slideUp .35s ease .15s both',
               }}>
                 <div style={{display:'flex', alignItems:'center', gap:'5px', marginBottom:'7px'}}>
-                  <span style={{fontSize:'9.5px', color:'rgba(14,196,193,0.8)', fontWeight:600, letterSpacing:'0.07em', textTransform:'uppercase', fontFamily:'Geist Mono,monospace'}}>⚡ Suggested actions</span>
+                  <span style={{fontSize:'9.5px', color:'rgba(14,196,193,0.8)', fontWeight:600, letterSpacing:'0.07em', textTransform:'uppercase', fontFamily:'var(--ins-font-family-mono)'}}>⚡ Suggested actions</span>
                 </div>
                 {ACTIONS.map((action, i) => (
                   <div key={i} style={{
@@ -1337,7 +1337,7 @@ function ChatMockAnimationInner() {
                     marginTop: i > 0 ? '5px' : '0',
                     opacity:0, animation:`fadeIn .3s ease ${0.2 + i * 0.12}s both`,
                   }}>
-                    <span style={{color:'var(--ins-text-highlight)', flexShrink:0, fontWeight:700, fontSize:'11px', marginTop:'1px'}}>→</span>
+                    <span style={{color:'var(--ins-text-highlight)', flexShrink:0, fontWeight:700, fontSize:'var(--ins-font-size-11)', marginTop:'1px'}}>→</span>
                     {action}
                   </div>
                 ))}

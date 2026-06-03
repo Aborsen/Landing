@@ -15,7 +15,7 @@ function SupportHero({ search, setSearch }) {
           padding:'6px 14px', borderRadius:'999px',
           border:'1px solid var(--ins-border-default)',
           background:'var(--ins-color-white-a-02)',
-          fontSize:'12px', color:'var(--ins-status-success-fg)', fontWeight:500,
+          fontSize:'var(--ins-font-size-12)', color:'var(--ins-status-success-fg)', fontWeight:500,
           marginBottom:'24px',
         }}>
           <div style={{
@@ -55,7 +55,7 @@ function SupportHero({ search, setSearch }) {
             value={search}
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
-              padding:'12px 14px', fontSize:'15px', color:'var(--ins-color-gray-100)', fontFamily:'var(--ins-font-family-sans)',
+              padding:'12px 14px', fontSize:'var(--ins-font-size-15)', color:'var(--ins-color-gray-100)', fontFamily:'var(--ins-font-family-sans)',
             }}
           />
         </div>
@@ -181,7 +181,7 @@ function HelpTopics({ search }) {
               }}>
                 {topic.icon}
               </div>
-              <h3 style={{ fontSize:'14px', fontWeight:600, color:'var(--ins-text-heading-soft)' }}>{topic.title}</h3>
+              <h3 style={{ fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-text-heading-soft)' }}>{topic.title}</h3>
             </div>
 
             <div style={{ display:'flex', flexDirection:'column', gap:'0px' }}>
@@ -190,7 +190,7 @@ function HelpTopics({ search }) {
                   display:'flex', alignItems:'center', justifyContent:'space-between',
                   padding:'5px 0',
                   borderBottom: j < topic.items.length - 1 ? '1px solid var(--ins-color-white-a-04)' : 'none',
-                  fontSize:'14px', color:'var(--ins-text-body)',
+                  fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-body)',
                   textDecoration:'none',
                   transition:'color .15s',
                 }}
@@ -282,7 +282,7 @@ function FloatingChat({ onSubmit, hidden }) {
             placeholder="Ask a question..."
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
-              fontSize:'14px', color:'var(--ins-color-gray-100)',
+              fontSize:'var(--ins-font-size-14)', color:'var(--ins-color-gray-100)',
               fontFamily:'inherit',
             }}
           />
@@ -294,7 +294,7 @@ function FloatingChat({ onSubmit, hidden }) {
               background: value.trim() ? 'var(--ins-button-primary-bg)' : 'rgba(9,160,157,.15)',
               color: value.trim() ? 'var(--ins-text-heading)' : '#4A9EA0',
               border:'none', cursor: value.trim() ? 'pointer' : 'default',
-              fontSize:'14px', fontWeight:600,
+              fontSize:'var(--ins-font-size-14)', fontWeight:600,
               fontFamily:'inherit',
               transition:'background .2s, color .2s',
             }}
@@ -405,7 +405,7 @@ function AIAssistantPanel({ query, onClose }) {
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
           </svg>
-          <span style={{ fontSize:'14px', fontWeight:600, color:'var(--ins-color-gray-100)' }}>AI Assistant</span>
+          <span style={{ fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-color-gray-100)' }}>AI Assistant</span>
         </div>
         <button onClick={onClose} style={{
           background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
@@ -431,7 +431,7 @@ function AIAssistantPanel({ query, onClose }) {
                   border:'1px solid rgba(9,160,157,0.25)',
                   borderRadius:'10px 10px 2px 10px',
                   padding:'8px 12px',
-                  fontSize:'14px', color:'#C8E6EA', maxWidth:'90%',
+                  fontSize:'var(--ins-font-size-14)', color:'#C8E6EA', maxWidth:'90%',
                   lineHeight:1.5,
                 }}>
                   {msg.text}
@@ -439,7 +439,7 @@ function AIAssistantPanel({ query, onClose }) {
               </div>
             ) : (
               <div>
-                <div style={{ fontSize:'12px', color:'#3A6070', marginBottom:'10px', display:'flex', flexDirection:'column', gap:'4px' }}>
+                <div style={{ fontSize:'var(--ins-font-size-12)', color:'#3A6070', marginBottom:'10px', display:'flex', flexDirection:'column', gap:'4px' }}>
                   <div style={{ display:'flex', alignItems:'center', gap:'6px' }}>
                     <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                     Found results for <em style={{ color:'#4A8090', fontStyle:'normal' }}>{msg.response.searchTerms}</em>
@@ -449,23 +449,23 @@ function AIAssistantPanel({ query, onClose }) {
                     Read 1 file
                   </div>
                 </div>
-                <p style={{ fontSize:'14px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'10px' }}>
+                <p style={{ fontSize:'var(--ins-font-size-14)', color:'#8AAAB8', lineHeight:1.7, marginBottom:'10px' }}>
                   <AssistantResponseText text={msg.response.intro} />
                 </p>
                 <ul style={{ margin:'0 0 10px 0', padding:'0', listStyle:'none', display:'flex', flexDirection:'column', gap:'5px' }}>
                   {msg.response.bullets.map((b, i) => (
-                    <li key={i} style={{ fontSize:'14px', color:'#8AAAB8', lineHeight:1.6, paddingLeft:'14px', position:'relative' }}>
+                    <li key={i} style={{ fontSize:'var(--ins-font-size-14)', color:'#8AAAB8', lineHeight:1.6, paddingLeft:'14px', position:'relative' }}>
                       <span style={{ position:'absolute', left:0, color:'var(--ins-text-highlight)', fontWeight:700 }}>·</span>
                       <strong style={{ color:'#C8E6EA' }}>{b.bold}</strong>{b.text}
                     </li>
                   ))}
                 </ul>
-                <p style={{ fontSize:'14px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'12px' }}>
+                <p style={{ fontSize:'var(--ins-font-size-14)', color:'#8AAAB8', lineHeight:1.7, marginBottom:'12px' }}>
                   {msg.response.outro}
                 </p>
                 <div style={{ display:'flex', flexDirection:'column', gap:'4px', marginBottom:'12px' }}>
                   {msg.response.links.map((l, i) => (
-                    <a key={i} href="#" style={{ fontSize:'12px', color:'var(--ins-button-primary-bg-hover)', textDecoration:'none' }}
+                    <a key={i} href="#" style={{ fontSize:'var(--ins-font-size-12)', color:'var(--ins-button-primary-bg-hover)', textDecoration:'none' }}
                       onMouseEnter={e => e.currentTarget.style.textDecoration = 'underline'}
                       onMouseLeave={e => e.currentTarget.style.textDecoration = 'none'}
                     >{l}</a>
@@ -486,7 +486,7 @@ function AIAssistantPanel({ query, onClose }) {
         {/* Loading state */}
         {phase !== 'done' && (
           <div style={{ display:'flex', flexDirection:'column', gap:'6px' }}>
-            <div style={{ display:'flex', alignItems:'center', gap:'6px', fontSize:'12px', color:'#3A6070' }}>
+            <div style={{ display:'flex', alignItems:'center', gap:'6px', fontSize:'var(--ins-font-size-12)', color:'#3A6070' }}>
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ animation:'pulse 1.2s ease infinite' }}><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
               {phase === 'searching' ? 'Searching docs...' : 'Reading file...'}
             </div>
@@ -525,7 +525,7 @@ function AIAssistantPanel({ query, onClose }) {
             placeholder="Ask a question..."
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
-              fontSize:'14px', color:'var(--ins-color-gray-100)', fontFamily:'var(--ins-font-family-sans)',
+              fontSize:'var(--ins-font-size-14)', color:'var(--ins-color-gray-100)', fontFamily:'var(--ins-font-family-sans)',
             }}
           />
           <button onClick={handleFollowUp} style={{
@@ -568,11 +568,11 @@ function SupportStatus() {
           flexShrink:0,
         }} />
         <span style={{
-          fontSize:'12px', color:'var(--ins-status-success-fg)',
+          fontSize:'var(--ins-font-size-12)', color:'var(--ins-status-success-fg)',
           fontFamily:'var(--ins-font-family-mono)',
         }}>All systems operational</span>
         <span style={{
-          fontSize:'11px', color:'var(--ins-text-inactive)',
+          fontSize:'var(--ins-font-size-11)', color:'var(--ins-text-inactive)',
         }}>Last checked: 2 minutes ago</span>
       </div>
     </div>
@@ -652,7 +652,7 @@ function ContactSupport() {
     border: focused === field ? '1px solid var(--ins-color-teal-a-50)' : '1px solid var(--ins-color-white-a-08)',
     borderRadius: '10px',
     padding: '10px 14px',
-    fontSize: '14px', color: 'var(--ins-color-gray-100)',
+    fontSize: 'var(--ins-font-size-14)', color: 'var(--ins-color-gray-100)',
     fontFamily: 'inherit', outline: 'none',
     transition: 'border-color .2s',
     resize: 'none',
@@ -683,8 +683,8 @@ function ContactSupport() {
                 </svg>
               </div>
               <div>
-                <div style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ins-color-gray-100)', marginBottom: '2px' }}>Still need help?</div>
-                <div style={{ fontSize: '14px', color: 'var(--ins-text-body)' }}>Our support team is here — reach out and we'll respond within 24 hours.</div>
+                <div style={{ fontSize: 'var(--ins-font-size-14)', fontWeight: 600, color: 'var(--ins-color-gray-100)', marginBottom: '2px' }}>Still need help?</div>
+                <div style={{ fontSize: 'var(--ins-font-size-14)', color: 'var(--ins-text-body)' }}>Our support team is here — reach out and we'll respond within 24 hours.</div>
               </div>
             </div>
             <button
@@ -692,7 +692,7 @@ function ContactSupport() {
               style={{
                 padding: '9px 18px', borderRadius: '9px', flexShrink: 0,
                 background: 'rgba(14,196,193,0.08)', border: '1px solid var(--ins-border-brand)',
-                color: 'var(--ins-text-highlight)', fontSize: '14px', fontWeight: 600,
+                color: 'var(--ins-text-highlight)', fontSize: 'var(--ins-font-size-14)', fontWeight: 600,
                 fontFamily: 'inherit', cursor: 'pointer',
                 transition: 'background .18s, border-color .18s',
               }}
@@ -759,8 +759,8 @@ function ContactSupport() {
                     </svg>
                   </div>
                   <div>
-                    <div style={{ fontSize: '16px', fontWeight: 700, color: 'var(--ins-color-gray-100)' }}>Contact Support</div>
-                    <div style={{ fontSize: '14px', color: 'var(--ins-text-body)', marginTop: '2px' }}>We'll get back to you as soon as possible.</div>
+                    <div style={{ fontSize: 'var(--ins-font-size-16)', fontWeight: 700, color: 'var(--ins-color-gray-100)' }}>Contact Support</div>
+                    <div style={{ fontSize: 'var(--ins-font-size-14)', color: 'var(--ins-text-body)', marginTop: '2px' }}>We'll get back to you as soon as possible.</div>
                   </div>
                 </div>
 
@@ -768,7 +768,7 @@ function ContactSupport() {
 
                   {/* Category pills */}
                   <div>
-                    <label style={{ fontSize: '12px', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '8px' }}>CATEGORY</label>
+                    <label style={{ fontSize: 'var(--ins-font-size-12)', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '8px' }}>CATEGORY</label>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                       {CATEGORIES.map(c => {
                         const active = form.category === c.id;
@@ -782,7 +782,7 @@ function ContactSupport() {
                               background: active ? `rgba(${c.id === 'bug' ? '239,68,68' : c.id === 'billing' ? '129,140,248' : c.id === 'connection' ? '20,168,185' : c.id === 'feature' ? '249,115,22' : c.id === 'other' ? '107,114,128' : '14,196,193'},0.12)` : 'var(--ins-color-white-a-04)',
                               border: active ? `1px solid ${c.color}44` : '1px solid var(--ins-color-white-a-07)',
                               color: active ? c.color : 'var(--ins-text-body)',
-                              fontSize: '12px', fontWeight: active ? 600 : 400,
+                              fontSize: 'var(--ins-font-size-12)', fontWeight: active ? 600 : 400,
                               fontFamily: 'inherit', cursor: 'pointer',
                               transition: 'all .15s',
                             }}
@@ -799,7 +799,7 @@ function ContactSupport() {
 
                   {/* Subject */}
                   <div>
-                    <label style={{ fontSize: '12px', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '6px' }}>SUBJECT *</label>
+                    <label style={{ fontSize: 'var(--ins-font-size-12)', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '6px' }}>SUBJECT *</label>
                     <input
                       value={form.title}
                       onChange={e => setForm(f => ({ ...f, title: e.target.value }))}
@@ -812,7 +812,7 @@ function ContactSupport() {
 
                   {/* Description */}
                   <div>
-                    <label style={{ fontSize: '12px', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '6px' }}>{cat.descLabel}</label>
+                    <label style={{ fontSize: 'var(--ins-font-size-12)', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '6px' }}>{cat.descLabel}</label>
                     <textarea
                       rows={3}
                       value={form.desc}
@@ -826,7 +826,7 @@ function ContactSupport() {
 
                   {/* Email */}
                   <div>
-                    <label style={{ fontSize: '12px', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '6px' }}>YOUR EMAIL <span style={{ color: 'var(--ins-text-disabled)', fontWeight: 400 }}>(optional, for follow-up)</span></label>
+                    <label style={{ fontSize: 'var(--ins-font-size-12)', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '6px' }}>YOUR EMAIL <span style={{ color: 'var(--ins-text-disabled)', fontWeight: 400 }}>(optional, for follow-up)</span></label>
                     <input
                       type="email"
                       value={form.email}
@@ -840,7 +840,7 @@ function ContactSupport() {
 
                   {/* Attachments */}
                   <div>
-                    <label style={{ fontSize: '12px', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '6px' }}>ATTACHMENTS <span style={{ color: 'var(--ins-text-disabled)', fontWeight: 400 }}>(up to 5 files, 10 MB each)</span></label>
+                    <label style={{ fontSize: 'var(--ins-font-size-12)', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '6px' }}>ATTACHMENTS <span style={{ color: 'var(--ins-text-disabled)', fontWeight: 400 }}>(up to 5 files, 10 MB each)</span></label>
                     <div
                       onClick={() => fileRef.current?.click()}
                       onDragOver={e => { e.preventDefault(); setDragOver(true); }}
@@ -860,7 +860,7 @@ function ContactSupport() {
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-disabled)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
                       </svg>
-                      <span style={{ fontSize: '14px', color: 'var(--ins-text-disabled)' }}>
+                      <span style={{ fontSize: 'var(--ins-font-size-14)', color: 'var(--ins-text-disabled)' }}>
                         {dragOver ? 'Drop files here' : 'Click or drag files to attach'}
                       </span>
                     </div>
@@ -876,8 +876,8 @@ function ContactSupport() {
                               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-disabled)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
                                 <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/>
                               </svg>
-                              <span style={{ fontSize: '14px', color: '#9BBAC5', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{f.name}</span>
-                              <span style={{ fontSize: '11px', color: 'var(--ins-text-disabled)', flexShrink: 0 }}>{fmt(f.size)}</span>
+                              <span style={{ fontSize: 'var(--ins-font-size-14)', color: '#9BBAC5', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{f.name}</span>
+                              <span style={{ fontSize: 'var(--ins-font-size-11)', color: 'var(--ins-text-disabled)', flexShrink: 0 }}>{fmt(f.size)}</span>
                             </div>
                             <button
                               onClick={() => removeFile(f.name)}
@@ -901,7 +901,7 @@ function ContactSupport() {
                     style={{
                       flex: 1, padding: '11px', borderRadius: '9px',
                       background: 'var(--ins-color-white-a-05)', border: '1px solid var(--ins-color-white-a-08)',
-                      color: 'var(--ins-text-body)', fontSize: '14px', fontWeight: 500,
+                      color: 'var(--ins-text-body)', fontSize: 'var(--ins-font-size-14)', fontWeight: 500,
                       fontFamily: 'inherit', cursor: 'pointer',
                     }}
                     onMouseEnter={e => e.currentTarget.style.background = 'var(--ins-color-white-a-08)'}
@@ -914,7 +914,7 @@ function ContactSupport() {
                       background: form.title.trim() ? 'var(--ins-button-primary-bg)' : 'rgba(9,160,157,.18)',
                       border: 'none',
                       color: form.title.trim() ? 'var(--ins-text-heading)' : 'var(--ins-color-teal-a-40)',
-                      fontSize: '14px', fontWeight: 600,
+                      fontSize: 'var(--ins-font-size-14)', fontWeight: 600,
                       fontFamily: 'inherit', cursor: form.title.trim() ? 'pointer' : 'default',
                       transition: 'background .18s, color .18s',
                     }}
@@ -934,8 +934,8 @@ function ContactSupport() {
                 }}>
                   <CheckIcon size={22} color="currentColor" strokeWidth={2} />
                 </div>
-                <div style={{ fontSize: '17px', fontWeight: 700, color: 'var(--ins-color-gray-100)', marginBottom: '8px' }}>Request submitted</div>
-                <div style={{ fontSize: '14px', color: 'var(--ins-text-body)', lineHeight: 1.6, marginBottom: '28px' }}>
+                <div style={{ fontSize: 'var(--ins-font-size-17)', fontWeight: 700, color: 'var(--ins-color-gray-100)', marginBottom: '8px' }}>Request submitted</div>
+                <div style={{ fontSize: 'var(--ins-font-size-14)', color: 'var(--ins-text-body)', lineHeight: 1.6, marginBottom: '28px' }}>
                   Thanks for reaching out. Our team will review your request and follow up shortly.
                 </div>
                 <button
@@ -943,7 +943,7 @@ function ContactSupport() {
                   style={{
                     padding: '10px 28px', borderRadius: '9px',
                     background: 'var(--ins-color-white-a-06)', border: '1px solid var(--ins-color-white-a-10)',
-                    color: 'var(--ins-color-gray-100)', fontSize: '14px', fontWeight: 500,
+                    color: 'var(--ins-color-gray-100)', fontSize: 'var(--ins-font-size-14)', fontWeight: 500,
                     fontFamily: 'inherit', cursor: 'pointer',
                   }}
                   onMouseEnter={e => e.currentTarget.style.background = 'var(--ins-color-white-a-10)'}

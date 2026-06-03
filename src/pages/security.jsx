@@ -125,7 +125,7 @@ function SecurityContent() {
         <div style={{position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:'100%', height:'100%', background:'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(9,160,157,.06) 0%, transparent 70%)', pointerEvents:'none'}}/>
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', textAlign:'center', position:'relative'}}>
           <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'20px'}}>
-            <span style={{fontSize:'12px'}}>&#x2726;</span>
+            <span style={{fontSize:'var(--ins-font-size-12)'}}>&#x2726;</span>
             <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', fontFamily:'var(--ins-font-family-mono)'}}>Security</span>
           </div>
           <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'20px'}}>
@@ -135,12 +135,12 @@ function SecurityContent() {
             Your data stays yours. Insightis is built with enterprise-grade security at every layer — from encryption and access controls to compliance certifications and continuous monitoring.
           </p>
           <div className="fu3" style={{display:'flex', justifyContent:'center', gap:'12px', marginTop:'32px', flexWrap:'wrap'}}>
-            <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'12px 28px', fontSize:'14px', fontWeight:600, color:'var(--ins-text-body)', background:'var(--ins-button-primary-bg)', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
+            <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'12px 28px', fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-text-body)', background:'var(--ins-button-primary-bg)', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
               onMouseEnter={e=>e.currentTarget.style.background='var(--ins-button-primary-bg-hover)'}
               onMouseLeave={e=>e.currentTarget.style.background='var(--ins-button-primary-bg)'}>
               Contact Security Team
             </a>
-            <a href="Privacy" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'12px 28px', fontSize:'14px', fontWeight:600, color:'var(--ins-color-gray-100)', border:'1px solid var(--ins-color-white-a-12)', borderRadius:'999px', textDecoration:'none', transition:'border-color .2s'}}
+            <a href="Privacy" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'12px 28px', fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-color-gray-100)', border:'1px solid var(--ins-color-white-a-12)', borderRadius:'999px', textDecoration:'none', transition:'border-color .2s'}}
               onMouseEnter={e=>e.currentTarget.style.borderColor='rgba(255,255,255,.35)'}
               onMouseLeave={e=>e.currentTarget.style.borderColor='var(--ins-color-white-a-12)'}>
               View Privacy Policy
@@ -168,7 +168,7 @@ function SecurityContent() {
                 <div style={{width:'40px', height:'40px', borderRadius:'10px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'16px'}}>
                   {v.icon}
                 </div>
-                <h3 style={{fontSize:'17px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{v.title}</h3>
+                <h3 style={{fontSize:'var(--ins-font-size-17)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{v.title}</h3>
                 <p className="ins-text-body">{v.desc}</p>
               </div>
             ))}
@@ -195,7 +195,7 @@ function SecurityContent() {
                 <div style={{display:'flex', justifyContent:'center', marginBottom:'20px'}}>
                   {c.icon}
                 </div>
-                <h3 style={{fontSize:'17px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{c.title}</h3>
+                <h3 style={{fontSize:'var(--ins-font-size-17)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{c.title}</h3>
                 <p className="ins-text-body">{c.desc}</p>
               </div>
             ))}
@@ -244,7 +244,7 @@ function SecurityContent() {
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   style={{width:'100%', display:'flex', alignItems:'center', justifyContent:'space-between', padding:'18px 24px', background:'transparent', border:'none', cursor:'pointer', textAlign:'left'}}
                 >
-                  <span style={{fontSize:'15px', fontWeight:500, color:'var(--ins-color-gray-100)'}}>{faq.q}</span>
+                  <span style={{fontSize:'var(--ins-font-size-15)', fontWeight:500, color:'var(--ins-color-gray-100)'}}>{faq.q}</span>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-body)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0, marginLeft:'16px', transition:'transform .25s', transform: openFaq === i ? 'rotate(180deg)' : 'rotate(0deg)'}}>
                     <polyline points="6 9 12 15 18 9"/>
                   </svg>
@@ -273,7 +273,7 @@ function SecurityContent() {
               <p className="ins-text-body-lg ins-text--muted" style={{maxWidth:'520px', margin:'0 auto 32px'}}>
                 Our security team is here to help with assessments, compliance documentation, and custom security requirements.
               </p>
-              <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'14px 32px', fontSize:'14px', fontWeight:600, color:'var(--ins-text-body)', background:'var(--ins-button-primary-bg)', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
+              <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'14px 32px', fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-text-body)', background:'var(--ins-button-primary-bg)', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
                 onMouseEnter={e=>e.currentTarget.style.background='var(--ins-button-primary-bg-hover)'}
                 onMouseLeave={e=>e.currentTarget.style.background='var(--ins-button-primary-bg)'}>
                 Contact Security Team

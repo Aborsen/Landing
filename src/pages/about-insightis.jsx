@@ -34,7 +34,7 @@ function AboutHero() {
           {stats.map((s, i) => (
             <div key={i} style={{flex:'1 1 160px', padding:'28px 24px', textAlign:'center', borderRight: i < stats.length-1 ? '1px solid var(--ins-border-default)' : 'none'}}>
               <div style={{fontSize:'clamp(28px,3.5vw,44px)', fontWeight:600, color:'var(--ins-text-highlight)', letterSpacing:'-.02em', lineHeight:1}}>{s.num}</div>
-              <div style={{fontSize:'12px', color:'var(--ins-color-white-a-45)', marginTop:'8px', letterSpacing:'.02em'}}>{s.label}</div>
+              <div style={{fontSize:'var(--ins-font-size-12)', color:'var(--ins-color-white-a-45)', marginTop:'8px', letterSpacing:'.02em'}}>{s.label}</div>
             </div>
           ))}
         </div>
@@ -82,7 +82,7 @@ function MissionValues() {
               <div style={{width:'40px', height:'40px', borderRadius:'10px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'16px'}}>
                 {v.icon}
               </div>
-              <h3 style={{fontSize:'17px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{v.title}</h3>
+              <h3 style={{fontSize:'var(--ins-font-size-17)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{v.title}</h3>
               <p className="ins-text-body">{v.desc}</p>
             </div>
           ))}
@@ -119,7 +119,7 @@ function WhatWeBuilt() {
                 <div className="hb" style={{width:'64px', height:'64px', borderRadius:'16px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'14px', animationDelay:`${i * 0.4}s`}}>
                   {p.icon}
                 </div>
-                <h4 style={{fontSize:'15px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'4px'}}>{p.name}</h4>
+                <h4 style={{fontSize:'var(--ins-font-size-15)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'4px'}}>{p.name}</h4>
                 <p className="ins-text-body-sm">{p.desc}</p>
               </div>
               {i < pillars.length - 1 && (
@@ -138,7 +138,7 @@ function WhatWeBuilt() {
                   {p.icon}
                 </div>
                 <div>
-                  <h4 style={{fontSize:'14px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'2px'}}>{p.name}</h4>
+                  <h4 style={{fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'2px'}}>{p.name}</h4>
                   <p className="ins-text-body-sm">{p.desc}</p>
                 </div>
               </div>
@@ -161,7 +161,7 @@ function BackedBy() {
         {/* Header row */}
         <div style={{marginBottom:'48px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'16px'}}>
-            <span style={{fontSize:'12px'}}>✦</span>
+            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
             <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', fontFamily:'var(--ins-font-family-mono)'}}>Our Mission</span>
           </div>
           <h2 className="ins-text-display" style={{maxWidth:'700px'}}>Precise analytics for everyone</h2>
@@ -226,7 +226,7 @@ function OurStory() {
               <div key={i} style={{display:'flex', gap:'0', position:'relative', paddingBottom: i < milestones.length-1 ? '48px' : '0'}}>
                 {/* Year label */}
                 <div className="hidden md:block" style={{width:'120px', flexShrink:0, paddingTop:'4px'}}>
-                  <span style={{fontSize: m.year === '∞' ? '28px' : '12px', fontWeight:600, color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)', letterSpacing:'.04em', lineHeight:1}}>{m.year}</span>
+                  <span style={{fontSize: m.year === '∞' ? 'var(--ins-font-size-28)' : 'var(--ins-font-size-12)', fontWeight:600, color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)', letterSpacing:'.04em', lineHeight:1}}>{m.year}</span>
                 </div>
                 {/* Dot */}
                 <div className="hidden md:flex" style={{width:'0', flexShrink:0, position:'relative', justifyContent:'center'}}>
@@ -234,8 +234,8 @@ function OurStory() {
                 </div>
                 {/* Content */}
                 <div style={{flex:1, paddingLeft:'40px'}}>
-                  <div className="md:hidden" style={{fontSize: m.year === '∞' ? '24px' : '12px', fontWeight:600, color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)', marginBottom:'6px', letterSpacing:'.04em', lineHeight:1}}>{m.year}</div>
-                  <h3 style={{fontSize:'18px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px', letterSpacing:'-.01em'}}>{m.title}</h3>
+                  <div className="md:hidden" style={{fontSize: m.year === '∞' ? 'var(--ins-font-size-24)' : 'var(--ins-font-size-12)', fontWeight:600, color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)', marginBottom:'6px', letterSpacing:'.04em', lineHeight:1}}>{m.year}</div>
+                  <h3 style={{fontSize:'var(--ins-font-size-18)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px', letterSpacing:'-.01em'}}>{m.title}</h3>
                   <p className="ins-text-body-lg" style={{maxWidth:'680px'}}>{m.desc}</p>
                 </div>
               </div>
@@ -334,7 +334,7 @@ function BottomCTA() {
             Ready to see your data <span style={{color:'var(--ins-button-primary-bg)'}}>clearly?</span>
           </h3>
           <div style={{display:'flex', alignItems:'center', width:'100%', maxWidth:'420px', background:'#0D0D1A', border:'1px solid rgba(46,46,64,1)', borderRadius:'12px', overflow:'hidden', flex:'1 1 340px'}}>
-            <Input hideLabel label="Work email" type="email" placeholder="Enter your work email..." style={{flex:1, background:'transparent', fontSize:'14px', color:'var(--ins-text-body)', padding:'12px 16px', outline:'none', border:'none', fontFamily:'var(--ins-font-family-sans)', minWidth:0, height:'auto', borderRadius:0, boxShadow:'none'}} />
+            <Input hideLabel label="Work email" type="email" placeholder="Enter your work email..." style={{flex:1, background:'transparent', fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-body)', padding:'12px 16px', outline:'none', border:'none', fontFamily:'var(--ins-font-family-sans)', minWidth:0, height:'auto', borderRadius:0, boxShadow:'none'}} />
             <Button variant="primary" size="sm" radius="lg" iconEnd={<ArrowRightIcon />} className="m-1 flex-shrink-0">
               Start for Free
             </Button>

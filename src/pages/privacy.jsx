@@ -31,9 +31,9 @@ function PrivacyContent() {
     return () => observer.disconnect();
   }, []);
   const sectionStyle = { marginTop: '48px', scrollMarginTop: '100px' };
-  const h2Style = { fontSize: '20px', fontWeight: 600, color: 'var(--ins-text-heading-soft)', marginBottom: '16px' };
+  const h2Style = { fontSize: 'var(--ins-font-size-20)', fontWeight: 600, color: 'var(--ins-text-heading-soft)', marginBottom: '16px' };
   const pStyle = { marginBottom: '16px' };
-  const ulStyle = { paddingLeft: '24px', listStyleType: 'disc', color: 'var(--ins-text-body)', display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '16px', fontSize: '15px', lineHeight: 1.8 };
+  const ulStyle = { paddingLeft: '24px', listStyleType: 'disc', color: 'var(--ins-text-body)', display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '16px', fontSize: 'var(--ins-font-size-15)', lineHeight: 1.8 };
 
   return (
     <section style={{ position: 'relative' }}>

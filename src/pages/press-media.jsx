@@ -34,7 +34,7 @@ function MediaContact() {
             <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'var(--ins-text-highlight)', letterSpacing:'-.03em', lineHeight:1.15}}>
               Media Contact
             </h2>
-            <h3 style={{fontSize:'20px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginTop:'12px', marginBottom:'12px'}}>
+            <h3 style={{fontSize:'var(--ins-font-size-20)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginTop:'12px', marginBottom:'12px'}}>
               Get in touch
             </h3>
             <p className="ins-text-body-lg ins-text--muted">
@@ -52,7 +52,7 @@ function MediaContact() {
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 </div>
                 <div>
-                  <a href="mailto:press@insightis.io" style={{display:'block', fontSize:'18px', fontWeight:500, color:'var(--ins-text-highlight)', fontFamily:'var(--ins-font-family-mono)', textDecoration:'none'}}>
+                  <a href="mailto:press@insightis.io" style={{display:'block', fontSize:'var(--ins-font-size-18)', fontWeight:500, color:'var(--ins-text-highlight)', fontFamily:'var(--ins-font-family-mono)', textDecoration:'none'}}>
                     press@insightis.io
                   </a>
                   <p className="ins-text-body-sm ins-text--muted ins-text--mono" style={{marginTop:'4px'}}>We aim to respond within 4 hours for press inquiries</p>
@@ -123,7 +123,7 @@ function BrandAssets() {
         {a.formats && (
           <div style={{display:'flex', gap:'12px'}}>
             {a.formats.split('  ').map((f, fi) => (
-              <span key={fi} style={{fontSize:'12px', color:'var(--ins-text-highlight)', fontFamily:'var(--ins-font-family-mono)', cursor:'pointer'}}>{f}</span>
+              <span key={fi} style={{fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-highlight)', fontFamily:'var(--ins-font-family-mono)', cursor:'pointer'}}>{f}</span>
             ))}
           </div>
         )}
@@ -140,7 +140,7 @@ function BrandAssets() {
             <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'var(--ins-text-highlight)', letterSpacing:'-.03em', lineHeight:1.15}}>
               Brand Assets
             </h2>
-            <h3 style={{fontSize:'20px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginTop:'12px', marginBottom:'12px'}}>
+            <h3 style={{fontSize:'var(--ins-font-size-20)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginTop:'12px', marginBottom:'12px'}}>
               Logos and brand resources
             </h3>
             <p className="ins-text-body-lg ins-text--muted">
@@ -198,7 +198,7 @@ function CompanyFacts() {
             <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'var(--ins-text-highlight)', letterSpacing:'-.03em', lineHeight:1.15}}>
               Company Facts
             </h2>
-            <h3 style={{fontSize:'20px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginTop:'12px', marginBottom:'12px'}}>
+            <h3 style={{fontSize:'var(--ins-font-size-20)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginTop:'12px', marginBottom:'12px'}}>
               Quick reference
             </h3>
             <p className="ins-text-body-lg ins-text--muted">
@@ -211,8 +211,8 @@ function CompanyFacts() {
             <div style={{borderTop:'1px solid var(--ins-color-white-a-08)', marginTop:'8px', marginBottom:'24px'}} />
             {facts.map((f, i) => (
               <div key={i} style={{display:'flex', padding:'14px 0', borderBottom:'1px solid var(--ins-color-white-a-04)'}}>
-                <div style={{width:'200px', flexShrink:0, fontSize:'12px', fontFamily:'var(--ins-font-family-mono)', color:'var(--ins-text-body)', textTransform:'uppercase'}}>{f.label}</div>
-                <div style={{fontSize:'14px', color:'var(--ins-color-gray-100)'}}>{f.value}</div>
+                <div style={{width:'200px', flexShrink:0, fontSize:'var(--ins-font-size-12)', fontFamily:'var(--ins-font-family-mono)', color:'var(--ins-text-body)', textTransform:'uppercase'}}>{f.label}</div>
+                <div style={{fontSize:'var(--ins-font-size-14)', color:'var(--ins-color-gray-100)'}}>{f.value}</div>
               </div>
             ))}
           </div>
@@ -242,7 +242,7 @@ function Boilerplate() {
             <h2 style={{fontSize:'clamp(28px,4vw,44px)', fontWeight:500, color:'var(--ins-text-highlight)', letterSpacing:'-.03em', lineHeight:1.15}}>
               Boilerplate
             </h2>
-            <h3 style={{fontSize:'20px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginTop:'12px', marginBottom:'12px'}}>
+            <h3 style={{fontSize:'var(--ins-font-size-20)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginTop:'12px', marginBottom:'12px'}}>
               About Insightis
             </h3>
             <p className="ins-text-body-lg ins-text--muted">
@@ -254,7 +254,7 @@ function Boilerplate() {
             <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)'}}>Press Copy</span>
             <div style={{borderTop:'1px solid var(--ins-color-white-a-08)', marginTop:'8px', marginBottom:'24px'}} />
             <div style={{background:'var(--ins-color-white-a-03)', border:'1px solid var(--ins-color-white-a-07)', borderRadius:'16px', padding:'32px', position:'relative'}}>
-              <button onClick={handleCopy} style={{position:'absolute', top:'16px', right:'16px', fontSize:'12px', fontWeight:500, color: copied ? 'var(--ins-status-success-fg)' : 'var(--ins-text-highlight)', background:'transparent', border:'1px solid ' + (copied ? 'rgba(34,197,94,.3)' : 'var(--ins-border-brand)'), borderRadius:'8px', padding:'6px 12px', cursor:'pointer', fontFamily:'var(--ins-font-family-mono)', transition:'all .15s'}}>
+              <button onClick={handleCopy} style={{position:'absolute', top:'16px', right:'16px', fontSize:'var(--ins-font-size-12)', fontWeight:500, color: copied ? 'var(--ins-status-success-fg)' : 'var(--ins-text-highlight)', background:'transparent', border:'1px solid ' + (copied ? 'rgba(34,197,94,.3)' : 'var(--ins-border-brand)'), borderRadius:'8px', padding:'6px 12px', cursor:'pointer', fontFamily:'var(--ins-font-family-mono)', transition:'all .15s'}}>
                 {copied ? 'Copied \u2713' : 'Copy to clipboard'}
               </button>
               <p className="ins-text-body-lg" style={{paddingRight:'120px'}}>
@@ -279,8 +279,8 @@ function BottomCTA() {
             Ready to see your data <span style={{color:'var(--ins-button-primary-bg)'}}>clearly?</span>
           </h3>
           <div style={{display:'flex', alignItems:'center', width:'100%', maxWidth:'420px', background:'#0D0D1A', border:'1px solid rgba(46,46,64,1)', borderRadius:'12px', overflow:'hidden', flex:'1 1 340px'}}>
-            <input type="email" placeholder="Enter your work email..." style={{flex:1, background:'transparent', fontSize:'14px', color:'var(--ins-text-body)', padding:'12px 16px', outline:'none', border:'none', fontFamily:'var(--ins-font-family-sans)', minWidth:0}} />
-            <button style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 20px', margin:'4px', fontSize:'12px', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'8px', border:'none', cursor:'pointer', whiteSpace:'nowrap', flexShrink:0, fontFamily:'var(--ins-font-family-sans)'}}>
+            <input type="email" placeholder="Enter your work email..." style={{flex:1, background:'transparent', fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-body)', padding:'12px 16px', outline:'none', border:'none', fontFamily:'var(--ins-font-family-sans)', minWidth:0}} />
+            <button style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 20px', margin:'4px', fontSize:'var(--ins-font-size-12)', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'8px', border:'none', cursor:'pointer', whiteSpace:'nowrap', flexShrink:0, fontFamily:'var(--ins-font-family-sans)'}}>
               Start for Free
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </button>

@@ -69,7 +69,7 @@ function FloatingChat({ onSubmit }) {
             placeholder="Ask a question..."
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
-              fontSize:'14px', color:'var(--ins-color-gray-100)',
+              fontSize:'var(--ins-font-size-14)', color:'var(--ins-color-gray-100)',
               fontFamily:'inherit',
             }}
           />
@@ -81,7 +81,7 @@ function FloatingChat({ onSubmit }) {
               background: value.trim() ? 'var(--ins-button-primary-bg)' : 'rgba(9,160,157,.15)',
               color: value.trim() ? 'var(--ins-text-heading)' : 'var(--ins-text-disabled)',
               border:'none', cursor: value.trim() ? 'pointer' : 'default',
-              fontSize:'12px', fontWeight:600,
+              fontSize:'var(--ins-font-size-12)', fontWeight:600,
               fontFamily:'inherit',
               transition:'background .2s, color .2s',
             }}
@@ -192,7 +192,7 @@ function AIAssistantPanel({ query, onClose }) {
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
           </svg>
-          <span style={{ fontSize:'14px', fontWeight:600, color:'var(--ins-color-gray-100)' }}>Assistant</span>
+          <span style={{ fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-color-gray-100)' }}>Assistant</span>
         </div>
         <div style={{ display:'flex', gap:'2px' }}>
           <button onClick={onClose} style={{
@@ -220,7 +220,7 @@ function AIAssistantPanel({ query, onClose }) {
                   border:'1px solid rgba(9,160,157,0.25)',
                   borderRadius:'10px 10px 2px 10px',
                   padding:'8px 12px',
-                  fontSize:'14px', color:'#C8E6EA', maxWidth:'90%',
+                  fontSize:'var(--ins-font-size-14)', color:'#C8E6EA', maxWidth:'90%',
                   lineHeight:1.5,
                 }}>
                   {msg.text}
@@ -228,7 +228,7 @@ function AIAssistantPanel({ query, onClose }) {
               </div>
             ) : (
               <div>
-                <div style={{ fontSize:'12px', color:'#3A6070', marginBottom:'10px', display:'flex', flexDirection:'column', gap:'4px' }}>
+                <div style={{ fontSize:'var(--ins-font-size-12)', color:'#3A6070', marginBottom:'10px', display:'flex', flexDirection:'column', gap:'4px' }}>
                   <div style={{ display:'flex', alignItems:'center', gap:'6px' }}>
                     <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                     Found results for <em style={{ color:'#4A8090', fontStyle:'normal' }}>{msg.response.searchTerms}</em>
@@ -238,23 +238,23 @@ function AIAssistantPanel({ query, onClose }) {
                     Read 1 file
                   </div>
                 </div>
-                <p style={{ fontSize:'14px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'10px' }}>
+                <p style={{ fontSize:'var(--ins-font-size-14)', color:'#8AAAB8', lineHeight:1.7, marginBottom:'10px' }}>
                   <AssistantResponseText text={msg.response.intro} />
                 </p>
                 <ul style={{ margin:'0 0 10px 0', padding:'0', listStyle:'none', display:'flex', flexDirection:'column', gap:'5px' }}>
                   {msg.response.bullets.map((b, i) => (
-                    <li key={i} style={{ fontSize:'14px', color:'#8AAAB8', lineHeight:1.6, paddingLeft:'14px', position:'relative' }}>
+                    <li key={i} style={{ fontSize:'var(--ins-font-size-14)', color:'#8AAAB8', lineHeight:1.6, paddingLeft:'14px', position:'relative' }}>
                       <span style={{ position:'absolute', left:0, color:'var(--ins-text-highlight)', fontWeight:700 }}>·</span>
                       <strong style={{ color:'#C8E6EA' }}>{b.bold}</strong>{b.text}
                     </li>
                   ))}
                 </ul>
-                <p style={{ fontSize:'14px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'12px' }}>
+                <p style={{ fontSize:'var(--ins-font-size-14)', color:'#8AAAB8', lineHeight:1.7, marginBottom:'12px' }}>
                   {msg.response.outro}
                 </p>
                 <div style={{ display:'flex', flexDirection:'column', gap:'4px', marginBottom:'12px' }}>
                   {msg.response.links.map((l, i) => (
-                    <a key={i} href="#" style={{ fontSize:'12px', color:'var(--ins-button-primary-bg-hover)', textDecoration:'none' }}
+                    <a key={i} href="#" style={{ fontSize:'var(--ins-font-size-12)', color:'var(--ins-button-primary-bg-hover)', textDecoration:'none' }}
                       onMouseEnter={e => e.currentTarget.style.textDecoration = 'underline'}
                       onMouseLeave={e => e.currentTarget.style.textDecoration = 'none'}
                     >{l}</a>
@@ -275,7 +275,7 @@ function AIAssistantPanel({ query, onClose }) {
         {/* Loading state */}
         {phase !== 'done' && (
           <div style={{ display:'flex', flexDirection:'column', gap:'6px' }}>
-            <div style={{ display:'flex', alignItems:'center', gap:'6px', fontSize:'12px', color:'#3A6070' }}>
+            <div style={{ display:'flex', alignItems:'center', gap:'6px', fontSize:'var(--ins-font-size-12)', color:'#3A6070' }}>
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ animation:'pulse 1.2s ease infinite' }}><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
               {phase === 'searching' ? 'Searching docs…' : 'Reading file…'}
             </div>
@@ -314,7 +314,7 @@ function AIAssistantPanel({ query, onClose }) {
             placeholder="Ask a question..."
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
-              fontSize:'14px', color:'var(--ins-color-gray-100)', fontFamily:'var(--ins-font-family-sans)',
+              fontSize:'var(--ins-font-size-14)', color:'var(--ins-color-gray-100)', fontFamily:'var(--ins-font-family-sans)',
             }}
           />
           <button onClick={handleFollowUp} style={{
@@ -344,7 +344,7 @@ function ConnectorsHero() {
 
         {/* text */}
         <div>
-          <div className="fu0" style={{fontSize:'12px', color:'var(--ins-text-body)', letterSpacing:'0.04em', marginBottom:'18px'}}>
+          <div className="fu0" style={{fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-body)', letterSpacing:'0.04em', marginBottom:'18px'}}>
             <a href="/" style={{color:'var(--ins-text-body)', textDecoration:'none'}}>Home</a>
             <span style={{margin:'0 6px', opacity:0.5}}>/</span>
             <span style={{color:'var(--ins-color-gray-100)'}}>Connectors</span>
@@ -400,7 +400,7 @@ function ConnectorCategorySidebar({ active, setActive, counts, onRequestConnecto
             padding:'8px 12px', borderRadius:'8px',
             border:'1px solid rgba(9,160,157,.3)',
             background:'var(--ins-surface-brand-tint)',
-            color:'var(--ins-text-highlight)', fontSize:'12px', fontWeight:500,
+            color:'var(--ins-text-highlight)', fontSize:'var(--ins-font-size-12)', fontWeight:500,
             fontFamily:'var(--ins-font-family-sans)', cursor:'pointer',
             transition:'background .15s, border-color .15s',
           }}
@@ -459,7 +459,7 @@ function ConnectorGrid({ items, onAskChat, onConnect }) {
       <div style={{
         padding:'40px 24px', textAlign:'center',
         border:'1px dashed var(--ins-color-white-a-08)', borderRadius:'12px',
-        color:'var(--ins-text-body)', fontSize:'14px',
+        color:'var(--ins-text-body)', fontSize:'var(--ins-font-size-14)',
       }}>
         No connectors match your search.
       </div>
@@ -527,7 +527,7 @@ function App() {
               onChange={(e) => setQuery(e.target.value)}
             />
             {query && (
-              <button onClick={() => setQuery('')} style={{background:'none',border:'none',color:'var(--ins-text-body)',cursor:'pointer',padding:'2px 6px',fontSize:'12px'}}>
+              <button onClick={() => setQuery('')} style={{background:'none',border:'none',color:'var(--ins-text-body)',cursor:'pointer',padding:'2px 6px',fontSize:'var(--ins-font-size-12)'}}>
                 Clear
               </button>
             )}
@@ -544,7 +544,7 @@ function App() {
             gap:'16px', flexWrap:'wrap',
           }}>
             <div>
-              <h3 style={{fontSize:'16px', fontWeight:500, color:'var(--ins-text-heading-soft)', marginBottom:'4px', letterSpacing:'-.01em'}}>
+              <h3 style={{fontSize:'var(--ins-font-size-16)', fontWeight:500, color:'var(--ins-text-heading-soft)', marginBottom:'4px', letterSpacing:'-.01em'}}>
                 Can't find your tool?
               </h3>
               <p className="ins-text-body">
@@ -557,7 +557,7 @@ function App() {
                 display:'inline-flex', alignItems:'center', gap:'8px',
                 padding:'10px 18px', borderRadius:'8px',
                 border:'none', background:'var(--ins-button-primary-bg)', color:'var(--ins-text-body)',
-                fontSize:'14px', fontWeight:600, fontFamily:'var(--ins-font-family-sans)',
+                fontSize:'var(--ins-font-size-14)', fontWeight:600, fontFamily:'var(--ins-font-family-sans)',
                 cursor:'pointer', transition:'background .15s',
               }}
               onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--ins-button-primary-bg-hover)'; }}

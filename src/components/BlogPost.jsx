@@ -121,7 +121,7 @@ function ShareButtons({ slug, title }) {
     border: '1px solid var(--ins-border-default)',
     borderRadius: 'var(--ins-radius-pill)',
     color: 'var(--ins-text-body)',
-    fontSize: '14px', fontWeight: 500,
+    fontSize: 'var(--ins-font-size-14)', fontWeight: 500,
     textDecoration: 'none',
     fontFamily: 'var(--ins-font-family-sans)',
     cursor: 'pointer',
@@ -130,7 +130,7 @@ function ShareButtons({ slug, title }) {
 
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px', margin: '32px 0', paddingTop: '24px', borderTop: '1px solid var(--ins-border-default)' }}>
-      <span style={{ fontSize: '14px', color: 'var(--ins-text-body)', marginRight: '4px' }}>Share</span>
+      <span style={{ fontSize: 'var(--ins-font-size-14)', color: 'var(--ins-text-body)', marginRight: '4px' }}>Share</span>
       <a href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`} target="_blank" rel="noopener noreferrer" aria-label="Share on X" style={baseBtn}><XIcon /> X</a>
       <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`} target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" style={baseBtn}><LinkedInIcon /> LinkedIn</a>
       <a href={`https://reddit.com/submit?url=${encodedUrl}&title=${encodedTitle}`} target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit" style={baseBtn}><RedditIcon /> Reddit</a>
@@ -225,7 +225,7 @@ function TableOfContents({ items }) {
                         padding: '6px 10px',
                         borderLeft: '2px solid',
                         borderLeftColor: active === item.id ? 'var(--ins-text-highlight)' : 'transparent',
-                        fontSize: '14px',
+                        fontSize: 'var(--ins-font-size-14)',
                         lineHeight: 1.45,
                         color: active === item.id ? 'var(--ins-text-heading)' : 'var(--ins-text-body)',
                         textDecoration: 'none',
@@ -265,7 +265,7 @@ function TableOfContents({ items }) {
                     gap: '8px',
                     padding: '10px 4px',
                     borderBottom: '1px solid var(--ins-border-default)',
-                    fontSize: '14px',
+                    fontSize: 'var(--ins-font-size-14)',
                     lineHeight: 1.4,
                     color: 'var(--ins-text-body)',
                     textDecoration: 'none',
@@ -275,7 +275,7 @@ function TableOfContents({ items }) {
                   onMouseLeave={e => e.currentTarget.style.color = 'var(--ins-text-body)'}
                 >
                   <span style={{ minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{category}</span>
-                  <span style={{ color: 'var(--ins-text-disabled)', fontFamily: 'var(--ins-font-family-mono)', fontSize: '12px', flexShrink: 0 }}>{count}</span>
+                  <span style={{ color: 'var(--ins-text-disabled)', fontFamily: 'var(--ins-font-family-mono)', fontSize: 'var(--ins-font-size-12)', flexShrink: 0 }}>{count}</span>
                 </a>
               </li>
             ))}
@@ -366,7 +366,7 @@ function TopicsSidebar({ currentSlug }) {
                     gap: '8px',
                     padding: '10px 4px',
                     borderBottom: '1px solid var(--ins-border-default)',
-                    fontSize: '14px',
+                    fontSize: 'var(--ins-font-size-14)',
                     lineHeight: 1.4,
                     color: 'var(--ins-text-body)',
                     textDecoration: 'none',
@@ -376,7 +376,7 @@ function TopicsSidebar({ currentSlug }) {
                   onMouseLeave={e => e.currentTarget.style.color = 'var(--ins-text-body)'}
                 >
                   <span style={{ minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{category}</span>
-                  <span style={{ color: 'var(--ins-text-disabled)', fontFamily: 'var(--ins-font-family-mono)', fontSize: '12px', flexShrink: 0 }}>{count}</span>
+                  <span style={{ color: 'var(--ins-text-disabled)', fontFamily: 'var(--ins-font-family-mono)', fontSize: 'var(--ins-font-size-12)', flexShrink: 0 }}>{count}</span>
                 </a>
               </li>
             ))}
@@ -480,7 +480,7 @@ function CTABanner() {
       <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '20px' }}>
         <div style={{ flex: '1 1 280px' }}>
           <h3 style={{
-            fontSize: '22px',
+            fontSize: 'var(--ins-font-size-22)',
             fontWeight: 600,
             color: 'var(--ins-text-heading)',
             letterSpacing: '-0.02em',
@@ -510,7 +510,7 @@ function RelatedArticles({ currentSlug }) {
       {/* div (not h2) so the related-articles block doesn't pollute the
           article's outline / heading hierarchy — SEO-clean per QA. */}
       <div style={{
-        fontSize: '11px',
+        fontSize: 'var(--ins-font-size-11)',
         fontWeight: 500,
         letterSpacing: '0.12em',
         textTransform: 'uppercase',
@@ -543,7 +543,7 @@ function RelatedArticles({ currentSlug }) {
                 overflow: 'hidden',
                 margin: 0,
               }}>{p.title}</p>
-              <div style={{ fontSize: '11px', color: 'var(--ins-text-disabled)', fontFamily: 'var(--ins-font-family-mono)', marginTop: 'auto' }}>
+              <div style={{ fontSize: 'var(--ins-font-size-11)', color: 'var(--ins-text-disabled)', fontFamily: 'var(--ins-font-family-mono)', marginTop: 'auto' }}>
                 {p.date} · {p.readTime} read
               </div>
             </div>
@@ -789,7 +789,7 @@ export default function BlogPost({ markdown, slug }) {
                 flexWrap: 'wrap',
                 alignItems: 'center',
                 gap: '6px',
-                fontSize: '14px',
+                fontSize: 'var(--ins-font-size-14)',
                 color: 'var(--ins-text-body)',
                 lineHeight: 1.4,
               }}>
@@ -829,7 +829,7 @@ export default function BlogPost({ markdown, slug }) {
             )}
 
             {/* Meta strip */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px', marginBottom: '20px', fontSize: '14px', color: 'var(--ins-text-body)' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px', marginBottom: '20px', fontSize: 'var(--ins-font-size-14)', color: 'var(--ins-text-body)' }}>
               {meta.category && (
                 <span style={{
                   padding: '4px 10px',
@@ -837,7 +837,7 @@ export default function BlogPost({ markdown, slug }) {
                   background: 'var(--ins-surface-brand-tint)',
                   border: '1px solid var(--ins-border-brand)',
                   color: 'var(--ins-text-highlight)',
-                  fontSize: '11px',
+                  fontSize: 'var(--ins-font-size-11)',
                   fontWeight: 500,
                   letterSpacing: '0.04em',
                   textTransform: 'uppercase',
@@ -869,7 +869,7 @@ export default function BlogPost({ markdown, slug }) {
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '24px' }}>
                 {tags.map(t => (
                   <a key={t} href={`/blog/?tag=${encodeURIComponent(t)}`} style={{
-                    fontSize: '11px',
+                    fontSize: 'var(--ins-font-size-11)',
                     padding: '3px 9px',
                     borderRadius: 'var(--ins-radius-pill)',
                     background: 'var(--ins-surface-card)',
@@ -891,7 +891,7 @@ export default function BlogPost({ markdown, slug }) {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '10px',
-                fontSize: '14px',
+                fontSize: 'var(--ins-font-size-14)',
                 color: 'var(--ins-text-body)',
                 marginBottom: '32px',
                 paddingBottom: '24px',
@@ -901,7 +901,7 @@ export default function BlogPost({ markdown, slug }) {
                   width: '32px', height: '32px', borderRadius: '50%',
                   background: 'linear-gradient(135deg, var(--ins-text-highlight), var(--ins-color-teal-650))',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: '12px', fontWeight: 600, color: 'var(--ins-color-white)', flexShrink: 0,
+                  fontSize: 'var(--ins-font-size-12)', fontWeight: 600, color: 'var(--ins-color-white)', flexShrink: 0,
                 }}>{(meta.author || '?').slice(0, 1)}</div>
                 <div>By <span style={{ color: 'var(--ins-text-heading)', fontWeight: 500 }}>{meta.author}</span></div>
               </div>
@@ -1027,7 +1027,7 @@ export default function BlogPost({ markdown, slug }) {
         }
         .blog-tldr > h3 {
           margin-top: 0 !important;
-          font-size: 18px;
+          font-size: var(--ins-font-size-18);
           color: var(--ins-text-heading);
         }
         .blog-tldr > * + * { margin-top: 12px; }
@@ -1055,14 +1055,14 @@ export default function BlogPost({ markdown, slug }) {
           list-style: none;
           color: var(--ins-text-heading);
           font-weight: 500;
-          font-size: 15px;
+          font-size: var(--ins-font-size-15);
           transition: background 180ms;
         }
         .blog-faq-item > summary::-webkit-details-marker { display: none; }
         .blog-faq-item > summary:hover { background: var(--ins-color-white-a-02); }
         .blog-faq-q { flex: 1; }
         .blog-faq-chev {
-          font-size: 20px;
+          font-size: var(--ins-font-size-20);
           font-weight: 300;
           color: var(--ins-text-highlight);
           line-height: 1;
@@ -1072,7 +1072,7 @@ export default function BlogPost({ markdown, slug }) {
         .blog-faq-a {
           padding: 0 20px 18px;
           color: var(--ins-text-body);
-          font-size: 15px;
+          font-size: var(--ins-font-size-15);
           line-height: 1.65;
         }
         .blog-faq-a > * + * { margin-top: 12px; }
@@ -1082,7 +1082,7 @@ export default function BlogPost({ markdown, slug }) {
         /* Prose typography */
         .blog-prose {
           color: var(--ins-text-body);
-          font-size: 16px;
+          font-size: var(--ins-font-size-16);
           line-height: 1.65;
         }
         .blog-prose > * + * { margin-top: 16px; }
@@ -1093,9 +1093,9 @@ export default function BlogPost({ markdown, slug }) {
           line-height: 1.25;
           scroll-margin-top: 96px;
         }
-        .blog-prose h2 { font-size: 28px; margin-top: 48px; margin-bottom: 8px; }
-        .blog-prose h3 { font-size: 20px; margin-top: 32px; margin-bottom: 4px; }
-        .blog-prose h4 { font-size: 17px; margin-top: 24px; margin-bottom: 2px; }
+        .blog-prose h2 { font-size: var(--ins-font-size-28); margin-top: 48px; margin-bottom: 8px; }
+        .blog-prose h3 { font-size: var(--ins-font-size-20); margin-top: 32px; margin-bottom: 4px; }
+        .blog-prose h4 { font-size: var(--ins-font-size-17); margin-top: 24px; margin-bottom: 2px; }
         .blog-prose p  { color: var(--ins-text-body); }
         .blog-prose a  { color: var(--ins-text-highlight); text-decoration: underline; text-decoration-color: var(--ins-color-teal-a-50); text-underline-offset: 3px; }
         .blog-prose a:hover { color: var(--ins-color-teal-300); text-decoration-color: currentColor; }
@@ -1116,7 +1116,7 @@ export default function BlogPost({ markdown, slug }) {
           border-radius: var(--ins-radius-md);
           padding: 16px;
           overflow-x: auto;
-          font-size: 14px;
+          font-size: var(--ins-font-size-14);
           line-height: 1.55;
         }
         .blog-prose pre code { background: none; border: none; padding: 0; }
@@ -1145,7 +1145,7 @@ export default function BlogPost({ markdown, slug }) {
         .blog-prose table {
           border-collapse: collapse;
           width: 100%;
-          font-size: 14px;
+          font-size: var(--ins-font-size-14);
         }
         .blog-prose th, .blog-prose td {
           border: 1px solid var(--ins-border-default);

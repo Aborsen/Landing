@@ -56,11 +56,11 @@ function TreemapChart({ items }) {
           <g key={i}>
             <rect x={c.x} y={c.y} width={c.w} height={c.h} fill={c.color} opacity=".78" rx="6"/>
             <text x={c.x+c.w/2} y={c.y+c.h/2-(c.h>60?16:0)} textAnchor="middle" dominantBaseline="middle"
-              style={{fontSize:c.w>200?'12px':'11px',fill:'rgba(255,255,255,.8)',fontFamily:'Geist Mono,monospace'}}>
+              style={{fontSize:c.w>200?'12px':'11px',fill:'rgba(255,255,255,.8)',fontFamily:'var(--ins-font-family-mono)'}}>
               {c.item.label}
             </text>
             {c.h>60 && <text x={c.x+c.w/2} y={c.y+c.h/2+18} textAnchor="middle" dominantBaseline="middle"
-              style={{fontSize:'20px',fill:'#fff',fontFamily:'Geist Mono,monospace',fontWeight:500}}>
+              style={{fontSize:'var(--ins-font-size-20)',fill:'#fff',fontFamily:'var(--ins-font-family-mono)',fontWeight:500}}>
               {c.item.display}
             </text>}
           </g>
@@ -95,8 +95,8 @@ function PieChart({ slices }) {
         {paths.map((p,i) => (
           <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
             <div style={{width:'12px',height:'12px',borderRadius:'3px',background:p.color,flexShrink:0}}/>
-            <span style={{fontSize:'14px',color:'var(--ins-text-body)',fontFamily:'Geist Mono,monospace',flex:1}}>{p.label}</span>
-            <span style={{fontSize:'14px',color:'var(--ins-color-gray-100)',fontFamily:'Geist Mono,monospace',fontWeight:500}}>{p.pct}%</span>
+            <span style={{fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)',flex:1}}>{p.label}</span>
+            <span style={{fontSize:'var(--ins-font-size-14)',color:'var(--ins-color-gray-100)',fontFamily:'var(--ins-font-family-mono)',fontWeight:500}}>{p.pct}%</span>
           </div>
         ))}
       </div>
@@ -110,7 +110,7 @@ function HorizontalBarChart({ bars }) {
     <div style={{display:'flex',flexDirection:'column',gap:'10px',margin:'12px 0'}}>
       {bars.map((b,i) => (
         <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
-          <span style={{fontSize:'12px',color:'var(--ins-text-body)',fontFamily:'Geist Mono,monospace',minWidth:'180px',textAlign:'right',flexShrink:0}}>{b.label}</span>
+          <span style={{fontSize:'var(--ins-font-size-12)',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)',minWidth:'180px',textAlign:'right',flexShrink:0}}>{b.label}</span>
           <div style={{flex:1,background:'var(--ins-color-white-a-04)',borderRadius:'4px',height:'22px',position:'relative',overflow:'hidden'}}>
             <div style={{
               width:`${(Math.abs(b.value)/maxVal)*100}%`,
@@ -118,7 +118,7 @@ function HorizontalBarChart({ bars }) {
               background: b.color || (b.value < 0 ? 'rgba(220,80,80,.7)' : 'rgba(9,160,157,.6)'),
             }}/>
           </div>
-          <span style={{fontSize:'12px',fontFamily:'Geist Mono,monospace',color: b.value < 0 ? '#E06060' : 'var(--ins-text-highlight)',minWidth:'60px',flexShrink:0}}>{b.display}</span>
+          <span style={{fontSize:'var(--ins-font-size-12)',fontFamily:'var(--ins-font-family-mono)',color: b.value < 0 ? '#E06060' : 'var(--ins-text-highlight)',minWidth:'60px',flexShrink:0}}>{b.display}</span>
         </div>
       ))}
     </div>
@@ -145,7 +145,7 @@ function LineChart({ points, labels }) {
         <path d={area} fill="url(#areaFill)"/>
         <path d={line} fill="none" stroke="var(--ins-text-highlight)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         {coords.map((c,i) => <circle key={i} cx={c.x} cy={c.y} r="3" fill="var(--ins-text-highlight)" stroke="var(--ins-surface-page)" strokeWidth="1.5"/>)}
-        {labels && labels.map((l,i) => <text key={i} x={coords[i].x} y={h-1} textAnchor="middle" style={{fontSize:'9px',fill:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace'}}>{l}</text>)}
+        {labels && labels.map((l,i) => <text key={i} x={coords[i].x} y={h-1} textAnchor="middle" style={{fontSize:'9px',fill:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>{l}</text>)}
       </svg>
     </div>
   );
@@ -398,8 +398,8 @@ function PainPoints() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'64px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(248,113,113,.08)',border:'1px solid rgba(248,113,113,.22)',borderRadius:'999px',marginBottom:'16px'}}>
-            <span style={{color:'var(--ins-status-error-fg)',fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-status-error-fg)',fontFamily:'Geist Mono,monospace'}}>The Problem</span>
+            <span style={{color:'var(--ins-status-error-fg)',fontSize:'var(--ins-font-size-12)'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-status-error-fg)',fontFamily:'var(--ins-font-family-mono)'}}>The Problem</span>
           </div>
           <h2 className="ins-text-display" style={{marginBottom:'14px',textWrap:'balance'}}>
             Founders fly blind between board meetings
@@ -524,7 +524,7 @@ function BeforeAfter() {
 
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
-            <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>7×</span>
+            <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',lineHeight:1,flexShrink:0}}>7×</span>
             <span className="ins-text-body-lg" style={{whiteSpace:'nowrap'}}>faster strategic answers. Zero analyst handoffs.</span>
           </div>
         </div>
@@ -567,8 +567,8 @@ function FAQ() {
       <div style={{maxWidth:'880px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'52px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
-            <span style={{fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'Geist Mono,monospace'}}>FAQ</span>
+            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>FAQ</span>
           </div>
           <h2 className="ins-text-display mb-3">
             What founders and CEOs ask first

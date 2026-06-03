@@ -19,7 +19,7 @@ function PromptLibraryHero() {
   return (
     <section style={{padding:'80px 0 40px', textAlign:'center', position:'relative'}}>
       <div style={{maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
-        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid var(--ins-color-white-a-07)', background:'var(--ins-color-white-a-03)', fontSize:'12px', color:'var(--ins-text-body)', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
+        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid var(--ins-color-white-a-07)', background:'var(--ins-color-white-a-03)', fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-body)', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
           ✦ PROMPT LIBRARY
         </div>
         <h1 className="fu1" style={{fontSize:'clamp(36px,5vw,56px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'var(--ins-text-heading-soft)', marginBottom:'20px'}}>
@@ -356,7 +356,7 @@ function PromptLibrarySidebar({ selectedTeams, toggleTeam, clearAll }) {
         display:'flex', alignItems:'center', justifyContent:'space-between',
         width:'100%', padding:'6px 16px',
         background:'transparent', border:'none', cursor:'pointer',
-        color:'var(--ins-text-disabled)', fontSize:'11px', fontWeight:600,
+        color:'var(--ins-text-disabled)', fontSize:'var(--ins-font-size-11)', fontWeight:600,
         textTransform:'uppercase', letterSpacing:'0.08em',
         fontFamily:'var(--ins-font-family-sans)',
       }}
@@ -399,7 +399,7 @@ function PromptLibrarySidebar({ selectedTeams, toggleTeam, clearAll }) {
           aria-hidden={total === 0}
           tabIndex={total === 0 ? -1 : 0}
           style={{
-            fontSize:'12px', fontFamily:'var(--ins-font-family-sans)',
+            fontSize:'var(--ins-font-size-12)', fontFamily:'var(--ins-font-family-sans)',
             background:'var(--ins-surface-brand-tint)', color:'var(--ins-text-highlight)',
             border:'1px solid rgba(9,160,157,.25)',
             borderRadius:'6px', padding:'5px 10px', cursor:'pointer',
@@ -446,7 +446,7 @@ function PromptCard({ entry, index, isExpanded, onToggle }) {
     <article className="prompt-card" style={{ animationDelay:`${Math.min(index,8) * 0.04}s` }}>
       <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', gap:'20px', flexWrap:'wrap' }}>
         <div style={{ flex:'1 1 320px', minWidth:0 }}>
-          <h3 style={{ fontSize:'16px', fontWeight:500, color:'var(--ins-text-heading-soft)', lineHeight:1.4, marginBottom:'10px', letterSpacing:'-.01em' }}>
+          <h3 style={{ fontSize:'var(--ins-font-size-16)', fontWeight:500, color:'var(--ins-text-heading-soft)', lineHeight:1.4, marginBottom:'10px', letterSpacing:'-.01em' }}>
             {entry.title}
           </h3>
           <div style={{ display:'flex', flexWrap:'wrap', gap:'6px', marginBottom:'10px' }}>
@@ -474,7 +474,7 @@ function PromptCard({ entry, index, isExpanded, onToggle }) {
           animation:'cardFadeIn .2s ease',
         }}>
           <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'10px' }}>
-            <span style={{ fontSize:'11px', fontWeight:600, letterSpacing:'.08em', textTransform:'uppercase', color:'var(--ins-text-disabled)' }}>
+            <span style={{ fontSize:'var(--ins-font-size-11)', fontWeight:600, letterSpacing:'.08em', textTransform:'uppercase', color:'var(--ins-text-disabled)' }}>
               Prompt
             </span>
             <button
@@ -484,7 +484,7 @@ function PromptCard({ entry, index, isExpanded, onToggle }) {
                 background:'transparent', border:'1px solid rgba(9,160,157,.25)',
                 color: copied ? '#8EDDBF' : 'var(--ins-text-highlight)',
                 borderRadius:'6px', padding:'4px 10px',
-                fontSize:'12px', fontWeight:500, cursor:'pointer',
+                fontSize:'var(--ins-font-size-12)', fontWeight:500, cursor:'pointer',
                 fontFamily:'var(--ins-font-family-sans)',
               }}
             >
@@ -502,7 +502,7 @@ function PromptCard({ entry, index, isExpanded, onToggle }) {
             </button>
           </div>
           <p style={{
-            fontSize:'14px', color:'#B5CCD2', lineHeight:1.65,
+            fontSize:'var(--ins-font-size-14)', color:'#B5CCD2', lineHeight:1.65,
             whiteSpace:'pre-wrap', margin:0,
           }}>
             {entry.prompt}
@@ -544,7 +544,7 @@ function BottomCTA() {
               type="text"
               placeholder="Enter your work email..."
               style={{
-                flex:1,background:'transparent',fontSize:'14px',color:'var(--ins-text-body)',
+                flex:1,background:'transparent',fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)',
                 padding:'12px 16px',outline:'none',border:'none',
                 fontFamily:'var(--ins-font-family-sans)',minWidth:0,
               }}
@@ -552,7 +552,7 @@ function BottomCTA() {
             <button style={{
               display:'inline-flex',alignItems:'center',gap:'8px',
               padding:'10px 20px',margin:'4px',
-              fontSize:'14px',fontWeight:500,color:'var(--ins-text-body)',
+              fontSize:'var(--ins-font-size-14)',fontWeight:500,color:'var(--ins-text-body)',
               background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))',
               borderRadius:'8px',border:'none',cursor:'pointer',
               whiteSpace:'nowrap',flexShrink:0,
@@ -625,7 +625,7 @@ function FloatingChat({ onSubmit }) {
             placeholder="Ask for a prompt or a custom workflow..."
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
-              fontSize:'14px', color:'var(--ins-color-gray-100)',
+              fontSize:'var(--ins-font-size-14)', color:'var(--ins-color-gray-100)',
               fontFamily:'inherit',
             }}
           />
@@ -637,7 +637,7 @@ function FloatingChat({ onSubmit }) {
               background: value.trim() ? 'var(--ins-button-primary-bg)' : 'rgba(9,160,157,.15)',
               color: value.trim() ? 'var(--ins-text-heading)' : 'var(--ins-text-disabled)',
               border:'none', cursor: value.trim() ? 'pointer' : 'default',
-              fontSize:'12px', fontWeight:600,
+              fontSize:'var(--ins-font-size-12)', fontWeight:600,
               fontFamily:'inherit',
               transition:'background .2s, color .2s',
             }}
@@ -748,7 +748,7 @@ function AIAssistantPanel({ query, onClose }) {
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
           </svg>
-          <span style={{ fontSize:'14px', fontWeight:600, color:'var(--ins-color-gray-100)' }}>Assistant</span>
+          <span style={{ fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-color-gray-100)' }}>Assistant</span>
         </div>
         <div style={{ display:'flex', gap:'2px' }}>
           <button onClick={onClose} style={{
@@ -776,7 +776,7 @@ function AIAssistantPanel({ query, onClose }) {
                   border:'1px solid rgba(9,160,157,0.25)',
                   borderRadius:'10px 10px 2px 10px',
                   padding:'8px 12px',
-                  fontSize:'14px', color:'#C8E6EA', maxWidth:'90%',
+                  fontSize:'var(--ins-font-size-14)', color:'#C8E6EA', maxWidth:'90%',
                   lineHeight:1.5,
                 }}>
                   {msg.text}
@@ -784,7 +784,7 @@ function AIAssistantPanel({ query, onClose }) {
               </div>
             ) : (
               <div>
-                <div style={{ fontSize:'12px', color:'#3A6070', marginBottom:'10px', display:'flex', flexDirection:'column', gap:'4px' }}>
+                <div style={{ fontSize:'var(--ins-font-size-12)', color:'#3A6070', marginBottom:'10px', display:'flex', flexDirection:'column', gap:'4px' }}>
                   <div style={{ display:'flex', alignItems:'center', gap:'6px' }}>
                     <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                     Found prompts for <em style={{ color:'#4A8090', fontStyle:'normal' }}>{msg.response.searchTerms}</em>
@@ -794,23 +794,23 @@ function AIAssistantPanel({ query, onClose }) {
                     Scanned 15 templates
                   </div>
                 </div>
-                <p style={{ fontSize:'14px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'10px' }}>
+                <p style={{ fontSize:'var(--ins-font-size-14)', color:'#8AAAB8', lineHeight:1.7, marginBottom:'10px' }}>
                   <AssistantResponseText text={msg.response.intro} />
                 </p>
                 <ul style={{ margin:'0 0 10px 0', padding:'0', listStyle:'none', display:'flex', flexDirection:'column', gap:'5px' }}>
                   {msg.response.bullets.map((b, i) => (
-                    <li key={i} style={{ fontSize:'14px', color:'#8AAAB8', lineHeight:1.6, paddingLeft:'14px', position:'relative' }}>
+                    <li key={i} style={{ fontSize:'var(--ins-font-size-14)', color:'#8AAAB8', lineHeight:1.6, paddingLeft:'14px', position:'relative' }}>
                       <span style={{ position:'absolute', left:0, color:'var(--ins-text-highlight)', fontWeight:700 }}>·</span>
                       <strong style={{ color:'#C8E6EA' }}>{b.bold}</strong>{b.text}
                     </li>
                   ))}
                 </ul>
-                <p style={{ fontSize:'14px', color:'#8AAAB8', lineHeight:1.7, marginBottom:'12px' }}>
+                <p style={{ fontSize:'var(--ins-font-size-14)', color:'#8AAAB8', lineHeight:1.7, marginBottom:'12px' }}>
                   {msg.response.outro}
                 </p>
                 <div style={{ display:'flex', flexDirection:'column', gap:'4px', marginBottom:'12px' }}>
                   {msg.response.links.map((l, i) => (
-                    <a key={i} href="#" style={{ fontSize:'12px', color:'var(--ins-button-primary-bg-hover)', textDecoration:'none' }}
+                    <a key={i} href="#" style={{ fontSize:'var(--ins-font-size-12)', color:'var(--ins-button-primary-bg-hover)', textDecoration:'none' }}
                       onMouseEnter={e => e.currentTarget.style.textDecoration = 'underline'}
                       onMouseLeave={e => e.currentTarget.style.textDecoration = 'none'}
                     >{l}</a>
@@ -829,7 +829,7 @@ function AIAssistantPanel({ query, onClose }) {
 
         {phase !== 'done' && (
           <div style={{ display:'flex', flexDirection:'column', gap:'6px' }}>
-            <div style={{ display:'flex', alignItems:'center', gap:'6px', fontSize:'12px', color:'#3A6070' }}>
+            <div style={{ display:'flex', alignItems:'center', gap:'6px', fontSize:'var(--ins-font-size-12)', color:'#3A6070' }}>
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ animation:'pulse 1.2s ease infinite' }}><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
               {phase === 'searching' ? 'Searching prompt library…' : 'Reading templates…'}
             </div>
@@ -868,7 +868,7 @@ function AIAssistantPanel({ query, onClose }) {
             placeholder="Ask a follow-up..."
             style={{
               flex:1, background:'transparent', border:'none', outline:'none',
-              fontSize:'14px', color:'var(--ins-color-gray-100)', fontFamily:'var(--ins-font-family-sans)',
+              fontSize:'var(--ins-font-size-14)', color:'var(--ins-color-gray-100)', fontFamily:'var(--ins-font-family-sans)',
             }}
           />
           <button onClick={handleFollowUp} style={{
@@ -951,13 +951,13 @@ function App() {
               onBlur={() => setSearchFocused(false)}
               style={{
                 flex:1, background:'transparent', border:'none', outline:'none',
-                fontSize:'14px', color:'var(--ins-color-gray-100)', fontFamily:'var(--ins-font-family-sans)',
+                fontSize:'var(--ins-font-size-14)', color:'var(--ins-color-gray-100)', fontFamily:'var(--ins-font-family-sans)',
               }}
             />
             {query && (
               <button onClick={() => setQuery('')} style={{
                 background:'none', border:'none', cursor:'pointer',
-                color:'var(--ins-text-body)', padding:'2px 6px', fontSize:'12px',
+                color:'var(--ins-text-body)', padding:'2px 6px', fontSize:'var(--ins-font-size-12)',
                 fontFamily:'var(--ins-font-family-sans)',
               }}>
                 Clear
@@ -979,7 +979,7 @@ function App() {
             <div style={{
               padding:'40px 24px', textAlign:'center',
               border:'1px dashed var(--ins-color-white-a-08)', borderRadius:'12px',
-              color:'var(--ins-text-body)', fontSize:'14px',
+              color:'var(--ins-text-body)', fontSize:'var(--ins-font-size-14)',
             }}>
               No prompts match your search — try different keywords or clear a filter.
             </div>

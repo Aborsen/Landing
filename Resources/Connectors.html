@@ -13,7 +13,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'Geist', sans-serif;
+  font-family: var(--ins-font-family-sans);
   background: var(--ins-surface-page);
   color: var(--ins-color-gray-50);
   overflow-x: hidden;
@@ -111,15 +111,15 @@ section { position: relative; }
 .connector-search:focus-within { border-color: var(--ins-color-teal-a-50); }
 .connector-search input {
   flex: 1; background: transparent; border: none; outline: none;
-  font-size: 14px; color: var(--ins-color-gray-50); font-family: 'Geist', sans-serif;
+  font-size: var(--ins-font-size-14); color: var(--ins-color-gray-50); font-family: var(--ins-font-family-sans);
 }
 
 .cat-group-header {
   display: flex; align-items: center; justify-content: space-between;
   width: 100%; padding: 6px 16px;
-  color: #5E8290; font-size: 11px; font-weight: 600;
+  color: #5E8290; font-size: var(--ins-font-size-11); font-weight: 600;
   text-transform: uppercase; letter-spacing: 0.08em;
-  font-family: 'Geist', sans-serif;
+  font-family: var(--ins-font-family-sans);
   margin-bottom: 4px;
 }
 .cat-item {
@@ -127,7 +127,7 @@ section { position: relative; }
   width: 100%; padding: 7px 16px;
   background: transparent; border: none; cursor: pointer;
   text-align: left; font-size: 13px;
-  color: var(--ins-text-inactive); font-family: 'Geist', sans-serif;
+  color: var(--ins-text-inactive); font-family: var(--ins-font-family-sans);
   transition: background .12s, color .12s;
   border-left: 2px solid transparent;
 }
@@ -139,8 +139,8 @@ section { position: relative; }
 }
 .cat-item .count {
   margin-left: auto;
-  font-size: 11px; color: #5E8290;
-  font-family: 'Geist Mono', monospace;
+  font-size: var(--ins-font-size-11); color: #5E8290;
+  font-family: var(--ins-font-family-mono);
 }
 .cat-item.active .count { color: var(--ins-text-highlight); }
 
@@ -189,7 +189,7 @@ section { position: relative; }
 .connector-logo .fallback {
   width: 100%; height: 100%;
   display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 15px;
+  font-weight: 700; font-size: var(--ins-font-size-15);
   color: var(--ins-surface-page);
 }
 .connector-face {
@@ -230,7 +230,7 @@ section { position: relative; }
   padding: 9px 18px;
   border-radius: 6px; border: none; cursor: pointer;
   font-size: 11.5px; font-weight: 600;
-  font-family: 'Geist', sans-serif;
+  font-family: var(--ins-font-family-sans);
   line-height: 1.2; text-align: center;
   transition: background .15s, transform .15s;
 }

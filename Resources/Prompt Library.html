@@ -13,7 +13,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'Geist', sans-serif;
+  font-family: var(--ins-font-family-sans);
   background: var(--ins-surface-page);
   color: #E8F2F5;
   overflow-x: hidden;
@@ -127,7 +127,7 @@ section { position: relative; }
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-family: 'Geist', sans-serif;
+  font-family: var(--ins-font-family-sans);
   padding: 4px 0;
   transition: gap .15s;
 }
@@ -142,7 +142,7 @@ section { position: relative; }
   background: rgba(9,160,157,.06);
   color: #8DC9CB;
   letter-spacing: .02em;
-  font-family: 'Geist Mono', monospace;
+  font-family: var(--ins-font-family-mono);
 }
 
 .ds-icon-wrap {
@@ -160,7 +160,7 @@ section { position: relative; }
   transition: background .12s;
   font-size: 13px;
   color: var(--ins-text-inactive);
-  font-family: 'Geist', sans-serif;
+  font-family: var(--ins-font-family-sans);
   user-select: none;
 }
 .filter-item:hover { background: rgba(255,255,255,0.04); color: #E8F2F5; }

@@ -2821,7 +2821,7 @@ kbd, .ins-kbd {
   top: var(--ins-space-md);
   right: var(--ins-space-lg);
   font-family: var(--ins-font-family-sans);
-  font-size: 60px;
+  font-size: var(--ins-font-size-60);
   line-height: 1;
   color: var(--ins-text-body);
   opacity: 0.85;

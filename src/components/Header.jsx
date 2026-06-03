@@ -279,7 +279,7 @@ export default function Header() {
                 <details key={link} name="mobile-nav" style={{borderBottom:'1px solid var(--ins-border-default)'}}>
                   <summary className="py-3 text-text-muted cursor-pointer flex items-center justify-between" style={{listStyle:'none'}}>
                     <span>{link}</span>
-                    <span style={{opacity:0.5,fontSize:'12px'}}>▾</span>
+                    <span style={{opacity:0.5,fontSize:'var(--ins-font-size-12)'}}>▾</span>
                   </summary>
                   <div style={{paddingLeft:'12px',paddingBottom:'8px'}}>
                     {dd.sections.flatMap(s => s.items).map(item => (

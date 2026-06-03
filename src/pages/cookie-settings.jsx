@@ -87,10 +87,10 @@ function CookieContent() {
     marginBottom: '40px',
   };
   const headingStyle = {
-    fontSize: '20px', fontWeight: 600, color: 'var(--ins-color-gray-100)', marginBottom: '12px', letterSpacing: '-.01em',
+    fontSize: 'var(--ins-font-size-20)', fontWeight: 600, color: 'var(--ins-color-gray-100)', marginBottom: '12px', letterSpacing: '-.01em',
   };
   const paraStyle = {
-    fontSize: '15px', color: 'var(--ins-text-body)', lineHeight: 1.8,
+    fontSize: 'var(--ins-font-size-15)', color: 'var(--ins-text-body)', lineHeight: 1.8,
   };
 
   return (
@@ -117,16 +117,16 @@ function CookieContent() {
             }}>
               <div style={{display:'flex', alignItems:'flex-start', gap:'20px'}}>
                 <div style={{flex:1}}>
-                  <div style={{fontSize:'16px', fontWeight:600, color:'var(--ins-color-gray-100)'}}>{cat.title}</div>
-                  <div style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.6, marginTop:'4px'}}>{cat.description}</div>
+                  <div style={{fontSize:'var(--ins-font-size-16)', fontWeight:600, color:'var(--ins-color-gray-100)'}}>{cat.title}</div>
+                  <div style={{fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-body)', lineHeight:1.6, marginTop:'4px'}}>{cat.description}</div>
                   {cat.examples && (
-                    <div style={{fontSize:'12px', color:'var(--ins-text-inactive)', marginTop:'8px'}}>Examples: {cat.examples}</div>
+                    <div style={{fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-inactive)', marginTop:'8px'}}>Examples: {cat.examples}</div>
                   )}
                 </div>
                 <div style={{display:'flex', alignItems:'center', gap:'10px', paddingTop:'2px'}}>
                   {cat.alwaysActive ? (
                     <>
-                      <span style={{fontSize:'12px', fontWeight:500, color:'var(--ins-text-highlight)', whiteSpace:'nowrap'}}>Always Active</span>
+                      <span style={{fontSize:'var(--ins-font-size-12)', fontWeight:500, color:'var(--ins-text-highlight)', whiteSpace:'nowrap'}}>Always Active</span>
                       <ToggleSwitch enabled={true} onChange={() => {}} disabled={true} />
                     </>
                   ) : (
@@ -146,7 +146,7 @@ function CookieContent() {
               onClick={handleSave}
               style={{
                 display:'inline-flex', alignItems:'center', gap:'8px',
-                padding:'12px 32px', fontSize:'15px', fontWeight:600,
+                padding:'12px 32px', fontSize:'var(--ins-font-size-15)', fontWeight:600,
                 color:'var(--ins-text-body)', background:'var(--ins-button-primary-bg)', borderRadius:'50px',
                 border:'none', cursor:'pointer', transition:'background 0.2s',
                 fontFamily:'var(--ins-font-family-sans)',
@@ -204,7 +204,7 @@ function CookieContent() {
               The following table lists the cookies used on our website, their provider, purpose, and duration.
             </p>
             <div style={{overflowX:'auto', borderRadius:'12px', border:'1px solid var(--ins-border-default)'}}>
-              <table style={{width:'100%', borderCollapse:'collapse', fontSize:'14px'}}>
+              <table style={{width:'100%', borderCollapse:'collapse', fontSize:'var(--ins-font-size-14)'}}>
                 <thead>
                   <tr style={{background:'var(--ins-color-white-a-04)'}}>
                     <th style={{padding:'12px 16px', textAlign:'left', color:'var(--ins-color-gray-100)', fontWeight:600, borderBottom:'1px solid var(--ins-border-default)', whiteSpace:'nowrap'}}>Cookie Name</th>
@@ -216,7 +216,7 @@ function CookieContent() {
                 <tbody>
                   {cookieTable.map((row, i) => (
                     <tr key={i} style={{background: i % 2 === 1 ? 'var(--ins-color-white-a-02)' : 'transparent'}}>
-                      <td style={{padding:'10px 16px', color:'var(--ins-text-highlight)', fontFamily:'var(--ins-font-family-mono)', fontSize:'12px', borderBottom:'1px solid var(--ins-color-white-a-04)'}}>{row.name}</td>
+                      <td style={{padding:'10px 16px', color:'var(--ins-text-highlight)', fontFamily:'var(--ins-font-family-mono)', fontSize:'var(--ins-font-size-12)', borderBottom:'1px solid var(--ins-color-white-a-04)'}}>{row.name}</td>
                       <td style={{padding:'10px 16px', color:'var(--ins-text-body)', borderBottom:'1px solid var(--ins-color-white-a-04)'}}>{row.provider}</td>
                       <td style={{padding:'10px 16px', color:'var(--ins-text-body)', borderBottom:'1px solid var(--ins-color-white-a-04)'}}>{row.purpose}</td>
                       <td style={{padding:'10px 16px', color:'var(--ins-text-body)', borderBottom:'1px solid var(--ins-color-white-a-04)', whiteSpace:'nowrap'}}>{row.duration}</td>

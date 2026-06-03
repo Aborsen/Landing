@@ -240,7 +240,7 @@ function ConnectionChatAnimation() {
             <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
           ))}
         </div>
-        <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono, monospace',letterSpacing:'.02em'}}>
+        <div style={{flex:1,textAlign:'center',fontSize:'var(--ins-font-size-12)',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.02em'}}>
           insightis — integrations
         </div>
         <div style={{width:'46px'}}/>
@@ -578,7 +578,7 @@ function ConnectorsGallery() {
               <ConnectorIcon name={c.name} slug={master?.slug} domain={master?.domain} bg="var(--ins-color-white-a-04)"/>
               <div style={{minWidth:0}}>
                 <div className="ins-text-h4" style={{marginBottom:'3px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{c.name}</div>
-                <div style={{fontSize:'12px',color:'#8A9BA4',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{c.desc}</div>
+                <div style={{fontSize:'var(--ins-font-size-12)',color:'#8A9BA4',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{c.desc}</div>
               </div>
             </div>
             );
@@ -587,7 +587,7 @@ function ConnectorsGallery() {
 
         {/* Footer note */}
         <div style={{textAlign:'center',marginTop:'32px'}}>
-          <span style={{fontSize:'12.5px',color:'var(--ins-text-body)',fontFamily:'Geist Mono,monospace'}}>
+          <span style={{fontSize:'12.5px',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)'}}>
             + 200 more connectors available ·{' '}
             <a href="/Resources/Connectors" style={{color:'var(--ins-text-highlight)',textDecoration:'none'}}>see full list →</a>
           </span>
@@ -736,7 +736,7 @@ function IntegrationImpact() {
         {/* Headline callout */}
         <div style={{textAlign:'center',marginTop:'40px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'14px',flexWrap:'wrap',justifyContent:'center'}}>
-            <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>60s</span>
+            <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',lineHeight:1,flexShrink:0}}>60s</span>
             <span className="ins-text-body-lg" style={{whiteSpace:'nowrap'}}>to connect a new source — OAuth, no pipelines to maintain.</span>
           </div>
         </div>

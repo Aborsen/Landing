@@ -44,9 +44,9 @@ function ContactOptions({ onOpenDemo, onOpenSupport }) {
             <div style={{width:'48px', height:'48px', borderRadius:'50%', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'20px'}}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             </div>
-            <h3 style={{fontSize:'18px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'10px'}}>Talk to Sales</h3>
+            <h3 style={{fontSize:'var(--ins-font-size-18)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'10px'}}>Talk to Sales</h3>
             <p className="ins-text-body" style={{marginBottom:'20px'}}>Get a personalized demo of Insightis for your team. We'll show you exactly how it works with your data sources.</p>
-            <button onClick={onOpenDemo} style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'12px', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'999px', border:'none', cursor:'pointer', fontFamily:'var(--ins-font-family-sans)'}}>
+            <button onClick={onOpenDemo} style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'var(--ins-font-size-12)', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'999px', border:'none', cursor:'pointer', fontFamily:'var(--ins-font-family-sans)'}}>
               Book a Demo
             </button>
             <p className="ins-text-body-xs ins-text--muted ins-text--mono" style={{marginTop:'14px'}}>Typically responds within 2 hours</p>
@@ -60,9 +60,9 @@ function ContactOptions({ onOpenDemo, onOpenSupport }) {
             <div style={{width:'48px', height:'48px', borderRadius:'50%', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'20px'}}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
             </div>
-            <h3 style={{fontSize:'18px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'10px'}}>Get Support</h3>
+            <h3 style={{fontSize:'var(--ins-font-size-18)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'10px'}}>Get Support</h3>
             <p className="ins-text-body" style={{marginBottom:'20px'}}>Already using Insightis? Our support team can help with setup, integrations, troubleshooting, and best practices.</p>
-            <button onClick={onOpenSupport} style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'12px', fontWeight:600, color:'var(--ins-color-gray-100)', background:'transparent', borderRadius:'999px', border:'1px solid var(--ins-color-white-a-12)', cursor:'pointer', fontFamily:'var(--ins-font-family-sans)', transition:'all .15s'}}
+            <button onClick={onOpenSupport} style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'var(--ins-font-size-12)', fontWeight:600, color:'var(--ins-color-gray-100)', background:'transparent', borderRadius:'999px', border:'1px solid var(--ins-color-white-a-12)', cursor:'pointer', fontFamily:'var(--ins-font-family-sans)', transition:'all .15s'}}
               onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.4)';e.currentTarget.style.color='var(--ins-text-highlight)';}}
               onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-color-white-a-12)';e.currentTarget.style.color='var(--ins-color-gray-100)';}}>
               Open Support Ticket
@@ -78,9 +78,9 @@ function ContactOptions({ onOpenDemo, onOpenSupport }) {
             <div style={{width:'48px', height:'48px', borderRadius:'50%', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'20px'}}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
             </div>
-            <h3 style={{fontSize:'18px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'10px'}}>Help Center</h3>
+            <h3 style={{fontSize:'var(--ins-font-size-18)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'10px'}}>Help Center</h3>
             <p className="ins-text-body" style={{marginBottom:'20px'}}>Browse our knowledge base for guides, FAQs, troubleshooting tips, and everything you need to get the most out of Insightis.</p>
-            <a href="../Resources/Contact Support" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'12px', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'999px', border:'none', cursor:'pointer', fontFamily:'var(--ins-font-family-sans)', textDecoration:'none'}}>
+            <a href="../Resources/Contact Support" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 24px', fontSize:'var(--ins-font-size-12)', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'999px', border:'none', cursor:'pointer', fontFamily:'var(--ins-font-family-sans)', textDecoration:'none'}}>
               Visit Help Center
             </a>
             <p className="ins-text-body-xs ins-text--muted ins-text--mono" style={{marginTop:'14px'}}>Guides, FAQs & troubleshooting</p>
@@ -112,11 +112,11 @@ function ModalForm({ open, onClose, type }) {
 
   const inputStyle = {
     width:'100%', background:'var(--ins-color-white-a-04)', border:'1px solid var(--ins-color-white-a-08)',
-    borderRadius:'10px', padding:'12px 16px', fontSize:'14px', color:'var(--ins-color-gray-100)',
+    borderRadius:'10px', padding:'12px 16px', fontSize:'var(--ins-font-size-14)', color:'var(--ins-color-gray-100)',
     fontFamily:'var(--ins-font-family-sans)', outline:'none', transition:'border-color .15s',
   };
   const labelStyle = {
-    display:'block', fontSize:'11px', fontWeight:600, letterSpacing:'.08em',
+    display:'block', fontSize:'var(--ins-font-size-11)', fontWeight:600, letterSpacing:'.08em',
     textTransform:'uppercase', color:'var(--ins-text-body)', fontFamily:'var(--ins-font-family-mono)',
     marginBottom:'6px',
   };
@@ -142,7 +142,7 @@ function ModalForm({ open, onClose, type }) {
               {isDemo ? 'Demo Request' : 'Support Ticket'}
             </span>
           </div>
-          <h2 style={{fontSize:'24px', fontWeight:500, color:'var(--ins-text-heading)', letterSpacing:'-.02em'}}>
+          <h2 style={{fontSize:'var(--ins-font-size-24)', fontWeight:500, color:'var(--ins-text-heading)', letterSpacing:'-.02em'}}>
             {isDemo ? 'Book a personalized demo' : 'Submit a support ticket'}
           </h2>
           <p className="ins-text-body ins-text--muted" style={{marginTop:'8px'}}>
@@ -279,7 +279,7 @@ function QuickLinks() {
               <div style={{width:'44px', height:'44px', borderRadius:'50%', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'16px'}}>
                 {l.icon}
               </div>
-              <h3 style={{fontSize:'16px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{l.title}</h3>
+              <h3 style={{fontSize:'var(--ins-font-size-16)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{l.title}</h3>
               <p className="ins-text-body">{l.desc}</p>
             </a>
           ))}
@@ -322,7 +322,7 @@ function OurOffices() {
   return (
     <section style={{padding:'40px 0 60px'}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-        <h2 style={{fontSize:'20px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'32px'}}>Our offices</h2>
+        <h2 style={{fontSize:'var(--ins-font-size-20)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'32px'}}>Our offices</h2>
         <div style={{display:'grid', gridTemplateColumns:'repeat(5,1fr)', gap:'24px'}}>
           {offices.map((o, i) => (
             <div key={i}>
@@ -376,7 +376,7 @@ function CtaBanner() {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 required
-                style={{flex:1, background:'transparent', border:'none', padding:'12px 16px', fontSize:'14px', color:'var(--ins-color-gray-100)', fontFamily:'var(--ins-font-family-sans)', outline:'none', minWidth:0, height:'auto', borderRadius:0, boxShadow:'none'}}
+                style={{flex:1, background:'transparent', border:'none', padding:'12px 16px', fontSize:'var(--ins-font-size-14)', color:'var(--ins-color-gray-100)', fontFamily:'var(--ins-font-family-sans)', outline:'none', minWidth:0, height:'auto', borderRadius:0, boxShadow:'none'}}
               />
               <Button type="submit" variant="primary" size="sm" radius="lg" iconEnd={<ArrowRightIcon />} className="m-1 flex-shrink-0">
                 Get in Touch

@@ -53,7 +53,7 @@ function BillingToggle({ cycle, onChange }) {
           border: 'none',
           background: active ? 'var(--ins-surface-elevated)' : 'transparent',
           color: active ? 'var(--ins-text-heading)' : 'var(--ins-text-body)',
-          fontSize: '14px',
+          fontSize: 'var(--ins-font-size-14)',
           fontWeight: 500,
           fontFamily: 'var(--ins-font-family-sans)',
           cursor: 'pointer',
@@ -178,29 +178,29 @@ function PricingCards() {
                 style={{position:'relative',padding:'28px 22px'}}
               >
                 {isHighlight && (
-                  <div style={{position:'absolute',top:0,left:'50%',transform:'translate(-50%,-50%)',padding:'4px 12px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',color:'var(--ins-text-body)',fontSize:'11px',fontWeight:500,letterSpacing:'.05em',borderRadius:'999px',textTransform:'uppercase'}}>
+                  <div style={{position:'absolute',top:0,left:'50%',transform:'translate(-50%,-50%)',padding:'4px 12px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',color:'var(--ins-text-body)',fontSize:'var(--ins-font-size-11)',fontWeight:500,letterSpacing:'.05em',borderRadius:'999px',textTransform:'uppercase'}}>
                     Most popular
                   </div>
                 )}
-                <h3 style={{fontSize:'22px',fontWeight:600,color:'var(--ins-text-heading)',marginBottom:'4px',letterSpacing:'-0.02em'}}>{plan.name}</h3>
+                <h3 style={{fontSize:'var(--ins-font-size-22)',fontWeight:600,color:'var(--ins-text-heading)',marginBottom:'4px',letterSpacing:'-0.02em'}}>{plan.name}</h3>
                 <p className="ins-text-body ins-text--muted" style={{marginBottom:'24px'}}>{plan.tag}</p>
                 <div style={{marginBottom:'24px',minHeight:'128px'}}>
                   {plan.price === 0 ? (
                     <div>
                       <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-0.03em'}}>$0</span>
-                      <span style={{fontSize:'14px',color:'var(--ins-text-body)',marginLeft:'6px'}}>forever</span>
+                      <span style={{fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)',marginLeft:'6px'}}>forever</span>
                     </div>
                   ) : (
                     <div>
                       <div style={{display:'flex',alignItems:'baseline',gap:'10px',flexWrap:'wrap'}}>
                         <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-0.03em'}}>${displayPrice(plan.price)}</span>
                         {plan.originalPrice && (
-                          <span style={{fontSize:'18px',color:'var(--ins-text-inactive)',textDecoration:'line-through'}}>${plan.originalPrice}</span>
+                          <span style={{fontSize:'var(--ins-font-size-18)',color:'var(--ins-text-inactive)',textDecoration:'line-through'}}>${plan.originalPrice}</span>
                         )}
                       </div>
-                      <div style={{fontSize:'14px',color:'var(--ins-text-body)',marginTop:'2px'}}>per user / month</div>
+                      <div style={{fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)',marginTop:'2px'}}>per user / month</div>
                       {cycle === 'yearly' && (
-                        <div style={{fontSize:'12px',color:'var(--ins-text-inactive)',marginTop:'2px'}}>
+                        <div style={{fontSize:'var(--ins-font-size-12)',color:'var(--ins-text-inactive)',marginTop:'2px'}}>
                           billed annually · ${yearlyTotal(plan.price).toFixed(2)}/yr
                         </div>
                       )}
@@ -224,7 +224,7 @@ function PricingCards() {
                 </Button>
                 <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px',padding:0,margin:0}}>
                   {plan.features.map((f,fi) => (
-                    <li key={fi} style={{display:'flex',alignItems:'flex-start',gap:'9px',fontSize:'14px',color:'var(--ins-text-body)',lineHeight:1.55}}>
+                    <li key={fi} style={{display:'flex',alignItems:'flex-start',gap:'9px',fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)',lineHeight:1.55}}>
                       <CheckIcon size={14} style={{flexShrink:0,marginTop:'3px'}} />
                       {f}
                     </li>
@@ -297,9 +297,9 @@ function FeatureComparison() {
         <div data-compare-wrap style={{border:'1px solid var(--ins-color-white-a-08)',borderRadius:'var(--ins-radius-2xl)',overflow:'hidden',background:'rgba(13,17,23,0.5)'}}>
           {/* Column headers */}
           <div style={{display:'grid',gridTemplateColumns:cols,padding:'18px 20px',background:'var(--ins-color-white-a-03)',borderBottom:'1px solid var(--ins-border-default)'}}>
-            <span style={{fontSize:'12px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)'}}>Feature</span>
+            <span style={{fontSize:'var(--ins-font-size-12)',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)'}}>Feature</span>
             {['Free','Starter','Pro'].map(p => (
-              <span key={p} style={{textAlign:'center',fontSize:'14px',fontWeight:600,color:'var(--ins-text-heading)'}}>{p}</span>
+              <span key={p} style={{textAlign:'center',fontSize:'var(--ins-font-size-14)',fontWeight:600,color:'var(--ins-text-heading)'}}>{p}</span>
             ))}
           </div>
           {/* Sectioned rows */}
@@ -307,14 +307,14 @@ function FeatureComparison() {
             <div key={si}>
               {/* Section heading row */}
               <div style={{padding:'14px 20px 10px',background:'var(--ins-color-white-a-02)',borderTop: si > 0 ? '1px solid var(--ins-border-default)' : 'none'}}>
-                <span style={{fontSize:'11px',fontWeight:600,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)'}}>{section.title}</span>
+                <span style={{fontSize:'var(--ins-font-size-11)',fontWeight:600,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)'}}>{section.title}</span>
               </div>
               {/* Feature rows */}
               {section.rows.map((row, ri) => (
                 <div key={ri} style={{display:'grid',gridTemplateColumns:cols,padding:'12px 20px',borderTop:'1px solid var(--ins-color-white-a-04)',alignItems:'center'}}>
-                  <span style={{fontSize:'14px',color:'var(--ins-text-body)'}}>{row.label}</span>
+                  <span style={{fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)'}}>{row.label}</span>
                   {row.values.map((v, vi) => (
-                    <span key={vi} style={{display:'flex',justifyContent:'center',alignItems:'center',fontSize:'14px',color:'var(--ins-text-body)'}}>
+                    <span key={vi} style={{display:'flex',justifyContent:'center',alignItems:'center',fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)'}}>
                       {v === true ? <CheckIcon size={16} /> : v === false ? <Dash /> : v}
                     </span>
                   ))}
@@ -324,7 +324,7 @@ function FeatureComparison() {
           ))}
           {/* Choose-your-plan footer */}
           <div style={{display:'grid',gridTemplateColumns:cols,padding:'18px 20px',background:'var(--ins-color-white-a-03)',borderTop:'1px solid var(--ins-border-default)',alignItems:'center'}}>
-            <span style={{fontSize:'14px',color:'var(--ins-text-body)'}}>Choose your plan</span>
+            <span style={{fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)'}}>Choose your plan</span>
             {[
               { label:'Start for Free',   primary:false },
               { label:'Start Free Trial', primary:false },

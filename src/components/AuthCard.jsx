@@ -40,7 +40,7 @@ export default function AuthCard({ title, blurb }) {
           borderRadius:'999px',
           background:'rgba(9,160,157,0.12)',
           border:'1px solid rgba(9,160,157,0.35)',
-          color:'#0EC4C1', fontSize:'11px', fontWeight:600,
+          color:'#0EC4C1', fontSize:'var(--ins-font-size-11)', fontWeight:600,
           letterSpacing:'.06em', textTransform:'uppercase',
         }}>
           <span style={{
@@ -52,14 +52,14 @@ export default function AuthCard({ title, blurb }) {
 
         {/* Heading */}
         <h1 style={{
-          fontSize:'24px', fontWeight:600, color:'var(--ins-text-heading)',
+          fontSize:'var(--ins-font-size-24)', fontWeight:600, color:'var(--ins-text-heading)',
           marginBottom:'12px',
           fontFamily:"var(--ins-font-family-sans)", letterSpacing:'-.01em',
         }}>{title}</h1>
 
         {/* Blurb */}
         <p style={{
-          fontSize:'15px', lineHeight:1.6, color:'var(--ins-text-inactive)',
+          fontSize:'var(--ins-font-size-15)', lineHeight:1.6, color:'var(--ins-text-inactive)',
           margin:'0 auto 28px', maxWidth:'34ch',
         }}>{blurb}</p>
 
@@ -70,7 +70,7 @@ export default function AuthCard({ title, blurb }) {
           borderRadius:'10px',
           background:'linear-gradient(180deg, #0EC4C1 0%, #07807E 100%)',
           color:'var(--ins-text-body)', textDecoration:'none',
-          fontSize:'14px', fontWeight:600,
+          fontSize:'var(--ins-font-size-14)', fontWeight:600,
         }}>
           <span aria-hidden="true">←</span>
           Back to home

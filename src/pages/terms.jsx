@@ -32,9 +32,9 @@ function TermsContent() {
     return () => observer.disconnect();
   }, []);
   const sectionStyle = { marginBottom: '48px', scrollMarginTop: '100px' };
-  const h2Style = { fontSize: '20px', fontWeight: 600, color: 'var(--ins-text-heading-soft)', marginBottom: '16px', letterSpacing: '-.01em' };
+  const h2Style = { fontSize: 'var(--ins-font-size-20)', fontWeight: 600, color: 'var(--ins-text-heading-soft)', marginBottom: '16px', letterSpacing: '-.01em' };
   const pStyle = { marginBottom: '14px' };
-  const ulStyle = { fontSize: '15px', color: 'var(--ins-text-body)', lineHeight: 1.8, paddingLeft: '24px', marginBottom: '14px', listStyleType: 'disc' };
+  const ulStyle = { fontSize: 'var(--ins-font-size-15)', color: 'var(--ins-text-body)', lineHeight: 1.8, paddingLeft: '24px', marginBottom: '14px', listStyleType: 'disc' };
 
   return (
     <section style={{position:'relative'}}>

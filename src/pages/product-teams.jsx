@@ -50,8 +50,8 @@ function Hero() {
           {/* Left: text */}
           <div>
             <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'20px'}}>
-              <span style={{fontSize:'12px'}}>✦</span>
-              <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'Geist Mono,monospace'}}>For Product Teams</span>
+              <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
+              <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>For Product Teams</span>
             </div>
 
             <h1 className="fu1" style={{fontSize:'clamp(36px,4.5vw,58px)',fontWeight:500,color:'var(--ins-text-heading-soft)',letterSpacing:'-.03em',lineHeight:1.12,marginBottom:'20px'}}>
@@ -118,7 +118,7 @@ function Hero() {
                 <span style={{
                   position:'absolute',left:'50%',top:'50%',
                   transform:'translate(-50%,-50%)',
-                  fontFamily:'Geist Mono,monospace',
+                  fontFamily:'var(--ins-font-family-mono)',
                   fontSize:'10.5px',
                   color:'var(--ins-text-body)',
                   letterSpacing:'.08em',
@@ -130,17 +130,17 @@ function Hero() {
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'14px'}}>
                 <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
                   <div style={{width:'6px',height:'6px',borderRadius:'50%',background:'var(--ins-color-purple-400)',boxShadow:'0 0 8px rgba(167,139,250,.6)'}}/>
-                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10.5px',color:'var(--ins-text-body)',letterSpacing:'.08em',textTransform:'uppercase'}}>Funnel · May cohort</span>
+                  <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10.5px',color:'var(--ins-text-body)',letterSpacing:'.08em',textTransform:'uppercase'}}>Funnel · May cohort</span>
                 </div>
-                <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-color-purple-400)',padding:'3px 9px',borderRadius:'999px',background:'rgba(167,139,250,.1)',border:'1px solid rgba(167,139,250,.25)',letterSpacing:'.08em',textTransform:'uppercase'}}>cohort</span>
+                <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-color-purple-400)',padding:'3px 9px',borderRadius:'999px',background:'rgba(167,139,250,.1)',border:'1px solid rgba(167,139,250,.25)',letterSpacing:'.08em',textTransform:'uppercase'}}>cohort</span>
               </div>
 
               {/* Headline + caption */}
-              <h3 style={{fontSize:'17px',fontWeight:500,color:'var(--ins-text-heading-soft)',marginBottom:'6px',letterSpacing:'-.015em',lineHeight:1.35}}>
+              <h3 style={{fontSize:'var(--ins-font-size-17)',fontWeight:500,color:'var(--ins-text-heading-soft)',marginBottom:'6px',letterSpacing:'-.015em',lineHeight:1.35}}>
                 Onboarding cliff at <span style={{color:'var(--ins-color-purple-400)'}}>step 3</span>
               </h3>
               <p className="ins-text-body-sm" style={{marginBottom:'16px'}}>
-                <span style={{color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',fontSize:'11.5px'}}>workspace_created</span> dropped <span style={{color:'var(--ins-status-error-fg)',fontWeight:500}}>−41%</span>. 87% on mobile. New invite flow shipped Tuesday.
+                <span style={{color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontSize:'11.5px'}}>workspace_created</span> dropped <span style={{color:'var(--ins-status-error-fg)',fontWeight:500}}>−41%</span>. 87% on mobile. New invite flow shipped Tuesday.
               </p>
 
               {/* Funnel breakdown */}
@@ -152,8 +152,8 @@ function Hero() {
                 marginBottom:'14px',
               }}>
                 <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'12px'}}>
-                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.06em',textTransform:'uppercase'}}>activation funnel</span>
-                  <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-body)'}}>n = 12,840</span>
+                  <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.06em',textTransform:'uppercase'}}>activation funnel</span>
+                  <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-body)'}}>n = 12,840</span>
                 </div>
                 <div style={{display:'flex',flexDirection:'column',gap:'7px'}}>
                   {[
@@ -165,7 +165,7 @@ function Hero() {
                   ].map((s,i) => (
                     <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
                       <span style={{
-                        fontFamily:'Geist Mono,monospace',
+                        fontFamily:'var(--ins-font-family-mono)',
                         fontSize:'10px',
                         color:s.cliff?'var(--ins-status-error-fg)':'var(--ins-text-body)',
                         width:'112px',flexShrink:0,
@@ -182,7 +182,7 @@ function Hero() {
                         }}/>
                       </div>
                       <span style={{
-                        fontFamily:'Geist Mono,monospace',
+                        fontFamily:'var(--ins-font-family-mono)',
                         fontSize:'10.5px',
                         color:s.cliff?'var(--ins-status-error-fg)':'var(--ins-text-body)',
                         width:'34px',textAlign:'right',flexShrink:0,
@@ -205,8 +205,8 @@ function Hero() {
                     borderRadius:'10px',
                     padding:'10px 12px',
                   }}>
-                    <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'4px'}}>{m.label}</div>
-                    <div style={{fontSize:'14px',fontWeight:500,color:m.color,fontFamily:'Geist Mono,monospace',letterSpacing:'-.01em'}}>{m.val}</div>
+                    <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'4px'}}>{m.label}</div>
+                    <div style={{fontSize:'var(--ins-font-size-14)',fontWeight:500,color:m.color,fontFamily:'var(--ins-font-family-mono)',letterSpacing:'-.01em'}}>{m.val}</div>
                   </div>
                 ))}
               </div>
@@ -233,8 +233,8 @@ function Hero() {
                 flexShrink:0,
               }}/>
               <div>
-                <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase'}}>Experiment</div>
-                <div style={{fontSize:'12.5px',color:'var(--ins-color-purple-400)',fontWeight:500,fontFamily:'Geist Mono,monospace',marginTop:'1px'}}>onboarding_v3</div>
+                <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>Experiment</div>
+                <div style={{fontSize:'12.5px',color:'var(--ins-color-purple-400)',fontWeight:500,fontFamily:'var(--ins-font-family-mono)',marginTop:'1px'}}>onboarding_v3</div>
               </div>
             </div>
 
@@ -255,8 +255,8 @@ function Hero() {
               zIndex:2,
             }}>
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'8px'}}>
-                <span style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase'}}>Retention</span>
-                <span style={{fontSize:'10.5px',color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',fontWeight:500}}>W12 · 28%</span>
+                <span style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>Retention</span>
+                <span style={{fontSize:'10.5px',color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontWeight:500}}>W12 · 28%</span>
               </div>
               <svg viewBox="0 0 140 32" width="100%" height="28" preserveAspectRatio="none" style={{display:'block',marginBottom:'4px'}}>
                 <defs>
@@ -270,7 +270,7 @@ function Hero() {
                 <circle cx="0" cy="2" r="2" fill="var(--ins-text-highlight)"/>
                 <circle cx="140" cy="28" r="2" fill="var(--ins-text-highlight)"/>
               </svg>
-              <div style={{display:'flex',justifyContent:'space-between',fontSize:'9px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.04em'}}>
+              <div style={{display:'flex',justifyContent:'space-between',fontSize:'9px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.04em'}}>
                 <span>W0</span><span>W4</span><span>W8</span><span>W12</span>
               </div>
             </div>
@@ -315,8 +315,8 @@ function PainPoints() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'56px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
-            <span style={{fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'Geist Mono,monospace'}}>The Problem</span>
+            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>The Problem</span>
           </div>
           <h2 className="ins-text-display mb-3">
             Data teams spend 80% of time on reporting
@@ -482,7 +482,7 @@ function RelevantIntegrations() {
               </div>
               <div>
                 <div style={{fontSize:'13px',fontWeight:500,color:'var(--ins-color-gray-100)'}}>{c.name}</div>
-                <div style={{fontSize:'11px',color:'var(--ins-text-inactive)',marginTop:'2px'}}>{c.desc}</div>
+                <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-inactive)',marginTop:'2px'}}>{c.desc}</div>
               </div>
             </div>
           ))}
@@ -526,8 +526,8 @@ function Metrics() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'48px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
-            <span style={{fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'Geist Mono,monospace'}}>Metrics That Matter</span>
+            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>Metrics That Matter</span>
           </div>
           <h2 className="ins-text-display mb-3">
             Every KPI a data team monitors
@@ -558,8 +558,8 @@ function BeforeAfter() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'52px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
-            <span style={{fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'Geist Mono,monospace'}}>The Difference</span>
+            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>The Difference</span>
           </div>
           <h2 className="ins-text-display mb-3">
             Data teams before vs. after Insightis
@@ -593,7 +593,7 @@ function BeforeAfter() {
 
         <div style={{textAlign:'center',marginTop:'36px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
-            <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',lineHeight:1,flexShrink:0}}>4×</span>
+            <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',lineHeight:1,flexShrink:0}}>4×</span>
             <span className="ins-text-body-lg" style={{whiteSpace:'nowrap'}}>more time for real analysis. Self-serve deflects 80% of ad hoc requests.</span>
           </div>
         </div>
@@ -644,7 +644,7 @@ function Positioning() {
           display:'inline-flex',alignItems:'center',gap:'8px',
           padding:'10px 20px',borderRadius:'999px',
           border:'1px solid var(--ins-color-white-a-12)',
-          color:'var(--ins-text-body)',fontSize:'14px',fontWeight:400,
+          color:'var(--ins-text-body)',fontSize:'var(--ins-font-size-14)',fontWeight:400,
           textDecoration:'none',
           background:'var(--ins-color-white-a-03)',
           transition:'all .2s',
@@ -698,8 +698,8 @@ function SpotlightChat() {
                 borderRadius:'9px',
                 padding:'8px 10px',
               }}>
-                <div style={{fontSize:'9px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'3px'}}>{k.label}</div>
-                <div style={{fontSize:'13.5px',fontWeight:500,color:k.color,fontFamily:'Geist Mono,monospace',letterSpacing:'-.01em',marginBottom:'2px'}}>{k.val}</div>
+                <div style={{fontSize:'9px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'3px'}}>{k.label}</div>
+                <div style={{fontSize:'13.5px',fontWeight:500,color:k.color,fontFamily:'var(--ins-font-family-mono)',letterSpacing:'-.01em',marginBottom:'2px'}}>{k.val}</div>
                 <div style={{fontSize:'9.5px',color:'var(--ins-text-body)'}}>{k.sub}</div>
               </div>
             ))}
@@ -710,7 +710,7 @@ function SpotlightChat() {
             display:'flex',alignItems:'center',gap:'6px',
             paddingTop:'8px',
             borderTop:'1px solid var(--ins-color-white-a-05)',
-            fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-inactive)',
+            fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',
           }}>
             <span style={{letterSpacing:'.06em',textTransform:'uppercase'}}>Source</span>
             <span style={{color:'var(--ins-text-highlight)'}}>events.fct_feature_use</span>
@@ -731,7 +731,7 @@ function ChromeHeader({ label }) {
           <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
         ))}
       </div>
-      <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono, monospace'}}>
+      <div style={{flex:1,textAlign:'center',fontSize:'var(--ins-font-size-12)',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>
         {label}
       </div>
     </div>
@@ -759,7 +759,7 @@ function SpotlightSemantic() {
       <div style={{padding:'22px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
         {/* Section eyebrow */}
         <div style={{textAlign:'center',marginBottom:'12px'}}>
-          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>three teams · three definitions</span>
+          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>three teams · three definitions</span>
         </div>
 
         {/* Three conflicting team definitions */}
@@ -772,7 +772,7 @@ function SpotlightSemantic() {
               padding:'10px 8px',
               textAlign:'center',
             }}>
-              <div style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:t.color,letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'5px'}}>{t.team}</div>
+              <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9px',color:t.color,letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'5px'}}>{t.team}</div>
               <div style={{fontSize:'11.5px',color:'var(--ins-text-body)'}}>{t.def}</div>
             </div>
           ))}
@@ -794,12 +794,12 @@ function SpotlightSemantic() {
           padding:'14px 14px',
         }}>
           <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'10px'}}>
-            <div style={{fontFamily:'Geist Mono,monospace',fontSize:'13.5px',color:'var(--ins-color-gray-100)',fontWeight:500}}>active_user</div>
+            <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'13.5px',color:'var(--ins-color-gray-100)',fontWeight:500}}>active_user</div>
             <span style={{
               display:'inline-flex',alignItems:'center',gap:'5px',
               padding:'3px 9px',borderRadius:'999px',
               background:'rgba(34,197,94,.08)',border:'1px solid rgba(34,197,94,.3)',
-              fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-status-success-fg)',
+              fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-status-success-fg)',
               letterSpacing:'.06em',textTransform:'uppercase',
             }}>
               <span style={{width:'5px',height:'5px',borderRadius:'50%',background:'var(--ins-status-success-fg)'}}/>
@@ -807,7 +807,7 @@ function SpotlightSemantic() {
             </span>
           </div>
           <div style={{
-            fontFamily:'Geist Mono,monospace',
+            fontFamily:'var(--ins-font-family-mono)',
             fontSize:'11.5px',
             color:'var(--ins-text-body)',
             background:'rgba(0,0,0,.2)',
@@ -820,8 +820,8 @@ function SpotlightSemantic() {
             <span style={{color:'var(--ins-text-body)'}}>users with</span> <span style={{color:'var(--ins-text-highlight)'}}>core_action</span> <span style={{color:'var(--ins-text-body)'}}>in 7d / new_signups</span>
           </div>
           <div style={{display:'flex',justifyContent:'space-between',gap:'10px',fontSize:'10.5px',color:'var(--ins-text-body)'}}>
-            <span><span style={{color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.06em',textTransform:'uppercase',fontSize:'9px',marginRight:'5px'}}>Owned</span>Product Analytics</span>
-            <span><span style={{color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.06em',textTransform:'uppercase',fontSize:'9px',marginRight:'5px'}}>Used by</span>12 reports · 3 teams</span>
+            <span><span style={{color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.06em',textTransform:'uppercase',fontSize:'9px',marginRight:'5px'}}>Owned</span>Product Analytics</span>
+            <span><span style={{color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.06em',textTransform:'uppercase',fontSize:'9px',marginRight:'5px'}}>Used by</span>12 reports · 3 teams</span>
           </div>
         </div>
       </div>
@@ -850,7 +850,7 @@ function SpotlightAnomalies() {
       <div style={{padding:'20px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
         {/* User question */}
         <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'12px'}}>
-          <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.08em',textTransform:'uppercase'}}>asked</span>
+          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.08em',textTransform:'uppercase'}}>asked</span>
           <span style={{fontSize:'12.5px',color:'var(--ins-text-body)'}}>"Which cohort is dragging activation?"</span>
         </div>
 
@@ -863,12 +863,12 @@ function SpotlightAnomalies() {
           marginBottom:'12px',
         }}>
           <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'8px'}}>
-            <div style={{display:'flex',gap:'10px',fontFamily:'Geist Mono,monospace',fontSize:'9.5px',alignItems:'center'}}>
+            <div style={{display:'flex',gap:'10px',fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',alignItems:'center'}}>
               <span style={{color:'var(--ins-color-purple-400)',display:'inline-flex',alignItems:'center',gap:'4px'}}><span style={{width:'10px',height:'2px',background:'var(--ins-color-purple-400)',borderRadius:'1px'}}/>Apr</span>
               <span style={{color:'var(--ins-status-error-fg)',display:'inline-flex',alignItems:'center',gap:'4px'}}><span style={{width:'10px',height:'2px',background:'var(--ins-status-error-fg)',borderRadius:'1px'}}/>May</span>
               <span style={{color:'var(--ins-text-highlight)',display:'inline-flex',alignItems:'center',gap:'4px'}}><span style={{width:'10px',height:'2px',background:'var(--ins-text-highlight)',borderRadius:'1px'}}/>Jun</span>
             </div>
-            <span style={{fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-body)'}}>activation · D7</span>
+            <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-body)'}}>activation · D7</span>
           </div>
           <svg viewBox="0 0 280 60" width="100%" height="60" preserveAspectRatio="none" style={{display:'block'}}>
             <line x1="0" y1="18" x2="280" y2="18" stroke="rgba(255,255,255,0.04)" strokeDasharray="2,3"/>
@@ -897,8 +897,8 @@ function SpotlightAnomalies() {
                 width:'6px',height:'6px',borderRadius:'50%',
                 background:r.color,flexShrink:0,
               }}/>
-              <span style={{fontSize:'11.5px',color:'var(--ins-text-body)',flex:1,fontFamily:'Geist Mono,monospace'}}>{r.seg}</span>
-              <span style={{fontSize:'12px',fontWeight:500,color:r.color,fontFamily:'Geist Mono,monospace'}}>{r.val}</span>
+              <span style={{fontSize:'11.5px',color:'var(--ins-text-body)',flex:1,fontFamily:'var(--ins-font-family-mono)'}}>{r.seg}</span>
+              <span style={{fontSize:'var(--ins-font-size-12)',fontWeight:500,color:r.color,fontFamily:'var(--ins-font-family-mono)'}}>{r.val}</span>
             </div>
           ))}
         </div>
@@ -953,7 +953,7 @@ function SpotlightStack() {
       <div style={{padding:'20px 20px',flex:1,display:'flex',alignItems:'center',gap:'4px',position:'relative'}}>
         {/* Left column: source tiles stacked vertically */}
         <div style={{flex:'1 1 46%',display:'flex',flexDirection:'column',gap:'7px',position:'relative',zIndex:2}}>
-          <div style={{fontFamily:'Geist Mono,monospace',fontSize:'9px',color:'var(--ins-text-inactive)',letterSpacing:'.12em',textTransform:'uppercase',marginBottom:'2px'}}>your stack</div>
+          <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9px',color:'var(--ins-text-inactive)',letterSpacing:'.12em',textTransform:'uppercase',marginBottom:'2px'}}>your stack</div>
           {sources.map((s,i) => (
             <div key={i} style={{
               display:'flex',alignItems:'center',gap:'10px',
@@ -971,7 +971,7 @@ function SpotlightStack() {
               }}>{s.icon}</div>
               <div style={{minWidth:0,flex:1}}>
                 <div style={{fontSize:'11.5px',fontWeight:500,color:'var(--ins-color-gray-100)',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{s.name}</div>
-                <div style={{fontFamily:'Geist Mono,monospace',fontSize:'8.5px',color:'var(--ins-text-inactive)',letterSpacing:'.08em',textTransform:'uppercase'}}>{s.kind}</div>
+                <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'8.5px',color:'var(--ins-text-inactive)',letterSpacing:'.08em',textTransform:'uppercase'}}>{s.kind}</div>
               </div>
               <div style={{
                 width:'7px',height:'7px',borderRadius:'50%',
@@ -1027,10 +1027,10 @@ function SpotlightStack() {
             </div>
             <div>
               <div style={{fontSize:'13.5px',fontWeight:600,color:'var(--ins-color-gray-100)'}}>Insightis</div>
-              <div style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.08em',textTransform:'uppercase',marginTop:'2px'}}>Semantic Layer</div>
+              <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.08em',textTransform:'uppercase',marginTop:'2px'}}>Semantic Layer</div>
             </div>
             <span style={{
-              fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-highlight)',
+              fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-highlight)',
               padding:'3px 9px',borderRadius:'999px',
               background:'rgba(9,160,157,.12)',border:'1px solid rgba(9,160,157,.3)',
               letterSpacing:'.08em',textTransform:'uppercase',
@@ -1100,8 +1100,8 @@ function FeatureSpotlights() {
               }}>
                 <div data-spotlight-text style={{order: reverse ? 2 : 0}}>
                   <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'18px'}}>
-                    <span style={{fontSize:'12px'}}>✦</span>
-                    <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'Geist Mono,monospace'}}>{s.eyebrow}</span>
+                    <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
+                    <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>{s.eyebrow}</span>
                   </div>
                   <h3 className="ins-text-h2" style={{marginBottom:'18px'}}>
                     {s.title}
@@ -1111,7 +1111,7 @@ function FeatureSpotlights() {
                   </p>
                   <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px'}}>
                     {s.bullets.map((b,bi) => (
-                      <li key={bi} style={{display:'flex',alignItems:'flex-start',gap:'10px',fontSize:'14px',color:'var(--ins-text-body)',lineHeight:1.55}}>
+                      <li key={bi} style={{display:'flex',alignItems:'flex-start',gap:'10px',fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)',lineHeight:1.55}}>
                         <CheckIcon size={12} style={{flexShrink:0,marginTop:'4px'}} />
                         {b}
                       </li>
@@ -1221,7 +1221,7 @@ function UseCases() {
               <div style={{width:'38px',height:'38px',borderRadius:'10px',background:'var(--ins-color-teal-a-08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'14px'}}>
                 {c.icon}
               </div>
-              <h3 style={{fontSize:'15px',fontWeight:600,color:'var(--ins-text-heading-soft)',marginBottom:'6px'}}>{c.title}</h3>
+              <h3 style={{fontSize:'var(--ins-font-size-15)',fontWeight:600,color:'var(--ins-text-heading-soft)',marginBottom:'6px'}}>{c.title}</h3>
               <p className="ins-text-body">{c.desc}</p>
             </div>
           ))}
@@ -1259,8 +1259,8 @@ function Testimonials() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'56px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
-            <span style={{fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'Geist Mono,monospace'}}>Stories</span>
+            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>Stories</span>
           </div>
           <h2 className="ins-text-display mb-3">
             Data teams who stopped firefighting
@@ -1317,8 +1317,8 @@ function FAQ() {
       <div style={{maxWidth:'880px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'52px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
-            <span style={{fontSize:'12px'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'Geist Mono,monospace'}}>FAQ</span>
+            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>FAQ</span>
           </div>
           <h2 className="ins-text-display mb-3">
             Questions product teams ask

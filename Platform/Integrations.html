@@ -83,7 +83,7 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: 'Geist', sans-serif; background: var(--ins-surface-page); color: var(--ins-color-gray-50); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+body { font-family: var(--ins-font-family-sans); background: var(--ins-surface-page); color: var(--ins-color-gray-50); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 h1, h2, h3 { font-family: var(--ins-font-family-sans); letter-spacing: -0.04em; line-height: 1.05; text-wrap: balance; }
 p { text-wrap: pretty; }
 body::before {
@@ -117,7 +117,7 @@ body::before {
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-thumb { background: var(--ins-color-white-a-10); border-radius: 2px; }
 .connector-card { display:flex; align-items:center; gap:12px; padding:14px 16px; background:rgba(255,255,255,.025); border:1px solid var(--ins-color-white-a-06); border-radius:12px; cursor:default; position:relative; }
-.connector-icon { width:36px; height:36px; border-radius:9px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:10px; font-weight:700; font-family:'Geist Mono',monospace; letter-spacing:-.02em; }
+.connector-icon { width:36px; height:36px; border-radius:9px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:10px; font-weight:700; font-family:var(--ins-font-family-mono); letter-spacing:-.02em; }
 
 /* ── ENHANCED STYLES ── */
 .text-gradient { background:linear-gradient(135deg, #fff 30%, var(--ins-text-highlight) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }

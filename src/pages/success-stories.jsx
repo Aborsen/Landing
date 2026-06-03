@@ -46,7 +46,7 @@ function StoriesHero() {
 
         {/* Featured success stories */}
         <div style={{marginBottom:'80px'}}>
-          <h2 className="fu2" style={{fontSize:'22px', fontWeight:500, color:'var(--ins-text-heading-soft)', letterSpacing:'-.02em', marginBottom:'28px'}}>Featured success stories</h2>
+          <h2 className="fu2" style={{fontSize:'var(--ins-font-size-22)', fontWeight:500, color:'var(--ins-text-heading-soft)', letterSpacing:'-.02em', marginBottom:'28px'}}>Featured success stories</h2>
           <div style={{display:'grid', gap:'20px'}} className="md:grid-cols-3 grid-cols-1">
             {featuredStories.map((story, i) => (
               <div key={i} className={`fu${i+2}`} style={{background:'var(--ins-color-white-a-03)', border:'1px solid var(--ins-color-white-a-07)', borderRadius:'16px', overflow:'hidden', transition:'all .25s'}}
@@ -58,11 +58,11 @@ function StoriesHero() {
                 </div>
                 {/* Content */}
                 <div style={{padding:'20px'}}>
-                  <h3 style={{fontSize:'15px', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{story.company}</h3>
+                  <h3 style={{fontSize:'var(--ins-font-size-15)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{story.company}</h3>
                   <p className="ins-text-body ins-text--italic" style={{marginBottom:'16px'}}>{story.quote}</p>
                   <div style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'5px 12px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.18)', borderRadius:'999px'}}>
                     <span style={{width:'6px', height:'6px', borderRadius:'50%', background:'var(--ins-text-highlight)', flexShrink:0}}/>
-                    <span style={{fontSize:'11px', fontWeight:500, color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)'}}>{story.product}</span>
+                    <span style={{fontSize:'var(--ins-font-size-11)', fontWeight:500, color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)'}}>{story.product}</span>
                   </div>
                 </div>
               </div>
@@ -106,14 +106,14 @@ function StoryGrid() {
               </div>
               <div style={{padding:'28px'}}>
               <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'16px'}}>
-                <span style={{fontSize:'11px', padding:'3px 10px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.15)', borderRadius:'999px', color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)'}}>{s.type}</span>
+                <span style={{fontSize:'var(--ins-font-size-11)', padding:'3px 10px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.15)', borderRadius:'999px', color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)'}}>{s.type}</span>
                 <span style={{fontSize:'10px', color:'var(--ins-text-disabled)', fontFamily:'var(--ins-font-family-mono)'}}>{s.size}</span>
               </div>
               <p className="ins-text-body" style={{marginBottom:'12px'}}>{s.challenge}</p>
               <p className="ins-text-body" style={{marginBottom:'20px'}}>{s.solution}</p>
-              <div style={{fontSize:'28px', fontWeight:500, color:'var(--ins-text-highlight)', fontFamily:'var(--ins-font-family-mono)', marginBottom:'4px'}}>{s.result}</div>
-              <div style={{fontSize:'12px', color:'var(--ins-text-body)', fontFamily:'var(--ins-font-family-mono)', marginBottom:'16px'}}>{s.resultLabel}</div>
-              <div style={{fontSize:'11px', color:'var(--ins-text-disabled)', fontFamily:'var(--ins-font-family-mono)', paddingTop:'12px', borderTop:'1px solid var(--ins-border-default)'}}>{s.team}</div>
+              <div style={{fontSize:'var(--ins-font-size-28)', fontWeight:500, color:'var(--ins-text-highlight)', fontFamily:'var(--ins-font-family-mono)', marginBottom:'4px'}}>{s.result}</div>
+              <div style={{fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-body)', fontFamily:'var(--ins-font-family-mono)', marginBottom:'16px'}}>{s.resultLabel}</div>
+              <div style={{fontSize:'var(--ins-font-size-11)', color:'var(--ins-text-disabled)', fontFamily:'var(--ins-font-family-mono)', paddingTop:'12px', borderTop:'1px solid var(--ins-border-default)'}}>{s.team}</div>
               </div>
             </div>
           ))}
@@ -163,7 +163,7 @@ function AnimatedStat({ num, prefix, suffix, label, started, delay }) {
           fontFamily:'var(--ins-font-family-mono)',
         }}>{prefix}{count}{suffix}</span>
       </div>
-      <div style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.5}}>{label}</div>
+      <div style={{fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-body)', lineHeight:1.5}}>{label}</div>
     </div>
   );
 }
@@ -210,7 +210,7 @@ function TextStat({ from, to, label, started, delay }) {
           {to}
         </span>
       </div>
-      <div style={{fontSize:'14px', color:'var(--ins-text-body)', lineHeight:1.5}}>{label}</div>
+      <div style={{fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-body)', lineHeight:1.5}}>{label}</div>
     </div>
   );
 }
@@ -262,7 +262,7 @@ function ResultsBanner() {
       <div style={{maxWidth:'1240px', width:'calc(100% - 32px)', margin:'0 auto'}}>
         <div style={{textAlign:'center', marginBottom:'40px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
-            <span style={{fontSize:'12px'}}>&#10022;</span>
+            <span style={{fontSize:'var(--ins-font-size-12)'}}>&#10022;</span>
             <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', fontFamily:'var(--ins-font-family-mono)'}}>Verified Impact</span>
           </div>
         </div>
@@ -288,8 +288,8 @@ function BottomCTA() {
             Join teams who <span style={{color:'var(--ins-button-primary-bg)'}}>stopped guessing.</span>
           </h3>
           <div style={{display:'flex', alignItems:'center', width:'100%', maxWidth:'420px', background:'#0D0D1A', border:'1px solid rgba(46,46,64,1)', borderRadius:'12px', overflow:'hidden', flex:'1 1 340px'}}>
-            <input type="email" placeholder="Enter your work email..." style={{flex:1, background:'transparent', fontSize:'14px', color:'var(--ins-text-body)', padding:'12px 16px', outline:'none', border:'none', fontFamily:'var(--ins-font-family-sans)', minWidth:0}} />
-            <button style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 20px', margin:'4px', fontSize:'12px', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'8px', border:'none', cursor:'pointer', whiteSpace:'nowrap', flexShrink:0, fontFamily:'var(--ins-font-family-sans)'}}>
+            <input type="email" placeholder="Enter your work email..." style={{flex:1, background:'transparent', fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-body)', padding:'12px 16px', outline:'none', border:'none', fontFamily:'var(--ins-font-family-sans)', minWidth:0}} />
+            <button style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 20px', margin:'4px', fontSize:'var(--ins-font-size-12)', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'8px', border:'none', cursor:'pointer', whiteSpace:'nowrap', flexShrink:0, fontFamily:'var(--ins-font-family-sans)'}}>
               Start for Free
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </button>

@@ -29,7 +29,7 @@ function BlogHero() {
   return (
     <section style={{padding:'120px 0 60px', textAlign:'center', position:'relative'}}>
       <div style={{maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
-        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid var(--ins-color-white-a-07)', background:'var(--ins-color-white-a-03)', fontSize:'12px', color:'var(--ins-text-body)', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
+        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid var(--ins-color-white-a-07)', background:'var(--ins-color-white-a-03)', fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-body)', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
           ✦ BLOG
         </div>
         <h1 className="fu1" style={{fontSize:'clamp(36px,5vw,56px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'var(--ins-text-heading-soft)', marginBottom:'20px'}}>
@@ -63,18 +63,18 @@ function FeaturedPost() {
             {/* Left: Text content (60%) */}
             <div style={{flex:'1 1 340px', padding:'36px 40px', display:'flex', flexDirection:'column', justifyContent:'center', gap:'16px'}}>
               <div>
-                <span style={{fontSize:'11px', padding:'4px 10px', borderRadius:'999px', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.25)', color:'var(--ins-text-highlight)', fontWeight:500, letterSpacing:'0.04em'}}>Product Update</span>
+                <span style={{fontSize:'var(--ins-font-size-11)', padding:'4px 10px', borderRadius:'999px', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.25)', color:'var(--ins-text-highlight)', fontWeight:500, letterSpacing:'0.04em'}}>Product Update</span>
               </div>
-              <h2 style={{fontSize:'24px', fontWeight:500, color:'var(--ins-text-heading-soft)', lineHeight:1.35, letterSpacing:'-.02em'}}>
+              <h2 style={{fontSize:'var(--ins-font-size-24)', fontWeight:500, color:'var(--ins-text-heading-soft)', lineHeight:1.35, letterSpacing:'-.02em'}}>
                 Introducing Insights Engine: From Surface Answers to Root Causes
               </h2>
               <p className="ins-text-body">
                 AI Chat gives you the what. Insights Engine tells you the why. Today we're launching the deep analysis layer that connects dots across your entire data ecosystem.
               </p>
-              <div style={{fontSize:'12px', color:'var(--ins-text-disabled)', fontFamily:'var(--ins-font-family-mono)'}}>
+              <div style={{fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-disabled)', fontFamily:'var(--ins-font-family-mono)'}}>
                 Apr 1, 2026 &middot; 6 min read
               </div>
-              <a href="#" style={{fontSize:'14px', color:'var(--ins-text-highlight)', textDecoration:'none', fontWeight:500, marginTop:'4px'}}>
+              <a href="#" style={{fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-highlight)', textDecoration:'none', fontWeight:500, marginTop:'4px'}}>
                 Read Article &rarr;
               </a>
             </div>
@@ -108,7 +108,7 @@ function CategoryFilter({ activeCategory, setActiveCategory }) {
                 variant={isActive ? 'brand' : 'neutral'}
                 onClick={() => setActiveCategory(cat)}
                 aria-pressed={isActive}
-                style={{cursor:'pointer', padding:'8px 14px', fontSize:'12px'}}
+                style={{cursor:'pointer', padding:'8px 14px', fontSize:'var(--ins-font-size-12)'}}
               >
                 {cat}
               </Chip>
@@ -175,13 +175,13 @@ function BlogGrid({ activeCategory, activeTag }) {
                 <div style={{marginBottom:'10px'}}>
                   <span style={{fontSize:'10px', padding:'3px 8px', borderRadius:'999px', background:'var(--ins-surface-brand-tint)', border:'1px solid var(--ins-border-brand)', color:'var(--ins-text-highlight)', fontWeight:500, letterSpacing:'0.04em'}}>{article.category}</span>
                 </div>
-                <h3 style={{fontSize:'16px', fontWeight:500, color:'var(--ins-text-heading-soft)', lineHeight:1.4, marginBottom:'8px', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:2, WebkitBoxOrient:'vertical'}}>
+                <h3 style={{fontSize:'var(--ins-font-size-16)', fontWeight:500, color:'var(--ins-text-heading-soft)', lineHeight:1.4, marginBottom:'8px', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:2, WebkitBoxOrient:'vertical'}}>
                   {article.title}
                 </h3>
                 <p className="ins-text-body" style={{marginBottom:'12px', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:3, WebkitBoxOrient:'vertical'}}>
                   {article.description}
                 </p>
-                <div style={{fontSize:'11px', color:'var(--ins-text-disabled)', fontFamily:'var(--ins-font-family-mono)', marginTop:'auto'}}>
+                <div style={{fontSize:'var(--ins-font-size-11)', color:'var(--ins-text-disabled)', fontFamily:'var(--ins-font-family-mono)', marginTop:'auto'}}>
                   {article.date} &middot; {article.readTime} read
                 </div>
               </div>
@@ -235,7 +235,7 @@ function BottomCTA() {
               type="text"
               placeholder="Enter your work email..."
               style={{
-                flex:1,background:'transparent',fontSize:'14px',color:'var(--ins-text-body)',
+                flex:1,background:'transparent',fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)',
                 padding:'12px 16px',outline:'none',border:'none',
                 fontFamily:'var(--ins-font-family-sans)',minWidth:0,
                 height:'auto',borderRadius:0,boxShadow:'none',
@@ -294,7 +294,7 @@ function App() {
             variant="brand"
             onRemove={clearTag}
             aria-label="Clear tag filter"
-            style={{fontSize:'12px', padding:'8px 14px'}}
+            style={{fontSize:'var(--ins-font-size-12)', padding:'8px 14px'}}
           >
             Filtered by tag:&nbsp;<strong style={{fontWeight:600}}>#{activeTag}</strong>
           </Chip>
