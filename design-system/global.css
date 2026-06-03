@@ -134,7 +134,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: inherit; font-size: inherit; }
   font-weight: 600;
   letter-spacing: -0.035em;
   line-height: 1.05;
-  margin-bottom: 24px;
+  margin-bottom: var(--ins-size-6);
   color: var(--ins-text-heading);
 }
 .ins-text-hero {

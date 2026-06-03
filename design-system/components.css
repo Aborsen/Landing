@@ -289,7 +289,7 @@
    - RIGHT side = active utility actions only (clear button, action button, spinner, etc.). Interactive.
 */
 .ins-input-wrap { position: relative; }
-.ins-input-wrap .ins-input--with-leading { padding-left: 32px; }         /* icon (16) + gap (8) + input-start (8) */
+.ins-input-wrap .ins-input--with-leading { padding-left: var(--ins-size-8); }         /* icon (16) + gap (8) + input-start (8) */
 .ins-input-wrap .ins-input--with-trailing { padding-right: var(--ins-space-3xl); }
 /* Passive icon — informational only (search glyph, mail glyph). Uses inactive/dim color.
    Non-interactive — `pointer-events: none` ensures clicks pass through to the input. */
@@ -451,7 +451,7 @@
   background: var(--ins-surface-card);
   border: var(--ins-border-width-1) solid var(--ins-border-default);
   border-radius: var(--ins-radius-pill);
-  gap: 2px;
+  gap: var(--ins-size-half);
 }
 .ins-segmented__item {
   padding: var(--ins-space-sm) var(--ins-space-lg);
@@ -1022,7 +1022,7 @@
 .ins-banner-top--brand   { background: var(--ins-surface-brand-tint); }
 .ins-banner-top__close {
   margin-left: var(--ins-space-sm);
-  background: transparent; border: 0; padding: 4px;
+  background: transparent; border: 0; padding: var(--ins-size-1);
   color: currentColor; cursor: pointer;
   border-radius: var(--ins-radius-sm);
 }
@@ -1130,7 +1130,7 @@
   align-items: center;
   gap: var(--ins-space-sm);
   padding: 10px var(--ins-space-xl);
-  margin: 4px;
+  margin: var(--ins-size-1);
   font-family: var(--ins-font-family-sans);
   font-size: 13px;
   font-weight: var(--ins-font-weight-500);
@@ -1235,7 +1235,7 @@
 
 /* Removable tag — tighter spacing between label + close */
 .ins-badge__remove {
-  margin-left: 2px;                  /* was --ins-space-xs (4) — reduced to 2px */
+  margin-left: var(--ins-size-half);                  /* was --ins-space-xs (4) — reduced to 2px */
   margin-right: -2px;                /* pull close to chip edge */
   width: 14px; height: 14px;
   background: transparent; border: 0; padding: 0;
@@ -1246,7 +1246,7 @@
 }
 .ins-badge__remove:hover { opacity: 1; background: var(--ins-color-white-a-12); }
 /* Tighten padding on removable chips so text + close feel balanced */
-.ins-badge:has(.ins-badge__remove) { padding-right: 4px; }
+.ins-badge:has(.ins-badge__remove) { padding-right: var(--ins-size-1); }
 .ins-badge--metric-pill {
   font-family: var(--ins-font-family-mono);
   background: var(--ins-surface-card);
@@ -1379,7 +1379,7 @@
    Docs sidebar navigation. Group label uses .ins-text-overline.
    (Table of contents uses the existing .ins-toc component further below.)
    ══════════════════════════════════════════════════════════════════ */
-.ins-doc-nav__group { margin-bottom: 4px; }
+.ins-doc-nav__group { margin-bottom: var(--ins-size-1); }
 .ins-doc-nav__group-toggle {
   display: flex; align-items: center; justify-content: space-between;
   width: 100%; padding: 6px 16px;
@@ -1495,7 +1495,7 @@
 .ins-navbar-menu__item-desc {
   font-size: var(--ins-font-size-12);
   color: var(--ins-text-inactive);
-  margin-top: 2px;
+  margin-top: var(--ins-size-half);
 }
 .ins-navbar__brand {
   display: inline-flex;
@@ -1513,7 +1513,7 @@
 .ins-navbar__link {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--ins-size-1);
   padding: 6px var(--ins-space-lg);
   color: var(--ins-text-inactive);
   background: transparent;
@@ -1568,7 +1568,7 @@
 @media (min-width: 1024px) { .ins-sidebar { display: flex; } }
 
 /* Group — each gets an indented rail built from 1px left border on every link */
-.ins-sidebar__section { display: flex; flex-direction: column; gap: 2px; }
+.ins-sidebar__section { display: flex; flex-direction: column; gap: var(--ins-size-half); }
 .ins-sidebar__section-title {
   font-family: var(--ins-font-family-sans);
   font-size: var(--ins-font-size-11);
@@ -1686,7 +1686,7 @@
   content: '';
   display: inline-block;
   width: 10px; height: 10px;
-  margin-left: 4px;
+  margin-left: var(--ins-size-1);
   vertical-align: middle;
   background-color: currentColor;
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 2H10V8.5'/%3E%3Cpath d='M10 2L2 10'/%3E%3C/svg%3E");
@@ -1903,7 +1903,7 @@
   padding: 0 var(--ins-space-md) var(--ins-space-sm);
   margin-bottom: var(--ins-space-xs);
 }
-.ins-toc__list { display: flex; flex-direction: column; gap: 2px; margin: 0; padding: 0; list-style: none; }
+.ins-toc__list { display: flex; flex-direction: column; gap: var(--ins-size-half); margin: 0; padding: 0; list-style: none; }
 .ins-toc__link {
   display: block;
   padding: 6px var(--ins-space-md);
@@ -2034,7 +2034,7 @@
   flex-shrink: 0;
   width: var(--ins-icon-size-16);
   height: var(--ins-icon-size-16);
-  margin-top: 2px;
+  margin-top: var(--ins-size-half);
 }
 .ins-comparison__mark--check { color: var(--ins-status-success-fg); }
 .ins-comparison__mark--x     { color: var(--ins-status-error-fg); }
@@ -2840,7 +2840,7 @@ kbd, .ins-kbd {
 /* 5-star row (optional, homepage style) */
 .ins-testimonial__stars {
   display: flex;
-  gap: 4px;
+  gap: var(--ins-size-1);
   margin-bottom: var(--ins-space-md);
   color: var(--ins-color-amber-400);
 }
@@ -2878,7 +2878,7 @@ kbd, .ins-kbd {
 .ins-testimonial__role {
   font-size: var(--ins-font-size-12);
   color: var(--ins-text-inactive);
-  margin-top: 2px;
+  margin-top: var(--ins-size-half);
 }
 
 .ins-testimonial__company {

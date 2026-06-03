@@ -115,7 +115,7 @@ function ShareButtons({ slug, title }) {
   };
 
   const baseBtn = {
-    display: 'inline-flex', alignItems: 'center', gap: '8px',
+    display: 'inline-flex', alignItems: 'center', gap: 'var(--ins-size-2)',
     padding: '8px 14px',
     background: 'var(--ins-surface-card)',
     border: '1px solid var(--ins-border-default)',
@@ -129,8 +129,8 @@ function ShareButtons({ slug, title }) {
   };
 
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px', margin: '32px 0', paddingTop: '24px', borderTop: '1px solid var(--ins-border-default)' }}>
-      <span style={{ fontSize: 'var(--ins-font-size-14)', color: 'var(--ins-text-body)', marginRight: '4px' }}>Share</span>
+    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 'var(--ins-size-2)', margin: '32px 0', paddingTop: 'var(--ins-size-6)', borderTop: '1px solid var(--ins-border-default)' }}>
+      <span style={{ fontSize: 'var(--ins-font-size-14)', color: 'var(--ins-text-body)', marginRight: 'var(--ins-size-1)' }}>Share</span>
       <a href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`} target="_blank" rel="noopener noreferrer" aria-label="Share on X" style={baseBtn}><XIcon /> X</a>
       <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`} target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" style={baseBtn}><LinkedInIcon /> LinkedIn</a>
       <a href={`https://reddit.com/submit?url=${encodedUrl}&title=${encodedTitle}`} target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit" style={baseBtn}><RedditIcon /> Reddit</a>
@@ -180,15 +180,15 @@ function TableOfContents({ items }) {
         top: '96px',
         maxHeight: 'calc(100vh - 120px)',
         overflowY: 'auto',
-        paddingRight: '8px',
+        paddingRight: 'var(--ins-size-2)',
         display: 'flex',
         flexDirection: 'column',
-        gap: '28px',
+        gap: 'var(--ins-size-7)',
       }}>
         {/* On this page (TOC) */}
         {items.length > 0 && (
           <div>
-            <p className="ins-text-overline" style={{marginBottom: '12px'}}>On this page</p>
+            <p className="ins-text-overline" style={{marginBottom: 'var(--ins-size-3)'}}>On this page</p>
             {/* src/app.css:119 has a global `nav { display:flex; padding:0 48px;
                 height:58px; ... }` rule originally for the site-wide top nav.
                 Inside this TOC sidebar `<nav>` it nukes layout — the 96px
@@ -211,7 +211,7 @@ function TableOfContents({ items }) {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'stretch',
-                gap: '4px',
+                gap: 'var(--ins-size-1)',
               }}>
                 {items.map(item => (
                   <li key={item.id} style={{ width: '100%' }}>
@@ -242,7 +242,7 @@ function TableOfContents({ items }) {
 
         {/* Topics */}
         <div>
-          <p className="ins-text-overline" style={{marginBottom: '12px'}}>Topics</p>
+          <p className="ins-text-overline" style={{marginBottom: 'var(--ins-size-3)'}}>Topics</p>
           <ul style={{
             listStyle: 'none',
             padding: 0,
@@ -262,7 +262,7 @@ function TableOfContents({ items }) {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    gap: '8px',
+                    gap: 'var(--ins-size-2)',
                     padding: '10px 4px',
                     borderBottom: '1px solid var(--ins-border-default)',
                     fontSize: 'var(--ins-font-size-14)',
@@ -284,8 +284,8 @@ function TableOfContents({ items }) {
 
         {/* Social */}
         <div>
-          <p className="ins-text-overline" style={{marginBottom: '12px'}}>Social</p>
-          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+          <p className="ins-text-overline" style={{marginBottom: 'var(--ins-size-3)'}}>Social</p>
+          <div style={{ display: 'flex', gap: 'var(--ins-size-2)', flexWrap: 'wrap' }}>
             {socials.map(({ label, href, Icon }) => (
               <a
                 key={href}
@@ -339,11 +339,11 @@ function TopicsSidebar({ currentSlug }) {
         top: '96px',
         maxHeight: 'calc(100vh - 120px)',
         overflowY: 'auto',
-        paddingRight: '8px',
+        paddingRight: 'var(--ins-size-2)',
       }}>
         {/* Topics */}
         <div>
-          <p className="ins-text-overline" style={{marginBottom: '12px'}}>Topics</p>
+          <p className="ins-text-overline" style={{marginBottom: 'var(--ins-size-3)'}}>Topics</p>
           <ul style={{
             listStyle: 'none',
             padding: 0,
@@ -352,7 +352,7 @@ function TopicsSidebar({ currentSlug }) {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'stretch',
-            gap: '2px',
+            gap: 'var(--ins-size-half)',
             borderTop: '1px solid var(--ins-border-default)',
           }}>
             {items.map(([category, count]) => (
@@ -363,7 +363,7 @@ function TopicsSidebar({ currentSlug }) {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    gap: '8px',
+                    gap: 'var(--ins-size-2)',
                     padding: '10px 4px',
                     borderBottom: '1px solid var(--ins-border-default)',
                     fontSize: 'var(--ins-font-size-14)',
@@ -384,9 +384,9 @@ function TopicsSidebar({ currentSlug }) {
         </div>
 
         {/* Social */}
-        <div style={{ marginTop: '32px' }}>
-          <p className="ins-text-overline" style={{marginBottom: '12px'}}>Social</p>
-          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+        <div style={{ marginTop: 'var(--ins-size-8)' }}>
+          <p className="ins-text-overline" style={{marginBottom: 'var(--ins-size-3)'}}>Social</p>
+          <div style={{ display: 'flex', gap: 'var(--ins-size-2)', flexWrap: 'wrap' }}>
             {socials.map(({ label, href, Icon }) => (
               <a
                 key={href}
@@ -468,7 +468,7 @@ function BackToTop() {
 function CTABanner() {
   return (
     <section style={{
-      marginTop: '64px',
+      marginTop: 'var(--ins-size-16)',
       borderRadius: 'var(--ins-radius-xl)',
       border: '1px solid var(--ins-border-brand)',
       background: 'linear-gradient(135deg, var(--ins-surface-brand-tint) 0%, var(--ins-surface-card) 60%, var(--ins-surface-brand-tint) 100%)',
@@ -477,14 +477,14 @@ function CTABanner() {
       position: 'relative',
     }}>
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, var(--ins-color-teal-a-50), transparent)' }} />
-      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '20px' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--ins-size-5)' }}>
         <div style={{ flex: '1 1 280px' }}>
           <h3 style={{
             fontSize: 'var(--ins-font-size-22)',
             fontWeight: 600,
             color: 'var(--ins-text-heading)',
             letterSpacing: '-0.02em',
-            marginBottom: '8px',
+            marginBottom: 'var(--ins-size-2)',
           }}>Ready to stop exporting CSVs?</h3>
           <p className="ins-text-body" style={{maxWidth: '420px'}}>
             Insightis connects your stack and gives every team instant, governed answers — no SQL, no analyst queue. Free to start.
@@ -506,7 +506,7 @@ function RelatedArticles({ currentSlug }) {
   const others = POSTS.filter(p => p.slug !== currentSlug).slice(0, 3);
   if (others.length === 0) return null;
   return (
-    <aside aria-label="Related articles" style={{ marginTop: '80px', borderTop: '1px solid var(--ins-border-default)', paddingTop: '40px' }}>
+    <aside aria-label="Related articles" style={{ marginTop: 'var(--ins-size-20)', borderTop: '1px solid var(--ins-border-default)', paddingTop: 'var(--ins-size-10)' }}>
       {/* div (not h2) so the related-articles block doesn't pollute the
           article's outline / heading hierarchy — SEO-clean per QA. */}
       <div style={{
@@ -515,7 +515,7 @@ function RelatedArticles({ currentSlug }) {
         letterSpacing: '0.12em',
         textTransform: 'uppercase',
         color: 'var(--ins-text-body)',
-        marginBottom: '20px',
+        marginBottom: 'var(--ins-size-5)',
       }}>Related articles</div>
       <div className="blog-related-grid">
         {others.map(p => (
@@ -523,7 +523,7 @@ function RelatedArticles({ currentSlug }) {
             <div className="blog-related-cover">
               {p.image && <img src={p.image} alt="" loading="lazy" />}
             </div>
-            <div style={{ padding: '16px 18px 18px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <div style={{ padding: '16px 18px 18px', display: 'flex', flexDirection: 'column', gap: 'var(--ins-size-2)' }}>
               <span style={{
                 alignSelf: 'flex-start',
                 fontSize: '10px',
@@ -757,7 +757,7 @@ export default function BlogPost({ markdown, slug }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
-      <main style={{ paddingTop: '32px' }}>
+      <main style={{ paddingTop: 'var(--ins-size-8)' }}>
         <div className="blog-shell">
           {/* Left: TOC */}
           <TableOfContents items={toc} />
@@ -778,7 +778,7 @@ export default function BlogPost({ markdown, slug }) {
                 position: 'static',
                 background: 'transparent',
                 borderBottom: 'none',
-                marginBottom: '24px',
+                marginBottom: 'var(--ins-size-6)',
               }}
             >
               <ol style={{
@@ -817,7 +817,7 @@ export default function BlogPost({ markdown, slug }) {
             {/* Cover image */}
             {cover && (
               <div style={{
-                marginBottom: '32px',
+                marginBottom: 'var(--ins-size-8)',
                 borderRadius: 'var(--ins-radius-xl)',
                 overflow: 'hidden',
                 border: '1px solid var(--ins-border-default)',
@@ -829,7 +829,7 @@ export default function BlogPost({ markdown, slug }) {
             )}
 
             {/* Meta strip */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px', marginBottom: '20px', fontSize: 'var(--ins-font-size-14)', color: 'var(--ins-text-body)' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 'var(--ins-size-3)', marginBottom: 'var(--ins-size-5)', fontSize: 'var(--ins-font-size-14)', color: 'var(--ins-text-body)' }}>
               {meta.category && (
                 <span style={{
                   padding: '4px 10px',
@@ -854,19 +854,19 @@ export default function BlogPost({ markdown, slug }) {
               lineHeight: 1.15,
               letterSpacing: '-0.03em',
               color: 'var(--ins-text-heading-soft)',
-              marginBottom: '16px',
+              marginBottom: 'var(--ins-size-4)',
               textWrap: 'balance',
             }}>{meta.title || 'Untitled'}</h1>
 
             {/* Description */}
             {meta.description && (
-              <p className="ins-text-body-lg" style={{marginBottom: '24px',
+              <p className="ins-text-body-lg" style={{marginBottom: 'var(--ins-size-6)',
                 textWrap: 'pretty'}}>{meta.description}</p>
             )}
 
             {/* Tags — clickable, route to /blog/?tag=... to filter the index */}
             {tags.length > 0 && (
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '24px' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: 'var(--ins-size-6)' }}>
                 {tags.map(t => (
                   <a key={t} href={`/blog/?tag=${encodeURIComponent(t)}`} style={{
                     fontSize: 'var(--ins-font-size-11)',
@@ -893,8 +893,8 @@ export default function BlogPost({ markdown, slug }) {
                 gap: '10px',
                 fontSize: 'var(--ins-font-size-14)',
                 color: 'var(--ins-text-body)',
-                marginBottom: '32px',
-                paddingBottom: '24px',
+                marginBottom: 'var(--ins-size-8)',
+                paddingBottom: 'var(--ins-size-6)',
                 borderBottom: '1px solid var(--ins-border-default)',
               }}>
                 <div style={{
@@ -958,7 +958,7 @@ export default function BlogPost({ markdown, slug }) {
           padding: 40px 0 80px;
           display: grid;
           grid-template-columns: minmax(0, 1fr);
-          gap: 32px;
+          gap: var(--ins-size-8);
         }
         .blog-article { min-width: 0; }
         .blog-toc { display: none; }
@@ -966,7 +966,7 @@ export default function BlogPost({ markdown, slug }) {
         @media (min-width: 1100px) {
           .blog-shell {
             grid-template-columns: 240px minmax(0, 880px);
-            gap: 56px;
+            gap: var(--ins-size-14);
             justify-content: center;
           }
           .blog-toc { display: block; }
@@ -976,7 +976,7 @@ export default function BlogPost({ markdown, slug }) {
         .blog-related-grid {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 16px;
+          gap: var(--ins-size-4);
         }
         @media (min-width: 720px) {
           .blog-related-grid { grid-template-columns: repeat(3, 1fr); }
@@ -1023,14 +1023,14 @@ export default function BlogPost({ markdown, slug }) {
           border: 1px solid var(--ins-border-brand);
           border-radius: var(--ins-radius-pill);
           padding: 3px 10px;
-          margin-bottom: 12px;
+          margin-bottom: var(--ins-size-3);
         }
         .blog-tldr > h3 {
           margin-top: 0 !important;
           font-size: var(--ins-font-size-18);
           color: var(--ins-text-heading);
         }
-        .blog-tldr > * + * { margin-top: 12px; }
+        .blog-tldr > * + * { margin-top: var(--ins-size-3); }
         .blog-tldr p, .blog-tldr ul, .blog-tldr ol { color: var(--ins-text-body); }
 
         /* FAQ accordion — bordered card containing one <details> per Q&A. */
@@ -1049,7 +1049,7 @@ export default function BlogPost({ markdown, slug }) {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: 16px;
+          gap: var(--ins-size-4);
           padding: 16px 20px;
           cursor: pointer;
           list-style: none;
@@ -1075,7 +1075,7 @@ export default function BlogPost({ markdown, slug }) {
           font-size: var(--ins-font-size-15);
           line-height: 1.65;
         }
-        .blog-faq-a > * + * { margin-top: 12px; }
+        .blog-faq-a > * + * { margin-top: var(--ins-size-3); }
         .blog-faq-a a { color: var(--ins-text-highlight); text-decoration: underline; }
         .blog-faq-a code { font-family: var(--ins-font-family-mono); font-size: 0.92em; background: var(--ins-surface-elevated); border-radius: var(--ins-radius-sm); padding: 1px 6px; }
 
@@ -1085,7 +1085,7 @@ export default function BlogPost({ markdown, slug }) {
           font-size: var(--ins-font-size-16);
           line-height: 1.65;
         }
-        .blog-prose > * + * { margin-top: 16px; }
+        .blog-prose > * + * { margin-top: var(--ins-size-4); }
         .blog-prose h1, .blog-prose h2, .blog-prose h3, .blog-prose h4 {
           color: var(--ins-text-heading);
           font-weight: 600;
@@ -1093,9 +1093,9 @@ export default function BlogPost({ markdown, slug }) {
           line-height: 1.25;
           scroll-margin-top: 96px;
         }
-        .blog-prose h2 { font-size: var(--ins-font-size-28); margin-top: 48px; margin-bottom: 8px; }
-        .blog-prose h3 { font-size: var(--ins-font-size-20); margin-top: 32px; margin-bottom: 4px; }
-        .blog-prose h4 { font-size: var(--ins-font-size-17); margin-top: 24px; margin-bottom: 2px; }
+        .blog-prose h2 { font-size: var(--ins-font-size-28); margin-top: var(--ins-size-12); margin-bottom: var(--ins-size-2); }
+        .blog-prose h3 { font-size: var(--ins-font-size-20); margin-top: var(--ins-size-8); margin-bottom: var(--ins-size-1); }
+        .blog-prose h4 { font-size: var(--ins-font-size-17); margin-top: var(--ins-size-6); margin-bottom: var(--ins-size-half); }
         .blog-prose p  { color: var(--ins-text-body); }
         .blog-prose a  { color: var(--ins-text-highlight); text-decoration: underline; text-decoration-color: var(--ins-color-teal-a-50); text-underline-offset: 3px; }
         .blog-prose a:hover { color: var(--ins-color-teal-300); text-decoration-color: currentColor; }
@@ -1114,13 +1114,13 @@ export default function BlogPost({ markdown, slug }) {
           background: var(--ins-surface-container);
           border: 1px solid var(--ins-border-default);
           border-radius: var(--ins-radius-md);
-          padding: 16px;
+          padding: var(--ins-size-4);
           overflow-x: auto;
           font-size: var(--ins-font-size-14);
           line-height: 1.55;
         }
         .blog-prose pre code { background: none; border: none; padding: 0; }
-        .blog-prose ul, .blog-prose ol { padding-left: 24px; color: var(--ins-text-body); }
+        .blog-prose ul, .blog-prose ol { padding-left: var(--ins-size-6); color: var(--ins-text-body); }
         .blog-prose li { margin-top: 6px; }
         .blog-prose ul li { list-style: disc; }
         .blog-prose ol li { list-style: decimal; }
@@ -1140,7 +1140,7 @@ export default function BlogPost({ markdown, slug }) {
           max-width: 100%;
           height: auto;
           border-radius: var(--ins-radius-md);
-          margin-top: 8px;
+          margin-top: var(--ins-size-2);
         }
         .blog-prose table {
           border-collapse: collapse;

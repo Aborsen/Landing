@@ -31,24 +31,24 @@ function TermsContent() {
     sections.forEach(s => { const el = document.getElementById(s.id); if (el) observer.observe(el); });
     return () => observer.disconnect();
   }, []);
-  const sectionStyle = { marginBottom: '48px', scrollMarginTop: '100px' };
-  const h2Style = { fontSize: 'var(--ins-font-size-20)', fontWeight: 600, color: 'var(--ins-text-heading-soft)', marginBottom: '16px', letterSpacing: '-.01em' };
+  const sectionStyle = { marginBottom: 'var(--ins-size-12)', scrollMarginTop: '100px' };
+  const h2Style = { fontSize: 'var(--ins-font-size-20)', fontWeight: 600, color: 'var(--ins-text-heading-soft)', marginBottom: 'var(--ins-size-4)', letterSpacing: '-.01em' };
   const pStyle = { marginBottom: '14px' };
-  const ulStyle = { fontSize: 'var(--ins-font-size-15)', color: 'var(--ins-text-body)', lineHeight: 1.8, paddingLeft: '24px', marginBottom: '14px', listStyleType: 'disc' };
+  const ulStyle = { fontSize: 'var(--ins-font-size-15)', color: 'var(--ins-text-body)', lineHeight: 1.8, paddingLeft: 'var(--ins-size-6)', marginBottom: '14px', listStyleType: 'disc' };
 
   return (
     <section style={{position:'relative'}}>
       {/* Hero */}
       <div style={{padding:'120px 0 60px'}}>
         <div style={{maxWidth:'800px', margin:'0 auto', padding:'0 24px', textAlign:'center'}}>
-          <h1 className="fu1" style={{fontSize:'clamp(32px,5vw,48px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'16px', color:'var(--ins-text-heading-soft)'}}>Terms of Service</h1>
-          <p className="fu2 ins-text-body ins-text--muted ins-text--mono" style={{marginBottom:'20px'}}>Effective Date: April 6, 2026</p>
+          <h1 className="fu1" style={{fontSize:'clamp(32px,5vw,48px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'var(--ins-size-4)', color:'var(--ins-text-heading-soft)'}}>Terms of Service</h1>
+          <p className="fu2 ins-text-body ins-text--muted ins-text--mono" style={{marginBottom:'var(--ins-size-5)'}}>Effective Date: April 6, 2026</p>
           <p className="fu3 ins-text-body-lg ins-text--muted" style={pStyle}>These Terms of Service govern your access to and use of the Insightis platform, an AI-powered analytics workspace developed and operated by Devart. By accessing or using Insightis, you agree to be bound by these Terms. Please read them carefully before using the Service.</p>
         </div>
       </div>
 
       {/* Two-column: TOC + Content */}
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px 100px', display: 'flex', gap: '56px', alignItems: 'flex-start' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px 100px', display: 'flex', gap: 'var(--ins-size-14)', alignItems: 'flex-start' }}>
 
         {/* Sticky TOC */}
         <div role="navigation" aria-label="On this page" className="hidden md:block" style={{ width: '200px', flexShrink: 0, position: 'sticky', top: '90px' }}>
@@ -211,7 +211,7 @@ function TermsContent() {
         <div id="contact" style={sectionStyle}>
           <h2 style={h2Style}>14. Contact Us</h2>
           <p className="ins-text-body-lg" style={pStyle}>If you have any questions, concerns, or requests regarding these Terms of Service, please contact us at:</p>
-          <div style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-12)', padding:'20px 24px', marginTop:'8px'}}>
+          <div style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-12)', padding:'20px 24px', marginTop:'var(--ins-size-2)'}}>
             <p className="ins-text-body-lg" style={{margin:0}}>
               <strong style={{color:'var(--ins-text-body)'}}>Insightis Legal Team</strong><br/>
               Email: <a href="mailto:legal@insightis.ai" style={{color:'var(--ins-text-highlight)', textDecoration:'none', borderBottom:'1px solid var(--ins-color-teal-a-30)'}}>legal@insightis.ai</a><br/>

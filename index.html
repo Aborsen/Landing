@@ -95,7 +95,7 @@
   <div class="container">
     <div class="feat-header fade-in">
       <div class="section-label">Features</div>
-      <h2 class="ins-text-display" style="margin-bottom:16px">Built for Decision Velocity</h2>
+      <h2 class="ins-text-display" style="margin-bottom:var(--ins-size-4)">Built for Decision Velocity</h2>
       <p class="section-sub">Go from raw data connection to decision-ready insights in under five minutes. Seamlessly integrate your stack and let AI automate the entire journey from ingestion to actionable business signals.</p>
     </div>
     <div class="showcase fade-in">
@@ -114,7 +114,7 @@
             </svg>
 
             <!-- SUB-SCREEN A: Connector list -->
-            <div id="p0s1" style="padding:12px;display:flex;flex-direction:column;gap:9px;transition:opacity .35s ease,transform .35s ease">
+            <div id="p0s1" style="padding:var(--ins-size-3);display:flex;flex-direction:column;gap:9px;transition:opacity .35s ease,transform .35s ease">
               <div style="font-family:var(--ins-font-family-mono);font-size:8.5px;color:var(--ins-text-inactive);letter-spacing:.1em;text-transform:uppercase">Recently Added</div>
               <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
                 <!-- Salesforce -->
@@ -124,7 +124,7 @@
                     <div style="font-size:var(--ins-font-size-11);font-weight:500;color:var(--ins-text-heading);flex:1">Salesforce</div>
                     <div style="font-size:8px;font-weight:500;color:var(--ins-text-highlight);background:rgba(10,152,150,.12);border:1px solid rgba(10,152,150,.25);padding:1px 5px;border-radius:3px;font-family:var(--ins-font-family-mono)">Synced</div>
                   </div>
-                  <div style="display:flex;justify-content:space-between;margin-bottom:2px"><span style="font-size:9.5px;color:var(--ins-text-inactive)">Last Sync</span><span style="font-size:9.5px;color:var(--ins-text-body);font-family:var(--ins-font-family-mono)">2m ago</span></div>
+                  <div style="display:flex;justify-content:space-between;margin-bottom:var(--ins-size-half)"><span style="font-size:9.5px;color:var(--ins-text-inactive)">Last Sync</span><span style="font-size:9.5px;color:var(--ins-text-body);font-family:var(--ins-font-family-mono)">2m ago</span></div>
                   <div style="display:flex;justify-content:space-between"><span style="font-size:9.5px;color:var(--ins-text-inactive)">Records</span><span style="font-size:9.5px;color:var(--ins-text-body);font-family:var(--ins-font-family-mono)">38,201</span></div>
                 </div>
                 <!-- HubSpot -->
@@ -134,7 +134,7 @@
                     <div style="font-size:var(--ins-font-size-11);font-weight:500;color:var(--ins-text-heading);flex:1">HubSpot</div>
                     <div style="font-size:8px;font-weight:500;color:var(--ins-text-highlight);background:rgba(10,152,150,.12);border:1px solid rgba(10,152,150,.25);padding:1px 5px;border-radius:3px;font-family:var(--ins-font-family-mono)">Synced</div>
                   </div>
-                  <div style="display:flex;justify-content:space-between;margin-bottom:2px"><span style="font-size:9.5px;color:var(--ins-text-inactive)">Last Sync</span><span style="font-size:9.5px;color:var(--ins-text-body);font-family:var(--ins-font-family-mono)">5m ago</span></div>
+                  <div style="display:flex;justify-content:space-between;margin-bottom:var(--ins-size-half)"><span style="font-size:9.5px;color:var(--ins-text-inactive)">Last Sync</span><span style="font-size:9.5px;color:var(--ins-text-body);font-family:var(--ins-font-family-mono)">5m ago</span></div>
                   <div style="display:flex;justify-content:space-between"><span style="font-size:9.5px;color:var(--ins-text-inactive)">Records</span><span style="font-size:9.5px;color:var(--ins-text-body);font-family:var(--ins-font-family-mono)">12,847</span></div>
                 </div>
                 <!-- Add new -->
@@ -217,7 +217,7 @@
             </div><!-- /p0s1 -->
 
             <!-- SUB-SCREEN B: Stripe OAuth -->
-            <div id="p0s2" style="position:absolute;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;padding:12px;opacity:0;pointer-events:none;transition:opacity .3s ease">
+            <div id="p0s2" style="position:absolute;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;padding:var(--ins-size-3);opacity:0;pointer-events:none;transition:opacity .3s ease">
               <div id="p0modal" style="width:100%;max-width:290px;background:var(--ins-color-gray-800);border:1px solid var(--ins-color-white-a-10);border-radius:var(--ins-radius-2xl);overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.8);transform:scale(.95) translateY(8px);transition:transform .4s cubic-bezier(.34,1.56,.64,1)">
                 <!-- Header -->
                 <div style="padding:16px 16px 12px;text-align:center;border-bottom:1px solid var(--ins-color-white-a-06)">
@@ -235,16 +235,16 @@
                 </div>
                 <!-- Permissions -->
                 <div style="padding:11px 14px;display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--ins-color-white-a-06)">
-                  <div style="font-size:9px;font-weight:500;color:var(--ins-text-inactive);letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px">Access requested</div>
-                  <div style="display:flex;align-items:center;gap:8px">
+                  <div style="font-size:9px;font-weight:500;color:var(--ins-text-inactive);letter-spacing:.08em;text-transform:uppercase;margin-bottom:var(--ins-size-half)">Access requested</div>
+                  <div style="display:flex;align-items:center;gap:var(--ins-size-2)">
                     <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="flex-shrink:0"><circle cx="6.5" cy="6.5" r="5" stroke="rgba(34,197,94,.6)" stroke-width="1.1"/><path d="M4 6.5l1.8 1.8L9 4.5" stroke="var(--ins-status-success-fg)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     <div style="font-size:10.5px;color:var(--ins-text-body)">Read payments &amp; transactions</div>
                   </div>
-                  <div style="display:flex;align-items:center;gap:8px">
+                  <div style="display:flex;align-items:center;gap:var(--ins-size-2)">
                     <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="flex-shrink:0"><circle cx="6.5" cy="6.5" r="5" stroke="rgba(34,197,94,.6)" stroke-width="1.1"/><path d="M4 6.5l1.8 1.8L9 4.5" stroke="var(--ins-status-success-fg)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     <div style="font-size:10.5px;color:var(--ins-text-body)">Read customers &amp; subscriptions</div>
                   </div>
-                  <div style="display:flex;align-items:center;gap:8px">
+                  <div style="display:flex;align-items:center;gap:var(--ins-size-2)">
                     <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="flex-shrink:0"><circle cx="6.5" cy="6.5" r="5" stroke="rgba(34,197,94,.6)" stroke-width="1.1"/><path d="M4 6.5l1.8 1.8L9 4.5" stroke="var(--ins-status-success-fg)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     <div style="font-size:10.5px;color:var(--ins-text-body)">Read revenue &amp; payouts</div>
                   </div>
@@ -256,8 +256,8 @@
                 </div>
                 <!-- Footer -->
                 <div style="padding:11px 14px;display:flex;gap:7px">
-                  <button onclick="p0go(1)" style="flex:1;padding:8px;background:var(--ins-color-white-a-05);border:1px solid var(--ins-color-white-a-10);border-radius:var(--ins-radius-lg);font-size:var(--ins-font-size-11);font-weight:500;color:var(--ins-text-body);cursor:pointer;font-family:var(--ins-font-family-sans)">Cancel</button>
-                  <button id="p0ConnectBtn" onclick="p0connect()" style="flex:2;padding:8px;background:#635BFF;border:none;border-radius:var(--ins-radius-lg);font-size:11.5px;font-weight:500;color:#fff;cursor:pointer;font-family:var(--ins-font-family-sans);display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s;box-shadow:0 0 16px rgba(99,91,255,.35)">
+                  <button onclick="p0go(1)" style="flex:1;padding:var(--ins-size-2);background:var(--ins-color-white-a-05);border:1px solid var(--ins-color-white-a-10);border-radius:var(--ins-radius-lg);font-size:var(--ins-font-size-11);font-weight:500;color:var(--ins-text-body);cursor:pointer;font-family:var(--ins-font-family-sans)">Cancel</button>
+                  <button id="p0ConnectBtn" onclick="p0connect()" style="flex:2;padding:var(--ins-size-2);background:#635BFF;border:none;border-radius:var(--ins-radius-lg);font-size:11.5px;font-weight:500;color:#fff;cursor:pointer;font-family:var(--ins-font-family-sans);display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s;box-shadow:0 0 16px rgba(99,91,255,.35)">
                     <div id="p0Spinner" style="width:11px;height:11px;border:1.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none"></div>
                     <span id="p0BtnLbl">Allow access</span>
                   </button>
@@ -266,7 +266,7 @@
             </div>
 
             <!-- SUB-SCREEN C: Success -->
-            <div id="p0s3" style="position:absolute;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .3s ease">
+            <div id="p0s3" style="position:absolute;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;padding:var(--ins-size-4);opacity:0;pointer-events:none;transition:opacity .3s ease">
               <div id="p0success" style="width:100%;max-width:260px;background:var(--ins-color-gray-800);border:1px solid rgba(10,152,150,.25);border-radius:var(--ins-radius-2xl);padding:22px 20px;text-align:center;box-shadow:0 0 0 1px rgba(10,152,150,.08),0 24px 64px rgba(0,0,0,.8),0 0 40px rgba(10,152,150,.07);transform:scale(.9) translateY(10px);transition:transform .5s cubic-bezier(.34,1.56,.64,1)">
                 <!-- Icon -->
                 <div style="width:54px;height:54px;border-radius:50%;background:rgba(10,152,150,.08);border:1px solid rgba(10,152,150,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;position:relative">
@@ -275,10 +275,10 @@
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </div>
                 </div>
-                <div style="font-size:var(--ins-font-size-15);font-weight:500;color:var(--ins-text-heading);letter-spacing:-.02em;margin-bottom:4px">Stripe Connected!</div>
-                <div style="font-size:var(--ins-font-size-11);color:var(--ins-text-inactive);margin-bottom:16px">Access granted. Insightis is now syncing your Stripe data.</div>
+                <div style="font-size:var(--ins-font-size-15);font-weight:500;color:var(--ins-text-heading);letter-spacing:-.02em;margin-bottom:var(--ins-size-1)">Stripe Connected!</div>
+                <div style="font-size:var(--ins-font-size-11);color:var(--ins-text-inactive);margin-bottom:var(--ins-size-4)">Access granted. Insightis is now syncing your Stripe data.</div>
                 <!-- Stripe card -->
-                <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(99,91,255,.07);border:1px solid rgba(99,91,255,.2);border-radius:10px;margin-bottom:12px;text-align:left">
+                <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(99,91,255,.07);border:1px solid rgba(99,91,255,.2);border-radius:10px;margin-bottom:var(--ins-size-3);text-align:left">
                   <div style="width:30px;height:30px;border-radius:var(--ins-radius-lg);background:#635BFF;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.594-7.305z"/></svg></div>
                   <div style="flex:1">
                     <div style="font-size:var(--ins-font-size-12);font-weight:500;color:var(--ins-text-heading)">Stripe</div>
@@ -289,7 +289,7 @@
                   </div>
                 </div>
                 <!-- What's syncing -->
-                <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:16px">
+                <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:var(--ins-size-4)">
                   <div style="display:flex;align-items:center;gap:7px;padding:7px 10px;background:var(--ins-color-white-a-03);border:1px solid var(--ins-color-white-a-05);border-radius:var(--ins-radius-md);text-align:left">
                     <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><circle cx="5.5" cy="5.5" r="4" stroke="rgba(34,197,94,.5)" stroke-width="1"/><path d="M3.5 5.5l1.5 1.5L7.5 4" stroke="var(--ins-status-success-fg)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     <span style="font-size:10.5px;color:var(--ins-text-body)">Payments &amp; charges</span>
@@ -415,7 +415,7 @@
       </div>
 
       <!-- Draft group -->
-      <div class="group-header" id="p1draftGroup" style="margin-top:4px">
+      <div class="group-header" id="p1draftGroup" style="margin-top:var(--ins-size-1)">
         <div class="group-dot draft"></div>
         Draft metrics &nbsp;<span id="p1draftCount" style="color:var(--ins-text-inactive)">2</span>
       </div>
@@ -643,8 +643,8 @@
                 <div class="cs-u"><div class="bubble-u">Last month, top 3 channels</div></div>
                 <div class="cs-ai"><div class="ai-badge">In</div>
                   <div class="bubble-ai p2-chart-bubble">
-                    <div style="font-size:var(--ins-font-size-12);color:var(--ins-text-body);margin-bottom:8px">CAC for the last 30 days by channel. <strong style="color:var(--ins-text-heading)">Avg: $184</strong> — down <strong style="color:var(--ins-status-success-fg)">−12%</strong> vs prior month.</div>
-                    <div class="p2-chart" style="margin-bottom:8px">
+                    <div style="font-size:var(--ins-font-size-12);color:var(--ins-text-body);margin-bottom:var(--ins-size-2)">CAC for the last 30 days by channel. <strong style="color:var(--ins-text-heading)">Avg: $184</strong> — down <strong style="color:var(--ins-status-success-fg)">−12%</strong> vs prior month.</div>
+                    <div class="p2-chart" style="margin-bottom:var(--ins-size-2)">
                       <div class="p2-chart-title">CAC by Channel — Last 30 Days</div>
                       <div class="p2-cards">
                         <div class="p2-card"><div class="p2-card-lbl">Total CAC</div><div class="p2-card-val" style="color:var(--ins-text-heading)">$87.65</div></div>
@@ -800,8 +800,8 @@
                 <div class="p3-modal-field">
                   <div class="p3-field-lbl">Message</div>
                   <div class="p3-field-val p3-msg-val">
-                    <div style="margin-bottom:4px">Hi team,</div>
-                    <div style="margin-bottom:4px">I wanted to share this CAC breakdown for last month by acquisition channel. The data shows some interesting trends on Google Ads spend efficiency.</div>
+                    <div style="margin-bottom:var(--ins-size-1)">Hi team,</div>
+                    <div style="margin-bottom:var(--ins-size-1)">I wanted to share this CAC breakdown for last month by acquisition channel. The data shows some interesting trends on Google Ads spend efficiency.</div>
                     <div>Let me know your thoughts!</div>
                   </div>
                 </div>
@@ -938,7 +938,7 @@
           <div class="p4-jira-overlay" id="p4jiraModal" style="display:none;opacity:0">
             <div class="p4-jira-modal">
               <div class="p4-jm-header">
-                <div style="display:flex;align-items:center;gap:8px"><div class="p4-jm-icon">J</div><span class="p4-jm-title">Create Issue</span></div>
+                <div style="display:flex;align-items:center;gap:var(--ins-size-2)"><div class="p4-jm-icon">J</div><span class="p4-jm-title">Create Issue</span></div>
                 <span class="p4-jm-close">✕</span>
               </div>
               <div class="p4-jm-row2">

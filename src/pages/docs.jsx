@@ -291,16 +291,16 @@ function DocsAskQuestion() {
   };
   return (
     <div style={{
-      padding:'24px',
+      padding:'var(--ins-size-6)',
       background:'var(--ins-color-white-a-03)',
       border:'1px solid var(--ins-color-white-a-07)',
       borderRadius:'var(--ins-radius-12)',
     }}>
-      <p style={{ fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-disabled)', marginBottom:'12px', fontWeight:500 }}>
+      <p style={{ fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-disabled)', marginBottom:'var(--ins-size-3)', fontWeight:500 }}>
         Didn't find what you were looking for?
       </p>
       <form onSubmit={handleSubmit} style={{
-        display:'flex', alignItems:'center', gap:'8px',
+        display:'flex', alignItems:'center', gap:'var(--ins-size-2)',
         background:'var(--ins-color-white-a-04)',
         border:'1px solid var(--ins-color-white-a-08)',
         borderRadius:'10px',
@@ -359,18 +359,18 @@ function PageFeedback() {
 
   return (
     <div style={{
-      marginTop:'48px', marginBottom:'8px',
-      paddingTop:'32px',
+      marginTop:'var(--ins-size-12)', marginBottom:'var(--ins-size-2)',
+      paddingTop:'var(--ins-size-8)',
       borderTop:'1px solid var(--ins-border-default)',
     }}>
       {submitted ? (
-        <div style={{ display:'flex', alignItems:'center', gap:'8px' }}>
+        <div style={{ display:'flex', alignItems:'center', gap:'var(--ins-size-2)' }}>
           <CheckIcon size={16} strokeWidth={2} />
           <span className="ins-text-body">Thanks for your feedback!</span>
         </div>
       ) : (
         <>
-          <div style={{ display:'flex', alignItems:'center', gap:'12px' }}>
+          <div style={{ display:'flex', alignItems:'center', gap:'var(--ins-size-3)' }}>
             <span className="ins-text-body">Was this page helpful?</span>
             <div style={{ display:'flex', gap:'6px' }}>
               <Button
@@ -406,7 +406,7 @@ function PageFeedback() {
 
           {showForm && vote && (
             <div style={{
-              marginTop:'16px',
+              marginTop:'var(--ins-size-4)',
               padding:'18px 20px',
               background:'var(--ins-color-white-a-03)',
               border:'1px solid var(--ins-color-white-a-07)',
@@ -435,7 +435,7 @@ function PageFeedback() {
                     boxSizing:'border-box',
                   }}
                 />
-                <div style={{ display:'flex', gap:'8px', marginTop:'10px', justifyContent:'flex-end' }}>
+                <div style={{ display:'flex', gap:'var(--ins-size-2)', marginTop:'10px', justifyContent:'flex-end' }}>
                   <button type="button" onClick={handleSkip} style={{
                     padding:'6px 14px', borderRadius:'var(--ins-radius-6)',
                     background:'transparent', border:'1px solid var(--ins-color-white-a-08)',
@@ -524,7 +524,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
   return (
     <div className="docs-content-col">
       {/* Breadcrumb */}
-      <div className="ins-breadcrumbs" role="navigation" aria-label="Breadcrumb" style={{ marginBottom:'28px' }}>
+      <div className="ins-breadcrumbs" role="navigation" aria-label="Breadcrumb" style={{ marginBottom:'var(--ins-size-7)' }}>
         {page.breadcrumb.map((crumb, i) => {
           const isCurrent = i === page.breadcrumb.length - 1;
           return (
@@ -537,7 +537,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
       </div>
 
       {/* Title */}
-      <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'16px' }}>
+      <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'var(--ins-size-4)' }}>
         <h1 className="ins-text-h1" style={{ margin: 0 }}>
           {page.title}
         </h1>
@@ -558,13 +558,13 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
           backgroundImage:'url("https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80")',
           backgroundSize:'cover', backgroundPosition:'center',
           marginBottom:'52px', aspectRatio:'16/9',
-          display:'flex', alignItems:'center', justifyContent:'center', flexDirection:'column', gap:'16px',
+          display:'flex', alignItems:'center', justifyContent:'center', flexDirection:'column', gap:'var(--ins-size-4)',
         }}>
           {/* Dark overlay */}
           <div style={{ position:'absolute', inset:0, background:'rgba(5,10,16,0.55)' }}/>
           <div style={{
             position:'absolute', top:0, left:0, right:0, zIndex:1,
-            display:'flex', alignItems:'center', gap:'12px',
+            display:'flex', alignItems:'center', gap:'var(--ins-size-3)',
             padding:'14px 18px',
             background:'rgba(0,0,0,0.5)', backdropFilter:'blur(8px)',
           }}>
@@ -597,11 +597,11 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
       {/* Content sections */}
       <div>
         {page.sections.map((section) => (
-          <div key={section.id} style={{ marginBottom:'40px' }}>
+          <div key={section.id} style={{ marginBottom:'var(--ins-size-10)' }}>
             <h2
               id={section.id}
               className="doc-section-heading ins-text-h2"
-              style={{ marginBottom:'12px', scrollMarginTop:'140px' }}
+              style={{ marginBottom:'var(--ins-size-3)', scrollMarginTop:'140px' }}
             >
               {section.heading}
             </h2>
@@ -625,15 +625,15 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
       {/* Prev / Next */}
       {page.prevNext && (
         <div style={{
-          display:'flex', gap:'12px', marginTop:'48px',
+          display:'flex', gap:'var(--ins-size-3)', marginTop:'var(--ins-size-12)',
           borderTop:'1px solid var(--ins-border-default)',
-          paddingTop:'32px', marginBottom:'36px',
+          paddingTop:'var(--ins-size-8)', marginBottom:'36px',
         }}>
           {page.prevNext.prev && (
             <button
               onClick={() => setActivePage(page.prevNext.prev.id)}
               style={{
-                flex:1, display:'flex', flexDirection:'column', alignItems:'flex-start', gap:'4px',
+                flex:1, display:'flex', flexDirection:'column', alignItems:'flex-start', gap:'var(--ins-size-1)',
                 padding:'16px 20px', borderRadius:'10px',
                 background:'var(--ins-color-white-a-03)',
                 border:'1px solid var(--ins-color-white-a-07)',
@@ -651,7 +651,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
             <button
               onClick={() => setActivePage(page.prevNext.next.id)}
               style={{
-                flex:1, display:'flex', flexDirection:'column', alignItems:'flex-end', gap:'4px',
+                flex:1, display:'flex', flexDirection:'column', alignItems:'flex-end', gap:'var(--ins-size-1)',
                 padding:'16px 20px', borderRadius:'10px',
                 background:'var(--ins-color-white-a-03)',
                 border:'1px solid var(--ins-color-white-a-07)',
@@ -824,7 +824,7 @@ function AIAssistantPanel({ query, onClose }) {
     <button title={title} onClick={() => {
       if (title === 'Copy') { navigator.clipboard?.writeText(''); setCopied(true); setTimeout(() => setCopied(false), 2000); }
     }} style={{
-      background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'var(--ins-radius-4)',
+      background:'none', border:'none', cursor:'pointer', padding:'var(--ins-size-1)', borderRadius:'var(--ins-radius-4)',
       color:'var(--ins-text-disabled)', transition:'color .15s',
     }}
     onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-text-body)'}
@@ -857,9 +857,9 @@ function AIAssistantPanel({ query, onClose }) {
           </svg>
           <span style={{ fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-color-gray-100)' }}>Assistant</span>
         </div>
-        <div style={{ display:'flex', gap:'2px' }}>
+        <div style={{ display:'flex', gap:'var(--ins-size-half)' }}>
           <button onClick={onClose} style={{
-            background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'var(--ins-radius-4)',
+            background:'none', border:'none', cursor:'pointer', padding:'var(--ins-size-1)', borderRadius:'var(--ins-radius-4)',
             color:'var(--ins-text-disabled)', transition:'color .15s', display:'flex',
           }}
           onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-color-gray-100)'}
@@ -873,7 +873,7 @@ function AIAssistantPanel({ query, onClose }) {
       </div>
 
       {/* Messages */}
-      <div style={{ flex:1, overflowY:'auto', padding:'16px 14px', display:'flex', flexDirection:'column', gap:'16px' }}>
+      <div style={{ flex:1, overflowY:'auto', padding:'16px 14px', display:'flex', flexDirection:'column', gap:'var(--ins-size-4)' }}>
         {messages.map((msg, idx) => (
           <div key={idx}>
             {msg.role === 'user' ? (
@@ -891,7 +891,7 @@ function AIAssistantPanel({ query, onClose }) {
               </div>
             ) : (
               <div>
-                <div style={{ fontSize:'var(--ins-font-size-12)', color:'#3A6070', marginBottom:'10px', display:'flex', flexDirection:'column', gap:'4px' }}>
+                <div style={{ fontSize:'var(--ins-font-size-12)', color:'#3A6070', marginBottom:'10px', display:'flex', flexDirection:'column', gap:'var(--ins-size-1)' }}>
                   <div style={{ display:'flex', alignItems:'center', gap:'6px' }}>
                     <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                     Found results for <em style={{ color:'#4A8090', fontStyle:'normal' }}>{msg.response.searchTerms}</em>
@@ -912,10 +912,10 @@ function AIAssistantPanel({ query, onClose }) {
                     </li>
                   ))}
                 </ul>
-                <p style={{ fontSize:'var(--ins-font-size-14)', color:'#8AAAB8', lineHeight:1.7, marginBottom:'12px' }}>
+                <p style={{ fontSize:'var(--ins-font-size-14)', color:'#8AAAB8', lineHeight:1.7, marginBottom:'var(--ins-size-3)' }}>
                   {msg.response.outro}
                 </p>
-                <div style={{ display:'flex', flexDirection:'column', gap:'4px', marginBottom:'12px' }}>
+                <div style={{ display:'flex', flexDirection:'column', gap:'var(--ins-size-1)', marginBottom:'var(--ins-size-3)' }}>
                   {msg.response.links.map((l, i) => (
                     <a key={i} href="#" style={{ fontSize:'var(--ins-font-size-12)', color:'var(--ins-button-primary-bg-hover)', textDecoration:'none' }}
                       onMouseEnter={e => e.currentTarget.style.textDecoration = 'underline'}
@@ -924,7 +924,7 @@ function AIAssistantPanel({ query, onClose }) {
                   ))}
                 </div>
                 {/* Feedback row */}
-                <div style={{ display:'flex', gap:'4px', alignItems:'center' }}>
+                <div style={{ display:'flex', gap:'var(--ins-size-1)', alignItems:'center' }}>
                   {iconBtn('Helpful', 'M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z')}
                   {iconBtn('Not helpful', 'M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z')}
                   {iconBtn('Copy', copied ? 'M20 6L9 17l-5-5' : 'M8 17.929H6c-1.105 0-2-.912-2-2.036V5.036C4 3.912 4.895 3 6 3h8c1.105 0 2 .912 2 2.036v1.866m-6 .17h8c1.105 0 2 .91 2 2.035v10.857C20 21.088 19.105 22 18 22h-8c-1.105 0-2-.911-2-2.036V9.107c0-1.124.895-2.036 2-2.036z')}
@@ -942,7 +942,7 @@ function AIAssistantPanel({ query, onClose }) {
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ animation:'pulse 1.2s ease infinite' }}><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
               {phase === 'searching' ? 'Searching docs…' : 'Reading file…'}
             </div>
-            <div style={{ display:'flex', gap:'5px', paddingTop:'4px' }}>
+            <div style={{ display:'flex', gap:'5px', paddingTop:'var(--ins-size-1)' }}>
               {[0,1,2].map(i => (
                 <div key={i} style={{
                   width:'6px', height:'6px', borderRadius:'50%',
@@ -961,7 +961,7 @@ function AIAssistantPanel({ query, onClose }) {
         padding:'10px 14px 18px', borderTop:'1px solid var(--ins-color-white-a-07)', flexShrink:0,
       }}>
         <div style={{
-          display:'flex', alignItems:'center', gap:'8px',
+          display:'flex', alignItems:'center', gap:'var(--ins-size-2)',
           background:'var(--ins-color-white-a-04)',
           border: inputFocused ? '1px solid rgba(9,160,157,.4)' : '1px solid var(--ins-color-white-a-07)',
           borderRadius:'10px',

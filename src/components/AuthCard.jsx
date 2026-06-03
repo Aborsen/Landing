@@ -36,7 +36,7 @@ export default function AuthCard({ title, blurb }) {
         {/* Coming-soon pill */}
         <div style={{
           display:'inline-flex', alignItems:'center', gap:'7px',
-          padding:'5px 12px', marginBottom:'20px',
+          padding:'5px 12px', marginBottom:'var(--ins-size-5)',
           borderRadius:'999px',
           background:'rgba(9,160,157,0.12)',
           border:'1px solid rgba(9,160,157,0.35)',
@@ -53,7 +53,7 @@ export default function AuthCard({ title, blurb }) {
         {/* Heading */}
         <h1 style={{
           fontSize:'var(--ins-font-size-24)', fontWeight:600, color:'var(--ins-text-heading)',
-          marginBottom:'12px',
+          marginBottom:'var(--ins-size-3)',
           fontFamily:"var(--ins-font-family-sans)", letterSpacing:'-.01em',
         }}>{title}</h1>
 
@@ -65,7 +65,7 @@ export default function AuthCard({ title, blurb }) {
 
         {/* Back to home */}
         <a href="/" style={{
-          display:'inline-flex', alignItems:'center', justifyContent:'center', gap:'8px',
+          display:'inline-flex', alignItems:'center', justifyContent:'center', gap:'var(--ins-size-2)',
           padding:'12px 22px',
           borderRadius:'10px',
           background:'linear-gradient(180deg, #0EC4C1 0%, #07807E 100%)',

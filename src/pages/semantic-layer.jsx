@@ -150,11 +150,11 @@ function SemanticLayerMockAnimation() {
           transition:'opacity .4s ease, transform .5s cubic-bezier(0.4,0,0.2,1)',
           pointerEvents: showRawScreen ? 'auto' : 'none',
         }}>
-          <div style={{display:'flex', alignItems:'center', gap:'8px', marginBottom:'10px', paddingLeft:'2px'}}>
+          <div style={{display:'flex', alignItems:'center', gap:'var(--ins-size-2)', marginBottom:'10px', paddingLeft:'var(--ins-size-half)'}}>
             <span style={{fontSize:'9.5px', color:'rgba(255,255,255,0.4)', fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', fontFamily:'var(--ins-font-family-mono)'}}>Incoming from sources</span>
             {conflictPhase && (
               <span style={{
-                display:'inline-flex', alignItems:'center', gap:'4px',
+                display:'inline-flex', alignItems:'center', gap:'var(--ins-size-1)',
                 padding:'2px 7px', borderRadius:'999px',
                 background:'rgba(255,150,70,0.1)', border:'1px solid rgba(255,150,70,0.3)',
                 fontSize:'9.5px', color:'rgba(255,180,100,0.95)', fontFamily:'var(--ins-font-family-mono)', fontWeight:600, letterSpacing:'0.04em',
@@ -165,7 +165,7 @@ function SemanticLayerMockAnimation() {
               </span>
             )}
           </div>
-          <div style={{display:'flex', flexDirection:'column', gap:'4px'}}>
+          <div style={{display:'flex', flexDirection:'column', gap:'var(--ins-size-1)'}}>
             {RAW_METRICS.slice(0, shownRaw).map((m, i) => {
               const isConflict = conflictPhase && (rawByName[m.name] > 1 || m.value === '???');
               return (
@@ -295,7 +295,7 @@ function SemanticLayerMockAnimation() {
           transition:'opacity .45s ease, transform .55s cubic-bezier(0.4,0,0.2,1)',
           pointerEvents: showCertScreen ? 'auto' : 'none',
         }}>
-          <div style={{display:'flex', alignItems:'center', gap:'7px', marginBottom:'10px', paddingLeft:'2px'}}>
+          <div style={{display:'flex', alignItems:'center', gap:'7px', marginBottom:'10px', paddingLeft:'var(--ins-size-half)'}}>
             <span style={{fontSize:'9.5px', color:'rgba(14,196,193,0.9)', fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', fontFamily:'var(--ins-font-family-mono)'}}>Certified semantic layer</span>
           </div>
           <div style={{display:'flex', flexDirection:'column', gap:'5px'}}>
@@ -358,7 +358,7 @@ function Hero() {
           <p className="ins-text-body-xl" style={{marginBottom:'36px',maxWidth:'520px'}}>
             Your Semantic Layer certifies every metric once. Not generic guesses — your actual data, your exact logic.
           </p>
-          <div style={{display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap',marginBottom:'24px'}}>
+          <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-3)',flexWrap:'wrap',marginBottom:'var(--ins-size-6)'}}>
             <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
               Start for Free
             </Button>
@@ -407,7 +407,7 @@ function WhatItDoes() {
     <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div className="max-w-7xl mx-auto px-6">
         {/* PR 1 canary — replaces hand-rolled eyebrow + h2 with <SectionHeader> */}
-        <div style={{marginBottom:'64px'}}>
+        <div style={{marginBottom:'var(--ins-size-16)'}}>
           <SectionHeader
             eyebrow="How it works"
             title="One layer. Every metric. Always right."
@@ -564,7 +564,7 @@ const CONNECTORS = {
 /* ── FEATURES SHOWCASE (V10 style) ── */
 const SHOWCASE_CSS = `
 .sc-wrap{max-width:1060px;margin:0 auto;display:flex;flex-direction:column;gap:36px;position:relative}
-.sc-stepper{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;position:relative;padding:0 8px}
+.sc-stepper{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--ins-size-5);position:relative;padding:0 8px}
 .sc-step{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;background:transparent;border:none;color:inherit;padding:0 6px;font-family:inherit}
 .sc-step-connector{position:absolute;top:28px;left:calc(50% + 36px);right:calc(-50% + 36px);height:1px;background:linear-gradient(90deg,rgba(9,160,157,.45) 0%,rgba(9,160,157,.18) 100%);z-index:var(--ins-z-base)}
 .sc-circle{position:relative;z-index:1;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:14px;border:1px solid rgba(9,160,157,.35);background:radial-gradient(circle at 50% 30%,rgba(9,160,157,.10) 0%,rgba(13,17,23,.95) 75%);box-shadow:0 0 18px rgba(9,160,157,.10), inset 0 1px 0 var(--ins-color-white-a-05);transition:border-color .25s,box-shadow .25s,background .25s}
@@ -575,10 +575,10 @@ const SHOWCASE_CSS = `
 .sc-step.active .sc-step-label{color:#fff}
 .sc-step-desc{font-size:11.5px;color:rgba(255,255,255,.4);line-height:1.5;max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .35s ease}
 .sc-step.active .sc-step-desc{max-height:60px;opacity:1;color:rgba(255,255,255,.55)}
-.sc-panel-wrap{position:relative;background:radial-gradient(ellipse 100% 80% at 30% 30%,rgba(10,152,150,.06) 0%,transparent 60%),var(--ins-color-page-a-97);border-radius:var(--ins-radius-16);border:1px solid var(--ins-color-white-a-07);box-shadow:0 4px 6px var(--ins-color-black-a-50),0 32px 100px rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;padding:28px;overflow:hidden;height:520px}
+.sc-panel-wrap{position:relative;background:radial-gradient(ellipse 100% 80% at 30% 30%,rgba(10,152,150,.06) 0%,transparent 60%),var(--ins-color-page-a-97);border-radius:var(--ins-radius-16);border:1px solid var(--ins-color-white-a-07);box-shadow:0 4px 6px var(--ins-color-black-a-50),0 32px 100px rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;padding:var(--ins-size-7);overflow:hidden;height:520px}
 .sc-panel-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(10,152,150,.6),var(--ins-color-white-a-10),rgba(10,152,150,.6),transparent);z-index:20;pointer-events:none}
 @media (max-width:768px){
-  .sc-stepper{grid-template-columns:1fr;gap:24px}
+  .sc-stepper{grid-template-columns:1fr;gap:var(--ins-size-6)}
   .sc-step-connector{display:none}
 }
 `;
@@ -622,7 +622,7 @@ function Panel1() {
           <div style={{width:'28px',height:'16px',borderRadius:'var(--ins-radius-8)',background:m.active?'rgba(9,160,157,.15)':'var(--ins-color-white-a-06)',border:`1px solid ${m.active?'rgba(9,160,157,.4)':'var(--ins-color-white-a-10)'}`,position:'relative'}}>
             <div style={{position:'absolute',top:'2px',width:'10px',height:'10px',borderRadius:'50%',background:m.active?'var(--ins-text-highlight)':'rgba(255,255,255,.25)',transition:'left .2s',left:m.active?'14px':'2px'}}/>
           </div>
-          <div style={{fontSize:'var(--ins-font-size-12)',color:'rgba(232,242,245,.85)',fontWeight:500,whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',paddingRight:'8px'}}>{m.name}</div>
+          <div style={{fontSize:'var(--ins-font-size-12)',color:'rgba(232,242,245,.85)',fontWeight:500,whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',paddingRight:'var(--ins-size-2)'}}>{m.name}</div>
           <div style={{fontSize:'var(--ins-font-size-11)',fontFamily:'var(--ins-font-family-mono)',color:'var(--ins-text-highlight)',background:'rgba(9,160,157,.07)',padding:'2px 6px',borderRadius:'var(--ins-radius-4)',width:'fit-content'}}>{m.short}</div>
           <div style={{fontSize:'var(--ins-font-size-11)',padding:'2px 8px',borderRadius:'var(--ins-radius-4)',background:CAT_COLORS[m.cat]||'var(--ins-color-white-a-06)',color:CAT_TEXT[m.cat]||'var(--ins-text-body)',width:'fit-content'}}>{m.cat}</div>
           <div style={{fontSize:'var(--ins-font-size-11)',color:'rgba(255,255,255,.4)',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{m.src}</div>
@@ -646,30 +646,30 @@ function Panel2() {
   const srcs   = ['Google Analytics','Stripe','HubSpot'];
 
   return (
-    <div style={{width:'100%',maxWidth:'420px',background:'rgba(10,14,19,.95)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'20px'}}>
-      <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'16px'}}>
+    <div style={{width:'100%',maxWidth:'420px',background:'rgba(10,14,19,.95)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'var(--ins-size-5)'}}>
+      <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)',marginBottom:'var(--ins-size-4)'}}>
         <div style={{width:'22px',height:'22px',borderRadius:'var(--ins-radius-6)',background:'rgba(9,160,157,.12)',border:'1px solid rgba(9,160,157,.25)',display:'flex',alignItems:'center',justifyContent:'center'}}>
           <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z" stroke="var(--ins-text-highlight)" strokeWidth="1.2" strokeLinejoin="round"/></svg>
         </div>
         <span style={{fontSize:'var(--ins-font-size-12)',fontWeight:600,color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)'}}>AI Auto-Mapping</span>
-        <div style={{marginLeft:'auto',display:'flex',alignItems:'center',gap:'4px',fontSize:'10px',color:'rgba(34,197,94,.8)',fontFamily:'var(--ins-font-family-mono)'}}>
+        <div style={{marginLeft:'auto',display:'flex',alignItems:'center',gap:'var(--ins-size-1)',fontSize:'10px',color:'rgba(34,197,94,.8)',fontFamily:'var(--ins-font-family-mono)'}}>
           <div style={{width:'5px',height:'5px',borderRadius:'50%',background:'var(--ins-status-success-fg)',boxShadow:'0 0 5px var(--ins-status-success-fg)',animation:'pulse 1.5s infinite'}}/>
           mapping...
         </div>
       </div>
 
-      <div style={{fontSize:'var(--ins-font-size-12)',color:'rgba(255,255,255,.35)',marginBottom:'12px',fontFamily:'var(--ins-font-family-mono)'}}>Customer Acquisition Cost → CAC</div>
+      <div style={{fontSize:'var(--ins-font-size-12)',color:'rgba(255,255,255,.35)',marginBottom:'var(--ins-size-3)',fontFamily:'var(--ins-font-family-mono)'}}>Customer Acquisition Cost → CAC</div>
 
-      <div style={{fontSize:'11.5px',color:'var(--ins-text-body)',marginBottom:'12px',lineHeight:1.6}}>
+      <div style={{fontSize:'11.5px',color:'var(--ins-text-body)',marginBottom:'var(--ins-size-3)',lineHeight:1.6}}>
         Connecting <span style={{color:'var(--ins-text-highlight)'}}>(@marketing_spend + @sales_spend) / @new_customers</span>
       </div>
 
-      <div style={{display:'flex',flexDirection:'column',gap:'8px'}}>
+      <div style={{display:'flex',flexDirection:'column',gap:'var(--ins-size-2)'}}>
         {fields.map((f,i) => {
           const done = step > i;
           const active = step === i;
           return (
-            <div key={i} style={{display:'flex',alignItems:'center',gap:'8px',padding:'9px 12px',borderRadius:'10px',border:`1px solid ${done?'rgba(9,160,157,.3)':active?'rgba(9,160,157,.15)':'var(--ins-color-white-a-06)'}`,background:done?'rgba(9,160,157,.06)':active?'rgba(9,160,157,.03)':'var(--ins-color-white-a-02)',transition:'all .3s'}}>
+            <div key={i} style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)',padding:'9px 12px',borderRadius:'10px',border:`1px solid ${done?'rgba(9,160,157,.3)':active?'rgba(9,160,157,.15)':'var(--ins-color-white-a-06)'}`,background:done?'rgba(9,160,157,.06)':active?'rgba(9,160,157,.03)':'var(--ins-color-white-a-02)',transition:'all .3s'}}>
               <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-11)',color:done?'var(--ins-text-highlight)':'rgba(255,255,255,.4)',flex:1}}>{f}</div>
               {(done||active) && (
                 <svg width="12" height="12" viewBox="0 0 16 16" fill="none" style={{flexShrink:0,opacity:active?0.5:1}}><path d="M3 8h10M9 4l4 4-4 4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -691,7 +691,7 @@ function Panel2() {
       </div>
 
       {step >= 4 && (
-        <div style={{marginTop:'12px',padding:'10px 14px',borderRadius:'10px',background:'rgba(34,197,94,.06)',border:'1px solid rgba(34,197,94,.2)',display:'flex',alignItems:'center',gap:'8px',animation:'slideUp .3s ease both'}}>
+        <div style={{marginTop:'var(--ins-size-3)',padding:'10px 14px',borderRadius:'10px',background:'rgba(34,197,94,.06)',border:'1px solid rgba(34,197,94,.2)',display:'flex',alignItems:'center',gap:'var(--ins-size-2)',animation:'slideUp .3s ease both'}}>
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><polyline points="2 8 6 12 14 4" stroke="var(--ins-status-success-fg)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
           <span style={{fontSize:'var(--ins-font-size-12)',color:'rgba(34,197,94,.9)',fontWeight:500}}>All fields mapped — metric certified ✓</span>
         </div>
@@ -703,8 +703,8 @@ function Panel2() {
 // ── PANEL 3: Create Metric modal ──
 function Panel3() {
   return (
-    <div style={{width:'100%',maxWidth:'380px',background:'rgba(13,17,23,.97)',border:'1px solid var(--ins-color-white-a-10)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'24px'}}>
-      <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'20px'}}>
+    <div style={{width:'100%',maxWidth:'380px',background:'rgba(13,17,23,.97)',border:'1px solid var(--ins-color-white-a-10)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'var(--ins-size-6)'}}>
+      <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'var(--ins-size-5)'}}>
         <span style={{fontSize:'var(--ins-font-size-15)',fontWeight:600,color:'var(--ins-color-gray-100)'}}>Create New Metric</span>
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 2l12 12M14 2L2 14" stroke="rgba(255,255,255,.3)" strokeWidth="1.5" strokeLinecap="round"/></svg>
       </div>
@@ -717,43 +717,43 @@ function Panel3() {
       <div style={{marginBottom:'14px'}}>
         <div style={{fontSize:'11.5px',color:'rgba(255,255,255,.4)',marginBottom:'6px',fontFamily:'var(--ins-font-family-mono)'}}>Definition Method</div>
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',borderRadius:'var(--ins-radius-8)',overflow:'hidden',border:'1px solid var(--ins-color-white-a-08)'}}>
-          <div style={{padding:'8px',textAlign:'center',background:'var(--ins-color-white-a-08)',fontSize:'var(--ins-font-size-12)',color:'var(--ins-color-gray-100)',fontWeight:500,display:'flex',alignItems:'center',justifyContent:'center',gap:'5px'}}>
+          <div style={{padding:'var(--ins-size-2)',textAlign:'center',background:'var(--ins-color-white-a-08)',fontSize:'var(--ins-font-size-12)',color:'var(--ins-color-gray-100)',fontWeight:500,display:'flex',alignItems:'center',justifyContent:'center',gap:'5px'}}>
             <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3v10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
             Direct Mapping
           </div>
-          <div style={{padding:'8px',textAlign:'center',background:'transparent',fontSize:'var(--ins-font-size-12)',color:'rgba(255,255,255,.3)',display:'flex',alignItems:'center',justifyContent:'center',gap:'5px'}}>
+          <div style={{padding:'var(--ins-size-2)',textAlign:'center',background:'transparent',fontSize:'var(--ins-font-size-12)',color:'rgba(255,255,255,.3)',display:'flex',alignItems:'center',justifyContent:'center',gap:'5px'}}>
             <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M4 12l8-8M8 4h4v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
             Formula
           </div>
         </div>
       </div>
       <div style={{padding:'14px',borderRadius:'10px',border:'1px solid var(--ins-color-white-a-07)',background:'var(--ins-color-white-a-03)'}}>
-        <div style={{display:'grid',gridTemplateColumns:'1fr auto 1fr',gap:'8px',alignItems:'center',marginBottom:'10px'}}>
+        <div style={{display:'grid',gridTemplateColumns:'1fr auto 1fr',gap:'var(--ins-size-2)',alignItems:'center',marginBottom:'10px'}}>
           <div>
-            <div style={{fontSize:'10px',color:'rgba(255,255,255,.3)',marginBottom:'4px',fontFamily:'var(--ins-font-family-mono)'}}>Source</div>
+            <div style={{fontSize:'10px',color:'rgba(255,255,255,.3)',marginBottom:'var(--ins-size-1)',fontFamily:'var(--ins-font-family-mono)'}}>Source</div>
             <div style={{padding:'6px 10px',borderRadius:'7px',border:'1px solid var(--ins-color-white-a-10)',background:'var(--ins-color-white-a-04)',fontSize:'11.5px',color:'rgba(255,255,255,.6)',display:'flex',alignItems:'center',gap:'5px'}}>
               <span style={{fontSize:'9px'}}>📊</span> Google Analytics
             </div>
           </div>
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="rgba(9,160,157,.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           <div>
-            <div style={{fontSize:'10px',color:'rgba(255,255,255,.3)',marginBottom:'4px',fontFamily:'var(--ins-font-family-mono)'}}>Object</div>
+            <div style={{fontSize:'10px',color:'rgba(255,255,255,.3)',marginBottom:'var(--ins-size-1)',fontFamily:'var(--ins-font-family-mono)'}}>Object</div>
             <div style={{padding:'6px 10px',borderRadius:'7px',border:'1px solid rgba(9,160,157,.3)',background:'rgba(9,160,157,.06)',fontSize:'11.5px',color:'var(--ins-text-highlight)'}}>Charges</div>
           </div>
         </div>
-        <div style={{display:'grid',gridTemplateColumns:'1fr auto 1fr',gap:'8px',alignItems:'center'}}>
+        <div style={{display:'grid',gridTemplateColumns:'1fr auto 1fr',gap:'var(--ins-size-2)',alignItems:'center'}}>
           <div>
-            <div style={{fontSize:'10px',color:'rgba(255,255,255,.3)',marginBottom:'4px',fontFamily:'var(--ins-font-family-mono)'}}>Field</div>
+            <div style={{fontSize:'10px',color:'rgba(255,255,255,.3)',marginBottom:'var(--ins-size-1)',fontFamily:'var(--ins-font-family-mono)'}}>Field</div>
             <div style={{padding:'6px 10px',borderRadius:'7px',border:'1px solid rgba(9,160,157,.3)',background:'rgba(9,160,157,.06)',fontSize:'11.5px',color:'var(--ins-text-highlight)'}}>Amount</div>
           </div>
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="rgba(9,160,157,.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           <div>
-            <div style={{fontSize:'10px',color:'rgba(255,255,255,.3)',marginBottom:'4px',fontFamily:'var(--ins-font-family-mono)'}}>Aggregation</div>
+            <div style={{fontSize:'10px',color:'rgba(255,255,255,.3)',marginBottom:'var(--ins-size-1)',fontFamily:'var(--ins-font-family-mono)'}}>Aggregation</div>
             <div style={{padding:'6px 10px',borderRadius:'7px',border:'1px solid var(--ins-color-white-a-10)',background:'var(--ins-color-white-a-04)',fontSize:'11.5px',color:'rgba(255,255,255,.6)'}}>SUM</div>
           </div>
         </div>
       </div>
-      <div style={{display:'flex',gap:'8px',marginTop:'16px'}}>
+      <div style={{display:'flex',gap:'var(--ins-size-2)',marginTop:'var(--ins-size-4)'}}>
         <div style={{flex:1,padding:'9px',borderRadius:'var(--ins-radius-8)',border:'1px solid var(--ins-color-white-a-10)',textAlign:'center',fontSize:'13px',color:'rgba(255,255,255,.4)',cursor:'pointer'}}>Cancel</div>
         <div style={{flex:1,padding:'9px',borderRadius:'var(--ins-radius-8)',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',textAlign:'center',fontSize:'13px',fontWeight:600,color:'var(--ins-text-body)',cursor:'pointer',boxShadow:'0 0 12px rgba(9,160,157,.3)'}}>Create Metric</div>
       </div>
@@ -772,14 +772,14 @@ function Panel4() {
   ];
   return (
     <div style={{width:'100%',maxWidth:'420px',background:'rgba(10,14,19,.95)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'22px'}}>
-      <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'18px'}}>
+      <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)',marginBottom:'18px'}}>
         <div style={{fontSize:'13px',fontWeight:600,color:'var(--ins-color-gray-100)'}}>Customer Acquisition Cost</div>
         <div style={{fontSize:'10px',fontFamily:'var(--ins-font-family-mono)',color:'var(--ins-text-highlight)',background:'var(--ins-color-teal-a-08)',padding:'2px 7px',borderRadius:'var(--ins-radius-4)'}}>@CAC</div>
       </div>
 
       {/* Formula */}
-      <div style={{background:'var(--ins-color-white-a-03)',border:'1px solid var(--ins-color-white-a-07)',borderRadius:'10px',padding:'14px 16px',marginBottom:'16px'}}>
-        <div style={{fontSize:'10px',fontFamily:'var(--ins-font-family-mono)',color:'rgba(255,255,255,.3)',marginBottom:'8px',textTransform:'uppercase',letterSpacing:'.08em'}}>Formula</div>
+      <div style={{background:'var(--ins-color-white-a-03)',border:'1px solid var(--ins-color-white-a-07)',borderRadius:'10px',padding:'14px 16px',marginBottom:'var(--ins-size-4)'}}>
+        <div style={{fontSize:'10px',fontFamily:'var(--ins-font-family-mono)',color:'rgba(255,255,255,.3)',marginBottom:'var(--ins-size-2)',textTransform:'uppercase',letterSpacing:'.08em'}}>Formula</div>
         <div style={{fontSize:'13px',fontFamily:'var(--ins-font-family-mono)',color:'var(--ins-text-body)',lineHeight:1.6}}>
           <span style={{color:'#6772E5'}}>@Marketing_Spend</span>
           <span style={{color:'rgba(255,255,255,.35)'}}> + </span>
@@ -790,8 +790,8 @@ function Panel4() {
       </div>
 
       {/* Live values */}
-      <div style={{fontSize:'10px',fontFamily:'var(--ins-font-family-mono)',color:'rgba(255,255,255,.3)',marginBottom:'8px',textTransform:'uppercase',letterSpacing:'.08em'}}>Live values — Nov 2024</div>
-      <div style={{display:'flex',flexDirection:'column',gap:'7px',marginBottom:'16px'}}>
+      <div style={{fontSize:'10px',fontFamily:'var(--ins-font-family-mono)',color:'rgba(255,255,255,.3)',marginBottom:'var(--ins-size-2)',textTransform:'uppercase',letterSpacing:'.08em'}}>Live values — Nov 2024</div>
+      <div style={{display:'flex',flexDirection:'column',gap:'7px',marginBottom:'var(--ins-size-4)'}}>
         {parts.map((p,i)=>(
           <div key={i} style={{display:'flex',alignItems:'center',gap:'10px',padding:'8px 12px',borderRadius:'var(--ins-radius-8)',background:'rgba(255,255,255,.025)',border:'1px solid var(--ins-color-white-a-05)'}}>
             <div style={{width:'3px',height:'20px',borderRadius:'var(--ins-radius-2)',background:p.color,flexShrink:0}}/>
@@ -834,7 +834,7 @@ function Panel5() {
   return (
     <div style={{width:'100%',maxWidth:'440px',background:'rgba(10,14,19,.95)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none'}}>
       {/* Chat header */}
-      <div style={{padding:'12px 16px',borderBottom:'1px solid var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'8px'}}>
+      <div style={{padding:'12px 16px',borderBottom:'1px solid var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'var(--ins-size-2)'}}>
         <div style={{width:'20px',height:'20px',borderRadius:'var(--ins-radius-6)',background:'rgba(9,160,157,.12)',border:'1px solid rgba(9,160,157,.25)',display:'flex',alignItems:'center',justifyContent:'center'}}>
           <svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z" stroke="var(--ins-text-highlight)" strokeWidth="1.2" strokeLinejoin="round"/></svg>
         </div>
@@ -844,7 +844,7 @@ function Panel5() {
         </div>
       </div>
 
-      <div style={{padding:'16px',display:'flex',flexDirection:'column',gap:'10px',minHeight:'220px'}}>
+      <div style={{padding:'var(--ins-size-4)',display:'flex',flexDirection:'column',gap:'10px',minHeight:'220px'}}>
         {/* User message with @ mention */}
         {step >= 1 && (
           <div style={{alignSelf:'flex-end',background:'rgba(9,160,157,.1)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'14px 14px 3px 14px',padding:'9px 13px',fontSize:'13px',color:'var(--ins-color-gray-100)',maxWidth:'90%',animation:'slideUp .2s ease both'}}>
@@ -868,7 +868,7 @@ function Panel5() {
           <div style={{alignSelf:'flex-start',background:'var(--ins-color-white-a-04)',border:'1px solid var(--ins-color-white-a-07)',borderRadius:'3px 14px 14px 14px',padding:'10px 13px',fontSize:'13px',color:'var(--ins-text-body)',maxWidth:'95%',lineHeight:1.65,animation:'slideUp .2s ease both'}}>
             <span style={{color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-12)',fontWeight:600,background:'var(--ins-color-teal-a-08)',padding:'1px 6px',borderRadius:'var(--ins-radius-4)'}}>@CAC</span>
             {' '}rose to <strong style={{color:'var(--ins-color-gray-100)'}}>$431</strong> in Nov — up from $394 in Oct (+9.4%). Main driver: <strong style={{color:'var(--ins-color-gray-100)'}}>@Marketing_Spend</strong> increased $4.2K while <strong style={{color:'var(--ins-color-gray-100)'}}>@New_Customers</strong> grew only 3%.
-            <div style={{marginTop:'8px',display:'flex',gap:5}}>
+            <div style={{marginTop:'var(--ins-size-2)',display:'flex',gap:5}}>
               {['Stripe','HubSpot','PostgreSQL'].map(s=>(
                 <span key={s} style={{fontSize:'10px',fontFamily:'var(--ins-font-family-mono)',padding:'2px 6px',borderRadius:'var(--ins-radius-4)',background:'var(--ins-color-white-a-04)',border:'1px solid var(--ins-color-white-a-07)',color:'var(--ins-text-body)'}}>{s}</span>
               ))}
@@ -878,7 +878,7 @@ function Panel5() {
       </div>
 
       {/* Input */}
-      <div style={{padding:'10px 14px',borderTop:'1px solid var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'8px'}}>
+      <div style={{padding:'10px 14px',borderTop:'1px solid var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'var(--ins-size-2)'}}>
         <div style={{flex:1,background:'var(--ins-color-white-a-04)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'var(--ins-radius-8)',padding:'8px 12px',fontSize:'12.5px',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-sans)'}}>
           Ask anything... use <span style={{color:'var(--ins-color-teal-a-50)',fontFamily:'var(--ins-font-family-mono)'}}>@</span> to reference metrics
         </div>
@@ -901,7 +901,7 @@ function FeaturesShowcase() {
   return (
     <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div className="max-w-7xl mx-auto px-6">
-        <div style={{marginBottom:'64px'}}>
+        <div style={{marginBottom:'var(--ins-size-16)'}}>
           <SectionHeader
             eyebrow="How it works"
             title="Your Semantic Layer, fully in control"
@@ -926,7 +926,7 @@ function ConnectorGallery() {
       <div className="max-w-7xl mx-auto px-6">
 
         {/* PR 1 canary — replaces hand-rolled eyebrow + h2 + lede with <SectionHeader> */}
-        <div style={{marginBottom:'28px'}}>
+        <div style={{marginBottom:'var(--ins-size-7)'}}>
           <SectionHeader
             eyebrow="Metrics catalog"
             title="Define, certify, and version your metrics"
@@ -937,7 +937,7 @@ function ConnectorGallery() {
         </div>
 
         {/* Category tabs */}
-        <div style={{display:'flex',justifyContent:'center',gap:'8px',marginBottom:'28px',flexWrap:'wrap'}}>
+        <div style={{display:'flex',justifyContent:'center',gap:'var(--ins-size-2)',marginBottom:'var(--ins-size-7)',flexWrap:'wrap'}}>
           {cats.map(cat => (
             <Chip
               key={cat}
@@ -983,7 +983,7 @@ function ConnectorGallery() {
         </div>
 
         {/* Footer note */}
-        <div style={{textAlign:'center',marginTop:'32px'}}>
+        <div style={{textAlign:'center',marginTop:'var(--ins-size-8)'}}>
           <span style={{fontSize:'12.5px',color:'#8A9BA4',fontFamily:'var(--ins-font-family-mono)'}}>
             the only source of truth you need
           </span>
@@ -999,7 +999,7 @@ function BeforeAfter() {
   return (
     <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div className="max-w-7xl mx-auto px-6">
-        <div style={{marginBottom:'56px'}}>
+        <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
             eyebrow="The difference"
             title="Without vs with Semantic Layer"
@@ -1009,13 +1009,13 @@ function BeforeAfter() {
           />
         </div>
 
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'16px',alignItems:'stretch'}}>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'var(--ins-size-4)',alignItems:'stretch'}}>
           {/* Without */}
-          <Card variant="glow" className="ins-card--glow--error compare-card" style={{padding:'32px',display:'flex',flexDirection:'column'}}>
+          <Card variant="glow" className="ins-card--glow--error compare-card" style={{padding:'var(--ins-size-8)',display:'flex',flexDirection:'column'}}>
             <div className="ins-card__header" style={{marginBottom:'22px'}}>Without Semantic Layer</div>
             <CodeChip
               variant="panel"
-              style={{flex:1,marginBottom:'12px'}}
+              style={{flex:1,marginBottom:'var(--ins-size-3)'}}
               query="What's our MRR this month?"
               response={<span style={{color:'#505068'}}>Finance says <span style={{color:'var(--ins-status-error-fg)'}}>$52,000</span>. RevOps says <span style={{color:'var(--ins-status-error-fg)'}}>$47,200</span>. The CEO dashboard shows <span style={{color:'var(--ins-status-error-fg)'}}>$44,800</span>. Analysts spend Monday reconciling four spreadsheets before anyone can answer.</span>}
             />
@@ -1023,11 +1023,11 @@ function BeforeAfter() {
           </Card>
 
           {/* With Insightis */}
-          <Card variant="glow" className="ins-card--glow--brand compare-card" style={{padding:'32px',display:'flex',flexDirection:'column'}}>
+          <Card variant="glow" className="ins-card--glow--brand compare-card" style={{padding:'var(--ins-size-8)',display:'flex',flexDirection:'column'}}>
             <div className="ins-card__header" style={{marginBottom:'22px'}}>With Insightis Semantic Layer</div>
             <CodeChip
               variant="panel"
-              style={{flex:1,marginBottom:'12px'}}
+              style={{flex:1,marginBottom:'var(--ins-size-3)'}}
               query="What's our MRR this month?"
               response={<>@MRR = <CodeChip.Highlight>$42,400</CodeChip.Highlight> — March, blended across Stripe + HubSpot + Postgres. Every dashboard, chat, and board deck reads the same certified definition. Analysts ship insights, not reconciliations.</>}
             />
@@ -1037,7 +1037,7 @@ function BeforeAfter() {
 
         {/* 5x badge */}
         <div style={{textAlign:'center',marginTop:'36px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:'var(--ins-size-3)'}}>
             <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',lineHeight:1,flexShrink:0}}>5×</span>
             <span className="ins-text-body-lg" style={{whiteSpace:'nowrap'}}>faster reporting because every metric is certified once, used everywhere.</span>
           </div>

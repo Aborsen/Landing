@@ -295,7 +295,7 @@ function ConnectionChatAnimation() {
         transform: `translate(-50%, -50%) scale(${phase === 'chaos' ? 0.55 : 1})`,
         opacity: phase === 'chaos' ? 0.25 : 1,
         transition: 'opacity .8s ease, transform 1s cubic-bezier(0.34,1.56,0.64,1)',
-        display:'flex', flexDirection:'column', alignItems:'center', gap:'8px',
+        display:'flex', flexDirection:'column', alignItems:'center', gap:'var(--ins-size-2)',
         zIndex:4,
       }}>
         <div style={{
@@ -366,7 +366,7 @@ function Hero() {
           <p className="ins-text-body-xl" style={{marginBottom:'36px',maxWidth:'520px'}}>
             Plug in your CRM, warehouse, ads and product tools. Query every source in plain English — no SQL, no waiting.
           </p>
-          <div style={{display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap',marginBottom:'24px'}}>
+          <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-3)',flexWrap:'wrap',marginBottom:'var(--ins-size-6)'}}>
             <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
               Start for Free
             </Button>
@@ -535,7 +535,7 @@ function ConnectorsGallery() {
       <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 1.5rem'}}>
 
         {/* Heading */}
-        <div style={{marginBottom:'32px'}}>
+        <div style={{marginBottom:'var(--ins-size-8)'}}>
           <SectionHeader
             eyebrow="Built for every team"
             title="Which data sources does Insightis integrate with?"
@@ -546,7 +546,7 @@ function ConnectorsGallery() {
         </div>
 
         {/* Category tabs */}
-        <div style={{display:'flex',justifyContent:'center',gap:'8px',marginBottom:'28px',flexWrap:'wrap'}}>
+        <div style={{display:'flex',justifyContent:'center',gap:'var(--ins-size-2)',marginBottom:'var(--ins-size-7)',flexWrap:'wrap'}}>
           {cats.map(cat => {
             const isActive = cat === activeCat;
             return (
@@ -586,7 +586,7 @@ function ConnectorsGallery() {
         </div>
 
         {/* Footer note */}
-        <div style={{textAlign:'center',marginTop:'32px'}}>
+        <div style={{textAlign:'center',marginTop:'var(--ins-size-8)'}}>
           <span style={{fontSize:'12.5px',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)'}}>
             + 200 more connectors available ·{' '}
             <a href="/Resources/Connectors" style={{color:'var(--ins-text-highlight)',textDecoration:'none'}}>see full list →</a>
@@ -624,7 +624,7 @@ function HowSyncWorks() {
   return (
     <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 1.5rem'}}>
-        <div style={{marginBottom:'64px'}}>
+        <div style={{marginBottom:'var(--ins-size-16)'}}>
           <SectionHeader
             eyebrow="How it works"
             title="How does Insightis connect to your data sources?"
@@ -652,7 +652,7 @@ function IntegrationImpact() {
       <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 1.5rem'}}>
 
         {/* Heading */}
-        <div style={{marginBottom:'56px'}}>
+        <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
             eyebrow="Direct integration"
             title="Tools guess. Insightis answers."
@@ -672,13 +672,13 @@ function IntegrationImpact() {
         </div>
 
         {/* Comparison cards */}
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'16px',alignItems:'stretch'}}>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'var(--ins-size-4)',alignItems:'stretch'}}>
           {/* Disconnected data */}
-          <Card variant="glow" className="ins-card--glow--error compare-card" style={{padding:'32px',display:'flex',flexDirection:'column'}}>
+          <Card variant="glow" className="ins-card--glow--error compare-card" style={{padding:'var(--ins-size-8)',display:'flex',flexDirection:'column'}}>
             <div className="ins-card__header" style={{marginBottom:'22px'}}>Disconnected data</div>
             <CodeChip
               variant="panel"
-              style={{flex:1,marginBottom:'12px'}}
+              style={{flex:1,marginBottom:'var(--ins-size-3)'}}
               query="Which channel drove the most signups last month?"
               response={
                 <div style={{display:'flex',flexDirection:'column',gap:'10px'}}>
@@ -686,7 +686,7 @@ function IntegrationImpact() {
                     {display:'3–5 days', label:'to produce one number',            sub:'export CSVs, VLOOKUP, reconcile by hand'},
                     {display:'4 tools',  label:'to query for a request',   sub:'HubSpot, Stripe and the warehouse'},
                   ].map((s, i) => (
-                    <div key={i} style={{display:'flex',alignItems:'baseline',gap:'12px',fontSize:'12.5px',lineHeight:1.45}}>
+                    <div key={i} style={{display:'flex',alignItems:'baseline',gap:'var(--ins-size-3)',fontSize:'12.5px',lineHeight:1.45}}>
                       <span style={{color:'var(--ins-status-error-fg)',fontWeight:600,minWidth:'64px',flexShrink:0,fontVariantNumeric:'tabular-nums',letterSpacing:'-.02em'}}>
                         {s.display}
                       </span>
@@ -703,11 +703,11 @@ function IntegrationImpact() {
           </Card>
 
           {/* Insightis */}
-          <Card variant="glow" className="ins-card--glow--brand compare-card" style={{padding:'32px',display:'flex',flexDirection:'column'}}>
+          <Card variant="glow" className="ins-card--glow--brand compare-card" style={{padding:'var(--ins-size-8)',display:'flex',flexDirection:'column'}}>
             <div className="ins-card__header" style={{marginBottom:'22px'}}>Insightis</div>
             <CodeChip
               variant="panel"
-              style={{flex:1,marginBottom:'12px'}}
+              style={{flex:1,marginBottom:'var(--ins-size-3)'}}
               response={
                 <>
                   <div style={{fontSize:'12.5px',color:'var(--ins-text-body)',lineHeight:1.6,marginBottom:'14px'}}>
@@ -715,7 +715,7 @@ function IntegrationImpact() {
                   </div>
                   <div style={{display:'flex',flexDirection:'column',gap:'10px'}}>
                     {STATS.map((s, i) => (
-                      <div key={i} style={{display:'flex',alignItems:'baseline',gap:'12px',fontSize:'12.5px',lineHeight:1.45}}>
+                      <div key={i} style={{display:'flex',alignItems:'baseline',gap:'var(--ins-size-3)',fontSize:'12.5px',lineHeight:1.45}}>
                         <span style={{color:'var(--ins-text-highlight)',fontWeight:600,minWidth:'64px',flexShrink:0,fontVariantNumeric:'tabular-nums',letterSpacing:'-.02em'}}>
                           {s.display}
                         </span>
@@ -734,7 +734,7 @@ function IntegrationImpact() {
         </div>
 
         {/* Headline callout */}
-        <div style={{textAlign:'center',marginTop:'40px'}}>
+        <div style={{textAlign:'center',marginTop:'var(--ins-size-10)'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:'14px',flexWrap:'wrap',justifyContent:'center'}}>
             <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',lineHeight:1,flexShrink:0}}>60s</span>
             <span className="ins-text-body-lg" style={{whiteSpace:'nowrap'}}>to connect a new source — OAuth, no pipelines to maintain.</span>

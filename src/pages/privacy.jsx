@@ -30,10 +30,10 @@ function PrivacyContent() {
     sections.forEach(s => { const el = document.getElementById(s.id); if (el) observer.observe(el); });
     return () => observer.disconnect();
   }, []);
-  const sectionStyle = { marginTop: '48px', scrollMarginTop: '100px' };
-  const h2Style = { fontSize: 'var(--ins-font-size-20)', fontWeight: 600, color: 'var(--ins-text-heading-soft)', marginBottom: '16px' };
-  const pStyle = { marginBottom: '16px' };
-  const ulStyle = { paddingLeft: '24px', listStyleType: 'disc', color: 'var(--ins-text-body)', display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '16px', fontSize: 'var(--ins-font-size-15)', lineHeight: 1.8 };
+  const sectionStyle = { marginTop: 'var(--ins-size-12)', scrollMarginTop: '100px' };
+  const h2Style = { fontSize: 'var(--ins-font-size-20)', fontWeight: 600, color: 'var(--ins-text-heading-soft)', marginBottom: 'var(--ins-size-4)' };
+  const pStyle = { marginBottom: 'var(--ins-size-4)' };
+  const ulStyle = { paddingLeft: 'var(--ins-size-6)', listStyleType: 'disc', color: 'var(--ins-text-body)', display: 'flex', flexDirection: 'column', gap: 'var(--ins-size-2)', marginBottom: 'var(--ins-size-4)', fontSize: 'var(--ins-font-size-15)', lineHeight: 1.8 };
 
   return (
     <section style={{ position: 'relative' }}>
@@ -43,17 +43,17 @@ function PrivacyContent() {
           <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)', fontSize: 'clamp(32px,5vw,48px)', fontWeight: 500, letterSpacing: '-.02em', lineHeight: 1.15 }}>
             Privacy Policy
           </h1>
-          <p className="fu2 ins-text-body ins-text--muted" style={{marginTop: '12px'}}>
+          <p className="fu2 ins-text-body ins-text--muted" style={{marginTop: 'var(--ins-size-3)'}}>
             Effective Date: April 6, 2026
           </p>
-          <p className="fu3 ins-text-body-lg ins-text--muted" style={{marginTop: '32px'}}>
+          <p className="fu3 ins-text-body-lg ins-text--muted" style={{marginTop: 'var(--ins-size-8)'}}>
             At Insightis, a product by Devart, we are committed to protecting your privacy and ensuring the security of the personal information you share with us. This Privacy Policy describes how we collect, use, disclose, and safeguard your data when you use the Insightis AI analytics workspace, our website, and related services.
           </p>
         </div>
       </div>
 
       {/* Two-column: TOC + Content */}
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px 100px', display: 'flex', gap: '56px', alignItems: 'flex-start' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px 100px', display: 'flex', gap: 'var(--ins-size-14)', alignItems: 'flex-start' }}>
 
         {/* Sticky TOC */}
         <div role="navigation" aria-label="On this page" className="hidden md:block" style={{ width: '200px', flexShrink: 0, position: 'sticky', top: '90px' }}>
@@ -87,26 +87,26 @@ function PrivacyContent() {
           <p className="ins-text-body-lg" style={pStyle}>
             We collect information in several ways depending on how you interact with Insightis:
           </p>
-          <p className="ins-text-body-lg ins-text--medium" style={{ marginBottom: '8px' }}>Account Information</p>
+          <p className="ins-text-body-lg ins-text--medium" style={{ marginBottom: 'var(--ins-size-2)' }}>Account Information</p>
           <ul style={ulStyle}>
             <li>Name, email address, and company name when you create an account</li>
             <li>Billing information and payment details for paid plans</li>
             <li>Profile preferences and notification settings</li>
           </ul>
-          <p className="ins-text-body-lg ins-text--medium" style={{ marginBottom: '8px' }}>Usage Data</p>
+          <p className="ins-text-body-lg ins-text--medium" style={{ marginBottom: 'var(--ins-size-2)' }}>Usage Data</p>
           <ul style={ulStyle}>
             <li>Analytics queries and natural language questions you submit</li>
             <li>Reports you create, save, and share within the platform</li>
             <li>Feature usage patterns and interaction logs</li>
             <li>Session duration, pages visited, and navigation paths</li>
           </ul>
-          <p className="ins-text-body-lg ins-text--medium" style={{ marginBottom: '8px' }}>Data Source Connections</p>
+          <p className="ins-text-body-lg ins-text--medium" style={{ marginBottom: 'var(--ins-size-2)' }}>Data Source Connections</p>
           <ul style={ulStyle}>
             <li>Connection credentials and authentication tokens for your integrated data sources (databases, CRMs, spreadsheets, etc.)</li>
             <li>Metadata about your connected data sources, including schema information, table names, and column definitions</li>
             <li>Query results and aggregated data retrieved through your integrations</li>
           </ul>
-          <p className="ins-text-body-lg ins-text--medium" style={{ marginBottom: '8px' }}>Device and Technical Information</p>
+          <p className="ins-text-body-lg ins-text--medium" style={{ marginBottom: 'var(--ins-size-2)' }}>Device and Technical Information</p>
           <ul style={ulStyle}>
             <li>IP address, browser type and version, operating system</li>
             <li>Device identifiers and screen resolution</li>

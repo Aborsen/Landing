@@ -124,23 +124,23 @@ function SecurityContent() {
       <section style={{padding:'120px 0 60px', position:'relative'}}>
         <div style={{position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:'100%', height:'100%', background:'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(9,160,157,.06) 0%, transparent 70%)', pointerEvents:'none'}}/>
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', textAlign:'center', position:'relative'}}>
-          <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'20px'}}>
+          <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-5)'}}>
             <span style={{fontSize:'var(--ins-font-size-12)'}}>&#x2726;</span>
             <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', fontFamily:'var(--ins-font-family-mono)'}}>Security</span>
           </div>
-          <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'20px'}}>
+          <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'var(--ins-size-5)'}}>
             Secure by design
           </h1>
           <p className="fu2 ins-text-body-xl" style={{maxWidth:'640px', margin:'0 auto'}}>
             Your data stays yours. Insightis is built with enterprise-grade security at every layer — from encryption and access controls to compliance certifications and continuous monitoring.
           </p>
-          <div className="fu3" style={{display:'flex', justifyContent:'center', gap:'12px', marginTop:'32px', flexWrap:'wrap'}}>
-            <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'12px 28px', fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-text-body)', background:'var(--ins-button-primary-bg)', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
+          <div className="fu3" style={{display:'flex', justifyContent:'center', gap:'var(--ins-size-3)', marginTop:'var(--ins-size-8)', flexWrap:'wrap'}}>
+            <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'var(--ins-size-2)', padding:'12px 28px', fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-text-body)', background:'var(--ins-button-primary-bg)', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
               onMouseEnter={e=>e.currentTarget.style.background='var(--ins-button-primary-bg-hover)'}
               onMouseLeave={e=>e.currentTarget.style.background='var(--ins-button-primary-bg)'}>
               Contact Security Team
             </a>
-            <a href="Privacy" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'12px 28px', fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-color-gray-100)', border:'1px solid var(--ins-color-white-a-12)', borderRadius:'999px', textDecoration:'none', transition:'border-color .2s'}}
+            <a href="Privacy" style={{display:'inline-flex', alignItems:'center', gap:'var(--ins-size-2)', padding:'12px 28px', fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-color-gray-100)', border:'1px solid var(--ins-color-white-a-12)', borderRadius:'999px', textDecoration:'none', transition:'border-color .2s'}}
               onMouseEnter={e=>e.currentTarget.style.borderColor='rgba(255,255,255,.35)'}
               onMouseLeave={e=>e.currentTarget.style.borderColor='var(--ins-color-white-a-12)'}>
               View Privacy Policy
@@ -152,23 +152,23 @@ function SecurityContent() {
       {/* Security Controls Grid */}
       <section style={{padding:'80px 0'}}>
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-          <div style={{marginBottom:'56px'}}>
+          <div style={{marginBottom:'var(--ins-size-14)'}}>
             <SectionHeader
               eyebrow="Enterprise Security"
               title="Built-in security at every layer"
               sparkle
             />
           </div>
-          <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))', gap:'16px'}}>
+          <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))', gap:'var(--ins-size-4)'}}>
             {securityCards.map((v, i) => (
-              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-16)', padding:'28px', position:'relative', overflow:'hidden', transition:'all .2s'}}
+              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-16)', padding:'var(--ins-size-7)', position:'relative', overflow:'hidden', transition:'all .2s'}}
                 onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
                 onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-border-default)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
                 <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
-                <div style={{width:'40px', height:'40px', borderRadius:'10px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'16px'}}>
+                <div style={{width:'40px', height:'40px', borderRadius:'10px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'var(--ins-size-4)'}}>
                   {v.icon}
                 </div>
-                <h3 style={{fontSize:'var(--ins-font-size-17)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{v.title}</h3>
+                <h3 style={{fontSize:'var(--ins-font-size-17)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'var(--ins-size-2)'}}>{v.title}</h3>
                 <p className="ins-text-body">{v.desc}</p>
               </div>
             ))}
@@ -179,23 +179,23 @@ function SecurityContent() {
       {/* Compliance Section */}
       <section style={{padding:'80px 0'}}>
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-          <div style={{marginBottom:'56px'}}>
+          <div style={{marginBottom:'var(--ins-size-14)'}}>
             <SectionHeader
               eyebrow="Compliance"
               title="Industry-standard certifications"
               sparkle
             />
           </div>
-          <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))', gap:'16px', maxWidth:'960px', margin:'0 auto'}}>
+          <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))', gap:'var(--ins-size-4)', maxWidth:'960px', margin:'0 auto'}}>
             {complianceCards.map((c, i) => (
               <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-16)', padding:'36px 28px', position:'relative', overflow:'hidden', textAlign:'center', transition:'all .2s'}}
                 onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
                 onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-border-default)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
                 <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
-                <div style={{display:'flex', justifyContent:'center', marginBottom:'20px'}}>
+                <div style={{display:'flex', justifyContent:'center', marginBottom:'var(--ins-size-5)'}}>
                   {c.icon}
                 </div>
-                <h3 style={{fontSize:'var(--ins-font-size-17)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{c.title}</h3>
+                <h3 style={{fontSize:'var(--ins-font-size-17)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'var(--ins-size-2)'}}>{c.title}</h3>
                 <p className="ins-text-body">{c.desc}</p>
               </div>
             ))}
@@ -206,7 +206,7 @@ function SecurityContent() {
       {/* Your Data Promise */}
       <section style={{padding:'80px 0'}}>
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-          <div style={{marginBottom:'56px'}}>
+          <div style={{marginBottom:'var(--ins-size-14)'}}>
             <SectionHeader
               eyebrow="Data Protection"
               title="Your data, your rules"
@@ -216,10 +216,10 @@ function SecurityContent() {
           <div style={{maxWidth:'720px', margin:'0 auto'}}>
             <div style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-16)', padding:'36px', position:'relative', overflow:'hidden'}}>
               <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
-              <div style={{display:'flex', flexDirection:'column', gap:'20px'}}>
+              <div style={{display:'flex', flexDirection:'column', gap:'var(--ins-size-5)'}}>
                 {promises.map((p, i) => (
                   <div key={i} style={{display:'flex', alignItems:'flex-start', gap:'14px'}}>
-                    <div style={{flexShrink:0, marginTop:'2px'}}>
+                    <div style={{flexShrink:0, marginTop:'var(--ins-size-half)'}}>
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                     </div>
                     <p className="ins-text-body-lg">{p}</p>
@@ -234,10 +234,10 @@ function SecurityContent() {
       {/* FAQ Section */}
       <section style={{padding:'80px 0'}}>
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-          <div style={{textAlign:'center', marginBottom:'56px'}}>
+          <div style={{textAlign:'center', marginBottom:'var(--ins-size-14)'}}>
             <h2 className="ins-text-display">Frequently asked questions</h2>
           </div>
-          <div style={{maxWidth:'760px', margin:'0 auto', display:'flex', flexDirection:'column', gap:'8px'}}>
+          <div style={{maxWidth:'760px', margin:'0 auto', display:'flex', flexDirection:'column', gap:'var(--ins-size-2)'}}>
             {faqs.map((faq, i) => (
               <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-12)', overflow:'hidden', transition:'all .2s'}}>
                 <button
@@ -245,7 +245,7 @@ function SecurityContent() {
                   style={{width:'100%', display:'flex', alignItems:'center', justifyContent:'space-between', padding:'18px 24px', background:'transparent', border:'none', cursor:'pointer', textAlign:'left'}}
                 >
                   <span style={{fontSize:'var(--ins-font-size-15)', fontWeight:500, color:'var(--ins-color-gray-100)'}}>{faq.q}</span>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-body)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0, marginLeft:'16px', transition:'transform .25s', transform: openFaq === i ? 'rotate(180deg)' : 'rotate(0deg)'}}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-body)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0, marginLeft:'var(--ins-size-4)', transition:'transform .25s', transform: openFaq === i ? 'rotate(180deg)' : 'rotate(0deg)'}}>
                     <polyline points="6 9 12 15 18 9"/>
                   </svg>
                 </button>
@@ -267,19 +267,19 @@ function SecurityContent() {
             <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.4),transparent)'}}/>
             <div style={{position:'absolute', inset:0, background:'radial-gradient(ellipse 50% 60% at 50% 0%, var(--ins-surface-brand-tint) 0%, transparent 70%)', pointerEvents:'none'}}/>
             <div style={{position:'relative'}}>
-              <h3 style={{fontSize:'clamp(24px,3.5vw,36px)', fontWeight:500, color:'var(--ins-text-heading)', letterSpacing:'-.02em', marginBottom:'16px'}}>
+              <h3 style={{fontSize:'clamp(24px,3.5vw,36px)', fontWeight:500, color:'var(--ins-text-heading)', letterSpacing:'-.02em', marginBottom:'var(--ins-size-4)'}}>
                 Have security questions?
               </h3>
               <p className="ins-text-body-lg ins-text--muted" style={{maxWidth:'520px', margin:'0 auto 32px'}}>
                 Our security team is here to help with assessments, compliance documentation, and custom security requirements.
               </p>
-              <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'14px 32px', fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-text-body)', background:'var(--ins-button-primary-bg)', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
+              <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'var(--ins-size-2)', padding:'14px 32px', fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-text-body)', background:'var(--ins-button-primary-bg)', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
                 onMouseEnter={e=>e.currentTarget.style.background='var(--ins-button-primary-bg-hover)'}
                 onMouseLeave={e=>e.currentTarget.style.background='var(--ins-button-primary-bg)'}>
                 Contact Security Team
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
               </a>
-              <p className="ins-text-body ins-text--muted" style={{marginTop:'16px'}}>security@insightis.ai</p>
+              <p className="ins-text-body ins-text--muted" style={{marginTop:'var(--ins-size-4)'}}>security@insightis.ai</p>
             </div>
           </div>
         </div>

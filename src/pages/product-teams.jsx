@@ -44,27 +44,27 @@ function Hero() {
         <div data-hero-grid style={{
           display:'grid',
           gridTemplateColumns:'1fr 1fr',
-          gap:'64px',
+          gap:'var(--ins-size-16)',
           alignItems:'center',
         }}>
           {/* Left: text */}
           <div>
-            <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'20px'}}>
+            <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-5)'}}>
               <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
               <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>For Product Teams</span>
             </div>
 
-            <h1 className="fu1" style={{fontSize:'clamp(36px,4.5vw,58px)',fontWeight:500,color:'var(--ins-text-heading-soft)',letterSpacing:'-.03em',lineHeight:1.12,marginBottom:'20px'}}>
+            <h1 className="fu1" style={{fontSize:'clamp(36px,4.5vw,58px)',fontWeight:500,color:'var(--ins-text-heading-soft)',letterSpacing:'-.03em',lineHeight:1.12,marginBottom:'var(--ins-size-5)'}}>
               <span style={{color:'var(--ins-text-heading-soft)'}}>Stop guessing</span>
               <br/>
               <span style={{color:'var(--ins-text-highlight)'}}>what users actually do.</span>
             </h1>
 
-            <p className="fu2 ins-text-body-xl" style={{marginBottom:'28px',maxWidth:'480px'}}>
+            <p className="fu2 ins-text-body-xl" style={{marginBottom:'var(--ins-size-7)',maxWidth:'480px'}}>
               Stop waiting two weeks for a data pull. Ask any product question in plain English — Insightis answers from your events, billing, and CRM in seconds.
             </p>
 
-            <div className="fu3" style={{display:'flex',gap:'12px',flexWrap:'wrap',marginBottom:'28px'}}>
+            <div className="fu3" style={{display:'flex',gap:'var(--ins-size-3)',flexWrap:'wrap',marginBottom:'var(--ins-size-7)'}}>
               <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
                 Start for Free
               </Button>
@@ -89,7 +89,7 @@ function Hero() {
               background:'linear-gradient(135deg, rgba(13,17,23,0.95) 0%, rgba(15,20,28,0.92) 100%)',
               border:'1px solid var(--ins-color-white-a-08)',
               borderRadius:'24px',
-              padding:'24px',
+              padding:'var(--ins-size-6)',
               backdropFilter:'blur(24px)',
               WebkitBackdropFilter:'blur(24px)',
               boxShadow:'none',
@@ -128,7 +128,7 @@ function Hero() {
 
               {/* Header */}
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'14px'}}>
-                <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
+                <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)'}}>
                   <div style={{width:'6px',height:'6px',borderRadius:'50%',background:'var(--ins-color-purple-400)',boxShadow:'0 0 8px rgba(167,139,250,.6)'}}/>
                   <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10.5px',color:'var(--ins-text-body)',letterSpacing:'.08em',textTransform:'uppercase'}}>Funnel · May cohort</span>
                 </div>
@@ -139,7 +139,7 @@ function Hero() {
               <h3 style={{fontSize:'var(--ins-font-size-17)',fontWeight:500,color:'var(--ins-text-heading-soft)',marginBottom:'6px',letterSpacing:'-.015em',lineHeight:1.35}}>
                 Onboarding cliff at <span style={{color:'var(--ins-color-purple-400)'}}>step 3</span>
               </h3>
-              <p className="ins-text-body-sm" style={{marginBottom:'16px'}}>
+              <p className="ins-text-body-sm" style={{marginBottom:'var(--ins-size-4)'}}>
                 <span style={{color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontSize:'11.5px'}}>workspace_created</span> dropped <span style={{color:'var(--ins-status-error-fg)',fontWeight:500}}>−41%</span>. 87% on mobile. New invite flow shipped Tuesday.
               </p>
 
@@ -151,7 +151,7 @@ function Hero() {
                 padding:'14px 14px 12px',
                 marginBottom:'14px',
               }}>
-                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'12px'}}>
+                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'var(--ins-size-3)'}}>
                   <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.06em',textTransform:'uppercase'}}>activation funnel</span>
                   <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-body)'}}>n = 12,840</span>
                 </div>
@@ -193,7 +193,7 @@ function Hero() {
               </div>
 
               {/* Metric tiles — product-relevant */}
-              <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'8px'}}>
+              <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'var(--ins-size-2)'}}>
                 {[
                   {label:'Cliff step', val:'#3',       color:'var(--ins-status-error-fg)'},
                   {label:'Cohort',     val:'May new',  color:'var(--ins-color-purple-400)'},
@@ -205,7 +205,7 @@ function Hero() {
                     borderRadius:'10px',
                     padding:'10px 12px',
                   }}>
-                    <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'4px'}}>{m.label}</div>
+                    <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'var(--ins-size-1)'}}>{m.label}</div>
                     <div style={{fontSize:'var(--ins-font-size-14)',fontWeight:500,color:m.color,fontFamily:'var(--ins-font-family-mono)',letterSpacing:'-.01em'}}>{m.val}</div>
                   </div>
                 ))}
@@ -254,11 +254,11 @@ function Hero() {
               minWidth:'168px',
               zIndex:2,
             }}>
-              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'8px'}}>
+              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'var(--ins-size-2)'}}>
                 <span style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>Retention</span>
                 <span style={{fontSize:'10.5px',color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontWeight:500}}>W12 · 28%</span>
               </div>
-              <svg viewBox="0 0 140 32" width="100%" height="28" preserveAspectRatio="none" style={{display:'block',marginBottom:'4px'}}>
+              <svg viewBox="0 0 140 32" width="100%" height="28" preserveAspectRatio="none" style={{display:'block',marginBottom:'var(--ins-size-1)'}}>
                 <defs>
                   <linearGradient id="retn-fill" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor="var(--ins-text-highlight)" stopOpacity="0.32"/>
@@ -313,7 +313,7 @@ function PainPoints() {
   return (
     <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'56px'}}>
+        <div style={{textAlign:'center',marginBottom:'var(--ins-size-14)'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
             <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>The Problem</span>
@@ -465,7 +465,7 @@ function RelevantIntegrations() {
   return (
     <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{marginBottom:'56px'}}>
+        <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
             eyebrow="Your Product Stack"
             title="Connects to every product data source"
@@ -474,7 +474,7 @@ function RelevantIntegrations() {
           />
         </div>
 
-        <div data-connectors-grid style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'10px',marginBottom:'32px'}}>
+        <div data-connectors-grid style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'10px',marginBottom:'var(--ins-size-8)'}}>
           {connectors.map((c,i) => (
             <div key={i} className="connector-card">
               <div className="connector-icon" style={{background:c.bg, display:'flex', alignItems:'center', justifyContent:'center'}}>
@@ -482,7 +482,7 @@ function RelevantIntegrations() {
               </div>
               <div>
                 <div style={{fontSize:'13px',fontWeight:500,color:'var(--ins-color-gray-100)'}}>{c.name}</div>
-                <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-inactive)',marginTop:'2px'}}>{c.desc}</div>
+                <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-inactive)',marginTop:'var(--ins-size-half)'}}>{c.desc}</div>
               </div>
             </div>
           ))}
@@ -524,7 +524,7 @@ function Metrics() {
   return (
     <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'48px'}}>
+        <div style={{textAlign:'center',marginBottom:'var(--ins-size-12)'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
             <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>Metrics That Matter</span>
@@ -537,7 +537,7 @@ function Metrics() {
           </p>
         </div>
 
-        <div style={{display:'flex',flexWrap:'wrap',gap:'10px',justifyContent:'center',marginBottom:'28px'}}>
+        <div style={{display:'flex',flexWrap:'wrap',gap:'10px',justifyContent:'center',marginBottom:'var(--ins-size-7)'}}>
           {metrics.map((m,i) => (
             <span key={i} className="metric-pill">{m}</span>
           ))}
@@ -592,7 +592,7 @@ function BeforeAfter() {
         />
 
         <div style={{textAlign:'center',marginTop:'36px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:'var(--ins-size-3)'}}>
             <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',lineHeight:1,flexShrink:0}}>4×</span>
             <span className="ins-text-body-lg" style={{whiteSpace:'nowrap'}}>more time for real analysis. Self-serve deflects 80% of ad hoc requests.</span>
           </div>
@@ -605,7 +605,7 @@ function BeforeAfter() {
 /* ── BOTTOM CTA ── */
 function BottomCTASection() {
   return (
-    <section style={{paddingTop:'32px',paddingBottom:'64px',position:'relative'}}>
+    <section style={{paddingTop:'var(--ins-size-8)',paddingBottom:'var(--ins-size-16)',position:'relative'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
           variant="form"
@@ -637,11 +637,11 @@ function Positioning() {
         }}>
           Stop being a <span style={{color:'var(--ins-text-highlight)'}}>reporting service.</span> Start doing <span style={{color:'var(--ins-text-highlight)'}}>real analysis.</span>
         </h2>
-        <p className="ins-text-body-lg" style={{marginBottom:'28px'}}>
+        <p className="ins-text-body-lg" style={{marginBottom:'var(--ins-size-7)'}}>
           Sound familiar? These are the problems Insightis eliminates.
         </p>
         <a href="#spotlights" style={{
-          display:'inline-flex',alignItems:'center',gap:'8px',
+          display:'inline-flex',alignItems:'center',gap:'var(--ins-size-2)',
           padding:'10px 20px',borderRadius:'999px',
           border:'1px solid var(--ins-color-white-a-12)',
           color:'var(--ins-text-body)',fontSize:'var(--ins-font-size-14)',fontWeight:400,
@@ -681,7 +681,7 @@ function SpotlightChat() {
 
         {/* AI reply */}
         <div className="chat-bubble-ai">
-          <div style={{fontSize:'12.5px',lineHeight:1.6,marginBottom:'12px'}}>
+          <div style={{fontSize:'12.5px',lineHeight:1.6,marginBottom:'var(--ins-size-3)'}}>
             Adoption climbed across every plan since the <span style={{color:'var(--ins-text-highlight)',fontWeight:500}}>v2.4</span> ship in March. <span style={{color:'var(--ins-text-highlight)',fontWeight:500}}>Pro</span> leads at 78% (+34pts QoQ); <span style={{color:'var(--ins-status-error-fg)',fontWeight:500}}>Free</span> at 18% remains the soft spot. Strongest lift came from the Team plan after the in-app prompt rolled out.
           </div>
 
@@ -699,7 +699,7 @@ function SpotlightChat() {
                 padding:'8px 10px',
               }}>
                 <div style={{fontSize:'9px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'3px'}}>{k.label}</div>
-                <div style={{fontSize:'13.5px',fontWeight:500,color:k.color,fontFamily:'var(--ins-font-family-mono)',letterSpacing:'-.01em',marginBottom:'2px'}}>{k.val}</div>
+                <div style={{fontSize:'13.5px',fontWeight:500,color:k.color,fontFamily:'var(--ins-font-family-mono)',letterSpacing:'-.01em',marginBottom:'var(--ins-size-half)'}}>{k.val}</div>
                 <div style={{fontSize:'9.5px',color:'var(--ins-text-body)'}}>{k.sub}</div>
               </div>
             ))}
@@ -708,7 +708,7 @@ function SpotlightChat() {
           {/* Source line */}
           <div style={{
             display:'flex',alignItems:'center',gap:'6px',
-            paddingTop:'8px',
+            paddingTop:'var(--ins-size-2)',
             borderTop:'1px solid var(--ins-color-white-a-05)',
             fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',
           }}>
@@ -758,12 +758,12 @@ function SpotlightSemantic() {
       <ChromeHeader label="metric · active_user" />
       <div style={{padding:'22px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
         {/* Section eyebrow */}
-        <div style={{textAlign:'center',marginBottom:'12px'}}>
+        <div style={{textAlign:'center',marginBottom:'var(--ins-size-3)'}}>
           <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>three teams · three definitions</span>
         </div>
 
         {/* Three conflicting team definitions */}
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'7px',marginBottom:'12px'}}>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'7px',marginBottom:'var(--ins-size-3)'}}>
           {teams.map((t,i)=>(
             <div key={i} style={{
               background:'rgba(255,255,255,.025)',
@@ -849,7 +849,7 @@ function SpotlightAnomalies() {
       <ChromeHeader label="cohort · breakdown" />
       <div style={{padding:'20px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
         {/* User question */}
-        <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'12px'}}>
+        <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)',marginBottom:'var(--ins-size-3)'}}>
           <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.08em',textTransform:'uppercase'}}>asked</span>
           <span style={{fontSize:'12.5px',color:'var(--ins-text-body)'}}>"Which cohort is dragging activation?"</span>
         </div>
@@ -860,13 +860,13 @@ function SpotlightAnomalies() {
           border:'1px solid var(--ins-color-white-a-05)',
           borderRadius:'10px',
           padding:'12px 12px 10px',
-          marginBottom:'12px',
+          marginBottom:'var(--ins-size-3)',
         }}>
-          <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'8px'}}>
+          <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'var(--ins-size-2)'}}>
             <div style={{display:'flex',gap:'10px',fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',alignItems:'center'}}>
-              <span style={{color:'var(--ins-color-purple-400)',display:'inline-flex',alignItems:'center',gap:'4px'}}><span style={{width:'10px',height:'2px',background:'var(--ins-color-purple-400)',borderRadius:'1px'}}/>Apr</span>
-              <span style={{color:'var(--ins-status-error-fg)',display:'inline-flex',alignItems:'center',gap:'4px'}}><span style={{width:'10px',height:'2px',background:'var(--ins-status-error-fg)',borderRadius:'1px'}}/>May</span>
-              <span style={{color:'var(--ins-text-highlight)',display:'inline-flex',alignItems:'center',gap:'4px'}}><span style={{width:'10px',height:'2px',background:'var(--ins-text-highlight)',borderRadius:'1px'}}/>Jun</span>
+              <span style={{color:'var(--ins-color-purple-400)',display:'inline-flex',alignItems:'center',gap:'var(--ins-size-1)'}}><span style={{width:'10px',height:'2px',background:'var(--ins-color-purple-400)',borderRadius:'1px'}}/>Apr</span>
+              <span style={{color:'var(--ins-status-error-fg)',display:'inline-flex',alignItems:'center',gap:'var(--ins-size-1)'}}><span style={{width:'10px',height:'2px',background:'var(--ins-status-error-fg)',borderRadius:'1px'}}/>May</span>
+              <span style={{color:'var(--ins-text-highlight)',display:'inline-flex',alignItems:'center',gap:'var(--ins-size-1)'}}><span style={{width:'10px',height:'2px',background:'var(--ins-text-highlight)',borderRadius:'1px'}}/>Jun</span>
             </div>
             <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-body)'}}>activation · D7</span>
           </div>
@@ -950,10 +950,10 @@ function SpotlightStack() {
     }}>
       <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 55% 70% at 80% 50%, rgba(9,160,157,.10) 0%, transparent 70%)',pointerEvents:'none'}}/>
       <ChromeHeader label="stack · flow" />
-      <div style={{padding:'20px 20px',flex:1,display:'flex',alignItems:'center',gap:'4px',position:'relative'}}>
+      <div style={{padding:'20px 20px',flex:1,display:'flex',alignItems:'center',gap:'var(--ins-size-1)',position:'relative'}}>
         {/* Left column: source tiles stacked vertically */}
         <div style={{flex:'1 1 46%',display:'flex',flexDirection:'column',gap:'7px',position:'relative',zIndex:2}}>
-          <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9px',color:'var(--ins-text-inactive)',letterSpacing:'.12em',textTransform:'uppercase',marginBottom:'2px'}}>your stack</div>
+          <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9px',color:'var(--ins-text-inactive)',letterSpacing:'.12em',textTransform:'uppercase',marginBottom:'var(--ins-size-half)'}}>your stack</div>
           {sources.map((s,i) => (
             <div key={i} style={{
               display:'flex',alignItems:'center',gap:'10px',
@@ -1027,7 +1027,7 @@ function SpotlightStack() {
             </div>
             <div>
               <div style={{fontSize:'13.5px',fontWeight:600,color:'var(--ins-color-gray-100)'}}>Insightis</div>
-              <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.08em',textTransform:'uppercase',marginTop:'2px'}}>Semantic Layer</div>
+              <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.08em',textTransform:'uppercase',marginTop:'var(--ins-size-half)'}}>Semantic Layer</div>
             </div>
             <span style={{
               fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-highlight)',
@@ -1095,7 +1095,7 @@ function FeatureSpotlights() {
               <div key={i} data-spotlight-grid style={{
                 display:'grid',
                 gridTemplateColumns:'1fr 1fr',
-                gap:'64px',
+                gap:'var(--ins-size-16)',
                 alignItems:'center',
               }}>
                 <div data-spotlight-text style={{order: reverse ? 2 : 0}}>
@@ -1112,7 +1112,7 @@ function FeatureSpotlights() {
                   <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px'}}>
                     {s.bullets.map((b,bi) => (
                       <li key={bi} style={{display:'flex',alignItems:'flex-start',gap:'10px',fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)',lineHeight:1.55}}>
-                        <CheckIcon size={12} style={{flexShrink:0,marginTop:'4px'}} />
+                        <CheckIcon size={12} style={{flexShrink:0,marginTop:'var(--ins-size-1)'}} />
                         {b}
                       </li>
                     ))}
@@ -1173,18 +1173,18 @@ function UseCases() {
   return (
     <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{marginBottom:'80px'}}>
+        <div style={{marginBottom:'var(--ins-size-20)'}}>
           <div style={{
             position:'relative',borderRadius:'var(--ins-radius-16)',
             border:'1px solid rgba(30,30,48,1)',
             padding:'32px 48px',overflow:'hidden',
-            display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'24px',
+            display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'var(--ins-size-6)',
             flexWrap:'wrap',
             background:'linear-gradient(135deg,var(--ins-color-promo-a) 0%,var(--ins-color-promo-b) 50%,var(--ins-color-promo-a) 100%)',
           }}>
             <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
             <div style={{flex:'1 1 360px',minWidth:0}}>
-              <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'8px'}}>
+              <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'var(--ins-size-2)'}}>
                 Ship faster with <span style={{color:'var(--ins-button-primary-bg)'}}>better data</span>.
               </h3>
               <p className="ins-text-body">
@@ -1196,7 +1196,7 @@ function UseCases() {
             </Button>
           </div>
         </div>
-        <div style={{marginBottom:'56px'}}>
+        <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
             eyebrow="Use cases"
             title="What product teams use Insightis for"
@@ -1210,7 +1210,7 @@ function UseCases() {
               style={{
                 background:'rgba(13,17,23,.6)',
                 border:'1px solid var(--ins-color-white-a-06)',
-                borderRadius:'var(--ins-radius-16)',padding:'24px',
+                borderRadius:'var(--ins-radius-16)',padding:'var(--ins-size-6)',
                 position:'relative',overflow:'hidden',
                 transition:'all .2s',
               }}
@@ -1257,7 +1257,7 @@ function Testimonials() {
   return (
     <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'56px'}}>
+        <div style={{textAlign:'center',marginBottom:'var(--ins-size-14)'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
             <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>Stories</span>
@@ -1267,7 +1267,7 @@ function Testimonials() {
           </h2>
         </div>
 
-        <div data-testimonials-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'16px'}}>
+        <div data-testimonials-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'var(--ins-size-4)'}}>
           {items.map((t,i) => (
             <TestimonialCard
               key={i}

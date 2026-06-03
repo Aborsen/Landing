@@ -41,27 +41,27 @@ function Hero() {
         <div data-hero-grid style={{
           display:'grid',
           gridTemplateColumns:'1fr 1fr',
-          gap:'64px',
+          gap:'var(--ins-size-16)',
           alignItems:'center',
         }}>
           {/* Left: text */}
           <div>
-            <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'20px'}}>
+            <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-5)'}}>
               <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
               <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>For Operations &amp; Finance</span>
             </div>
 
-            <h1 className="fu1" style={{fontSize:'clamp(36px,4.5vw,58px)',fontWeight:500,color:'var(--ins-text-heading-soft)',letterSpacing:'-.03em',lineHeight:1.12,marginBottom:'20px'}}>
+            <h1 className="fu1" style={{fontSize:'clamp(36px,4.5vw,58px)',fontWeight:500,color:'var(--ins-text-heading-soft)',letterSpacing:'-.03em',lineHeight:1.12,marginBottom:'var(--ins-size-5)'}}>
               <span style={{color:'var(--ins-text-heading-soft)'}}>Stop chasing numbers</span>
               <br/>
               <span style={{color:'var(--ins-text-highlight)'}}>across spreadsheets.</span>
             </h1>
 
-            <p className="fu2 ins-text-body-xl" style={{marginBottom:'28px',maxWidth:'480px'}}>
+            <p className="fu2 ins-text-body-xl" style={{marginBottom:'var(--ins-size-7)',maxWidth:'480px'}}>
               Stop reconciling AP, HR, and billing tools by hand. Ask any cost question in plain English — Insightis consolidates spend instantly.
             </p>
 
-            <div className="fu3" style={{display:'flex',gap:'12px',flexWrap:'wrap',marginBottom:'28px'}}>
+            <div className="fu3" style={{display:'flex',gap:'var(--ins-size-3)',flexWrap:'wrap',marginBottom:'var(--ins-size-7)'}}>
               <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
                 Start for Free
               </Button>
@@ -86,7 +86,7 @@ function Hero() {
               background:'linear-gradient(135deg, rgba(13,17,23,0.95) 0%, rgba(15,20,28,0.92) 100%)',
               border:'1px solid var(--ins-color-white-a-08)',
               borderRadius:'24px',
-              padding:'24px',
+              padding:'var(--ins-size-6)',
               backdropFilter:'blur(24px)',
               WebkitBackdropFilter:'blur(24px)',
               boxShadow:'none',
@@ -125,7 +125,7 @@ function Hero() {
 
               {/* Header */}
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'14px'}}>
-                <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
+                <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)'}}>
                   <div style={{width:'6px',height:'6px',borderRadius:'50%',background:'var(--ins-status-warning-fg)',boxShadow:'0 0 8px rgba(251,191,36,.6)'}}/>
                   <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10.5px',color:'var(--ins-text-body)',letterSpacing:'.08em',textTransform:'uppercase'}}>Q2 budget · MTD</span>
                 </div>
@@ -136,7 +136,7 @@ function Hero() {
               <h3 style={{fontSize:'var(--ins-font-size-17)',fontWeight:500,color:'var(--ins-text-heading-soft)',marginBottom:'6px',letterSpacing:'-.015em',lineHeight:1.35}}>
                 Cloud infra running <span style={{color:'var(--ins-status-error-fg)'}}>+41%</span> over budget
               </h3>
-              <p className="ins-text-body-sm" style={{marginBottom:'16px'}}>
+              <p className="ins-text-body-sm" style={{marginBottom:'var(--ins-size-4)'}}>
                 Reconciled across <span style={{color:'var(--ins-status-warning-fg)',fontFamily:'var(--ins-font-family-mono)',fontSize:'11.5px'}}>AP · HR · Billing</span> in real time. Two categories tracking past plan; rest on or under.
               </p>
 
@@ -228,7 +228,7 @@ function Hero() {
               </div>
 
               {/* Metric tiles — finance flavored */}
-              <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'8px'}}>
+              <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'var(--ins-size-2)'}}>
                 {[
                   {label:'Overage',  val:'+$24K',  color:'var(--ins-status-error-fg)'},
                   {label:'Sources',  val:'AP·HR·Billing', color:'var(--ins-status-warning-fg)'},
@@ -240,7 +240,7 @@ function Hero() {
                     borderRadius:'10px',
                     padding:'10px 12px',
                   }}>
-                    <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'4px'}}>{m.label}</div>
+                    <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'var(--ins-size-1)'}}>{m.label}</div>
                     <div style={{fontSize:m.val.length>8?'11.5px':'14px',fontWeight:500,color:m.color,fontFamily:'var(--ins-font-family-mono)',letterSpacing:'-.01em'}}>{m.val}</div>
                   </div>
                 ))}
@@ -289,7 +289,7 @@ function Hero() {
               minWidth:'180px',
               zIndex:2,
             }}>
-              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'8px'}}>
+              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'var(--ins-size-2)'}}>
                 <span style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>Q2 close</span>
                 <span style={{fontSize:'10.5px',color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontWeight:500}}>5 / 7 done</span>
               </div>
@@ -353,7 +353,7 @@ function SpotlightChat() {
       <div style={{padding:'18px 20px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
 
         {/* Inbox header */}
-        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'12px'}}>
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'var(--ins-size-3)'}}>
           <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>requests · today</span>
           <span style={{
             fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-status-success-fg)',
@@ -369,10 +369,10 @@ function SpotlightChat() {
           border:'1px solid rgba(9,160,157,.32)',
           borderRadius:'11px',
           padding:'12px 13px',
-          marginBottom:'8px',
+          marginBottom:'var(--ins-size-2)',
         }}>
-          <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'6px',gap:'8px'}}>
-            <div style={{display:'flex',alignItems:'center',gap:'8px',minWidth:0}}>
+          <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'6px',gap:'var(--ins-size-2)'}}>
+            <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)',minWidth:0}}>
               <div style={{
                 width:'22px',height:'22px',borderRadius:'50%',
                 background:'rgba(9,160,157,.22)',
@@ -393,15 +393,15 @@ function SpotlightChat() {
           </div>
 
           {/* Question */}
-          <div style={{fontSize:'12.5px',color:'var(--ins-text-body)',marginBottom:'8px',lineHeight:1.5}}>
+          <div style={{fontSize:'12.5px',color:'var(--ins-text-body)',marginBottom:'var(--ins-size-2)',lineHeight:1.5}}>
             "Where are we vs plan this month?"
           </div>
 
           {/* Answer — single compact line */}
           <div style={{
-            display:'flex',alignItems:'center',gap:'8px',
+            display:'flex',alignItems:'center',gap:'var(--ins-size-2)',
             fontFamily:'var(--ins-font-family-mono)',fontSize:'11.5px',
-            paddingTop:'8px',
+            paddingTop:'var(--ins-size-2)',
             borderTop:'1px dashed var(--ins-color-white-a-06)',
           }}>
             <span style={{color:'var(--ins-text-highlight)'}}>↳</span>
@@ -510,7 +510,7 @@ function SpotlightSemantic() {
                   opacity: isCertified ? 1 : 0.66,
                 }}>
                   <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:'10px',marginBottom:'3px'}}>
-                    <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
+                    <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)'}}>
                       <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-12)',fontWeight:500,color:'var(--ins-color-gray-100)'}}>{v.ver}</span>
                       {isCertified && (
                         <span style={{
@@ -567,7 +567,7 @@ function SpotlightAnomalies() {
       <ChromeHeader label="watchlist · this week" />
       <div style={{padding:'20px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
         {/* Eyebrow row */}
-        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'12px'}}>
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'var(--ins-size-3)'}}>
           <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>flagged before close</span>
           <div style={{display:'flex',gap:'10px',fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px'}}>
             <span style={{color:'var(--ins-status-error-fg)'}}>● 1 high</span>
@@ -601,7 +601,7 @@ function SpotlightAnomalies() {
 
                 {/* Body */}
                 <div style={{flex:1,minWidth:0}}>
-                  <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
+                  <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)'}}>
                     <span style={{fontSize:'var(--ins-font-size-12)',color:'var(--ins-color-gray-100)',fontWeight:500}}>{it.label}</span>
                     <span style={{
                       fontFamily:'var(--ins-font-family-mono)',fontSize:'8.5px',
@@ -611,7 +611,7 @@ function SpotlightAnomalies() {
                       letterSpacing:'.04em',
                     }}>{it.tag}</span>
                   </div>
-                  <div style={{fontSize:'10.5px',color:'var(--ins-text-body)',marginTop:'2px'}}>{it.why}</div>
+                  <div style={{fontSize:'10.5px',color:'var(--ins-text-body)',marginTop:'var(--ins-size-half)'}}>{it.why}</div>
                 </div>
 
                 {/* Timestamp */}
@@ -657,15 +657,15 @@ function SpotlightStack() {
           border:'1px solid rgba(9,160,157,.32)',
           borderRadius:'11px',
           padding:'12px 14px',
-          marginBottom:'12px',
-          display:'flex',alignItems:'center',justifyContent:'space-between',gap:'12px',
+          marginBottom:'var(--ins-size-3)',
+          display:'flex',alignItems:'center',justifyContent:'space-between',gap:'var(--ins-size-3)',
         }}>
           <div style={{minWidth:0}}>
             <div style={{display:'flex',alignItems:'baseline',gap:'10px'}}>
               <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-22)',fontWeight:500,color:'var(--ins-color-gray-100)',letterSpacing:'-.01em'}}>$187K</span>
               <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-body)'}}>gross_burn · Q2 MTD</span>
             </div>
-            <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.06em',textTransform:'uppercase',marginTop:'4px'}}>
+            <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.06em',textTransform:'uppercase',marginTop:'var(--ins-size-1)'}}>
               FP&amp;A · v3.2 · 4 source systems
             </div>
           </div>
@@ -734,7 +734,7 @@ function SpotlightStack() {
 
         {/* Audit footer */}
         <div style={{
-          marginTop:'12px',
+          marginTop:'var(--ins-size-3)',
           paddingTop:'10px',
           borderTop:'1px dashed var(--ins-color-white-a-06)',
           display:'flex',alignItems:'center',justifyContent:'space-between',
@@ -804,7 +804,7 @@ function FeatureSpotlights() {
               <div key={i} data-spotlight-grid style={{
                 display:'grid',
                 gridTemplateColumns:'1fr 1fr',
-                gap:'64px',
+                gap:'var(--ins-size-16)',
                 alignItems:'center',
               }}>
                 <div data-spotlight-text style={{order: reverse ? 2 : 0}}>
@@ -821,7 +821,7 @@ function FeatureSpotlights() {
                   <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px'}}>
                     {s.bullets.map((b,bi) => (
                       <li key={bi} style={{display:'flex',alignItems:'flex-start',gap:'10px',fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)',lineHeight:1.55}}>
-                        <CheckIcon size={12} style={{flexShrink:0,marginTop:'4px'}} />
+                        <CheckIcon size={12} style={{flexShrink:0,marginTop:'var(--ins-size-1)'}} />
                         {b}
                       </li>
                     ))}
@@ -882,18 +882,18 @@ function UseCases() {
   return (
     <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{marginBottom:'80px'}}>
+        <div style={{marginBottom:'var(--ins-size-20)'}}>
           <div style={{
             position:'relative',borderRadius:'var(--ins-radius-16)',
             border:'1px solid rgba(30,30,48,1)',
             padding:'32px 48px',overflow:'hidden',
-            display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'24px',
+            display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'var(--ins-size-6)',
             flexWrap:'wrap',
             background:'linear-gradient(135deg,var(--ins-color-promo-a) 0%,var(--ins-color-promo-b) 50%,var(--ins-color-promo-a) 100%)',
           }}>
             <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
             <div style={{flex:'1 1 360px',minWidth:0}}>
-              <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'8px'}}>
+              <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'var(--ins-size-2)'}}>
                 See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own ledger</span>.
               </h3>
               <p className="ins-text-body">
@@ -905,7 +905,7 @@ function UseCases() {
             </Button>
           </div>
         </div>
-        <div style={{marginBottom:'56px'}}>
+        <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
             eyebrow="Use cases"
             title="What ops & finance teams use Insightis for"
@@ -919,7 +919,7 @@ function UseCases() {
               style={{
                 background:'rgba(13,17,23,.6)',
                 border:'1px solid var(--ins-color-white-a-06)',
-                borderRadius:'var(--ins-radius-16)',padding:'24px',
+                borderRadius:'var(--ins-radius-16)',padding:'var(--ins-size-6)',
                 position:'relative',overflow:'hidden',
                 transition:'all .2s',
               }}
@@ -1091,7 +1091,7 @@ function RelevantIntegrations() {
   return (
     <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{marginBottom:'56px'}}>
+        <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
             eyebrow="Your Finance Stack"
             title="Works with every accounting, payroll, and billing tool"
@@ -1100,7 +1100,7 @@ function RelevantIntegrations() {
           />
         </div>
 
-        <div data-connectors-grid style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'10px',marginBottom:'32px'}}>
+        <div data-connectors-grid style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'10px',marginBottom:'var(--ins-size-8)'}}>
           {connectors.map((c,i) => (
             <div key={i} className="connector-card">
               <div className="connector-icon" style={{background:c.bg, display:'flex', alignItems:'center', justifyContent:'center'}}>
@@ -1108,7 +1108,7 @@ function RelevantIntegrations() {
               </div>
               <div>
                 <div style={{fontSize:'13px',fontWeight:500,color:'var(--ins-color-gray-100)'}}>{c.name}</div>
-                <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-inactive)',marginTop:'2px'}}>{c.desc}</div>
+                <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-inactive)',marginTop:'var(--ins-size-half)'}}>{c.desc}</div>
               </div>
             </div>
           ))}
@@ -1188,7 +1188,7 @@ function FAQ() {
 /* ── BOTTOM CTA ── */
 function BottomCTASection() {
   return (
-    <section style={{paddingTop:'32px',paddingBottom:'64px',position:'relative'}}>
+    <section style={{paddingTop:'var(--ins-size-8)',paddingBottom:'var(--ins-size-16)',position:'relative'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
           variant="form"

@@ -19,10 +19,10 @@ function PromptLibraryHero() {
   return (
     <section style={{padding:'80px 0 40px', textAlign:'center', position:'relative'}}>
       <div style={{maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
-        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid var(--ins-color-white-a-07)', background:'var(--ins-color-white-a-03)', fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-body)', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
+        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid var(--ins-color-white-a-07)', background:'var(--ins-color-white-a-03)', fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-body)', fontWeight:500, letterSpacing:'0.04em', marginBottom:'var(--ins-size-6)'}}>
           ✦ PROMPT LIBRARY
         </div>
-        <h1 className="fu1" style={{fontSize:'clamp(36px,5vw,56px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'var(--ins-text-heading-soft)', marginBottom:'20px'}}>
+        <h1 className="fu1" style={{fontSize:'clamp(36px,5vw,56px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'var(--ins-text-heading-soft)', marginBottom:'var(--ins-size-5)'}}>
           Prompts for every team.
         </h1>
         <p className="fu2 ins-text-body-xl" style={{maxWidth:'560px', margin:'0 auto'}}>
@@ -444,7 +444,7 @@ function PromptCard({ entry, index, isExpanded, onToggle }) {
 
   return (
     <article className="prompt-card" style={{ animationDelay:`${Math.min(index,8) * 0.04}s` }}>
-      <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', gap:'20px', flexWrap:'wrap' }}>
+      <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', gap:'var(--ins-size-5)', flexWrap:'wrap' }}>
         <div style={{ flex:'1 1 320px', minWidth:0 }}>
           <h3 style={{ fontSize:'var(--ins-font-size-16)', fontWeight:500, color:'var(--ins-text-heading-soft)', lineHeight:1.4, marginBottom:'10px', letterSpacing:'-.01em' }}>
             {entry.title}
@@ -467,7 +467,7 @@ function PromptCard({ entry, index, isExpanded, onToggle }) {
 
       {expanded && (
         <div style={{
-          marginTop:'16px', padding:'14px 16px',
+          marginTop:'var(--ins-size-4)', padding:'14px 16px',
           background:'rgba(10,14,19,0.55)',
           border:'1px solid rgba(9,160,157,.18)',
           borderRadius:'10px',
@@ -516,13 +516,13 @@ function PromptCard({ entry, index, isExpanded, onToggle }) {
 /* ── BOTTOM CTA ── */
 function BottomCTA() {
   return (
-    <section style={{paddingTop:'32px',paddingBottom:'64px',position:'relative'}}>
+    <section style={{paddingTop:'var(--ins-size-8)',paddingBottom:'var(--ins-size-16)',position:'relative'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{
           position:'relative',borderRadius:'var(--ins-radius-16)',
           border:'1px solid rgba(30,30,48,1)',
           padding:'32px 48px',overflow:'hidden',
-          display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'24px',
+          display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'var(--ins-size-6)',
           flexWrap:'wrap',
           background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)',
         }}>
@@ -550,8 +550,8 @@ function BottomCTA() {
               }}
             />
             <button style={{
-              display:'inline-flex',alignItems:'center',gap:'8px',
-              padding:'10px 20px',margin:'4px',
+              display:'inline-flex',alignItems:'center',gap:'var(--ins-size-2)',
+              padding:'10px 20px',margin:'var(--ins-size-1)',
               fontSize:'var(--ins-font-size-14)',fontWeight:500,color:'var(--ins-text-body)',
               background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))',
               borderRadius:'var(--ins-radius-8)',border:'none',cursor:'pointer',
@@ -602,7 +602,7 @@ function FloatingChat({ onSubmit }) {
     }}>
       <div className="floating-chat-wrap" style={{ pointerEvents:'all' }}>
         <div style={{
-          display:'flex', alignItems:'center', gap:'8px',
+          display:'flex', alignItems:'center', gap:'var(--ins-size-2)',
           background:'rgba(16,22,30,0.96)',
           border: focused ? '1px solid var(--ins-color-teal-a-50)' : '1px solid var(--ins-color-white-a-10)',
           borderRadius:'var(--ins-radius-12)',
@@ -717,7 +717,7 @@ function AIAssistantPanel({ query, onClose }) {
     <button title={title} onClick={() => {
       if (title === 'Copy') { navigator.clipboard?.writeText(''); setCopied(true); setTimeout(() => setCopied(false), 2000); }
     }} style={{
-      background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'var(--ins-radius-4)',
+      background:'none', border:'none', cursor:'pointer', padding:'var(--ins-size-1)', borderRadius:'var(--ins-radius-4)',
       color:'var(--ins-text-disabled)', transition:'color .15s',
     }}
     onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-text-body)'}
@@ -750,9 +750,9 @@ function AIAssistantPanel({ query, onClose }) {
           </svg>
           <span style={{ fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-color-gray-100)' }}>Assistant</span>
         </div>
-        <div style={{ display:'flex', gap:'2px' }}>
+        <div style={{ display:'flex', gap:'var(--ins-size-half)' }}>
           <button onClick={onClose} style={{
-            background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'var(--ins-radius-4)',
+            background:'none', border:'none', cursor:'pointer', padding:'var(--ins-size-1)', borderRadius:'var(--ins-radius-4)',
             color:'var(--ins-text-disabled)', transition:'color .15s', display:'flex',
           }}
           onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-color-gray-100)'}
@@ -766,7 +766,7 @@ function AIAssistantPanel({ query, onClose }) {
       </div>
 
       {/* Messages */}
-      <div style={{ flex:1, overflowY:'auto', padding:'16px 14px', display:'flex', flexDirection:'column', gap:'16px' }}>
+      <div style={{ flex:1, overflowY:'auto', padding:'16px 14px', display:'flex', flexDirection:'column', gap:'var(--ins-size-4)' }}>
         {messages.map((msg, idx) => (
           <div key={idx}>
             {msg.role === 'user' ? (
@@ -784,7 +784,7 @@ function AIAssistantPanel({ query, onClose }) {
               </div>
             ) : (
               <div>
-                <div style={{ fontSize:'var(--ins-font-size-12)', color:'#3A6070', marginBottom:'10px', display:'flex', flexDirection:'column', gap:'4px' }}>
+                <div style={{ fontSize:'var(--ins-font-size-12)', color:'#3A6070', marginBottom:'10px', display:'flex', flexDirection:'column', gap:'var(--ins-size-1)' }}>
                   <div style={{ display:'flex', alignItems:'center', gap:'6px' }}>
                     <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                     Found prompts for <em style={{ color:'#4A8090', fontStyle:'normal' }}>{msg.response.searchTerms}</em>
@@ -805,10 +805,10 @@ function AIAssistantPanel({ query, onClose }) {
                     </li>
                   ))}
                 </ul>
-                <p style={{ fontSize:'var(--ins-font-size-14)', color:'#8AAAB8', lineHeight:1.7, marginBottom:'12px' }}>
+                <p style={{ fontSize:'var(--ins-font-size-14)', color:'#8AAAB8', lineHeight:1.7, marginBottom:'var(--ins-size-3)' }}>
                   {msg.response.outro}
                 </p>
-                <div style={{ display:'flex', flexDirection:'column', gap:'4px', marginBottom:'12px' }}>
+                <div style={{ display:'flex', flexDirection:'column', gap:'var(--ins-size-1)', marginBottom:'var(--ins-size-3)' }}>
                   {msg.response.links.map((l, i) => (
                     <a key={i} href="#" style={{ fontSize:'var(--ins-font-size-12)', color:'var(--ins-button-primary-bg-hover)', textDecoration:'none' }}
                       onMouseEnter={e => e.currentTarget.style.textDecoration = 'underline'}
@@ -816,7 +816,7 @@ function AIAssistantPanel({ query, onClose }) {
                     >{l}</a>
                   ))}
                 </div>
-                <div style={{ display:'flex', gap:'4px', alignItems:'center' }}>
+                <div style={{ display:'flex', gap:'var(--ins-size-1)', alignItems:'center' }}>
                   {iconBtn('Helpful', 'M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z')}
                   {iconBtn('Not helpful', 'M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z')}
                   {iconBtn('Copy', copied ? 'M20 6L9 17l-5-5' : 'M8 17.929H6c-1.105 0-2-.912-2-2.036V5.036C4 3.912 4.895 3 6 3h8c1.105 0 2 .912 2 2.036v1.866m-6 .17h8c1.105 0 2 .91 2 2.035v10.857C20 21.088 19.105 22 18 22h-8c-1.105 0-2-.911-2-2.036V9.107c0-1.124.895-2.036 2-2.036z')}
@@ -833,7 +833,7 @@ function AIAssistantPanel({ query, onClose }) {
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ animation:'pulse 1.2s ease infinite' }}><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
               {phase === 'searching' ? 'Searching prompt library…' : 'Reading templates…'}
             </div>
-            <div style={{ display:'flex', gap:'5px', paddingTop:'4px' }}>
+            <div style={{ display:'flex', gap:'5px', paddingTop:'var(--ins-size-1)' }}>
               {[0,1,2].map(i => (
                 <div key={i} style={{
                   width:'6px', height:'6px', borderRadius:'50%',
@@ -852,7 +852,7 @@ function AIAssistantPanel({ query, onClose }) {
         padding:'10px 14px 18px', borderTop:'1px solid var(--ins-color-white-a-07)', flexShrink:0,
       }}>
         <div style={{
-          display:'flex', alignItems:'center', gap:'8px',
+          display:'flex', alignItems:'center', gap:'var(--ins-size-2)',
           background:'var(--ins-color-white-a-04)',
           border: inputFocused ? '1px solid rgba(9,160,157,.4)' : '1px solid var(--ins-color-white-a-07)',
           borderRadius:'10px',
@@ -936,7 +936,7 @@ function App() {
             borderRadius:'var(--ins-radius-12)',
             padding:'11px 14px',
             width:'100%',
-            marginBottom:'20px',
+            marginBottom:'var(--ins-size-5)',
             transition:'border-color .2s',
           }}>
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-body)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>

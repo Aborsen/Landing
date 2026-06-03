@@ -35,8 +35,8 @@ function StoriesHero() {
     <section style={{padding:'120px 0 0', position:'relative'}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', position:'relative'}}>
         {/* Hero heading */}
-        <div style={{maxWidth:'640px', marginBottom:'48px'}}>
-          <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',fontSize:'clamp(32px,5vw,52px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'20px'}}>
+        <div style={{maxWidth:'640px', marginBottom:'var(--ins-size-12)'}}>
+          <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',fontSize:'clamp(32px,5vw,52px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'var(--ins-size-5)'}}>
             <span style={{color:'var(--ins-text-highlight)'}}>100+</span> companies use Insightis to accomplish more
           </h1>
           <p className="fu2 ins-text-body-xl ins-text--muted">
@@ -45,9 +45,9 @@ function StoriesHero() {
         </div>
 
         {/* Featured success stories */}
-        <div style={{marginBottom:'80px'}}>
-          <h2 className="fu2" style={{fontSize:'var(--ins-font-size-22)', fontWeight:500, color:'var(--ins-text-heading-soft)', letterSpacing:'-.02em', marginBottom:'28px'}}>Featured success stories</h2>
-          <div style={{display:'grid', gap:'20px'}} className="md:grid-cols-3 grid-cols-1">
+        <div style={{marginBottom:'var(--ins-size-20)'}}>
+          <h2 className="fu2" style={{fontSize:'var(--ins-font-size-22)', fontWeight:500, color:'var(--ins-text-heading-soft)', letterSpacing:'-.02em', marginBottom:'var(--ins-size-7)'}}>Featured success stories</h2>
+          <div style={{display:'grid', gap:'var(--ins-size-5)'}} className="md:grid-cols-3 grid-cols-1">
             {featuredStories.map((story, i) => (
               <div key={i} className={`fu${i+2}`} style={{background:'var(--ins-color-white-a-03)', border:'1px solid var(--ins-color-white-a-07)', borderRadius:'var(--ins-radius-16)', overflow:'hidden', transition:'all .25s'}}
                 onMouseEnter={e => { e.currentTarget.style.borderColor='rgba(9,160,157,.3)'; e.currentTarget.style.transform='translateY(-2px)'; }}
@@ -57,9 +57,9 @@ function StoriesHero() {
                   <img src={story.image} alt={story.company} style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}} />
                 </div>
                 {/* Content */}
-                <div style={{padding:'20px'}}>
-                  <h3 style={{fontSize:'var(--ins-font-size-15)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{story.company}</h3>
-                  <p className="ins-text-body ins-text--italic" style={{marginBottom:'16px'}}>{story.quote}</p>
+                <div style={{padding:'var(--ins-size-5)'}}>
+                  <h3 style={{fontSize:'var(--ins-font-size-15)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'var(--ins-size-2)'}}>{story.company}</h3>
+                  <p className="ins-text-body ins-text--italic" style={{marginBottom:'var(--ins-size-4)'}}>{story.quote}</p>
                   <div style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'5px 12px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.18)', borderRadius:'999px'}}>
                     <span style={{width:'6px', height:'6px', borderRadius:'50%', background:'var(--ins-text-highlight)', flexShrink:0}}/>
                     <span style={{fontSize:'var(--ins-font-size-11)', fontWeight:500, color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)'}}>{story.product}</span>
@@ -89,14 +89,14 @@ function StoryGrid() {
   return (
     <section style={{padding:'40px 0 80px'}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-        <div style={{marginBottom:'56px'}}>
+        <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
             eyebrow="More Stories"
             title="How teams use Insightis"
             sparkle
           />
         </div>
-        <div style={{display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'16px'}} className="md:grid-cols-3 grid-cols-1">
+        <div style={{display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'var(--ins-size-4)'}} className="md:grid-cols-3 grid-cols-1">
           {stories.map((s, i) => (
             <div key={i} style={{background:'var(--ins-color-white-a-03)', border:'1px solid var(--ins-color-white-a-07)', borderRadius:'var(--ins-radius-16)', overflow:'hidden', transition:'all .2s'}}
               onMouseEnter={e=>e.currentTarget.style.borderColor='rgba(9,160,157,.3)'}
@@ -104,16 +104,16 @@ function StoryGrid() {
               <div style={{height:'140px', overflow:'hidden'}}>
                 <img src={s.image} alt={s.type} style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}} />
               </div>
-              <div style={{padding:'28px'}}>
-              <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'16px'}}>
+              <div style={{padding:'var(--ins-size-7)'}}>
+              <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'var(--ins-size-4)'}}>
                 <span style={{fontSize:'var(--ins-font-size-11)', padding:'3px 10px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.15)', borderRadius:'999px', color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)'}}>{s.type}</span>
                 <span style={{fontSize:'10px', color:'var(--ins-text-disabled)', fontFamily:'var(--ins-font-family-mono)'}}>{s.size}</span>
               </div>
-              <p className="ins-text-body" style={{marginBottom:'12px'}}>{s.challenge}</p>
-              <p className="ins-text-body" style={{marginBottom:'20px'}}>{s.solution}</p>
-              <div style={{fontSize:'var(--ins-font-size-28)', fontWeight:500, color:'var(--ins-text-highlight)', fontFamily:'var(--ins-font-family-mono)', marginBottom:'4px'}}>{s.result}</div>
-              <div style={{fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-body)', fontFamily:'var(--ins-font-family-mono)', marginBottom:'16px'}}>{s.resultLabel}</div>
-              <div style={{fontSize:'var(--ins-font-size-11)', color:'var(--ins-text-disabled)', fontFamily:'var(--ins-font-family-mono)', paddingTop:'12px', borderTop:'1px solid var(--ins-border-default)'}}>{s.team}</div>
+              <p className="ins-text-body" style={{marginBottom:'var(--ins-size-3)'}}>{s.challenge}</p>
+              <p className="ins-text-body" style={{marginBottom:'var(--ins-size-5)'}}>{s.solution}</p>
+              <div style={{fontSize:'var(--ins-font-size-28)', fontWeight:500, color:'var(--ins-text-highlight)', fontFamily:'var(--ins-font-family-mono)', marginBottom:'var(--ins-size-1)'}}>{s.result}</div>
+              <div style={{fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-body)', fontFamily:'var(--ins-font-family-mono)', marginBottom:'var(--ins-size-4)'}}>{s.resultLabel}</div>
+              <div style={{fontSize:'var(--ins-font-size-11)', color:'var(--ins-text-disabled)', fontFamily:'var(--ins-font-family-mono)', paddingTop:'var(--ins-size-3)', borderTop:'1px solid var(--ins-border-default)'}}>{s.team}</div>
               </div>
             </div>
           ))}
@@ -155,7 +155,7 @@ function AnimatedStat({ num, prefix, suffix, label, started, delay }) {
     <div style={{textAlign:'center', minWidth:'140px'}}>
       <div style={{
         height:'64px', display:'flex', alignItems:'center', justifyContent:'center',
-        marginBottom:'8px',
+        marginBottom:'var(--ins-size-2)',
         transition:'opacity .4s', opacity: active ? 1 : 0,
       }}>
         <span style={{
@@ -182,8 +182,8 @@ function TextStat({ from, to, label, started, delay }) {
       {/* Fixed 64px value area — same as AnimatedStat */}
       <div style={{
         height:'64px', display:'flex', flexDirection:'column',
-        alignItems:'center', justifyContent:'center', gap:'2px',
-        marginBottom:'8px',
+        alignItems:'center', justifyContent:'center', gap:'var(--ins-size-half)',
+        marginBottom:'var(--ins-size-2)',
       }}>
         {/* "3 days" — fades in then gets struck through */}
         <span style={{
@@ -260,7 +260,7 @@ function ResultsBanner() {
       borderBottom:'1px solid rgba(9,160,157,.1)',
     }}>
       <div style={{maxWidth:'1240px', width:'calc(100% - 32px)', margin:'0 auto'}}>
-        <div style={{textAlign:'center', marginBottom:'40px'}}>
+        <div style={{textAlign:'center', marginBottom:'var(--ins-size-10)'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
             <span style={{fontSize:'var(--ins-font-size-12)'}}>&#10022;</span>
             <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', fontFamily:'var(--ins-font-family-mono)'}}>Verified Impact</span>
@@ -280,16 +280,16 @@ function ResultsBanner() {
 /* ── BOTTOM CTA ── */
 function BottomCTA() {
   return (
-    <section style={{paddingTop:'32px', paddingBottom:'64px', position:'relative'}}>
+    <section style={{paddingTop:'var(--ins-size-8)', paddingBottom:'var(--ins-size-16)', position:'relative'}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-        <div style={{position:'relative', borderRadius:'var(--ins-radius-16)', border:'1px solid rgba(30,30,48,1)', padding:'32px 48px', overflow:'hidden', display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:'24px', flexWrap:'wrap', background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)'}}>
+        <div style={{position:'relative', borderRadius:'var(--ins-radius-16)', border:'1px solid rgba(30,30,48,1)', padding:'32px 48px', overflow:'hidden', display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:'var(--ins-size-6)', flexWrap:'wrap', background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)'}}>
           <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
           <h3 style={{fontSize:'clamp(22px,3vw,30px)', fontWeight:500, color:'var(--ins-text-heading)', letterSpacing:'-.03em', lineHeight:1.2, flexShrink:0}}>
             Join teams who <span style={{color:'var(--ins-button-primary-bg)'}}>stopped guessing.</span>
           </h3>
           <div style={{display:'flex', alignItems:'center', width:'100%', maxWidth:'420px', background:'#0D0D1A', border:'1px solid rgba(46,46,64,1)', borderRadius:'var(--ins-radius-12)', overflow:'hidden', flex:'1 1 340px'}}>
             <input type="email" placeholder="Enter your work email..." style={{flex:1, background:'transparent', fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-body)', padding:'12px 16px', outline:'none', border:'none', fontFamily:'var(--ins-font-family-sans)', minWidth:0}} />
-            <button style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 20px', margin:'4px', fontSize:'var(--ins-font-size-12)', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'var(--ins-radius-8)', border:'none', cursor:'pointer', whiteSpace:'nowrap', flexShrink:0, fontFamily:'var(--ins-font-family-sans)'}}>
+            <button style={{display:'inline-flex', alignItems:'center', gap:'var(--ins-size-2)', padding:'10px 20px', margin:'var(--ins-size-1)', fontSize:'var(--ins-font-size-12)', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'var(--ins-radius-8)', border:'none', cursor:'pointer', whiteSpace:'nowrap', flexShrink:0, fontFamily:'var(--ins-font-family-sans)'}}>
               Start for Free
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </button>

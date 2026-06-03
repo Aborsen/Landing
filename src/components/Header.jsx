@@ -160,7 +160,7 @@ export default function Header() {
               <Logo height={26}/>
             </a>
 
-            <div className="hidden md:flex items-center" style={{gap:'2px'}}>
+            <div className="hidden md:flex items-center" style={{gap:'var(--ins-size-half)'}}>
               {['Platform', 'Solutions', 'Resources', 'Pricing'].map(link => (
                 <div key={link}>
                   {hasDropdown(link) ? (
@@ -183,7 +183,7 @@ export default function Header() {
               ))}
             </div>
 
-            <div className="hidden md:flex items-center flex-shrink-0" style={{gap:'12px'}}>
+            <div className="hidden md:flex items-center flex-shrink-0" style={{gap:'var(--ins-size-3)'}}>
               <Button as="a" href="/auth/sign-in/" variant="ghost" size="sm">Sign In</Button>
               <Button as="a" href="/auth/sign-up/" variant="primary" size="sm">Start for Free</Button>
             </div>
@@ -235,7 +235,7 @@ export default function Header() {
                           )}
                           <div className="flex flex-col">
                             <span className="flex items-center gap-2">
-                              <span className={`text-sm font-medium text-text-primary transition-colors ${item.notClickable ? '' : 'group-hover:text-text-highlight'}`}>{item.label}{item.external && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</span>
+                              <span className={`text-sm font-medium text-text-primary transition-colors ${item.notClickable ? '' : 'group-hover:text-text-highlight'}`}>{item.label}{item.external && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'var(--ins-size-1)',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</span>
                               {item.comingSoon && (
                                 <Chip variant="brand" style={{ fontSize: '10px', letterSpacing: '0.04em', whiteSpace: 'nowrap' }}>Coming Soon</Chip>
                               )}
@@ -281,7 +281,7 @@ export default function Header() {
                     <span>{link}</span>
                     <span style={{opacity:0.5,fontSize:'var(--ins-font-size-12)'}}>▾</span>
                   </summary>
-                  <div style={{paddingLeft:'12px',paddingBottom:'8px'}}>
+                  <div style={{paddingLeft:'var(--ins-size-3)',paddingBottom:'var(--ins-size-2)'}}>
                     {dd.sections.flatMap(s => s.items).map(item => (
                       item.notClickable
                         ? <div key={item.label} aria-disabled="true" className="block py-2 text-sm text-text-disabled">{item.label}{item.comingSoon && <Chip variant="brand" className="ml-2" style={{ fontSize: '9px' }}>Coming soon</Chip>}</div>

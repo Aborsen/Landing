@@ -87,7 +87,7 @@ function PieChart({ slices }) {
     return { d, color: s.color || colors[i % colors.length], label: s.label, pct: Math.round((Math.abs(s.value)/total)*100) };
   });
   return (
-    <div style={{display:'flex',alignItems:'center',gap:'32px',margin:'12px 0'}}>
+    <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-8)',margin:'12px 0'}}>
       <svg viewBox="0 0 180 180" style={{width:'240px',height:'240px',flexShrink:0}}>
         {paths.map((p,i) => <path key={i} d={p.d} fill={p.color} opacity=".85"/>)}
       </svg>
@@ -414,7 +414,7 @@ function Hero() {
         <div data-hero-grid style={{
           display:'grid',
           gridTemplateColumns:'1.05fr 1fr',
-          gap:'56px',
+          gap:'var(--ins-size-14)',
           alignItems:'center',
         }}>
             {/* Left: text */}
@@ -479,8 +479,8 @@ function PainPoints() {
   return (
     <section style={{padding:'120px 0 100px',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'64px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(248,113,113,.08)',border:'1px solid rgba(248,113,113,.22)',borderRadius:'999px',marginBottom:'16px'}}>
+        <div style={{textAlign:'center',marginBottom:'var(--ins-size-16)'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(248,113,113,.08)',border:'1px solid rgba(248,113,113,.22)',borderRadius:'999px',marginBottom:'var(--ins-size-4)'}}>
             <span style={{color:'var(--ins-status-error-fg)',fontSize:'var(--ins-font-size-12)'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-status-error-fg)',fontFamily:'var(--ins-font-family-mono)'}}>The Problem</span>
           </div>
@@ -549,7 +549,7 @@ function HowItWorks() {
   return (
     <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{marginBottom:'64px'}}>
+        <div style={{marginBottom:'var(--ins-size-16)'}}>
           <SectionHeader
             eyebrow="The Solution"
             title="Wire channels. Anchor metrics. Steer spend."
@@ -606,7 +606,7 @@ function BeforeAfter() {
         />
 
         <div style={{textAlign:'center',marginTop:'36px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:'var(--ins-size-3)'}}>
             <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',lineHeight:1,flexShrink:0}}>8×</span>
             <span className="ins-text-body-lg" style={{whiteSpace:'nowrap'}}>faster campaign answers. Zero data-team handoffs.</span>
           </div>
@@ -670,7 +670,7 @@ function FAQ() {
 /* ── BOTTOM CTA ── */
 function BottomCTASection() {
   return (
-    <section style={{paddingTop:'32px',paddingBottom:'64px',position:'relative'}}>
+    <section style={{paddingTop:'var(--ins-size-8)',paddingBottom:'var(--ins-size-16)',position:'relative'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
           variant="form"

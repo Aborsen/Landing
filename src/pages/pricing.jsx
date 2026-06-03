@@ -59,7 +59,7 @@ function BillingToggle({ cycle, onChange }) {
           cursor: 'pointer',
           display: 'inline-flex',
           alignItems: 'center',
-          gap: '8px',
+          gap: 'var(--ins-size-2)',
           transition: 'background-color 180ms, color 180ms',
         }}
       >
@@ -83,11 +83,11 @@ function BillingToggle({ cycle, onChange }) {
   return (
     <div role="tablist" aria-label="Billing cycle" style={{
       display: 'inline-flex',
-      padding: '4px',
+      padding: 'var(--ins-size-1)',
       background: 'var(--ins-surface-card)',
       border: '1px solid var(--ins-border-default)',
       borderRadius: '999px',
-      gap: '4px',
+      gap: 'var(--ins-size-1)',
     }}>
       {segment('Yearly', 'yearly')}
       {segment('Monthly', 'monthly')}
@@ -163,10 +163,10 @@ function PricingCards() {
     <section style={{padding:'24px 0 80px'}}>
       <div style={{maxWidth:'1100px',margin:'0 auto',padding:'0 24px'}}>
         {/* Billing-cycle toggle */}
-        <div style={{display:'flex',justifyContent:'center',marginBottom:'32px'}}>
+        <div style={{display:'flex',justifyContent:'center',marginBottom:'var(--ins-size-8)'}}>
           <BillingToggle cycle={cycle} onChange={setCycle} />
         </div>
-        <div data-pricing-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'20px'}}>
+        <div data-pricing-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'var(--ins-size-5)'}}>
           {plans.map((plan,i) => {
             const isHighlight = plan.highlight;
             return (
@@ -182,9 +182,9 @@ function PricingCards() {
                     Most popular
                   </div>
                 )}
-                <h3 style={{fontSize:'var(--ins-font-size-22)',fontWeight:600,color:'var(--ins-text-heading)',marginBottom:'4px',letterSpacing:'-0.02em'}}>{plan.name}</h3>
-                <p className="ins-text-body ins-text--muted" style={{marginBottom:'24px'}}>{plan.tag}</p>
-                <div style={{marginBottom:'24px',minHeight:'128px'}}>
+                <h3 style={{fontSize:'var(--ins-font-size-22)',fontWeight:600,color:'var(--ins-text-heading)',marginBottom:'var(--ins-size-1)',letterSpacing:'-0.02em'}}>{plan.name}</h3>
+                <p className="ins-text-body ins-text--muted" style={{marginBottom:'var(--ins-size-6)'}}>{plan.tag}</p>
+                <div style={{marginBottom:'var(--ins-size-6)',minHeight:'128px'}}>
                   {plan.price === 0 ? (
                     <div>
                       <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-0.03em'}}>$0</span>
@@ -198,9 +198,9 @@ function PricingCards() {
                           <span style={{fontSize:'var(--ins-font-size-18)',color:'var(--ins-text-inactive)',textDecoration:'line-through'}}>${plan.originalPrice}</span>
                         )}
                       </div>
-                      <div style={{fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)',marginTop:'2px'}}>per user / month</div>
+                      <div style={{fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)',marginTop:'var(--ins-size-half)'}}>per user / month</div>
                       {cycle === 'yearly' && (
-                        <div style={{fontSize:'var(--ins-font-size-12)',color:'var(--ins-text-inactive)',marginTop:'2px'}}>
+                        <div style={{fontSize:'var(--ins-font-size-12)',color:'var(--ins-text-inactive)',marginTop:'var(--ins-size-half)'}}>
                           billed annually · ${yearlyTotal(plan.price).toFixed(2)}/yr
                         </div>
                       )}
@@ -291,7 +291,7 @@ function FeatureComparison() {
   return (
     <section style={{padding:'80px 0 60px'}}>
       <div style={{maxWidth:'1100px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{marginBottom:'48px'}}>
+        <div style={{marginBottom:'var(--ins-size-12)'}}>
           <SectionHeader title="Compare features" lede="Everything you get on every plan." />
         </div>
         <div data-compare-wrap style={{border:'1px solid var(--ins-color-white-a-08)',borderRadius:'var(--ins-radius-2xl)',overflow:'hidden',background:'rgba(13,17,23,0.5)'}}>
@@ -373,7 +373,7 @@ function FAQ() {
   return (
     <section style={{padding:'60px 0 80px'}}>
       <div style={{maxWidth:'880px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{marginBottom:'40px'}}>
+        <div style={{marginBottom:'var(--ins-size-10)'}}>
           <SectionHeader title="Frequently asked questions" />
         </div>
         <FAQAccordion items={items} />

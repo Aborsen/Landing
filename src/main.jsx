@@ -209,7 +209,7 @@ function Hero() {
 
   return (
     <>
-    <section className="relative flex flex-col items-center justify-center overflow-hidden" style={{minHeight: 'min(100vh, 900px)', paddingTop: '80px', paddingBottom: '40px'}}>
+    <section className="relative flex flex-col items-center justify-center overflow-hidden" style={{minHeight: 'min(100vh, 900px)', paddingTop: 'var(--ins-size-20)', paddingBottom: 'var(--ins-size-10)'}}>
       {/* Purple radial glow */}
       <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)' }}></div>
 
@@ -740,7 +740,7 @@ function HowItWorks() {
     <section id="how-it-works" style={{padding:'100px 0', background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)', position:'relative'}}>
       {/* Mobile / reduced-motion text-only summary — hidden on desktop via responsive.css */}
       <div className="how-it-works-text-only" style={{display:'none', maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
-        <div style={{textAlign:'center', marginBottom:'40px'}}>
+        <div style={{textAlign:'center', marginBottom:'var(--ins-size-10)'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'var(--ins-surface-brand-tint)',border:'1px solid var(--ins-border-brand)',borderRadius:'999px',marginBottom:'14px'}}>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{color:'var(--ins-text-highlight)'}}><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)'}}>How it works</span>
@@ -752,7 +752,7 @@ function HowItWorks() {
             <li key={s.n} style={{display:'flex',gap:'14px',alignItems:'flex-start'}}>
               <span style={{flexShrink:0,width:'36px',height:'36px',borderRadius:'50%',border:'1px solid var(--ins-border-brand)',background:'var(--ins-surface-brand-tint)',display:'flex',alignItems:'center',justifyContent:'center',fontFamily:'var(--ins-font-family-mono)',fontSize:'13px',fontWeight:500,color:'var(--ins-text-highlight)'}}>{s.n}</span>
               <div>
-                <p className="ins-text-h4" style={{marginBottom:'4px'}}>{s.title}</p>
+                <p className="ins-text-h4" style={{marginBottom:'var(--ins-size-1)'}}>{s.title}</p>
                 <p className="ins-text-body">{s.desc}</p>
               </div>
             </li>

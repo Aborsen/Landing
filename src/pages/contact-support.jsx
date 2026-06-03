@@ -11,12 +11,12 @@ function SupportHero({ search, setSearch }) {
     <section style={{ padding:'120px 0 60px', textAlign:'center', position:'relative', zIndex:1 }}>
       <div style={{ maxWidth:'1280px', margin:'0 auto', padding:'0 24px' }}><div style={{ maxWidth:'720px', margin:'0 auto' }}>
         <div className="fu0" style={{
-          display:'inline-flex', alignItems:'center', gap:'8px',
+          display:'inline-flex', alignItems:'center', gap:'var(--ins-size-2)',
           padding:'6px 14px', borderRadius:'999px',
           border:'1px solid var(--ins-border-default)',
           background:'var(--ins-color-white-a-02)',
           fontSize:'var(--ins-font-size-12)', color:'var(--ins-status-success-fg)', fontWeight:500,
-          marginBottom:'24px',
+          marginBottom:'var(--ins-size-6)',
         }}>
           <div style={{
             width:'7px', height:'7px', borderRadius:'50%',
@@ -32,7 +32,7 @@ function SupportHero({ search, setSearch }) {
         <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',
           fontSize:'clamp(32px,5vw,52px)', fontWeight:700,
           lineHeight:1.1, letterSpacing:'-0.03em',
-          marginBottom:'16px',
+          marginBottom:'var(--ins-size-4)',
         }}>
           How can we help?
         </h1>
@@ -44,7 +44,7 @@ function SupportHero({ search, setSearch }) {
         <div className="fu3" style={{
           display:'flex', alignItems:'center',
           background:'var(--ins-color-white-a-03)', border:'1px solid var(--ins-border-default)',
-          borderRadius:'var(--ins-radius-12)', padding:'4px', maxWidth:'580px', margin:'0 auto',
+          borderRadius:'var(--ins-radius-12)', padding:'var(--ins-size-1)', maxWidth:'580px', margin:'0 auto',
         }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="2" style={{marginLeft:'14px',flexShrink:0}}>
             <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
@@ -153,7 +153,7 @@ function HelpTopics({ search }) {
         maxWidth:'1280px', margin:'0 auto', padding:'0 24px',
         display:'grid',
         gridTemplateColumns:'repeat(3, 1fr)',
-        gap:'20px',
+        gap:'var(--ins-size-5)',
       }}>
         {filteredTopics.map((topic, i) => (
           <div key={i} style={{
@@ -165,12 +165,12 @@ function HelpTopics({ search }) {
             maxHeight: topic.visible ? '600px' : '0px',
             transition:'opacity .3s ease, max-height .3s ease, border-color .2s ease',
             cursor:'default',
-            padding:'20px',
+            padding:'var(--ins-size-5)',
           }}
           onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--ins-color-white-a-12)'; }}
           onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--ins-color-white-a-05)'; }}
           >
-            <div style={{ display:'flex', alignItems:'center', gap:'12px', marginBottom:'16px' }}>
+            <div style={{ display:'flex', alignItems:'center', gap:'var(--ins-size-3)', marginBottom:'var(--ins-size-4)' }}>
               <div style={{
                 width:'32px', height:'32px', borderRadius:'10px',
                 background:`${topic.color}0.08)`,
@@ -374,7 +374,7 @@ function AIAssistantPanel({ query, onClose }) {
     <button title={title} onClick={() => {
       if (title === 'Copy') { navigator.clipboard?.writeText(''); setCopied(true); setTimeout(() => setCopied(false), 2000); }
     }} style={{
-      background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'var(--ins-radius-4)',
+      background:'none', border:'none', cursor:'pointer', padding:'var(--ins-size-1)', borderRadius:'var(--ins-radius-4)',
       color:'var(--ins-text-disabled)', transition:'color .15s',
     }}
     onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-text-body)'}
@@ -408,7 +408,7 @@ function AIAssistantPanel({ query, onClose }) {
           <span style={{ fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-color-gray-100)' }}>AI Assistant</span>
         </div>
         <button onClick={onClose} style={{
-          background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'var(--ins-radius-4)',
+          background:'none', border:'none', cursor:'pointer', padding:'var(--ins-size-1)', borderRadius:'var(--ins-radius-4)',
           color:'var(--ins-text-disabled)', transition:'color .15s', display:'flex',
         }}
         onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-color-gray-100)'}
@@ -421,7 +421,7 @@ function AIAssistantPanel({ query, onClose }) {
       </div>
 
       {/* Messages */}
-      <div style={{ flex:1, overflowY:'auto', padding:'16px 14px', display:'flex', flexDirection:'column', gap:'16px' }}>
+      <div style={{ flex:1, overflowY:'auto', padding:'16px 14px', display:'flex', flexDirection:'column', gap:'var(--ins-size-4)' }}>
         {messages.map((msg, idx) => (
           <div key={idx}>
             {msg.role === 'user' ? (
@@ -439,7 +439,7 @@ function AIAssistantPanel({ query, onClose }) {
               </div>
             ) : (
               <div>
-                <div style={{ fontSize:'var(--ins-font-size-12)', color:'#3A6070', marginBottom:'10px', display:'flex', flexDirection:'column', gap:'4px' }}>
+                <div style={{ fontSize:'var(--ins-font-size-12)', color:'#3A6070', marginBottom:'10px', display:'flex', flexDirection:'column', gap:'var(--ins-size-1)' }}>
                   <div style={{ display:'flex', alignItems:'center', gap:'6px' }}>
                     <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                     Found results for <em style={{ color:'#4A8090', fontStyle:'normal' }}>{msg.response.searchTerms}</em>
@@ -460,10 +460,10 @@ function AIAssistantPanel({ query, onClose }) {
                     </li>
                   ))}
                 </ul>
-                <p style={{ fontSize:'var(--ins-font-size-14)', color:'#8AAAB8', lineHeight:1.7, marginBottom:'12px' }}>
+                <p style={{ fontSize:'var(--ins-font-size-14)', color:'#8AAAB8', lineHeight:1.7, marginBottom:'var(--ins-size-3)' }}>
                   {msg.response.outro}
                 </p>
-                <div style={{ display:'flex', flexDirection:'column', gap:'4px', marginBottom:'12px' }}>
+                <div style={{ display:'flex', flexDirection:'column', gap:'var(--ins-size-1)', marginBottom:'var(--ins-size-3)' }}>
                   {msg.response.links.map((l, i) => (
                     <a key={i} href="#" style={{ fontSize:'var(--ins-font-size-12)', color:'var(--ins-button-primary-bg-hover)', textDecoration:'none' }}
                       onMouseEnter={e => e.currentTarget.style.textDecoration = 'underline'}
@@ -472,7 +472,7 @@ function AIAssistantPanel({ query, onClose }) {
                   ))}
                 </div>
                 {/* Feedback row */}
-                <div style={{ display:'flex', gap:'4px', alignItems:'center' }}>
+                <div style={{ display:'flex', gap:'var(--ins-size-1)', alignItems:'center' }}>
                   {iconBtn('Helpful', 'M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z')}
                   {iconBtn('Not helpful', 'M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z')}
                   {iconBtn('Copy', copied ? 'M20 6L9 17l-5-5' : 'M8 17.929H6c-1.105 0-2-.912-2-2.036V5.036C4 3.912 4.895 3 6 3h8c1.105 0 2 .912 2 2.036v1.866m-6 .17h8c1.105 0 2 .91 2 2.035v10.857C20 21.088 19.105 22 18 22h-8c-1.105 0-2-.911-2-2.036V9.107c0-1.124.895-2.036 2-2.036z')}
@@ -490,7 +490,7 @@ function AIAssistantPanel({ query, onClose }) {
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ animation:'pulse 1.2s ease infinite' }}><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
               {phase === 'searching' ? 'Searching docs...' : 'Reading file...'}
             </div>
-            <div style={{ display:'flex', gap:'5px', paddingTop:'4px' }}>
+            <div style={{ display:'flex', gap:'5px', paddingTop:'var(--ins-size-1)' }}>
               {[0,1,2].map(i => (
                 <div key={i} style={{
                   width:'6px', height:'6px', borderRadius:'50%',
@@ -509,7 +509,7 @@ function AIAssistantPanel({ query, onClose }) {
         padding:'10px 14px 18px', borderTop:'1px solid var(--ins-color-white-a-07)', flexShrink:0,
       }}>
         <div style={{
-          display:'flex', alignItems:'center', gap:'8px',
+          display:'flex', alignItems:'center', gap:'var(--ins-size-2)',
           background:'var(--ins-color-white-a-04)',
           border: inputFocused ? '1px solid rgba(9,160,157,.4)' : '1px solid var(--ins-color-white-a-07)',
           borderRadius:'10px',
@@ -558,7 +558,7 @@ function SupportStatus() {
       <div style={{
         maxWidth:'1280px', margin:'0 auto',
         display:'flex', alignItems:'center', justifyContent:'center',
-        gap:'12px', flexWrap:'wrap',
+        gap:'var(--ins-size-3)', flexWrap:'wrap',
       }}>
         <div style={{
           width:'8px', height:'8px', borderRadius:'50%',
@@ -664,7 +664,7 @@ function ContactSupport() {
       <section style={{ padding: '0 0 32px', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px' }}>
           <div style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px',
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--ins-size-6)',
             background: 'var(--ins-color-white-a-02)',
             border: '1px solid var(--ins-border-default)',
             borderRadius: 'var(--ins-radius-12)',
@@ -683,7 +683,7 @@ function ContactSupport() {
                 </svg>
               </div>
               <div>
-                <div style={{ fontSize: 'var(--ins-font-size-14)', fontWeight: 600, color: 'var(--ins-color-gray-100)', marginBottom: '2px' }}>Still need help?</div>
+                <div style={{ fontSize: 'var(--ins-font-size-14)', fontWeight: 600, color: 'var(--ins-color-gray-100)', marginBottom: 'var(--ins-size-half)' }}>Still need help?</div>
                 <div style={{ fontSize: 'var(--ins-font-size-14)', color: 'var(--ins-text-body)' }}>Our support team is here — reach out and we'll respond within 24 hours.</div>
               </div>
             </div>
@@ -712,7 +712,7 @@ function ContactSupport() {
             background: 'rgba(5,8,12,0.75)',
             backdropFilter: 'blur(4px)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            padding: '24px',
+            padding: 'var(--ins-size-6)',
             overflowY: 'auto',
           }}
         >
@@ -723,7 +723,7 @@ function ContactSupport() {
               border: '1px solid var(--ins-color-white-a-08)',
               borderRadius: '18px',
               width: '100%', maxWidth: '520px',
-              padding: '32px',
+              padding: 'var(--ins-size-8)',
               animation: 'fadeUp .22s ease',
               position: 'relative',
               margin: 'auto',
@@ -735,7 +735,7 @@ function ContactSupport() {
               style={{
                 position: 'absolute', top: '16px', right: '16px',
                 background: 'none', border: 'none', cursor: 'pointer',
-                color: 'var(--ins-text-disabled)', padding: '4px',
+                color: 'var(--ins-text-disabled)', padding: 'var(--ins-size-1)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 borderRadius: 'var(--ins-radius-6)',
               }}
@@ -748,7 +748,7 @@ function ContactSupport() {
             {step === 'form' ? (
               <>
                 {/* Header */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--ins-size-3)', marginBottom: 'var(--ins-size-6)' }}>
                   <div style={{
                     width: '38px', height: '38px', borderRadius: '10px', flexShrink: 0,
                     background: 'var(--ins-color-teal-a-10)', border: '1px solid rgba(14,196,193,0.22)',
@@ -760,15 +760,15 @@ function ContactSupport() {
                   </div>
                   <div>
                     <div style={{ fontSize: 'var(--ins-font-size-16)', fontWeight: 700, color: 'var(--ins-color-gray-100)' }}>Contact Support</div>
-                    <div style={{ fontSize: 'var(--ins-font-size-14)', color: 'var(--ins-text-body)', marginTop: '2px' }}>We'll get back to you as soon as possible.</div>
+                    <div style={{ fontSize: 'var(--ins-font-size-14)', color: 'var(--ins-text-body)', marginTop: 'var(--ins-size-half)' }}>We'll get back to you as soon as possible.</div>
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ins-size-4)' }}>
 
                   {/* Category pills */}
                   <div>
-                    <label style={{ fontSize: 'var(--ins-font-size-12)', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: '8px' }}>CATEGORY</label>
+                    <label style={{ fontSize: 'var(--ins-font-size-12)', fontWeight: 600, color: '#9BBAC5', letterSpacing: '.04em', display: 'block', marginBottom: 'var(--ins-size-2)' }}>CATEGORY</label>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                       {CATEGORIES.map(c => {
                         const active = form.category === c.id;
@@ -848,7 +848,7 @@ function ContactSupport() {
                       onDrop={e => { e.preventDefault(); setDragOver(false); addFiles(e.dataTransfer.files); }}
                       style={{
                         border: dragOver ? '1px dashed rgba(9,160,157,.6)' : '1px dashed var(--ins-color-white-a-12)',
-                        borderRadius: '10px', padding: '16px',
+                        borderRadius: '10px', padding: 'var(--ins-size-4)',
                         background: dragOver ? 'rgba(9,160,157,.06)' : 'var(--ins-color-white-a-02)',
                         display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px',
                         cursor: 'pointer', transition: 'border-color .18s, background .18s',
@@ -865,14 +865,14 @@ function ContactSupport() {
                       </span>
                     </div>
                     {files.length > 0 && (
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginTop: '8px' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginTop: 'var(--ins-size-2)' }}>
                         {files.map(f => (
                           <div key={f.name} style={{
-                            display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px',
+                            display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--ins-size-2)',
                             background: 'var(--ins-color-white-a-04)', border: '1px solid var(--ins-color-white-a-07)',
                             borderRadius: 'var(--ins-radius-8)', padding: '7px 10px',
                           }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0 }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--ins-size-2)', minWidth: 0 }}>
                               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-disabled)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
                                 <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/>
                               </svg>
@@ -881,7 +881,7 @@ function ContactSupport() {
                             </div>
                             <button
                               onClick={() => removeFile(f.name)}
-                              style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--ins-text-disabled)', padding: '2px', display: 'flex', flexShrink: 0 }}
+                              style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--ins-text-disabled)', padding: 'var(--ins-size-half)', display: 'flex', flexShrink: 0 }}
                               onMouseEnter={e => e.currentTarget.style.color = '#EF4444'}
                               onMouseLeave={e => e.currentTarget.style.color = 'var(--ins-text-disabled)'}
                             >
@@ -895,7 +895,7 @@ function ContactSupport() {
                 </div>
 
                 {/* Actions */}
-                <div style={{ display: 'flex', gap: '10px', marginTop: '24px' }}>
+                <div style={{ display: 'flex', gap: '10px', marginTop: 'var(--ins-size-6)' }}>
                   <button
                     onClick={close}
                     style={{
@@ -934,8 +934,8 @@ function ContactSupport() {
                 }}>
                   <CheckIcon size={22} color="currentColor" strokeWidth={2} />
                 </div>
-                <div style={{ fontSize: 'var(--ins-font-size-17)', fontWeight: 700, color: 'var(--ins-color-gray-100)', marginBottom: '8px' }}>Request submitted</div>
-                <div style={{ fontSize: 'var(--ins-font-size-14)', color: 'var(--ins-text-body)', lineHeight: 1.6, marginBottom: '28px' }}>
+                <div style={{ fontSize: 'var(--ins-font-size-17)', fontWeight: 700, color: 'var(--ins-color-gray-100)', marginBottom: 'var(--ins-size-2)' }}>Request submitted</div>
+                <div style={{ fontSize: 'var(--ins-font-size-14)', color: 'var(--ins-text-body)', lineHeight: 1.6, marginBottom: 'var(--ins-size-7)' }}>
                   Thanks for reaching out. Our team will review your request and follow up shortly.
                 </div>
                 <button

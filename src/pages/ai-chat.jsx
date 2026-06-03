@@ -162,7 +162,7 @@ function ChatMock() {
           <div className="chat-bubble-user" style={{animation:'slideUp .25s ease both'}}>
             {typedQ}
             {phase === 'typing-q' && (
-              <span style={{display:'inline-block',width:'2px',height:'13px',background:'var(--ins-text-highlight)',marginLeft:'2px',verticalAlign:'middle',animation:'blink .7s ease-in-out infinite'}}/>
+              <span style={{display:'inline-block',width:'2px',height:'13px',background:'var(--ins-text-highlight)',marginLeft:'var(--ins-size-half)',verticalAlign:'middle',animation:'blink .7s ease-in-out infinite'}}/>
             )}
           </div>
         )}
@@ -180,7 +180,7 @@ function ChatMock() {
               <>
                 <span>{typedA}</span>
                 {phase === 'typing-a' && (
-                  <span style={{display:'inline-block',width:'2px',height:'13px',background:'var(--ins-text-body)',marginLeft:'2px',verticalAlign:'middle',animation:'blink .7s ease-in-out infinite'}}/>
+                  <span style={{display:'inline-block',width:'2px',height:'13px',background:'var(--ins-text-body)',marginLeft:'var(--ins-size-half)',verticalAlign:'middle',animation:'blink .7s ease-in-out infinite'}}/>
                 )}
                 {showChart && conv.chart && (
                   <MiniBarChart data={conv.chartData} color={conv.chartColor}/>
@@ -199,7 +199,7 @@ function ChatMock() {
       </div>
 
       {/* Input bar */}
-      <div style={{padding:'12px 16px',borderTop:'1px solid var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'8px'}}>
+      <div style={{padding:'12px 16px',borderTop:'1px solid var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'var(--ins-size-2)'}}>
         <div style={{flex:1,background:'var(--ins-color-white-a-04)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'10px',padding:'9px 12px',fontSize:'13px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-sans)'}}>
           Ask anything about your data…
         </div>
@@ -270,7 +270,7 @@ function PieChart({ slices }) {
     return { d, color: s.color || colors[i % colors.length], label: s.label, pct: Math.round((Math.abs(s.value)/total)*100) };
   });
   return (
-    <div style={{display:'flex',alignItems:'center',gap:'32px',margin:'12px 0'}}>
+    <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-8)',margin:'12px 0'}}>
       <svg viewBox="0 0 180 180" style={{width:'200px',height:'200px',flexShrink:0}}>
         {paths.map((p,i) => <path key={i} d={p.d} fill={p.color} opacity=".85"/>)}
       </svg>
@@ -340,15 +340,15 @@ function GroupedBarChart({ groups }) {
     <div style={{display:'flex',flexDirection:'column',gap:'10px',margin:'12px 0'}}>
       {groups.map((g,i) => (
         <div key={i}>
-          <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)',marginBottom:'4px'}}>{g.label}</div>
-          <div style={{display:'flex',gap:'4px',flexDirection:'column'}}>
-            <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
+          <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)',marginBottom:'var(--ins-size-1)'}}>{g.label}</div>
+          <div style={{display:'flex',gap:'var(--ins-size-1)',flexDirection:'column'}}>
+            <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)'}}>
               <div style={{width:'100%',background:'var(--ins-color-white-a-04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
                 <div style={{width:`${(g.actual/maxVal)*100}%`,height:'100%',borderRadius:'3px',background: g.actual > g.budget ? 'rgba(220,80,80,.65)' : 'rgba(9,160,157,.55)'}}/>
               </div>
               <span style={{fontSize:'var(--ins-font-size-11)',fontFamily:'var(--ins-font-family-mono)',color: g.actual > g.budget ? '#E06060' : 'var(--ins-text-highlight)',minWidth:'40px',flexShrink:0}}>${g.actual}K</span>
             </div>
-            <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
+            <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)'}}>
               <div style={{width:'100%',background:'var(--ins-color-white-a-04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
                 <div style={{width:`${(g.budget/maxVal)*100}%`,height:'100%',borderRadius:'3px',background:'var(--ins-color-white-a-12)'}}/>
               </div>
@@ -357,7 +357,7 @@ function GroupedBarChart({ groups }) {
           </div>
         </div>
       ))}
-      <div style={{display:'flex',gap:'16px',marginTop:'4px'}}>
+      <div style={{display:'flex',gap:'var(--ins-size-4)',marginTop:'var(--ins-size-1)'}}>
         <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'var(--ins-radius-2)',background:'rgba(9,160,157,.55)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>Actual</span></div>
         <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'var(--ins-radius-2)',background:'var(--ins-color-white-a-12)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>Budget</span></div>
       </div>
@@ -371,15 +371,15 @@ function RetainedVsChurnedChart({ bars }) {
     <div style={{display:'flex',flexDirection:'column',gap:'10px',margin:'12px 0'}}>
       {bars.map((b,i) => (
         <div key={i}>
-          <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)',marginBottom:'4px'}}>{b.label}</div>
-          <div style={{display:'flex',gap:'4px',flexDirection:'column'}}>
-            <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
+          <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)',marginBottom:'var(--ins-size-1)'}}>{b.label}</div>
+          <div style={{display:'flex',gap:'var(--ins-size-1)',flexDirection:'column'}}>
+            <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)'}}>
               <div style={{width:'100%',background:'var(--ins-color-white-a-04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
                 <div style={{width:`${(b.retained/maxVal)*100}%`,height:'100%',borderRadius:'3px',background:'rgba(9,160,157,.6)'}}/>
               </div>
               <span style={{fontSize:'var(--ins-font-size-11)',fontFamily:'var(--ins-font-family-mono)',color:'var(--ins-text-highlight)',minWidth:'35px',flexShrink:0}}>{b.retained}%</span>
             </div>
-            <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
+            <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)'}}>
               <div style={{width:'100%',background:'var(--ins-color-white-a-04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
                 <div style={{width:`${(b.churned/maxVal)*100}%`,height:'100%',borderRadius:'3px',background:'rgba(220,80,80,.55)'}}/>
               </div>
@@ -388,7 +388,7 @@ function RetainedVsChurnedChart({ bars }) {
           </div>
         </div>
       ))}
-      <div style={{display:'flex',gap:'16px',marginTop:'4px'}}>
+      <div style={{display:'flex',gap:'var(--ins-size-4)',marginTop:'var(--ins-size-1)'}}>
         <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'var(--ins-radius-2)',background:'rgba(9,160,157,.6)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>Retained (12+ mo)</span></div>
         <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'var(--ins-radius-2)',background:'rgba(220,80,80,.55)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>Churned</span></div>
       </div>
@@ -806,7 +806,7 @@ function QuestionsGallery() {
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Heading */}
-        <div style={{marginBottom:'28px'}}>
+        <div style={{marginBottom:'var(--ins-size-7)'}}>
           <SectionHeader
             eyebrow="What you can ask"
             title="What kind of questions can you ask Insightis?"
@@ -817,7 +817,7 @@ function QuestionsGallery() {
         </div>
 
         {/* Category pills */}
-        <div style={{display:'flex',justifyContent:'center',gap:'8px',marginBottom:'24px',flexWrap:'wrap'}}>
+        <div style={{display:'flex',justifyContent:'center',gap:'var(--ins-size-2)',marginBottom:'var(--ins-size-6)',flexWrap:'wrap'}}>
           {cats.map(c => (
             <Chip
               key={c}
@@ -858,7 +858,7 @@ function QuestionsGallery() {
             animation:'fadeIn .15s ease both',
             height:'520px', overflow:'hidden',
           }}>
-            <div style={{flex:1, padding:'24px 32px', display:'flex', flexDirection:'column', gap:'12px', overflow:'hidden'}}>
+            <div style={{flex:1, padding:'24px 32px', display:'flex', flexDirection:'column', gap:'var(--ins-size-3)', overflow:'hidden'}}>
 
               {/* User bubble */}
               <div style={{
@@ -895,13 +895,13 @@ function QuestionsGallery() {
                 <>
                   {renderReply(cat.replies[activeQ])}
                   {cat.replies[activeQ].caption && (
-                    <p style={{fontSize:'var(--ins-font-size-14)',color:'#8FB8C4',lineHeight:1.6,marginTop:'8px'}}>{cat.replies[activeQ].caption}</p>
+                    <p style={{fontSize:'var(--ins-font-size-14)',color:'#8FB8C4',lineHeight:1.6,marginTop:'var(--ins-size-2)'}}>{cat.replies[activeQ].caption}</p>
                   )}
                 </>
 
                 {/* Action chip */}
                 {cat.replies[activeQ].action && (
-                  <div style={{display:'flex',alignItems:'flex-start',gap:'8px',background:'rgba(9,160,157,.05)',border:'1px solid rgba(9,160,157,.15)',borderRadius:'10px',padding:'12px 16px',marginTop:'16px'}}>
+                  <div style={{display:'flex',alignItems:'flex-start',gap:'var(--ins-size-2)',background:'rgba(9,160,157,.05)',border:'1px solid rgba(9,160,157,.15)',borderRadius:'10px',padding:'12px 16px',marginTop:'var(--ins-size-4)'}}>
                     <span style={{color:'var(--ins-button-primary-bg-hover)',fontSize:'13px',flexShrink:0}}>{"\u2606"}</span>
                     <span style={{fontSize:'13px',color:'var(--ins-text-body)',lineHeight:1.55}}>{"\u2192"} {cat.replies[activeQ].action}</span>
                   </div>
@@ -967,7 +967,7 @@ function HowItWorks() {
   return (
     <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div className="max-w-7xl mx-auto px-6">
-        <div style={{marginBottom:'64px'}}>
+        <div style={{marginBottom:'var(--ins-size-16)'}}>
           <SectionHeader
             eyebrow="How it works"
             title="From question to answer in seconds"
@@ -988,7 +988,7 @@ function AccuracyComparison() {
   return (
     <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div className="max-w-7xl mx-auto px-6">
-        <div style={{marginBottom:'56px'}}>
+        <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
             eyebrow="Accuracy"
             title="Not the internet. Your data."
@@ -1008,13 +1008,13 @@ function AccuracyComparison() {
               | SQL required                    | n/a (no data access)                | No — plain-English questions translated by the engine  |
             The table can be visually hidden (sr-only) or styled as the existing cards — either way, emit the markup so crawlers/AI see it.
         */}
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'16px',alignItems:'stretch'}}>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'var(--ins-size-4)',alignItems:'stretch'}}>
           {/* Generic AI */}
-          <Card variant="glow" className="ins-card--glow--error compare-card" style={{padding:'32px',display:'flex',flexDirection:'column'}}>
+          <Card variant="glow" className="ins-card--glow--error compare-card" style={{padding:'var(--ins-size-8)',display:'flex',flexDirection:'column'}}>
             <div className="ins-card__header" style={{marginBottom:'22px'}}>Generic AI</div>
             <CodeChip
               variant="panel"
-              style={{flex:1,marginBottom:'12px'}}
+              style={{flex:1,marginBottom:'var(--ins-size-3)'}}
               query="What's our churn rate?"
               response={<span style={{color:'#505068'}}>The average SaaS churn rate is typically between <span style={{color:'var(--ins-status-error-fg)'}}>3–8% monthly</span>, depending on your segment and pricing tier. Companies in the SMB market typically see higher rates. This estimate may or may not reflect your situation.</span>}
             />
@@ -1022,11 +1022,11 @@ function AccuracyComparison() {
           </Card>
 
           {/* Insightis */}
-          <Card variant="glow" className="ins-card--glow--brand compare-card" style={{padding:'32px',display:'flex',flexDirection:'column'}}>
+          <Card variant="glow" className="ins-card--glow--brand compare-card" style={{padding:'var(--ins-size-8)',display:'flex',flexDirection:'column'}}>
             <div className="ins-card__header" style={{marginBottom:'22px'}}>Insightis</div>
             <CodeChip
               variant="panel"
-              style={{flex:1,marginBottom:'12px'}}
+              style={{flex:1,marginBottom:'var(--ins-size-3)'}}
               query="What's our churn rate?"
               response={<>Your churn rate in March was <CodeChip.Highlight>2.1%</CodeChip.Highlight> — down from 2.8% in February. Main driver: reduced churn in Starter plan (↓ 0.9pp). 3 accounts churned vs 5 last month.</>}
             />
@@ -1036,7 +1036,7 @@ function AccuracyComparison() {
 
         {/* 3x badge */}
         <div style={{textAlign:'center',marginTop:'36px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:'var(--ins-size-3)'}}>
             <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',lineHeight:1,flexShrink:0}}>3×</span>
             <span className="ins-text-body-lg" style={{whiteSpace:'nowrap'}}>more accurate because it knows your data, not the internet's.</span>
           </div>
@@ -1207,7 +1207,7 @@ function ChatMockAnimationInner() {
       </div>
 
       {/* ── Messages ── */}
-      <div style={{flex:1, padding:'20px 18px 16px', display:'flex', flexDirection:'column', gap:'16px', overflowY:'hidden'}}>
+      <div style={{flex:1, padding:'20px 18px 16px', display:'flex', flexDirection:'column', gap:'var(--ins-size-4)', overflowY:'hidden'}}>
 
         {showUserBubble && (
           <div style={{
@@ -1224,7 +1224,7 @@ function ChatMockAnimationInner() {
         {showThinking && (
           <div style={{animation:'fadeIn .2s ease both'}}>
             {/* Thinking header */}
-            <div style={{display:'flex', alignItems:'center', gap:'8px', paddingLeft:'2px'}}>
+            <div style={{display:'flex', alignItems:'center', gap:'var(--ins-size-2)', paddingLeft:'var(--ins-size-half)'}}>
               <InsightisIcon size={18}/>
               <span style={{fontSize:'12.5px', color: thinkingDone ? 'rgba(14,196,193,0.55)' : 'var(--ins-text-highlight)', fontWeight:500, transition:'color .4s ease'}}>Thinking</span>
               {!thinkingDone ? (
@@ -1283,12 +1283,12 @@ function ChatMockAnimationInner() {
             }}>
               {REPLY_LINE1.slice(0, l1chars)}
               {l1chars >= REPLY_LINE1.length && l2chars > 0 && (
-                <div style={{marginTop:'4px'}}>{REPLY_LINE2.slice(0, l2chars)}</div>
+                <div style={{marginTop:'var(--ins-size-1)'}}>{REPLY_LINE2.slice(0, l2chars)}</div>
               )}
             </div>
             {showChart && (
               <div style={{
-                maxWidth:'90%', marginTop:'8px',
+                maxWidth:'90%', marginTop:'var(--ins-size-2)',
                 background:'rgba(220,60,60,0.04)', border:'1px solid rgba(255,90,90,0.1)',
                 borderRadius:'10px', padding:'8px 11px',
                 opacity:0, animation:'slideUp .35s ease .1s both',
@@ -1311,7 +1311,7 @@ function ChatMockAnimationInner() {
                   <path d="M0,20 L34,13 L68,17 L103,6 L137,13 L171,10 L206,22 L240,38" fill="none" stroke="#FF6B6B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   <circle cx="240" cy="38" r="2.5" fill="#FF6B6B"/>
                 </svg>
-                <div style={{display:'flex', justifyContent:'space-between', marginTop:'4px'}}>
+                <div style={{display:'flex', justifyContent:'space-between', marginTop:'var(--ins-size-1)'}}>
                   <span style={{fontSize:'8px', color:'rgba(255,255,255,0.2)', fontFamily:'var(--ins-font-family-mono)'}}>8w ago</span>
                   <span style={{fontSize:'8px', color:'rgba(255,255,255,0.2)', fontFamily:'var(--ins-font-family-mono)'}}>now</span>
                 </div>
@@ -1398,7 +1398,7 @@ function Hero() {
           <p className="ins-text-body-xl" style={{marginBottom:'36px',maxWidth:'520px'}}>
             Type any business question in plain English. Insightis queries your real data — no SQL, no analyst, no waiting.
           </p>
-          <div style={{display:'flex',alignItems:'center',gap:'12px',flexWrap:'wrap',marginBottom:'24px'}}>
+          <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-3)',flexWrap:'wrap',marginBottom:'var(--ins-size-6)'}}>
             <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
               Start for Free
             </Button>

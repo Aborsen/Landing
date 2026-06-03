@@ -84,10 +84,10 @@ function CookieContent() {
   ];
 
   const sectionStyle = {
-    marginBottom: '40px',
+    marginBottom: 'var(--ins-size-10)',
   };
   const headingStyle = {
-    fontSize: 'var(--ins-font-size-20)', fontWeight: 600, color: 'var(--ins-color-gray-100)', marginBottom: '12px', letterSpacing: '-.01em',
+    fontSize: 'var(--ins-font-size-20)', fontWeight: 600, color: 'var(--ins-color-gray-100)', marginBottom: 'var(--ins-size-3)', letterSpacing: '-.01em',
   };
   const paraStyle = {
     fontSize: 'var(--ins-font-size-15)', color: 'var(--ins-text-body)', lineHeight: 1.8,
@@ -101,29 +101,29 @@ function CookieContent() {
           <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',fontSize:'clamp(32px,5vw,48px)', fontWeight:500, letterSpacing:'-.02em', lineHeight:1.15}}>
             Cookie Settings
           </h1>
-          <p className="fu2 ins-text-body-xl ins-text--muted" style={{marginTop:'16px', maxWidth:'640px', margin:'16px auto 0'}}>
+          <p className="fu2 ins-text-body-xl ins-text--muted" style={{marginTop:'var(--ins-size-4)', maxWidth:'640px', margin:'16px auto 0'}}>
             We use cookies to enhance your experience, analyze site traffic, and personalize content. You can manage your cookie preferences below.
           </p>
         </div>
       </section>
 
       {/* Cookie Categories */}
-      <section style={{paddingBottom:'40px', position:'relative'}}>
+      <section style={{paddingBottom:'var(--ins-size-10)', position:'relative'}}>
         <div style={{maxWidth:'800px', margin:'0 auto', padding:'0 24px'}}>
           {categories.map((cat, i) => (
             <div key={cat.key} className={`fu${Math.min(i+1, 3)}`} style={{
               background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)',
-              borderRadius:'var(--ins-radius-16)', padding:'24px', marginBottom:'16px',
+              borderRadius:'var(--ins-radius-16)', padding:'var(--ins-size-6)', marginBottom:'var(--ins-size-4)',
             }}>
-              <div style={{display:'flex', alignItems:'flex-start', gap:'20px'}}>
+              <div style={{display:'flex', alignItems:'flex-start', gap:'var(--ins-size-5)'}}>
                 <div style={{flex:1}}>
                   <div style={{fontSize:'var(--ins-font-size-16)', fontWeight:600, color:'var(--ins-color-gray-100)'}}>{cat.title}</div>
-                  <div style={{fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-body)', lineHeight:1.6, marginTop:'4px'}}>{cat.description}</div>
+                  <div style={{fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-body)', lineHeight:1.6, marginTop:'var(--ins-size-1)'}}>{cat.description}</div>
                   {cat.examples && (
-                    <div style={{fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-inactive)', marginTop:'8px'}}>Examples: {cat.examples}</div>
+                    <div style={{fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-inactive)', marginTop:'var(--ins-size-2)'}}>Examples: {cat.examples}</div>
                   )}
                 </div>
-                <div style={{display:'flex', alignItems:'center', gap:'10px', paddingTop:'2px'}}>
+                <div style={{display:'flex', alignItems:'center', gap:'10px', paddingTop:'var(--ins-size-half)'}}>
                   {cat.alwaysActive ? (
                     <>
                       <span style={{fontSize:'var(--ins-font-size-12)', fontWeight:500, color:'var(--ins-text-highlight)', whiteSpace:'nowrap'}}>Always Active</span>
@@ -141,11 +141,11 @@ function CookieContent() {
           ))}
 
           {/* Save Button */}
-          <div style={{textAlign:'center', marginTop:'32px', marginBottom:'60px'}}>
+          <div style={{textAlign:'center', marginTop:'var(--ins-size-8)', marginBottom:'60px'}}>
             <button
               onClick={handleSave}
               style={{
-                display:'inline-flex', alignItems:'center', gap:'8px',
+                display:'inline-flex', alignItems:'center', gap:'var(--ins-size-2)',
                 padding:'12px 32px', fontSize:'var(--ins-font-size-15)', fontWeight:600,
                 color:'var(--ins-text-body)', background:'var(--ins-button-primary-bg)', borderRadius:'50px',
                 border:'none', cursor:'pointer', transition:'background 0.2s',
@@ -186,13 +186,13 @@ function CookieContent() {
             <p style={paraStyle}>
               Most web browsers allow you to control cookies through their settings. Below are links and instructions for the most common browsers:
             </p>
-            <ul style={{...paraStyle, paddingLeft:'24px', marginTop:'12px'}}>
-              <li style={{marginBottom:'8px'}}><strong style={{color:'var(--ins-color-gray-100)'}}>Google Chrome:</strong> Settings &gt; Privacy and security &gt; Cookies and other site data</li>
-              <li style={{marginBottom:'8px'}}><strong style={{color:'var(--ins-color-gray-100)'}}>Mozilla Firefox:</strong> Settings &gt; Privacy &amp; Security &gt; Cookies and Site Data</li>
-              <li style={{marginBottom:'8px'}}><strong style={{color:'var(--ins-color-gray-100)'}}>Safari:</strong> Preferences &gt; Privacy &gt; Manage Website Data</li>
-              <li style={{marginBottom:'8px'}}><strong style={{color:'var(--ins-color-gray-100)'}}>Microsoft Edge:</strong> Settings &gt; Cookies and site permissions &gt; Manage and delete cookies and site data</li>
+            <ul style={{...paraStyle, paddingLeft:'var(--ins-size-6)', marginTop:'var(--ins-size-3)'}}>
+              <li style={{marginBottom:'var(--ins-size-2)'}}><strong style={{color:'var(--ins-color-gray-100)'}}>Google Chrome:</strong> Settings &gt; Privacy and security &gt; Cookies and other site data</li>
+              <li style={{marginBottom:'var(--ins-size-2)'}}><strong style={{color:'var(--ins-color-gray-100)'}}>Mozilla Firefox:</strong> Settings &gt; Privacy &amp; Security &gt; Cookies and Site Data</li>
+              <li style={{marginBottom:'var(--ins-size-2)'}}><strong style={{color:'var(--ins-color-gray-100)'}}>Safari:</strong> Preferences &gt; Privacy &gt; Manage Website Data</li>
+              <li style={{marginBottom:'var(--ins-size-2)'}}><strong style={{color:'var(--ins-color-gray-100)'}}>Microsoft Edge:</strong> Settings &gt; Cookies and site permissions &gt; Manage and delete cookies and site data</li>
             </ul>
-            <p style={{...paraStyle, marginTop:'12px'}}>
+            <p style={{...paraStyle, marginTop:'var(--ins-size-3)'}}>
               Please note that blocking all cookies may affect the functionality of this and other websites. Some features may not work as intended if cookies are disabled.
             </p>
           </div>
@@ -200,7 +200,7 @@ function CookieContent() {
           {/* Cookie List Table */}
           <div style={sectionStyle}>
             <h2 style={headingStyle}>Cookie List</h2>
-            <p style={{...paraStyle, marginBottom:'16px'}}>
+            <p style={{...paraStyle, marginBottom:'var(--ins-size-4)'}}>
               The following table lists the cookies used on our website, their provider, purpose, and duration.
             </p>
             <div style={{overflowX:'auto', borderRadius:'var(--ins-radius-12)', border:'1px solid var(--ins-border-default)'}}>
@@ -245,7 +245,7 @@ function CookieContent() {
             </p>
           </div>
 
-          <p className="ins-text-body ins-text--muted" style={{marginTop:'20px'}}>Last updated: April 2026</p>
+          <p className="ins-text-body ins-text--muted" style={{marginTop:'var(--ins-size-5)'}}>Last updated: April 2026</p>
 
         </div>
       </section>

@@ -29,10 +29,10 @@ function BlogHero() {
   return (
     <section style={{padding:'120px 0 60px', textAlign:'center', position:'relative'}}>
       <div style={{maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
-        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid var(--ins-color-white-a-07)', background:'var(--ins-color-white-a-03)', fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-body)', fontWeight:500, letterSpacing:'0.04em', marginBottom:'24px'}}>
+        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid var(--ins-color-white-a-07)', background:'var(--ins-color-white-a-03)', fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-body)', fontWeight:500, letterSpacing:'0.04em', marginBottom:'var(--ins-size-6)'}}>
           ✦ BLOG
         </div>
-        <h1 className="fu1" style={{fontSize:'clamp(36px,5vw,56px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'var(--ins-text-heading-soft)', marginBottom:'20px'}}>
+        <h1 className="fu1" style={{fontSize:'clamp(36px,5vw,56px)', fontWeight:500, letterSpacing:'-.04em', lineHeight:1.1, color:'var(--ins-text-heading-soft)', marginBottom:'var(--ins-size-5)'}}>
           Insights about insights.
         </h1>
         <p className="fu2 ins-text-body-xl" style={{maxWidth:'540px', margin:'0 auto'}}>
@@ -61,7 +61,7 @@ function FeaturedPost() {
 
           <div style={{display:'flex', flexWrap:'wrap'}}>
             {/* Left: Text content (60%) */}
-            <div style={{flex:'1 1 340px', padding:'36px 40px', display:'flex', flexDirection:'column', justifyContent:'center', gap:'16px'}}>
+            <div style={{flex:'1 1 340px', padding:'36px 40px', display:'flex', flexDirection:'column', justifyContent:'center', gap:'var(--ins-size-4)'}}>
               <div>
                 <span style={{fontSize:'var(--ins-font-size-11)', padding:'4px 10px', borderRadius:'999px', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.25)', color:'var(--ins-text-highlight)', fontWeight:500, letterSpacing:'0.04em'}}>Product Update</span>
               </div>
@@ -74,7 +74,7 @@ function FeaturedPost() {
               <div style={{fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-disabled)', fontFamily:'var(--ins-font-family-mono)'}}>
                 Apr 1, 2026 &middot; 6 min read
               </div>
-              <a href="#" style={{fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-highlight)', textDecoration:'none', fontWeight:500, marginTop:'4px'}}>
+              <a href="#" style={{fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-highlight)', textDecoration:'none', fontWeight:500, marginTop:'var(--ins-size-1)'}}>
                 Read Article &rarr;
               </a>
             </div>
@@ -98,7 +98,7 @@ function CategoryFilter({ activeCategory, setActiveCategory }) {
   return (
     <section style={{padding:'0 0 40px'}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-        <div style={{display:'flex', justifyContent:'center', gap:'8px', flexWrap:'wrap', overflowX:'auto'}}>
+        <div style={{display:'flex', justifyContent:'center', gap:'var(--ins-size-2)', flexWrap:'wrap', overflowX:'auto'}}>
           {categories.map(cat => {
             const isActive = activeCategory === cat;
             return (
@@ -171,14 +171,14 @@ function BlogGrid({ activeCategory, activeTag }) {
                 )}
               </div>
               {/* Content */}
-              <div style={{padding:'20px', display:'flex', flexDirection:'column', flex:1}}>
+              <div style={{padding:'var(--ins-size-5)', display:'flex', flexDirection:'column', flex:1}}>
                 <div style={{marginBottom:'10px'}}>
                   <span style={{fontSize:'10px', padding:'3px 8px', borderRadius:'999px', background:'var(--ins-surface-brand-tint)', border:'1px solid var(--ins-border-brand)', color:'var(--ins-text-highlight)', fontWeight:500, letterSpacing:'0.04em'}}>{article.category}</span>
                 </div>
-                <h3 style={{fontSize:'var(--ins-font-size-16)', fontWeight:500, color:'var(--ins-text-heading-soft)', lineHeight:1.4, marginBottom:'8px', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:2, WebkitBoxOrient:'vertical'}}>
+                <h3 style={{fontSize:'var(--ins-font-size-16)', fontWeight:500, color:'var(--ins-text-heading-soft)', lineHeight:1.4, marginBottom:'var(--ins-size-2)', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:2, WebkitBoxOrient:'vertical'}}>
                   {article.title}
                 </h3>
-                <p className="ins-text-body" style={{marginBottom:'12px', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:3, WebkitBoxOrient:'vertical'}}>
+                <p className="ins-text-body" style={{marginBottom:'var(--ins-size-3)', overflow:'hidden', display:'-webkit-box', WebkitLineClamp:3, WebkitBoxOrient:'vertical'}}>
                   {article.description}
                 </p>
                 <div style={{fontSize:'var(--ins-font-size-11)', color:'var(--ins-text-disabled)', fontFamily:'var(--ins-font-family-mono)', marginTop:'auto'}}>
@@ -205,13 +205,13 @@ function LoadMore() {
 /* ── BOTTOM CTA ── */
 function BottomCTA() {
   return (
-    <section style={{paddingTop:'32px',paddingBottom:'64px',position:'relative'}}>
+    <section style={{paddingTop:'var(--ins-size-8)',paddingBottom:'var(--ins-size-16)',position:'relative'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{
           position:'relative',borderRadius:'var(--ins-radius-16)',
           border:'1px solid rgba(30,30,48,1)',
           padding:'32px 48px',overflow:'hidden',
-          display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'24px',
+          display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'var(--ins-size-6)',
           flexWrap:'wrap',
           background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)',
         }}>

@@ -44,27 +44,27 @@ function Hero() {
         <div data-hero-grid style={{
           display:'grid',
           gridTemplateColumns:'1fr 1fr',
-          gap:'64px',
+          gap:'var(--ins-size-16)',
           alignItems:'center',
         }}>
           {/* Left: text */}
           <div>
-            <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'20px'}}>
+            <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-5)'}}>
               <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
               <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>For Data &amp; Analytics</span>
             </div>
 
-            <h1 className="fu1" style={{fontSize:'clamp(36px,4.5vw,58px)',fontWeight:500,color:'var(--ins-text-heading-soft)',letterSpacing:'-.03em',lineHeight:1.12,marginBottom:'20px'}}>
+            <h1 className="fu1" style={{fontSize:'clamp(36px,4.5vw,58px)',fontWeight:500,color:'var(--ins-text-heading-soft)',letterSpacing:'-.03em',lineHeight:1.12,marginBottom:'var(--ins-size-5)'}}>
               <span style={{color:'var(--ins-text-heading-soft)'}}>Stop answering</span>
               <br/>
               <span style={{color:'var(--ins-text-highlight)'}}>repeat questions.</span>
             </h1>
 
-            <p className="fu2 ins-text-body-xl" style={{marginBottom:'28px',maxWidth:'480px'}}>
+            <p className="fu2 ins-text-body-xl" style={{marginBottom:'var(--ins-size-7)',maxWidth:'480px'}}>
               Empower every team to self-serve their data. Insightis sits on top of your Semantic Layer and answers questions in plain English — so you focus on analysis, not reporting.
             </p>
 
-            <div className="fu3" style={{display:'flex',gap:'12px',flexWrap:'wrap',marginBottom:'28px'}}>
+            <div className="fu3" style={{display:'flex',gap:'var(--ins-size-3)',flexWrap:'wrap',marginBottom:'var(--ins-size-7)'}}>
               <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
                 Start for Free
               </Button>
@@ -89,7 +89,7 @@ function Hero() {
               background:'linear-gradient(135deg, rgba(13,17,23,0.95) 0%, rgba(15,20,28,0.92) 100%)',
               border:'1px solid var(--ins-color-white-a-08)',
               borderRadius:'24px',
-              padding:'24px',
+              padding:'var(--ins-size-6)',
               backdropFilter:'blur(24px)',
               WebkitBackdropFilter:'blur(24px)',
               boxShadow:'none',
@@ -128,7 +128,7 @@ function Hero() {
 
               {/* Header */}
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'18px'}}>
-                <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
+                <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)'}}>
                   <div style={{width:'6px',height:'6px',borderRadius:'50%',background:'var(--ins-status-success-fg)',boxShadow:'0 0 8px var(--ins-status-success-fg)'}}/>
                   <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10.5px',color:'var(--ins-text-body)',letterSpacing:'.08em',textTransform:'uppercase'}}>Live insight · 2m ago</span>
                 </div>
@@ -136,7 +136,7 @@ function Hero() {
               </div>
 
               {/* Headline + caption */}
-              <h3 style={{fontSize:'var(--ins-font-size-17)',fontWeight:500,color:'var(--ins-text-heading-soft)',marginBottom:'8px',letterSpacing:'-.015em',lineHeight:1.35}}>
+              <h3 style={{fontSize:'var(--ins-font-size-17)',fontWeight:500,color:'var(--ins-text-heading-soft)',marginBottom:'var(--ins-size-2)',letterSpacing:'-.015em',lineHeight:1.35}}>
                 Paid acquisition decelerating mid-funnel
               </h3>
               <p className="ins-text-body-sm" style={{marginBottom:'18px'}}>
@@ -152,7 +152,7 @@ function Hero() {
                 marginBottom:'14px',
                 position:'relative',
               }}>
-                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'8px'}}>
+                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'var(--ins-size-2)'}}>
                   <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.06em',textTransform:'uppercase'}}>events / 30min</span>
                   <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-body)'}}>last 24h</span>
                 </div>
@@ -174,7 +174,7 @@ function Hero() {
               </div>
 
               {/* Metric tiles */}
-              <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'8px'}}>
+              <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'var(--ins-size-2)'}}>
                 {[
                   {label:'Drop',     val:'−41%',     color:'var(--ins-status-error-fg)'},
                   {label:'Window',   val:'2h 14m',   color:'var(--ins-status-warning-fg)'},
@@ -186,7 +186,7 @@ function Hero() {
                     borderRadius:'10px',
                     padding:'10px 12px',
                   }}>
-                    <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'4px'}}>{m.label}</div>
+                    <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'var(--ins-size-1)'}}>{m.label}</div>
                     <div style={{fontSize:'var(--ins-font-size-14)',fontWeight:500,color:m.color,fontFamily:'var(--ins-font-family-mono)',letterSpacing:'-.01em'}}>{m.val}</div>
                   </div>
                 ))}
@@ -235,7 +235,7 @@ function Hero() {
               minWidth:'160px',
               zIndex:2,
             }}>
-              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'8px'}}>
+              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'var(--ins-size-2)'}}>
                 <span style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>Self-serve</span>
                 <span style={{fontSize:'10.5px',color:'var(--ins-status-success-fg)',fontFamily:'var(--ins-font-family-mono)',fontWeight:500}}>+72%</span>
               </div>
@@ -291,7 +291,7 @@ function PainPoints() {
   return (
     <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'56px'}}>
+        <div style={{textAlign:'center',marginBottom:'var(--ins-size-14)'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
             <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>The Problem</span>
@@ -457,7 +457,7 @@ function RelevantIntegrations() {
   return (
     <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{marginBottom:'56px'}}>
+        <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
             eyebrow="Your Data Sources"
             title="Connects to your entire data stack"
@@ -466,7 +466,7 @@ function RelevantIntegrations() {
           />
         </div>
 
-        <div data-connectors-grid style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'10px',marginBottom:'32px'}}>
+        <div data-connectors-grid style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'10px',marginBottom:'var(--ins-size-8)'}}>
           {connectors.map((c,i) => (
             <div key={i} className="connector-card">
               <div className="connector-icon" style={{background:c.bg, display:'flex', alignItems:'center', justifyContent:'center'}}>
@@ -474,7 +474,7 @@ function RelevantIntegrations() {
               </div>
               <div>
                 <div style={{fontSize:'13px',fontWeight:500,color:'var(--ins-color-gray-100)'}}>{c.name}</div>
-                <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-inactive)',marginTop:'2px'}}>{c.desc}</div>
+                <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-inactive)',marginTop:'var(--ins-size-half)'}}>{c.desc}</div>
               </div>
             </div>
           ))}
@@ -516,7 +516,7 @@ function Metrics() {
   return (
     <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'48px'}}>
+        <div style={{textAlign:'center',marginBottom:'var(--ins-size-12)'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
             <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>Metrics That Matter</span>
@@ -529,7 +529,7 @@ function Metrics() {
           </p>
         </div>
 
-        <div style={{display:'flex',flexWrap:'wrap',gap:'10px',justifyContent:'center',marginBottom:'28px'}}>
+        <div style={{display:'flex',flexWrap:'wrap',gap:'10px',justifyContent:'center',marginBottom:'var(--ins-size-7)'}}>
           {metrics.map((m,i) => (
             <span key={i} className="metric-pill">{m}</span>
           ))}
@@ -584,7 +584,7 @@ function BeforeAfter() {
         />
 
         <div style={{textAlign:'center',marginTop:'36px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:'12px'}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:'var(--ins-size-3)'}}>
             <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',lineHeight:1,flexShrink:0}}>4×</span>
             <span className="ins-text-body-lg" style={{whiteSpace:'nowrap'}}>more time for real analysis. Self-serve deflects 80% of ad hoc requests.</span>
           </div>
@@ -597,7 +597,7 @@ function BeforeAfter() {
 /* ── BOTTOM CTA ── */
 function BottomCTASection() {
   return (
-    <section style={{paddingTop:'32px',paddingBottom:'64px',position:'relative'}}>
+    <section style={{paddingTop:'var(--ins-size-8)',paddingBottom:'var(--ins-size-16)',position:'relative'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
           variant="form"
@@ -629,11 +629,11 @@ function Positioning() {
         }}>
           Stop being a <span style={{color:'var(--ins-text-highlight)'}}>reporting service.</span> Start doing <span style={{color:'var(--ins-text-highlight)'}}>real analysis.</span>
         </h2>
-        <p className="ins-text-body-lg" style={{marginBottom:'28px'}}>
+        <p className="ins-text-body-lg" style={{marginBottom:'var(--ins-size-7)'}}>
           Sound familiar? These are the problems Insightis eliminates.
         </p>
         <a href="#spotlights" style={{
-          display:'inline-flex',alignItems:'center',gap:'8px',
+          display:'inline-flex',alignItems:'center',gap:'var(--ins-size-2)',
           padding:'10px 20px',borderRadius:'999px',
           border:'1px solid var(--ins-color-white-a-12)',
           color:'var(--ins-text-body)',fontSize:'var(--ins-font-size-14)',fontWeight:400,
@@ -672,7 +672,7 @@ function SpotlightChat() {
           self-serve · marketing
         </div>
       </div>
-      <div style={{padding:'22px 18px',display:'flex',flexDirection:'column',gap:'12px',flex:1,justifyContent:'center'}}>
+      <div style={{padding:'22px 18px',display:'flex',flexDirection:'column',gap:'var(--ins-size-3)',flex:1,justifyContent:'center'}}>
         <div className="chat-bubble-user">
           What's our blended CAC by channel for Q1?
         </div>
@@ -721,7 +721,7 @@ function SpotlightSemantic() {
             </div>
             <div>
               <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-14)',color:'var(--ins-color-gray-100)',fontWeight:500}}>customer_acquisition_cost</div>
-              <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-inactive)',marginTop:'2px'}}>Owned by Data Engineering · v3.2</div>
+              <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-inactive)',marginTop:'var(--ins-size-half)'}}>Owned by Data Engineering · v3.2</div>
             </div>
           </div>
           <span style={{
@@ -748,14 +748,14 @@ function SpotlightSemantic() {
         }}>
           <span style={{color:'var(--ins-text-body)'}}>SUM</span>(<span style={{color:'var(--ins-text-highlight)'}}>marketing_spend</span>) <span style={{color:'var(--ins-text-body)'}}>/</span> <span style={{color:'var(--ins-text-body)'}}>COUNT</span>(<span style={{color:'var(--ins-text-highlight)'}}>new_customers</span>)
         </div>
-        <div style={{display:'flex',flexDirection:'column',gap:'8px'}}>
+        <div style={{display:'flex',flexDirection:'column',gap:'var(--ins-size-2)'}}>
           {[
             {label:'Source', val:'marketing.fct_spend, sales.dim_customers'},
             {label:'Lineage', val:'Snowflake → Semantic Layer → Insightis'},
             {label:'Used by', val:'17 reports · 4 teams'},
           ].map((row,i) => (
-            <div key={i} style={{display:'flex',gap:'12px',fontSize:'var(--ins-font-size-12)'}}>
-              <span style={{minWidth:'70px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.04em',textTransform:'uppercase',fontSize:'10px',paddingTop:'2px'}}>{row.label}</span>
+            <div key={i} style={{display:'flex',gap:'var(--ins-size-3)',fontSize:'var(--ins-font-size-12)'}}>
+              <span style={{minWidth:'70px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.04em',textTransform:'uppercase',fontSize:'10px',paddingTop:'var(--ins-size-half)'}}>{row.label}</span>
               <span style={{color:'var(--ins-text-body)'}}>{row.val}</span>
             </div>
           ))}
@@ -780,7 +780,7 @@ function SpotlightAnomalies() {
       <ChromeHeader label="analysis · revenue" />
       <div style={{padding:'20px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
         {/* User question */}
-        <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'10px'}}>
+        <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)',marginBottom:'10px'}}>
           <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.08em',textTransform:'uppercase'}}>asked</span>
           <span style={{fontSize:'12.5px',color:'var(--ins-text-body)'}}>"Why was revenue lower last week?"</span>
         </div>
@@ -788,7 +788,7 @@ function SpotlightAnomalies() {
         {/* Headline finding */}
         <div style={{
           display:'flex',alignItems:'center',gap:'10px',
-          padding:'10px 12px',marginBottom:'12px',
+          padding:'10px 12px',marginBottom:'var(--ins-size-3)',
           background:'var(--ins-color-red-a-06)',border:'1px solid rgba(248,113,113,.22)',
           borderRadius:'10px',
         }}>
@@ -807,7 +807,7 @@ function SpotlightAnomalies() {
           border:'1px solid var(--ins-color-white-a-05)',
           borderRadius:'10px',
           padding:'12px 12px 8px',
-          marginBottom:'12px',
+          marginBottom:'var(--ins-size-3)',
           position:'relative',
         }}>
           <svg viewBox="0 0 280 60" width="100%" height="60" preserveAspectRatio="none" style={{display:'block'}}>
@@ -832,7 +832,7 @@ function SpotlightAnomalies() {
         </div>
 
         {/* 2 explanatory micro-cards */}
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'8px'}}>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'var(--ins-size-2)'}}>
           <div style={{
             background:'rgba(255,255,255,.025)',
             border:'1px solid var(--ins-color-white-a-06)',
@@ -905,7 +905,7 @@ function SpotlightStack() {
         </div>
 
         {/* Source tiles row */}
-        <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'8px',marginBottom:'14px'}}>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'var(--ins-size-2)',marginBottom:'14px'}}>
           {sources.map((s,i) => (
             <div key={i} style={{
               background:'rgba(255,255,255,.025)',
@@ -938,7 +938,7 @@ function SpotlightStack() {
           border:'1px solid rgba(9,160,157,.35)',
           borderRadius:'var(--ins-radius-12)',
           padding:'12px 14px',
-          display:'flex',alignItems:'center',gap:'12px',
+          display:'flex',alignItems:'center',gap:'var(--ins-size-3)',
         }}>
           <div style={{
             width:'36px',height:'36px',borderRadius:'10px',
@@ -951,7 +951,7 @@ function SpotlightStack() {
           </div>
           <div style={{flex:1,minWidth:0}}>
             <div style={{fontSize:'13px',fontWeight:600,color:'var(--ins-color-gray-100)'}}>Insightis</div>
-            <div style={{fontSize:'10.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.04em',textTransform:'uppercase',marginTop:'2px'}}>Semantic Layer</div>
+            <div style={{fontSize:'10.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.04em',textTransform:'uppercase',marginTop:'var(--ins-size-half)'}}>Semantic Layer</div>
           </div>
           <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-highlight)',padding:'3px 9px',borderRadius:'999px',background:'rgba(9,160,157,.1)',border:'1px solid rgba(9,160,157,.25)',letterSpacing:'.08em',textTransform:'uppercase'}}>connected</span>
         </div>
@@ -1012,7 +1012,7 @@ function FeatureSpotlights() {
               <div key={i} data-spotlight-grid style={{
                 display:'grid',
                 gridTemplateColumns:'1fr 1fr',
-                gap:'64px',
+                gap:'var(--ins-size-16)',
                 alignItems:'center',
               }}>
                 <div data-spotlight-text style={{order: reverse ? 2 : 0}}>
@@ -1029,7 +1029,7 @@ function FeatureSpotlights() {
                   <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px'}}>
                     {s.bullets.map((b,bi) => (
                       <li key={bi} style={{display:'flex',alignItems:'flex-start',gap:'10px',fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)',lineHeight:1.55}}>
-                        <CheckIcon size={12} style={{flexShrink:0,marginTop:'4px'}} />
+                        <CheckIcon size={12} style={{flexShrink:0,marginTop:'var(--ins-size-1)'}} />
                         {b}
                       </li>
                     ))}
@@ -1090,18 +1090,18 @@ function UseCases() {
   return (
     <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{marginBottom:'80px'}}>
+        <div style={{marginBottom:'var(--ins-size-20)'}}>
           <div style={{
             position:'relative',borderRadius:'var(--ins-radius-16)',
             border:'1px solid rgba(30,30,48,1)',
             padding:'32px 48px',overflow:'hidden',
-            display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'24px',
+            display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'var(--ins-size-6)',
             flexWrap:'wrap',
             background:'linear-gradient(135deg,var(--ins-color-promo-a) 0%,var(--ins-color-promo-b) 50%,var(--ins-color-promo-a) 100%)',
           }}>
             <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
             <div style={{flex:'1 1 360px',minWidth:0}}>
-              <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'8px'}}>
+              <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'var(--ins-size-2)'}}>
                 See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own data</span>.
               </h3>
               <p className="ins-text-body">
@@ -1113,7 +1113,7 @@ function UseCases() {
             </Button>
           </div>
         </div>
-        <div style={{marginBottom:'56px'}}>
+        <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
             eyebrow="Use cases"
             title="What data teams use Insightis for"
@@ -1127,7 +1127,7 @@ function UseCases() {
               style={{
                 background:'rgba(13,17,23,.6)',
                 border:'1px solid var(--ins-color-white-a-06)',
-                borderRadius:'var(--ins-radius-16)',padding:'24px',
+                borderRadius:'var(--ins-radius-16)',padding:'var(--ins-size-6)',
                 position:'relative',overflow:'hidden',
                 transition:'all .2s',
               }}
@@ -1174,7 +1174,7 @@ function Testimonials() {
   return (
     <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'56px'}}>
+        <div style={{textAlign:'center',marginBottom:'var(--ins-size-14)'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
             <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>Stories</span>
@@ -1184,7 +1184,7 @@ function Testimonials() {
           </h2>
         </div>
 
-        <div data-testimonials-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'16px'}}>
+        <div data-testimonials-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'var(--ins-size-4)'}}>
           {items.map((t,i) => (
             <TestimonialCard
               key={i}

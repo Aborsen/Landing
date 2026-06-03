@@ -23,18 +23,18 @@ function AboutHero() {
     <section style={{padding:'120px 0 80px', position:'relative'}}>
       <div style={{position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:'100%', height:'100%', background:'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(9,160,157,.06) 0%, transparent 70%)', pointerEvents:'none'}}/>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', textAlign:'center', position:'relative'}}>
-        <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'20px'}}>
+        <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'var(--ins-size-5)'}}>
           Every dataset has an insight.<br/>
           <span style={{color:'var(--ins-text-highlight)'}}>We help you find it.</span>
         </h1>
         <p className="fu2 ins-text-body-xl" style={{maxWidth:'580px', margin:'0 auto'}}>
           Insightis is the AI analytics workspace that lets anyone — not just analysts — ask questions about their data and get instant, accurate answers. No SQL. No dashboards. No waiting.
         </p>
-        <div className="fu3" style={{display:'flex', justifyContent:'center', gap:'0', marginTop:'56px', borderTop:'1px solid var(--ins-border-default)', borderBottom:'1px solid var(--ins-border-default)', flexWrap:'wrap'}}>
+        <div className="fu3" style={{display:'flex', justifyContent:'center', gap:'0', marginTop:'var(--ins-size-14)', borderTop:'1px solid var(--ins-border-default)', borderBottom:'1px solid var(--ins-border-default)', flexWrap:'wrap'}}>
           {stats.map((s, i) => (
             <div key={i} style={{flex:'1 1 160px', padding:'28px 24px', textAlign:'center', borderRight: i < stats.length-1 ? '1px solid var(--ins-border-default)' : 'none'}}>
               <div style={{fontSize:'clamp(28px,3.5vw,44px)', fontWeight:600, color:'var(--ins-text-highlight)', letterSpacing:'-.02em', lineHeight:1}}>{s.num}</div>
-              <div style={{fontSize:'var(--ins-font-size-12)', color:'var(--ins-color-white-a-45)', marginTop:'8px', letterSpacing:'.02em'}}>{s.label}</div>
+              <div style={{fontSize:'var(--ins-font-size-12)', color:'var(--ins-color-white-a-45)', marginTop:'var(--ins-size-2)', letterSpacing:'.02em'}}>{s.label}</div>
             </div>
           ))}
         </div>
@@ -66,23 +66,23 @@ function MissionValues() {
   return (
     <section style={{padding:'80px 0 100px'}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-        <div style={{marginBottom:'56px'}}>
+        <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
             eyebrow="Our Values"
             title="Built on three principles"
             sparkle
           />
         </div>
-        <div style={{display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'16px'}} className="md:grid-cols-3 grid-cols-1" >
+        <div style={{display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'var(--ins-size-4)'}} className="md:grid-cols-3 grid-cols-1" >
           {values.map((v, i) => (
-            <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-16)', padding:'28px', position:'relative', overflow:'hidden', transition:'all .2s'}}
+            <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-16)', padding:'var(--ins-size-7)', position:'relative', overflow:'hidden', transition:'all .2s'}}
               onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
               onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-border-default)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
               <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
-              <div style={{width:'40px', height:'40px', borderRadius:'10px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'16px'}}>
+              <div style={{width:'40px', height:'40px', borderRadius:'10px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'var(--ins-size-4)'}}>
                 {v.icon}
               </div>
-              <h3 style={{fontSize:'var(--ins-font-size-17)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px'}}>{v.title}</h3>
+              <h3 style={{fontSize:'var(--ins-font-size-17)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'var(--ins-size-2)'}}>{v.title}</h3>
               <p className="ins-text-body">{v.desc}</p>
             </div>
           ))}
@@ -105,7 +105,7 @@ function WhatWeBuilt() {
   return (
     <section style={{padding:'80px 0 100px'}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-        <div style={{marginBottom:'56px'}}>
+        <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
             eyebrow="The Platform"
             title="One workspace for every data question"
@@ -119,26 +119,26 @@ function WhatWeBuilt() {
                 <div className="hb" style={{width:'64px', height:'64px', borderRadius:'var(--ins-radius-16)', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'14px', animationDelay:`${i * 0.4}s`}}>
                   {p.icon}
                 </div>
-                <h4 style={{fontSize:'var(--ins-font-size-15)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'4px'}}>{p.name}</h4>
+                <h4 style={{fontSize:'var(--ins-font-size-15)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'var(--ins-size-1)'}}>{p.name}</h4>
                 <p className="ins-text-body-sm">{p.desc}</p>
               </div>
               {i < pillars.length - 1 && (
-                <div style={{display:'flex', alignItems:'center', paddingTop:'24px', flexShrink:0, minWidth:'32px', flex:'0 0 auto'}}>
+                <div style={{display:'flex', alignItems:'center', paddingTop:'var(--ins-size-6)', flexShrink:0, minWidth:'32px', flex:'0 0 auto'}}>
                   <div style={{width:'100%', minWidth:'32px', height:'1px', borderTop:'2px dashed rgba(9,160,157,.25)'}}/>
                 </div>
               )}
             </React.Fragment>
           ))}
         </div>
-        <div className="flex md:hidden" style={{flexDirection:'column', alignItems:'center', gap:'16px'}}>
+        <div className="flex md:hidden" style={{flexDirection:'column', alignItems:'center', gap:'var(--ins-size-4)'}}>
           {pillars.map((p, i) => (
             <React.Fragment key={i}>
-              <div style={{display:'flex', alignItems:'center', gap:'16px', width:'100%', maxWidth:'320px'}}>
+              <div style={{display:'flex', alignItems:'center', gap:'var(--ins-size-4)', width:'100%', maxWidth:'320px'}}>
                 <div className="hb" style={{width:'48px', height:'48px', borderRadius:'var(--ins-radius-12)', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, animationDelay:`${i * 0.4}s`}}>
                   {p.icon}
                 </div>
                 <div>
-                  <h4 style={{fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'2px'}}>{p.name}</h4>
+                  <h4 style={{fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'var(--ins-size-half)'}}>{p.name}</h4>
                   <p className="ins-text-body-sm">{p.desc}</p>
                 </div>
               </div>
@@ -159,8 +159,8 @@ function BackedBy() {
     <section style={{padding:'80px 0 100px'}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
         {/* Header row */}
-        <div style={{marginBottom:'48px'}}>
-          <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'16px'}}>
+        <div style={{marginBottom:'var(--ins-size-12)'}}>
+          <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-4)'}}>
             <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
             <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', fontFamily:'var(--ins-font-family-mono)'}}>Our Mission</span>
           </div>
@@ -210,7 +210,7 @@ function OurStory() {
   return (
     <section style={{padding:'80px 0 100px'}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-        <div style={{marginBottom:'56px'}}>
+        <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
             eyebrow="Our Story"
             title="From data tools to data intelligence"
@@ -225,7 +225,7 @@ function OurStory() {
             {milestones.map((m, i) => (
               <div key={i} style={{display:'flex', gap:'0', position:'relative', paddingBottom: i < milestones.length-1 ? '48px' : '0'}}>
                 {/* Year label */}
-                <div className="hidden md:block" style={{width:'120px', flexShrink:0, paddingTop:'4px'}}>
+                <div className="hidden md:block" style={{width:'120px', flexShrink:0, paddingTop:'var(--ins-size-1)'}}>
                   <span style={{fontSize: m.year === '∞' ? 'var(--ins-font-size-28)' : 'var(--ins-font-size-12)', fontWeight:600, color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)', letterSpacing:'.04em', lineHeight:1}}>{m.year}</span>
                 </div>
                 {/* Dot */}
@@ -233,9 +233,9 @@ function OurStory() {
                   <div style={{width:'10px', height:'10px', borderRadius:'50%', background:'var(--ins-button-primary-bg-hover)', border:'2px solid rgba(9,160,157,.3)', boxShadow:'0 0 12px rgba(9,160,157,.4)', marginLeft:'-5px', marginTop:'6px', flexShrink:0}}/>
                 </div>
                 {/* Content */}
-                <div style={{flex:1, paddingLeft:'40px'}}>
+                <div style={{flex:1, paddingLeft:'var(--ins-size-10)'}}>
                   <div className="md:hidden" style={{fontSize: m.year === '∞' ? 'var(--ins-font-size-24)' : 'var(--ins-font-size-12)', fontWeight:600, color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)', marginBottom:'6px', letterSpacing:'.04em', lineHeight:1}}>{m.year}</div>
-                  <h3 style={{fontSize:'var(--ins-font-size-18)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'8px', letterSpacing:'-.01em'}}>{m.title}</h3>
+                  <h3 style={{fontSize:'var(--ins-font-size-18)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'var(--ins-size-2)', letterSpacing:'-.01em'}}>{m.title}</h3>
                   <p className="ins-text-body-lg" style={{maxWidth:'680px'}}>{m.desc}</p>
                 </div>
               </div>
@@ -309,7 +309,7 @@ function TrustedBy() {
   const companies = ['IBM', 'Amazon', 'Samsung', 'Toyota', 'Microsoft', 'Oracle', 'Siemens', 'Cisco', 'Accenture', 'Deloitte', 'SAP', 'Bosch'];
   return (
     <section style={{padding:'0 16px', margin:'0 auto', maxWidth:'1272px'}}>
-      <div style={{border:'1px solid var(--ins-border-default)', background:'var(--ins-color-white-a-02)', borderRadius:'var(--ins-radius-16)', padding:'32px 32px', display:'flex', alignItems:'center', gap:'24px'}}>
+      <div style={{border:'1px solid var(--ins-border-default)', background:'var(--ins-color-white-a-02)', borderRadius:'var(--ins-radius-16)', padding:'32px 32px', display:'flex', alignItems:'center', gap:'var(--ins-size-6)'}}>
         <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-text-disabled)', whiteSpace:'nowrap', flexShrink:0, fontFamily:'var(--ins-font-family-mono)'}}>Trusted by teams at</span>
         <div className="overflow-hidden flex-1 marquee-container" style={{maskImage:'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)', WebkitMaskImage:'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)'}}>
           <div className="flex gap-3 marquee-left" style={{width:'max-content'}}>
@@ -326,9 +326,9 @@ function TrustedBy() {
 /* ── BOTTOM CTA ── */
 function BottomCTA() {
   return (
-    <section style={{paddingTop:'32px', paddingBottom:'64px', position:'relative'}}>
+    <section style={{paddingTop:'var(--ins-size-8)', paddingBottom:'var(--ins-size-16)', position:'relative'}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-        <div style={{position:'relative', borderRadius:'var(--ins-radius-16)', border:'1px solid rgba(30,30,48,1)', padding:'32px 48px', overflow:'hidden', display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:'24px', flexWrap:'wrap', background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)'}}>
+        <div style={{position:'relative', borderRadius:'var(--ins-radius-16)', border:'1px solid rgba(30,30,48,1)', padding:'32px 48px', overflow:'hidden', display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:'var(--ins-size-6)', flexWrap:'wrap', background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)'}}>
           <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
           <h3 style={{fontSize:'clamp(22px,3vw,30px)', fontWeight:500, color:'var(--ins-text-heading)', letterSpacing:'-.03em', lineHeight:1.2, flexShrink:0}}>
             Ready to see your data <span style={{color:'var(--ins-button-primary-bg)'}}>clearly?</span>
