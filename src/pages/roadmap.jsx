@@ -33,7 +33,7 @@ function TreeHero() {
     <section style={{padding:'110px 0 48px', position:'relative', zIndex:1}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', textAlign:'center'}}>
 
-        <h1 className="fu1" style={{fontSize:'clamp(38px,5vw,60px)', fontWeight:600, letterSpacing:'-.03em', lineHeight:1.1, color:'var(--ins-text-heading-soft)', marginBottom:20}}>
+        <h1 className="ins-text-display-xl" style={{marginBottom:20}}>
           Our product roadmap.
         </h1>
 

@@ -128,7 +128,7 @@ function SecurityContent() {
             <span style={{fontSize:'var(--ins-font-size-12)'}}>&#x2726;</span>
             <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', fontFamily:'var(--ins-font-family-mono)'}}>Security</span>
           </div>
-          <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'var(--ins-size-5)'}}>
+          <h1 className="ins-text-display" style={{marginBottom:'var(--ins-size-5)'}}>
             Secure by design
           </h1>
           <p className="fu2 ins-text-body-xl" style={{maxWidth:'640px', margin:'0 auto'}}>

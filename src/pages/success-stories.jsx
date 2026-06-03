@@ -36,7 +36,7 @@ function StoriesHero() {
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', position:'relative'}}>
         {/* Hero heading */}
         <div style={{maxWidth:'640px', marginBottom:'var(--ins-size-12)'}}>
-          <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',fontSize:'clamp(32px,5vw,52px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'var(--ins-size-5)'}}>
+          <h1 className="ins-text-display" style={{marginBottom:'var(--ins-size-5)'}}>
             <span style={{color:'var(--ins-text-highlight)'}}>100+</span> companies use Insightis to accomplish more
           </h1>
           <p className="fu2 ins-text-body-xl ins-text--muted">

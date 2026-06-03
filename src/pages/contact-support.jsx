@@ -29,11 +29,7 @@ function SupportHero({ search, setSearch }) {
           <span style={{ color:'var(--ins-text-body)', fontWeight:400 }}>· Last checked: 2 minutes ago</span>
         </div>
 
-        <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',
-          fontSize:'clamp(32px,5vw,52px)', fontWeight:700,
-          lineHeight:1.1, letterSpacing:'-0.03em',
-          marginBottom:'var(--ins-size-4)',
-        }}>
+        <h1 className="ins-text-display" style={{marginBottom:'var(--ins-size-4)'}}>
           How can we help?
         </h1>
 

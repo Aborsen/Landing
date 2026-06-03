@@ -16,7 +16,7 @@ function ContactHero() {
   return (
     <section style={{padding:'120px 0 60px', position:'relative'}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', textAlign:'center', position:'relative'}}>
-        <h1 className="fu0" style={{fontSize:'clamp(32px,5vw,56px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'var(--ins-size-5)'}}>
+        <h1 className="ins-text-display" style={{marginBottom:'var(--ins-size-5)'}}>
           Let's talk.
         </h1>
         <p className="fu1 ins-text-body-lg" style={{maxWidth:'520px', margin:'0 auto'}}>
