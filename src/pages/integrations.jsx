@@ -315,7 +315,8 @@ function Hero() {
         }}>
           <h1 className="ins-text-display-xl">
             <span style={{color:'var(--ins-text-heading-soft)'}}>Connect it all.</span><br/>
-            <span style={{color:'var(--ins-text-highlight)'}}>Get the why behind every number.</span>
+            <span style={{color:'var(--ins-text-highlight)'}}>Get the why</span><br/>
+            <span style={{color:'var(--ins-text-highlight)'}}>behind numbers.</span>
           </h1>
           <p className="ins-text-body-xl" style={{marginBottom:'36px',maxWidth:'520px'}}>
             Plug in your CRM, warehouse, ads and product tools. Query every source in plain English — no SQL, no waiting.
