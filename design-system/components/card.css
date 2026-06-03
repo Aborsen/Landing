@@ -29,6 +29,9 @@
   margin-bottom: var(--ins-space-sm);
 }
 .ins-card__body { font-size: var(--ins-font-size-14); line-height: 20px; color: var(--ins-text-body); }
+/* Descriptive text inside glow/branded cards (audit #12) — forces body color so the
+   description doesn't inherit the card header's highlight/heading color. */
+.ins-card__desc { font-size: var(--ins-font-size-14); line-height: var(--ins-line-height-relaxed); color: var(--ins-text-body); }
 
 /* Interactive card — hover-liftable */
 .ins-card--interactive { cursor: pointer; }

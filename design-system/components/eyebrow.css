@@ -33,6 +33,18 @@
   margin-inline: auto;
 }
 
+/* Status color variants (audit #3) — combine with --pill for the filled treatment. */
+.ins-eyebrow--error { color: var(--ins-status-error-fg); }
+.ins-eyebrow--error.ins-eyebrow--pill {
+  background: var(--ins-status-error-bg);
+  border-color: var(--ins-color-red-a-30);
+}
+.ins-eyebrow--grey { color: var(--ins-text-inactive); }
+.ins-eyebrow--grey.ins-eyebrow--pill {
+  background: var(--ins-color-white-a-06);
+  border-color: var(--ins-color-white-a-12);
+}
+
 .ins-eyebrow__sparkle {
   width: 12px;
   height: 12px;

@@ -43,10 +43,10 @@ function SectionHeader({
   // Both sizes render at the .ins-text-display scale (36 px mobile / 48 px desktop).
   // The size prop now only tunes letter-spacing — `lg` gets a slightly tighter track
   // for hero-prominence sections.
+  // Audit #54 + #79: no inline color/letter-spacing — the .ins-text-display class
+  // provides the soft heading color (--ins-text-heading-soft) and its own tracking.
   const titleClass = 'ins-text-display';
   const titleStyle = {
-    color: 'var(--ins-text-heading)',
-    letterSpacing: size === 'lg' ? '-0.04em' : '-0.03em',
     textWrap: 'balance',
     margin: 0,
   };

@@ -80,6 +80,21 @@ a svg { vertical-align: middle; color: currentColor; }
 .ins-link--brand, a.ins-link--brand { color: var(--ins-text-highlight); text-decoration-color: var(--ins-color-teal-a-50); }
 .ins-link--brand:hover, a.ins-link--brand:hover { color: var(--ins-color-teal-300); text-decoration-color: currentColor; }
 
+/* Inline body link (audit #74) — reusable link inside running text. Underline sits at a
+   0.25em offset in 30%-opacity body color; hover lifts to full-color underline + heading text. */
+.ins-link--inline, a.ins-link--inline {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--ins-color-body-a-30);
+  text-underline-offset: 0.25em;
+  transition: color var(--ins-duration-base) var(--ins-easing-standard),
+              text-decoration-color var(--ins-duration-base) var(--ins-easing-standard);
+}
+.ins-link--inline:hover, a.ins-link--inline:hover {
+  color: var(--ins-text-heading);
+  text-decoration-color: currentColor;
+}
+
 /* Suppress webkit native search-cancel X (we use our own clear button) */
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration { -webkit-appearance: none; appearance: none; display: none; }
@@ -135,7 +150,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: inherit; font-size: inherit; }
   letter-spacing: -0.035em;
   line-height: 1.05;
   margin-bottom: var(--ins-size-6);
-  color: var(--ins-text-heading);
+  color: var(--ins-text-heading-soft);   /* audit #54 — display sizes use soft heading */
 }
 .ins-text-hero {
   font-family: var(--ins-font-family-sans);
@@ -152,7 +167,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: inherit; font-size: inherit; }
   line-height: 40px;
   font-weight: var(--ins-font-weight-600);
   letter-spacing: var(--ins-letter-spacing-tight);
-  color: var(--ins-text-heading);
+  color: var(--ins-text-heading-soft);   /* audit #54 — display sizes use soft heading */
 }
 .ins-text-h1 {
   font-family: var(--ins-font-family-sans);
