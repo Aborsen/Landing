@@ -90,142 +90,85 @@ function BrandTile({name, color, size=22}) {
   );
 }
 
+const CONN_SOURCES = [
+  {name:'HubSpot',   slug:'hubspot',        domain:'hubspot.com',   color:'#FF7A59', desc:'CRM'},
+  {name:'Stripe',    slug:'stripe',         domain:'stripe.com',    color:'#635BFF', desc:'Payments'},
+  {name:'Intercom',  slug:'intercom',       domain:'intercom.com',  color:'#1F8DED', desc:'Support'},
+  {name:'BigQuery',  slug:'googlebigquery', domain:null,            color:'#669DF6', desc:'Warehouse'},
+  {name:'Snowflake', slug:'snowflake',      domain:'snowflake.com', color:'#29B5E8', desc:'Warehouse'},
+  {name:'Jira',      slug:'jira',           domain:'atlassian.com', color:'#2684FF', desc:'Tickets'},
+];
+
+// Mount-gate: the SSR pass + first client render emit an identical empty shell
+// (no Math.random, no diff possible). The animated content mounts after hydration.
 function ConnectionChatAnimation() {
-  const SOURCES = [
-    {name:'HubSpot',    slug:'hubspot',        domain:'hubspot.com',    color:'#FF7A59', desc:'CRM'},
-    {name:'Stripe',     slug:'stripe',         domain:'stripe.com',     color:'#635BFF', desc:'Payments'},
-    {name:'Intercom',   slug:'intercom',       domain:'intercom.com',   color:'#1F8DED', desc:'Support'},
-    {name:'PostgreSQL', slug:'postgresql',     domain:'postgresql.org', color:'#4169E1', desc:'Database'},
-    {name:'BigQuery',   slug:'googlebigquery', domain:null,             color:'#669DF6', desc:'Warehouse'},
-    {name:'Snowflake',  slug:'snowflake',      domain:'snowflake.com',  color:'#29B5E8', desc:'Warehouse'},
-    {name:'Mixpanel',   slug:'mixpanel',       domain:'mixpanel.com',   color:'#7856FF', desc:'Analytics'},
-    {name:'Jira',       slug:'jira',           domain:'atlassian.com',  color:'#2684FF', desc:'Tickets'},
-  ];
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+  if (!mounted) {
+    return (
+      <div style={{
+        position:'relative', height:'500px',
+        borderRadius:'var(--ins-radius-16)',
+        border:'1px solid var(--ins-color-white-a-10)',
+        background:'#0C1117', overflow:'hidden', boxShadow:'none',
+      }} aria-hidden="true"/>
+    );
+  }
+  return <ConnectionChatAnimationInner/>;
+}
 
-  const CHAOS_END   = 2800;
-  const ORDER_END   = 4000;
-  const BEAMS_ON    = 4200;
-
+function ConnectionChatAnimationInner() {
   const containerRef = useRef(null);
-  const sourceRefs   = useRef([]);
-  const [phase, setPhase] = useState('chaos');
   const [size, setSize]   = useState({ W: 600, H: 500 });
-  const [ring, setRing]   = useState([]); // [{tx, ty}] one per source
+  const [shown, setShown] = useState(false);
+  const [beamsOn, setBeamsOn] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
 
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
-    let W = el.clientWidth;
-    let H = el.clientHeight;
-    const isMobileLayout = W < 640;
-    const cardW = isMobileLayout ? 100 : 150;
-    const cardH = isMobileLayout ? 36 : 52;
-    const centerBoxX = isMobileLayout ? 60 : 90;
-    const centerBoxY = isMobileLayout ? 60 : 90;
-
-    const recalc = () => { W = el.clientWidth; H = el.clientHeight; };
-    window.addEventListener('resize', recalc);
-
-    const items = SOURCES.map((s, i) => {
-      const isMobile = W < 640;
-      const ringRx = isMobile ? Math.min(W * 0.32, W / 2 - 78) : Math.min(W * 0.44, 260);
-      const ringRy = isMobile ? Math.min((H - 60) * 0.36, 130) : Math.min((H - 60) * 0.44, 195);
-      const angle = (i / SOURCES.length) * Math.PI * 2 - Math.PI / 2;
-      let rx, ry;
-      do {
-        rx = (Math.random() - 0.5) * (W - cardW - 20);
-        ry = (Math.random() - 0.5) * (H - cardH - 80);
-      } while (Math.abs(rx) < centerBoxX + 40 && Math.abs(ry) < centerBoxY + 20);
-      return {
-        x: rx, y: ry,
-        vx: (Math.random() - 0.5) * 0.9,
-        vy: (Math.random() - 0.5) * 0.9,
-        tx: ringRx * Math.cos(angle),
-        ty: ringRy * Math.sin(angle),
-      };
-    });
-
-    setSize({ W, H });
-    setRing(items.map(p => ({ tx: p.tx, ty: p.ty })));
-
-    const phaseRef = { current: 'chaos' };
-    let raf, start = null;
-
-    function loop(ts) {
-      if (!start) start = ts;
-      const t = ts - start;
-
-      if (t >= CHAOS_END && phaseRef.current === 'chaos') {
-        phaseRef.current = 'ordering';
-        setPhase('ordering');
-        const ringRx = Math.min(W * 0.36, 220);
-        const ringRy = Math.min((H - 60) * 0.36, 160);
-        items.forEach((p, i) => {
-          const angle = (i / SOURCES.length) * Math.PI * 2 - Math.PI / 2;
-          p.tx = ringRx * Math.cos(angle);
-          p.ty = ringRy * Math.sin(angle);
-        });
-        setRing(items.map(p => ({ tx: p.tx, ty: p.ty })));
-      }
-      if (t >= ORDER_END && phaseRef.current === 'ordering') {
-        phaseRef.current = 'ordered';
-        setPhase('ordered');
-      }
-
-      if (phaseRef.current === 'chaos') {
-        const bx = (W - cardW) / 2 - 4;
-        const by = (H - cardH) / 2 - 34;
-        items.forEach((p, i) => {
-          p.x += p.vx; p.y += p.vy;
-          if (p.x < -bx || p.x > bx) { p.vx *= -1; p.x = Math.max(-bx, Math.min(bx, p.x)); }
-          if (p.y < -by || p.y > by) { p.vy *= -1; p.y = Math.max(-by, Math.min(by, p.y)); }
-          const n = sourceRefs.current[i];
-          if (n) {
-            n.style.transition = 'none';
-            n.style.transform = `translate(-50%, -50%) translate(${Math.round(p.x)}px, ${Math.round(p.y)}px)`;
-          }
-        });
-      } else if (phaseRef.current === 'ordering') {
-        items.forEach((p, i) => {
-          const n = sourceRefs.current[i];
-          if (n) {
-            n.style.transition = 'transform 1.1s cubic-bezier(0.34, 1.25, 0.5, 1)';
-            n.style.transform = `translate(-50%, -50%) translate(${Math.round(p.tx)}px, ${Math.round(p.ty)}px)`;
-          }
-        });
-      }
-
-      raf = requestAnimationFrame(loop);
+    const measure = () => setSize({ W: el.clientWidth, H: el.clientHeight });
+    measure();
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      setReduceMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
     }
-    raf = requestAnimationFrame(loop);
-
+    // Flip the one-time entrance on after the first (hidden) frame paints.
+    const raf = requestAnimationFrame(() => setShown(true));
+    const beamTimer = setTimeout(() => setBeamsOn(true), 900);
+    window.addEventListener('resize', measure);
     return () => {
       cancelAnimationFrame(raf);
-      window.removeEventListener('resize', recalc);
+      clearTimeout(beamTimer);
+      window.removeEventListener('resize', measure);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const isMobile = size.W < 640;
   const cx = size.W / 2;
   const cy = size.H / 2 + 10;
-  const beamsOn = phase === 'ordered';
-  const isMobile = size.W < 640;
+
+  // Deterministic fixed ring positions — one dedicated, stable spot per connector
+  // (computed from index, never random). Feeds both the cards and the SVG beams.
+  const ringRx = isMobile ? Math.min(size.W * 0.34, size.W / 2 - 80) : Math.min(size.W * 0.36, 220);
+  const ringRy = Math.min((size.H - 60) * 0.36, 160);
+  const positions = CONN_SOURCES.map((_, i) => {
+    const angle = (i / CONN_SOURCES.length) * Math.PI * 2 - Math.PI / 2;
+    return { tx: ringRx * Math.cos(angle), ty: ringRy * Math.sin(angle) };
+  });
+
   const engineBox = isMobile ? 80 : 116;
-  const gridSize = isMobile ? 22 : 30;
-  const engineFont = isMobile ? 10 : 12;
-  const tileSize = isMobile ? 26 : 40;
-  const cardPadV = isMobile ? 6 : 10;
-  const cardPadH = isMobile ? 9 : 14;
-  const cardGap = isMobile ? 7 : 11;
-  const titleFont = isMobile ? 11 : 13;
-  const descFont = isMobile ? 10 : 11;
+  const gridSize  = isMobile ? 22 : 30;
+  const tileSize  = isMobile ? 26 : 40;
+  const cardPadV  = isMobile ? 6 : 10;
+  const cardPadH  = isMobile ? 9 : 14;
+  const cardGap   = isMobile ? 7 : 11;
 
   return (
     <div ref={containerRef} style={{
       position:'relative',
       height:'500px',
       borderRadius:'var(--ins-radius-16)',
-      border:'1px solid rgba(255,255,255,0.09)',
+      border:'1px solid var(--ins-color-white-a-10)',
       background:'#0C1117',
       overflow:'hidden',
       boxShadow:'none',
@@ -246,7 +189,7 @@ function ConnectionChatAnimation() {
         <div style={{width:'46px'}}/>
       </div>
 
-      {/* SVG beams from each ring source to center, with animated colored particles */}
+      {/* SVG beams from each fixed source to center, with animated colored particles */}
       <svg
         width={size.W}
         height={size.H}
@@ -261,10 +204,10 @@ function ConnectionChatAnimation() {
           transition: 'opacity .8s ease',
         }}
       >
-        {ring.map((p, i) => {
+        {positions.map((p, i) => {
           const sx = cx + p.tx;
           const sy = cy + p.ty;
-          // Stop the beam at the edge of the engine box (144x144, half = 72; +6px margin)
+          // Stop the beam at the edge of the engine box.
           const dx = cx - sx, dy = cy - sy;
           const absDx = Math.abs(dx), absDy = Math.abs(dy);
           const halfBox = 64;
@@ -272,17 +215,19 @@ function ConnectionChatAnimation() {
           const ex = cx - dx * t;
           const ey = cy - dy * t;
           const d  = `M${sx.toFixed(1)},${sy.toFixed(1)} L${ex.toFixed(1)},${ey.toFixed(1)}`;
-          const color = SOURCES[i].color;
+          const color = CONN_SOURCES[i].color;
           const dur = (3.4 + (i % 4) * 0.5).toFixed(2);
           const begin = (i * 0.27).toFixed(2);
           return (
             <g key={i}>
               <path d={d} stroke="rgba(255,255,255,0.22)" strokeWidth="1" strokeDasharray="4 4" strokeLinecap="round" fill="none" opacity="0.85">
-                <animate attributeName="opacity" values="0.55;0.95;0.55" dur={`${4 + (i % 3) * 0.7}s`} repeatCount="indefinite"/>
+                {!reduceMotion && <animate attributeName="opacity" values="0.55;0.95;0.55" dur={`${4 + (i % 3) * 0.7}s`} repeatCount="indefinite"/>}
               </path>
-              <circle r="2.4" fill={color} opacity="0.9" style={{filter:`drop-shadow(0 0 4px ${color})`}}>
-                <animateMotion dur={`${dur}s`} begin={`${begin}s`} repeatCount="indefinite" path={d}/>
-              </circle>
+              {!reduceMotion && (
+                <circle r="2.4" fill={color} opacity="0.9" style={{filter:`drop-shadow(0 0 4px ${color})`}}>
+                  <animateMotion dur={`${dur}s`} begin={`${begin}s`} repeatCount="indefinite" path={d}/>
+                </circle>
+              )}
             </g>
           );
         })}
@@ -292,9 +237,9 @@ function ConnectionChatAnimation() {
       <div style={{
         position:'absolute',
         left:'50%', top:'calc(50% + 10px)',
-        transform: `translate(-50%, -50%) scale(${phase === 'chaos' ? 0.55 : 1})`,
-        opacity: phase === 'chaos' ? 0.25 : 1,
-        transition: 'opacity .8s ease, transform 1s cubic-bezier(0.34,1.56,0.64,1)',
+        transform: `translate(-50%, -50%) scale(${shown ? 1 : 0.92})`,
+        opacity: shown ? 1 : 0,
+        transition: 'opacity .6s ease, transform .8s cubic-bezier(0.34,1.56,0.64,1)',
         display:'flex', flexDirection:'column', alignItems:'center', gap:'var(--ins-size-2)',
         zIndex:4,
       }}>
@@ -304,37 +249,47 @@ function ConnectionChatAnimation() {
           display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:'6px',
           border:'1px solid rgba(7,128,126,0.5)',
           background:'linear-gradient(135deg, rgba(7,128,126,0.25), rgba(7,128,126,0.08))',
-          animation: phase === 'ordered' ? 'corePulse 3s ease-in-out infinite' : 'none',
+          animation:'corePulse 3s ease-in-out infinite',
         }}>
           <GridIcon size={gridSize} color="var(--ins-text-highlight)"/>
-          <span style={{fontSize:`${engineFont}px`, fontWeight:500, color:'var(--ins-text-highlight)', textAlign:'center', lineHeight:1.2}}>Insightis<br/>Semantic AI</span>
+          <span style={{fontSize: isMobile ? 'var(--ins-font-size-11)' : 'var(--ins-font-size-12)', fontWeight:500, color:'var(--ins-text-highlight)', textAlign:'center', lineHeight:1.2}}>Insightis<br/>Semantic AI</span>
         </div>
       </div>
 
-      {/* Source cards (home-style: icon-tile + title + subtitle, animated chaotic→ring) */}
-      {SOURCES.map((s, i) => (
-        <div key={i} ref={el => sourceRefs.current[i] = el} style={{
-          position:'absolute',
-          left:'50%', top:'calc(50% + 10px)',
-          display:'inline-flex', alignItems:'center',
-          gap:`${cardGap}px`,
-          padding:`${cardPadV}px ${cardPadH}px`,
-          background:'var(--ins-surface-card)',
-          border:'1px solid var(--ins-color-white-a-06)',
-          borderRadius:'var(--ins-radius-12)',
-          boxShadow:'0 1px 3px var(--ins-color-black-a-30), 0 4px 12px rgba(0,0,0,0.20)',
-          willChange:'transform',
-          zIndex:5,
-        }}>
-          <BrandTile name={s.name} color={s.color} size={tileSize}/>
-          <div style={{display:'flex', flexDirection:'column', gap:'1px'}}>
-            <span style={{fontSize:`${titleFont}px`, fontWeight:600, color:'#FFFFFF', letterSpacing:'-0.01em', whiteSpace:'nowrap', lineHeight:1.2}}>{s.name}</span>
-            {!isMobile && (
-              <span style={{fontSize:`${descFont}px`, fontWeight:400, color:'#7A8A9A', letterSpacing:'-0.005em', whiteSpace:'nowrap', lineHeight:1.2}}>{s.desc}</span>
-            )}
+      {/* Source cards — fixed dedicated positions; one-time fade/scale-in, then static */}
+      {positions.map((p, i) => {
+        const s = CONN_SOURCES[i];
+        return (
+          <div key={i} style={{
+            position:'absolute',
+            left:'50%', top:'calc(50% + 10px)',
+            transform:`translate(-50%, -50%) translate(${Math.round(p.tx)}px, ${Math.round(p.ty)}px)`,
+            zIndex:5,
+          }}>
+            <div style={{
+              display:'inline-flex', alignItems:'center',
+              gap:`${cardGap}px`,
+              padding:`${cardPadV}px ${cardPadH}px`,
+              background:'var(--ins-surface-card)',
+              border:'1px solid var(--ins-color-white-a-06)',
+              borderRadius:'var(--ins-radius-12)',
+              boxShadow:'0 1px 3px var(--ins-color-black-a-30), 0 4px 12px rgba(0,0,0,0.20)',
+              opacity: shown ? 1 : 0,
+              transform: `scale(${shown ? 1 : 0.9})`,
+              transition: 'opacity .5s ease, transform .5s cubic-bezier(0.34,1.56,0.64,1)',
+              transitionDelay: `${(i * 0.09).toFixed(2)}s`,
+            }}>
+              <BrandTile name={s.name} color={s.color} size={tileSize}/>
+              <div style={{display:'flex', flexDirection:'column', gap:'1px'}}>
+                <span style={{fontSize: isMobile ? 'var(--ins-font-size-11)' : 'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-text-heading)', letterSpacing:'-0.01em', whiteSpace:'nowrap', lineHeight:1.2}}>{s.name}</span>
+                {!isMobile && (
+                  <span style={{fontSize:'var(--ins-font-size-11)', fontWeight:400, color:'var(--ins-text-inactive)', letterSpacing:'-0.005em', whiteSpace:'nowrap', lineHeight:1.2}}>{s.desc}</span>
+                )}
+              </div>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
@@ -359,9 +314,8 @@ function Hero() {
           padding: '24px 0',
         }}>
           <h1 className="ins-text-display-xl">
-            <span style={{color:'var(--ins-text-heading-soft)'}}>Connect everything.</span><br/>
-            <span style={{color:'var(--ins-text-highlight)'}}>Understand</span><br/>
-            <span style={{color:'var(--ins-text-highlight)'}}>anything.</span>
+            <span style={{color:'var(--ins-text-heading-soft)'}}>Connect it all.</span><br/>
+            <span style={{color:'var(--ins-text-highlight)'}}>Get the why behind every number.</span>
           </h1>
           <p className="ins-text-body-xl" style={{marginBottom:'36px',maxWidth:'520px'}}>
             Plug in your CRM, warehouse, ads and product tools. Query every source in plain English — no SQL, no waiting.
