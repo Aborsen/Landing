@@ -32,7 +32,6 @@ function TermsContent() {
     return () => observer.disconnect();
   }, []);
   const sectionStyle = { marginBottom: 'var(--ins-size-12)', scrollMarginTop: '100px' };
-  const h2Style = { fontSize: 'var(--ins-font-size-20)', fontWeight: 600, color: 'var(--ins-text-heading-soft)', marginBottom: 'var(--ins-size-4)', letterSpacing: '-.01em' };
   const pStyle = { marginBottom: '14px' };
   const ulStyle = { fontSize: 'var(--ins-font-size-15)', color: 'var(--ins-text-body)', lineHeight: 1.8, paddingLeft: 'var(--ins-size-6)', marginBottom: '14px', listStyleType: 'disc' };
 
@@ -41,9 +40,9 @@ function TermsContent() {
       {/* Hero */}
       <div style={{padding:'120px 0 60px'}}>
         <div style={{maxWidth:'800px', margin:'0 auto', padding:'0 24px', textAlign:'center'}}>
-          <h1 className="fu1" style={{fontSize:'clamp(32px,5vw,48px)', fontWeight:500, letterSpacing:'-.03em', lineHeight:1.15, marginBottom:'var(--ins-size-4)', color:'var(--ins-text-heading-soft)'}}>Terms of Service</h1>
+          <h1 className="ins-text-display" style={{marginBottom:'var(--ins-size-4)'}}>Terms of Service</h1>
           <p className="fu2 ins-text-body ins-text--muted ins-text--mono" style={{marginBottom:'var(--ins-size-5)'}}>Effective Date: April 6, 2026</p>
-          <p className="fu3 ins-text-body-lg ins-text--muted" style={pStyle}>These Terms of Service govern your access to and use of the Insightis platform, an AI-powered analytics workspace developed and operated by Devart. By accessing or using Insightis, you agree to be bound by these Terms. Please read them carefully before using the Service.</p>
+          <p className="ins-text-body-lg" style={pStyle}>These Terms of Service govern your access to and use of the Insightis platform, an AI-powered analytics workspace developed and operated by Devart. By accessing or using Insightis, you agree to be bound by these Terms. Please read them carefully before using the Service.</p>
         </div>
       </div>
 
@@ -67,14 +66,14 @@ function TermsContent() {
 
         {/* 1. Acceptance of Terms */}
         <div id="acceptance" style={sectionStyle}>
-          <h2 style={h2Style}>1. Acceptance of Terms</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>1. Acceptance of Terms</h2>
           <p className="ins-text-body-lg" style={pStyle}>By creating an account, accessing, or using Insightis (the "Service"), you acknowledge that you have read, understood, and agree to be bound by these Terms of Service and our Privacy Policy. If you are using the Service on behalf of an organization, you represent and warrant that you have the authority to bind that organization to these Terms.</p>
           <p className="ins-text-body-lg" style={pStyle}>You must be at least 16 years of age to use the Service. If you are under 16, you may not create an account or use Insightis in any capacity. By using the Service, you represent that you meet this age requirement.</p>
         </div>
 
         {/* 2. Description of Service */}
         <div id="description" style={sectionStyle}>
-          <h2 style={h2Style}>2. Description of Service</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>2. Description of Service</h2>
           <p className="ins-text-body-lg" style={pStyle}>Insightis is an AI analytics workspace that enables users to connect their business data sources, ask questions in natural language, and receive accurate, data-driven answers. The Service includes, but is not limited to:</p>
           <ul style={ulStyle}>
             <li>AI Chat for natural language data queries</li>
@@ -89,7 +88,7 @@ function TermsContent() {
 
         {/* 3. Account Registration and Security */}
         <div id="account" style={sectionStyle}>
-          <h2 style={h2Style}>3. Account Registration and Security</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>3. Account Registration and Security</h2>
           <p className="ins-text-body-lg" style={pStyle}>To access the Service, you must create an account and provide accurate, complete, and current information. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.</p>
           <p className="ins-text-body-lg" style={pStyle}>You agree to:</p>
           <ul style={ulStyle}>
@@ -103,7 +102,7 @@ function TermsContent() {
 
         {/* 4. Acceptable Use */}
         <div id="acceptable-use" style={sectionStyle}>
-          <h2 style={h2Style}>4. Acceptable Use</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>4. Acceptable Use</h2>
           <p className="ins-text-body-lg" style={pStyle}>You agree to use the Service only for lawful purposes and in accordance with these Terms. You shall not:</p>
           <ul style={ulStyle}>
             <li>Use the Service in any way that violates applicable local, national, or international law or regulation</li>
@@ -119,7 +118,7 @@ function TermsContent() {
 
         {/* 5. Data and Integrations */}
         <div id="data-integrations" style={sectionStyle}>
-          <h2 style={h2Style}>5. Data and Integrations</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>5. Data and Integrations</h2>
           <p className="ins-text-body-lg" style={pStyle}>You retain full ownership of all data that you connect to, upload to, or generate through the Service ("Your Data"). Insightis does not claim ownership over Your Data.</p>
           <p className="ins-text-body-lg" style={pStyle}>By using the Service, you grant Insightis a limited, non-exclusive, worldwide license to access, process, analyze, and display Your Data solely for the purpose of providing and improving the Service. This license is strictly limited to what is necessary to deliver the analytics functionality you have requested.</p>
           <p className="ins-text-body-lg" style={pStyle}>You represent and warrant that:</p>
@@ -133,7 +132,7 @@ function TermsContent() {
 
         {/* 6. Intellectual Property */}
         <div id="intellectual-property" style={sectionStyle}>
-          <h2 style={h2Style}>6. Intellectual Property</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>6. Intellectual Property</h2>
           <p className="ins-text-body-lg" style={pStyle}>The Service, including its software, design, architecture, algorithms, documentation, trademarks, and all related intellectual property, is and remains the exclusive property of Devart and its licensors. Nothing in these Terms grants you any right, title, or interest in the Service beyond the limited right to use it in accordance with these Terms.</p>
           <p className="ins-text-body-lg" style={pStyle}>You retain ownership of Your Data and any analytical outputs (such as reports and saved answers) generated through the Service using Your Data.</p>
           <p className="ins-text-body-lg" style={pStyle}>If you provide feedback, suggestions, or ideas regarding the Service, you grant Insightis a perpetual, irrevocable, royalty-free, worldwide license to use, modify, and incorporate such feedback into the Service without any obligation or compensation to you.</p>
@@ -141,7 +140,7 @@ function TermsContent() {
 
         {/* 7. Subscription and Billing */}
         <div id="billing" style={sectionStyle}>
-          <h2 style={h2Style}>7. Subscription and Billing</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>7. Subscription and Billing</h2>
           <p className="ins-text-body-lg" style={pStyle}>Insightis offers various subscription plans as described on our <a href="../Pricing" style={{color:'var(--ins-text-highlight)', textDecoration:'none', borderBottom:'1px solid var(--ins-color-teal-a-30)'}}>Pricing</a> page. By subscribing to a paid plan, you agree to pay all applicable fees in accordance with the billing terms presented at the time of purchase.</p>
           <ul style={ulStyle}>
             <li><strong style={{color:'var(--ins-text-body)'}}>Auto-Renewal:</strong> Paid subscriptions automatically renew at the end of each billing cycle (monthly or annually) unless you cancel before the renewal date.</li>
@@ -153,14 +152,14 @@ function TermsContent() {
 
         {/* 8. Service Availability and Modifications */}
         <div id="availability" style={sectionStyle}>
-          <h2 style={h2Style}>8. Service Availability and Modifications</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>8. Service Availability and Modifications</h2>
           <p className="ins-text-body-lg" style={pStyle}>Insightis uses commercially reasonable efforts to maintain high availability and uptime for the Service. However, we do not guarantee uninterrupted or error-free access. The Service may be temporarily unavailable due to scheduled maintenance, updates, or circumstances beyond our reasonable control.</p>
           <p className="ins-text-body-lg" style={pStyle}>We reserve the right to modify, update, or discontinue features of the Service at any time. For material changes that significantly affect your use of the Service, we will provide reasonable advance notice (typically at least 30 days) via email or in-app notification.</p>
         </div>
 
         {/* 9. Limitation of Liability */}
         <div id="liability" style={sectionStyle}>
-          <h2 style={h2Style}>9. Limitation of Liability</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>9. Limitation of Liability</h2>
           <p className="ins-text-body-lg" style={pStyle}>THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
           <p className="ins-text-body-lg" style={pStyle}>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, INSIGHTIS AND ITS AFFILIATES, OFFICERS, DIRECTORS, EMPLOYEES, AND AGENTS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA, USE, OR GOODWILL, ARISING OUT OF OR IN CONNECTION WITH YOUR ACCESS TO OR USE OF THE SERVICE.</p>
           <p className="ins-text-body-lg" style={pStyle}>IN NO EVENT SHALL THE TOTAL LIABILITY OF INSIGHTIS EXCEED THE AGGREGATE AMOUNT OF FEES PAID BY YOU TO INSIGHTIS DURING THE TWELVE (12) MONTHS IMMEDIATELY PRECEDING THE EVENT GIVING RISE TO THE CLAIM.</p>
@@ -168,7 +167,7 @@ function TermsContent() {
 
         {/* 10. Indemnification */}
         <div id="indemnification" style={sectionStyle}>
-          <h2 style={h2Style}>10. Indemnification</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>10. Indemnification</h2>
           <p className="ins-text-body-lg" style={pStyle}>You agree to indemnify, defend, and hold harmless Insightis, Devart, and their respective officers, directors, employees, and agents from and against any and all claims, damages, losses, liabilities, costs, and expenses (including reasonable attorneys' fees) arising out of or related to:</p>
           <ul style={ulStyle}>
             <li>Your use or misuse of the Service</li>
@@ -181,7 +180,7 @@ function TermsContent() {
 
         {/* 11. Termination */}
         <div id="termination" style={sectionStyle}>
-          <h2 style={h2Style}>11. Termination</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>11. Termination</h2>
           <p className="ins-text-body-lg" style={pStyle}>Either party may terminate these Terms at any time. You may terminate by closing your account through your account settings or by contacting us at <a href="mailto:legal@insightis.ai" style={{color:'var(--ins-text-highlight)', textDecoration:'none', borderBottom:'1px solid var(--ins-color-teal-a-30)'}}>legal@insightis.ai</a>.</p>
           <p className="ins-text-body-lg" style={pStyle}>Insightis may suspend or terminate your access to the Service immediately, without prior notice, if:</p>
           <ul style={ulStyle}>
@@ -195,25 +194,25 @@ function TermsContent() {
 
         {/* 12. Governing Law and Dispute Resolution */}
         <div id="governing-law" style={sectionStyle}>
-          <h2 style={h2Style}>12. Governing Law and Dispute Resolution</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>12. Governing Law and Dispute Resolution</h2>
           <p className="ins-text-body-lg" style={pStyle}>These Terms shall be governed by and construed in accordance with the laws of the Czech Republic, without regard to its conflict of law provisions. Devart, the company behind Insightis, is incorporated and headquartered in the Czech Republic.</p>
           <p className="ins-text-body-lg" style={pStyle}>Any disputes arising out of or in connection with these Terms shall first be attempted to be resolved through good-faith negotiation between the parties. If a resolution cannot be reached within 30 days, the dispute shall be submitted to the competent courts of the Czech Republic.</p>
         </div>
 
         {/* 13. Changes to Terms */}
         <div id="changes" style={sectionStyle}>
-          <h2 style={h2Style}>13. Changes to Terms</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>13. Changes to Terms</h2>
           <p className="ins-text-body-lg" style={pStyle}>Insightis reserves the right to update or modify these Terms at any time. When we make material changes, we will provide at least 30 days' advance notice by posting the updated Terms on our website and notifying you via email or in-app notification.</p>
           <p className="ins-text-body-lg" style={pStyle}>Your continued use of the Service after the effective date of the revised Terms constitutes your acceptance of the changes. If you do not agree with the updated Terms, you must discontinue your use of the Service and close your account before the changes take effect.</p>
         </div>
 
         {/* 14. Contact Us */}
         <div id="contact" style={sectionStyle}>
-          <h2 style={h2Style}>14. Contact Us</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>14. Contact Us</h2>
           <p className="ins-text-body-lg" style={pStyle}>If you have any questions, concerns, or requests regarding these Terms of Service, please contact us at:</p>
           <div style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-12)', padding:'20px 24px', marginTop:'var(--ins-size-2)'}}>
+            <h3 className="ins-text-h3" style={{marginTop:0, marginBottom:'var(--ins-size-2)'}}>Insightis Legal Team</h3>
             <p className="ins-text-body-lg" style={{margin:0}}>
-              <strong style={{color:'var(--ins-text-body)'}}>Insightis Legal Team</strong><br/>
               Email: <a href="mailto:legal@insightis.ai" style={{color:'var(--ins-text-highlight)', textDecoration:'none', borderBottom:'1px solid var(--ins-color-teal-a-30)'}}>legal@insightis.ai</a><br/>
               Operated by Devart, Czech Republic
             </p>

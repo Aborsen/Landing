@@ -31,7 +31,6 @@ function PrivacyContent() {
     return () => observer.disconnect();
   }, []);
   const sectionStyle = { marginTop: 'var(--ins-size-12)', scrollMarginTop: '100px' };
-  const h2Style = { fontSize: 'var(--ins-font-size-20)', fontWeight: 600, color: 'var(--ins-text-heading-soft)', marginBottom: 'var(--ins-size-4)' };
   const pStyle = { marginBottom: 'var(--ins-size-4)' };
   const ulStyle = { paddingLeft: 'var(--ins-size-6)', listStyleType: 'disc', color: 'var(--ins-text-body)', display: 'flex', flexDirection: 'column', gap: 'var(--ins-size-2)', marginBottom: 'var(--ins-size-4)', fontSize: 'var(--ins-font-size-15)', lineHeight: 1.8 };
 
@@ -40,13 +39,13 @@ function PrivacyContent() {
       {/* Hero */}
       <div style={{ padding: '120px 0 60px' }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
-          <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)', fontSize: 'clamp(32px,5vw,48px)', fontWeight: 500, letterSpacing: '-.02em', lineHeight: 1.15 }}>
+          <h1 className="ins-text-display">
             Privacy Policy
           </h1>
           <p className="fu2 ins-text-body ins-text--muted" style={{marginTop: 'var(--ins-size-3)'}}>
             Effective Date: April 6, 2026
           </p>
-          <p className="fu3 ins-text-body-lg ins-text--muted" style={{marginTop: 'var(--ins-size-8)'}}>
+          <p className="ins-text-body-lg" style={{marginTop: 'var(--ins-size-8)'}}>
             At Insightis, a product by Devart, we are committed to protecting your privacy and ensuring the security of the personal information you share with us. This Privacy Policy describes how we collect, use, disclose, and safeguard your data when you use the Insightis AI analytics workspace, our website, and related services.
           </p>
         </div>
@@ -72,7 +71,7 @@ function PrivacyContent() {
 
         {/* 1. Introduction */}
         <div id="introduction" style={sectionStyle}>
-          <h2 style={h2Style}>1. Introduction</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>1. Introduction</h2>
           <p className="ins-text-body-lg" style={pStyle}>
             Insightis is an AI-powered analytics workspace developed by Devart that enables teams to connect their data sources, ask questions in natural language, and receive instant, accurate insights. We understand that by using our platform, you entrust us with sensitive business data, and we take that responsibility seriously.
           </p>
@@ -83,7 +82,7 @@ function PrivacyContent() {
 
         {/* 2. Information We Collect */}
         <div id="information-we-collect" style={sectionStyle}>
-          <h2 style={h2Style}>2. Information We Collect</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>2. Information We Collect</h2>
           <p className="ins-text-body-lg" style={pStyle}>
             We collect information in several ways depending on how you interact with Insightis:
           </p>
@@ -116,7 +115,7 @@ function PrivacyContent() {
 
         {/* 3. How We Use Your Information */}
         <div id="how-we-use" style={sectionStyle}>
-          <h2 style={h2Style}>3. How We Use Your Information</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>3. How We Use Your Information</h2>
           <p className="ins-text-body-lg" style={pStyle}>
             We use the information we collect for the following purposes:
           </p>
@@ -132,7 +131,7 @@ function PrivacyContent() {
 
         {/* 4. Data Sharing and Disclosure */}
         <div id="data-sharing" style={sectionStyle}>
-          <h2 style={h2Style}>4. Data Sharing and Disclosure</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>4. Data Sharing and Disclosure</h2>
           <p className="ins-text-body-lg" style={pStyle}>
             We do not sell your personal data. We may share information in the following limited circumstances:
           </p>
@@ -146,7 +145,7 @@ function PrivacyContent() {
 
         {/* 5. Data Connected Through Integrations */}
         <div id="integrations" style={sectionStyle}>
-          <h2 style={h2Style}>5. Data Connected Through Integrations</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>5. Data Connected Through Integrations</h2>
           <p className="ins-text-body-lg" style={pStyle}>
             Insightis connects to over 200 data sources, including databases (PostgreSQL, MySQL, SQL Server, BigQuery, Snowflake, and others), CRMs (Salesforce, HubSpot), spreadsheets (Google Sheets, Excel), marketing platforms, and more. We want to be transparent about how we handle this data:
           </p>
@@ -160,7 +159,7 @@ function PrivacyContent() {
 
         {/* 6. Cookies and Tracking Technologies */}
         <div id="cookies" style={sectionStyle}>
-          <h2 style={h2Style}>6. Cookies and Tracking Technologies</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>6. Cookies and Tracking Technologies</h2>
           <p className="ins-text-body-lg" style={pStyle}>
             We use cookies and similar tracking technologies to operate and improve our service, remember your preferences, understand usage patterns, and deliver relevant content. These include:
           </p>
@@ -176,7 +175,7 @@ function PrivacyContent() {
 
         {/* 7. Data Retention */}
         <div id="data-retention" style={sectionStyle}>
-          <h2 style={h2Style}>7. Data Retention</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>7. Data Retention</h2>
           <p className="ins-text-body-lg" style={pStyle}>
             We retain your personal information for as long as your account is active or as needed to provide you with our services. Specific retention periods include:
           </p>
@@ -193,7 +192,7 @@ function PrivacyContent() {
 
         {/* 8. Data Security */}
         <div id="data-security" style={sectionStyle}>
-          <h2 style={h2Style}>8. Data Security</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>8. Data Security</h2>
           <p className="ins-text-body-lg" style={pStyle}>
             We implement industry-standard technical and organizational measures to protect your data, including:
           </p>
@@ -211,7 +210,7 @@ function PrivacyContent() {
 
         {/* 9. Your Rights and Choices */}
         <div id="your-rights" style={sectionStyle}>
-          <h2 style={h2Style}>9. Your Rights and Choices</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>9. Your Rights and Choices</h2>
           <p className="ins-text-body-lg" style={pStyle}>
             Depending on your location, you may have the following rights regarding your personal data:
           </p>
@@ -231,7 +230,7 @@ function PrivacyContent() {
 
         {/* 10. Children's Privacy */}
         <div id="childrens-privacy" style={sectionStyle}>
-          <h2 style={h2Style}>10. Children's Privacy</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>10. Children's Privacy</h2>
           <p className="ins-text-body-lg" style={pStyle}>
             Insightis is not intended for use by individuals under the age of 16. We do not knowingly collect personal information from children under 16. If we become aware that we have inadvertently collected personal data from a child under 16, we will take steps to delete that information as promptly as possible. If you believe a child under 16 has provided us with personal data, please contact us at <a href="mailto:privacy@insightis.ai" style={{ color: 'var(--ins-text-highlight)', textDecoration: 'underline' }}>privacy@insightis.ai</a>.
           </p>
@@ -239,7 +238,7 @@ function PrivacyContent() {
 
         {/* 11. International Data Transfers */}
         <div id="international-transfers" style={sectionStyle}>
-          <h2 style={h2Style}>11. International Data Transfers</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>11. International Data Transfers</h2>
           <p className="ins-text-body-lg" style={pStyle}>
             Insightis is operated by Devart, and your data may be processed in countries outside your country of residence, including in the European Union and the United States. When we transfer personal data across borders, we implement appropriate safeguards to ensure your data remains protected, including:
           </p>
@@ -255,7 +254,7 @@ function PrivacyContent() {
 
         {/* 12. Changes to This Policy */}
         <div id="changes" style={sectionStyle}>
-          <h2 style={h2Style}>12. Changes to This Policy</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>12. Changes to This Policy</h2>
           <p className="ins-text-body-lg" style={pStyle}>
             We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors. When we make material changes, we will notify you by posting the updated policy on our website with a revised effective date and, where required, by sending you an email notification.
           </p>
@@ -266,7 +265,7 @@ function PrivacyContent() {
 
         {/* 13. Contact Us */}
         <div id="contact" style={sectionStyle}>
-          <h2 style={h2Style}>13. Contact Us</h2>
+          <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>13. Contact Us</h2>
           <p className="ins-text-body-lg" style={pStyle}>
             If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:
           </p>

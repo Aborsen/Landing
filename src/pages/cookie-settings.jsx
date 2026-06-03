@@ -86,9 +86,6 @@ function CookieContent() {
   const sectionStyle = {
     marginBottom: 'var(--ins-size-10)',
   };
-  const headingStyle = {
-    fontSize: 'var(--ins-font-size-20)', fontWeight: 600, color: 'var(--ins-color-gray-100)', marginBottom: 'var(--ins-size-3)', letterSpacing: '-.01em',
-  };
   const paraStyle = {
     fontSize: 'var(--ins-font-size-15)', color: 'var(--ins-text-body)', lineHeight: 1.8,
   };
@@ -98,10 +95,10 @@ function CookieContent() {
       {/* Hero */}
       <section style={{padding:'120px 0 60px', position:'relative'}}>
         <div style={{maxWidth:'800px', margin:'0 auto', padding:'0 24px', textAlign:'center', position:'relative'}}>
-          <h1 className="fu1" style={{color:'var(--ins-text-heading-soft)',fontSize:'clamp(32px,5vw,48px)', fontWeight:500, letterSpacing:'-.02em', lineHeight:1.15}}>
+          <h1 className="ins-text-display">
             Cookie Settings
           </h1>
-          <p className="fu2 ins-text-body-xl ins-text--muted" style={{marginTop:'var(--ins-size-4)', maxWidth:'640px', margin:'16px auto 0'}}>
+          <p className="ins-text-body-xl" style={{marginTop:'var(--ins-size-4)', maxWidth:'640px', margin:'16px auto 0'}}>
             We use cookies to enhance your experience, analyze site traffic, and personalize content. You can manage your cookie preferences below.
           </p>
         </div>
@@ -166,7 +163,7 @@ function CookieContent() {
 
           {/* What Are Cookies? */}
           <div style={sectionStyle}>
-            <h2 style={headingStyle}>What Are Cookies?</h2>
+            <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-3)'}}>What Are Cookies?</h2>
             <p style={paraStyle}>
               Cookies are small text files that are placed on your device when you visit a website. They are widely used to make websites work more efficiently, provide a better user experience, and supply information to the site owners. Cookies can be "session" cookies, which are deleted when you close your browser, or "persistent" cookies, which remain on your device for a set period or until you manually delete them. Similar technologies such as web beacons, pixels, and local storage may also be used for comparable purposes.
             </p>
@@ -174,7 +171,7 @@ function CookieContent() {
 
           {/* Third-Party Cookies */}
           <div style={sectionStyle}>
-            <h2 style={headingStyle}>Third-Party Cookies</h2>
+            <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-3)'}}>Third-Party Cookies</h2>
             <p style={paraStyle}>
               In addition to our own cookies, we may use cookies set by third-party services to help us understand how our website is used, measure the effectiveness of our marketing, and deliver relevant advertising. These third parties include Google Analytics for traffic analysis, Mixpanel for product analytics, and advertising platforms such as Meta and LinkedIn. Each third-party provider has its own privacy policy governing the data collected through its cookies.
             </p>
@@ -182,7 +179,7 @@ function CookieContent() {
 
           {/* Managing Cookies in Your Browser */}
           <div style={sectionStyle}>
-            <h2 style={headingStyle}>Managing Cookies in Your Browser</h2>
+            <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-3)'}}>Managing Cookies in Your Browser</h2>
             <p style={paraStyle}>
               Most web browsers allow you to control cookies through their settings. Below are links and instructions for the most common browsers:
             </p>
@@ -199,18 +196,18 @@ function CookieContent() {
 
           {/* Cookie List Table */}
           <div style={sectionStyle}>
-            <h2 style={headingStyle}>Cookie List</h2>
+            <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-3)'}}>Cookie List</h2>
             <p style={{...paraStyle, marginBottom:'var(--ins-size-4)'}}>
               The following table lists the cookies used on our website, their provider, purpose, and duration.
             </p>
             <div style={{overflowX:'auto', borderRadius:'var(--ins-radius-12)', border:'1px solid var(--ins-border-default)'}}>
-              <table style={{width:'100%', borderCollapse:'collapse', fontSize:'var(--ins-font-size-14)'}}>
+              <table className="ins-table">
                 <thead>
                   <tr style={{background:'var(--ins-color-white-a-04)'}}>
-                    <th style={{padding:'12px 16px', textAlign:'left', color:'var(--ins-color-gray-100)', fontWeight:600, borderBottom:'1px solid var(--ins-border-default)', whiteSpace:'nowrap'}}>Cookie Name</th>
-                    <th style={{padding:'12px 16px', textAlign:'left', color:'var(--ins-color-gray-100)', fontWeight:600, borderBottom:'1px solid var(--ins-border-default)', whiteSpace:'nowrap'}}>Provider</th>
-                    <th style={{padding:'12px 16px', textAlign:'left', color:'var(--ins-color-gray-100)', fontWeight:600, borderBottom:'1px solid var(--ins-border-default)', whiteSpace:'nowrap'}}>Purpose</th>
-                    <th style={{padding:'12px 16px', textAlign:'left', color:'var(--ins-color-gray-100)', fontWeight:600, borderBottom:'1px solid var(--ins-border-default)', whiteSpace:'nowrap'}}>Duration</th>
+                    <th className="ins-text-h4" style={{padding:'12px 16px', textAlign:'left', whiteSpace:'nowrap'}}>Cookie Name</th>
+                    <th className="ins-text-h4" style={{padding:'12px 16px', textAlign:'left', whiteSpace:'nowrap'}}>Provider</th>
+                    <th className="ins-text-h4" style={{padding:'12px 16px', textAlign:'left', whiteSpace:'nowrap'}}>Purpose</th>
+                    <th className="ins-text-h4" style={{padding:'12px 16px', textAlign:'left', whiteSpace:'nowrap'}}>Duration</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -229,7 +226,7 @@ function CookieContent() {
 
           {/* Changes to Cookie Policy */}
           <div style={sectionStyle}>
-            <h2 style={headingStyle}>Changes to Cookie Policy</h2>
+            <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-3)'}}>Changes to Cookie Policy</h2>
             <p style={paraStyle}>
               We may update this Cookie Settings page from time to time to reflect changes in the cookies we use or for other operational, legal, or regulatory reasons. We encourage you to revisit this page periodically to stay informed about our use of cookies and related technologies. The date at the bottom of this page indicates when it was last updated.
             </p>
@@ -237,7 +234,7 @@ function CookieContent() {
 
           {/* Contact Us */}
           <div style={sectionStyle}>
-            <h2 style={headingStyle}>Contact Us</h2>
+            <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-3)'}}>Contact Us</h2>
             <p style={paraStyle}>
               If you have any questions about our use of cookies or this Cookie Settings page, please contact us at{' '}
               <a href="mailto:privacy@insightis.ai" style={{color:'var(--ins-text-highlight)', textDecoration:'none'}}>privacy@insightis.ai</a>.

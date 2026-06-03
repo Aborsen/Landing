@@ -82,7 +82,7 @@ function MissionValues() {
               <div style={{width:'40px', height:'40px', borderRadius:'10px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'var(--ins-size-4)'}}>
                 {v.icon}
               </div>
-              <h3 style={{fontSize:'var(--ins-font-size-17)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'var(--ins-size-2)'}}>{v.title}</h3>
+              <h3 className="ins-text-h3" style={{marginBottom:'var(--ins-size-2)'}}>{v.title}</h3>
               <p className="ins-text-body">{v.desc}</p>
             </div>
           ))}
@@ -119,7 +119,7 @@ function WhatWeBuilt() {
                 <div className="hb" style={{width:'64px', height:'64px', borderRadius:'var(--ins-radius-16)', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'14px', animationDelay:`${i * 0.4}s`}}>
                   {p.icon}
                 </div>
-                <h4 style={{fontSize:'var(--ins-font-size-15)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'var(--ins-size-1)'}}>{p.name}</h4>
+                <h4 className="ins-text-h4" style={{marginBottom:'var(--ins-size-1)'}}>{p.name}</h4>
                 <p className="ins-text-body-sm">{p.desc}</p>
               </div>
               {i < pillars.length - 1 && (
@@ -235,7 +235,7 @@ function OurStory() {
                 {/* Content */}
                 <div style={{flex:1, paddingLeft:'var(--ins-size-10)'}}>
                   <div className="md:hidden" style={{fontSize: m.year === '∞' ? 'var(--ins-font-size-24)' : 'var(--ins-font-size-12)', fontWeight:600, color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)', marginBottom:'6px', letterSpacing:'.04em', lineHeight:1}}>{m.year}</div>
-                  <h3 style={{fontSize:'var(--ins-font-size-18)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'var(--ins-size-2)', letterSpacing:'-.01em'}}>{m.title}</h3>
+                  <h3 className="ins-text-h3" style={{marginBottom:'var(--ins-size-2)'}}>{m.title}</h3>
                   <p className="ins-text-body-lg" style={{maxWidth:'680px'}}>{m.desc}</p>
                 </div>
               </div>
