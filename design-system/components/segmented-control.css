@@ -1,0 +1,32 @@
+/* ══════════════════════════════════════════════════════════════════
+   4. SEGMENTED CONTROL
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-segmented {
+  display: inline-flex;
+  padding: 3px;
+  background: var(--ins-surface-card);
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  border-radius: var(--ins-radius-pill);
+  gap: var(--ins-size-half);
+}
+.ins-segmented__item {
+  padding: var(--ins-space-sm) var(--ins-space-lg);
+  background: transparent;
+  color: var(--ins-text-body);
+  border: none;
+  border-radius: var(--ins-radius-pill);
+  font-size: var(--ins-font-size-14);
+  font-weight: var(--ins-font-weight-500);
+  cursor: pointer;
+  transition: background var(--ins-duration-fast) var(--ins-easing-standard),
+              color var(--ins-duration-fast) var(--ins-easing-standard);
+}
+.ins-segmented__item:hover { color: var(--ins-text-heading); }
+.ins-segmented__item[aria-selected="true"],
+.ins-segmented__item.is-active {
+  background: var(--ins-surface-elevated);
+  color: var(--ins-text-heading);
+}
+
+

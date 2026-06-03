@@ -1,0 +1,68 @@
+/* ══════════════════════════════════════════════════════════════════
+   35. FAQ ACCORDION (PR 8)
+   Stateful chevron-toggle accordion. One row per Q&A. The open row
+   gets a teal-tinted border; closed rows use the default surface
+   border. Used on Solutions pages + pricing.
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-faq {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ins-space-sm);
+}
+
+.ins-faq__row {
+  background: var(--ins-color-black-a-30, rgba(13, 17, 23, 0.6));
+  border: var(--ins-border-width-1) solid var(--ins-color-white-a-06);
+  border-radius: var(--ins-radius-xl);
+  overflow: hidden;
+  transition: border-color var(--ins-duration-base) var(--ins-easing-standard);
+}
+.ins-faq__row.is-open {
+  border-color: var(--ins-color-teal-a-30);
+}
+
+.ins-faq__question {
+  width: 100%;
+  padding: var(--ins-space-lg) var(--ins-space-xl);
+  background: transparent;
+  border: none;
+  color: var(--ins-color-gray-100);
+  font-size: var(--ins-font-size-16);
+  font-weight: var(--ins-font-weight-500);
+  font-family: var(--ins-font-family-sans);
+  letter-spacing: -0.005em;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--ins-space-lg);
+  line-height: 1.4;
+}
+.ins-faq__question:hover { color: var(--ins-text-heading); }
+.ins-faq__row.is-open .ins-faq__question { color: var(--ins-text-heading); }
+.ins-faq__question:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--ins-border-focus);
+}
+
+.ins-faq__chevron {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--ins-text-inactive);
+  transition: transform var(--ins-duration-base) var(--ins-easing-standard),
+              color var(--ins-duration-base) var(--ins-easing-standard);
+}
+.ins-faq__row.is-open .ins-faq__chevron {
+  transform: rotate(180deg);
+  color: var(--ins-text-highlight);
+}
+
+/* Type from .ins-text-body (applied on the element); layout only here. */
+.ins-faq__answer {
+  padding: 0 var(--ins-space-xl) var(--ins-space-lg) var(--ins-space-xl);
+}
+
+

@@ -1,0 +1,42 @@
+/* ══════════════════════════════════════════════════════════════════
+   31. EYEBROW (PR 0)
+   Small uppercase label that sits above section h2s. Optional pill
+   treatment via .ins-eyebrow--pill. Optional sparkle slot for the
+   Lucide Sparkles icon used in the homepage hero.
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ins-space-xs);
+  font-family: var(--ins-font-family-sans);
+  font-size: var(--ins-font-size-11);
+  font-weight: var(--ins-font-weight-500);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ins-text-highlight);
+  margin: 0;
+  line-height: 1;
+}
+
+/* Pill treatment — used in hero eyebrows + section eyebrows that need more presence. */
+.ins-eyebrow--pill {
+  padding: 6px var(--ins-space-md);
+  background: var(--ins-color-teal-a-08);
+  border: var(--ins-border-width-1) solid var(--ins-color-teal-a-20);
+  border-radius: var(--ins-radius-pill);
+}
+
+/* Centered eyebrow inside a centered section header — kept as a separate modifier
+   so the bare .ins-eyebrow stays a true inline-flex element. */
+.ins-eyebrow--center {
+  margin-inline: auto;
+}
+
+.ins-eyebrow__sparkle {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+

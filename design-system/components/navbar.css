@@ -1,0 +1,144 @@
+/* ══════════════════════════════════════════════════════════════════
+   19. NAVBAR
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-navbar {
+  position: sticky;
+  top: var(--ins-space-md);
+  z-index: var(--ins-z-sticky);
+  height: 52px;
+  padding: 0 var(--ins-space-sm) 0 var(--ins-space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ins-space-md);
+  background: var(--ins-surface-container);           /* solid fallback */
+  background: var(--ins-surface-glass);
+  backdrop-filter: blur(var(--ins-blur-16));
+  -webkit-backdrop-filter: blur(var(--ins-blur-16));
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  border-radius: 50px;
+  box-shadow: var(--ins-shadow-navbar);
+  margin-inline: var(--ins-space-md);
+  transition: border-radius var(--ins-duration-slow) var(--ins-easing-standard);
+}
+@media (min-width: 768px) {
+  .ins-navbar { height: 56px; padding: 0 var(--ins-space-sm) 0 var(--ins-space-xl); }
+}
+/* Dropdown-open state — navbar keeps its pill shape + default size.
+   The mega-menu panel is a sibling element that drops behind/beneath without resizing the bar. */
+.ins-navbar.is-dropdown-open { /* no shape change — panel is independent */ }
+/* Mega-menu panel — separate floating panel below the capsule (does NOT resize the navbar).
+   Negative margin pulls the top edge behind the capsule so the two feel attached visually. */
+.ins-navbar-menu {
+  position: relative;
+  margin-top: --ins-space-lg;
+  margin-inline: var(--ins-space-md);
+  padding: calc(var(--ins-space-lg) * 2) var(--ins-space-xl) var(--ins-space-xl);
+  background: var(--ins-color-page-a-97);
+  backdrop-filter: blur(var(--ins-blur-24));
+  -webkit-backdrop-filter: blur(var(--ins-blur-24));
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  border-top: 0;                          /* blends into capsule bottom */
+  border-radius: 0 0 var(--ins-radius-2xl) var(--ins-radius-2xl);
+  box-shadow: var(--ins-shadow-mega-menu);
+  z-index: calc(var(--ins-z-sticky) - 1); /* behind navbar */
+}
+.ins-navbar-menu__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--ins-space-2xl);
+}
+.ins-navbar-menu__heading {
+  font-family: var(--ins-font-family-sans);
+  font-size: var(--ins-font-size-11);
+  font-weight: var(--ins-font-weight-500);
+  letter-spacing: var(--ins-letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--ins-text-inactive);
+  padding: 0 var(--ins-space-md);
+  margin-bottom: var(--ins-space-md);
+}
+.ins-navbar-menu__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ins-space-md);
+  padding: var(--ins-space-sm) var(--ins-space-md);
+  border-radius: var(--ins-radius-xl);
+  color: var(--ins-text-heading);
+  transition: background var(--ins-duration-fast) var(--ins-easing-standard);
+}
+.ins-navbar-menu__item:hover { background: var(--ins-color-white-a-06); }
+.ins-navbar-menu__item-icon {
+  flex-shrink: 0;
+  width: 32px; height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ins-radius-md);
+  background: var(--ins-surface-brand-tint);
+  color: var(--ins-text-highlight);
+}
+.ins-navbar-menu__item-label {
+  font-size: var(--ins-font-size-14);
+  font-weight: var(--ins-font-weight-500);
+  color: var(--ins-text-heading);
+}
+.ins-navbar-menu__item-desc {
+  font-size: var(--ins-font-size-12);
+  color: var(--ins-text-inactive);
+  margin-top: var(--ins-size-half);
+}
+.ins-navbar__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ins-space-sm);
+  font-weight: var(--ins-font-weight-600);
+  color: var(--ins-text-heading);
+}
+.ins-navbar__links {
+  display: none;
+  gap: var(--ins-space-xs);
+  align-items: center;
+}
+@media (min-width: 1024px) { .ins-navbar__links { display: flex; } }
+.ins-navbar__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ins-size-1);
+  padding: 6px var(--ins-space-lg);
+  color: var(--ins-text-inactive);
+  background: transparent;
+  border: 0;
+  border-radius: var(--ins-radius-pill);
+  font-family: var(--ins-font-family-sans);
+  font-size: var(--ins-font-size-14);
+  font-weight: var(--ins-font-weight-400);
+  cursor: pointer;
+  transition: background var(--ins-duration-fast) var(--ins-easing-standard),
+              color var(--ins-duration-fast) var(--ins-easing-standard);
+}
+.ins-navbar__link:hover { background: var(--ins-color-white-a-06); color: var(--ins-text-heading); }
+.ins-navbar__link[aria-current="page"],
+.ins-navbar__link[aria-expanded="true"] { background: var(--ins-color-white-a-12); color: var(--ins-text-heading); }
+.ins-navbar__link-chevron {
+  width: 11px; height: 11px;
+  opacity: 0.5;
+  transition: transform var(--ins-duration-fast) var(--ins-easing-standard);
+}
+.ins-navbar__link[aria-expanded="true"] .ins-navbar__link-chevron { transform: rotate(180deg); }
+
+.ins-navbar__mobile-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  background: transparent;
+  color: var(--ins-text-heading);
+  border: 0;
+  border-radius: var(--ins-radius-pill);
+  cursor: pointer;
+}
+@media (min-width: 1024px) { .ins-navbar__mobile-toggle { display: none; } }
+
+

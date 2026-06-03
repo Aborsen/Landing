@@ -1,0 +1,42 @@
+/* ══════════════════════════════════════════════════════════════════
+   18. BREADCRUMBS
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-breadcrumbs { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ins-space-xs); font-size: var(--ins-font-size-12); color: var(--ins-text-inactive); }
+.ins-breadcrumbs__item { display: inline-flex; align-items: center; gap: var(--ins-space-xs); }
+.ins-breadcrumbs__item a { color: var(--ins-text-body); }
+.ins-breadcrumbs__item a:hover { color: var(--ins-text-highlight); }
+.ins-breadcrumbs__item[aria-current="page"] { color: var(--ins-text-body); }
+.ins-breadcrumbs__separator { color: var(--ins-text-inactive); }
+
+/* ══════════════════════════════════════════════════════════════════
+   Docs sidebar navigation. Group label uses .ins-text-overline.
+   (Table of contents uses the existing .ins-toc component further below.)
+   ══════════════════════════════════════════════════════════════════ */
+.ins-doc-nav__group { margin-bottom: var(--ins-size-1); }
+.ins-doc-nav__group-toggle {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 6px 16px;
+  background: transparent; border: none; cursor: pointer;
+}
+.ins-doc-nav__item {
+  display: block; width: 100%; text-align: left;
+  padding: 6px 16px 6px 20px;
+  background: transparent; border: none;
+  border-left: 2px solid transparent;
+  font-family: var(--ins-font-family-sans);
+  font-size: var(--ins-font-size-14);
+  line-height: 1.5;
+  color: var(--ins-text-inactive);
+  cursor: pointer;
+  transition: color .15s, background-color .15s, border-color .15s;
+}
+.ins-doc-nav__item:hover { color: var(--ins-color-gray-100); background-color: var(--ins-color-white-a-04); }
+.ins-doc-nav__item.is-active {
+  color: var(--ins-text-highlight);
+  background-color: var(--ins-surface-brand-tint);
+  border-left-color: var(--ins-color-teal-400);
+  font-weight: var(--ins-font-weight-500);
+}
+
+

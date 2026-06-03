@@ -1,0 +1,102 @@
+/* ══════════════════════════════════════════════════════════════════
+   14. BADGE
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ins-space-xs);
+  padding: 3px var(--ins-space-sm);
+  border-radius: var(--ins-radius-pill);
+  font-size: var(--ins-font-size-11);
+  font-weight: var(--ins-font-weight-500);
+  letter-spacing: var(--ins-letter-spacing-wide);
+  line-height: 1.2;
+  white-space: nowrap;
+  border: var(--ins-border-width-1) solid transparent;
+}
+.ins-badge--success { background: var(--ins-status-success-bg); color: var(--ins-status-success-fg); }
+.ins-badge--warning { background: var(--ins-status-warning-bg); color: var(--ins-status-warning-fg); }
+.ins-badge--error   { background: var(--ins-status-error-bg);   color: var(--ins-status-error-fg); }
+.ins-badge--info    { background: var(--ins-status-info-bg);    color: var(--ins-status-info-fg); }
+.ins-badge--planned { background: var(--ins-status-planned-bg); color: var(--ins-status-planned-fg); }
+.ins-badge--shipped { background: var(--ins-status-shipped-bg); color: var(--ins-status-shipped-fg); }
+.ins-badge--brand   { background: var(--ins-surface-brand-tint); border-color: var(--ins-border-brand); color: var(--ins-color-teal-400); }
+/* Interactive filter/category tab — one control everywhere (integrations, ai-chat, semantic-layer).
+   Inactive: visible border + transparent bg, brightens bg on hover.
+   Active (aria-pressed="true"): brand-tinted, matching .ins-badge--brand. */
+.ins-badge--tab {
+  cursor: pointer;
+  border-color: var(--ins-border-default);
+  background: transparent;
+  color: var(--ins-text-body);
+  transition: background var(--ins-duration-base) var(--ins-easing-standard),
+              border-color var(--ins-duration-base) var(--ins-easing-standard),
+              color var(--ins-duration-base) var(--ins-easing-standard);
+}
+.ins-badge--tab:hover {
+  background: var(--ins-color-white-a-06);
+  border-color: var(--ins-border-hover);
+  color: var(--ins-text-heading);
+}
+.ins-badge--tab[aria-pressed="true"] {
+  background: var(--ins-surface-brand-tint);
+  border-color: var(--ins-border-brand);
+  color: var(--ins-color-teal-400);
+}
+.ins-badge--count   { background: var(--ins-surface-elevated); color: var(--ins-text-heading); min-width: 20px; justify-content: center; }
+.ins-badge--trend {
+  font-family: var(--ins-font-family-mono);
+  font-variant-numeric: tabular-nums;
+}
+/* Pulse dot — perfectly circular, visually centered inside the chip */
+.ins-badge__dot {
+  width: 6px;
+  height: 6px;
+  min-width: 6px;       /* prevents flex shrinking from flattening it */
+  min-height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+}
+/* Pulse = a second dot behind, scaling + fading */
+.ins-badge__dot--pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: currentColor;
+  animation: ins-pulse-ring 2s var(--ins-easing-standard) infinite;
+  transform-origin: center;
+}
+@keyframes ins-pulse-ring {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  70%  { transform: scale(2.5); opacity: 0; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* Removable tag — tighter spacing between label + close */
+.ins-badge__remove {
+  margin-left: var(--ins-size-half);                  /* was --ins-space-xs (4) — reduced to 2px */
+  margin-right: -2px;                /* pull close to chip edge */
+  width: 14px; height: 14px;
+  background: transparent; border: 0; padding: 0;
+  color: inherit; opacity: 0.7; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: var(--ins-radius-full);
+  transition: background var(--ins-duration-fast), opacity var(--ins-duration-fast);
+}
+.ins-badge__remove:hover { opacity: 1; background: var(--ins-color-white-a-12); }
+/* Tighten padding on removable chips so text + close feel balanced */
+.ins-badge:has(.ins-badge__remove) { padding-right: var(--ins-size-1); }
+.ins-badge--metric-pill {
+  font-family: var(--ins-font-family-mono);
+  background: var(--ins-surface-card);
+  border-color: var(--ins-border-default);
+  color: var(--ins-text-body);
+}
+
+

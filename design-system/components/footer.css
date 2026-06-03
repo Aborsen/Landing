@@ -1,0 +1,114 @@
+/* ══════════════════════════════════════════════════════════════════
+   21. FOOTER
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-footer {
+  background: var(--ins-surface-container);
+  border-top: var(--ins-border-width-1) solid var(--ins-color-gray-700);
+  padding: var(--ins-space-4xl) var(--ins-container-padding-mobile) var(--ins-space-2xl);
+  color: var(--ins-text-body);
+}
+@media (min-width: 1280px) {
+  .ins-footer { padding: var(--ins-space-4xl) var(--ins-container-padding-desktop) var(--ins-space-2xl); }
+}
+.ins-footer__inner {
+  max-width: var(--ins-container-max);
+  margin-inline: auto;
+}
+.ins-footer__top {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ins-space-2xl);
+  margin-bottom: var(--ins-space-3xl);
+}
+@media (min-width: 768px) {
+  .ins-footer__top { flex-direction: row; gap: var(--ins-space-3xl); align-items: flex-start; }
+}
+.ins-footer__brand {
+  flex-shrink: 0;
+  max-width: 240px;
+}
+.ins-footer__brand-logo { margin-bottom: var(--ins-space-md); }
+.ins-footer__brand-eyebrow {
+  font-size: var(--ins-font-size-11);
+  font-weight: var(--ins-font-weight-500);
+  color: var(--ins-color-teal-700);
+  text-transform: uppercase;
+  letter-spacing: var(--ins-letter-spacing-wider);
+  margin-bottom: var(--ins-space-sm);
+}
+.ins-footer__brand-description {
+  font-size: var(--ins-font-size-14);
+  line-height: var(--ins-line-height-relaxed);
+  color: var(--ins-text-inactive);
+}
+.ins-footer__cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ins-space-2xl);
+  flex: 1;
+  min-width: 0;
+}
+@media (min-width: 768px)  { .ins-footer__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .ins-footer__cols { grid-template-columns: repeat(5, minmax(0, auto)); justify-content: flex-end; gap: var(--ins-space-2xl); } }
+@media (min-width: 1280px) { .ins-footer__cols { gap: var(--ins-space-4xl); } }
+.ins-footer__col { min-width: 0; }
+.ins-footer__column-title {
+  font-size: var(--ins-font-size-11);
+  font-weight: var(--ins-font-weight-500);
+  letter-spacing: var(--ins-letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--ins-text-inactive);
+  margin-bottom: var(--ins-space-lg);
+  white-space: nowrap;
+}
+.ins-footer__link {
+  display: inline-block;
+  padding: 5px 0;
+  color: var(--ins-text-inactive);
+  font-size: var(--ins-font-size-14);
+  text-decoration: none;                                  /* override base.css prose underline */
+  transition: color var(--ins-duration-fast) var(--ins-easing-standard);
+}
+.ins-footer__link:hover { color: var(--ins-text-heading); text-decoration: underline; text-decoration-color: currentColor; text-underline-offset: 3px; }
+/* External arrow — mask-image inherits currentColor, so hover color cascades to icon + text together */
+.ins-footer__link--external::after {
+  content: '';
+  display: inline-block;
+  width: 10px; height: 10px;
+  margin-left: var(--ins-size-1);
+  vertical-align: middle;
+  background-color: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 2H10V8.5'/%3E%3Cpath d='M10 2L2 10'/%3E%3C/svg%3E");
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 2H10V8.5'/%3E%3Cpath d='M10 2L2 10'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+}
+.ins-footer__bottom {
+  border-top: var(--ins-border-width-1) solid var(--ins-color-gray-700);
+  padding-top: var(--ins-space-xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ins-space-md);
+  flex-wrap: wrap;
+}
+.ins-footer__copyright {
+  font-size: var(--ins-font-size-12);
+  color: var(--ins-text-inactive);
+}
+.ins-footer__social {
+  display: inline-flex;
+  gap: var(--ins-space-lg);
+  align-items: center;
+}
+.ins-footer__social a {
+  color: var(--ins-text-inactive);
+  display: inline-flex;
+  transition: color var(--ins-duration-fast), opacity var(--ins-duration-fast);
+}
+.ins-footer__social a:hover { opacity: 0.8; color: var(--ins-text-heading); }
+
+/* Legacy __grid / __legal removed in v6 — use .ins-footer__inner / __top / __cols / __bottom. */
+
+

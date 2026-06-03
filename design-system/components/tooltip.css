@@ -1,0 +1,30 @@
+/* ══════════════════════════════════════════════════════════════════
+   16. TOOLTIP
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-tooltip-wrap { position: relative; display: inline-block; }
+.ins-tooltip {
+  position: absolute;
+  z-index: var(--ins-z-tooltip);
+  padding: var(--ins-space-xs) var(--ins-space-md);
+  background: var(--ins-surface-elevated);
+  color: var(--ins-text-heading);
+  border-radius: var(--ins-radius-md);
+  font-size: var(--ins-font-size-12);
+  white-space: nowrap;
+  box-shadow: var(--ins-shadow-md);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--ins-duration-fast) var(--ins-easing-standard);
+}
+.ins-tooltip-wrap:hover .ins-tooltip,
+.ins-tooltip-wrap:focus-within .ins-tooltip { opacity: 1; }
+.ins-tooltip--top    { bottom: calc(100% + var(--ins-space-sm)); left: 50%; transform: translateX(-50%); }
+.ins-tooltip--bottom { top:    calc(100% + var(--ins-space-sm)); left: 50%; transform: translateX(-50%); }
+.ins-tooltip--left   { right:  calc(100% + var(--ins-space-sm)); top: 50%;  transform: translateY(-50%); }
+.ins-tooltip--right  { left:   calc(100% + var(--ins-space-sm)); top: 50%;  transform: translateY(-50%); }
+.ins-tooltip--rich { max-width: 240px; white-space: normal; padding: var(--ins-space-sm) var(--ins-space-md); }
+.ins-tooltip--rich .ins-tooltip__title { font-weight: var(--ins-font-weight-600); margin-bottom: var(--ins-space-xs); }
+.ins-tooltip--rich .ins-tooltip__description { color: var(--ins-text-body); font-size: var(--ins-font-size-12); }
+
+

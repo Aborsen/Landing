@@ -1,0 +1,181 @@
+/* ══════════════════════════════════════════════════════════════════
+   2. INPUT / TEXTAREA / SELECT
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-input,
+.ins-textarea,
+.ins-select {
+  display: block;
+  width: 100%;
+  height: 40px;
+  padding: 0 var(--ins-space-md);
+  background: var(--ins-surface-card);
+  color: var(--ins-text-heading);
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  border-radius: var(--ins-radius-input);
+  font-family: var(--ins-font-family-sans);
+  font-size: var(--ins-font-size-16);   /* ≥16px prevents iOS zoom */
+  line-height: 1.2;
+  letter-spacing: var(--ins-letter-spacing-wide);
+  transition: border-color var(--ins-duration-base) var(--ins-easing-standard),
+              box-shadow   var(--ins-duration-base) var(--ins-easing-standard);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.ins-input::placeholder,
+.ins-textarea::placeholder { color: var(--ins-text-disabled); }
+
+/* STATE PRIORITY:
+   disabled > error > focus > hover > default
+   `:not()` chains ensure higher-priority states are not overridden. */
+.ins-input:hover:not(:disabled):not(:focus-visible):not(.is-error),
+.ins-textarea:hover:not(:disabled):not(:focus-visible):not(.is-error),
+.ins-select:hover:not(:disabled):not(:focus-visible):not(.is-error) {
+  border-color: var(--ins-border-prominent);
+}
+
+/* Focus — two-layer pattern matching error shape (thin solid border + wider subtle glow) */
+.ins-input:focus-visible:not(.is-error),
+.ins-textarea:focus-visible:not(.is-error),
+.ins-select:focus-visible:not(.is-error) {
+  border-color: var(--ins-border-focus);
+  box-shadow: var(--ins-focus-ring);
+}
+
+.ins-input.is-error,
+.ins-textarea.is-error,
+.ins-select.is-error {
+  border-color: var(--ins-border-error);
+  box-shadow: var(--ins-focus-ring-error);
+}
+
+/* Disabled — no fill, transparent bg so it works on any surface (gradient, solid, brand-tint).
+   Opacity + muted border + muted text signals "disabled" without requiring a specific bg. */
+.ins-input:disabled,
+.ins-textarea:disabled,
+.ins-select:disabled {
+  background: transparent;
+  color: var(--ins-text-disabled);
+  border-color: var(--ins-border-disabled);
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none;
+  animation: none;
+}
+.ins-input:disabled::placeholder,
+.ins-textarea:disabled::placeholder { color: var(--ins-text-disabled); }
+/* Filled-disabled — keep value at a higher opacity than the surrounding chrome so the content is legible */
+.ins-input.is-filled:disabled,
+.ins-textarea.is-filled:disabled { color: var(--ins-text-body); opacity: 0.7; }
+
+/* Sizes */
+.ins-input--sm, .ins-textarea--sm, .ins-select--sm { height: 32px; padding: 0 var(--ins-space-sm); font-size: var(--ins-font-size-14); }
+.ins-input--lg, .ins-textarea--lg, .ins-select--lg { height: 48px; padding: 0 var(--ins-space-lg); }
+
+/* Textarea specifics */
+.ins-textarea {
+  height: auto;
+  min-height: 96px;
+  /* Bottom-right padding keeps resize grabber off the focus/error border */
+  padding: var(--ins-space-md) var(--ins-space-md) var(--ins-space-lg);
+  line-height: var(--ins-line-height-relaxed);
+  resize: vertical;
+}
+/* On webkit-resizer overlay — push it inward so it never clips the animated focus ring */
+.ins-textarea::-webkit-resizer {
+  border-width: 4px;
+  border-style: solid;
+  border-color: transparent var(--ins-color-white-a-12) var(--ins-color-white-a-12) transparent;
+  background: transparent;
+}
+
+/* Select specifics */
+.ins-select {
+  padding-right: var(--ins-space-3xl);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23A8BFC8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--ins-space-md) center;
+  cursor: pointer;
+}
+
+/* Input group (input + button inside rounded rail — newsletter composer) */
+.ins-input-group {
+  display: flex;
+  align-items: center;
+  background: var(--ins-surface-card);
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  border-radius: var(--ins-radius-input);
+  padding: 3px;
+  gap: var(--ins-space-xs);
+  transition: border-color var(--ins-duration-base) var(--ins-easing-standard);
+}
+.ins-input-group:hover:not(:focus-within):not(.is-error):not(.is-disabled) { border-color: var(--ins-border-prominent); }
+.ins-input-group:focus-within:not(.is-error) { border-color: var(--ins-border-focus); box-shadow: var(--ins-focus-ring); }
+.ins-input-group.is-error { border-color: var(--ins-border-error); box-shadow: var(--ins-focus-ring-error); }
+.ins-input-group.is-disabled {
+  background: var(--ins-color-white-a-06);
+  border-color: var(--ins-border-disabled);
+  cursor: not-allowed;
+}
+.ins-input-group.is-disabled .ins-input { color: var(--ins-text-disabled); pointer-events: none; }
+.ins-input-group.is-disabled .ins-btn { pointer-events: none; }
+.ins-input-group .ins-input {
+  border: none;
+  background: transparent;
+  box-shadow: none !important;
+  height: 34px;
+  flex: 1;
+  min-width: 0;
+}
+.ins-input-group .ins-input:focus-visible { box-shadow: none; }
+.ins-input-group .ins-btn {
+  height: 34px;
+  padding: 0 var(--ins-space-lg);
+  border-radius: var(--ins-radius-md);
+}
+
+/* Input with leading/trailing icon
+   - LEFT side = passive/informational only (search glyph, mail glyph, lock).
+   - RIGHT side = active utility actions only (clear button, action button, spinner, etc.). Interactive.
+*/
+.ins-input-wrap { position: relative; }
+.ins-input-wrap .ins-input--with-leading { padding-left: var(--ins-size-8); }         /* icon (16) + gap (8) + input-start (8) */
+.ins-input-wrap .ins-input--with-trailing { padding-right: var(--ins-space-3xl); }
+/* Passive icon — informational only (search glyph, mail glyph). Uses inactive/dim color.
+   Non-interactive — `pointer-events: none` ensures clicks pass through to the input. */
+.ins-input-wrap__icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--ins-icon-size-16);
+  height: var(--ins-icon-size-16);
+  color: var(--ins-icon-inactive);
+  pointer-events: none;
+}
+.ins-input-wrap__icon--leading  { left: var(--ins-space-sm); }           /* closer to content (was space-md) */
+.ins-input-wrap__icon--trailing { right: var(--ins-space-md); }
+
+/* Trailing action button — interactive (clear / submit icon).
+   Higher-contrast default (icon-default) distinguishes it from passive leading glyphs. */
+.ins-input-wrap__action {
+  position: absolute;
+  top: 50%;
+  right: var(--ins-space-sm);
+  transform: translateY(-50%);
+  width: 24px; height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  border-radius: var(--ins-radius-full);
+  color: var(--ins-icon-default);
+  cursor: pointer;
+  transition: background var(--ins-duration-fast), color var(--ins-duration-fast);
+}
+.ins-input-wrap__action:hover { background: var(--ins-color-white-a-06); color: var(--ins-text-heading); }
+.ins-input-wrap__action:disabled { cursor: not-allowed; pointer-events: none; opacity: var(--ins-opacity-48); }
+
+

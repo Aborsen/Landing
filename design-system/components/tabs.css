@@ -1,0 +1,75 @@
+/* ══════════════════════════════════════════════════════════════════
+   10. TABS
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-tabs { }
+.ins-tabs__list {
+  display: flex;
+  gap: var(--ins-space-xs);
+  border-bottom: var(--ins-border-width-1) solid var(--ins-border-default);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.ins-tabs__list::-webkit-scrollbar { display: none; }
+
+.ins-tabs__tab {
+  padding: var(--ins-space-md) var(--ins-space-lg);
+  background: transparent;
+  color: var(--ins-text-body);
+  border: none;
+  border-bottom: var(--ins-border-width-2) solid transparent;
+  font-size: var(--ins-font-size-14);
+  font-weight: var(--ins-font-weight-500);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--ins-duration-fast) var(--ins-easing-standard),
+              border-color var(--ins-duration-fast) var(--ins-easing-standard);
+}
+.ins-tabs__tab:hover { color: var(--ins-text-heading); }
+.ins-tabs__tab[aria-selected="true"],
+.ins-tabs__tab.is-active {
+  color: var(--ins-text-highlight);
+  border-bottom-color: var(--ins-color-teal-400);
+}
+
+/* Pill variant */
+.ins-tabs--pill .ins-tabs__list {
+  border-bottom: 0;
+  padding: 3px;
+  background: var(--ins-surface-card);
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  border-radius: var(--ins-radius-pill);
+  display: inline-flex;
+}
+.ins-tabs--pill .ins-tabs__tab {
+  border-radius: var(--ins-radius-pill);
+  border-bottom: 0;
+}
+.ins-tabs--pill .ins-tabs__tab[aria-selected="true"] {
+  background: var(--ins-surface-elevated);
+  color: var(--ins-text-heading);
+  border-bottom: 0;
+}
+
+/* Vertical variant */
+.ins-tabs--vertical { display: flex; gap: var(--ins-space-xl); }
+.ins-tabs--vertical .ins-tabs__list {
+  flex-direction: column;
+  border-bottom: 0;
+  border-left: var(--ins-border-width-1) solid var(--ins-border-default);
+  min-width: 200px;
+  overflow-x: visible;
+}
+.ins-tabs--vertical .ins-tabs__tab {
+  border-bottom: 0;
+  border-left: var(--ins-border-width-2) solid transparent;
+  text-align: left;
+}
+.ins-tabs--vertical .ins-tabs__tab[aria-selected="true"] {
+  border-bottom: 0;
+  border-left-color: var(--ins-color-teal-400);
+}
+
+.ins-tabs__panel { padding: var(--ins-space-lg) 0; }
+
+

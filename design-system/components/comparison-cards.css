@@ -1,0 +1,92 @@
+/* ══════════════════════════════════════════════════════════════════
+   37. COMPARISON CARDS (PR 10)
+   Side-by-side before/after grid. Two tones: red (before, ✕) and
+   teal (after, ✓). Each panel composes a dot-label header + a
+   checklist body. The teal "after" panel gets a top brand-glow line.
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-compare {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem; /* match homepage comparison grid (Tailwind gap-5 = 20px) */
+}
+@media (min-width: 768px) {
+  .ins-compare { grid-template-columns: 1fr 1fr; }
+}
+
+.ins-compare__panel {
+  position: relative;
+  padding: var(--ins-space-2xl);
+  border-radius: var(--ins-radius-2xl);
+}
+
+.ins-compare__panel--before {
+  background: var(--ins-status-error-bg);
+  border: var(--ins-border-width-1) solid var(--ins-color-red-a-25);
+  box-shadow: var(--ins-glow-error);
+}
+.ins-compare__panel--after {
+  background: var(--ins-surface-brand-tint);
+  border: var(--ins-border-width-1) solid var(--ins-border-brand);
+  box-shadow: var(--ins-shadow-glow-brand);
+}
+.ins-compare__panel--after::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ins-color-teal-a-60), transparent);
+  border-radius: var(--ins-radius-2xl) var(--ins-radius-2xl) 0 0;
+  pointer-events: none;
+}
+
+.ins-compare__header {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ins-space-sm);
+  margin-bottom: var(--ins-space-lg);
+  font-size: var(--ins-font-size-13);
+  font-weight: var(--ins-font-weight-600);
+}
+.ins-compare__panel--before .ins-compare__header { color: var(--ins-status-error-fg); }
+.ins-compare__panel--after  .ins-compare__header { color: var(--ins-text-highlight); }
+
+.ins-compare__dot {
+  width: 8px;
+  height: 8px;
+  min-width: 8px;
+  min-height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+.ins-compare__panel--after .ins-compare__dot {
+  box-shadow: 0 0 8px currentColor;
+}
+
+.ins-compare__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ins-space-md);
+  margin: 0;
+  padding: 0;
+}
+.ins-compare__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ins-space-sm);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.ins-compare__panel--before .ins-compare__item { color: var(--ins-text-body); }
+.ins-compare__panel--after  .ins-compare__item { color: var(--ins-text-body); }
+
+.ins-compare__mark {
+  font-weight: var(--ins-font-weight-500);
+  flex-shrink: 0;
+}
+.ins-compare__panel--before .ins-compare__mark { color: var(--ins-status-error-fg); }
+.ins-compare__panel--after  .ins-compare__mark { color: var(--ins-text-highlight); }
+
+

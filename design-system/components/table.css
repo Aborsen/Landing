@@ -1,0 +1,43 @@
+/* ══════════════════════════════════════════════════════════════════
+   9. TABLE
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  border-radius: var(--ins-radius-lg);
+}
+.ins-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--ins-font-size-14);
+  color: var(--ins-text-body);
+}
+.ins-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--ins-surface-card);
+  font-size: var(--ins-font-size-11);
+  font-weight: var(--ins-font-weight-500);
+  letter-spacing: var(--ins-letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--ins-text-inactive);
+  padding: var(--ins-space-md) var(--ins-space-lg);
+  text-align: left;
+  border-bottom: var(--ins-border-width-1) solid var(--ins-border-default);
+}
+.ins-table tbody td {
+  padding: var(--ins-space-md) var(--ins-space-lg);
+  border-bottom: var(--ins-border-width-1) solid var(--ins-border-default);
+}
+.ins-table tbody tr:last-child td { border-bottom: 0; }
+.ins-table tbody tr:hover { background: var(--ins-surface-elevated); }
+
+.ins-table--striped tbody tr:nth-child(even) { background: var(--ins-color-white-a-06); }
+/* Hover must win over stripe bg on every row */
+.ins-table--striped tbody tr:hover,
+.ins-table--striped tbody tr:nth-child(even):hover { background: var(--ins-surface-elevated); }
+.ins-table--compact thead th, .ins-table--compact tbody td { padding: var(--ins-space-sm) var(--ins-space-md); }
+
+

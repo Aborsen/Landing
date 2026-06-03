@@ -1,0 +1,167 @@
+/* ══════════════════════════════════════════════════════════════════
+   34. BOTTOM CTA (PR 7)
+   Flagship organism — full-width section above the footer with an
+   eyebrow + headline + form-input + primary CTA. Variants:
+   - .ins-bottom-cta            : default form variant
+   - .ins-bottom-cta--buttons   : heading + button pair (no input)
+   - .ins-bottom-cta--text      : heading + single CTA button (no form)
+   Renders inside a Section with tone="tint" for the subtle radial glow.
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-bottom-cta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ins-space-xl);
+  padding: var(--ins-space-3xl) var(--ins-space-xl);
+  border: var(--ins-border-width-1) solid rgba(7, 128, 126, 0.30);
+  border-radius: var(--ins-radius-2xl);
+  overflow: hidden;
+  background:
+    linear-gradient(135deg,
+      rgba(7, 128, 126, 0.12) 0%,
+      rgba(13, 13, 26, 0.90) 40%,
+      rgba(10, 18, 32, 0.85) 70%,
+      rgba(7, 128, 126, 0.08) 100%);
+}
+
+/* Left-side teal glow overlay — soft "light from the left" feel.
+   Inherits the SubscribeBanner recipe. */
+.ins-bottom-cta::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 33.333%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(7, 128, 126, 0.10), transparent);
+  pointer-events: none;
+  z-index: var(--ins-z-base);
+}
+/* Make sure the content layers above both ::before (top line) and ::after (left glow) */
+.ins-bottom-cta > * { position: relative; z-index: 1; }
+@media (min-width: 768px) {
+  .ins-bottom-cta {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: var(--ins-space-2xl) var(--ins-space-3xl);
+  }
+}
+
+/* Top brand-glow line — replaces the inline absolute <div> some pages
+   used to add a faint teal stripe along the top edge. */
+.ins-bottom-cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ins-color-teal-a-30), transparent);
+  pointer-events: none;
+}
+
+.ins-bottom-cta__title {
+  flex-shrink: 0;
+  font-family: var(--ins-font-family-sans);
+  font-size: var(--ins-font-size-22);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: var(--ins-font-weight-500);
+  color: var(--ins-text-heading);
+  text-align: center;
+  margin: 0;
+}
+@media (min-width: 768px) {
+  .ins-bottom-cta__title {
+    text-align: left;
+    font-size: var(--ins-font-size-28);
+  }
+}
+
+/* Title highlight — teal-tinted inline span used by <BottomCTA.Highlight>. */
+.ins-bottom-cta__highlight {
+  color: var(--ins-text-highlight);
+}
+
+/* Form variant — input + submit button laid out horizontally in a single
+   rounded chrome. */
+.ins-bottom-cta__form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: var(--ins-surface-card);
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  border-radius: var(--ins-radius-input);
+  padding: 3px;
+  gap: var(--ins-space-xs);
+  transition: border-color var(--ins-duration-base) var(--ins-easing-standard),
+              box-shadow   var(--ins-duration-base) var(--ins-easing-standard);
+}
+@media (min-width: 768px) {
+  .ins-bottom-cta__form { width: auto; min-width: 0; flex: 0 0 auto; }
+}
+.ins-bottom-cta__form:focus-within {
+  border-color: var(--ins-border-focus);
+  box-shadow: var(--ins-focus-ring);
+}
+.ins-bottom-cta__form .ins-bottom-cta__input {
+  flex: 1;
+  min-width: 0;
+  height: 34px;
+  padding: 0 var(--ins-space-md);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: var(--ins-font-size-14);
+  color: var(--ins-text-heading);
+}
+@media (min-width: 768px) {
+  /* Desktop: fixed-width input (~280px). Placed AFTER the base flex:1 so it
+     wins the cascade; on mobile the base flex:1 keeps the input full-width. */
+  .ins-bottom-cta__form .ins-bottom-cta__input { flex: 0 0 280px; }
+}
+.ins-bottom-cta__form .ins-bottom-cta__input::placeholder {
+  color: var(--ins-text-disabled);
+}
+.ins-bottom-cta__form .ins-bottom-cta__input:focus-visible {
+  box-shadow: none;
+  outline: none;
+  border: none;
+}
+/* Inner submit button — match the DS composer's small button override:
+   34 px height, 16 px horizontal padding, md (6 px) radius. */
+.ins-bottom-cta__form .ins-btn {
+  height: 34px;
+  padding: 0 var(--ins-space-lg);
+  border-radius: var(--ins-radius-md);
+}
+
+/* Buttons + text variants — center the CTA pair beneath the title. */
+.ins-bottom-cta--buttons,
+.ins-bottom-cta--text {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--ins-space-4xl) var(--ins-space-xl);
+}
+.ins-bottom-cta--buttons .ins-bottom-cta__actions,
+.ins-bottom-cta--text .ins-bottom-cta__actions {
+  display: flex;
+  gap: var(--ins-space-md);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.ins-bottom-cta--buttons .ins-bottom-cta__title,
+.ins-bottom-cta--text .ins-bottom-cta__title {
+  text-align: center;
+  font-size: var(--ins-font-size-28);
+}
+@media (min-width: 768px) {
+  .ins-bottom-cta--buttons .ins-bottom-cta__title,
+  .ins-bottom-cta--text .ins-bottom-cta__title {
+    font-size: var(--ins-font-size-36);
+  }
+}
+
+

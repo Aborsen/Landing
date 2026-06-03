@@ -1,5 +1,5 @@
 /* Design System — single source of truth (design-system/). Splits into
-   tokens/ (per-concern :root vars), global.css, components.css, animations.css. */
+   tokens/ (per-concern :root vars), global.css, components/ (one file per component). */
 @import url('../design-system/index.css');
 @tailwind base;
 @tailwind components;

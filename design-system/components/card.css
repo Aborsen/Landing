@@ -1,0 +1,169 @@
+/* ══════════════════════════════════════════════════════════════════
+   6. CARD
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-card {
+  background: var(--ins-surface-card);
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  border-radius: var(--ins-radius-card);
+  padding: var(--ins-space-xl);
+  transition: border-color var(--ins-duration-base) var(--ins-easing-standard),
+              background   var(--ins-duration-base) var(--ins-easing-standard),
+              transform    var(--ins-duration-base) var(--ins-easing-standard);
+}
+@media (min-width: 768px) { .ins-card { padding: var(--ins-space-xl); } }
+
+.ins-card__eyebrow {
+  font-size: var(--ins-font-size-11);
+  font-weight: var(--ins-font-weight-500);
+  letter-spacing: var(--ins-letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--ins-text-highlight);
+  margin-bottom: var(--ins-space-sm);
+}
+.ins-card__title {
+  font-size: var(--ins-font-size-16);
+  font-weight: var(--ins-font-weight-600);
+  line-height: 24px;
+  color: var(--ins-text-heading);
+  margin-bottom: var(--ins-space-sm);
+}
+.ins-card__body { font-size: var(--ins-font-size-14); line-height: 20px; color: var(--ins-text-body); }
+
+/* Interactive card — hover-liftable */
+.ins-card--interactive { cursor: pointer; }
+@media (min-width: 768px) {
+  .ins-card--interactive:hover {
+    border-color: var(--ins-border-hover);
+    background: var(--ins-surface-elevated);
+    transform: translateY(-2px);
+  }
+}
+.ins-card--interactive:focus-visible {
+  outline: none;
+  box-shadow: var(--ins-focus-ring);
+  border-color: var(--ins-border-focus);
+}
+
+/* Selected */
+.ins-card--selected {
+  border-color: var(--ins-border-brand);
+  background: var(--ins-surface-brand-tint);
+}
+
+/* ── Card variant atoms — minimal, composable ───────────────────────────── */
+
+/* Feature / Pricing — structural variants */
+.ins-card--feature { }
+.ins-card--pricing {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ins-space-lg);
+}
+.ins-card--pricing .ins-card__body { flex: 1; }                    /* pushes CTA to baseline */
+.ins-card--pricing .ins-btn { margin-top: auto; }                  /* buttons align across cards */
+.ins-card--pricing .ins-card__price {
+  font-size: var(--ins-font-size-36);
+  font-weight: var(--ins-font-weight-700);
+  color: var(--ins-text-heading);
+}
+
+/* Accent — top gradient rail, shape-preserving via inset box-shadow (no overflow clip).
+   Smoother radius, works on any card size. Position modifier keeps it extensible. */
+.ins-card--accent {
+  position: relative;
+  padding-top: var(--ins-space-2xl);
+  box-shadow: inset 0 2px 0 var(--ins-color-teal-a-50);
+}
+.ins-card--accent-top { padding-top: var(--ins-space-2xl); box-shadow: inset 0 2px 0 var(--ins-color-teal-a-50); }
+
+/* Glow — brand-tint surface with colored glow. Theme modifier controls color.
+   Replaces .ins-card--answer and .ins-card--branded. Scales to new themes via new modifiers. */
+.ins-card--glow {
+  background: var(--ins-surface-brand-tint);
+  border-color: var(--ins-border-brand);
+  position: relative;
+}
+.ins-card--glow::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ins-color-teal-a-50), transparent);
+  border-radius: var(--ins-radius-card) var(--ins-radius-card) 0 0;
+  pointer-events: none;
+}
+.ins-card--glow--brand { box-shadow: var(--ins-shadow-glow-brand); }
+.ins-card--glow--error {
+  background: var(--ins-status-error-bg);
+  border-color: var(--ins-color-red-a-25);
+  box-shadow: var(--ins-glow-error);
+}
+.ins-card--glow--error::before { background: linear-gradient(90deg, transparent, var(--ins-color-red-a-30), transparent); }
+
+/* Optional header slot — brand-colored with a glowing dot on the left (used in glow cards) */
+.ins-card__header {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ins-space-sm);
+  margin-bottom: var(--ins-space-lg);
+  font-size: var(--ins-font-size-14);
+  font-weight: var(--ins-font-weight-500);
+  color: var(--ins-text-highlight);
+}
+.ins-card__header::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: var(--ins-glow-dot);
+}
+.ins-card--glow--error .ins-card__header { color: var(--ins-status-error-fg); font-weight: var(--ins-font-weight-600); }
+
+/* Console slot — mono dark panel inside a card (chat answer console) */
+.ins-card__console {
+  background: var(--ins-color-black-a-30);
+  border-radius: var(--ins-radius-md);
+  padding: var(--ins-space-lg);
+  font-family: var(--ins-font-family-mono);
+  font-size: var(--ins-font-size-12);
+  line-height: var(--ins-line-height-relaxed);
+  color: var(--ins-color-gray-100);
+}
+
+/* Metric tile — small stat cell inside a grid (used in answer cards + dashboards) */
+.ins-card--metric {
+  padding: var(--ins-space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ins-space-xs);
+}
+.ins-card--metric .ins-card__metric-label {
+  font-family: var(--ins-font-family-mono);
+  font-size: var(--ins-font-size-11);
+  color: var(--ins-text-inactive);
+  text-transform: uppercase;
+  letter-spacing: var(--ins-letter-spacing-wider);
+}
+.ins-card--metric .ins-card__metric-value {
+  font-family: var(--ins-font-family-mono);
+  font-size: var(--ins-font-size-18);
+  font-weight: var(--ins-font-weight-600);
+  color: var(--ins-text-heading);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Card compositions (testimonial / team-member / roadmap / connector) no longer live here as classes.
+   They're built from atoms (.ins-card + .ins-avatar + .ins-badge + .ins-text-*) inside patterns/ pages.
+   See components/cards.html for the rebuilt examples. */
+
+/* Connector — small icon tile */
+.ins-card--connector {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ins-space-sm);
+  padding: var(--ins-space-lg);
+}
+
+

@@ -1,0 +1,22 @@
+/* ══════════════════════════════════════════════════════════════════
+   30. KBD
+   ══════════════════════════════════════════════════════════════════ */
+
+kbd, .ins-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 var(--ins-space-xs);
+  font-family: var(--ins-font-family-mono);
+  font-size: var(--ins-font-size-11);
+  font-weight: var(--ins-font-weight-500);
+  color: var(--ins-text-heading);
+  background: var(--ins-surface-elevated);
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  border-radius: var(--ins-radius-sm);
+  box-shadow: var(--ins-shadow-xs);
+}
+
+

@@ -1,0 +1,61 @@
+/* ══════════════════════════════════════════════════════════════════
+   27. ACCORDION
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-accordion { display: flex; flex-direction: column; gap: var(--ins-space-xs); }
+.ins-accordion__item {
+  background: var(--ins-surface-card);
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  border-radius: var(--ins-radius-lg);
+  overflow: hidden;
+  transition: background var(--ins-duration-fast) var(--ins-easing-standard),
+              border-color var(--ins-duration-fast) var(--ins-easing-standard);
+}
+.ins-accordion__item:hover {
+  background: var(--ins-surface-elevated);
+  border-color: var(--ins-border-hover);
+}
+.ins-accordion__item:has(.ins-accordion__trigger:focus-visible) {
+  border-color: var(--ins-border-focus);
+  box-shadow: var(--ins-focus-ring);
+}
+.ins-accordion__trigger {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ins-space-md);
+  padding: var(--ins-space-lg);
+  background: transparent;
+  color: var(--ins-text-heading);
+  border: 0;
+  font-size: var(--ins-font-size-16);
+  font-weight: var(--ins-font-weight-500);
+  text-align: left;
+  cursor: pointer;
+}
+.ins-accordion__trigger:hover .ins-accordion__icon { color: var(--ins-icon-default); }
+.ins-accordion__trigger:focus-visible { outline: none; box-shadow: none; }
+.ins-accordion__icon {
+  width: var(--ins-icon-size-20);
+  height: var(--ins-icon-size-20);
+  color: var(--ins-text-inactive);
+  transition: transform var(--ins-duration-base) var(--ins-easing-standard);
+  flex-shrink: 0;
+}
+.ins-accordion__item[aria-expanded="true"] .ins-accordion__icon,
+.ins-accordion__item.is-open .ins-accordion__icon { transform: rotate(180deg); }
+.ins-accordion__panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--ins-duration-base) var(--ins-easing-standard);
+  padding: 0 var(--ins-space-lg);
+  color: var(--ins-text-body);
+}
+.ins-accordion__item[aria-expanded="true"] .ins-accordion__panel,
+.ins-accordion__item.is-open .ins-accordion__panel {
+  max-height: 1000px;
+  padding-bottom: var(--ins-space-lg);
+}
+
+

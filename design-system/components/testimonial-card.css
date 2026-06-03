@@ -1,0 +1,137 @@
+/* ══════════════════════════════════════════════════════════════════
+   39. TESTIMONIAL CARD (PR 12)
+   Customer quote card. Two visual configurations driven by props:
+   - default: opening-quote SVG + paragraph + footer with name/role
+              and optional company pill
+   - "stars": 5-star row above quote + decorative &ldquo; in corner
+              + avatar circle in the footer (homepage style)
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-testimonial {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: var(--ins-space-2xl);
+  background: var(--ins-color-black-a-30, rgba(13, 17, 23, 0.6));
+  border: var(--ins-border-width-1) solid var(--ins-color-white-a-06);
+  border-radius: var(--ins-radius-2xl);
+  transition: border-color var(--ins-duration-base) var(--ins-easing-standard);
+}
+.ins-testimonial:hover {
+  border-color: var(--ins-color-teal-a-25);
+}
+
+/* Top brand-glow line accent — always on. */
+.ins-testimonial::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ins-color-teal-a-40), transparent);
+  pointer-events: none;
+}
+
+/* Decorative corner mark (homepage variant) */
+.ins-testimonial__corner {
+  position: absolute;
+  top: var(--ins-space-md);
+  right: var(--ins-space-lg);
+  font-family: var(--ins-font-family-sans);
+  font-size: var(--ins-font-size-60);
+  line-height: 1;
+  color: var(--ins-text-body);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+/* Opening-quote SVG icon (Solutions variant) */
+.ins-testimonial__icon {
+  width: 22px;
+  height: 22px;
+  opacity: 0.5;
+  margin-bottom: var(--ins-space-md);
+  color: var(--ins-text-highlight);
+}
+
+/* 5-star row (optional, homepage style) */
+.ins-testimonial__stars {
+  display: flex;
+  gap: var(--ins-size-1);
+  margin-bottom: var(--ins-space-md);
+  color: var(--ins-color-amber-400);
+}
+.ins-testimonial__stars > svg {
+  width: 13px;
+  height: 13px;
+}
+
+.ins-testimonial__quote {
+  font-size: var(--ins-font-size-15);
+  color: var(--ins-text-body);
+  line-height: 1.6;
+  margin: 0 0 var(--ins-space-xl);
+  flex: 1;
+}
+
+/* Footer area with name + role (+ optional company pill or avatar) */
+.ins-testimonial__footer {
+  padding-top: var(--ins-space-lg);
+  border-top: var(--ins-border-width-1) solid var(--ins-color-white-a-06);
+}
+.ins-testimonial--has-avatar .ins-testimonial__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--ins-space-md);
+  border-top: none;
+  padding-top: 0;
+}
+
+.ins-testimonial__name {
+  font-size: var(--ins-font-size-14);
+  color: var(--ins-text-heading);
+  font-weight: var(--ins-font-weight-500);
+}
+.ins-testimonial__role {
+  font-size: var(--ins-font-size-12);
+  color: var(--ins-text-inactive);
+  margin-top: var(--ins-size-half);
+}
+
+.ins-testimonial__company {
+  display: inline-block;
+  margin-top: var(--ins-space-md);
+  padding: 3px var(--ins-space-md);
+  border-radius: var(--ins-radius-pill);
+  background: var(--ins-color-white-a-03, rgba(255, 255, 255, 0.03));
+  border: var(--ins-border-width-1) solid var(--ins-color-white-a-08);
+  font-size: 10.5px;
+  color: var(--ins-text-inactive);
+  font-family: var(--ins-font-family-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ins-testimonial__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+  border: 2px solid var(--ins-color-white-a-10);
+}
+.ins-testimonial__avatar-fallback {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--ins-font-size-12);
+  font-weight: var(--ins-font-weight-600);
+  color: var(--ins-color-white);
+  background: linear-gradient(135deg, var(--ins-text-highlight), var(--ins-color-teal-650));
+  border: 2px solid var(--ins-color-white-a-10);
+}
+

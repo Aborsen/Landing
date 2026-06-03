@@ -1,0 +1,65 @@
+/* ══════════════════════════════════════════════════════════════════
+   12. ALERT / TOAST
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ins-space-md);
+  padding: var(--ins-space-md) var(--ins-space-lg);
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  border-radius: var(--ins-radius-lg);
+  font-size: var(--ins-font-size-14);
+  color: var(--ins-text-body);
+}
+/* Alert icon — standardized 20×20, aligned to first line. All alerts must use 1.5 stroke, rounded caps. */
+.ins-alert__icon {
+  flex-shrink: 0;
+  width: var(--ins-icon-size-20);
+  height: var(--ins-icon-size-20);
+  margin-top: 0;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+.ins-alert__title { font-weight: var(--ins-font-weight-600); color: var(--ins-text-heading); margin-bottom: var(--ins-space-xs); }
+.ins-alert__close {
+  margin-left: auto;
+  width: var(--ins-icon-size-20); height: var(--ins-icon-size-20);
+  background: transparent; border: 0; padding: 0;
+  color: var(--ins-text-inactive); cursor: pointer;
+}
+.ins-alert--info    { background: var(--ins-status-info-bg); }
+.ins-alert--info    .ins-alert__icon { color: var(--ins-status-info-fg); }
+.ins-alert--success { background: var(--ins-status-success-bg); }
+.ins-alert--success .ins-alert__icon { color: var(--ins-status-success-fg); }
+.ins-alert--warning { background: var(--ins-status-warning-bg); }
+.ins-alert--warning .ins-alert__icon { color: var(--ins-status-warning-fg); }
+.ins-alert--error   { background: var(--ins-status-error-bg); }
+.ins-alert--error   .ins-alert__icon { color: var(--ins-status-error-fg); }
+
+/* Toast — floating. Default uses full alert styling + box-shadow.
+   Compact modifier: single-line, no title, smaller padding (quick ephemeral feedback). */
+.ins-toast {
+  position: fixed;
+  bottom: var(--ins-space-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: calc(100vw - 2 * var(--ins-space-lg));
+  z-index: var(--ins-z-toast);
+  box-shadow: var(--ins-shadow-md);
+  background: var(--ins-surface-elevated);
+}
+@media (min-width: 768px) {
+  .ins-toast { right: var(--ins-space-xl); bottom: var(--ins-space-xl); left: auto; transform: none; max-width: 420px; }
+}
+.ins-toast--compact {
+  padding: var(--ins-space-sm) var(--ins-space-md);
+  gap: var(--ins-space-sm);
+  font-size: var(--ins-font-size-13, var(--ins-font-size-12));
+}
+.ins-toast--compact .ins-alert__icon { width: var(--ins-icon-size-16); height: var(--ins-icon-size-16); }
+.ins-toast--compact .ins-alert__title { display: none; }    /* single-line, just description */
+
+

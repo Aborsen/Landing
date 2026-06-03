@@ -1,0 +1,18 @@
+/* ══════════════════════════════════════════════════════════════════
+   23. EMPTY STATE
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--ins-space-md);
+  padding: var(--ins-space-3xl) var(--ins-space-lg);
+}
+.ins-empty-state__icon { width: var(--ins-icon-size-48); height: var(--ins-icon-size-48); color: var(--ins-text-inactive); }
+.ins-empty-state__title { color: var(--ins-text-heading); font-size: var(--ins-font-size-18); font-weight: var(--ins-font-weight-600); }
+.ins-empty-state__description { max-width: 48ch; color: var(--ins-text-body); }
+
+

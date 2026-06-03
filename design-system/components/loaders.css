@@ -1,0 +1,68 @@
+/* ══════════════════════════════════════════════════════════════════
+   22. LOADERS — spinner / progress / typing-dots / skeleton
+   All marked .ins-motion-state → animate at every size.
+   ══════════════════════════════════════════════════════════════════ */
+
+@keyframes ins-spin { to { transform: rotate(360deg); } }
+@keyframes ins-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.1); }
+}
+@keyframes ins-typing {
+  0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-2px); }
+}
+@keyframes ins-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes ins-indeterminate {
+  0%   { transform: translateX(-100%) scaleX(0.3); }
+  50%  { transform: translateX(0%)    scaleX(0.6); }
+  100% { transform: translateX(100%)  scaleX(0.3); }
+}
+
+.ins-spinner {
+  display: inline-block;
+  width: 24px; height: 24px;
+  border: 2px solid var(--ins-color-white-a-12);
+  border-top-color: var(--ins-color-teal-400);
+  border-radius: 50%;
+  animation: ins-spin 800ms linear infinite;
+}
+.ins-spinner--sm { width: 16px; height: 16px; border-width: 2px; }
+.ins-spinner--lg { width: 32px; height: 32px; border-width: 3px; }
+
+.ins-progress {
+  width: 100%;
+  height: 4px;
+  background: var(--ins-color-white-a-06);
+  border-radius: var(--ins-radius-pill);
+  overflow: hidden;
+}
+.ins-progress__bar { height: 100%; background: var(--ins-color-teal-400); border-radius: var(--ins-radius-pill); transition: width var(--ins-duration-base) var(--ins-easing-standard); }
+.ins-progress--indeterminate .ins-progress__bar { width: 100%; transform-origin: left; animation: ins-indeterminate 1.6s ease-in-out infinite; }
+
+.ins-typing { display: inline-flex; gap: var(--ins-space-xs); padding: var(--ins-space-sm) var(--ins-space-md); }
+.ins-typing__dot {
+  width: 6px; height: 6px;
+  background: var(--ins-text-inactive);
+  border-radius: 50%;
+  animation: ins-typing 1.4s ease-in-out infinite;
+}
+.ins-typing__dot:nth-child(2) { animation-delay: 0.2s; }
+.ins-typing__dot:nth-child(3) { animation-delay: 0.4s; }
+
+.ins-skeleton {
+  background: linear-gradient(90deg,
+    var(--ins-surface-card) 0%,
+    var(--ins-surface-elevated) 50%,
+    var(--ins-surface-card) 100%);
+  background-size: 200% 100%;
+  border-radius: var(--ins-radius-sm);
+  animation: ins-shimmer 1.8s ease-in-out infinite;
+}
+.ins-skeleton--line  { height: 12px; margin: var(--ins-space-xs) 0; }
+.ins-skeleton--block { height: 120px; border-radius: var(--ins-radius-lg); }
+
+

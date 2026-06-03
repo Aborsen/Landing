@@ -1,0 +1,56 @@
+/* ══════════════════════════════════════════════════════════════════
+   26. SCROLL-SPY TOC
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Scroll-spy TOC — matches the sidebar's section-title + link styling for visual unity.
+   Title and items share the same left edge. Inactive items have a subtle left rail (low contrast),
+   active item gets a teal rail and brand-tint bg (same pattern as sidebar). */
+.ins-toc {
+  position: sticky;
+  top: var(--ins-scroll-margin);
+  max-height: calc(100vh - var(--ins-scroll-margin) - var(--ins-space-xl));
+  overflow-y: auto;
+  padding: 0;
+  font-size: var(--ins-font-size-14);
+}
+.ins-toc__title {
+  /* Matches .ins-sidebar__section-title: heading-strong color, uppercase, wider tracking */
+  font-family: var(--ins-font-family-sans);
+  font-size: var(--ins-font-size-11);
+  font-weight: var(--ins-font-weight-600);
+  letter-spacing: var(--ins-letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--ins-text-heading);
+  padding: 0 var(--ins-space-md) var(--ins-space-sm);
+  margin-bottom: var(--ins-space-xs);
+}
+.ins-toc__list { display: flex; flex-direction: column; gap: var(--ins-size-half); margin: 0; padding: 0; list-style: none; }
+.ins-toc__link {
+  display: block;
+  padding: 6px var(--ins-space-md);
+  padding-left: calc(var(--ins-space-md) + 1px);               /* align with active 2px accent */
+  color: var(--ins-text-inactive);
+  font-size: var(--ins-font-size-14);
+  line-height: 20px;
+  border-left: 1px solid var(--ins-color-white-a-06);           /* subtle low-contrast rail */
+  border-radius: 0 var(--ins-radius-sm) var(--ins-radius-sm) 0;
+  text-decoration: none;                                        /* override base.css underline */
+  transition: color var(--ins-duration-fast) var(--ins-easing-standard),
+              background var(--ins-duration-fast) var(--ins-easing-standard),
+              border-color var(--ins-duration-fast) var(--ins-easing-standard);
+}
+.ins-toc__link:hover {
+  color: var(--ins-text-heading);
+  background: var(--ins-color-white-a-06);
+  border-left-color: var(--ins-border-hover);
+}
+.ins-toc__link[aria-current="location"],
+.ins-toc__link.is-active {
+  color: var(--ins-text-highlight);
+  background: var(--ins-surface-brand-tint);
+  border-left: 2px solid var(--ins-color-teal-400);
+  padding-left: var(--ins-space-md);
+  font-weight: var(--ins-font-weight-500);
+}
+
+

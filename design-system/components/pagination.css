@@ -1,0 +1,31 @@
+/* ══════════════════════════════════════════════════════════════════
+   17. PAGINATION
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-pagination { display: inline-flex; gap: var(--ins-space-xs); align-items: center; }
+.ins-pagination__item {
+  min-width: 32px;
+  height: 32px;
+  padding: 0 var(--ins-space-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--ins-text-body);
+  border: var(--ins-border-width-1) solid transparent;
+  border-radius: var(--ins-radius-md);
+  font-size: var(--ins-font-size-14);
+  cursor: pointer;
+  transition: background var(--ins-duration-fast) var(--ins-easing-standard),
+              color var(--ins-duration-fast) var(--ins-easing-standard);
+}
+.ins-pagination__item:hover { background: var(--ins-surface-elevated); color: var(--ins-text-heading); }
+.ins-pagination__item[aria-current="page"],
+.ins-pagination__item.is-active {
+  background: var(--ins-color-teal-600);
+  color: var(--ins-color-white);
+}
+.ins-pagination__item:disabled { opacity: var(--ins-opacity-48); cursor: not-allowed; }
+.ins-pagination__ellipsis { padding: 0 var(--ins-space-sm); color: var(--ins-text-inactive); }
+
+

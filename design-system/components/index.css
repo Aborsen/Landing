@@ -1,0 +1,47 @@
+/* ══════════════════════════════════════════════════════════════════
+   INSIGHTIS DESIGN SYSTEM — Components v1.0.0
+   All 32 components. Consumes SEMANTIC tokens only.
+   Depends on: tokens.css, base.css
+   Mobile-first. Dark-mode only.
+   ══════════════════════════════════════════════════════════════════ */
+
+
+@import url('./button.css');
+@import url('./input.css');
+@import url('./checkbox-radio-toggle.css');
+@import url('./segmented-control.css');
+@import url('./form-group.css');
+@import url('./card.css');
+@import url('./stat-kpi.css');
+@import url('./divider.css');
+@import url('./table.css');
+@import url('./tabs.css');
+@import url('./modal.css');
+@import url('./alert-toast.css');
+@import url('./banner.css');
+@import url('./badge.css');
+@import url('./avatar.css');
+@import url('./tooltip.css');
+@import url('./pagination.css');
+@import url('./breadcrumbs.css');
+@import url('./navbar.css');
+@import url('./sidebar.css');
+@import url('./footer.css');
+@import url('./loaders.css');
+@import url('./empty-state.css');
+@import url('./chat-bubble.css');
+@import url('./marquee.css');
+@import url('./scroll-spy-toc.css');
+@import url('./accordion.css');
+@import url('./comparison-grid.css');
+@import url('./code.css');
+@import url('./kbd.css');
+@import url('./eyebrow.css');
+@import url('./icon-badge.css');
+@import url('./code-chip.css');
+@import url('./bottom-cta.css');
+@import url('./faq-accordion.css');
+@import url('./pain-point-grid.css');
+@import url('./comparison-cards.css');
+@import url('./steps-process.css');
+@import url('./testimonial-card.css');

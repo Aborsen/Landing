@@ -1,0 +1,140 @@
+/* ══════════════════════════════════════════════════════════════════
+   1. BUTTON
+   Variants: primary / secondary / ghost / icon / link
+   Sizes: sm (32) / md (40) / lg (48)
+   States: default / hover / active / focus / disabled / loading
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ins-space-sm);
+  height: 40px;
+  padding: 0 var(--ins-space-xl);
+  border: var(--ins-border-width-1) solid transparent;
+  border-radius: var(--ins-radius-pill);
+  font-family: var(--ins-font-family-sans);
+  font-size: var(--ins-font-size-14);
+  font-weight: var(--ins-font-weight-500);
+  letter-spacing: var(--ins-letter-spacing-wide);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--ins-duration-base) var(--ins-easing-standard),
+              color var(--ins-duration-base) var(--ins-easing-standard),
+              border-color var(--ins-duration-base) var(--ins-easing-standard);
+  user-select: none;
+}
+
+.ins-btn:disabled,
+.ins-btn[aria-disabled="true"] {
+  cursor: not-allowed;
+  pointer-events: none;   /* ensures no hover feedback whatsoever */
+}
+
+/* Sizes */
+.ins-btn--sm { height: 32px; padding: 0 var(--ins-space-lg); font-size: var(--ins-font-size-12); }
+.ins-btn--md { height: 40px; padding: 0 var(--ins-space-xl); }
+.ins-btn--lg { height: 48px; padding: 0 var(--ins-space-2xl); font-size: var(--ins-font-size-16); }
+
+/* Rounding variants (override default pill) */
+.ins-btn--radius-sm   { border-radius: var(--ins-radius-sm); }
+.ins-btn--radius-md   { border-radius: var(--ins-radius-md); }
+.ins-btn--radius-lg   { border-radius: var(--ins-radius-lg); }
+.ins-btn--radius-pill { border-radius: var(--ins-radius-pill); }
+
+/* Icon slots — sized consistently across all sizes */
+.ins-btn__icon {
+  flex-shrink: 0;
+  width: var(--ins-icon-size-16);
+  height: var(--ins-icon-size-16);
+  color: currentColor;
+}
+.ins-btn--sm .ins-btn__icon { width: var(--ins-icon-size-12); height: var(--ins-icon-size-12); }
+.ins-btn--lg .ins-btn__icon { width: var(--ins-icon-size-20); height: var(--ins-icon-size-20); }
+.ins-btn__icon--leading  { margin-right: calc(var(--ins-space-xs) * -1); }
+.ins-btn__icon--trailing { margin-left: calc(var(--ins-space-xs) * -1); }
+
+/* Primary */
+.ins-btn--primary { background: var(--ins-button-primary-bg); color: var(--ins-button-primary-fg); }
+.ins-btn--primary:hover:not(:disabled) { background: var(--ins-button-primary-bg-hover); }
+.ins-btn--primary:active:not(:disabled) { background: var(--ins-button-primary-bg-active); }
+.ins-btn--primary:disabled,
+.ins-btn--primary[aria-disabled="true"] {
+  background: var(--ins-button-primary-bg-disabled);
+  color: var(--ins-button-fg-disabled);
+}
+
+/* Secondary */
+.ins-btn--secondary {
+  background: var(--ins-button-secondary-bg);
+  color: var(--ins-button-secondary-fg);
+  border-color: var(--ins-button-secondary-border);
+}
+.ins-btn--secondary:hover:not(:disabled) {
+  background: var(--ins-button-secondary-bg-hover);
+  border-color: var(--ins-button-secondary-border-hover);
+}
+.ins-btn--secondary:active:not(:disabled) { background: var(--ins-button-secondary-bg-active); }
+.ins-btn--secondary:disabled { color: var(--ins-button-fg-disabled); opacity: var(--ins-opacity-48); }
+
+/* Ghost — text uses heading contrast (no bg crutch); bg appears only on hover/active */
+.ins-btn--ghost { background: transparent; color: var(--ins-button-ghost-fg); }
+.ins-btn--ghost:hover:not(:disabled) { background: var(--ins-button-ghost-bg-hover); }
+.ins-btn--ghost:active:not(:disabled) { background: var(--ins-button-ghost-bg-active); }
+.ins-btn--ghost:disabled { color: var(--ins-button-fg-disabled); }
+
+/* Icon (square, icon-only) — same ghost-fg contrast */
+.ins-btn--icon {
+  width: 40px; padding: 0;
+  background: transparent; color: var(--ins-button-ghost-fg);
+  border-radius: var(--ins-radius-lg);
+}
+.ins-btn--icon.ins-btn--sm { width: 32px; }
+.ins-btn--icon.ins-btn--lg { width: 48px; }
+.ins-btn--icon:hover:not(:disabled) { background: var(--ins-button-ghost-bg-hover); }
+.ins-btn--icon:active:not(:disabled) { background: var(--ins-button-ghost-bg-active); }
+.ins-btn--icon:disabled { color: var(--ins-button-fg-disabled); }
+
+/* Inline link — accessible default: underline at 30% opacity so the link is identifiable without color alone.
+   Hover: text + underline intensify together. Icon inside inherits via currentColor. */
+.ins-btn--link {
+  height: auto; padding: 0;
+  background: transparent;
+  color: var(--ins-text-highlight);
+  border: none;
+  border-radius: 0;
+  text-decoration: underline;
+  text-decoration-color: var(--ins-color-teal-a-50);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.ins-btn--link:hover:not(:disabled) { color: var(--ins-color-teal-300); text-decoration-color: currentColor; }
+.ins-btn--link:active:not(:disabled) { color: var(--ins-color-teal-700); }
+.ins-btn--link:disabled { color: var(--ins-button-fg-disabled); text-decoration-color: var(--ins-color-body-a-30); }
+
+/* Loading state — spinner replaces content, width preserved */
+.ins-btn.is-loading { position: relative; color: transparent !important; min-width: 80px; pointer-events: none; }
+.ins-btn.is-loading::after {
+  content: '';
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 16px; height: 16px;
+  margin: -8px 0 0 -8px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  color: var(--ins-button-primary-fg);
+  animation: ins-spin 800ms linear infinite;
+}
+.ins-btn--secondary.is-loading::after,
+.ins-btn--ghost.is-loading::after,
+.ins-btn--icon.is-loading::after { color: var(--ins-text-heading); }
+
+/* Touch target safeguard on mobile for icon buttons */
+@media (max-width: 767px) {
+  .ins-btn--icon { min-width: 44px; min-height: 44px; }
+}
+
+

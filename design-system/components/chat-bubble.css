@@ -1,0 +1,44 @@
+/* ══════════════════════════════════════════════════════════════════
+   24. CHAT BUBBLE
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-chat { display: flex; flex-direction: column; gap: var(--ins-space-md); }
+.ins-chat__bubble {
+  max-width: 80%;
+  padding: var(--ins-space-md) var(--ins-space-lg);
+  font-size: var(--ins-font-size-14);
+  line-height: var(--ins-line-height-relaxed);
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  border-radius: var(--ins-radius-2xl);
+  white-space: pre-wrap;
+}
+.ins-chat__bubble--user {
+  align-self: flex-end;
+  background: var(--ins-color-teal-a-12);
+  border-color: var(--ins-color-teal-a-25);
+  color: var(--ins-text-heading);
+  border-bottom-right-radius: var(--ins-radius-sm);
+}
+.ins-chat__bubble--ai {
+  align-self: flex-start;
+  background: var(--ins-surface-card);
+  color: var(--ins-text-body);
+  border-bottom-left-radius: var(--ins-radius-sm);
+}
+/* Typing/loading bubble — tight, clearly smaller than a message. Fits inline with conversation flow. */
+.ins-chat__bubble--typing {
+  padding: 6px 10px;
+  width: auto;
+  min-height: 0;
+  max-width: max-content;
+  border-radius: var(--ins-radius-md) var(--ins-radius-md) var(--ins-radius-md) var(--ins-radius-xs);
+}
+.ins-chat__bubble--typing .ins-typing {
+  padding: 0;
+  gap: 3px;
+}
+.ins-chat__bubble--typing .ins-typing__dot {
+  width: 4px; height: 4px;
+}
+
+

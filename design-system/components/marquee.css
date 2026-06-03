@@ -1,0 +1,25 @@
+/* ══════════════════════════════════════════════════════════════════
+   25. MARQUEE (decorative — disabled <768)
+   ══════════════════════════════════════════════════════════════════ */
+
+@keyframes ins-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.ins-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+.ins-marquee__track {
+  display: inline-flex;
+  gap: var(--ins-space-3xl);
+  padding-block: var(--ins-space-lg);
+  white-space: nowrap;
+  will-change: transform;
+}
+@media (min-width: 768px) {
+  .ins-marquee__track {
+    animation: ins-marquee 30s linear infinite;
+  }
+  .ins-marquee:hover .ins-marquee__track { animation-play-state: paused; }
+}
+
+
