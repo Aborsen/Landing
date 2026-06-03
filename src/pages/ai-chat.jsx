@@ -1084,7 +1084,7 @@ function BottomCTASection() {
 function InsightisIcon({size=20}) {
   return (
     <svg width={size} height={Math.round(size*0.895)} viewBox="0 0 25.5 22.84" fill="none">
-      <path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="#1498B9"/>
+      <path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="#0EC4C1"/>
     </svg>
   );
 }
@@ -1212,9 +1212,9 @@ function ChatMockAnimationInner() {
         {showUserBubble && (
           <div style={{
             alignSelf:'flex-end', maxWidth:'78%',
-            background:'rgba(9,160,157,0.2)', border:'1px solid rgba(9,160,157,0.32)',
+            background:'var(--ins-chat-user-bg)', border:'1px solid var(--ins-chat-user-border)',
             borderRadius:'14px 14px 3px 14px',
-            padding:'11px 15px', fontSize:'13.5px', color:'var(--ins-color-gray-100)',
+            padding:'11px 15px', fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-heading)',
             animation:'slideUp .25s ease both',
           }}>
             {QUESTION}
@@ -1226,7 +1226,7 @@ function ChatMockAnimationInner() {
             {/* Thinking header */}
             <div style={{display:'flex', alignItems:'center', gap:'var(--ins-size-2)', paddingLeft:'var(--ins-size-half)'}}>
               <InsightisIcon size={18}/>
-              <span style={{fontSize:'12.5px', color: thinkingDone ? 'rgba(14,196,193,0.55)' : 'var(--ins-text-highlight)', fontWeight:500, transition:'color .4s ease'}}>Thinking</span>
+              <span style={{fontSize:'var(--ins-font-size-12)', color: thinkingDone ? 'var(--ins-text-highlight-muted)' : 'var(--ins-text-highlight)', fontWeight:500, transition:'color .4s ease'}}>Thinking</span>
               {!thinkingDone ? (
                 <div style={{display:'flex', gap:'3px', alignItems:'center', marginLeft:'1px'}}>
                   {[0, 0.2, 0.4].map(d => (
@@ -1252,7 +1252,7 @@ function ChatMockAnimationInner() {
                   { visible: showStep2, done: step2Done, label: 'Analyzing last week activity' },
                   { visible: showStep3, done: step3Done, label: 'Checking results' },
                 ].filter(s => s.visible).map(({done, label}, i) => (
-                  <div key={label} style={{display:'flex', alignItems:'center', gap:'7px', fontSize:'var(--ins-font-size-12)', color: done ? 'rgba(14,196,193,0.75)' : 'var(--ins-text-body)', animation:'slideUp .22s ease both', transition:'color .3s ease'}}>
+                  <div key={label} style={{display:'flex', alignItems:'center', gap:'7px', fontSize:'var(--ins-font-size-12)', color: done ? 'var(--ins-text-highlight)' : 'var(--ins-text-body)', animation:'slideUp .22s ease both', transition:'color .3s ease'}}>
                     <span style={{
                       width:'16px', height:'16px', borderRadius:'var(--ins-radius-4)', flexShrink:0,
                       display:'flex', alignItems:'center', justifyContent:'center',
@@ -1279,7 +1279,7 @@ function ChatMockAnimationInner() {
               maxWidth:'90%',
               background:'rgba(255,255,255,0.033)', border:'1px solid var(--ins-color-white-a-07)',
               borderRadius:'3px 14px 14px 14px',
-              padding:'11px 14px', fontSize:'var(--ins-font-size-12)', color:'#C8DCE4', lineHeight:'1.55',
+              padding:'11px 14px', fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-body)', lineHeight:'var(--ins-line-height-relaxed)',
             }}>
               {REPLY_LINE1.slice(0, l1chars)}
               {l1chars >= REPLY_LINE1.length && l2chars > 0 && (
@@ -1294,8 +1294,8 @@ function ChatMockAnimationInner() {
                 opacity:0, animation:'slideUp .35s ease .1s both',
               }}>
                 <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'6px'}}>
-                  <span style={{fontSize:'9px', color:'rgba(255,255,255,0.3)', fontFamily:'var(--ins-font-family-mono)', letterSpacing:'0.07em', textTransform:'uppercase'}}>MRR · Last 8 weeks</span>
-                  <span style={{fontSize:'10px', fontWeight:700, color:'#FF7070', fontFamily:'var(--ins-font-family-mono)'}}>↓ $1,240</span>
+                  <span style={{fontSize:'9px', color:'var(--ins-text-disabled)', fontFamily:'var(--ins-font-family-mono)', letterSpacing:'0.07em', textTransform:'uppercase'}}>MRR · Last 8 weeks</span>
+                  <span style={{fontSize:'10px', fontWeight:700, color:'var(--ins-status-error-fg)', fontFamily:'var(--ins-font-family-mono)'}}>↓ $1,240</span>
                 </div>
                 <svg width="100%" height="38" viewBox="0 0 240 38" preserveAspectRatio="none" style={{display:'block'}}>
                   <defs>
@@ -1312,8 +1312,8 @@ function ChatMockAnimationInner() {
                   <circle cx="240" cy="38" r="2.5" fill="#FF6B6B"/>
                 </svg>
                 <div style={{display:'flex', justifyContent:'space-between', marginTop:'var(--ins-size-1)'}}>
-                  <span style={{fontSize:'8px', color:'rgba(255,255,255,0.2)', fontFamily:'var(--ins-font-family-mono)'}}>8w ago</span>
-                  <span style={{fontSize:'8px', color:'rgba(255,255,255,0.2)', fontFamily:'var(--ins-font-family-mono)'}}>now</span>
+                  <span style={{fontSize:'8px', color:'var(--ins-text-disabled)', fontFamily:'var(--ins-font-family-mono)'}}>8w ago</span>
+                  <span style={{fontSize:'8px', color:'var(--ins-text-disabled)', fontFamily:'var(--ins-font-family-mono)'}}>now</span>
                 </div>
               </div>
             )}
@@ -1328,12 +1328,12 @@ function ChatMockAnimationInner() {
                 opacity:0, animation:'slideUp .35s ease .15s both',
               }}>
                 <div style={{display:'flex', alignItems:'center', gap:'5px', marginBottom:'7px'}}>
-                  <span style={{fontSize:'9.5px', color:'rgba(14,196,193,0.8)', fontWeight:600, letterSpacing:'0.07em', textTransform:'uppercase', fontFamily:'var(--ins-font-family-mono)'}}>⚡ Suggested actions</span>
+                  <span style={{fontSize:'var(--ins-font-size-11)', color:'var(--ins-text-highlight)', fontWeight:600, letterSpacing:'0.07em', textTransform:'uppercase', fontFamily:'var(--ins-font-family-mono)'}}>⚡ Suggested actions</span>
                 </div>
                 {ACTIONS.map((action, i) => (
                   <div key={i} style={{
                     display:'flex', alignItems:'flex-start', gap:'7px',
-                    fontSize:'11.5px', color:'#9BBEC8', lineHeight:'1.45',
+                    fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-body)', lineHeight:'1.45',
                     marginTop: i > 0 ? '5px' : '0',
                     opacity:0, animation:`fadeIn .3s ease ${0.2 + i * 0.12}s both`,
                   }}>
@@ -1352,14 +1352,14 @@ function ChatMockAnimationInner() {
         <div style={{
           background:'rgba(255,255,255,0.038)', border:'1px solid var(--ins-color-white-a-08)',
           borderRadius:'9px', padding:'10px 13px',
-          fontSize:'13.5px', color:'var(--ins-color-gray-100)',
+          fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-heading)',
           display:'flex', alignItems:'center', minHeight:'38px',
           pointerEvents:'none', userSelect:'none',
         }}>
           {inputText ? (
             <span>{inputText}</span>
           ) : (
-            <span style={{color:'var(--ins-text-disabled)', fontSize:'13px'}}>Ask anything…</span>
+            <span style={{color:'var(--ins-text-disabled)', fontSize:'var(--ins-font-size-14)'}}>Ask anything…</span>
           )}
           {showCursor && (
             <span style={{display:'inline-block',width:'1.5px',height:'15px',background:'var(--ins-text-highlight)',marginLeft:'1px',animation:'blink 1s step-end infinite',verticalAlign:'middle'}}/>
