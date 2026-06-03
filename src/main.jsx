@@ -985,7 +985,7 @@ function SubscribeBanner() {
                 Start making smarter decisions <span className="text-[var(--ins-text-highlight)]">today</span>
               </h2>
               <p className="text-sm md:text-base mb-7 max-w-lg mx-auto leading-relaxed" style={{color:'var(--ins-text-body)'}}>
-                Join 1,200+ data-driven teams. Set up in minutes, no credit card required, and cancel anytime.
+                Set up in minutes, no credit card required, and cancel anytime.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                 <Button as="a" href="/auth/sign-up/" variant="primary" size="lg">Start Free Trial</Button>
