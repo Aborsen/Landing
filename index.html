@@ -138,7 +138,7 @@
                   <div style="display:flex;justify-content:space-between"><span style="font-size:9.5px;color:var(--ins-text-inactive)">Records</span><span style="font-size:9.5px;color:var(--ins-text-body);font-family:var(--ins-font-family-mono)">12,847</span></div>
                 </div>
                 <!-- Add new -->
-                <div onclick="p0go(2)" style="background:rgba(255,255,255,.02);border:1px dashed rgba(255,255,255,.08);border-radius:var(--ins-radius-lg);padding:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;transition:border-color .15s" onmouseover="this.style.borderColor='rgba(10,152,150,.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,.08)'">
+                <div onclick="p0go(2)" style="background:var(--ins-color-white-a-02);border:1px dashed var(--ins-color-white-a-08);border-radius:var(--ins-radius-lg);padding:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;transition:border-color .15s" onmouseover="this.style.borderColor='rgba(10,152,150,.3)'" onmouseout="this.style.borderColor='var(--ins-color-white-a-08)'">
                   <div style="width:22px;height:22px;border-radius:var(--ins-radius-md);background:rgba(10,152,150,.1);border:1px solid rgba(10,152,150,.2);display:flex;align-items:center;justify-content:center">
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="rgba(14,196,193,.8)" stroke-width="1.6" stroke-linecap="round"/></svg>
                   </div>
@@ -218,11 +218,11 @@
 
             <!-- SUB-SCREEN B: Stripe OAuth -->
             <div id="p0s2" style="position:absolute;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;padding:12px;opacity:0;pointer-events:none;transition:opacity .3s ease">
-              <div id="p0modal" style="width:100%;max-width:290px;background:var(--ins-color-gray-800);border:1px solid rgba(255,255,255,.1);border-radius:var(--ins-radius-2xl);overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.8);transform:scale(.95) translateY(8px);transition:transform .4s cubic-bezier(.34,1.56,.64,1)">
+              <div id="p0modal" style="width:100%;max-width:290px;background:var(--ins-color-gray-800);border:1px solid var(--ins-color-white-a-10);border-radius:var(--ins-radius-2xl);overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.8);transform:scale(.95) translateY(8px);transition:transform .4s cubic-bezier(.34,1.56,.64,1)">
                 <!-- Header -->
-                <div style="padding:16px 16px 12px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06)">
+                <div style="padding:16px 16px 12px;text-align:center;border-bottom:1px solid var(--ins-color-white-a-06)">
                   <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px">
-                    <div style="width:32px;height:32px;border-radius:var(--ins-radius-lg);background:var(--ins-surface-page);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center">
+                    <div style="width:32px;height:32px;border-radius:var(--ins-radius-lg);background:var(--ins-surface-page);border:1px solid var(--ins-color-white-a-10);display:flex;align-items:center;justify-content:center">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="var(--ins-text-highlight)"/></svg>
                     </div>
                     <svg width="20" height="8" viewBox="0 0 20 8" fill="none"><path d="M2 4h16M13 1l3 3-3 3" stroke="rgba(255,255,255,.2)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -234,7 +234,7 @@
                   <div style="font-size:10px;color:var(--ins-text-inactive);margin-top:3px">Insightis will have access to your Stripe data</div>
                 </div>
                 <!-- Permissions -->
-                <div style="padding:11px 14px;display:flex;flex-direction:column;gap:6px;border-bottom:1px solid rgba(255,255,255,.06)">
+                <div style="padding:11px 14px;display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--ins-color-white-a-06)">
                   <div style="font-size:9px;font-weight:500;color:var(--ins-text-inactive);letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px">Access requested</div>
                   <div style="display:flex;align-items:center;gap:8px">
                     <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="flex-shrink:0"><circle cx="6.5" cy="6.5" r="5" stroke="rgba(34,197,94,.6)" stroke-width="1.1"/><path d="M4 6.5l1.8 1.8L9 4.5" stroke="var(--ins-status-success-fg)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -250,13 +250,13 @@
                   </div>
                 </div>
                 <!-- Account field -->
-                <div style="padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.06)">
+                <div style="padding:11px 14px;border-bottom:1px solid var(--ins-color-white-a-06)">
                   <div style="font-size:10px;font-weight:500;color:var(--ins-text-body);margin-bottom:5px">Stripe account</div>
-                  <div id="p0iStripe" style="width:100%;padding:7px 10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--ins-radius-md);font-size:11px;color:var(--ins-text-body);font-family:var(--ins-font-family-mono);box-sizing:border-box;min-height:30px;display:flex;align-items:center"></div>
+                  <div id="p0iStripe" style="width:100%;padding:7px 10px;background:var(--ins-color-white-a-04);border:1px solid var(--ins-color-white-a-08);border-radius:var(--ins-radius-md);font-size:11px;color:var(--ins-text-body);font-family:var(--ins-font-family-mono);box-sizing:border-box;min-height:30px;display:flex;align-items:center"></div>
                 </div>
                 <!-- Footer -->
                 <div style="padding:11px 14px;display:flex;gap:7px">
-                  <button onclick="p0go(1)" style="flex:1;padding:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--ins-radius-lg);font-size:11px;font-weight:500;color:var(--ins-text-body);cursor:pointer;font-family:var(--ins-font-family-sans)">Cancel</button>
+                  <button onclick="p0go(1)" style="flex:1;padding:8px;background:var(--ins-color-white-a-05);border:1px solid var(--ins-color-white-a-10);border-radius:var(--ins-radius-lg);font-size:11px;font-weight:500;color:var(--ins-text-body);cursor:pointer;font-family:var(--ins-font-family-sans)">Cancel</button>
                   <button id="p0ConnectBtn" onclick="p0connect()" style="flex:2;padding:8px;background:#635BFF;border:none;border-radius:var(--ins-radius-lg);font-size:11.5px;font-weight:500;color:#fff;cursor:pointer;font-family:var(--ins-font-family-sans);display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s;box-shadow:0 0 16px rgba(99,91,255,.35)">
                     <div id="p0Spinner" style="width:11px;height:11px;border:1.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none"></div>
                     <span id="p0BtnLbl">Allow access</span>
@@ -284,21 +284,21 @@
                     <div style="font-size:12px;font-weight:500;color:var(--ins-text-heading)">Stripe</div>
                     <div style="font-size:10px;color:var(--ins-text-inactive);font-family:var(--ins-font-family-mono)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="91f0f2fcf4bcf2fee3e1d1e2e5e3f8e1f4bff2fefc">[email&#160;protected]</a></div>
                   </div>
-                  <div style="display:flex;align-items:center;gap:3px;padding:2px 8px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);border-radius:var(--ins-radius-pill);font-size:9.5px;font-weight:500;color:var(--ins-status-success-fg)">
+                  <div style="display:flex;align-items:center;gap:3px;padding:2px 8px;background:var(--ins-color-status-success-bg);border:1px solid rgba(34,197,94,.2);border-radius:var(--ins-radius-pill);font-size:9.5px;font-weight:500;color:var(--ins-status-success-fg)">
                     <div style="width:4px;height:4px;border-radius:50%;background:var(--ins-status-success-fg);animation:pgGreen 1.5s infinite"></div>Live
                   </div>
                 </div>
                 <!-- What's syncing -->
                 <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:16px">
-                  <div style="display:flex;align-items:center;gap:7px;padding:7px 10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:var(--ins-radius-md);text-align:left">
+                  <div style="display:flex;align-items:center;gap:7px;padding:7px 10px;background:var(--ins-color-white-a-03);border:1px solid var(--ins-color-white-a-05);border-radius:var(--ins-radius-md);text-align:left">
                     <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><circle cx="5.5" cy="5.5" r="4" stroke="rgba(34,197,94,.5)" stroke-width="1"/><path d="M3.5 5.5l1.5 1.5L7.5 4" stroke="var(--ins-status-success-fg)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     <span style="font-size:10.5px;color:var(--ins-text-body)">Payments &amp; charges</span>
                   </div>
-                  <div style="display:flex;align-items:center;gap:7px;padding:7px 10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:var(--ins-radius-md);text-align:left">
+                  <div style="display:flex;align-items:center;gap:7px;padding:7px 10px;background:var(--ins-color-white-a-03);border:1px solid var(--ins-color-white-a-05);border-radius:var(--ins-radius-md);text-align:left">
                     <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><circle cx="5.5" cy="5.5" r="4" stroke="rgba(34,197,94,.5)" stroke-width="1"/><path d="M3.5 5.5l1.5 1.5L7.5 4" stroke="var(--ins-status-success-fg)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     <span style="font-size:10.5px;color:var(--ins-text-body)">Customers &amp; subscriptions</span>
                   </div>
-                  <div style="display:flex;align-items:center;gap:7px;padding:7px 10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:var(--ins-radius-md);text-align:left">
+                  <div style="display:flex;align-items:center;gap:7px;padding:7px 10px;background:var(--ins-color-white-a-03);border:1px solid var(--ins-color-white-a-05);border-radius:var(--ins-radius-md);text-align:left">
                     <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><circle cx="5.5" cy="5.5" r="4" stroke="rgba(34,197,94,.5)" stroke-width="1"/><path d="M3.5 5.5l1.5 1.5L7.5 4" stroke="var(--ins-status-success-fg)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     <span style="font-size:10.5px;color:var(--ins-text-body)">Revenue &amp; payouts</span>
                   </div>
@@ -427,10 +427,10 @@
           <div class="metric-name draft">Customer Acquisition Cost</div>
           <span class="draft-badge">DRAFT</span>
         </div>
-        <div><span class="short-name" id="p1cacShortName" style="color:var(--ins-text-inactive);background:rgba(255,255,255,.05)">@cac</span></div>
+        <div><span class="short-name" id="p1cacShortName" style="color:var(--ins-text-inactive);background:var(--ins-color-white-a-05)">@cac</span></div>
         <div><span class="badge marketing">Marketing</span></div>
         <div class="source-cell" style="color:var(--ins-text-inactive)">
-          <div class="src-icon" style="background:rgba(255,255,255,.07)">
+          <div class="src-icon" style="background:var(--ins-color-white-a-07)">
             <span style="color:var(--ins-text-inactive);font-size:8px">?</span>
           </div>
           Not configured
@@ -467,10 +467,10 @@
           <div class="metric-name draft">Avg Revenue Per User</div>
           <span class="draft-badge">DRAFT</span>
         </div>
-        <div><span class="short-name" style="color:var(--ins-text-inactive);background:rgba(255,255,255,.05)">@arpu</span></div>
+        <div><span class="short-name" style="color:var(--ins-text-inactive);background:var(--ins-color-white-a-05)">@arpu</span></div>
         <div><span class="badge finance">Finance</span></div>
         <div class="source-cell" style="color:var(--ins-text-inactive)">
-          <div class="src-icon" style="background:rgba(255,255,255,.07)"><span style="color:var(--ins-text-inactive);font-size:8px">?</span></div>
+          <div class="src-icon" style="background:var(--ins-color-white-a-07)"><span style="color:var(--ins-text-inactive);font-size:8px">?</span></div>
           Not configured
         </div>
         <div><button class="more-btn">···</button></div>
@@ -827,7 +827,7 @@
 
           </div><!-- /aw -->
           <!-- CURSOR outside .aw so not clipped -->
-          <svg id="p3cursor" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none;position:absolute;width:18px;height:18px;z-index:999;pointer-events:none;filter:drop-shadow(0 1px 3px rgba(0,0,0,.5))">
+          <svg id="p3cursor" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none;position:absolute;width:18px;height:18px;z-index:999;pointer-events:none;filter:drop-shadow(0 1px 3px var(--ins-color-black-a-50))">
             <path d="M2 2l9.5 5-4 1.4L5.8 13 2 2z" fill="white" stroke="#222" stroke-width=".7" stroke-linejoin="round"/>
           </svg>
         </div><!-- /sc-panel p3 -->

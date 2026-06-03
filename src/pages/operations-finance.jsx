@@ -84,7 +84,7 @@ function Hero() {
             <div style={{
               position:'relative',
               background:'linear-gradient(135deg, rgba(13,17,23,0.95) 0%, rgba(15,20,28,0.92) 100%)',
-              border:'1px solid rgba(255,255,255,0.08)',
+              border:'1px solid var(--ins-color-white-a-08)',
               borderRadius:'24px',
               padding:'24px',
               backdropFilter:'blur(24px)',
@@ -101,7 +101,7 @@ function Hero() {
               <div style={{
                 margin:'-24px -24px 16px',
                 padding:'10px 14px',
-                borderBottom:'1px solid rgba(255,255,255,0.06)',
+                borderBottom:'1px solid var(--ins-color-white-a-06)',
                 background:'rgba(255,255,255,0.015)',
                 display:'flex',
                 alignItems:'center',
@@ -129,7 +129,7 @@ function Hero() {
                   <div style={{width:'6px',height:'6px',borderRadius:'50%',background:'var(--ins-status-warning-fg)',boxShadow:'0 0 8px rgba(251,191,36,.6)'}}/>
                   <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10.5px',color:'var(--ins-text-body)',letterSpacing:'.08em',textTransform:'uppercase'}}>Q2 budget · MTD</span>
                 </div>
-                <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-status-warning-fg)',padding:'3px 9px',borderRadius:'999px',background:'rgba(251,191,36,.1)',border:'1px solid rgba(251,191,36,.3)',letterSpacing:'.08em',textTransform:'uppercase'}}>variance</span>
+                <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-status-warning-fg)',padding:'3px 9px',borderRadius:'999px',background:'var(--ins-color-status-warning-bg)',border:'1px solid rgba(251,191,36,.3)',letterSpacing:'.08em',textTransform:'uppercase'}}>variance</span>
               </div>
 
               {/* Headline + caption */}
@@ -143,7 +143,7 @@ function Hero() {
               {/* Variance butterfly chart — bars pivot from a centered "plan" baseline */}
               <div style={{
                 background:'rgba(255,255,255,.018)',
-                border:'1px solid rgba(255,255,255,.05)',
+                border:'1px solid var(--ins-color-white-a-05)',
                 borderRadius:'14px',
                 padding:'14px 14px 12px',
                 marginBottom:'14px',
@@ -191,7 +191,7 @@ function Hero() {
                         }}>{r.label}</span>
 
                         {/* Butterfly bar */}
-                        <div style={{flex:1,height:'14px',background:'rgba(255,255,255,.04)',borderRadius:'3px',position:'relative',overflow:'hidden'}}>
+                        <div style={{flex:1,height:'14px',background:'var(--ins-color-white-a-04)',borderRadius:'3px',position:'relative',overflow:'hidden'}}>
                           {/* Center "plan" line */}
                           <div style={{
                             position:'absolute',
@@ -236,7 +236,7 @@ function Hero() {
                 ].map((m,i) => (
                   <div key={i} style={{
                     background:'rgba(255,255,255,.025)',
-                    border:'1px solid rgba(255,255,255,.06)',
+                    border:'1px solid var(--ins-color-white-a-06)',
                     borderRadius:'10px',
                     padding:'10px 12px',
                   }}>
@@ -256,7 +256,7 @@ function Hero() {
               border:'1px solid rgba(251,191,36,.4)',
               borderRadius:'14px',
               padding:'10px 14px',
-              boxShadow:'0 16px 40px rgba(251,191,36,0.18), 0 8px 24px rgba(0,0,0,0.5)',
+              boxShadow:'0 16px 40px rgba(251,191,36,0.18), 0 8px 24px var(--ins-color-black-a-50)',
               backdropFilter:'blur(16px)',
               WebkitBackdropFilter:'blur(16px)',
               display:'flex',alignItems:'center',gap:'10px',
@@ -282,7 +282,7 @@ function Hero() {
               border:'1px solid rgba(9,160,157,.4)',
               borderRadius:'14px',
               padding:'12px 14px',
-              boxShadow:'0 16px 40px rgba(9,160,157,0.18), 0 8px 24px rgba(0,0,0,0.5)',
+              boxShadow:'0 16px 40px rgba(9,160,157,0.18), 0 8px 24px var(--ins-color-black-a-50)',
               backdropFilter:'blur(16px)',
               WebkitBackdropFilter:'blur(16px)',
               transform:'rotate(-2deg)',
@@ -303,8 +303,8 @@ function Hero() {
                   <div key={i} style={{display:'flex',alignItems:'center',gap:'7px'}}>
                     <div style={{
                       width:'10px',height:'10px',borderRadius:'3px',
-                      background:s.done?'rgba(14,196,193,.18)':'rgba(255,255,255,.04)',
-                      border:`1px solid ${s.done?'rgba(14,196,193,.5)':'rgba(255,255,255,.1)'}`,
+                      background:s.done?'var(--ins-color-teal-a-18)':'var(--ins-color-white-a-04)',
+                      border:`1px solid ${s.done?'rgba(14,196,193,.5)':'var(--ins-color-white-a-10)'}`,
                       display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,
                     }}>
                       {s.done && <svg width="6" height="6" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
@@ -324,7 +324,7 @@ function Hero() {
 /* ── FEATURE SPOTLIGHT VISUALS ── */
 function ChromeHeader({ label }) {
   return (
-    <div style={{padding:'14px 18px',borderBottom:'1px solid rgba(255,255,255,0.06)',display:'flex',alignItems:'center',gap:'10px',flexShrink:0,position:'relative',zIndex:1}}>
+    <div style={{padding:'14px 18px',borderBottom:'1px solid var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'10px',flexShrink:0,position:'relative',zIndex:1}}>
       <div style={{display:'flex',gap:'5px'}}>
         {['#FF5F57','#FFBD2E','#28C840'].map((c,i) => (
           <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
@@ -342,7 +342,7 @@ function SpotlightChat() {
     <div style={{
       width:'100%',
       background:'rgba(13,17,23,0.9)',
-      border:'1px solid rgba(255,255,255,0.08)',
+      border:'1px solid var(--ins-color-white-a-08)',
       borderRadius:'20px',
       overflow:'hidden',
       boxShadow:'none',
@@ -358,14 +358,14 @@ function SpotlightChat() {
           <span style={{
             fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-status-success-fg)',
             padding:'2px 8px',borderRadius:'999px',
-            background:'rgba(34,197,94,.1)',border:'1px solid rgba(34,197,94,.3)',
+            background:'var(--ins-color-status-success-bg)',border:'1px solid rgba(34,197,94,.3)',
             letterSpacing:'.08em',textTransform:'uppercase',
           }}>3 auto-answered</span>
         </div>
 
         {/* Expanded request: CFO */}
         <div style={{
-          background:'linear-gradient(135deg, rgba(9,160,157,.08) 0%, rgba(9,160,157,.02) 100%)',
+          background:'linear-gradient(135deg, var(--ins-color-teal-a-08) 0%, rgba(9,160,157,.02) 100%)',
           border:'1px solid rgba(9,160,157,.32)',
           borderRadius:'11px',
           padding:'12px 13px',
@@ -402,7 +402,7 @@ function SpotlightChat() {
             display:'flex',alignItems:'center',gap:'8px',
             fontFamily:'Geist Mono,monospace',fontSize:'11.5px',
             paddingTop:'8px',
-            borderTop:'1px dashed rgba(255,255,255,.06)',
+            borderTop:'1px dashed var(--ins-color-white-a-06)',
           }}>
             <span style={{color:'var(--ins-text-highlight)'}}>↳</span>
             <span style={{color:'var(--ins-color-gray-100)'}}>$187K</span>
@@ -421,8 +421,8 @@ function SpotlightChat() {
           <div key={i} style={{
             display:'flex',alignItems:'center',gap:'10px',
             padding:'8px 11px',
-            background:'rgba(255,255,255,.02)',
-            border:'1px solid rgba(255,255,255,.05)',
+            background:'var(--ins-color-white-a-02)',
+            border:'1px solid var(--ins-color-white-a-05)',
             borderRadius:'9px',
             marginTop: i===0 ? '0' : '5px',
           }}>
@@ -462,7 +462,7 @@ function SpotlightSemantic() {
     <div style={{
       width:'100%',
       background:'rgba(13,17,23,0.9)',
-      border:'1px solid rgba(255,255,255,0.08)',
+      border:'1px solid var(--ins-color-white-a-08)',
       borderRadius:'20px',
       overflow:'hidden',
       boxShadow:'none',
@@ -484,7 +484,7 @@ function SpotlightSemantic() {
             position:'absolute',
             left:'7px',top:'8px',bottom:'8px',
             width:'1px',
-            background:'linear-gradient(180deg, rgba(34,197,94,.5) 0%, rgba(255,255,255,.06) 30%, rgba(255,255,255,.06) 100%)',
+            background:'linear-gradient(180deg, rgba(34,197,94,.5) 0%, var(--ins-color-white-a-06) 30%, var(--ins-color-white-a-06) 100%)',
           }}/>
 
           {versions.map((v,i)=>{
@@ -496,15 +496,15 @@ function SpotlightSemantic() {
                   position:'absolute',
                   left:'-22px',top:'4px',
                   width:'15px',height:'15px',borderRadius:'50%',
-                  background: isCertified ? 'rgba(34,197,94,.15)' : 'rgba(255,255,255,.04)',
+                  background: isCertified ? 'rgba(34,197,94,.15)' : 'var(--ins-color-white-a-04)',
                   border: isCertified ? '2px solid var(--ins-status-success-fg)' : '1px solid rgba(255,255,255,.18)',
                   boxShadow: isCertified ? '0 0 0 4px rgba(34,197,94,.08)' : 'none',
                 }}/>
 
                 {/* Card */}
                 <div style={{
-                  background: isCertified ? 'linear-gradient(135deg, rgba(34,197,94,.08) 0%, rgba(34,197,94,.02) 100%)' : 'rgba(255,255,255,.02)',
-                  border: isCertified ? '1px solid rgba(34,197,94,.32)' : '1px solid rgba(255,255,255,.06)',
+                  background: isCertified ? 'linear-gradient(135deg, rgba(34,197,94,.08) 0%, rgba(34,197,94,.02) 100%)' : 'var(--ins-color-white-a-02)',
+                  border: isCertified ? '1px solid rgba(34,197,94,.32)' : '1px solid var(--ins-color-white-a-06)',
                   borderRadius:'9px',
                   padding:'9px 12px',
                   opacity: isCertified ? 1 : 0.66,
@@ -549,15 +549,15 @@ function SpotlightAnomalies() {
     {sev:'ok',   label:'Payroll on plan',       when:'Today',     why:'matches Gusto run',              tag:'payroll'},
   ];
   const sevConfig = {
-    high: {color:'var(--ins-status-error-fg)', bg:'rgba(248,113,113,.06)', border:'rgba(248,113,113,.28)', icon:'!', iconBg:'rgba(248,113,113,.18)', iconBorder:'var(--ins-status-error-fg)'},
+    high: {color:'var(--ins-status-error-fg)', bg:'var(--ins-color-red-a-06)', border:'rgba(248,113,113,.28)', icon:'!', iconBg:'rgba(248,113,113,.18)', iconBorder:'var(--ins-status-error-fg)'},
     med:  {color:'var(--ins-status-warning-fg)', bg:'rgba(251,191,36,.05)',  border:'rgba(251,191,36,.25)',  icon:'!', iconBg:'rgba(251,191,36,.16)', iconBorder:'var(--ins-status-warning-fg)'},
-    ok:   {color:'var(--ins-status-success-fg)', bg:'rgba(255,255,255,.02)', border:'rgba(255,255,255,.05)', icon:'✓', iconBg:'rgba(34,197,94,.14)',  iconBorder:'rgba(34,197,94,.5)'},
+    ok:   {color:'var(--ins-status-success-fg)', bg:'var(--ins-color-white-a-02)', border:'var(--ins-color-white-a-05)', icon:'✓', iconBg:'rgba(34,197,94,.14)',  iconBorder:'rgba(34,197,94,.5)'},
   };
   return (
     <div style={{
       width:'100%',
       background:'rgba(13,17,23,0.9)',
-      border:'1px solid rgba(255,255,255,0.08)',
+      border:'1px solid var(--ins-color-white-a-08)',
       borderRadius:'20px',
       overflow:'hidden',
       boxShadow:'none',
@@ -607,7 +607,7 @@ function SpotlightAnomalies() {
                       fontFamily:'Geist Mono,monospace',fontSize:'8.5px',
                       color:'var(--ins-text-inactive)',
                       padding:'2px 6px',borderRadius:'4px',
-                      background:'rgba(255,255,255,.04)',
+                      background:'var(--ins-color-white-a-04)',
                       letterSpacing:'.04em',
                     }}>{it.tag}</span>
                   </div>
@@ -641,7 +641,7 @@ function SpotlightStack() {
     <div style={{
       width:'100%',
       background:'rgba(13,17,23,0.9)',
-      border:'1px solid rgba(255,255,255,0.08)',
+      border:'1px solid var(--ins-color-white-a-08)',
       borderRadius:'20px',
       overflow:'hidden',
       boxShadow:'none',
@@ -708,7 +708,7 @@ function SpotlightStack() {
               }}/>
               <div style={{
                 background:'rgba(255,255,255,.022)',
-                border:'1px solid rgba(255,255,255,.06)',
+                border:'1px solid var(--ins-color-white-a-06)',
                 borderRadius:'8px',
                 padding:'8px 11px',
                 display:'flex',alignItems:'center',gap:'10px',
@@ -736,7 +736,7 @@ function SpotlightStack() {
         <div style={{
           marginTop:'12px',
           paddingTop:'10px',
-          borderTop:'1px dashed rgba(255,255,255,.06)',
+          borderTop:'1px dashed var(--ins-color-white-a-06)',
           display:'flex',alignItems:'center',justifyContent:'space-between',
           fontFamily:'Geist Mono,monospace',fontSize:'9.5px',color:'var(--ins-text-inactive)',
           letterSpacing:'.04em',
@@ -889,7 +889,7 @@ function UseCases() {
             padding:'32px 48px',overflow:'hidden',
             display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'24px',
             flexWrap:'wrap',
-            background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)',
+            background:'linear-gradient(135deg,var(--ins-color-promo-a) 0%,var(--ins-color-promo-b) 50%,var(--ins-color-promo-a) 100%)',
           }}>
             <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
             <div style={{flex:'1 1 360px',minWidth:0}}>
@@ -918,16 +918,16 @@ function UseCases() {
             <div key={i}
               style={{
                 background:'rgba(13,17,23,.6)',
-                border:'1px solid rgba(255,255,255,.06)',
+                border:'1px solid var(--ins-color-white-a-06)',
                 borderRadius:'16px',padding:'24px',
                 position:'relative',overflow:'hidden',
                 transition:'all .2s',
               }}
               onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-              onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}
+              onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-color-white-a-06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}
             >
               <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
-              <div style={{width:'38px',height:'38px',borderRadius:'10px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'14px'}}>
+              <div style={{width:'38px',height:'38px',borderRadius:'10px',background:'var(--ins-color-teal-a-08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'14px'}}>
                 {c.icon}
               </div>
               <h3 style={{fontSize:'15px',fontWeight:600,color:'var(--ins-text-heading-soft)',marginBottom:'6px'}}>{c.title}</h3>
@@ -1119,14 +1119,14 @@ function RelevantIntegrations() {
             display:'inline-flex',alignItems:'center',gap:'6px',
             fontSize:'13px',color:'var(--ins-text-body)',
             textDecoration:'none',
-            border:'1px solid rgba(255,255,255,.07)',
+            border:'1px solid var(--ins-color-white-a-07)',
             borderRadius:'999px',
             padding:'8px 20px',
-            background:'rgba(255,255,255,.02)',
+            background:'var(--ins-color-white-a-02)',
             transition:'all .15s',
           }}
           onMouseEnter={e=>{e.currentTarget.style.color='var(--ins-text-highlight)';e.currentTarget.style.borderColor='rgba(9,160,157,.3)';}}
-          onMouseLeave={e=>{e.currentTarget.style.color='var(--ins-text-body)';e.currentTarget.style.borderColor='rgba(255,255,255,.07)';}}
+          onMouseLeave={e=>{e.currentTarget.style.color='var(--ins-text-body)';e.currentTarget.style.borderColor='var(--ins-color-white-a-07)';}}
           >
             See all 200+ integrations
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>

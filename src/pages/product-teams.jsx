@@ -87,7 +87,7 @@ function Hero() {
             <div style={{
               position:'relative',
               background:'linear-gradient(135deg, rgba(13,17,23,0.95) 0%, rgba(15,20,28,0.92) 100%)',
-              border:'1px solid rgba(255,255,255,0.08)',
+              border:'1px solid var(--ins-color-white-a-08)',
               borderRadius:'24px',
               padding:'24px',
               backdropFilter:'blur(24px)',
@@ -104,7 +104,7 @@ function Hero() {
               <div style={{
                 margin:'-24px -24px 16px',
                 padding:'10px 14px',
-                borderBottom:'1px solid rgba(255,255,255,0.06)',
+                borderBottom:'1px solid var(--ins-color-white-a-06)',
                 background:'rgba(255,255,255,0.015)',
                 display:'flex',
                 alignItems:'center',
@@ -129,15 +129,15 @@ function Hero() {
               {/* Header */}
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'14px'}}>
                 <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
-                  <div style={{width:'6px',height:'6px',borderRadius:'50%',background:'#A78BFA',boxShadow:'0 0 8px rgba(167,139,250,.6)'}}/>
+                  <div style={{width:'6px',height:'6px',borderRadius:'50%',background:'var(--ins-color-purple-400)',boxShadow:'0 0 8px rgba(167,139,250,.6)'}}/>
                   <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10.5px',color:'var(--ins-text-body)',letterSpacing:'.08em',textTransform:'uppercase'}}>Funnel · May cohort</span>
                 </div>
-                <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'#A78BFA',padding:'3px 9px',borderRadius:'999px',background:'rgba(167,139,250,.1)',border:'1px solid rgba(167,139,250,.25)',letterSpacing:'.08em',textTransform:'uppercase'}}>cohort</span>
+                <span style={{fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-color-purple-400)',padding:'3px 9px',borderRadius:'999px',background:'rgba(167,139,250,.1)',border:'1px solid rgba(167,139,250,.25)',letterSpacing:'.08em',textTransform:'uppercase'}}>cohort</span>
               </div>
 
               {/* Headline + caption */}
               <h3 style={{fontSize:'17px',fontWeight:500,color:'var(--ins-text-heading-soft)',marginBottom:'6px',letterSpacing:'-.015em',lineHeight:1.35}}>
-                Onboarding cliff at <span style={{color:'#A78BFA'}}>step 3</span>
+                Onboarding cliff at <span style={{color:'var(--ins-color-purple-400)'}}>step 3</span>
               </h3>
               <p className="ins-text-body-sm" style={{marginBottom:'16px'}}>
                 <span style={{color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',fontSize:'11.5px'}}>workspace_created</span> dropped <span style={{color:'var(--ins-status-error-fg)',fontWeight:500}}>−41%</span>. 87% on mobile. New invite flow shipped Tuesday.
@@ -146,7 +146,7 @@ function Hero() {
               {/* Funnel breakdown */}
               <div style={{
                 background:'rgba(255,255,255,.018)',
-                border:'1px solid rgba(255,255,255,.05)',
+                border:'1px solid var(--ins-color-white-a-05)',
                 borderRadius:'14px',
                 padding:'14px 14px 12px',
                 marginBottom:'14px',
@@ -171,13 +171,13 @@ function Hero() {
                         width:'112px',flexShrink:0,
                         whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',
                       }}>{s.label}</span>
-                      <div style={{flex:1,height:'14px',background:'rgba(255,255,255,.04)',borderRadius:'3px',overflow:'hidden',position:'relative'}}>
+                      <div style={{flex:1,height:'14px',background:'var(--ins-color-white-a-04)',borderRadius:'3px',overflow:'hidden',position:'relative'}}>
                         <div style={{
                           width:`${s.pct}%`,
                           height:'100%',
                           background:s.cliff
                             ? 'linear-gradient(90deg, rgba(248,113,113,.45), rgba(248,113,113,.75))'
-                            : 'linear-gradient(90deg, rgba(14,196,193,.3), rgba(14,196,193,.6))',
+                            : 'linear-gradient(90deg, var(--ins-color-teal-a-30), var(--ins-color-teal-a-60))',
                           borderRadius:'3px',
                         }}/>
                       </div>
@@ -196,12 +196,12 @@ function Hero() {
               <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'8px'}}>
                 {[
                   {label:'Cliff step', val:'#3',       color:'var(--ins-status-error-fg)'},
-                  {label:'Cohort',     val:'May new',  color:'#A78BFA'},
+                  {label:'Cohort',     val:'May new',  color:'var(--ins-color-purple-400)'},
                   {label:'Mobile',     val:'87%',      color:'var(--ins-text-highlight)'},
                 ].map((m,i) => (
                   <div key={i} style={{
                     background:'rgba(255,255,255,.025)',
-                    border:'1px solid rgba(255,255,255,.06)',
+                    border:'1px solid var(--ins-color-white-a-06)',
                     borderRadius:'10px',
                     padding:'10px 12px',
                   }}>
@@ -221,7 +221,7 @@ function Hero() {
               border:'1px solid rgba(167,139,250,.4)',
               borderRadius:'14px',
               padding:'10px 14px',
-              boxShadow:'0 16px 40px rgba(167,139,250,0.18), 0 8px 24px rgba(0,0,0,0.5)',
+              boxShadow:'0 16px 40px rgba(167,139,250,0.18), 0 8px 24px var(--ins-color-black-a-50)',
               backdropFilter:'blur(16px)',
               WebkitBackdropFilter:'blur(16px)',
               display:'flex',alignItems:'center',gap:'10px',
@@ -229,12 +229,12 @@ function Hero() {
               zIndex:2,
             }}>
               <div style={{
-                width:'8px',height:'8px',borderRadius:'50%',background:'#A78BFA',
+                width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-color-purple-400)',
                 flexShrink:0,
               }}/>
               <div>
                 <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace',letterSpacing:'.08em',textTransform:'uppercase'}}>Experiment</div>
-                <div style={{fontSize:'12.5px',color:'#A78BFA',fontWeight:500,fontFamily:'Geist Mono,monospace',marginTop:'1px'}}>onboarding_v3</div>
+                <div style={{fontSize:'12.5px',color:'var(--ins-color-purple-400)',fontWeight:500,fontFamily:'Geist Mono,monospace',marginTop:'1px'}}>onboarding_v3</div>
               </div>
             </div>
 
@@ -247,7 +247,7 @@ function Hero() {
               border:'1px solid rgba(9,160,157,.4)',
               borderRadius:'14px',
               padding:'12px 14px',
-              boxShadow:'0 16px 40px rgba(9,160,157,0.18), 0 8px 24px rgba(0,0,0,0.5)',
+              boxShadow:'0 16px 40px rgba(9,160,157,0.18), 0 8px 24px var(--ins-color-black-a-50)',
               backdropFilter:'blur(16px)',
               WebkitBackdropFilter:'blur(16px)',
               transform:'rotate(-2deg)',
@@ -454,7 +454,7 @@ function RelevantIntegrations() {
       </svg>,
     },
     {
-      name:'Notion', bg:'rgba(255,255,255,.06)', desc:'Specs & docs',
+      name:'Notion', bg:'var(--ins-color-white-a-06)', desc:'Specs & docs',
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
         <rect x="3" y="3" width="18" height="18" rx="2.5" fill="#fff" fillOpacity=".06" stroke="var(--ins-color-gray-100)" strokeWidth="1.4"/>
         <path d="M8 7v10M8 7l8 10M16 7v10" stroke="var(--ins-color-gray-100)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
@@ -493,14 +493,14 @@ function RelevantIntegrations() {
             display:'inline-flex',alignItems:'center',gap:'6px',
             fontSize:'13px',color:'var(--ins-text-body)',
             textDecoration:'none',
-            border:'1px solid rgba(255,255,255,.07)',
+            border:'1px solid var(--ins-color-white-a-07)',
             borderRadius:'999px',
             padding:'8px 20px',
-            background:'rgba(255,255,255,.02)',
+            background:'var(--ins-color-white-a-02)',
             transition:'all .15s',
           }}
           onMouseEnter={e=>{e.currentTarget.style.color='var(--ins-text-highlight)';e.currentTarget.style.borderColor='rgba(9,160,157,.3)';}}
-          onMouseLeave={e=>{e.currentTarget.style.color='var(--ins-text-body)';e.currentTarget.style.borderColor='rgba(255,255,255,.07)';}}
+          onMouseLeave={e=>{e.currentTarget.style.color='var(--ins-text-body)';e.currentTarget.style.borderColor='var(--ins-color-white-a-07)';}}
           >
             See all 200+ integrations
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -643,10 +643,10 @@ function Positioning() {
         <a href="#spotlights" style={{
           display:'inline-flex',alignItems:'center',gap:'8px',
           padding:'10px 20px',borderRadius:'999px',
-          border:'1px solid rgba(255,255,255,.12)',
+          border:'1px solid var(--ins-color-white-a-12)',
           color:'var(--ins-text-body)',fontSize:'14px',fontWeight:400,
           textDecoration:'none',
-          background:'rgba(255,255,255,.03)',
+          background:'var(--ins-color-white-a-03)',
           transition:'all .2s',
         }}>
           See how it works
@@ -663,7 +663,7 @@ function SpotlightChat() {
     <div style={{
       width:'100%',
       background:'rgba(13,17,23,0.9)',
-      border:'1px solid rgba(255,255,255,0.08)',
+      border:'1px solid var(--ins-color-white-a-08)',
       borderRadius:'20px',
       overflow:'hidden',
       boxShadow:'none',
@@ -693,8 +693,8 @@ function SpotlightChat() {
               {label:'Free',    val:'18%',   color:'var(--ins-status-error-fg)', sub:'soft spot'},
             ].map((k,i)=>(
               <div key={i} style={{
-                background:'rgba(255,255,255,.03)',
-                border:'1px solid rgba(255,255,255,.06)',
+                background:'var(--ins-color-white-a-03)',
+                border:'1px solid var(--ins-color-white-a-06)',
                 borderRadius:'9px',
                 padding:'8px 10px',
               }}>
@@ -709,7 +709,7 @@ function SpotlightChat() {
           <div style={{
             display:'flex',alignItems:'center',gap:'6px',
             paddingTop:'8px',
-            borderTop:'1px solid rgba(255,255,255,.05)',
+            borderTop:'1px solid var(--ins-color-white-a-05)',
             fontFamily:'Geist Mono,monospace',fontSize:'10px',color:'var(--ins-text-inactive)',
           }}>
             <span style={{letterSpacing:'.06em',textTransform:'uppercase'}}>Source</span>
@@ -725,7 +725,7 @@ function SpotlightChat() {
 
 function ChromeHeader({ label }) {
   return (
-    <div style={{padding:'14px 18px',borderBottom:'1px solid rgba(255,255,255,0.06)',display:'flex',alignItems:'center',gap:'10px',flexShrink:0,position:'relative',zIndex:1}}>
+    <div style={{padding:'14px 18px',borderBottom:'1px solid var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'10px',flexShrink:0,position:'relative',zIndex:1}}>
       <div style={{display:'flex',gap:'5px'}}>
         {['#FF5F57','#FFBD2E','#28C840'].map((c,i) => (
           <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
@@ -748,7 +748,7 @@ function SpotlightSemantic() {
     <div style={{
       width:'100%',
       background:'rgba(13,17,23,0.9)',
-      border:'1px solid rgba(255,255,255,0.08)',
+      border:'1px solid var(--ins-color-white-a-08)',
       borderRadius:'20px',
       overflow:'hidden',
       boxShadow:'none',
@@ -811,7 +811,7 @@ function SpotlightSemantic() {
             fontSize:'11.5px',
             color:'var(--ins-text-body)',
             background:'rgba(0,0,0,.2)',
-            border:'1px solid rgba(255,255,255,.04)',
+            border:'1px solid var(--ins-color-white-a-04)',
             borderRadius:'7px',
             padding:'9px 10px',
             marginBottom:'10px',
@@ -839,7 +839,7 @@ function SpotlightAnomalies() {
     <div style={{
       width:'100%',
       background:'rgba(13,17,23,0.9)',
-      border:'1px solid rgba(255,255,255,0.08)',
+      border:'1px solid var(--ins-color-white-a-08)',
       borderRadius:'20px',
       overflow:'hidden',
       boxShadow:'none',
@@ -857,14 +857,14 @@ function SpotlightAnomalies() {
         {/* Multi-cohort line chart */}
         <div style={{
           background:'rgba(255,255,255,.018)',
-          border:'1px solid rgba(255,255,255,.05)',
+          border:'1px solid var(--ins-color-white-a-05)',
           borderRadius:'10px',
           padding:'12px 12px 10px',
           marginBottom:'12px',
         }}>
           <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'8px'}}>
             <div style={{display:'flex',gap:'10px',fontFamily:'Geist Mono,monospace',fontSize:'9.5px',alignItems:'center'}}>
-              <span style={{color:'#A78BFA',display:'inline-flex',alignItems:'center',gap:'4px'}}><span style={{width:'10px',height:'2px',background:'#A78BFA',borderRadius:'1px'}}/>Apr</span>
+              <span style={{color:'var(--ins-color-purple-400)',display:'inline-flex',alignItems:'center',gap:'4px'}}><span style={{width:'10px',height:'2px',background:'var(--ins-color-purple-400)',borderRadius:'1px'}}/>Apr</span>
               <span style={{color:'var(--ins-status-error-fg)',display:'inline-flex',alignItems:'center',gap:'4px'}}><span style={{width:'10px',height:'2px',background:'var(--ins-status-error-fg)',borderRadius:'1px'}}/>May</span>
               <span style={{color:'var(--ins-text-highlight)',display:'inline-flex',alignItems:'center',gap:'4px'}}><span style={{width:'10px',height:'2px',background:'var(--ins-text-highlight)',borderRadius:'1px'}}/>Jun</span>
             </div>
@@ -889,8 +889,8 @@ function SpotlightAnomalies() {
             <div key={i} style={{
               display:'flex',alignItems:'center',gap:'10px',
               padding:'7px 11px',
-              background:r.bad?'rgba(248,113,113,.05)':'rgba(255,255,255,.02)',
-              border:`1px solid ${r.bad?'rgba(248,113,113,.2)':'rgba(255,255,255,.05)'}`,
+              background:r.bad?'rgba(248,113,113,.05)':'var(--ins-color-white-a-02)',
+              border:`1px solid ${r.bad?'rgba(248,113,113,.2)':'var(--ins-color-white-a-05)'}`,
               borderRadius:'8px',
             }}>
               <span style={{
@@ -940,7 +940,7 @@ function SpotlightStack() {
     <div style={{
       width:'100%',
       background:'rgba(13,17,23,0.9)',
-      border:'1px solid rgba(255,255,255,0.08)',
+      border:'1px solid var(--ins-color-white-a-08)',
       borderRadius:'20px',
       boxShadow:'none',
       position:'relative',
@@ -1013,7 +1013,7 @@ function SpotlightStack() {
             padding:'14px 12px',
             display:'flex',flexDirection:'column',alignItems:'center',gap:'10px',
             textAlign:'center',
-            boxShadow:'0 8px 24px rgba(9,160,157,.12), inset 0 1px 0 rgba(255,255,255,.05)',
+            boxShadow:'0 8px 24px rgba(9,160,157,.12), inset 0 1px 0 var(--ins-color-white-a-05)',
           }}>
             <div style={{
               width:'42px',height:'42px',borderRadius:'10px',
@@ -1180,7 +1180,7 @@ function UseCases() {
             padding:'32px 48px',overflow:'hidden',
             display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'24px',
             flexWrap:'wrap',
-            background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)',
+            background:'linear-gradient(135deg,var(--ins-color-promo-a) 0%,var(--ins-color-promo-b) 50%,var(--ins-color-promo-a) 100%)',
           }}>
             <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
             <div style={{flex:'1 1 360px',minWidth:0}}>
@@ -1209,16 +1209,16 @@ function UseCases() {
             <div key={i}
               style={{
                 background:'rgba(13,17,23,.6)',
-                border:'1px solid rgba(255,255,255,.06)',
+                border:'1px solid var(--ins-color-white-a-06)',
                 borderRadius:'16px',padding:'24px',
                 position:'relative',overflow:'hidden',
                 transition:'all .2s',
               }}
               onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-              onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}
+              onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-color-white-a-06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}
             >
               <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
-              <div style={{width:'38px',height:'38px',borderRadius:'10px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'14px'}}>
+              <div style={{width:'38px',height:'38px',borderRadius:'10px',background:'var(--ins-color-teal-a-08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'14px'}}>
                 {c.icon}
               </div>
               <h3 style={{fontSize:'15px',fontWeight:600,color:'var(--ins-text-heading-soft)',marginBottom:'6px'}}>{c.title}</h3>

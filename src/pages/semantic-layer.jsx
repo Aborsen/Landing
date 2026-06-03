@@ -126,7 +126,7 @@ function SemanticLayerMockAnimation() {
     }}>
 
       {/* ── Header ── */}
-      <div style={{padding:'12px 18px', borderBottom:'1px solid rgba(255,255,255,0.07)', display:'flex', alignItems:'center', gap:'10px', background:'rgba(255,255,255,0.015)', flexShrink:0}}>
+      <div style={{padding:'12px 18px', borderBottom:'1px solid var(--ins-color-white-a-07)', display:'flex', alignItems:'center', gap:'10px', background:'rgba(255,255,255,0.015)', flexShrink:0}}>
         <div style={{display:'flex', gap:'6px'}}>
           {['#FF5F57','#FFBD2E','#28C840'].map((c,i) => (
             <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
@@ -173,7 +173,7 @@ function SemanticLayerMockAnimation() {
                   display:'grid', gridTemplateColumns:'82px 1fr 82px 12px', alignItems:'center', gap:'10px',
                   padding:'5px 10px', borderRadius:'8px',
                   background: isConflict ? 'rgba(255,150,70,0.045)' : 'rgba(255,255,255,0.025)',
-                  border: isConflict ? '1px solid rgba(255,150,70,0.22)' : '1px solid rgba(255,255,255,0.06)',
+                  border: isConflict ? '1px solid rgba(255,150,70,0.22)' : '1px solid var(--ins-color-white-a-06)',
                   animation:'slideUp .28s ease both',
                   transition:'background .35s ease, border-color .35s ease',
                 }}>
@@ -214,10 +214,10 @@ function SemanticLayerMockAnimation() {
           <div style={{display:'flex', flexDirection:'column', alignItems:'center', gap:'10px', marginBottom:'22px'}}>
             <div style={{
               width:'52px', height:'52px', borderRadius:'14px',
-              background:'radial-gradient(circle, rgba(14,196,193,0.18) 0%, rgba(14,196,193,0.04) 70%)',
+              background:'radial-gradient(circle, var(--ins-color-teal-a-18) 0%, var(--ins-color-teal-a-04) 70%)',
               border:'1px solid rgba(14,196,193,0.22)',
               display:'flex', alignItems:'center', justifyContent:'center',
-              boxShadow:'0 0 32px rgba(14,196,193,0.18), inset 0 0 20px rgba(14,196,193,0.04)',
+              boxShadow:'0 0 32px var(--ins-color-teal-a-18), inset 0 0 20px var(--ins-color-teal-a-04)',
               animation:'corePulse 2.4s ease-in-out infinite',
             }}>
               <InsightisIcon size={26}/>
@@ -250,7 +250,7 @@ function SemanticLayerMockAnimation() {
                   display:'flex', alignItems:'center', gap:'10px',
                   padding:'8px 12px', borderRadius:'8px',
                   background: done ? 'rgba(14,196,193,0.05)' : (active ? 'rgba(14,196,193,0.025)' : 'rgba(255,255,255,0.015)'),
-                  border: done ? '1px solid rgba(14,196,193,0.22)' : (active ? '1px solid rgba(14,196,193,0.14)' : '1px solid rgba(255,255,255,0.05)'),
+                  border: done ? '1px solid rgba(14,196,193,0.22)' : (active ? '1px solid rgba(14,196,193,0.14)' : '1px solid var(--ins-color-white-a-05)'),
                   opacity: shown ? 1 : 0.35,
                   transform: shown ? 'translateX(0)' : 'translateX(-4px)',
                   transition:'all .35s ease',
@@ -259,8 +259,8 @@ function SemanticLayerMockAnimation() {
                     width:'18px', height:'18px', borderRadius:'50%', flexShrink:0,
                     display:'flex', alignItems:'center', justifyContent:'center',
                     fontSize:'9px', fontWeight:800,
-                    background: done ? 'rgba(14,196,193,0.18)' : (active ? 'transparent' : 'rgba(255,255,255,0.04)'),
-                    border: done ? '1px solid rgba(14,196,193,0.45)' : (active ? '1.5px solid rgba(14,196,193,0.7)' : '1px solid rgba(255,255,255,0.1)'),
+                    background: done ? 'var(--ins-color-teal-a-18)' : (active ? 'transparent' : 'var(--ins-color-white-a-04)'),
+                    border: done ? '1px solid rgba(14,196,193,0.45)' : (active ? '1.5px solid rgba(14,196,193,0.7)' : '1px solid var(--ins-color-white-a-10)'),
                     color: done ? 'var(--ins-text-highlight)' : (active ? 'var(--ins-text-highlight)' : 'var(--ins-text-inactive)'),
                     transition:'all .3s ease',
                     animation: active ? 'pulse 1.3s ease-in-out infinite' : 'none',
@@ -315,7 +315,7 @@ function SemanticLayerMockAnimation() {
                   <span style={{fontSize:'10.5px', color:'rgba(255,255,255,0.4)', fontFamily:'Geist Mono,monospace', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}>{m.source}</span>
                   <span style={{
                     width:'14px', height:'14px', borderRadius:'50%',
-                    background:'rgba(14,196,193,0.15)', border:'1px solid rgba(14,196,193,0.4)',
+                    background:'var(--ins-color-teal-a-15)', border:'1px solid var(--ins-color-teal-a-40)',
                     display:'flex', alignItems:'center', justifyContent:'center',
                     fontSize:'8px', fontWeight:800, color:'var(--ins-text-highlight)',
                   }}><CheckIcon size={8} color="currentColor" /></span>
@@ -567,16 +567,16 @@ const SHOWCASE_CSS = `
 .sc-stepper{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;position:relative;padding:0 8px}
 .sc-step{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;background:transparent;border:none;color:inherit;padding:0 6px;font-family:inherit}
 .sc-step-connector{position:absolute;top:28px;left:calc(50% + 36px);right:calc(-50% + 36px);height:1px;background:linear-gradient(90deg,rgba(9,160,157,.45) 0%,rgba(9,160,157,.18) 100%);z-index:0}
-.sc-circle{position:relative;z-index:1;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:14px;border:1px solid rgba(9,160,157,.35);background:radial-gradient(circle at 50% 30%,rgba(9,160,157,.10) 0%,rgba(13,17,23,.95) 75%);box-shadow:0 0 18px rgba(9,160,157,.10), inset 0 1px 0 rgba(255,255,255,.05);transition:border-color .25s,box-shadow .25s,background .25s}
-.sc-step.active .sc-circle{border-color:rgba(9,160,157,.7);background:radial-gradient(circle at 50% 30%,rgba(9,160,157,.22) 0%,rgba(13,17,23,.95) 75%);box-shadow:0 0 28px rgba(9,160,157,.25), inset 0 1px 0 rgba(255,255,255,.06)}
+.sc-circle{position:relative;z-index:1;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:14px;border:1px solid rgba(9,160,157,.35);background:radial-gradient(circle at 50% 30%,rgba(9,160,157,.10) 0%,rgba(13,17,23,.95) 75%);box-shadow:0 0 18px rgba(9,160,157,.10), inset 0 1px 0 var(--ins-color-white-a-05);transition:border-color .25s,box-shadow .25s,background .25s}
+.sc-step.active .sc-circle{border-color:rgba(9,160,157,.7);background:radial-gradient(circle at 50% 30%,rgba(9,160,157,.22) 0%,rgba(13,17,23,.95) 75%);box-shadow:0 0 28px rgba(9,160,157,.25), inset 0 1px 0 var(--ins-color-white-a-06)}
 .sc-num{font-size:18px;font-weight:600;font-family:var(--ins-font-family-sans);letter-spacing:-.02em;color:rgba(14,196,193,.55);font-variant-numeric:tabular-nums;transition:color .25s}
 .sc-step.active .sc-num{color:var(--ins-text-highlight)}
-.sc-step-label{font-size:13.5px;font-weight:600;letter-spacing:-.01em;color:rgba(255,255,255,.45);margin-bottom:6px;transition:color .25s;line-height:1.25}
+.sc-step-label{font-size:13.5px;font-weight:600;letter-spacing:-.01em;color:var(--ins-color-white-a-45);margin-bottom:6px;transition:color .25s;line-height:1.25}
 .sc-step.active .sc-step-label{color:#fff}
 .sc-step-desc{font-size:11.5px;color:rgba(255,255,255,.4);line-height:1.5;max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .35s ease}
 .sc-step.active .sc-step-desc{max-height:60px;opacity:1;color:rgba(255,255,255,.55)}
-.sc-panel-wrap{position:relative;background:radial-gradient(ellipse 100% 80% at 30% 30%,rgba(10,152,150,.06) 0%,transparent 60%),rgba(10,14,19,.97);border-radius:16px;border:1px solid rgba(255,255,255,.07);box-shadow:0 4px 6px rgba(0,0,0,.5),0 32px 100px rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;padding:28px;overflow:hidden;height:520px}
-.sc-panel-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(10,152,150,.6),rgba(255,255,255,.1),rgba(10,152,150,.6),transparent);z-index:20;pointer-events:none}
+.sc-panel-wrap{position:relative;background:radial-gradient(ellipse 100% 80% at 30% 30%,rgba(10,152,150,.06) 0%,transparent 60%),var(--ins-color-page-a-97);border-radius:16px;border:1px solid var(--ins-color-white-a-07);box-shadow:0 4px 6px var(--ins-color-black-a-50),0 32px 100px rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;padding:28px;overflow:hidden;height:520px}
+.sc-panel-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(10,152,150,.6),var(--ins-color-white-a-10),rgba(10,152,150,.6),transparent);z-index:20;pointer-events:none}
 @media (max-width:768px){
   .sc-stepper{grid-template-columns:1fr;gap:24px}
   .sc-step-connector{display:none}
@@ -597,12 +597,12 @@ function Panel1() {
   const CAT_TEXT   = { Marketing:'var(--ins-text-highlight)', RevOps:'#8b7cf8' };
 
   return (
-    <div style={{width:'100%',background:'rgba(10,14,19,.95)',border:'1px solid rgba(255,255,255,.08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none'}}>
+    <div style={{width:'100%',background:'rgba(10,14,19,.95)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none'}}>
       {/* Toolbar */}
-      <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'10px 16px',background:'rgba(255,255,255,.02)',borderBottom:'1px solid rgba(255,255,255,.06)'}}>
+      <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'10px 16px',background:'var(--ins-color-white-a-02)',borderBottom:'1px solid var(--ins-color-white-a-06)'}}>
         <div style={{display:'flex',gap:5}}>
           {['All 12','Marketing 10','RevOps 2'].map((l,i)=>(
-            <div key={i} style={{padding:'3px 10px',borderRadius:'999px',fontSize:'11px',fontWeight:600,fontFamily:'Geist Mono,monospace',background:i===0?'var(--mint)':'rgba(255,255,255,.04)',color:i===0?'#fff':'rgba(255,255,255,.4)',border:`1px solid ${i===0?'var(--mint)':'rgba(255,255,255,.07)'}`}}>{l}</div>
+            <div key={i} style={{padding:'3px 10px',borderRadius:'999px',fontSize:'11px',fontWeight:600,fontFamily:'Geist Mono,monospace',background:i===0?'var(--mint)':'var(--ins-color-white-a-04)',color:i===0?'#fff':'rgba(255,255,255,.4)',border:`1px solid ${i===0?'var(--mint)':'var(--ins-color-white-a-07)'}`}}>{l}</div>
           ))}
         </div>
         <div style={{display:'inline-flex',alignItems:'center',gap:'6px',padding:'5px 12px',background:'rgba(9,160,157,.1)',border:'1px solid rgba(9,160,157,.3)',borderRadius:'8px',fontSize:'11.5px',fontWeight:600,color:'var(--ins-text-highlight)',cursor:'pointer'}}>
@@ -611,20 +611,20 @@ function Panel1() {
         </div>
       </div>
       {/* Table header */}
-      <div style={{display:'grid',gridTemplateColumns:'40px 1fr 100px 90px 110px 36px',padding:'6px 16px',borderBottom:'1px solid rgba(255,255,255,.05)'}}>
+      <div style={{display:'grid',gridTemplateColumns:'40px 1fr 100px 90px 110px 36px',padding:'6px 16px',borderBottom:'1px solid var(--ins-color-white-a-05)'}}>
         {['','Metric Name','Short Name','Category','Source',''].map((h,i)=>(
           <div key={i} style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',fontWeight:600,color:'rgba(255,255,255,.4)',textTransform:'uppercase',letterSpacing:'.08em'}}>{h}</div>
         ))}
       </div>
       {/* Rows */}
       {metrics.map((m,i)=>(
-        <div key={i} style={{display:'grid',gridTemplateColumns:'40px 1fr 100px 90px 110px 36px',padding:'9px 16px',borderBottom:'1px solid rgba(255,255,255,.03)',alignItems:'center',background:i===0?'rgba(9,160,157,.05)':'transparent'}}>
-          <div style={{width:'28px',height:'16px',borderRadius:'8px',background:m.active?'rgba(9,160,157,.15)':'rgba(255,255,255,.06)',border:`1px solid ${m.active?'rgba(9,160,157,.4)':'rgba(255,255,255,.1)'}`,position:'relative'}}>
+        <div key={i} style={{display:'grid',gridTemplateColumns:'40px 1fr 100px 90px 110px 36px',padding:'9px 16px',borderBottom:'1px solid var(--ins-color-white-a-03)',alignItems:'center',background:i===0?'rgba(9,160,157,.05)':'transparent'}}>
+          <div style={{width:'28px',height:'16px',borderRadius:'8px',background:m.active?'rgba(9,160,157,.15)':'var(--ins-color-white-a-06)',border:`1px solid ${m.active?'rgba(9,160,157,.4)':'var(--ins-color-white-a-10)'}`,position:'relative'}}>
             <div style={{position:'absolute',top:'2px',width:'10px',height:'10px',borderRadius:'50%',background:m.active?'var(--ins-text-highlight)':'rgba(255,255,255,.25)',transition:'left .2s',left:m.active?'14px':'2px'}}/>
           </div>
           <div style={{fontSize:'12px',color:'rgba(232,242,245,.85)',fontWeight:500,whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',paddingRight:'8px'}}>{m.name}</div>
           <div style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-highlight)',background:'rgba(9,160,157,.07)',padding:'2px 6px',borderRadius:'4px',width:'fit-content'}}>{m.short}</div>
-          <div style={{fontSize:'11px',padding:'2px 8px',borderRadius:'4px',background:CAT_COLORS[m.cat]||'rgba(255,255,255,.06)',color:CAT_TEXT[m.cat]||'var(--ins-text-body)',width:'fit-content'}}>{m.cat}</div>
+          <div style={{fontSize:'11px',padding:'2px 8px',borderRadius:'4px',background:CAT_COLORS[m.cat]||'var(--ins-color-white-a-06)',color:CAT_TEXT[m.cat]||'var(--ins-text-body)',width:'fit-content'}}>{m.cat}</div>
           <div style={{fontSize:'11px',color:'rgba(255,255,255,.4)',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{m.src}</div>
           <div style={{color:'rgba(255,255,255,.2)',fontSize:'14px',cursor:'pointer'}}>···</div>
         </div>
@@ -646,7 +646,7 @@ function Panel2() {
   const srcs   = ['Google Analytics','Stripe','HubSpot'];
 
   return (
-    <div style={{width:'100%',maxWidth:'420px',background:'rgba(10,14,19,.95)',border:'1px solid rgba(255,255,255,.08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'20px'}}>
+    <div style={{width:'100%',maxWidth:'420px',background:'rgba(10,14,19,.95)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'20px'}}>
       <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'16px'}}>
         <div style={{width:'22px',height:'22px',borderRadius:'6px',background:'rgba(9,160,157,.12)',border:'1px solid rgba(9,160,157,.25)',display:'flex',alignItems:'center',justifyContent:'center'}}>
           <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z" stroke="var(--ins-text-highlight)" strokeWidth="1.2" strokeLinejoin="round"/></svg>
@@ -669,7 +669,7 @@ function Panel2() {
           const done = step > i;
           const active = step === i;
           return (
-            <div key={i} style={{display:'flex',alignItems:'center',gap:'8px',padding:'9px 12px',borderRadius:'10px',border:`1px solid ${done?'rgba(9,160,157,.3)':active?'rgba(9,160,157,.15)':'rgba(255,255,255,.06)'}`,background:done?'rgba(9,160,157,.06)':active?'rgba(9,160,157,.03)':'rgba(255,255,255,.02)',transition:'all .3s'}}>
+            <div key={i} style={{display:'flex',alignItems:'center',gap:'8px',padding:'9px 12px',borderRadius:'10px',border:`1px solid ${done?'rgba(9,160,157,.3)':active?'rgba(9,160,157,.15)':'var(--ins-color-white-a-06)'}`,background:done?'rgba(9,160,157,.06)':active?'rgba(9,160,157,.03)':'var(--ins-color-white-a-02)',transition:'all .3s'}}>
               <div style={{fontFamily:'Geist Mono,monospace',fontSize:'11px',color:done?'var(--ins-text-highlight)':'rgba(255,255,255,.4)',flex:1}}>{f}</div>
               {(done||active) && (
                 <svg width="12" height="12" viewBox="0 0 16 16" fill="none" style={{flexShrink:0,opacity:active?0.5:1}}><path d="M3 8h10M9 4l4 4-4 4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -703,7 +703,7 @@ function Panel2() {
 // ── PANEL 3: Create Metric modal ──
 function Panel3() {
   return (
-    <div style={{width:'100%',maxWidth:'380px',background:'rgba(13,17,23,.97)',border:'1px solid rgba(255,255,255,.1)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'24px'}}>
+    <div style={{width:'100%',maxWidth:'380px',background:'rgba(13,17,23,.97)',border:'1px solid var(--ins-color-white-a-10)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'24px'}}>
       <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'20px'}}>
         <span style={{fontSize:'15px',fontWeight:600,color:'var(--ins-color-gray-100)'}}>Create New Metric</span>
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 2l12 12M14 2L2 14" stroke="rgba(255,255,255,.3)" strokeWidth="1.5" strokeLinecap="round"/></svg>
@@ -711,13 +711,13 @@ function Panel3() {
       {[{label:'Name',ph:'e.g., Customer Acquisition Cost'},{label:'Short name',ph:'@CAC'}].map((f,i)=>(
         <div key={i} style={{marginBottom:'14px'}}>
           <div style={{fontSize:'11.5px',color:'rgba(255,255,255,.4)',marginBottom:'6px',fontFamily:'Geist Mono,monospace'}}>{f.label}</div>
-          <div style={{padding:'9px 12px',borderRadius:'8px',border:'1px solid rgba(255,255,255,.1)',background:'rgba(255,255,255,.04)',fontSize:'13px',color:'rgba(255,255,255,.6)',fontFamily:'Geist Mono,monospace'}}>{i===0?'Customer Acquisition Cost':f.ph}</div>
+          <div style={{padding:'9px 12px',borderRadius:'8px',border:'1px solid var(--ins-color-white-a-10)',background:'var(--ins-color-white-a-04)',fontSize:'13px',color:'rgba(255,255,255,.6)',fontFamily:'Geist Mono,monospace'}}>{i===0?'Customer Acquisition Cost':f.ph}</div>
         </div>
       ))}
       <div style={{marginBottom:'14px'}}>
         <div style={{fontSize:'11.5px',color:'rgba(255,255,255,.4)',marginBottom:'6px',fontFamily:'Geist Mono,monospace'}}>Definition Method</div>
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',borderRadius:'8px',overflow:'hidden',border:'1px solid rgba(255,255,255,.08)'}}>
-          <div style={{padding:'8px',textAlign:'center',background:'rgba(255,255,255,.08)',fontSize:'12px',color:'var(--ins-color-gray-100)',fontWeight:500,display:'flex',alignItems:'center',justifyContent:'center',gap:'5px'}}>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',borderRadius:'8px',overflow:'hidden',border:'1px solid var(--ins-color-white-a-08)'}}>
+          <div style={{padding:'8px',textAlign:'center',background:'var(--ins-color-white-a-08)',fontSize:'12px',color:'var(--ins-color-gray-100)',fontWeight:500,display:'flex',alignItems:'center',justifyContent:'center',gap:'5px'}}>
             <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3v10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
             Direct Mapping
           </div>
@@ -727,11 +727,11 @@ function Panel3() {
           </div>
         </div>
       </div>
-      <div style={{padding:'14px',borderRadius:'10px',border:'1px solid rgba(255,255,255,.07)',background:'rgba(255,255,255,.03)'}}>
+      <div style={{padding:'14px',borderRadius:'10px',border:'1px solid var(--ins-color-white-a-07)',background:'var(--ins-color-white-a-03)'}}>
         <div style={{display:'grid',gridTemplateColumns:'1fr auto 1fr',gap:'8px',alignItems:'center',marginBottom:'10px'}}>
           <div>
             <div style={{fontSize:'10px',color:'rgba(255,255,255,.3)',marginBottom:'4px',fontFamily:'Geist Mono,monospace'}}>Source</div>
-            <div style={{padding:'6px 10px',borderRadius:'7px',border:'1px solid rgba(255,255,255,.1)',background:'rgba(255,255,255,.04)',fontSize:'11.5px',color:'rgba(255,255,255,.6)',display:'flex',alignItems:'center',gap:'5px'}}>
+            <div style={{padding:'6px 10px',borderRadius:'7px',border:'1px solid var(--ins-color-white-a-10)',background:'var(--ins-color-white-a-04)',fontSize:'11.5px',color:'rgba(255,255,255,.6)',display:'flex',alignItems:'center',gap:'5px'}}>
               <span style={{fontSize:'9px'}}>📊</span> Google Analytics
             </div>
           </div>
@@ -749,12 +749,12 @@ function Panel3() {
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="rgba(9,160,157,.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           <div>
             <div style={{fontSize:'10px',color:'rgba(255,255,255,.3)',marginBottom:'4px',fontFamily:'Geist Mono,monospace'}}>Aggregation</div>
-            <div style={{padding:'6px 10px',borderRadius:'7px',border:'1px solid rgba(255,255,255,.1)',background:'rgba(255,255,255,.04)',fontSize:'11.5px',color:'rgba(255,255,255,.6)'}}>SUM</div>
+            <div style={{padding:'6px 10px',borderRadius:'7px',border:'1px solid var(--ins-color-white-a-10)',background:'var(--ins-color-white-a-04)',fontSize:'11.5px',color:'rgba(255,255,255,.6)'}}>SUM</div>
           </div>
         </div>
       </div>
       <div style={{display:'flex',gap:'8px',marginTop:'16px'}}>
-        <div style={{flex:1,padding:'9px',borderRadius:'8px',border:'1px solid rgba(255,255,255,.1)',textAlign:'center',fontSize:'13px',color:'rgba(255,255,255,.4)',cursor:'pointer'}}>Cancel</div>
+        <div style={{flex:1,padding:'9px',borderRadius:'8px',border:'1px solid var(--ins-color-white-a-10)',textAlign:'center',fontSize:'13px',color:'rgba(255,255,255,.4)',cursor:'pointer'}}>Cancel</div>
         <div style={{flex:1,padding:'9px',borderRadius:'8px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',textAlign:'center',fontSize:'13px',fontWeight:600,color:'var(--ins-text-body)',cursor:'pointer',boxShadow:'0 0 12px rgba(9,160,157,.3)'}}>Create Metric</div>
       </div>
     </div>
@@ -771,14 +771,14 @@ function Panel4() {
     { label:'@New_Customers',   value:'108',      color:'var(--ins-text-highlight)' },
   ];
   return (
-    <div style={{width:'100%',maxWidth:'420px',background:'rgba(10,14,19,.95)',border:'1px solid rgba(255,255,255,.08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'22px'}}>
+    <div style={{width:'100%',maxWidth:'420px',background:'rgba(10,14,19,.95)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'22px'}}>
       <div style={{display:'flex',alignItems:'center',gap:'8px',marginBottom:'18px'}}>
         <div style={{fontSize:'13px',fontWeight:600,color:'var(--ins-color-gray-100)'}}>Customer Acquisition Cost</div>
-        <div style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-highlight)',background:'rgba(9,160,157,.08)',padding:'2px 7px',borderRadius:'4px'}}>@CAC</div>
+        <div style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-highlight)',background:'var(--ins-color-teal-a-08)',padding:'2px 7px',borderRadius:'4px'}}>@CAC</div>
       </div>
 
       {/* Formula */}
-      <div style={{background:'rgba(255,255,255,.03)',border:'1px solid rgba(255,255,255,.07)',borderRadius:'10px',padding:'14px 16px',marginBottom:'16px'}}>
+      <div style={{background:'var(--ins-color-white-a-03)',border:'1px solid var(--ins-color-white-a-07)',borderRadius:'10px',padding:'14px 16px',marginBottom:'16px'}}>
         <div style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'rgba(255,255,255,.3)',marginBottom:'8px',textTransform:'uppercase',letterSpacing:'.08em'}}>Formula</div>
         <div style={{fontSize:'13px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-body)',lineHeight:1.6}}>
           <span style={{color:'#6772E5'}}>@Marketing_Spend</span>
@@ -793,7 +793,7 @@ function Panel4() {
       <div style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'rgba(255,255,255,.3)',marginBottom:'8px',textTransform:'uppercase',letterSpacing:'.08em'}}>Live values — Nov 2024</div>
       <div style={{display:'flex',flexDirection:'column',gap:'7px',marginBottom:'16px'}}>
         {parts.map((p,i)=>(
-          <div key={i} style={{display:'flex',alignItems:'center',gap:'10px',padding:'8px 12px',borderRadius:'8px',background:'rgba(255,255,255,.025)',border:'1px solid rgba(255,255,255,.05)'}}>
+          <div key={i} style={{display:'flex',alignItems:'center',gap:'10px',padding:'8px 12px',borderRadius:'8px',background:'rgba(255,255,255,.025)',border:'1px solid var(--ins-color-white-a-05)'}}>
             <div style={{width:'3px',height:'20px',borderRadius:'2px',background:p.color,flexShrink:0}}/>
             <span style={{fontSize:'12px',fontFamily:'Geist Mono,monospace',color:p.color,flex:1}}>{p.label}</span>
             <span style={{fontSize:'12px',fontFamily:'Geist Mono,monospace',color:'rgba(255,255,255,.7)',fontWeight:600}}>{p.value}</span>
@@ -804,8 +804,8 @@ function Panel4() {
       {/* Result */}
       <div style={{
         padding:'12px 16px',borderRadius:'10px',
-        background: solved?'rgba(9,160,157,.08)':'rgba(255,255,255,.03)',
-        border:`1px solid ${solved?'rgba(9,160,157,.3)':'rgba(255,255,255,.07)'}`,
+        background: solved?'var(--ins-color-teal-a-08)':'var(--ins-color-white-a-03)',
+        border:`1px solid ${solved?'rgba(9,160,157,.3)':'var(--ins-color-white-a-07)'}`,
         display:'flex',alignItems:'center',justifyContent:'space-between',
         transition:'all .5s ease',
       }}>
@@ -832,9 +832,9 @@ function Panel5() {
   },[]);
 
   return (
-    <div style={{width:'100%',maxWidth:'440px',background:'rgba(10,14,19,.95)',border:'1px solid rgba(255,255,255,.08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none'}}>
+    <div style={{width:'100%',maxWidth:'440px',background:'rgba(10,14,19,.95)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none'}}>
       {/* Chat header */}
-      <div style={{padding:'12px 16px',borderBottom:'1px solid rgba(255,255,255,.06)',display:'flex',alignItems:'center',gap:'8px'}}>
+      <div style={{padding:'12px 16px',borderBottom:'1px solid var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'8px'}}>
         <div style={{width:'20px',height:'20px',borderRadius:'6px',background:'rgba(9,160,157,.12)',border:'1px solid rgba(9,160,157,.25)',display:'flex',alignItems:'center',justifyContent:'center'}}>
           <svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z" stroke="var(--ins-text-highlight)" strokeWidth="1.2" strokeLinejoin="round"/></svg>
         </div>
@@ -856,7 +856,7 @@ function Panel5() {
 
         {/* AI typing */}
         {step === 2 && (
-          <div style={{alignSelf:'flex-start',background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.07)',borderRadius:'3px 14px 14px 14px',padding:'10px 13px',animation:'slideUp .2s ease both'}}>
+          <div style={{alignSelf:'flex-start',background:'var(--ins-color-white-a-04)',border:'1px solid var(--ins-color-white-a-07)',borderRadius:'3px 14px 14px 14px',padding:'10px 13px',animation:'slideUp .2s ease both'}}>
             <div style={{display:'flex',gap:4,alignItems:'center'}}>
               {[0,1,2].map(d=><div key={d} style={{width:5,height:5,borderRadius:'50%',background:'var(--ins-text-highlight)',animation:`pulse ${0.9+d*0.15}s ease-in-out infinite`,animationDelay:`${d*0.15}s`}}/>)}
             </div>
@@ -865,12 +865,12 @@ function Panel5() {
 
         {/* AI answer */}
         {step >= 3 && (
-          <div style={{alignSelf:'flex-start',background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.07)',borderRadius:'3px 14px 14px 14px',padding:'10px 13px',fontSize:'13px',color:'var(--ins-text-body)',maxWidth:'95%',lineHeight:1.65,animation:'slideUp .2s ease both'}}>
-            <span style={{color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',fontSize:'12px',fontWeight:600,background:'rgba(9,160,157,.08)',padding:'1px 6px',borderRadius:'4px'}}>@CAC</span>
+          <div style={{alignSelf:'flex-start',background:'var(--ins-color-white-a-04)',border:'1px solid var(--ins-color-white-a-07)',borderRadius:'3px 14px 14px 14px',padding:'10px 13px',fontSize:'13px',color:'var(--ins-text-body)',maxWidth:'95%',lineHeight:1.65,animation:'slideUp .2s ease both'}}>
+            <span style={{color:'var(--ins-text-highlight)',fontFamily:'Geist Mono,monospace',fontSize:'12px',fontWeight:600,background:'var(--ins-color-teal-a-08)',padding:'1px 6px',borderRadius:'4px'}}>@CAC</span>
             {' '}rose to <strong style={{color:'var(--ins-color-gray-100)'}}>$431</strong> in Nov — up from $394 in Oct (+9.4%). Main driver: <strong style={{color:'var(--ins-color-gray-100)'}}>@Marketing_Spend</strong> increased $4.2K while <strong style={{color:'var(--ins-color-gray-100)'}}>@New_Customers</strong> grew only 3%.
             <div style={{marginTop:'8px',display:'flex',gap:5}}>
               {['Stripe','HubSpot','PostgreSQL'].map(s=>(
-                <span key={s} style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',padding:'2px 6px',borderRadius:'4px',background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.07)',color:'var(--ins-text-body)'}}>{s}</span>
+                <span key={s} style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',padding:'2px 6px',borderRadius:'4px',background:'var(--ins-color-white-a-04)',border:'1px solid var(--ins-color-white-a-07)',color:'var(--ins-text-body)'}}>{s}</span>
               ))}
             </div>
           </div>
@@ -878,9 +878,9 @@ function Panel5() {
       </div>
 
       {/* Input */}
-      <div style={{padding:'10px 14px',borderTop:'1px solid rgba(255,255,255,.06)',display:'flex',alignItems:'center',gap:'8px'}}>
-        <div style={{flex:1,background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.08)',borderRadius:'8px',padding:'8px 12px',fontSize:'12.5px',color:'var(--ins-text-body)',fontFamily:'Geist,sans-serif'}}>
-          Ask anything... use <span style={{color:'rgba(9,160,157,.5)',fontFamily:'Geist Mono,monospace'}}>@</span> to reference metrics
+      <div style={{padding:'10px 14px',borderTop:'1px solid var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'8px'}}>
+        <div style={{flex:1,background:'var(--ins-color-white-a-04)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'8px',padding:'8px 12px',fontSize:'12.5px',color:'var(--ins-text-body)',fontFamily:'Geist,sans-serif'}}>
+          Ask anything... use <span style={{color:'var(--ins-color-teal-a-50)',fontFamily:'Geist Mono,monospace'}}>@</span> to reference metrics
         </div>
         <div style={{width:'26px',height:'26px',borderRadius:'7px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
           <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>

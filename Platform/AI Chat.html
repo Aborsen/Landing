@@ -62,7 +62,7 @@ html { scroll-behavior: smooth; }
 body {
   font-family: 'Geist', sans-serif;
   background: var(--ins-surface-page);
-  color: #E8F2F5;
+  color: var(--ins-color-gray-50);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
@@ -120,17 +120,17 @@ body::before {
   border-radius: 16px 16px 4px 16px;
   padding: 10px 14px;
   font-size: 13.5px;
-  color: #E8F2F5;
+  color: var(--ins-color-gray-50);
   align-self: flex-end;
   max-width: 85%;
 }
 .chat-bubble-ai {
   background: rgba(255,255,255,0.038);
-  border: 1px solid rgba(255,255,255,0.07);
+  border: 1px solid var(--ins-color-white-a-07);
   border-radius: 4px 16px 16px 16px;
   padding: 12px 14px;
   font-size: 13.5px;
-  color: #C0D4DC;
+  color: var(--ins-color-gray-100);
   align-self: flex-start;
   max-width: 95%;
   line-height: 1.6;
@@ -151,7 +151,7 @@ body::before {
 
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: var(--ins-color-white-a-10); border-radius: 2px; }
 
 /* ── SECTION SPACING ── */
 section { position: relative; }
@@ -167,15 +167,15 @@ section { position: relative; }
 .q-pill {
   display: inline-flex; align-items: center; gap: 7px;
   padding: 8px 14px; border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.07);
-  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--ins-color-white-a-07);
+  background: var(--ins-color-white-a-03);
   font-size: 13px; color: var(--ins-text-inactive);
   cursor: pointer; transition: all .25s cubic-bezier(0.34,1.56,0.64,1);
   white-space: nowrap;
 }
 .q-pill:hover {
   border-color: rgba(9,160,157,0.4);
-  color: #E8F2F5;
+  color: var(--ins-color-gray-50);
   background: rgba(9,160,157,0.06);
   transform: translateY(-1px) scale(1.02);
   box-shadow: 0 4px 16px rgba(9,160,157,0.12);
@@ -185,9 +185,9 @@ section { position: relative; }
   box-shadow: none;
 }
 .q-pill.active {
-  border-color: rgba(9,160,157,0.5);
+  border-color: var(--ins-color-teal-a-50);
   color: var(--ins-text-highlight);
-  background: rgba(9,160,157,0.08);
+  background: var(--ins-color-teal-a-08);
 }
 
 /* ── SPOTLIGHT CARD ── */
@@ -250,7 +250,7 @@ section { position: relative; }
 
 <div id="root">
   <!-- Static SEO fallback: visible to crawlers and no-JS users. React replaces this on hydration. -->
-  <article style="max-width:880px;margin:0 auto;padding:120px 24px 80px;color:#E8F2F5;font-family:'Geist',sans-serif;">
+  <article style="max-width:880px;margin:0 auto;padding:120px 24px 80px;color:var(--ins-color-gray-50);font-family:'Geist',sans-serif;">
     <p style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ins-button-primary-bg-hover);margin-bottom:12px;">Insightis AI Chat — business analytics in plain English</p>
     <h1 style="font-size:clamp(2.6rem,3.8vw,4.5rem);font-family:var(--ins-font-family-sans);font-weight:700;line-height:1.05;margin-bottom:22px;">Ask anything. Get answers in seconds.</h1>
     <p style="font-size:18px;line-height:1.7;color:rgba(255,255,255,.75);margin-bottom:36px;max-width:640px;">

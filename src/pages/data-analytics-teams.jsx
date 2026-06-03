@@ -87,7 +87,7 @@ function Hero() {
             <div style={{
               position:'relative',
               background:'linear-gradient(135deg, rgba(13,17,23,0.95) 0%, rgba(15,20,28,0.92) 100%)',
-              border:'1px solid rgba(255,255,255,0.08)',
+              border:'1px solid var(--ins-color-white-a-08)',
               borderRadius:'24px',
               padding:'24px',
               backdropFilter:'blur(24px)',
@@ -104,7 +104,7 @@ function Hero() {
               <div style={{
                 margin:'-24px -24px 16px',
                 padding:'10px 14px',
-                borderBottom:'1px solid rgba(255,255,255,0.06)',
+                borderBottom:'1px solid var(--ins-color-white-a-06)',
                 background:'rgba(255,255,255,0.015)',
                 display:'flex',
                 alignItems:'center',
@@ -146,7 +146,7 @@ function Hero() {
               {/* Chart */}
               <div style={{
                 background:'rgba(255,255,255,.018)',
-                border:'1px solid rgba(255,255,255,.05)',
+                border:'1px solid var(--ins-color-white-a-05)',
                 borderRadius:'14px',
                 padding:'16px 14px 12px',
                 marginBottom:'14px',
@@ -182,7 +182,7 @@ function Hero() {
                 ].map((m,i) => (
                   <div key={i} style={{
                     background:'rgba(255,255,255,.025)',
-                    border:'1px solid rgba(255,255,255,.06)',
+                    border:'1px solid var(--ins-color-white-a-06)',
                     borderRadius:'10px',
                     padding:'10px 12px',
                   }}>
@@ -202,7 +202,7 @@ function Hero() {
               border:'1px solid rgba(34,197,94,.4)',
               borderRadius:'14px',
               padding:'10px 14px',
-              boxShadow:'0 16px 40px rgba(34,197,94,0.18), 0 8px 24px rgba(0,0,0,0.5)',
+              boxShadow:'0 16px 40px rgba(34,197,94,0.18), 0 8px 24px var(--ins-color-black-a-50)',
               backdropFilter:'blur(16px)',
               WebkitBackdropFilter:'blur(16px)',
               display:'flex',alignItems:'center',gap:'10px',
@@ -228,7 +228,7 @@ function Hero() {
               border:'1px solid rgba(9,160,157,.4)',
               borderRadius:'14px',
               padding:'12px 14px',
-              boxShadow:'0 16px 40px rgba(9,160,157,0.18), 0 8px 24px rgba(0,0,0,0.5)',
+              boxShadow:'0 16px 40px rgba(9,160,157,0.18), 0 8px 24px var(--ins-color-black-a-50)',
               backdropFilter:'blur(16px)',
               WebkitBackdropFilter:'blur(16px)',
               transform:'rotate(-2deg)',
@@ -485,14 +485,14 @@ function RelevantIntegrations() {
             display:'inline-flex',alignItems:'center',gap:'6px',
             fontSize:'13px',color:'var(--ins-text-body)',
             textDecoration:'none',
-            border:'1px solid rgba(255,255,255,.07)',
+            border:'1px solid var(--ins-color-white-a-07)',
             borderRadius:'999px',
             padding:'8px 20px',
-            background:'rgba(255,255,255,.02)',
+            background:'var(--ins-color-white-a-02)',
             transition:'all .15s',
           }}
           onMouseEnter={e=>{e.currentTarget.style.color='var(--ins-text-highlight)';e.currentTarget.style.borderColor='rgba(9,160,157,.3)';}}
-          onMouseLeave={e=>{e.currentTarget.style.color='var(--ins-text-body)';e.currentTarget.style.borderColor='rgba(255,255,255,.07)';}}
+          onMouseLeave={e=>{e.currentTarget.style.color='var(--ins-text-body)';e.currentTarget.style.borderColor='var(--ins-color-white-a-07)';}}
           >
             See all 200+ integrations
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -635,10 +635,10 @@ function Positioning() {
         <a href="#spotlights" style={{
           display:'inline-flex',alignItems:'center',gap:'8px',
           padding:'10px 20px',borderRadius:'999px',
-          border:'1px solid rgba(255,255,255,.12)',
+          border:'1px solid var(--ins-color-white-a-12)',
           color:'var(--ins-text-body)',fontSize:'14px',fontWeight:400,
           textDecoration:'none',
-          background:'rgba(255,255,255,.03)',
+          background:'var(--ins-color-white-a-03)',
           transition:'all .2s',
         }}>
           See how it works
@@ -655,14 +655,14 @@ function SpotlightChat() {
     <div style={{
       width:'100%',
       background:'rgba(13,17,23,0.9)',
-      border:'1px solid rgba(255,255,255,0.08)',
+      border:'1px solid var(--ins-color-white-a-08)',
       borderRadius:'20px',
       overflow:'hidden',
       boxShadow:'none',
       display:'flex',
       flexDirection:'column',
     }}>
-      <div style={{padding:'14px 18px',borderBottom:'1px solid rgba(255,255,255,0.06)',display:'flex',alignItems:'center',gap:'10px',flexShrink:0}}>
+      <div style={{padding:'14px 18px',borderBottom:'1px solid var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'10px',flexShrink:0}}>
         <div style={{display:'flex',gap:'5px'}}>
           {['#FF5F57','#FFBD2E','#28C840'].map((c,i) => (
             <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
@@ -687,7 +687,7 @@ function SpotlightChat() {
 
 function ChromeHeader({ label }) {
   return (
-    <div style={{padding:'14px 18px',borderBottom:'1px solid rgba(255,255,255,0.06)',display:'flex',alignItems:'center',gap:'10px',flexShrink:0,position:'relative',zIndex:1}}>
+    <div style={{padding:'14px 18px',borderBottom:'1px solid var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'10px',flexShrink:0,position:'relative',zIndex:1}}>
       <div style={{display:'flex',gap:'5px'}}>
         {['#FF5F57','#FFBD2E','#28C840'].map((c,i) => (
           <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
@@ -705,7 +705,7 @@ function SpotlightSemantic() {
     <div style={{
       width:'100%',
       background:'rgba(13,17,23,0.9)',
-      border:'1px solid rgba(255,255,255,0.08)',
+      border:'1px solid var(--ins-color-white-a-08)',
       borderRadius:'20px',
       overflow:'hidden',
       boxShadow:'none',
@@ -737,7 +737,7 @@ function SpotlightSemantic() {
         </div>
         <div style={{
           background:'rgba(255,255,255,.025)',
-          border:'1px solid rgba(255,255,255,.06)',
+          border:'1px solid var(--ins-color-white-a-06)',
           borderRadius:'10px',
           padding:'14px',
           marginBottom:'14px',
@@ -770,7 +770,7 @@ function SpotlightAnomalies() {
     <div style={{
       width:'100%',
       background:'rgba(13,17,23,0.9)',
-      border:'1px solid rgba(255,255,255,0.08)',
+      border:'1px solid var(--ins-color-white-a-08)',
       borderRadius:'20px',
       overflow:'hidden',
       boxShadow:'none',
@@ -789,7 +789,7 @@ function SpotlightAnomalies() {
         <div style={{
           display:'flex',alignItems:'center',gap:'10px',
           padding:'10px 12px',marginBottom:'12px',
-          background:'rgba(248,113,113,.06)',border:'1px solid rgba(248,113,113,.22)',
+          background:'var(--ins-color-red-a-06)',border:'1px solid rgba(248,113,113,.22)',
           borderRadius:'10px',
         }}>
           <span style={{
@@ -804,7 +804,7 @@ function SpotlightAnomalies() {
         {/* Chart with annotated anomaly */}
         <div style={{
           background:'rgba(255,255,255,.018)',
-          border:'1px solid rgba(255,255,255,.05)',
+          border:'1px solid var(--ins-color-white-a-05)',
           borderRadius:'10px',
           padding:'12px 12px 8px',
           marginBottom:'12px',
@@ -835,7 +835,7 @@ function SpotlightAnomalies() {
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'8px'}}>
           <div style={{
             background:'rgba(255,255,255,.025)',
-            border:'1px solid rgba(255,255,255,.06)',
+            border:'1px solid var(--ins-color-white-a-06)',
             borderRadius:'10px',
             padding:'9px 11px',
           }}>
@@ -844,7 +844,7 @@ function SpotlightAnomalies() {
           </div>
           <div style={{
             background:'rgba(255,255,255,.025)',
-            border:'1px solid rgba(255,255,255,.06)',
+            border:'1px solid var(--ins-color-white-a-06)',
             borderRadius:'10px',
             padding:'9px 11px',
           }}>
@@ -888,7 +888,7 @@ function SpotlightStack() {
     <div style={{
       width:'100%',
       background:'rgba(13,17,23,0.9)',
-      border:'1px solid rgba(255,255,255,0.08)',
+      border:'1px solid var(--ins-color-white-a-08)',
       borderRadius:'20px',
       boxShadow:'none',
       position:'relative',
@@ -1097,7 +1097,7 @@ function UseCases() {
             padding:'32px 48px',overflow:'hidden',
             display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'24px',
             flexWrap:'wrap',
-            background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)',
+            background:'linear-gradient(135deg,var(--ins-color-promo-a) 0%,var(--ins-color-promo-b) 50%,var(--ins-color-promo-a) 100%)',
           }}>
             <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
             <div style={{flex:'1 1 360px',minWidth:0}}>
@@ -1126,16 +1126,16 @@ function UseCases() {
             <div key={i}
               style={{
                 background:'rgba(13,17,23,.6)',
-                border:'1px solid rgba(255,255,255,.06)',
+                border:'1px solid var(--ins-color-white-a-06)',
                 borderRadius:'16px',padding:'24px',
                 position:'relative',overflow:'hidden',
                 transition:'all .2s',
               }}
               onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-              onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(255,255,255,.06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}
+              onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-color-white-a-06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}
             >
               <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
-              <div style={{width:'38px',height:'38px',borderRadius:'10px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'14px'}}>
+              <div style={{width:'38px',height:'38px',borderRadius:'10px',background:'var(--ins-color-teal-a-08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'14px'}}>
                 {c.icon}
               </div>
               <h3 style={{fontSize:'15px',fontWeight:600,color:'var(--ins-text-heading-soft)',marginBottom:'6px'}}>{c.title}</h3>

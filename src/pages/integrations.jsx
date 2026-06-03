@@ -73,7 +73,7 @@ function BrandTile({name, color, size=22}) {
   return (
     <span style={{
       width:`${size}px`,height:`${size}px`,borderRadius: size >= 28 ? '8px' : '6px',
-      background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.08)',
+      background:'var(--ins-color-white-a-04)',border:'1px solid var(--ins-color-white-a-08)',
       display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,
       overflow:'hidden',
     }}>
@@ -234,7 +234,7 @@ function ConnectionChatAnimation() {
       <div style={{position:'absolute',inset:0,pointerEvents:'none',background:'radial-gradient(ellipse 55% 50% at 50% 55%, rgba(14,196,193,0.09) 0%, transparent 65%)'}}/>
 
       {/* Header */}
-      <div style={{position:'absolute',top:0,left:0,right:0,padding:'13px 18px',borderBottom:'1px solid rgba(255,255,255,0.07)',display:'flex',alignItems:'center',gap:'9px',background:'rgba(255,255,255,0.015)',zIndex:10}}>
+      <div style={{position:'absolute',top:0,left:0,right:0,padding:'13px 18px',borderBottom:'1px solid var(--ins-color-white-a-07)',display:'flex',alignItems:'center',gap:'9px',background:'rgba(255,255,255,0.015)',zIndex:10}}>
         <div style={{display:'flex',gap:'7px'}}>
           {['#FF5F57','#FFBD2E','#28C840'].map((c,i) => (
             <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
@@ -320,9 +320,9 @@ function ConnectionChatAnimation() {
           gap:`${cardGap}px`,
           padding:`${cardPadV}px ${cardPadH}px`,
           background:'var(--ins-surface-card)',
-          border:'1px solid rgba(255,255,255,0.06)',
+          border:'1px solid var(--ins-color-white-a-06)',
           borderRadius:'12px',
-          boxShadow:'0 1px 3px rgba(0,0,0,0.30), 0 4px 12px rgba(0,0,0,0.20)',
+          boxShadow:'0 1px 3px var(--ins-color-black-a-30), 0 4px 12px rgba(0,0,0,0.20)',
           willChange:'transform',
           zIndex:5,
         }}>
@@ -575,7 +575,7 @@ function ConnectorsGallery() {
             const master = MASTER_CONNECTORS.find(m => m.name === c.name);
             return (
             <div key={`${activeCat}-${i}-${c.name}`} className="connector-card">
-              <ConnectorIcon name={c.name} slug={master?.slug} domain={master?.domain} bg="rgba(255,255,255,0.04)"/>
+              <ConnectorIcon name={c.name} slug={master?.slug} domain={master?.domain} bg="var(--ins-color-white-a-04)"/>
               <div style={{minWidth:0}}>
                 <div className="ins-text-h4" style={{marginBottom:'3px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{c.name}</div>
                 <div style={{fontSize:'12px',color:'#8A9BA4',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{c.desc}</div>

@@ -15,7 +15,7 @@ html { scroll-behavior: smooth; }
 body {
   font-family: 'Geist', sans-serif;
   background: var(--ins-surface-page);
-  color: #E8F2F5;
+  color: var(--ins-color-gray-50);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
@@ -50,17 +50,17 @@ body::before {
   border-radius: 16px 16px 4px 16px;
   padding: 10px 14px;
   font-size: 13.5px;
-  color: #E8F2F5;
+  color: var(--ins-color-gray-50);
   align-self: flex-end;
   max-width: 85%;
 }
 .chat-bubble-ai {
   background: rgba(255,255,255,0.038);
-  border: 1px solid rgba(255,255,255,0.07);
+  border: 1px solid var(--ins-color-white-a-07);
   border-radius: 4px 16px 16px 16px;
   padding: 12px 14px;
   font-size: 13.5px;
-  color: #C0D4DC;
+  color: var(--ins-color-gray-100);
   align-self: flex-start;
   max-width: 95%;
   line-height: 1.6;
@@ -68,7 +68,7 @@ body::before {
 
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: var(--ins-color-white-a-10); border-radius: 2px; }
 
 /* ── SECTION SPACING ── */
 section { position: relative; }
@@ -84,29 +84,29 @@ section { position: relative; }
 .q-pill {
   display: inline-flex; align-items: center; gap: 7px;
   padding: 8px 14px; border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.07);
-  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--ins-color-white-a-07);
+  background: var(--ins-color-white-a-03);
   font-size: 13px; color: var(--ins-text-inactive);
   cursor: pointer; transition: all .15s;
   white-space: nowrap;
 }
 .q-pill:hover {
   border-color: rgba(9,160,157,0.4);
-  color: #E8F2F5;
+  color: var(--ins-color-gray-50);
   background: rgba(9,160,157,0.06);
 }
 .q-pill.active {
-  border-color: rgba(9,160,157,0.5);
+  border-color: var(--ins-color-teal-a-50);
   color: var(--ins-text-highlight);
-  background: rgba(9,160,157,0.08);
+  background: var(--ins-color-teal-a-08);
 }
 
 /* ── METRIC PILL ── */
 .metric-pill {
   padding: 8px 16px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.07);
-  background: rgba(255,255,255,.03);
+  border: 1px solid var(--ins-color-white-a-07);
+  background: var(--ins-color-white-a-03);
   font-size: 13px;
   color: var(--ins-text-inactive);
   font-family: 'Geist Mono', monospace;
@@ -126,7 +126,7 @@ section { position: relative; }
   gap: 12px;
   padding: 14px 16px;
   background: rgba(255,255,255,.025);
-  border: 1px solid rgba(255,255,255,.06);
+  border: 1px solid var(--ins-color-white-a-06);
   border-radius: 12px;
   cursor: default;
 }
@@ -150,7 +150,7 @@ section { position: relative; }
     flex-direction: row !important;
     overflow-x: auto !important;
     border-right: none !important;
-    border-bottom: 1px solid rgba(255,255,255,.05) !important;
+    border-bottom: 1px solid var(--ins-color-white-a-05) !important;
     padding: 12px !important;
     gap: 8px !important;
   }
@@ -160,7 +160,7 @@ section { position: relative; }
     padding: 8px 14px !important;
     border-bottom: none !important;
     border-radius: 999px !important;
-    border: 1px solid rgba(255,255,255,.08) !important;
+    border: 1px solid var(--ins-color-white-a-08) !important;
     white-space: nowrap !important;
   }
   [data-steps-grid] { grid-template-columns: 1fr !important; }
@@ -179,15 +179,15 @@ section { position: relative; }
 
 /* ── FAQ ── */
 .faq-row {
-  border-top: 1px solid rgba(255,255,255,.06);
+  border-top: 1px solid var(--ins-color-white-a-06);
   transition: all .2s;
 }
-.faq-row:last-child { border-bottom: 1px solid rgba(255,255,255,.06); }
+.faq-row:last-child { border-bottom: 1px solid var(--ins-color-white-a-06); }
 .faq-q {
   display: flex; align-items: center; justify-content: space-between;
   width: 100%; padding: 22px 4px;
   background: transparent; border: none;
-  color: #E8F2F5; font-size: 16px; font-weight: 500;
+  color: var(--ins-color-gray-50); font-size: 16px; font-weight: 500;
   cursor: pointer; text-align: left;
   font-family: 'Geist', sans-serif;
   transition: color .15s;

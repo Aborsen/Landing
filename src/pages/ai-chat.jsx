@@ -133,14 +133,14 @@ function ChatMock() {
   return (
     <div style={{
       background:'rgba(13,17,23,0.9)',
-      border:'1px solid rgba(255,255,255,0.08)',
+      border:'1px solid var(--ins-color-white-a-08)',
       borderRadius:'20px',
       overflow:'hidden',
       backdropFilter:'blur(20px)',
       boxShadow:'none',
     }}>
       {/* Chat header */}
-      <div style={{padding:'14px 18px',borderBottom:'1px solid rgba(255,255,255,0.06)',display:'flex',alignItems:'center',gap:'10px'}}>
+      <div style={{padding:'14px 18px',borderBottom:'1px solid var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'10px'}}>
         <div style={{display:'flex',gap:'5px'}}>
           {['#FF5F57','#FFBD2E','#28C840'].map((c,i) => (
             <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
@@ -149,7 +149,7 @@ function ChatMock() {
         <div style={{flex:1,textAlign:'center',fontSize:'12px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono, monospace'}}>
           insightis — ai chat
         </div>
-        <div style={{display:'flex',alignItems:'center',gap:5,padding:'3px 8px',background:'rgba(9,160,157,.08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'5px'}}>
+        <div style={{display:'flex',alignItems:'center',gap:5,padding:'3px 8px',background:'var(--ins-color-teal-a-08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'5px'}}>
           <div style={{width:'5px',height:'5px',borderRadius:'50%',background:'var(--ins-status-success-fg)',boxShadow:'0 0 6px var(--ins-status-success-fg)'}}/>
           <span style={{fontSize:'10px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-highlight)',fontWeight:500}}>Gemini Pro</span>
         </div>
@@ -199,12 +199,12 @@ function ChatMock() {
       </div>
 
       {/* Input bar */}
-      <div style={{padding:'12px 16px',borderTop:'1px solid rgba(255,255,255,0.06)',display:'flex',alignItems:'center',gap:'8px'}}>
-        <div style={{flex:1,background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.08)',borderRadius:'10px',padding:'9px 12px',fontSize:'13px',color:'var(--ins-text-inactive)',fontFamily:'Geist,sans-serif'}}>
+      <div style={{padding:'12px 16px',borderTop:'1px solid var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'8px'}}>
+        <div style={{flex:1,background:'var(--ins-color-white-a-04)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'10px',padding:'9px 12px',fontSize:'13px',color:'var(--ins-text-inactive)',fontFamily:'Geist,sans-serif'}}>
           Ask anything about your data…
         </div>
         <div style={{display:'flex',alignItems:'center',gap:'5px'}}>
-          <div style={{width:'28px',height:'28px',borderRadius:'7px',background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.08)',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer'}}>
+          <div style={{width:'28px',height:'28px',borderRadius:'7px',background:'var(--ins-color-white-a-04)',border:'1px solid var(--ins-color-white-a-08)',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer'}}>
             <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M14 10a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h1l2-2h2l2 2h1a2 2 0 012 2v4z" stroke="var(--ins-text-inactive)" strokeWidth="1.3"/></svg>
           </div>
           <div style={{width:'28px',height:'28px',borderRadius:'7px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer',boxShadow:'0 0 10px rgba(9,160,157,.3)'}}>
@@ -294,7 +294,7 @@ function HorizontalBarChart({ bars }) {
       {bars.map((b,i) => (
         <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
           <span style={{fontSize:'12px',color:'var(--ins-text-body)',fontFamily:'Geist Mono,monospace',minWidth:'180px',textAlign:'right',flexShrink:0}}>{b.label}</span>
-          <div style={{flex:1,background:'rgba(255,255,255,.04)',borderRadius:'4px',height:'22px',position:'relative',overflow:'hidden'}}>
+          <div style={{flex:1,background:'var(--ins-color-white-a-04)',borderRadius:'4px',height:'22px',position:'relative',overflow:'hidden'}}>
             <div style={{
               width:`${(Math.abs(b.value)/maxVal)*100}%`,
               height:'100%',borderRadius:'4px',
@@ -343,14 +343,14 @@ function GroupedBarChart({ groups }) {
           <div style={{fontSize:'11px',color:'var(--ins-text-body)',fontFamily:'Geist Mono,monospace',marginBottom:'4px'}}>{g.label}</div>
           <div style={{display:'flex',gap:'4px',flexDirection:'column'}}>
             <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
-              <div style={{width:'100%',background:'rgba(255,255,255,.04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
+              <div style={{width:'100%',background:'var(--ins-color-white-a-04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
                 <div style={{width:`${(g.actual/maxVal)*100}%`,height:'100%',borderRadius:'3px',background: g.actual > g.budget ? 'rgba(220,80,80,.65)' : 'rgba(9,160,157,.55)'}}/>
               </div>
               <span style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color: g.actual > g.budget ? '#E06060' : 'var(--ins-text-highlight)',minWidth:'40px',flexShrink:0}}>${g.actual}K</span>
             </div>
             <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
-              <div style={{width:'100%',background:'rgba(255,255,255,.04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
-                <div style={{width:`${(g.budget/maxVal)*100}%`,height:'100%',borderRadius:'3px',background:'rgba(255,255,255,.12)'}}/>
+              <div style={{width:'100%',background:'var(--ins-color-white-a-04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
+                <div style={{width:`${(g.budget/maxVal)*100}%`,height:'100%',borderRadius:'3px',background:'var(--ins-color-white-a-12)'}}/>
               </div>
               <span style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-inactive)',minWidth:'40px',flexShrink:0}}>${g.budget}K</span>
             </div>
@@ -359,7 +359,7 @@ function GroupedBarChart({ groups }) {
       ))}
       <div style={{display:'flex',gap:'16px',marginTop:'4px'}}>
         <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(9,160,157,.55)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace'}}>Actual</span></div>
-        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(255,255,255,.12)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace'}}>Budget</span></div>
+        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'var(--ins-color-white-a-12)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'Geist Mono,monospace'}}>Budget</span></div>
       </div>
     </div>
   );
@@ -374,13 +374,13 @@ function RetainedVsChurnedChart({ bars }) {
           <div style={{fontSize:'11px',color:'var(--ins-text-body)',fontFamily:'Geist Mono,monospace',marginBottom:'4px'}}>{b.label}</div>
           <div style={{display:'flex',gap:'4px',flexDirection:'column'}}>
             <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
-              <div style={{width:'100%',background:'rgba(255,255,255,.04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
+              <div style={{width:'100%',background:'var(--ins-color-white-a-04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
                 <div style={{width:`${(b.retained/maxVal)*100}%`,height:'100%',borderRadius:'3px',background:'rgba(9,160,157,.6)'}}/>
               </div>
               <span style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color:'var(--ins-text-highlight)',minWidth:'35px',flexShrink:0}}>{b.retained}%</span>
             </div>
             <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
-              <div style={{width:'100%',background:'rgba(255,255,255,.04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
+              <div style={{width:'100%',background:'var(--ins-color-white-a-04)',borderRadius:'3px',height:'16px',position:'relative',overflow:'hidden'}}>
                 <div style={{width:`${(b.churned/maxVal)*100}%`,height:'100%',borderRadius:'3px',background:'rgba(220,80,80,.55)'}}/>
               </div>
               <span style={{fontSize:'11px',fontFamily:'Geist Mono,monospace',color:'#E06060',minWidth:'35px',flexShrink:0}}>{b.churned}%</span>
@@ -834,10 +834,10 @@ function QuestionsGallery() {
 
         {/* Grid: left tabs + right chat panel */}
         <div data-gallery-grid className="showcase fade-in visible">
-          <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.6),rgba(255,255,255,.1),rgba(9,160,157,.6),transparent)',zIndex:20,pointerEvents:'none'}}/>
+          <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.6),var(--ins-color-white-a-10),rgba(9,160,157,.6),transparent)',zIndex:20,pointerEvents:'none'}}/>
 
           {/* LEFT */}
-          <div data-gallery-left style={{display:'flex',flexDirection:'column',background:'rgba(10,14,19,.95)',borderRight:'1px solid rgba(255,255,255,.05)'}}>
+          <div data-gallery-left style={{display:'flex',flexDirection:'column',background:'rgba(10,14,19,.95)',borderRight:'1px solid var(--ins-color-white-a-05)'}}>
             <div style={{flex:1,display:'flex',flexDirection:'column'}}>
               {cat.questions.map((q,i) => (
                 <div
@@ -873,7 +873,7 @@ function QuestionsGallery() {
               {/* AI reply card */}
               <div data-ai-reply-card style={{
                 alignSelf:'stretch', width:'100%',
-                background:'rgba(255,255,255,.03)', border:'1px solid rgba(255,255,255,.07)',
+                background:'var(--ins-color-white-a-03)', border:'1px solid var(--ins-color-white-a-07)',
                 borderRadius:'4px 16px 16px 16px', padding:'20px 24px',
                 flex:'1 1 auto', minHeight:0,
                 display:'flex', flexDirection:'column',
@@ -922,7 +922,7 @@ function QuestionsGallery() {
               flex-direction: row !important;
               overflow-x: auto !important;
               border-right: none !important;
-              border-bottom: 1px solid rgba(255,255,255,.05) !important;
+              border-bottom: 1px solid var(--ins-color-white-a-05) !important;
               padding: 12px !important;
               gap: 8px !important;
             }
@@ -932,7 +932,7 @@ function QuestionsGallery() {
               padding: 8px 14px !important;
               border-bottom: none !important;
               border-radius: 999px !important;
-              border: 1px solid rgba(255,255,255,.08) !important;
+              border: 1px solid var(--ins-color-white-a-08) !important;
               white-space: nowrap !important;
             }
           }
@@ -1194,7 +1194,7 @@ function ChatMockAnimationInner() {
     }}>
 
       {/* ── Header ── */}
-      <div style={{padding:'13px 18px', borderBottom:'1px solid rgba(255,255,255,0.07)', display:'flex', alignItems:'center', gap:'10px', background:'rgba(255,255,255,0.015)', flexShrink:0}}>
+      <div style={{padding:'13px 18px', borderBottom:'1px solid var(--ins-color-white-a-07)', display:'flex', alignItems:'center', gap:'10px', background:'rgba(255,255,255,0.015)', flexShrink:0}}>
         <div style={{display:'flex', gap:'6px'}}>
           {['#FF5F57','#FFBD2E','#28C840'].map((c,i) => (
             <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
@@ -1257,7 +1257,7 @@ function ChatMockAnimationInner() {
                       width:'16px', height:'16px', borderRadius:'4px', flexShrink:0,
                       display:'flex', alignItems:'center', justifyContent:'center',
                       fontSize:'9px', fontWeight:700,
-                      background: done ? 'rgba(14,196,193,0.12)' : 'rgba(255,255,255,0.04)',
+                      background: done ? 'rgba(14,196,193,0.12)' : 'var(--ins-color-white-a-04)',
                       border: done ? '1px solid rgba(14,196,193,0.28)' : '1px solid rgba(255,255,255,0.09)',
                       color: done ? 'var(--ins-text-highlight)' : 'var(--ins-text-inactive)',
                       transition:'all .3s ease',
@@ -1277,7 +1277,7 @@ function ChatMockAnimationInner() {
           <div style={{animation:'slideUp .3s ease both'}}>
             <div style={{
               maxWidth:'90%',
-              background:'rgba(255,255,255,0.033)', border:'1px solid rgba(255,255,255,0.07)',
+              background:'rgba(255,255,255,0.033)', border:'1px solid var(--ins-color-white-a-07)',
               borderRadius:'3px 14px 14px 14px',
               padding:'11px 14px', fontSize:'12px', color:'#C8DCE4', lineHeight:'1.55',
             }}>
@@ -1348,9 +1348,9 @@ function ChatMockAnimationInner() {
       </div>
 
       {/* ── Input (display only, not interactive) ── */}
-      <div style={{padding:'10px 14px 13px', borderTop:'1px solid rgba(255,255,255,0.06)', flexShrink:0}}>
+      <div style={{padding:'10px 14px 13px', borderTop:'1px solid var(--ins-color-white-a-06)', flexShrink:0}}>
         <div style={{
-          background:'rgba(255,255,255,0.038)', border:'1px solid rgba(255,255,255,0.08)',
+          background:'rgba(255,255,255,0.038)', border:'1px solid var(--ins-color-white-a-08)',
           borderRadius:'9px', padding:'10px 13px',
           fontSize:'13.5px', color:'var(--ins-color-gray-100)',
           display:'flex', alignItems:'center', minHeight:'38px',

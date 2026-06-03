@@ -325,7 +325,7 @@ function Hero() {
                 <button
                   className="flex items-center justify-center px-4 py-2 rounded-xl ins-text-emphasise-sm transition-all duration-200"
                   style={{
-                    background: userText.trim() ? 'linear-gradient(135deg, var(--ins-color-teal-500), var(--ins-color-teal-600))' : 'rgba(255,255,255,0.08)',
+                    background: userText.trim() ? 'linear-gradient(135deg, var(--ins-color-teal-500), var(--ins-color-teal-600))' : 'var(--ins-color-white-a-08)',
                     boxShadow: userText.trim() ? '0 0 16px rgba(7,128,126,0.35)' : 'none',
                     cursor: userText.trim() ? 'pointer' : 'default',
                     color: userText.trim() ? 'white' : 'var(--ins-text-body)'
@@ -428,7 +428,7 @@ function ArchRight({ outputs }) {
           const isLit = litCards.includes(i);
           return (
             <div key={o.title} className="flex items-center gap-3 px-4 py-3.5 rounded-card" style={{
-              border: `1px solid ${isLit ? 'rgba(9,160,157,0.5)' : 'var(--ins-border-default)'}`,
+              border: `1px solid ${isLit ? 'var(--ins-color-teal-a-50)' : 'var(--ins-border-default)'}`,
               background: isLit ? 'rgba(7,128,126,0.08)' : 'var(--ins-surface-card)',
               boxShadow: isLit ? '0 0 16px rgba(9,160,157,0.15), inset 0 0 20px rgba(9,160,157,0.05)' : 'none',
               transition: 'all 0.2s ease',
