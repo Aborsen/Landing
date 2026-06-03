@@ -111,10 +111,10 @@ function HorizontalBarChart({ bars }) {
       {bars.map((b,i) => (
         <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
           <span style={{fontSize:'var(--ins-font-size-12)',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)',minWidth:'180px',textAlign:'right',flexShrink:0}}>{b.label}</span>
-          <div style={{flex:1,background:'var(--ins-color-white-a-04)',borderRadius:'4px',height:'22px',position:'relative',overflow:'hidden'}}>
+          <div style={{flex:1,background:'var(--ins-color-white-a-04)',borderRadius:'var(--ins-radius-4)',height:'22px',position:'relative',overflow:'hidden'}}>
             <div style={{
               width:`${(Math.abs(b.value)/maxVal)*100}%`,
-              height:'100%',borderRadius:'4px',
+              height:'100%',borderRadius:'var(--ins-radius-4)',
               background: b.color || (b.value < 0 ? 'rgba(220,80,80,.7)' : 'rgba(9,160,157,.6)'),
             }}/>
           </div>

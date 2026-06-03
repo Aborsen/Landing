@@ -77,7 +77,7 @@ function Hero() {
               background:'radial-gradient(circle at 25% 30%, rgba(251,191,36,.16) 0%, transparent 55%), radial-gradient(circle at 80% 80%, rgba(9,160,157,.12) 0%, transparent 50%)',
               pointerEvents:'none',
               filter:'blur(44px)',
-              zIndex:0,
+              zIndex:'var(--ins-z-base)',
             }}/>
 
             {/* Main panel */}
@@ -343,7 +343,7 @@ function SpotlightChat() {
       width:'100%',
       background:'rgba(13,17,23,0.9)',
       border:'1px solid var(--ins-color-white-a-08)',
-      borderRadius:'20px',
+      borderRadius:'var(--ins-radius-20)',
       overflow:'hidden',
       boxShadow:'none',
       display:'flex',
@@ -463,7 +463,7 @@ function SpotlightSemantic() {
       width:'100%',
       background:'rgba(13,17,23,0.9)',
       border:'1px solid var(--ins-color-white-a-08)',
-      borderRadius:'20px',
+      borderRadius:'var(--ins-radius-20)',
       overflow:'hidden',
       boxShadow:'none',
       display:'flex',
@@ -558,7 +558,7 @@ function SpotlightAnomalies() {
       width:'100%',
       background:'rgba(13,17,23,0.9)',
       border:'1px solid var(--ins-color-white-a-08)',
-      borderRadius:'20px',
+      borderRadius:'var(--ins-radius-20)',
       overflow:'hidden',
       boxShadow:'none',
       display:'flex',
@@ -606,7 +606,7 @@ function SpotlightAnomalies() {
                     <span style={{
                       fontFamily:'var(--ins-font-family-mono)',fontSize:'8.5px',
                       color:'var(--ins-text-inactive)',
-                      padding:'2px 6px',borderRadius:'4px',
+                      padding:'2px 6px',borderRadius:'var(--ins-radius-4)',
                       background:'var(--ins-color-white-a-04)',
                       letterSpacing:'.04em',
                     }}>{it.tag}</span>
@@ -642,7 +642,7 @@ function SpotlightStack() {
       width:'100%',
       background:'rgba(13,17,23,0.9)',
       border:'1px solid var(--ins-color-white-a-08)',
-      borderRadius:'20px',
+      borderRadius:'var(--ins-radius-20)',
       overflow:'hidden',
       boxShadow:'none',
       display:'flex',
@@ -709,7 +709,7 @@ function SpotlightStack() {
               <div style={{
                 background:'rgba(255,255,255,.022)',
                 border:'1px solid var(--ins-color-white-a-06)',
-                borderRadius:'8px',
+                borderRadius:'var(--ins-radius-8)',
                 padding:'8px 11px',
                 display:'flex',alignItems:'center',gap:'10px',
               }}>
@@ -718,7 +718,7 @@ function SpotlightStack() {
                 <div style={{flex:1,minWidth:0,display:'flex',alignItems:'center',gap:'6px',fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-body)'}}>
                   <span style={{
                     color:'var(--ins-status-warning-fg)',
-                    padding:'1px 6px',borderRadius:'4px',
+                    padding:'1px 6px',borderRadius:'var(--ins-radius-4)',
                     background:'rgba(251,191,36,.08)',
                     border:'1px solid rgba(251,191,36,.22)',
                     letterSpacing:'.04em',
@@ -884,7 +884,7 @@ function UseCases() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{marginBottom:'80px'}}>
           <div style={{
-            position:'relative',borderRadius:'16px',
+            position:'relative',borderRadius:'var(--ins-radius-16)',
             border:'1px solid rgba(30,30,48,1)',
             padding:'32px 48px',overflow:'hidden',
             display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'24px',
@@ -919,7 +919,7 @@ function UseCases() {
               style={{
                 background:'rgba(13,17,23,.6)',
                 border:'1px solid var(--ins-color-white-a-06)',
-                borderRadius:'16px',padding:'24px',
+                borderRadius:'var(--ins-radius-16)',padding:'24px',
                 position:'relative',overflow:'hidden',
                 transition:'all .2s',
               }}

@@ -44,7 +44,7 @@ function SupportHero({ search, setSearch }) {
         <div className="fu3" style={{
           display:'flex', alignItems:'center',
           background:'var(--ins-color-white-a-03)', border:'1px solid var(--ins-border-default)',
-          borderRadius:'12px', padding:'4px', maxWidth:'580px', margin:'0 auto',
+          borderRadius:'var(--ins-radius-12)', padding:'4px', maxWidth:'580px', margin:'0 auto',
         }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="2" style={{marginLeft:'14px',flexShrink:0}}>
             <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
@@ -250,7 +250,7 @@ function FloatingChat({ onSubmit, hidden }) {
   return (
     <div style={{
       position:'fixed', bottom:0, left:0, right:0,
-      zIndex:100,
+      zIndex:'var(--ins-z-dropdown)',
       opacity: visible && !hidden ? 1 : 0,
       pointerEvents: 'none',
       transform: visible && !hidden ? 'translateY(0)' : 'translateY(12px)',
@@ -290,7 +290,7 @@ function FloatingChat({ onSubmit, hidden }) {
             onClick={handleSubmit}
             style={{
               flexShrink:0,
-              padding:'8px 20px', borderRadius:'8px',
+              padding:'8px 20px', borderRadius:'var(--ins-radius-8)',
               background: value.trim() ? 'var(--ins-button-primary-bg)' : 'rgba(9,160,157,.15)',
               color: value.trim() ? 'var(--ins-text-heading)' : '#4A9EA0',
               border:'none', cursor: value.trim() ? 'pointer' : 'default',
@@ -374,7 +374,7 @@ function AIAssistantPanel({ query, onClose }) {
     <button title={title} onClick={() => {
       if (title === 'Copy') { navigator.clipboard?.writeText(''); setCopied(true); setTimeout(() => setCopied(false), 2000); }
     }} style={{
-      background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
+      background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'var(--ins-radius-4)',
       color:'var(--ins-text-disabled)', transition:'color .15s',
     }}
     onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-text-body)'}
@@ -392,7 +392,7 @@ function AIAssistantPanel({ query, onClose }) {
       background:'#0B0F16',
       borderLeft:'1px solid var(--ins-color-white-a-07)',
       display:'flex', flexDirection:'column',
-      zIndex:200,
+      zIndex:'var(--ins-z-sticky)',
       animation:'slideInRight .25s ease',
     }}>
       {/* Header */}
@@ -408,7 +408,7 @@ function AIAssistantPanel({ query, onClose }) {
           <span style={{ fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-color-gray-100)' }}>AI Assistant</span>
         </div>
         <button onClick={onClose} style={{
-          background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
+          background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'var(--ins-radius-4)',
           color:'var(--ins-text-disabled)', transition:'color .15s', display:'flex',
         }}
         onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-color-gray-100)'}
@@ -667,7 +667,7 @@ function ContactSupport() {
             display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px',
             background: 'var(--ins-color-white-a-02)',
             border: '1px solid var(--ins-border-default)',
-            borderRadius: '12px',
+            borderRadius: 'var(--ins-radius-12)',
             padding: '16px 20px',
             flexWrap: 'wrap',
           }}>
@@ -708,7 +708,7 @@ function ContactSupport() {
         <div
           onClick={close}
           style={{
-            position: 'fixed', inset: 0, zIndex: 200,
+            position: 'fixed', inset: 0, zIndex: 'var(--ins-z-sticky)',
             background: 'rgba(5,8,12,0.75)',
             backdropFilter: 'blur(4px)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -737,7 +737,7 @@ function ContactSupport() {
                 background: 'none', border: 'none', cursor: 'pointer',
                 color: 'var(--ins-text-disabled)', padding: '4px',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                borderRadius: '6px',
+                borderRadius: 'var(--ins-radius-6)',
               }}
               onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-color-gray-100)'}
               onMouseLeave={e => e.currentTarget.style.color = 'var(--ins-text-disabled)'}
@@ -870,7 +870,7 @@ function ContactSupport() {
                           <div key={f.name} style={{
                             display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px',
                             background: 'var(--ins-color-white-a-04)', border: '1px solid var(--ins-color-white-a-07)',
-                            borderRadius: '8px', padding: '7px 10px',
+                            borderRadius: 'var(--ins-radius-8)', padding: '7px 10px',
                           }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0 }}>
                               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-disabled)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>

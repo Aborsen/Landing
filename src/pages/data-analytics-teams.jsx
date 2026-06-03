@@ -80,7 +80,7 @@ function Hero() {
               background:'radial-gradient(circle at 30% 30%, rgba(9,160,157,.18) 0%, transparent 55%), radial-gradient(circle at 80% 80%, rgba(110,60,200,.10) 0%, transparent 50%)',
               pointerEvents:'none',
               filter:'blur(40px)',
-              zIndex:0,
+              zIndex:'var(--ins-z-base)',
             }}/>
 
             {/* Main insight panel */}
@@ -656,7 +656,7 @@ function SpotlightChat() {
       width:'100%',
       background:'rgba(13,17,23,0.9)',
       border:'1px solid var(--ins-color-white-a-08)',
-      borderRadius:'20px',
+      borderRadius:'var(--ins-radius-20)',
       overflow:'hidden',
       boxShadow:'none',
       display:'flex',
@@ -706,7 +706,7 @@ function SpotlightSemantic() {
       width:'100%',
       background:'rgba(13,17,23,0.9)',
       border:'1px solid var(--ins-color-white-a-08)',
-      borderRadius:'20px',
+      borderRadius:'var(--ins-radius-20)',
       overflow:'hidden',
       boxShadow:'none',
       display:'flex',
@@ -771,7 +771,7 @@ function SpotlightAnomalies() {
       width:'100%',
       background:'rgba(13,17,23,0.9)',
       border:'1px solid var(--ins-color-white-a-08)',
-      borderRadius:'20px',
+      borderRadius:'var(--ins-radius-20)',
       overflow:'hidden',
       boxShadow:'none',
       display:'flex',
@@ -889,7 +889,7 @@ function SpotlightStack() {
       width:'100%',
       background:'rgba(13,17,23,0.9)',
       border:'1px solid var(--ins-color-white-a-08)',
-      borderRadius:'20px',
+      borderRadius:'var(--ins-radius-20)',
       boxShadow:'none',
       position:'relative',
       overflow:'hidden',
@@ -910,7 +910,7 @@ function SpotlightStack() {
             <div key={i} style={{
               background:'rgba(255,255,255,.025)',
               border:`1px solid ${s.color}33`,
-              borderRadius:'12px',
+              borderRadius:'var(--ins-radius-12)',
               padding:'12px 6px',
               display:'flex',flexDirection:'column',alignItems:'center',gap:'7px',
               minWidth:0,
@@ -936,7 +936,7 @@ function SpotlightStack() {
         <div style={{
           background:'linear-gradient(135deg, rgba(9,160,157,.14) 0%, rgba(9,160,157,.06) 100%)',
           border:'1px solid rgba(9,160,157,.35)',
-          borderRadius:'12px',
+          borderRadius:'var(--ins-radius-12)',
           padding:'12px 14px',
           display:'flex',alignItems:'center',gap:'12px',
         }}>
@@ -1092,7 +1092,7 @@ function UseCases() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{marginBottom:'80px'}}>
           <div style={{
-            position:'relative',borderRadius:'16px',
+            position:'relative',borderRadius:'var(--ins-radius-16)',
             border:'1px solid rgba(30,30,48,1)',
             padding:'32px 48px',overflow:'hidden',
             display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'24px',
@@ -1127,7 +1127,7 @@ function UseCases() {
               style={{
                 background:'rgba(13,17,23,.6)',
                 border:'1px solid var(--ins-color-white-a-06)',
-                borderRadius:'16px',padding:'24px',
+                borderRadius:'var(--ins-radius-16)',padding:'24px',
                 position:'relative',overflow:'hidden',
                 transition:'all .2s',
               }}

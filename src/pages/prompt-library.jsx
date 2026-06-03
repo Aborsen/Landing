@@ -402,7 +402,7 @@ function PromptLibrarySidebar({ selectedTeams, toggleTeam, clearAll }) {
             fontSize:'var(--ins-font-size-12)', fontFamily:'var(--ins-font-family-sans)',
             background:'var(--ins-surface-brand-tint)', color:'var(--ins-text-highlight)',
             border:'1px solid rgba(9,160,157,.25)',
-            borderRadius:'6px', padding:'5px 10px', cursor:'pointer',
+            borderRadius:'var(--ins-radius-6)', padding:'5px 10px', cursor:'pointer',
             display:'inline-flex', alignItems:'center', gap:'6px',
             visibility: total > 0 ? 'visible' : 'hidden',
             pointerEvents: total > 0 ? 'auto' : 'none',
@@ -483,7 +483,7 @@ function PromptCard({ entry, index, isExpanded, onToggle }) {
                 display:'inline-flex', alignItems:'center', gap:'6px',
                 background:'transparent', border:'1px solid rgba(9,160,157,.25)',
                 color: copied ? '#8EDDBF' : 'var(--ins-text-highlight)',
-                borderRadius:'6px', padding:'4px 10px',
+                borderRadius:'var(--ins-radius-6)', padding:'4px 10px',
                 fontSize:'var(--ins-font-size-12)', fontWeight:500, cursor:'pointer',
                 fontFamily:'var(--ins-font-family-sans)',
               }}
@@ -519,7 +519,7 @@ function BottomCTA() {
     <section style={{paddingTop:'32px',paddingBottom:'64px',position:'relative'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{
-          position:'relative',borderRadius:'16px',
+          position:'relative',borderRadius:'var(--ins-radius-16)',
           border:'1px solid rgba(30,30,48,1)',
           padding:'32px 48px',overflow:'hidden',
           display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'24px',
@@ -537,7 +537,7 @@ function BottomCTA() {
             display:'flex',alignItems:'center',
             width:'100%',maxWidth:'420px',
             background:'#0D0D1A',border:'1px solid rgba(46,46,64,1)',
-            borderRadius:'12px',overflow:'hidden',
+            borderRadius:'var(--ins-radius-12)',overflow:'hidden',
             flexShrink:0,
           }}>
             <input
@@ -554,7 +554,7 @@ function BottomCTA() {
               padding:'10px 20px',margin:'4px',
               fontSize:'var(--ins-font-size-14)',fontWeight:500,color:'var(--ins-text-body)',
               background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))',
-              borderRadius:'8px',border:'none',cursor:'pointer',
+              borderRadius:'var(--ins-radius-8)',border:'none',cursor:'pointer',
               whiteSpace:'nowrap',flexShrink:0,
               fontFamily:'var(--ins-font-family-sans)',
             }}>
@@ -594,7 +594,7 @@ function FloatingChat({ onSubmit }) {
   return (
     <div style={{
       position:'fixed', bottom:0, left:0, right:0,
-      zIndex:100,
+      zIndex:'var(--ins-z-dropdown)',
       opacity: visible ? 1 : 0,
       pointerEvents: 'none',
       transform: visible ? 'translateY(0)' : 'translateY(12px)',
@@ -605,7 +605,7 @@ function FloatingChat({ onSubmit }) {
           display:'flex', alignItems:'center', gap:'8px',
           background:'rgba(16,22,30,0.96)',
           border: focused ? '1px solid var(--ins-color-teal-a-50)' : '1px solid var(--ins-color-white-a-10)',
-          borderRadius:'12px',
+          borderRadius:'var(--ins-radius-12)',
           padding:'6px 6px 6px 12px',
           transition:'border-color .2s',
           boxShadow:'0 8px 32px rgba(0,0,0,0.45)',
@@ -717,7 +717,7 @@ function AIAssistantPanel({ query, onClose }) {
     <button title={title} onClick={() => {
       if (title === 'Copy') { navigator.clipboard?.writeText(''); setCopied(true); setTimeout(() => setCopied(false), 2000); }
     }} style={{
-      background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
+      background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'var(--ins-radius-4)',
       color:'var(--ins-text-disabled)', transition:'color .15s',
     }}
     onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-text-body)'}
@@ -735,7 +735,7 @@ function AIAssistantPanel({ query, onClose }) {
       background:'#0B0F16',
       borderLeft:'1px solid var(--ins-color-white-a-07)',
       display:'flex', flexDirection:'column',
-      zIndex:200,
+      zIndex:'var(--ins-z-sticky)',
       animation:'slideInRight .25s ease',
     }}>
       {/* Header */}
@@ -752,7 +752,7 @@ function AIAssistantPanel({ query, onClose }) {
         </div>
         <div style={{ display:'flex', gap:'2px' }}>
           <button onClick={onClose} style={{
-            background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
+            background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'var(--ins-radius-4)',
             color:'var(--ins-text-disabled)', transition:'color .15s', display:'flex',
           }}
           onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-color-gray-100)'}
@@ -933,7 +933,7 @@ function App() {
             display:'flex', alignItems:'center', gap:'10px',
             background:'rgba(16,22,30,0.7)',
             border: searchFocused ? '1px solid var(--ins-color-teal-a-50)' : '1px solid var(--ins-color-white-a-07)',
-            borderRadius:'12px',
+            borderRadius:'var(--ins-radius-12)',
             padding:'11px 14px',
             width:'100%',
             marginBottom:'20px',
@@ -978,7 +978,7 @@ function App() {
           ) : (
             <div style={{
               padding:'40px 24px', textAlign:'center',
-              border:'1px dashed var(--ins-color-white-a-08)', borderRadius:'12px',
+              border:'1px dashed var(--ins-color-white-a-08)', borderRadius:'var(--ins-radius-12)',
               color:'var(--ins-text-body)', fontSize:'var(--ins-font-size-14)',
             }}>
               No prompts match your search — try different keywords or clear a filter.

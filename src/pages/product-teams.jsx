@@ -80,7 +80,7 @@ function Hero() {
               background:'radial-gradient(circle at 25% 25%, rgba(167,139,250,.18) 0%, transparent 55%), radial-gradient(circle at 80% 80%, rgba(9,160,157,.12) 0%, transparent 50%)',
               pointerEvents:'none',
               filter:'blur(44px)',
-              zIndex:0,
+              zIndex:'var(--ins-z-base)',
             }}/>
 
             {/* Main panel */}
@@ -664,7 +664,7 @@ function SpotlightChat() {
       width:'100%',
       background:'rgba(13,17,23,0.9)',
       border:'1px solid var(--ins-color-white-a-08)',
-      borderRadius:'20px',
+      borderRadius:'var(--ins-radius-20)',
       overflow:'hidden',
       boxShadow:'none',
       display:'flex',
@@ -749,7 +749,7 @@ function SpotlightSemantic() {
       width:'100%',
       background:'rgba(13,17,23,0.9)',
       border:'1px solid var(--ins-color-white-a-08)',
-      borderRadius:'20px',
+      borderRadius:'var(--ins-radius-20)',
       overflow:'hidden',
       boxShadow:'none',
       display:'flex',
@@ -790,7 +790,7 @@ function SpotlightSemantic() {
         <div style={{
           background:'linear-gradient(135deg, rgba(9,160,157,.14) 0%, rgba(9,160,157,.05) 100%)',
           border:'1px solid rgba(9,160,157,.4)',
-          borderRadius:'12px',
+          borderRadius:'var(--ins-radius-12)',
           padding:'14px 14px',
         }}>
           <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'10px'}}>
@@ -840,7 +840,7 @@ function SpotlightAnomalies() {
       width:'100%',
       background:'rgba(13,17,23,0.9)',
       border:'1px solid var(--ins-color-white-a-08)',
-      borderRadius:'20px',
+      borderRadius:'var(--ins-radius-20)',
       overflow:'hidden',
       boxShadow:'none',
       display:'flex',
@@ -891,7 +891,7 @@ function SpotlightAnomalies() {
               padding:'7px 11px',
               background:r.bad?'rgba(248,113,113,.05)':'var(--ins-color-white-a-02)',
               border:`1px solid ${r.bad?'rgba(248,113,113,.2)':'var(--ins-color-white-a-05)'}`,
-              borderRadius:'8px',
+              borderRadius:'var(--ins-radius-8)',
             }}>
               <span style={{
                 width:'6px',height:'6px',borderRadius:'50%',
@@ -941,7 +941,7 @@ function SpotlightStack() {
       width:'100%',
       background:'rgba(13,17,23,0.9)',
       border:'1px solid var(--ins-color-white-a-08)',
-      borderRadius:'20px',
+      borderRadius:'var(--ins-radius-20)',
       boxShadow:'none',
       position:'relative',
       overflow:'hidden',
@@ -1009,7 +1009,7 @@ function SpotlightStack() {
           <div style={{
             background:'linear-gradient(135deg, rgba(9,160,157,.18) 0%, rgba(9,160,157,.06) 100%)',
             border:'1px solid rgba(9,160,157,.45)',
-            borderRadius:'12px',
+            borderRadius:'var(--ins-radius-12)',
             padding:'14px 12px',
             display:'flex',flexDirection:'column',alignItems:'center',gap:'10px',
             textAlign:'center',
@@ -1175,7 +1175,7 @@ function UseCases() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{marginBottom:'80px'}}>
           <div style={{
-            position:'relative',borderRadius:'16px',
+            position:'relative',borderRadius:'var(--ins-radius-16)',
             border:'1px solid rgba(30,30,48,1)',
             padding:'32px 48px',overflow:'hidden',
             display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'24px',
@@ -1210,7 +1210,7 @@ function UseCases() {
               style={{
                 background:'rgba(13,17,23,.6)',
                 border:'1px solid var(--ins-color-white-a-06)',
-                borderRadius:'16px',padding:'24px',
+                borderRadius:'var(--ins-radius-16)',padding:'24px',
                 position:'relative',overflow:'hidden',
                 transition:'all .2s',
               }}

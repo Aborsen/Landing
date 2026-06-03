@@ -45,7 +45,7 @@ function MediaContact() {
           <div className="md:w-[65%]">
             <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)'}}>Contact</span>
             <div style={{borderTop:'1px solid var(--ins-color-white-a-08)', marginTop:'8px', marginBottom:'24px'}} />
-            <div style={{background:'rgba(9,160,157,.04)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'16px', padding:'32px', position:'relative', overflow:'hidden'}}>
+            <div style={{background:'rgba(9,160,157,.04)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'var(--ins-radius-16)', padding:'32px', position:'relative', overflow:'hidden'}}>
               <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.4),transparent)'}}/>
               <div style={{display:'flex', alignItems:'center', gap:'16px', marginBottom:'16px'}}>
                 <div style={{width:'48px', height:'48px', borderRadius:'50%', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0}}>
@@ -102,7 +102,7 @@ function BrandAssets() {
   ];
 
   const AssetCard = ({ a }) => (
-    <div style={{background:'var(--ins-color-white-a-03)', border:'1px solid var(--ins-color-white-a-07)', borderRadius:'12px', overflow:'hidden'}}>
+    <div style={{background:'var(--ins-color-white-a-03)', border:'1px solid var(--ins-color-white-a-07)', borderRadius:'var(--ins-radius-12)', overflow:'hidden'}}>
       <div style={{height:'140px', display:'flex', alignItems:'center', justifyContent:'center', background: a.preview === 'light' ? '#F0F0F0' : a.preview === 'colors' ? 'var(--ins-color-white-a-03)' : 'rgba(10,14,19,.8)'}}>
         {a.preview === 'dark' && <LogoSVG inverted={false} />}
         {a.preview === 'light' && <LogoSVG inverted={true} />}
@@ -111,7 +111,7 @@ function BrandAssets() {
           <div style={{display:'flex', gap:'16px', alignItems:'center'}}>
             {colors.map((c, ci) => (
               <div key={ci} style={{textAlign:'center'}}>
-                <div style={{width:'44px', height:'44px', borderRadius:'8px', background:c.hex, border:'1px solid var(--ins-color-white-a-10)', marginBottom:'6px'}}/>
+                <div style={{width:'44px', height:'44px', borderRadius:'var(--ins-radius-8)', background:c.hex, border:'1px solid var(--ins-color-white-a-10)', marginBottom:'6px'}}/>
                 <div style={{fontSize:'10px', color:'var(--ins-text-body)', fontFamily:'var(--ins-font-family-mono)'}}>{c.hex}</div>
               </div>
             ))}
@@ -253,8 +253,8 @@ function Boilerplate() {
           <div className="md:w-[65%]">
             <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-button-primary-bg-hover)', fontFamily:'var(--ins-font-family-mono)'}}>Press Copy</span>
             <div style={{borderTop:'1px solid var(--ins-color-white-a-08)', marginTop:'8px', marginBottom:'24px'}} />
-            <div style={{background:'var(--ins-color-white-a-03)', border:'1px solid var(--ins-color-white-a-07)', borderRadius:'16px', padding:'32px', position:'relative'}}>
-              <button onClick={handleCopy} style={{position:'absolute', top:'16px', right:'16px', fontSize:'var(--ins-font-size-12)', fontWeight:500, color: copied ? 'var(--ins-status-success-fg)' : 'var(--ins-text-highlight)', background:'transparent', border:'1px solid ' + (copied ? 'rgba(34,197,94,.3)' : 'var(--ins-border-brand)'), borderRadius:'8px', padding:'6px 12px', cursor:'pointer', fontFamily:'var(--ins-font-family-mono)', transition:'all .15s'}}>
+            <div style={{background:'var(--ins-color-white-a-03)', border:'1px solid var(--ins-color-white-a-07)', borderRadius:'var(--ins-radius-16)', padding:'32px', position:'relative'}}>
+              <button onClick={handleCopy} style={{position:'absolute', top:'16px', right:'16px', fontSize:'var(--ins-font-size-12)', fontWeight:500, color: copied ? 'var(--ins-status-success-fg)' : 'var(--ins-text-highlight)', background:'transparent', border:'1px solid ' + (copied ? 'rgba(34,197,94,.3)' : 'var(--ins-border-brand)'), borderRadius:'var(--ins-radius-8)', padding:'6px 12px', cursor:'pointer', fontFamily:'var(--ins-font-family-mono)', transition:'all .15s'}}>
                 {copied ? 'Copied \u2713' : 'Copy to clipboard'}
               </button>
               <p className="ins-text-body-lg" style={{paddingRight:'120px'}}>
@@ -273,14 +273,14 @@ function BottomCTA() {
   return (
     <section style={{paddingTop:'32px', paddingBottom:'64px', position:'relative'}}>
       <div className="max-w-7xl mx-auto px-6">
-        <div style={{position:'relative', borderRadius:'16px', border:'1px solid rgba(30,30,48,1)', padding:'32px 48px', overflow:'hidden', display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:'24px', flexWrap:'wrap', background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)'}}>
+        <div style={{position:'relative', borderRadius:'var(--ins-radius-16)', border:'1px solid rgba(30,30,48,1)', padding:'32px 48px', overflow:'hidden', display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:'24px', flexWrap:'wrap', background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)'}}>
           <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
           <h3 style={{fontSize:'clamp(22px,3vw,30px)', fontWeight:500, color:'var(--ins-text-heading)', letterSpacing:'-.03em', lineHeight:1.2, flexShrink:0}}>
             Ready to see your data <span style={{color:'var(--ins-button-primary-bg)'}}>clearly?</span>
           </h3>
-          <div style={{display:'flex', alignItems:'center', width:'100%', maxWidth:'420px', background:'#0D0D1A', border:'1px solid rgba(46,46,64,1)', borderRadius:'12px', overflow:'hidden', flex:'1 1 340px'}}>
+          <div style={{display:'flex', alignItems:'center', width:'100%', maxWidth:'420px', background:'#0D0D1A', border:'1px solid rgba(46,46,64,1)', borderRadius:'var(--ins-radius-12)', overflow:'hidden', flex:'1 1 340px'}}>
             <input type="email" placeholder="Enter your work email..." style={{flex:1, background:'transparent', fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-body)', padding:'12px 16px', outline:'none', border:'none', fontFamily:'var(--ins-font-family-sans)', minWidth:0}} />
-            <button style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 20px', margin:'4px', fontSize:'var(--ins-font-size-12)', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'8px', border:'none', cursor:'pointer', whiteSpace:'nowrap', flexShrink:0, fontFamily:'var(--ins-font-family-sans)'}}>
+            <button style={{display:'inline-flex', alignItems:'center', gap:'8px', padding:'10px 20px', margin:'4px', fontSize:'var(--ins-font-size-12)', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'var(--ins-radius-8)', border:'none', cursor:'pointer', whiteSpace:'nowrap', flexShrink:0, fontFamily:'var(--ins-font-family-sans)'}}>
               Start for Free
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </button>

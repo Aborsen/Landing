@@ -21,7 +21,7 @@ body {
 }
 
 body::before {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: var(--ins-z-base);
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
   opacity: .4; mix-blend-mode: overlay;
 }
@@ -47,7 +47,7 @@ body::before {
 .fu4 { animation: fadeUp .7s ease .5s both; }
 
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: var(--ins-radius-2); }
 
 section { position: relative; }
 
@@ -74,7 +74,7 @@ section { position: relative; }
 .roadmap-card {
   background: rgba(13,17,23,.65);
   border: 1px solid rgba(255,255,255,.06);
-  border-radius: 12px;
+  border-radius: var(--ins-radius-12);
   padding: 16px 18px;
   transition: border-color .2s, transform .2s;
   position: relative;
@@ -92,7 +92,7 @@ section { position: relative; }
 
 .upvote-btn {
   display: inline-flex; align-items: center; gap: 5px;
-  padding: 4px 9px; border-radius: 6px;
+  padding: 4px 9px; border-radius: var(--ins-radius-6);
   border: 1px solid rgba(255,255,255,.08);
   background: rgba(255,255,255,.04);
   font-size: var(--ins-font-size-11); font-family: var(--ins-font-family-mono);

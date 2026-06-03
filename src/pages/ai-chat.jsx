@@ -134,7 +134,7 @@ function ChatMock() {
     <div style={{
       background:'rgba(13,17,23,0.9)',
       border:'1px solid var(--ins-color-white-a-08)',
-      borderRadius:'20px',
+      borderRadius:'var(--ins-radius-20)',
       overflow:'hidden',
       backdropFilter:'blur(20px)',
       boxShadow:'none',
@@ -294,10 +294,10 @@ function HorizontalBarChart({ bars }) {
       {bars.map((b,i) => (
         <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
           <span style={{fontSize:'var(--ins-font-size-12)',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)',minWidth:'180px',textAlign:'right',flexShrink:0}}>{b.label}</span>
-          <div style={{flex:1,background:'var(--ins-color-white-a-04)',borderRadius:'4px',height:'22px',position:'relative',overflow:'hidden'}}>
+          <div style={{flex:1,background:'var(--ins-color-white-a-04)',borderRadius:'var(--ins-radius-4)',height:'22px',position:'relative',overflow:'hidden'}}>
             <div style={{
               width:`${(Math.abs(b.value)/maxVal)*100}%`,
-              height:'100%',borderRadius:'4px',
+              height:'100%',borderRadius:'var(--ins-radius-4)',
               background: b.color || (b.value < 0 ? 'rgba(220,80,80,.7)' : 'rgba(9,160,157,.6)'),
             }}/>
           </div>
@@ -358,8 +358,8 @@ function GroupedBarChart({ groups }) {
         </div>
       ))}
       <div style={{display:'flex',gap:'16px',marginTop:'4px'}}>
-        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(9,160,157,.55)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>Actual</span></div>
-        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'var(--ins-color-white-a-12)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>Budget</span></div>
+        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'var(--ins-radius-2)',background:'rgba(9,160,157,.55)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>Actual</span></div>
+        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'var(--ins-radius-2)',background:'var(--ins-color-white-a-12)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>Budget</span></div>
       </div>
     </div>
   );
@@ -389,8 +389,8 @@ function RetainedVsChurnedChart({ bars }) {
         </div>
       ))}
       <div style={{display:'flex',gap:'16px',marginTop:'4px'}}>
-        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(9,160,157,.6)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>Retained (12+ mo)</span></div>
-        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'2px',background:'rgba(220,80,80,.55)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>Churned</span></div>
+        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'var(--ins-radius-2)',background:'rgba(9,160,157,.6)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>Retained (12+ mo)</span></div>
+        <div style={{display:'flex',alignItems:'center',gap:'5px'}}><div style={{width:'8px',height:'8px',borderRadius:'var(--ins-radius-2)',background:'rgba(220,80,80,.55)'}}/><span style={{fontSize:'10px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>Churned</span></div>
       </div>
     </div>
   );
@@ -881,7 +881,7 @@ function QuestionsGallery() {
               }}>
                 {/* Header */}
                 <div style={{display:'flex',alignItems:'center',gap:'6px',marginBottom:'14px'}}>
-                  <div style={{width:'20px',height:'20px',borderRadius:'6px',background:'rgba(9,160,157,.12)',border:'1px solid rgba(9,160,157,.25)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
+                  <div style={{width:'20px',height:'20px',borderRadius:'var(--ins-radius-6)',background:'rgba(9,160,157,.12)',border:'1px solid rgba(9,160,157,.25)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
                     <svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z" stroke="var(--ins-text-highlight)" strokeWidth="1.2" strokeLinejoin="round"/></svg>
                   </div>
                   <span style={{fontSize:'var(--ins-font-size-11)',fontFamily:'var(--ins-font-family-mono)',color:'var(--ins-text-highlight)',fontWeight:500}}>Insightis</span>
@@ -1099,7 +1099,7 @@ function ChatMockAnimation() {
   if (!mounted) {
     return (
       <div style={{
-        borderRadius:'16px',
+        borderRadius:'var(--ins-radius-16)',
         border:'1px solid rgba(255,255,255,0.09)',
         background:'#0C1117',
         overflow:'hidden',
@@ -1183,7 +1183,7 @@ function ChatMockAnimationInner() {
 
   return (
     <div style={{
-      borderRadius: '16px',
+      borderRadius: 'var(--ins-radius-16)',
       border: '1px solid rgba(255,255,255,0.09)',
       background: '#0C1117',
       overflow: 'hidden',
@@ -1254,7 +1254,7 @@ function ChatMockAnimationInner() {
                 ].filter(s => s.visible).map(({done, label}, i) => (
                   <div key={label} style={{display:'flex', alignItems:'center', gap:'7px', fontSize:'var(--ins-font-size-12)', color: done ? 'rgba(14,196,193,0.75)' : 'var(--ins-text-body)', animation:'slideUp .22s ease both', transition:'color .3s ease'}}>
                     <span style={{
-                      width:'16px', height:'16px', borderRadius:'4px', flexShrink:0,
+                      width:'16px', height:'16px', borderRadius:'var(--ins-radius-4)', flexShrink:0,
                       display:'flex', alignItems:'center', justifyContent:'center',
                       fontSize:'9px', fontWeight:700,
                       background: done ? 'rgba(14,196,193,0.12)' : 'var(--ins-color-white-a-04)',

@@ -27,7 +27,7 @@ export default function AuthCard({ title, blurb }) {
           maxWidth: '440px',
           background: 'rgba(255,255,255,0.025)',
           border: '1px solid rgba(255,255,255,0.07)',
-          borderRadius: '16px',
+          borderRadius: 'var(--ins-radius-16)',
           padding: '40px 32px',
           boxShadow: '0 4px 24px rgba(0,0,0,0.35)',
           textAlign: 'center',

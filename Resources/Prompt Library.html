@@ -21,7 +21,7 @@ body {
 }
 
 body::before {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: var(--ins-z-base);
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
   opacity: .4; mix-blend-mode: overlay;
 }
@@ -47,7 +47,7 @@ body::before {
 
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: var(--ins-radius-2); }
 
 /* ── SECTION SPACING ── */
 section { position: relative; }
@@ -107,7 +107,7 @@ section { position: relative; }
 .prompt-card {
   background: rgba(13,17,23,.6);
   border: 1px solid rgba(255,255,255,.07);
-  border-radius: 12px;
+  border-radius: var(--ins-radius-12);
   padding: 18px 22px;
   transition: border-color .2s, transform .2s, background .2s;
   animation: cardFadeIn .35s ease both;
@@ -137,7 +137,7 @@ section { position: relative; }
   display: inline-block;
   font-size: 10.5px;
   padding: 2px 8px;
-  border-radius: 4px;
+  border-radius: var(--ins-radius-4);
   border: 1px solid rgba(9,160,157,.22);
   background: rgba(9,160,157,.06);
   color: #8DC9CB;
@@ -148,7 +148,7 @@ section { position: relative; }
 .ds-icon-wrap {
   width: 18px; height: 18px;
   display: inline-flex; align-items: center; justify-content: center;
-  border-radius: 4px;
+  border-radius: var(--ins-radius-4);
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.05);
 }

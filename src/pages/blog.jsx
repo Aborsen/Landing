@@ -52,7 +52,7 @@ function FeaturedPost() {
           position:'relative',
           background:'var(--ins-color-white-a-03)',
           border:'1px solid var(--ins-color-white-a-07)',
-          borderRadius:'16px',
+          borderRadius:'var(--ins-radius-16)',
           padding:'0',
           overflow:'hidden',
         }}>
@@ -208,7 +208,7 @@ function BottomCTA() {
     <section style={{paddingTop:'32px',paddingBottom:'64px',position:'relative'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{
-          position:'relative',borderRadius:'16px',
+          position:'relative',borderRadius:'var(--ins-radius-16)',
           border:'1px solid rgba(30,30,48,1)',
           padding:'32px 48px',overflow:'hidden',
           display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'24px',
@@ -226,7 +226,7 @@ function BottomCTA() {
             display:'flex',alignItems:'center',
             width:'100%',maxWidth:'420px',
             background:'#0D0D1A',border:'1px solid rgba(46,46,64,1)',
-            borderRadius:'12px',overflow:'hidden',
+            borderRadius:'var(--ins-radius-12)',overflow:'hidden',
             flexShrink:0,
           }}>
             <Input

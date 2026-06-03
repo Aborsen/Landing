@@ -75,7 +75,7 @@ function MissionValues() {
         </div>
         <div style={{display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'16px'}} className="md:grid-cols-3 grid-cols-1" >
           {values.map((v, i) => (
-            <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'16px', padding:'28px', position:'relative', overflow:'hidden', transition:'all .2s'}}
+            <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-16)', padding:'28px', position:'relative', overflow:'hidden', transition:'all .2s'}}
               onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
               onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-border-default)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
               <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
@@ -116,7 +116,7 @@ function WhatWeBuilt() {
           {pillars.map((p, i) => (
             <React.Fragment key={i}>
               <div style={{display:'flex', flexDirection:'column', alignItems: i===0 ? 'flex-start' : i===pillars.length-1 ? 'flex-end' : 'center', textAlign: i===0 ? 'left' : i===pillars.length-1 ? 'right' : 'center', flex:1}}>
-                <div className="hb" style={{width:'64px', height:'64px', borderRadius:'16px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'14px', animationDelay:`${i * 0.4}s`}}>
+                <div className="hb" style={{width:'64px', height:'64px', borderRadius:'var(--ins-radius-16)', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'14px', animationDelay:`${i * 0.4}s`}}>
                   {p.icon}
                 </div>
                 <h4 style={{fontSize:'var(--ins-font-size-15)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'4px'}}>{p.name}</h4>
@@ -134,7 +134,7 @@ function WhatWeBuilt() {
           {pillars.map((p, i) => (
             <React.Fragment key={i}>
               <div style={{display:'flex', alignItems:'center', gap:'16px', width:'100%', maxWidth:'320px'}}>
-                <div className="hb" style={{width:'48px', height:'48px', borderRadius:'12px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, animationDelay:`${i * 0.4}s`}}>
+                <div className="hb" style={{width:'48px', height:'48px', borderRadius:'var(--ins-radius-12)', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, animationDelay:`${i * 0.4}s`}}>
                   {p.icon}
                 </div>
                 <div>
@@ -309,7 +309,7 @@ function TrustedBy() {
   const companies = ['IBM', 'Amazon', 'Samsung', 'Toyota', 'Microsoft', 'Oracle', 'Siemens', 'Cisco', 'Accenture', 'Deloitte', 'SAP', 'Bosch'];
   return (
     <section style={{padding:'0 16px', margin:'0 auto', maxWidth:'1272px'}}>
-      <div style={{border:'1px solid var(--ins-border-default)', background:'var(--ins-color-white-a-02)', borderRadius:'16px', padding:'32px 32px', display:'flex', alignItems:'center', gap:'24px'}}>
+      <div style={{border:'1px solid var(--ins-border-default)', background:'var(--ins-color-white-a-02)', borderRadius:'var(--ins-radius-16)', padding:'32px 32px', display:'flex', alignItems:'center', gap:'24px'}}>
         <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', color:'var(--ins-text-disabled)', whiteSpace:'nowrap', flexShrink:0, fontFamily:'var(--ins-font-family-mono)'}}>Trusted by teams at</span>
         <div className="overflow-hidden flex-1 marquee-container" style={{maskImage:'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)', WebkitMaskImage:'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)'}}>
           <div className="flex gap-3 marquee-left" style={{width:'max-content'}}>
@@ -328,12 +328,12 @@ function BottomCTA() {
   return (
     <section style={{paddingTop:'32px', paddingBottom:'64px', position:'relative'}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-        <div style={{position:'relative', borderRadius:'16px', border:'1px solid rgba(30,30,48,1)', padding:'32px 48px', overflow:'hidden', display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:'24px', flexWrap:'wrap', background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)'}}>
+        <div style={{position:'relative', borderRadius:'var(--ins-radius-16)', border:'1px solid rgba(30,30,48,1)', padding:'32px 48px', overflow:'hidden', display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:'24px', flexWrap:'wrap', background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)'}}>
           <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
           <h3 style={{fontSize:'clamp(22px,3vw,30px)', fontWeight:500, color:'var(--ins-text-heading)', letterSpacing:'-.03em', lineHeight:1.2, flexShrink:0}}>
             Ready to see your data <span style={{color:'var(--ins-button-primary-bg)'}}>clearly?</span>
           </h3>
-          <div style={{display:'flex', alignItems:'center', width:'100%', maxWidth:'420px', background:'#0D0D1A', border:'1px solid rgba(46,46,64,1)', borderRadius:'12px', overflow:'hidden', flex:'1 1 340px'}}>
+          <div style={{display:'flex', alignItems:'center', width:'100%', maxWidth:'420px', background:'#0D0D1A', border:'1px solid rgba(46,46,64,1)', borderRadius:'var(--ins-radius-12)', overflow:'hidden', flex:'1 1 340px'}}>
             <Input hideLabel label="Work email" type="email" placeholder="Enter your work email..." style={{flex:1, background:'transparent', fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-body)', padding:'12px 16px', outline:'none', border:'none', fontFamily:'var(--ins-font-family-sans)', minWidth:0, height:'auto', borderRadius:0, boxShadow:'none'}} />
             <Button variant="primary" size="sm" radius="lg" iconEnd={<ArrowRightIcon />} className="m-1 flex-shrink-0">
               Start for Free

@@ -294,7 +294,7 @@ function DocsAskQuestion() {
       padding:'24px',
       background:'var(--ins-color-white-a-03)',
       border:'1px solid var(--ins-color-white-a-07)',
-      borderRadius:'12px',
+      borderRadius:'var(--ins-radius-12)',
     }}>
       <p style={{ fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-disabled)', marginBottom:'12px', fontWeight:500 }}>
         Didn't find what you were looking for?
@@ -428,7 +428,7 @@ function PageFeedback() {
                     width:'100%', resize:'vertical',
                     background:'var(--ins-color-white-a-04)',
                     border: focused ? '1px solid rgba(9,160,157,.4)' : '1px solid var(--ins-color-white-a-08)',
-                    borderRadius:'8px', padding:'10px 12px',
+                    borderRadius:'var(--ins-radius-8)', padding:'10px 12px',
                     fontSize:'var(--ins-font-size-14)', color:'var(--ins-color-gray-100)', lineHeight:1.6,
                     fontFamily:'var(--ins-font-family-sans)',
                     outline:'none', transition:'border-color .2s',
@@ -437,7 +437,7 @@ function PageFeedback() {
                 />
                 <div style={{ display:'flex', gap:'8px', marginTop:'10px', justifyContent:'flex-end' }}>
                   <button type="button" onClick={handleSkip} style={{
-                    padding:'6px 14px', borderRadius:'6px',
+                    padding:'6px 14px', borderRadius:'var(--ins-radius-6)',
                     background:'transparent', border:'1px solid var(--ins-color-white-a-08)',
                     color:'var(--ins-text-disabled)', fontSize:'var(--ins-font-size-12)', cursor:'pointer',
                     fontFamily:'var(--ins-font-family-sans)', transition:'color .15s',
@@ -486,7 +486,7 @@ function CopyPageButton({ page }) {
       title="Copy link to this page"
       style={{
         display:'inline-flex', alignItems:'center', gap:'5px',
-        padding:'5px 10px', borderRadius:'6px',
+        padding:'5px 10px', borderRadius:'var(--ins-radius-6)',
         background: copied ? 'rgba(9,160,157,.15)' : 'var(--ins-color-white-a-05)',
         border: copied ? '1px solid rgba(9,160,157,.35)' : '1px solid var(--ins-color-white-a-08)',
         color: copied ? 'var(--ins-text-highlight)' : 'var(--ins-text-disabled)',
@@ -569,7 +569,7 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
             background:'rgba(0,0,0,0.5)', backdropFilter:'blur(8px)',
           }}>
             <div style={{
-              width:'32px', height:'32px', borderRadius:'8px',
+              width:'32px', height:'32px', borderRadius:'var(--ins-radius-8)',
               background:'linear-gradient(135deg,var(--ins-text-highlight),var(--ins-color-teal-700))',
               display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0,
             }}>
@@ -700,7 +700,7 @@ function FloatingChat({ onSubmit }) {
   return (
     <div style={{
       position:'fixed', bottom:0, left:0, right:0,
-      zIndex:100,
+      zIndex:'var(--ins-z-dropdown)',
       opacity: visible ? 1 : 0,
       pointerEvents: 'none',
       transform: visible ? 'translateY(0)' : 'translateY(12px)',
@@ -740,7 +740,7 @@ function FloatingChat({ onSubmit }) {
             onClick={handleSubmit}
             style={{
               flexShrink:0,
-              padding:'8px 20px', borderRadius:'8px',
+              padding:'8px 20px', borderRadius:'var(--ins-radius-8)',
               background: value.trim() ? 'var(--ins-button-primary-bg)' : 'rgba(9,160,157,.15)',
               color: value.trim() ? 'var(--ins-text-heading)' : 'var(--ins-text-disabled)',
               border:'none', cursor: value.trim() ? 'pointer' : 'default',
@@ -824,7 +824,7 @@ function AIAssistantPanel({ query, onClose }) {
     <button title={title} onClick={() => {
       if (title === 'Copy') { navigator.clipboard?.writeText(''); setCopied(true); setTimeout(() => setCopied(false), 2000); }
     }} style={{
-      background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
+      background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'var(--ins-radius-4)',
       color:'var(--ins-text-disabled)', transition:'color .15s',
     }}
     onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-text-body)'}
@@ -842,7 +842,7 @@ function AIAssistantPanel({ query, onClose }) {
       background:'#0B0F16',
       borderLeft:'1px solid var(--ins-color-white-a-07)',
       display:'flex', flexDirection:'column',
-      zIndex:200,
+      zIndex:'var(--ins-z-sticky)',
       animation:'slideInRight .25s ease',
     }}>
       {/* Header */}
@@ -859,7 +859,7 @@ function AIAssistantPanel({ query, onClose }) {
         </div>
         <div style={{ display:'flex', gap:'2px' }}>
           <button onClick={onClose} style={{
-            background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'4px',
+            background:'none', border:'none', cursor:'pointer', padding:'4px', borderRadius:'var(--ins-radius-4)',
             color:'var(--ins-text-disabled)', transition:'color .15s', display:'flex',
           }}
           onMouseEnter={e => e.currentTarget.style.color = 'var(--ins-color-gray-100)'}

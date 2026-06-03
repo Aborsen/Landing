@@ -10,7 +10,7 @@ function ToggleSwitch({ enabled, onChange, disabled = false }) {
     <button
       onClick={() => !disabled && onChange(!enabled)}
       style={{
-        width: '44px', height: '24px', borderRadius: '12px',
+        width: '44px', height: '24px', borderRadius: 'var(--ins-radius-12)',
         background: enabled ? 'var(--ins-button-primary-bg)' : 'var(--ins-color-white-a-12)',
         border: 'none', cursor: disabled ? 'not-allowed' : 'pointer',
         position: 'relative', transition: 'background 0.2s',
@@ -113,7 +113,7 @@ function CookieContent() {
           {categories.map((cat, i) => (
             <div key={cat.key} className={`fu${Math.min(i+1, 3)}`} style={{
               background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)',
-              borderRadius:'16px', padding:'24px', marginBottom:'16px',
+              borderRadius:'var(--ins-radius-16)', padding:'24px', marginBottom:'16px',
             }}>
               <div style={{display:'flex', alignItems:'flex-start', gap:'20px'}}>
                 <div style={{flex:1}}>
@@ -203,7 +203,7 @@ function CookieContent() {
             <p style={{...paraStyle, marginBottom:'16px'}}>
               The following table lists the cookies used on our website, their provider, purpose, and duration.
             </p>
-            <div style={{overflowX:'auto', borderRadius:'12px', border:'1px solid var(--ins-border-default)'}}>
+            <div style={{overflowX:'auto', borderRadius:'var(--ins-radius-12)', border:'1px solid var(--ins-border-default)'}}>
               <table style={{width:'100%', borderCollapse:'collapse', fontSize:'var(--ins-font-size-14)'}}>
                 <thead>
                   <tr style={{background:'var(--ins-color-white-a-04)'}}>

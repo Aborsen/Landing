@@ -29,7 +29,7 @@ function ContactHero() {
 
 /* ── CONTACT OPTIONS ── */
 function ContactOptions({ onOpenDemo, onOpenSupport }) {
-  const cardStyle = {background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'16px', padding:'32px', position:'relative', overflow:'hidden', transition:'all .2s'};
+  const cardStyle = {background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-16)', padding:'32px', position:'relative', overflow:'hidden', transition:'all .2s'};
 
   return (
     <section style={{padding:'40px 0 80px'}}>
@@ -128,7 +128,7 @@ function ModalForm({ open, onClose, type }) {
     <div style={{position:'fixed', inset:0, zIndex:9999, display:'flex', alignItems:'center', justifyContent:'center', padding:'24px'}}
       onClick={onClose}>
       <div style={{position:'absolute', inset:0, background:'rgba(0,0,0,.7)', backdropFilter:'blur(6px)'}}/>
-      <div style={{position:'relative', width:'100%', maxWidth:'520px', maxHeight:'90vh', overflowY:'auto', background:'var(--ins-surface-container)', border:'1px solid var(--ins-color-white-a-08)', borderRadius:'20px', padding:'36px'}}
+      <div style={{position:'relative', width:'100%', maxWidth:'520px', maxHeight:'90vh', overflowY:'auto', background:'var(--ins-surface-container)', border:'1px solid var(--ins-color-white-a-08)', borderRadius:'var(--ins-radius-20)', padding:'36px'}}
         onClick={e => e.stopPropagation()}>
         {/* Close button */}
         <button onClick={onClose} style={{position:'absolute', top:'16px', right:'16px', background:'none', border:'none', cursor:'pointer', padding:'4px', color:'var(--ins-text-body)'}}>
@@ -272,7 +272,7 @@ function QuickLinks() {
         </div>
         <div style={{display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:'16px'}} className="md:grid-cols-4 sm:grid-cols-2 grid-cols-1">
           {links.map((l, i) => (
-            <a key={i} href={l.href} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'16px', padding:'28px', position:'relative', overflow:'hidden', transition:'all .2s', textDecoration:'none', display:'block'}}
+            <a key={i} href={l.href} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-16)', padding:'28px', position:'relative', overflow:'hidden', transition:'all .2s', textDecoration:'none', display:'block'}}
               onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
               onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-border-default)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
               <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
@@ -356,7 +356,7 @@ function CtaBanner() {
   return (
     <section style={{padding:'8px 0 64px'}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-        <div style={{position:'relative', overflow:'hidden', borderRadius:'16px', padding:'32px', background:'linear-gradient(135deg, rgba(18,18,31,.95) 0%, rgba(13,13,26,.98) 50%, rgba(18,18,31,.95) 100%)', border:'1px solid rgba(30,30,48,1)', display:'flex', flexWrap:'wrap', alignItems:'center', justifyContent:'space-between', gap:'20px'}}>
+        <div style={{position:'relative', overflow:'hidden', borderRadius:'var(--ins-radius-16)', padding:'32px', background:'linear-gradient(135deg, rgba(18,18,31,.95) 0%, rgba(13,13,26,.98) 50%, rgba(18,18,31,.95) 100%)', border:'1px solid rgba(30,30,48,1)', display:'flex', flexWrap:'wrap', alignItems:'center', justifyContent:'space-between', gap:'20px'}}>
           <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
           <div style={{flexShrink:0}}>
             <h3 style={{fontSize:'clamp(18px,2.5vw,26px)', fontWeight:500, color:'var(--ins-text-heading)', letterSpacing:'-.02em', lineHeight:1.3, marginBottom:'6px'}}>
@@ -365,7 +365,7 @@ function CtaBanner() {
             <p className="ins-text-body-sm ins-text--muted ins-text--mono">Drop your email — we'll get back to you ASAP.</p>
           </div>
           {!submitted ? (
-            <form onSubmit={handleSubmit} style={{display:'flex', alignItems:'center', flex:'1 1 400px', maxWidth:'460px', background:'rgba(13,13,26,1)', border:'1px solid rgba(46,46,64,1)', borderRadius:'12px', overflow:'hidden', transition:'border-color .15s'}}
+            <form onSubmit={handleSubmit} style={{display:'flex', alignItems:'center', flex:'1 1 400px', maxWidth:'460px', background:'rgba(13,13,26,1)', border:'1px solid rgba(46,46,64,1)', borderRadius:'var(--ins-radius-12)', overflow:'hidden', transition:'border-color .15s'}}
               onFocus={e=>e.currentTarget.style.borderColor='rgba(7,128,126,.6)'}
               onBlur={e=>e.currentTarget.style.borderColor='rgba(46,46,64,1)'}>
               <Input

@@ -225,7 +225,7 @@ export default function Header() {
                               flexShrink:0,
                               width:'36px', height:'36px',
                               display:'flex', alignItems:'center', justifyContent:'center',
-                              borderRadius:'8px',
+                              borderRadius:'var(--ins-radius-8)',
                               background:'var(--ins-surface-brand-tint)',
                               border:'1px solid var(--ins-border-brand)',
                               color:'var(--ins-text-highlight)',

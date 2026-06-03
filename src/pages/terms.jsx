@@ -211,7 +211,7 @@ function TermsContent() {
         <div id="contact" style={sectionStyle}>
           <h2 style={h2Style}>14. Contact Us</h2>
           <p className="ins-text-body-lg" style={pStyle}>If you have any questions, concerns, or requests regarding these Terms of Service, please contact us at:</p>
-          <div style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'12px', padding:'20px 24px', marginTop:'8px'}}>
+          <div style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-12)', padding:'20px 24px', marginTop:'8px'}}>
             <p className="ins-text-body-lg" style={{margin:0}}>
               <strong style={{color:'var(--ins-text-body)'}}>Insightis Legal Team</strong><br/>
               Email: <a href="mailto:legal@insightis.ai" style={{color:'var(--ins-text-highlight)', textDecoration:'none', borderBottom:'1px solid var(--ins-color-teal-a-30)'}}>legal@insightis.ai</a><br/>

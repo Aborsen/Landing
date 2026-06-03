@@ -161,7 +161,7 @@ function SecurityContent() {
           </div>
           <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))', gap:'16px'}}>
             {securityCards.map((v, i) => (
-              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'16px', padding:'28px', position:'relative', overflow:'hidden', transition:'all .2s'}}
+              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-16)', padding:'28px', position:'relative', overflow:'hidden', transition:'all .2s'}}
                 onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
                 onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-border-default)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
                 <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
@@ -188,7 +188,7 @@ function SecurityContent() {
           </div>
           <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))', gap:'16px', maxWidth:'960px', margin:'0 auto'}}>
             {complianceCards.map((c, i) => (
-              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'16px', padding:'36px 28px', position:'relative', overflow:'hidden', textAlign:'center', transition:'all .2s'}}
+              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-16)', padding:'36px 28px', position:'relative', overflow:'hidden', textAlign:'center', transition:'all .2s'}}
                 onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
                 onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-border-default)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
                 <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
@@ -214,7 +214,7 @@ function SecurityContent() {
             />
           </div>
           <div style={{maxWidth:'720px', margin:'0 auto'}}>
-            <div style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'16px', padding:'36px', position:'relative', overflow:'hidden'}}>
+            <div style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-16)', padding:'36px', position:'relative', overflow:'hidden'}}>
               <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
               <div style={{display:'flex', flexDirection:'column', gap:'20px'}}>
                 {promises.map((p, i) => (
@@ -239,7 +239,7 @@ function SecurityContent() {
           </div>
           <div style={{maxWidth:'760px', margin:'0 auto', display:'flex', flexDirection:'column', gap:'8px'}}>
             {faqs.map((faq, i) => (
-              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'12px', overflow:'hidden', transition:'all .2s'}}>
+              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-12)', overflow:'hidden', transition:'all .2s'}}>
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   style={{width:'100%', display:'flex', alignItems:'center', justifyContent:'space-between', padding:'18px 24px', background:'transparent', border:'none', cursor:'pointer', textAlign:'left'}}

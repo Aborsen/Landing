@@ -224,7 +224,7 @@ function ConnectionChatAnimation() {
     <div ref={containerRef} style={{
       position:'relative',
       height:'500px',
-      borderRadius:'16px',
+      borderRadius:'var(--ins-radius-16)',
       border:'1px solid rgba(255,255,255,0.09)',
       background:'#0C1117',
       overflow:'hidden',
@@ -300,7 +300,7 @@ function ConnectionChatAnimation() {
       }}>
         <div style={{
           width:`${engineBox}px`, height:`${engineBox}px`,
-          borderRadius:'16px',
+          borderRadius:'var(--ins-radius-16)',
           display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:'6px',
           border:'1px solid rgba(7,128,126,0.5)',
           background:'linear-gradient(135deg, rgba(7,128,126,0.25), rgba(7,128,126,0.08))',
@@ -321,7 +321,7 @@ function ConnectionChatAnimation() {
           padding:`${cardPadV}px ${cardPadH}px`,
           background:'var(--ins-surface-card)',
           border:'1px solid var(--ins-color-white-a-06)',
-          borderRadius:'12px',
+          borderRadius:'var(--ins-radius-12)',
           boxShadow:'0 1px 3px var(--ins-color-black-a-30), 0 4px 12px rgba(0,0,0,0.20)',
           willChange:'transform',
           zIndex:5,
