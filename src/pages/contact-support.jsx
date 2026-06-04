@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CheckIcon from '../components/CheckIcon';
 import Button from '../components/Button';
+import SearchInput from '../components/SearchInput';
 
 /* ── SUPPORT HERO ── */
 function SupportHero({ search, setSearch }) {
@@ -38,24 +39,14 @@ function SupportHero({ search, setSearch }) {
           Search our help resources or reach out to the support team directly.
         </p>
 
-        <div className="fu3" style={{
-          display:'flex', alignItems:'center',
-          background:'var(--ins-color-white-a-03)', border:'1px solid var(--ins-border-default)',
-          borderRadius:'var(--ins-radius-12)', padding:'var(--ins-size-1)', maxWidth:'580px', margin:'0 auto',
-        }}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-inactive)" strokeWidth="2" style={{marginLeft:'14px',flexShrink:0}}>
-            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
-          </svg>
-          <input
-            placeholder="Search help topics..."
-            onChange={e => setSearch(e.target.value)}
-            value={search}
-            style={{
-              flex:1, background:'transparent', border:'none', outline:'none',
-              padding:'12px 14px', fontSize:'var(--ins-font-size-15)', color:'var(--ins-color-gray-100)', fontFamily:'var(--ins-font-family-sans)',
-            }}
-          />
-        </div>
+        <SearchInput
+          className="fu3"
+          style={{maxWidth:'580px', margin:'0 auto'}}
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          placeholder="Search help topics..."
+          size="lg"
+        />
       </div></div>
     </section>
   );

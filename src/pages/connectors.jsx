@@ -4,6 +4,7 @@ import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
+import SearchInput from '../components/SearchInput';
 import ConnectorIcon from '../components/ConnectorIcon';
 import { CATEGORIES, CONNECTORS } from '../data/connectors';
 
@@ -510,22 +511,12 @@ function App() {
           onRequestConnector={handleRequestConnector}
         />
         <div className="connectors-content">
-          <div className="connector-search fu2">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-body)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
-            </svg>
-            <input
-              type="text"
-              placeholder="Search 200+ connectors..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-            />
-            {query && (
-              <button onClick={() => setQuery('')} style={{background:'none',border:'none',color:'var(--ins-text-body)',cursor:'pointer',padding:'2px 6px',fontSize:'var(--ins-font-size-12)'}}>
-                Clear
-              </button>
-            )}
-          </div>
+          <SearchInput
+            className="fu2"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search 200+ connectors..."
+          />
           <ConnectorGrid items={filtered} onAskChat={handleAskChat} onConnect={handleConnect} />
 
           {/* Bottom request-a-connector CTA (shown on mobile where sidebar is hidden, and as a reinforcement on desktop) */}
