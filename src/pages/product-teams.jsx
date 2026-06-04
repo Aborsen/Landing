@@ -1206,15 +1206,8 @@ function UseCases() {
         <div data-usecase-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'14px'}}>
           {cases.map((c,i) => (
             <div key={i}
-              style={{
-                background:'rgba(13,17,23,.6)',
-                border:'1px solid var(--ins-color-white-a-06)',
-                borderRadius:'var(--ins-radius-16)',padding:'var(--ins-size-6)',
-                position:'relative',overflow:'hidden',
-                transition:'all .2s',
-              }}
-              onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-              onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-color-white-a-06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}
+              className="ins-prompt-card"
+              style={{padding:'var(--ins-size-6)', position:'relative', overflow:'hidden'}}
             >
               <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
               <div style={{width:'38px',height:'38px',borderRadius:'10px',background:'var(--ins-color-teal-a-08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'14px'}}>

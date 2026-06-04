@@ -446,7 +446,7 @@ function PromptCard({ entry, index, isExpanded, onToggle }) {
   };
 
   return (
-    <article className="prompt-card" style={{ animationDelay:`${Math.min(index,8) * 0.04}s` }}>
+    <article className="ins-prompt-card prompt-card" style={{ animationDelay:`${Math.min(index,8) * 0.04}s` }}>
       <div onClick={onToggle} role="button" tabIndex={0} aria-expanded={expanded}
         onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onToggle(); } }}
         style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', gap:'var(--ins-size-5)', flexWrap:'wrap', cursor:'pointer' }}>

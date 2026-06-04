@@ -188,4 +188,19 @@
   transform: translateY(-2px);
 }
 
+/* ── Prompt card (audit #23) — shared shell + hover for the product-teams feature
+   cards and the prompt-library prompt cards. Padding stays per call-site. */
+.ins-prompt-card {
+  background: rgba(13, 17, 23, 0.6);
+  border: var(--ins-border-width-1) solid var(--ins-color-white-a-06);
+  border-radius: var(--ins-radius-12);
+  transition: border-color var(--ins-duration-base) var(--ins-easing-standard),
+              background var(--ins-duration-base) var(--ins-easing-standard),
+              transform var(--ins-duration-base) var(--ins-easing-standard);
+}
+.ins-prompt-card:hover {
+  border-color: var(--ins-color-teal-a-30);
+  background: rgba(13, 17, 23, 0.8);
+}
+
 
