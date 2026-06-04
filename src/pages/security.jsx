@@ -4,11 +4,11 @@ import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SectionHeader from '../components/SectionHeader';
+import Button from '../components/Button';
+import FAQAccordion from '../components/FAQAccordion';
 
 /* ── SECURITY CONTENT ── */
 function SecurityContent() {
-  const [openFaq, setOpenFaq] = useState(null);
-
   const securityCards = [
     {
       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><rect x="10" y="11" width="4" height="5" rx="1"/><path d="M12 11V9a2 2 0 1 1 4 0"/></svg>,
@@ -135,16 +135,12 @@ function SecurityContent() {
             Your data stays yours. Insightis is built with enterprise-grade security at every layer — from encryption and access controls to compliance certifications and continuous monitoring.
           </p>
           <div className="fu3" style={{display:'flex', justifyContent:'center', gap:'var(--ins-size-3)', marginTop:'var(--ins-size-8)', flexWrap:'wrap'}}>
-            <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'var(--ins-size-2)', padding:'12px 28px', fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-text-body)', background:'var(--ins-button-primary-bg)', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
-              onMouseEnter={e=>e.currentTarget.style.background='var(--ins-button-primary-bg-hover)'}
-              onMouseLeave={e=>e.currentTarget.style.background='var(--ins-button-primary-bg)'}>
+            <Button as="a" href="mailto:security@insightis.ai" variant="primary" size="md">
               Contact Security Team
-            </a>
-            <a href="Privacy" style={{display:'inline-flex', alignItems:'center', gap:'var(--ins-size-2)', padding:'12px 28px', fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-color-gray-100)', border:'1px solid var(--ins-color-white-a-12)', borderRadius:'999px', textDecoration:'none', transition:'border-color .2s'}}
-              onMouseEnter={e=>e.currentTarget.style.borderColor='rgba(255,255,255,.35)'}
-              onMouseLeave={e=>e.currentTarget.style.borderColor='var(--ins-color-white-a-12)'}>
+            </Button>
+            <Button as="a" href="Privacy" variant="secondary" size="md">
               View Privacy Policy
-            </a>
+            </Button>
           </div>
         </div>
       </section>
@@ -235,25 +231,8 @@ function SecurityContent() {
           <div style={{textAlign:'center', marginBottom:'var(--ins-size-14)'}}>
             <h2 className="ins-text-display">Frequently asked questions</h2>
           </div>
-          <div style={{maxWidth:'760px', margin:'0 auto', display:'flex', flexDirection:'column', gap:'var(--ins-size-2)'}}>
-            {faqs.map((faq, i) => (
-              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-12)', overflow:'hidden', transition:'all .2s'}}>
-                <button
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  style={{width:'100%', display:'flex', alignItems:'center', justifyContent:'space-between', padding:'18px 24px', background:'transparent', border:'none', cursor:'pointer', textAlign:'left'}}
-                >
-                  <span style={{fontSize:'var(--ins-font-size-15)', fontWeight:500, color:'var(--ins-color-gray-100)'}}>{faq.q}</span>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-body)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0, marginLeft:'var(--ins-size-4)', transition:'transform .25s', transform: openFaq === i ? 'rotate(180deg)' : 'rotate(0deg)'}}>
-                    <polyline points="6 9 12 15 18 9"/>
-                  </svg>
-                </button>
-                {openFaq === i && (
-                  <div style={{padding:'0 24px 18px'}}>
-                    <p className="ins-text-body">{faq.a}</p>
-                  </div>
-                )}
-              </div>
-            ))}
+          <div style={{maxWidth:'760px', margin:'0 auto'}}>
+            <FAQAccordion items={faqs} />
           </div>
         </div>
       </section>
@@ -271,12 +250,10 @@ function SecurityContent() {
               <p className="ins-text-body-lg ins-text--muted" style={{maxWidth:'520px', margin:'0 auto 32px'}}>
                 Our security team is here to help with assessments, compliance documentation, and custom security requirements.
               </p>
-              <a href="mailto:security@insightis.ai" style={{display:'inline-flex', alignItems:'center', gap:'var(--ins-size-2)', padding:'14px 32px', fontSize:'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-text-body)', background:'var(--ins-button-primary-bg)', borderRadius:'999px', textDecoration:'none', transition:'background .2s'}}
-                onMouseEnter={e=>e.currentTarget.style.background='var(--ins-button-primary-bg-hover)'}
-                onMouseLeave={e=>e.currentTarget.style.background='var(--ins-button-primary-bg)'}>
+              <Button as="a" href="mailto:security@insightis.ai" variant="primary" size="lg"
+                iconEnd={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>}>
                 Contact Security Team
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-              </a>
+              </Button>
               <p className="ins-text-body ins-text--muted" style={{marginTop:'var(--ins-size-4)'}}>security@insightis.ai</p>
             </div>
           </div>

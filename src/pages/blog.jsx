@@ -95,6 +95,9 @@ function CategoryFilter({ activeCategory, setActiveCategory }) {
   // Derived from the real POSTS so we only show buttons that match content.
   const categories = ['All', ...Array.from(new Set(POSTS.map(p => p.category)))];
 
+  // #34 — when the content has a single category, "All" + that one tab are redundant; hide the row.
+  if (categories.length <= 2) return null;
+
   return (
     <section style={{padding:'0 0 40px'}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
