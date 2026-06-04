@@ -185,58 +185,24 @@ function TableOfContents({ items }) {
         flexDirection: 'column',
         gap: 'var(--ins-size-7)',
       }}>
-        {/* On this page (TOC) */}
+        {/* On this page (TOC) — reuses the DS .ins-toc scroll-spy styling (audit #35).
+            A <div> (not <nav>) sidesteps the global app.css `nav {…}` rule. */}
         {items.length > 0 && (
           <div>
-            <p className="ins-text-overline" style={{marginBottom: 'var(--ins-size-3)'}}>On this page</p>
-            {/* src/app.css:119 has a global `nav { display:flex; padding:0 48px;
-                height:58px; ... }` rule originally for the site-wide top nav.
-                Inside this TOC sidebar `<nav>` it nukes layout — the 96px
-                horizontal padding collapses the inner <ul> to ~166px. Override
-                every relevant property here to neutralize the cascade. */}
-            <nav style={{
-              display: 'block',
-              width: '100%',
-              padding: 0,
-              height: 'auto',
-              position: 'static',
-              background: 'transparent',
-              borderBottom: 'none',
-            }}>
-              <ul style={{
-                listStyle: 'none',
-                padding: 0,
-                margin: 0,
-                width: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'stretch',
-                gap: 'var(--ins-size-1)',
-              }}>
+            <p className="ins-toc__title" style={{marginBottom: 'var(--ins-size-3)'}}>On this page</p>
+            <div role="navigation" aria-label="On this page">
+              <ul className="ins-toc__list">
                 {items.map(item => (
-                  <li key={item.id} style={{ width: '100%' }}>
+                  <li key={item.id}>
                     <a
                       href={`#${item.id}`}
                       title={item.text}
-                      style={{
-                        display: 'block',
-                        boxSizing: 'border-box',
-                        width: '100%',
-                        padding: '6px 10px',
-                        borderLeft: '2px solid',
-                        borderLeftColor: active === item.id ? 'var(--ins-text-highlight)' : 'transparent',
-                        fontSize: 'var(--ins-font-size-14)',
-                        lineHeight: 1.45,
-                        color: active === item.id ? 'var(--ins-text-heading)' : 'var(--ins-text-body)',
-                        textDecoration: 'none',
-                        transition: 'color 150ms, border-color 150ms',
-                        wordBreak: 'break-word',
-                      }}
+                      className={'ins-toc__link' + (active === item.id ? ' is-active' : '')}
                     >{item.text}</a>
                   </li>
                 ))}
               </ul>
-            </nav>
+            </div>
           </div>
         )}
 
