@@ -83,7 +83,7 @@ function TermsContent() {
             <li>Reports for saving, scheduling, and sharing analytical outputs</li>
             <li>Memory and contextual learning capabilities that adapt to your business over time</li>
           </ul>
-          <p className="ins-text-body-lg" style={pStyle}>The specific features available to you may vary depending on your subscription plan. Feature availability and limits are described on our <a href="../Pricing" style={{color:'var(--ins-text-highlight)', textDecoration:'none', borderBottom:'1px solid var(--ins-color-teal-a-30)'}}>Pricing</a> page.</p>
+          <p className="ins-text-body-lg" style={pStyle}>The specific features available to you may vary depending on your subscription plan. Feature availability and limits are described on our <a href="../Pricing" className="ins-link--inline">Pricing</a> page.</p>
         </div>
 
         {/* 3. Account Registration and Security */}
@@ -94,7 +94,7 @@ function TermsContent() {
           <ul style={ulStyle}>
             <li>Provide truthful and accurate registration information</li>
             <li>Keep your login credentials secure and confidential</li>
-            <li>Notify Insightis immediately at <a href="mailto:legal@insightis.ai" style={{color:'var(--ins-text-highlight)', textDecoration:'none', borderBottom:'1px solid var(--ins-color-teal-a-30)'}}>legal@insightis.ai</a> if you suspect any unauthorized access to or use of your account</li>
+            <li>Notify Insightis immediately at <a href="mailto:legal@insightis.ai" className="ins-link--inline">legal@insightis.ai</a> if you suspect any unauthorized access to or use of your account</li>
             <li>Not share your account credentials with third parties</li>
           </ul>
           <p className="ins-text-body-lg" style={pStyle}>Insightis will not be liable for any loss or damage arising from your failure to protect your account credentials.</p>
@@ -127,7 +127,7 @@ function TermsContent() {
             <li>Your use of the Service in connection with Your Data does not violate any applicable data protection laws, third-party agreements, or privacy regulations</li>
             <li>You are solely responsible for the accuracy, quality, and legality of Your Data</li>
           </ul>
-          <p className="ins-text-body-lg" style={pStyle}>For details on how we handle, store, and protect Your Data, please refer to our <a href="Privacy" style={{color:'var(--ins-text-highlight)', textDecoration:'none', borderBottom:'1px solid var(--ins-color-teal-a-30)'}}>Privacy Policy</a> and <a href="Security" style={{color:'var(--ins-text-highlight)', textDecoration:'none', borderBottom:'1px solid var(--ins-color-teal-a-30)'}}>Security</a> page.</p>
+          <p className="ins-text-body-lg" style={pStyle}>For details on how we handle, store, and protect Your Data, please refer to our <a href="Privacy" className="ins-link--inline">Privacy Policy</a> and <a href="Security" className="ins-link--inline">Security</a> page.</p>
         </div>
 
         {/* 6. Intellectual Property */}
@@ -141,11 +141,11 @@ function TermsContent() {
         {/* 7. Subscription and Billing */}
         <div id="billing" style={sectionStyle}>
           <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>7. Subscription and Billing</h2>
-          <p className="ins-text-body-lg" style={pStyle}>Insightis offers various subscription plans as described on our <a href="../Pricing" style={{color:'var(--ins-text-highlight)', textDecoration:'none', borderBottom:'1px solid var(--ins-color-teal-a-30)'}}>Pricing</a> page. By subscribing to a paid plan, you agree to pay all applicable fees in accordance with the billing terms presented at the time of purchase.</p>
+          <p className="ins-text-body-lg" style={pStyle}>Insightis offers various subscription plans as described on our <a href="../Pricing" className="ins-link--inline">Pricing</a> page. By subscribing to a paid plan, you agree to pay all applicable fees in accordance with the billing terms presented at the time of purchase.</p>
           <ul style={ulStyle}>
             <li><strong style={{color:'var(--ins-text-body)'}}>Auto-Renewal:</strong> Paid subscriptions automatically renew at the end of each billing cycle (monthly or annually) unless you cancel before the renewal date.</li>
             <li><strong style={{color:'var(--ins-text-body)'}}>Cancellation:</strong> You may cancel your subscription at any time through your account settings. Cancellation takes effect at the end of the current billing period. You will continue to have access to paid features until the end of that period.</li>
-            <li><strong style={{color:'var(--ins-text-body)'}}>Refunds:</strong> Fees are generally non-refundable except where required by applicable law. If you believe you are entitled to a refund, please contact us at <a href="mailto:legal@insightis.ai" style={{color:'var(--ins-text-highlight)', textDecoration:'none', borderBottom:'1px solid var(--ins-color-teal-a-30)'}}>legal@insightis.ai</a>.</li>
+            <li><strong style={{color:'var(--ins-text-body)'}}>Refunds:</strong> Fees are generally non-refundable except where required by applicable law. If you believe you are entitled to a refund, please contact us at <a href="mailto:legal@insightis.ai" className="ins-link--inline">legal@insightis.ai</a>.</li>
             <li><strong style={{color:'var(--ins-text-body)'}}>Price Changes:</strong> Insightis reserves the right to modify pricing. We will provide at least 30 days' notice before any price increase takes effect on your account.</li>
           </ul>
         </div>
@@ -181,7 +181,7 @@ function TermsContent() {
         {/* 11. Termination */}
         <div id="termination" style={sectionStyle}>
           <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>11. Termination</h2>
-          <p className="ins-text-body-lg" style={pStyle}>Either party may terminate these Terms at any time. You may terminate by closing your account through your account settings or by contacting us at <a href="mailto:legal@insightis.ai" style={{color:'var(--ins-text-highlight)', textDecoration:'none', borderBottom:'1px solid var(--ins-color-teal-a-30)'}}>legal@insightis.ai</a>.</p>
+          <p className="ins-text-body-lg" style={pStyle}>Either party may terminate these Terms at any time. You may terminate by closing your account through your account settings or by contacting us at <a href="mailto:legal@insightis.ai" className="ins-link--inline">legal@insightis.ai</a>.</p>
           <p className="ins-text-body-lg" style={pStyle}>Insightis may suspend or terminate your access to the Service immediately, without prior notice, if:</p>
           <ul style={ulStyle}>
             <li>You breach any provision of these Terms</li>
@@ -213,7 +213,7 @@ function TermsContent() {
           <div style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-12)', padding:'20px 24px', marginTop:'var(--ins-size-2)'}}>
             <h3 className="ins-text-h3" style={{marginTop:0, marginBottom:'var(--ins-size-2)'}}>Insightis Legal Team</h3>
             <p className="ins-text-body-lg" style={{margin:0}}>
-              Email: <a href="mailto:legal@insightis.ai" style={{color:'var(--ins-text-highlight)', textDecoration:'none', borderBottom:'1px solid var(--ins-color-teal-a-30)'}}>legal@insightis.ai</a><br/>
+              Email: <a href="mailto:legal@insightis.ai" className="ins-link--inline">legal@insightis.ai</a><br/>
               Operated by Devart, Czech Republic
             </p>
           </div>

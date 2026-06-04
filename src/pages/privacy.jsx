@@ -169,7 +169,7 @@ function PrivacyContent() {
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Preference cookies:</strong> Remember your settings, language preferences, and other customization choices.</li>
           </ul>
           <p className="ins-text-body-lg" style={pStyle}>
-            You can manage your cookie preferences at any time through our <a href="Cookie Settings" style={{ color: 'var(--ins-text-highlight)', textDecoration: 'underline' }}>Cookie Settings</a> page. Most browsers also allow you to control cookies through their settings.
+            You can manage your cookie preferences at any time through our <a href="Cookie Settings" className="ins-link--inline">Cookie Settings</a> page. Most browsers also allow you to control cookies through their settings.
           </p>
         </div>
 
@@ -204,7 +204,7 @@ function PrivacyContent() {
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Incident response:</strong> We maintain a documented incident response plan and will notify affected users within 72 hours of a confirmed data breach.</li>
           </ul>
           <p className="ins-text-body-lg" style={pStyle}>
-            For more details about our security practices, please visit our <a href="Security" style={{ color: 'var(--ins-text-highlight)', textDecoration: 'underline' }}>Security</a> page.
+            For more details about our security practices, please visit our <a href="Security" className="ins-link--inline">Security</a> page.
           </p>
         </div>
 
@@ -224,7 +224,7 @@ function PrivacyContent() {
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Withdraw consent:</strong> Where processing is based on consent, you may withdraw it at any time without affecting the lawfulness of prior processing.</li>
           </ul>
           <p className="ins-text-body-lg" style={pStyle}>
-            To exercise any of these rights, please contact us at <a href="mailto:privacy@insightis.ai" style={{ color: 'var(--ins-text-highlight)', textDecoration: 'underline' }}>privacy@insightis.ai</a>. We will respond to your request within 30 days.
+            To exercise any of these rights, please contact us at <a href="mailto:privacy@insightis.ai" className="ins-link--inline">privacy@insightis.ai</a>. We will respond to your request within 30 days.
           </p>
         </div>
 
@@ -232,7 +232,7 @@ function PrivacyContent() {
         <div id="childrens-privacy" style={sectionStyle}>
           <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>10. Children's Privacy</h2>
           <p className="ins-text-body-lg" style={pStyle}>
-            Insightis is not intended for use by individuals under the age of 16. We do not knowingly collect personal information from children under 16. If we become aware that we have inadvertently collected personal data from a child under 16, we will take steps to delete that information as promptly as possible. If you believe a child under 16 has provided us with personal data, please contact us at <a href="mailto:privacy@insightis.ai" style={{ color: 'var(--ins-text-highlight)', textDecoration: 'underline' }}>privacy@insightis.ai</a>.
+            Insightis is not intended for use by individuals under the age of 16. We do not knowingly collect personal information from children under 16. If we become aware that we have inadvertently collected personal data from a child under 16, we will take steps to delete that information as promptly as possible. If you believe a child under 16 has provided us with personal data, please contact us at <a href="mailto:privacy@insightis.ai" className="ins-link--inline">privacy@insightis.ai</a>.
           </p>
         </div>
 
@@ -270,10 +270,10 @@ function PrivacyContent() {
             If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:
           </p>
           <ul style={{ ...ulStyle, listStyleType: 'none', paddingLeft: 0 }}>
-            <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Email:</strong> <a href="mailto:privacy@insightis.ai" style={{ color: 'var(--ins-text-highlight)', textDecoration: 'underline' }}>privacy@insightis.ai</a></li>
+            <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Email:</strong> <a href="mailto:privacy@insightis.ai" className="ins-link--inline">privacy@insightis.ai</a></li>
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Company:</strong> Devart, the developer of Insightis</li>
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Address:</strong> 3422 Old Capitol Trl, Wilmington, Delaware, USA 19808</li>
-            <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Support:</strong> <a href="../Resources/Contact Support" style={{ color: 'var(--ins-text-highlight)', textDecoration: 'underline' }}>Contact Support</a></li>
+            <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Support:</strong> <a href="../Resources/Contact Support" className="ins-link--inline">Contact Support</a></li>
           </ul>
           <p className="ins-text-body-lg" style={pStyle}>
             For EU residents, you also have the right to lodge a complaint with your local data protection authority if you believe your data has been processed in violation of applicable law.

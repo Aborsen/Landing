@@ -201,7 +201,7 @@ function HelpTopics({ search }) {
             border:'1px dashed var(--ins-color-white-a-08)', borderRadius:'var(--ins-radius-12)',
             color:'var(--ins-text-body)', fontSize:'var(--ins-font-size-14)',
           }}>
-            No results match your search — try different keywords or <a href="#contact" style={{ color:'var(--ins-text-highlight)' }}>contact support</a>.
+            No results match your search — try different keywords or <a href="#contact" className="ins-link--inline">contact support</a>.
           </div>
         )}
       </div>

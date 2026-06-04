@@ -227,8 +227,8 @@ function CookieContent() {
             <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-3)'}}>Contact Us</h2>
             <p style={paraStyle}>
               If you have any questions about our use of cookies or this Cookie Settings page, please contact us at{' '}
-              <a href="mailto:privacy@insightis.ai" style={{color:'var(--ins-text-highlight)', textDecoration:'none'}}>privacy@insightis.ai</a>.
-              You can also review our full <a href="Privacy" style={{color:'var(--ins-text-highlight)', textDecoration:'none'}}>Privacy Policy</a> for more information about how we handle your data.
+              <a href="mailto:privacy@insightis.ai" className="ins-link--inline">privacy@insightis.ai</a>.
+              You can also review our full <a href="Privacy" className="ins-link--inline">Privacy Policy</a> for more information about how we handle your data.
             </p>
           </div>
 
