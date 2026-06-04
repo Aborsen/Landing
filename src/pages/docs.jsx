@@ -418,22 +418,13 @@ function PageFeedback() {
                   {prompts[vote].label}
                 </label>
                 <textarea
+                  className="ins-textarea ins-textarea--sm"
                   value={text}
                   onChange={e => setText(e.target.value)}
                   onFocus={() => setFocused(true)}
                   onBlur={() => setFocused(false)}
                   placeholder={prompts[vote].placeholder}
                   rows={3}
-                  style={{
-                    width:'100%', resize:'vertical',
-                    background:'var(--ins-color-white-a-04)',
-                    border: focused ? '1px solid rgba(9,160,157,.4)' : '1px solid var(--ins-color-white-a-08)',
-                    borderRadius:'var(--ins-radius-8)', padding:'10px 12px',
-                    fontSize:'var(--ins-font-size-14)', color:'var(--ins-color-gray-100)', lineHeight:1.6,
-                    fontFamily:'var(--ins-font-family-sans)',
-                    outline:'none', transition:'border-color .2s',
-                    boxSizing:'border-box',
-                  }}
                 />
                 <div style={{ display:'flex', gap:'var(--ins-size-2)', marginTop:'10px', justifyContent:'flex-end' }}>
                   <button type="button" onClick={handleSkip} style={{

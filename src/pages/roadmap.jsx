@@ -554,20 +554,11 @@ function SuggestCTA() {
                     Description <span style={{color:'var(--ins-text-highlight)'}}>*</span>
                   </label>
                   <textarea
+                    className="ins-textarea ins-textarea--sm"
                     value={text}
                     onChange={e => setText(e.target.value)}
                     placeholder="Describe the feature you'd like to see…"
                     rows={5}
-                    style={{
-                      width:'100%', boxSizing:'border-box',
-                      background:'var(--ins-color-white-a-03)', border:'1px solid var(--ins-color-white-a-08)',
-                      borderRadius:10, padding:'12px 14px',
-                      fontSize:14, color:'var(--ins-color-gray-100)', lineHeight:1.6,
-                      fontFamily:'var(--ins-font-family-sans)', resize:'vertical',
-                      outline:'none', transition:'border-color .15s',
-                    }}
-                    onFocus={e => e.target.style.borderColor='rgba(14,196,193,.35)'}
-                    onBlur={e => e.target.style.borderColor='var(--ins-color-white-a-08)'}
                   />
                 </div>
 
