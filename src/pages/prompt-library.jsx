@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import CheckIcon from '../components/CheckIcon';
 import BottomCTABlock from '../components/BottomCTA';
 import Button from '../components/Button';
+import SearchInput from '../components/SearchInput';
 
 /* ── INSIGHTIS LOGO MARK SVG ── */
 function InsightisLogoMark({ size = 60, opacity = 1 }) {
@@ -881,41 +882,12 @@ function App() {
           clearAll={clearAll}
         />
         <div className="prompt-content">
-          <div style={{
-            display:'flex', alignItems:'center', gap:'10px',
-            background:'rgba(16,22,30,0.7)',
-            border: searchFocused ? '1px solid var(--ins-color-teal-a-50)' : '1px solid var(--ins-color-white-a-07)',
-            borderRadius:'var(--ins-radius-12)',
-            padding:'11px 14px',
-            width:'100%',
-            marginBottom:'var(--ins-size-5)',
-            transition:'border-color .2s',
-          }}>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-body)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
-              <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
-            </svg>
-            <input
-              type="text"
-              placeholder="Search prompts by title, team, or data source..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              onFocus={() => setSearchFocused(true)}
-              onBlur={() => setSearchFocused(false)}
-              style={{
-                flex:1, background:'transparent', border:'none', outline:'none',
-                fontSize:'var(--ins-font-size-14)', color:'var(--ins-color-gray-100)', fontFamily:'var(--ins-font-family-sans)',
-              }}
-            />
-            {query && (
-              <button onClick={() => setQuery('')} style={{
-                background:'none', border:'none', cursor:'pointer',
-                color:'var(--ins-text-body)', padding:'2px 6px', fontSize:'var(--ins-font-size-12)',
-                fontFamily:'var(--ins-font-family-sans)',
-              }}>
-                Clear
-              </button>
-            )}
-          </div>
+          <SearchInput
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search prompts by title, team, or data source..."
+            style={{marginBottom:'var(--ins-size-5)'}}
+          />
 
           {filtered.length > 0 ? (
             filtered.map((entry, i) => (
