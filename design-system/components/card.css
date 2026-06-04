@@ -169,4 +169,23 @@
   padding: var(--ins-space-lg);
 }
 
+/* ── Article card (audit #40) — shared shell + hover for the blog-index cards
+   and the in-article related-article cards. Cover-on-top, content-below; the
+   whole card is a link. Inner layout (cover, title, meta) stays per call-site. */
+.ins-article-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--ins-surface-card);
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  border-radius: var(--ins-radius-xl);
+  overflow: hidden;
+  text-decoration: none;
+  transition: border-color var(--ins-duration-base) var(--ins-easing-standard),
+              transform var(--ins-duration-base) var(--ins-easing-standard);
+}
+.ins-article-card:hover {
+  border-color: var(--ins-border-hover);
+  transform: translateY(-2px);
+}
+
 

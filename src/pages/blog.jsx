@@ -150,7 +150,7 @@ function BlogGrid({ activeCategory, activeTag }) {
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
         <div className="blog-grid">
           {filtered.map((article, i) => (
-            <a href={article.url} key={article.slug} className="blog-card blog-fade-in" style={{animationDelay:`${i * 0.05}s`}}>
+            <a href={article.url} key={article.slug} className="ins-article-card blog-fade-in" style={{animationDelay:`${i * 0.05}s`}}>
               {/* Article cover */}
               <div style={{
                 height:'180px',

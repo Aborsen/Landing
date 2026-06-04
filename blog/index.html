@@ -84,20 +84,7 @@ section { position: relative; }
   .blog-grid { grid-template-columns: 1fr; }
 }
 
-.blog-card {
-  background: rgba(13,17,23,.6);
-  border: 1px solid rgba(255,255,255,.06);
-  border-radius: 16px;
-  overflow: hidden;
-  transition: all .2s;
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-}
-.blog-card:hover {
-  border-color: rgba(9,160,157,.4);
-  transform: translateY(-2px);
-}
+/* .blog-card shell moved to DS .ins-article-card (audit #40) */
 
 @keyframes blogFadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
 .blog-fade-in { animation: blogFadeIn .4s ease both; }

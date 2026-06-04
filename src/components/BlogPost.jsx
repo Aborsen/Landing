@@ -519,7 +519,7 @@ function RelatedArticles({ currentSlug }) {
       }}>Related articles</div>
       <div className="blog-related-grid">
         {others.map(p => (
-          <a key={p.slug} href={p.url} className="blog-related-card">
+          <a key={p.slug} href={p.url} className="ins-article-card blog-related-card">
             <div className="blog-related-cover">
               {p.image && <img src={p.image} alt="" loading="lazy" />}
             </div>
@@ -940,17 +940,7 @@ export default function BlogPost({ markdown, slug }) {
         @media (min-width: 720px) {
           .blog-related-grid { grid-template-columns: repeat(3, 1fr); }
         }
-        .blog-related-card {
-          background: var(--ins-surface-card);
-          border: 1px solid var(--ins-border-default);
-          border-radius: var(--ins-radius-xl);
-          overflow: hidden;
-          text-decoration: none;
-          display: flex;
-          flex-direction: column;
-          transition: border-color 180ms, transform 180ms;
-        }
-        .blog-related-card:hover { border-color: var(--ins-border-hover); transform: translateY(-2px); }
+        /* .blog-related-card shell moved to DS .ins-article-card (audit #40) */
         .blog-related-cover {
           aspect-ratio: 16 / 9;
           background: var(--ins-surface-elevated);
