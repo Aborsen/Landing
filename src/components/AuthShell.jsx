@@ -2,7 +2,7 @@ import React from 'react';
 
 /*
  * Minimal page chrome used by the placeholder /auth/sign-in and
- * /auth/sign-up pages. No nav dropdowns, no Sign In / Start-for-Free CTAs
+ * /auth/sign-up pages. No nav dropdowns, no Sign in / Start-for-Free CTAs
  * (those would link back to the same page), no footer.
  *
  * Just a slim top bar with the Insightis mark on the left (linked to /)

@@ -66,7 +66,7 @@ function Hero() {
 
             <div className="fu3" style={{display:'flex',gap:'var(--ins-size-3)',flexWrap:'wrap',marginBottom:'var(--ins-size-7)'}}>
               <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
-                Start for Free
+                Start for free
               </Button>
             </div>
 
@@ -603,7 +603,7 @@ function BottomCTASection() {
           variant="form"
           title={<>Stop being a <BottomCTA.Highlight>reporting service.</BottomCTA.Highlight> Start doing <BottomCTA.Highlight> real analysis.</BottomCTA.Highlight></>}
           inputPlaceholder="Show me churn by cohort..."
-          ctaLabel="Get Started"
+          ctaLabel="Get started"
         />
       </div>
     </section>

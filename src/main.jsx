@@ -960,7 +960,7 @@ function Pricing() {
         <FadeUp delay={0.25}>
           <div className="text-center mt-10">
             <a href="/Pricing" className="ins-btn ins-btn--secondary ins-btn--lg">
-              Explore Pricing
+              Explore pricing
             </a>
           </div>
         </FadeUp>
@@ -988,7 +988,7 @@ function SubscribeBanner() {
                 Set up in minutes, no credit card required, and cancel anytime.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <Button as="a" href="/auth/sign-up/" variant="primary" size="lg">Start Free Trial</Button>
+                <Button as="a" href="/auth/sign-up/" variant="primary" size="lg">Start free trial</Button>
               </div>
             </div>
           </div>

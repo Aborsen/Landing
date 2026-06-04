@@ -323,7 +323,7 @@ function Hero() {
           </p>
           <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-3)',flexWrap:'wrap',marginBottom:'var(--ins-size-6)'}}>
             <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
-              Start for Free
+              Start for free
             </Button>
           </div>
           <div style={{display:'flex',alignItems:'center',gap:'18px',flexWrap:'wrap'}}>
@@ -729,7 +729,7 @@ function CTA() {
           variant="form"
           title={<>Your data is already there.<BottomCTA.Highlight> Connect it in minutes.</BottomCTA.Highlight></>}
           inputPlaceholder="Which tool to connect..."
-          ctaLabel="Get Started"
+          ctaLabel="Get started"
         />
       </div>
     </section>

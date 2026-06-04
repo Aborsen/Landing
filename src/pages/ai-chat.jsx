@@ -552,8 +552,8 @@ const GALLERY_DATA = {
       },
       {
         type: 'paragraph',
-        text: "The \u2018Start for Free\u2019 landing page converts at 8.4% \u2014 the highest of any tracked page. The pricing page is second at 4.1%, followed by the integration directory at 2.9%. The blog-to-trial CTA added in February contributed an additional 0.8 percentage points to organic conversion, making it the 4th-highest converting entry point. Mobile conversion across all pages remains 2.1\u00d7 lower than desktop, with the largest gap on the pricing page (1.9% mobile vs. 5.8% desktop). Pages with a single primary CTA outperform multi-CTA pages by 2.3\u00d7 — a pattern consistent across the last three quarters.",
-        action: 'Run an A/B test on the hero headline for the Start for Free page to push past 9%',
+        text: "The \u2018Start for free\u2019 landing page converts at 8.4% \u2014 the highest of any tracked page. The pricing page is second at 4.1%, followed by the integration directory at 2.9%. The blog-to-trial CTA added in February contributed an additional 0.8 percentage points to organic conversion, making it the 4th-highest converting entry point. Mobile conversion across all pages remains 2.1\u00d7 lower than desktop, with the largest gap on the pricing page (1.9% mobile vs. 5.8% desktop). Pages with a single primary CTA outperform multi-CTA pages by 2.3\u00d7 — a pattern consistent across the last three quarters.",
+        action: 'Run an A/B test on the hero headline for the Start for free page to push past 9%',
       },
       {
         type: 'graph', chart: 'line',
@@ -1072,7 +1072,7 @@ function BottomCTASection() {
           variant="form"
           title={<>Still waiting on <BottomCTA.Highlight> insights</BottomCTA.Highlight> that take <BottomCTA.Highlight> days?</BottomCTA.Highlight></>}
           inputPlaceholder="What are you looking for..."
-          ctaLabel="Get Started"
+          ctaLabel="Get started"
         />
       </div>
     </section>
@@ -1400,7 +1400,7 @@ function Hero() {
           </p>
           <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-3)',flexWrap:'wrap',marginBottom:'var(--ins-size-6)'}}>
             <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
-              Start for Free
+              Start for free
             </Button>
           </div>
           <div style={{display:'flex',alignItems:'center',gap:'18px',flexWrap:'wrap'}}>
@@ -1461,13 +1461,13 @@ function App() {
 }
 
 /* TODO SEO [P1]: replace every href="#" before launch.
-   Current placeholder count is ~20 (Sign In, Start for Free, nav items, CTAs, mobile drawer).
+   Current placeholder count is ~20 (Sign in, Start for free, nav items, CTAs, mobile drawer).
    Per plan, replace with:
      - Internal (Devart inlinks, descriptive anchors):
          Integrations.html  → "See all 30+ integrations"
          Pricing.html       → "Compare plans"
          index.html         → "Back to Insightis overview"
-     - Product link: "Start for free" / "Start for Free" → real trial URL
+     - Product link: "Start for free" / "Start for free" → real trial URL
      - Authority outlinks: when the page mentions Stripe / HubSpot / Postgres, link to their official docs once each
    See plan: C:\Users\victorg\.claude\plans\snappy-rolling-hedgehog.md (§ "Placeholder links everywhere")
 */

@@ -90,7 +90,7 @@ function PricingCards() {
       name:'Free',
       tag:'For getting started',
       price:0,
-      cta:'Start for Free',
+      cta:'Start for free',
       ctaStyle:'outline',
       features:[
         '1 user',
@@ -312,9 +312,9 @@ function FeatureComparison() {
           <div style={{display:'grid',gridTemplateColumns:cols,padding:'18px 20px',background:'var(--ins-color-white-a-03)',borderTop:'1px solid var(--ins-border-default)',alignItems:'center'}}>
             <span style={{fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)'}}>Choose your plan</span>
             {[
-              { label:'Start for Free',   primary:false },
-              { label:'Start Free Trial', primary:false },
-              { label:'Start Free Trial', primary:true  },
+              { label:'Start for free',   primary:false },
+              { label:'Start free trial', primary:false },
+              { label:'Start free trial', primary:true  },
             ].map((cta, i) => (
               <div key={i} style={{display:'flex',justifyContent:'center'}}>
                 <Button

@@ -136,10 +136,10 @@ function SecurityContent() {
           </p>
           <div className="fu3" style={{display:'flex', justifyContent:'center', gap:'var(--ins-size-3)', marginTop:'var(--ins-size-8)', flexWrap:'wrap'}}>
             <Button as="a" href="mailto:security@insightis.ai" variant="primary" size="md">
-              Contact Security Team
+              Contact security team
             </Button>
             <Button as="a" href="Privacy" variant="secondary" size="md">
-              View Privacy Policy
+              View privacy policy
             </Button>
           </div>
         </div>
@@ -252,7 +252,7 @@ function SecurityContent() {
               </p>
               <Button as="a" href="mailto:security@insightis.ai" variant="primary" size="lg"
                 iconEnd={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>}>
-                Contact Security Team
+                Contact security team
               </Button>
               <p className="ins-text-body ins-text--muted" style={{marginTop:'var(--ins-size-4)'}}>security@insightis.ai</p>
             </div>

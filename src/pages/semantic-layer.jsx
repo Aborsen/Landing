@@ -360,7 +360,7 @@ function Hero() {
           </p>
           <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-3)',flexWrap:'wrap',marginBottom:'var(--ins-size-6)'}}>
             <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
-              Start for Free
+              Start for free
             </Button>
           </div>
           <div style={{display:'flex',alignItems:'center',gap:'18px',flexWrap:'wrap'}}>
@@ -1074,7 +1074,7 @@ function BottomCTASection() {
           variant="form"
           title={<>Stop arguing about <BottomCTA.Highlight> which number</BottomCTA.Highlight> is right.</>}
           inputPlaceholder="Which metric to unify..."
-          ctaLabel="Get Started"
+          ctaLabel="Get started"
         />
       </div>
     </section>

@@ -63,7 +63,7 @@ function Hero() {
 
             <div className="fu3" style={{display:'flex',gap:'var(--ins-size-3)',flexWrap:'wrap',marginBottom:'var(--ins-size-7)'}}>
               <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
-                Start for Free
+                Start for free
               </Button>
             </div>
 
@@ -1194,7 +1194,7 @@ function BottomCTASection() {
           variant="form"
           title={<>Stop reconciling <BottomCTA.Highlight>spreadsheets.</BottomCTA.Highlight> Start controlling <BottomCTA.Highlight> costs.</BottomCTA.Highlight></>}
           inputPlaceholder="Show me spend by category..."
-          ctaLabel="Get Started"
+          ctaLabel="Get started"
         />
       </div>
     </section>

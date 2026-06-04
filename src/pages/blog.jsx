@@ -245,7 +245,7 @@ function BottomCTA() {
               }}
             />
             <Button variant="primary" size="sm" radius="lg" iconEnd={<ArrowRightIcon />} className="m-1 flex-shrink-0">
-              Start for Free
+              Start for free
             </Button>
           </div>
         </div>

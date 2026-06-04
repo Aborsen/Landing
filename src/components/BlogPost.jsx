@@ -495,7 +495,7 @@ function CTABanner() {
           className="ins-btn ins-btn--primary ins-btn--md"
           style={{ flexShrink: 0 }}
         >
-          Start for Free <ArrowRightIcon />
+          Start for free <ArrowRightIcon />
         </a>
       </div>
     </section>

@@ -352,7 +352,7 @@ function ConnectorsHero() {
             Explore 200+ prebuilt connectors, create custom ones with REST and GraphQL connectors, or request the data source you're missing.
           </p>
           <Button as="a" href="/auth/sign-up/" variant="primary" size="md" iconEnd={<ArrowRightIcon />} className="fu3">
-            Start for Free
+            Start for free
           </Button>
         </div>
       </div>

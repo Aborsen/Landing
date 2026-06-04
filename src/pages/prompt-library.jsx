@@ -461,7 +461,7 @@ function PromptCard({ entry, index, isExpanded, onToggle }) {
           onClick={(e) => { e.stopPropagation(); onToggle(); }}
           tabIndex={-1}
         >
-          {expanded ? 'Hide Prompt' : 'View Prompts'}
+          {expanded ? 'Hide prompt' : 'View prompts'}
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
             style={{ transition:'transform .2s', transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)' }}>
             <polyline points="6 9 12 15 18 9"/>
@@ -525,7 +525,7 @@ function BottomCTA() {
         <BottomCTABlock
           variant="text"
           title={<>Stop reading about <BottomCTABlock.Highlight>analytics.</BottomCTABlock.Highlight> Start doing it.</>}
-          ctaLabel="Start for Free"
+          ctaLabel="Start for free"
         />
       </div>
     </section>
