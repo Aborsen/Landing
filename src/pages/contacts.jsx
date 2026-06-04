@@ -329,7 +329,7 @@ function OurOffices() {
               <div style={{width:'36px', height:'36px', borderRadius:'50%', overflow:'hidden', border:'1px solid var(--ins-color-white-a-10)', marginBottom:'14px', flexShrink:0}}>
                 <img src={`https://flagcdn.com/w80/${o.code}.png`} alt={o.country} style={{width:'100%', height:'100%', objectFit:'cover'}} />
               </div>
-              <p className="ins-text-body ins-text--semibold" style={{marginBottom:'10px'}}>{o.country}</p>
+              <p className="ins-text-h3" style={{marginBottom:'10px'}}>{o.country}</p>
               {o.lines.map((line, j) => (
                 <p className="ins-text-body-sm ins-text--muted ins-text--mono" key={j}>{line}</p>
               ))}

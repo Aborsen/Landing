@@ -344,12 +344,6 @@ function ConnectorsHero() {
 
         {/* text */}
         <div>
-          <div className="fu0" style={{fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-body)', letterSpacing:'0.04em', marginBottom:'18px'}}>
-            <a href="/" style={{color:'var(--ins-text-body)', textDecoration:'none'}}>Home</a>
-            <span style={{margin:'0 6px', opacity:0.5}}>/</span>
-            <span style={{color:'var(--ins-color-gray-100)'}}>Connectors</span>
-            <span style={{margin:'0 6px', opacity:0.5}}>/</span>
-          </div>
           <h1 className="ins-text-display-xl" style={{marginBottom:'22px', textWrap:'balance'}}>
             <span style={{color:'var(--ins-text-highlight)'}}>Connect</span>{' '}
             <span>to any source</span>

@@ -22,7 +22,7 @@ function PricingHero() {
       <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px',position:'relative'}}>
         <SectionHeader
           eyebrow="Pricing"
-          title={<><span style={{color:'var(--ins-color-gray-100)'}}>Simple pricing. </span><span style={{color:'var(--ins-text-highlight)'}}>Powerful insights.</span></>}
+          title={<><span>Simple pricing. </span><span style={{color:'var(--ins-text-highlight)'}}>Powerful insights.</span></>}
           lede="Start free. Scale as your team grows. Every plan includes the Semantic Layer, AI Chat, and 200+ connectors."
           as="h1"
           size="lg"
@@ -298,7 +298,7 @@ function FeatureComparison() {
               {/* Feature rows */}
               {section.rows.map((row, ri) => (
                 <div key={ri} style={{display:'grid',gridTemplateColumns:cols,padding:'12px 20px',borderTop:'1px solid var(--ins-color-white-a-04)',alignItems:'center'}}>
-                  <span style={{fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)'}}>{row.label}</span>
+                  <span style={{fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-heading)'}}>{row.label}</span>
                   {row.values.map((v, vi) => (
                     <span key={vi} style={{display:'flex',justifyContent:'center',alignItems:'center',fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)'}}>
                       {v === true ? <CheckIcon size={16} /> : v === false ? <Dash /> : v}
