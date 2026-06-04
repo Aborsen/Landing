@@ -183,7 +183,7 @@ function CookieContent() {
             <p style={paraStyle}>
               Most web browsers allow you to control cookies through their settings. Below are links and instructions for the most common browsers:
             </p>
-            <ul style={{...paraStyle, paddingLeft:'var(--ins-size-6)', marginTop:'var(--ins-size-3)'}}>
+            <ul style={{...paraStyle, paddingLeft:'var(--ins-size-6)', marginTop:'var(--ins-size-3)', listStyleType:'disc'}}>
               <li style={{marginBottom:'var(--ins-size-2)'}}><strong style={{color:'var(--ins-color-gray-100)'}}>Google Chrome:</strong> Settings &gt; Privacy and security &gt; Cookies and other site data</li>
               <li style={{marginBottom:'var(--ins-size-2)'}}><strong style={{color:'var(--ins-color-gray-100)'}}>Mozilla Firefox:</strong> Settings &gt; Privacy &amp; Security &gt; Cookies and Site Data</li>
               <li style={{marginBottom:'var(--ins-size-2)'}}><strong style={{color:'var(--ins-color-gray-100)'}}>Safari:</strong> Preferences &gt; Privacy &gt; Manage Website Data</li>
