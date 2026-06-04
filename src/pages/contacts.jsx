@@ -80,9 +80,9 @@ function ContactOptions({ onOpenDemo, onOpenSupport }) {
             </div>
             <h3 style={{fontSize:'var(--ins-font-size-18)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'10px'}}>Help Center</h3>
             <p className="ins-text-body" style={{marginBottom:'var(--ins-size-5)'}}>Browse our knowledge base for guides, FAQs, troubleshooting tips, and everything you need to get the most out of Insightis.</p>
-            <a href="../Resources/Contact Support" style={{display:'inline-flex', alignItems:'center', gap:'var(--ins-size-2)', padding:'10px 24px', fontSize:'var(--ins-font-size-12)', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'999px', border:'none', cursor:'pointer', fontFamily:'var(--ins-font-family-sans)', textDecoration:'none'}}>
-              Visit Help Center
-            </a>
+            <Button as="a" href="../Resources/Contact Support" variant="primary">
+              Visit help center
+            </Button>
             <p className="ins-text-body-xs ins-text--muted ins-text--mono" style={{marginTop:'14px'}}>Guides, FAQs & troubleshooting</p>
           </div>
 

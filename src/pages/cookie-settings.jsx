@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Button from '../components/Button';
 
 /* ── TOGGLE SWITCH ── */
 function ToggleSwitch({ enabled, onChange, disabled = false }) {
@@ -139,20 +140,9 @@ function CookieContent() {
 
           {/* Save Button */}
           <div style={{textAlign:'center', marginTop:'var(--ins-size-8)', marginBottom:'60px'}}>
-            <button
-              onClick={handleSave}
-              style={{
-                display:'inline-flex', alignItems:'center', gap:'var(--ins-size-2)',
-                padding:'12px 32px', fontSize:'var(--ins-font-size-15)', fontWeight:600,
-                color:'var(--ins-text-body)', background:'var(--ins-button-primary-bg)', borderRadius:'50px',
-                border:'none', cursor:'pointer', transition:'background 0.2s',
-                fontFamily:'var(--ins-font-family-sans)',
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.background = 'var(--ins-button-primary-bg-hover)'}
-              onMouseLeave={(e) => e.currentTarget.style.background = 'var(--ins-button-primary-bg)'}
-            >
-              {saved ? 'Preferences Saved!' : 'Save Preferences'}
-            </button>
+            <Button variant="primary" onClick={handleSave}>
+              {saved ? 'Preferences saved!' : 'Save preferences'}
+            </Button>
           </div>
         </div>
       </section>

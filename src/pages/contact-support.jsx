@@ -4,6 +4,7 @@ import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CheckIcon from '../components/CheckIcon';
+import Button from '../components/Button';
 
 /* ── SUPPORT HERO ── */
 function SupportHero({ search, setSearch }) {
@@ -693,18 +694,12 @@ function ContactSupport() {
                 <div className="ins-text-body">Our support team is here — reach out and we'll respond within 24 hours.</div>
               </div>
             </div>
-            <button
+            <Button
+              variant="secondary"
+              size="md"
               onClick={() => setOpen(true)}
-              style={{
-                padding: '9px 18px', borderRadius: '9px', flexShrink: 0,
-                background: 'rgba(14,196,193,0.08)', border: '1px solid var(--ins-border-brand)',
-                color: 'var(--ins-text-highlight)', fontSize: 'var(--ins-font-size-14)', fontWeight: 600,
-                fontFamily: 'inherit', cursor: 'pointer',
-                transition: 'background .18s, border-color .18s',
-              }}
-              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(14,196,193,0.14)'; e.currentTarget.style.borderColor = 'rgba(14,196,193,0.35)'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(14,196,193,0.08)'; e.currentTarget.style.borderColor = 'var(--ins-border-brand)'; }}
-            >Contact Support →</button>
+              iconEnd={<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>}
+            >Contact support</Button>
           </div>
         </div>
       </section>
