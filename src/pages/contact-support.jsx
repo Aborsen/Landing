@@ -689,8 +689,8 @@ function ContactSupport() {
                 </svg>
               </div>
               <div>
-                <div style={{ fontSize: 'var(--ins-font-size-14)', fontWeight: 600, color: 'var(--ins-color-gray-100)', marginBottom: 'var(--ins-size-half)' }}>Still need help?</div>
-                <div style={{ fontSize: 'var(--ins-font-size-14)', color: 'var(--ins-text-body)' }}>Our support team is here — reach out and we'll respond within 24 hours.</div>
+                <div className="ins-text-h4" style={{ marginBottom: 'var(--ins-size-half)' }}>Still need help?</div>
+                <div className="ins-text-body">Our support team is here — reach out and we'll respond within 24 hours.</div>
               </div>
             </div>
             <button

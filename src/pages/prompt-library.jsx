@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CheckIcon from '../components/CheckIcon';
 import BottomCTABlock from '../components/BottomCTA';
+import Button from '../components/Button';
 
 /* ── INSIGHTIS LOGO MARK SVG ── */
 function InsightisLogoMark({ size = 60, opacity = 1 }) {
@@ -481,29 +482,16 @@ function PromptCard({ entry, index, isExpanded, onToggle }) {
             <span style={{ fontSize:'var(--ins-font-size-11)', fontWeight:600, letterSpacing:'.08em', textTransform:'uppercase', color:'var(--ins-text-disabled)' }}>
               Prompt
             </span>
-            <button
+            <Button
+              variant="secondary"
+              size="sm"
               onClick={handleCopy}
-              style={{
-                display:'inline-flex', alignItems:'center', gap:'6px',
-                background:'transparent', border:'1px solid rgba(9,160,157,.25)',
-                color: copied ? '#8EDDBF' : 'var(--ins-text-highlight)',
-                borderRadius:'var(--ins-radius-6)', padding:'4px 10px',
-                fontSize:'var(--ins-font-size-12)', fontWeight:500, cursor:'pointer',
-                fontFamily:'var(--ins-font-family-sans)',
-              }}
+              iconStart={copied
+                ? <CheckIcon size={14} color="currentColor" />
+                : <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>}
             >
-              {copied ? (
-                <>
-                  <CheckIcon size={11} color="currentColor" />
-                  Copied
-                </>
-              ) : (
-                <>
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                  Copy
-                </>
-              )}
-            </button>
+              {copied ? 'Copied' : 'Copy'}
+            </Button>
           </div>
           <p style={{
             fontSize:'var(--ins-font-size-14)', color:'#B5CCD2', lineHeight:1.65,
