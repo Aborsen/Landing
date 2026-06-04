@@ -678,7 +678,6 @@ function SpotlightChat() {
         </div>
         <div className="chat-bubble-ai">
           Blended CAC for Q1 across paid channels: $148. Paid Search $132, Paid Social $164, Display $189. Sourced from <span style={{color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-12)'}}>marketing.fct_cac</span> — governed by your Semantic Layer.
-          <MiniBarChart data={[132, 164, 189, 148]} color="var(--ins-text-highlight)"/>
         </div>
       </div>
     </div>
