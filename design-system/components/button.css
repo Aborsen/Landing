@@ -56,6 +56,17 @@
 .ins-btn__icon--leading  { margin-right: calc(var(--ins-space-xs) * -1); }
 .ins-btn__icon--trailing { margin-left: calc(var(--ins-space-xs) * -1); }
 
+/* Arrow nudge on hover (audit #21) — the trailing icon (every iconEnd site-wide is an
+   arrow) slides right on hover/focus while the label stays put. Reduced-motion users
+   get no movement. */
+.ins-btn__icon--trailing { transition: transform var(--ins-duration-base) var(--ins-easing-standard); }
+.ins-btn:hover:not(:disabled) .ins-btn__icon--trailing,
+.ins-btn:focus-visible:not(:disabled) .ins-btn__icon--trailing { transform: translateX(3px); }
+@media (prefers-reduced-motion: reduce) {
+  .ins-btn:hover:not(:disabled) .ins-btn__icon--trailing,
+  .ins-btn:focus-visible:not(:disabled) .ins-btn__icon--trailing { transform: none; }
+}
+
 /* Primary */
 .ins-btn--primary { background: var(--ins-button-primary-bg); color: var(--ins-button-primary-fg); }
 .ins-btn--primary:hover:not(:disabled) { background: var(--ins-button-primary-bg-hover); }
