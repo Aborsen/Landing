@@ -764,55 +764,14 @@ export default function BlogPost({ markdown, slug }) {
 
           {/* Center: article */}
           <article className="blog-article">
-            {/* Breadcrumbs — Home › Blog › Article-Title.
-                The wrapping element MUST override the global app.css
-                `nav { display:flex; padding:0 48px; ... }` rule the same
-                way the TOC nav does, or the breadcrumb collapses. */}
-            <nav
-              aria-label="Breadcrumb"
-              style={{
-                display: 'block',
-                width: '100%',
-                padding: 0,
-                height: 'auto',
-                position: 'static',
-                background: 'transparent',
-                borderBottom: 'none',
-                marginBottom: 'var(--ins-size-6)',
-              }}
-            >
-              <ol style={{
-                listStyle: 'none',
-                padding: 0,
-                margin: 0,
-                display: 'flex',
-                flexWrap: 'wrap',
-                alignItems: 'center',
-                gap: '6px',
-                fontSize: 'var(--ins-font-size-14)',
-                color: 'var(--ins-text-body)',
-                lineHeight: 1.4,
-              }}>
-                <li>
-                  <a href="/" style={{ color: 'var(--ins-text-body)', textDecoration: 'none' }}>Home</a>
-                </li>
-                <li aria-hidden="true" style={{ color: 'var(--ins-text-disabled)' }}>›</li>
-                <li>
-                  <a href="/blog/" style={{ color: 'var(--ins-text-body)', textDecoration: 'none' }}>Blog</a>
-                </li>
-                <li aria-hidden="true" style={{ color: 'var(--ins-text-disabled)' }}>›</li>
-                <li aria-current="page" style={{
-                  color: 'var(--ins-text-body)',
-                  minWidth: 0,
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                  maxWidth: '420px',
-                }} title={meta.title || ''}>
-                  {meta.title || 'Article'}
-                </li>
-              </ol>
-            </nav>
+            {/* Breadcrumbs — reuse the DS .ins-breadcrumbs (same component as docs).
+                Current page (article title) intentionally omitted per audit #37.
+                A <div> (not <nav>) sidesteps the global app.css `nav {…}` rule. */}
+            <div className="ins-breadcrumbs" role="navigation" aria-label="Breadcrumb" style={{ marginBottom: 'var(--ins-size-6)' }}>
+              <span className="ins-breadcrumbs__item"><a href="/">Home</a></span>
+              <span className="ins-breadcrumbs__separator" aria-hidden="true">/</span>
+              <span className="ins-breadcrumbs__item"><a href="/blog/">Blog</a></span>
+            </div>
 
             {/* Cover image */}
             {cover && (
