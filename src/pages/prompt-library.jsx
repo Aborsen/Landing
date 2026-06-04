@@ -445,7 +445,9 @@ function PromptCard({ entry, index, isExpanded, onToggle }) {
 
   return (
     <article className="prompt-card" style={{ animationDelay:`${Math.min(index,8) * 0.04}s` }}>
-      <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', gap:'var(--ins-size-5)', flexWrap:'wrap' }}>
+      <div onClick={onToggle} role="button" tabIndex={0} aria-expanded={expanded}
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onToggle(); } }}
+        style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', gap:'var(--ins-size-5)', flexWrap:'wrap', cursor:'pointer' }}>
         <div style={{ flex:'1 1 320px', minWidth:0 }}>
           <h3 style={{ fontSize:'var(--ins-font-size-16)', fontWeight:500, color:'var(--ins-text-heading-soft)', lineHeight:1.4, marginBottom:'10px', letterSpacing:'-.01em' }}>
             {entry.title}
@@ -456,7 +458,8 @@ function PromptCard({ entry, index, isExpanded, onToggle }) {
         </div>
         <button
           className="view-btn"
-          onClick={onToggle}
+          onClick={(e) => { e.stopPropagation(); onToggle(); }}
+          tabIndex={-1}
         >
           {expanded ? 'Hide Prompt' : 'View Prompts'}
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"

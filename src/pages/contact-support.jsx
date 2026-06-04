@@ -202,6 +202,16 @@ function HelpTopics({ search }) {
             </div>
           </div>
         ))}
+        {q && !filteredTopics.some(t => t.visible) && (
+          <div style={{
+            gridColumn:'1 / -1',
+            padding:'40px 24px', textAlign:'center',
+            border:'1px dashed var(--ins-color-white-a-08)', borderRadius:'var(--ins-radius-12)',
+            color:'var(--ins-text-body)', fontSize:'var(--ins-font-size-14)',
+          }}>
+            No results match your search — try different keywords or <a href="#contact" style={{ color:'var(--ins-text-highlight)' }}>contact support</a>.
+          </div>
+        )}
       </div>
 
       <style>{`
