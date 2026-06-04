@@ -43,6 +43,13 @@
   box-shadow: var(--ins-focus-ring);
 }
 
+/* DS inputs/selects/textareas supply their own focus affordance (solid teal
+   border + subtle ring), so suppress the global :focus-visible 2px outline —
+   it doubled the highlight and read as over-bright on search/inputs (audit #15). */
+.ins-input:focus-visible,
+.ins-textarea:focus-visible,
+.ins-select:focus-visible { outline: none; }
+
 .ins-input.is-error,
 .ins-textarea.is-error,
 .ins-select.is-error {
