@@ -982,44 +982,50 @@ export default function BlogPost({ markdown, slug }) {
         .blog-tldr > * + * { margin-top: var(--ins-size-3); }
         .blog-tldr p, .blog-tldr ul, .blog-tldr ol { color: var(--ins-text-body); }
 
-        /* FAQ accordion — bordered card containing one <details> per Q&A. */
+        /* FAQ accordion — reuses the marketing .ins-faq look (audit #41):
+           separate bordered rows with a gap, teal border when open. */
         .blog-faq {
+          display: flex;
+          flex-direction: column;
+          gap: var(--ins-space-sm);
           margin: 24px 0 8px;
-          border: 1px solid var(--ins-border-default);
-          border-radius: var(--ins-radius-lg);
-          background: var(--ins-surface-card);
-          overflow: hidden;
         }
         .blog-faq-item {
-          border-bottom: 1px solid var(--ins-border-default);
+          background: var(--ins-color-black-a-30, rgba(13, 17, 23, 0.6));
+          border: 1px solid var(--ins-color-white-a-06);
+          border-radius: var(--ins-radius-xl);
+          overflow: hidden;
+          transition: border-color 180ms;
         }
-        .blog-faq-item:last-child { border-bottom: none; }
+        .blog-faq-item[open] { border-color: var(--ins-color-teal-a-30); }
         .blog-faq-item > summary {
           display: flex;
           align-items: center;
           justify-content: space-between;
           gap: var(--ins-size-4);
-          padding: 16px 20px;
+          padding: 16px 24px;
           cursor: pointer;
           list-style: none;
-          color: var(--ins-text-heading);
+          color: var(--ins-color-gray-100);
           font-weight: 500;
           font-size: var(--ins-font-size-15);
-          transition: background 180ms;
+          transition: color 180ms;
         }
         .blog-faq-item > summary::-webkit-details-marker { display: none; }
-        .blog-faq-item > summary:hover { background: var(--ins-color-white-a-02); }
+        .blog-faq-item > summary:hover { color: var(--ins-text-heading); }
+        .blog-faq-item[open] > summary { color: var(--ins-text-heading); }
         .blog-faq-q { flex: 1; }
         .blog-faq-chev {
           font-size: var(--ins-font-size-20);
           font-weight: 300;
-          color: var(--ins-text-highlight);
+          color: var(--ins-text-inactive);
           line-height: 1;
-          transition: transform 180ms;
+          flex-shrink: 0;
+          transition: transform 180ms, color 180ms;
         }
-        .blog-faq-item[open] > summary .blog-faq-chev { transform: rotate(45deg); }
+        .blog-faq-item[open] > summary .blog-faq-chev { transform: rotate(45deg); color: var(--ins-text-highlight); }
         .blog-faq-a {
-          padding: 0 20px 18px;
+          padding: 0 24px 18px;
           color: var(--ins-text-body);
           font-size: var(--ins-font-size-15);
           line-height: 1.65;
