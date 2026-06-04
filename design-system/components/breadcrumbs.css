@@ -18,7 +18,11 @@
   display: flex; align-items: center; justify-content: space-between;
   width: 100%; padding: 6px 16px;
   background: transparent; border: none; cursor: pointer;
+  color: var(--ins-text-inactive);
+  transition: color .15s;
 }
+/* audit #7 — hover lifts text + icon (currentColor) from inactive to heading, like accordions */
+.ins-doc-nav__group-toggle:hover { color: var(--ins-text-heading); }
 .ins-doc-nav__item {
   display: block; width: 100%; text-align: left;
   padding: 6px 16px 6px 20px;

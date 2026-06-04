@@ -100,6 +100,7 @@
 @media (min-width: 768px) {
   .ins-bottom-cta__form { width: auto; min-width: 0; flex: 0 0 auto; }
 }
+.ins-bottom-cta__form:hover { border-color: var(--ins-border-hover); }   /* audit #45 — input hover state */
 .ins-bottom-cta__form:focus-within {
   border-color: var(--ins-border-focus);
   box-shadow: var(--ins-focus-ring);

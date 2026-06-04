@@ -20,7 +20,7 @@
   font-weight: var(--ins-font-weight-600);
   letter-spacing: var(--ins-letter-spacing-wider);
   text-transform: uppercase;
-  color: var(--ins-text-heading);
+  color: var(--ins-text-inactive);   /* audit #8 — TOC heading less prominent */
   padding: 0 var(--ins-space-md) var(--ins-space-sm);
   margin-bottom: var(--ins-space-xs);
 }
@@ -47,8 +47,7 @@
 .ins-toc__link[aria-current="location"],
 .ins-toc__link.is-active {
   color: var(--ins-text-highlight);
-  background: var(--ins-surface-brand-tint);
-  border-left: 2px solid var(--ins-color-teal-400);
+  border-left: 2px solid var(--ins-color-teal-400);   /* audit #9 — no bg on active/pressed; teal text + rail only */
   padding-left: var(--ins-space-md);
   font-weight: var(--ins-font-weight-500);
 }
