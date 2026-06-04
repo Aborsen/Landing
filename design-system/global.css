@@ -302,6 +302,18 @@ h1, h2, h3, h4, h5, h6 { font-weight: inherit; font-size: inherit; }
 @media (max-width: 767px)  { .ins-u-hidden-mobile  { display: none !important; } }
 @media (min-width: 768px)  { .ins-u-hidden-desktop { display: none !important; } }
 
+/* Hero atmosphere — the dual radial-glow backdrop shared by every page hero
+   (audit #28). One absolutely-positioned layer; teal + violet glows composited. */
+.ins-hero-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 60% at 72% 50%, rgba(9,160,157,0.09) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 20% 50%, rgba(59,31,94,0.12) 0%, transparent 70%);
+}
+
 /* Container */
 .ins-container {
   width: 100%;
