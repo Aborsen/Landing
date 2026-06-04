@@ -342,7 +342,7 @@ function RoadmapSections() {
 
         {/* Section heading */}
         <div style={{marginBottom:40}}>
-          <h2 style={{fontSize:'clamp(28px,3.5vw,42px)', fontWeight:600, letterSpacing:'-.03em', lineHeight:1.15, color:'var(--ins-text-heading-soft)', marginBottom:12}}>
+          <h2 className="ins-text-h1" style={{marginBottom:12}}>
             What's on deck.
           </h2>
           <p className="ins-text-body-lg" style={{maxWidth:520, margin:0}}>

@@ -460,8 +460,8 @@ function PromptCard({ entry, index, isExpanded, onToggle }) {
         >
           {expanded ? 'Hide Prompt' : 'View Prompts'}
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-            style={{ transition:'transform .2s', transform: expanded ? 'rotate(90deg)' : 'rotate(0deg)' }}>
-            <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+            style={{ transition:'transform .2s', transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+            <polyline points="6 9 12 15 18 9"/>
           </svg>
         </button>
       </div>
