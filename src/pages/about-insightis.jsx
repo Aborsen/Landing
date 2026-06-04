@@ -228,7 +228,7 @@ function OurStory() {
                 </div>
                 {/* Dot */}
                 <div className="hidden md:flex" style={{width:'0', flexShrink:0, position:'relative', justifyContent:'center'}}>
-                  <div style={{width:'10px', height:'10px', borderRadius:'50%', background:'var(--ins-button-primary-bg-hover)', border:'2px solid rgba(9,160,157,.3)', boxShadow:'0 0 12px rgba(9,160,157,.4)', marginLeft:'-5px', marginTop:'6px', flexShrink:0}}/>
+                  <div style={{width:'10px', height:'10px', borderRadius:'50%', background:'var(--ins-button-primary-bg-hover)', border:'2px solid rgba(9,160,157,.3)', boxShadow:'0 0 12px rgba(9,160,157,.4)', marginTop:'6px', flexShrink:0}}/>
                 </div>
                 {/* Content */}
                 <div style={{flex:1, paddingLeft:'var(--ins-size-10)'}}>
