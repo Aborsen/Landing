@@ -897,18 +897,16 @@ function WhatIsInsightis() {
         </FadeUp>
 
         <FadeUp delay={0.1}>
-          <div className="bg-[var(--ins-surface-card)] border border-[var(--ins-border-default)] rounded-2xl p-8 md:p-12">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x md:divide-[var(--ins-border-default)]">
-              {stats.map((s, i) => (
-                <div key={i} className="text-center px-4">
-                  <p className="text-4xl md:text-5xl font-bold text-[var(--ins-color-teal-400)] tracking-tight leading-none mb-3">
-                    <AnimatedStat target={s.target} suffix={s.suffix} prefix={s.prefix} duration={1800 + i * 150} />
-                  </p>
-                  <p className="ins-text-emphasise-sm mb-1">{s.label}</p>
-                  <p className="text-xs text-[var(--ins-text-body)]">{s.sub}</p>
-                </div>
-              ))}
-            </div>
+          <div className="ins-stat-strip">
+            {stats.map((s, i) => (
+              <div key={i} className="ins-stat-strip__item">
+                <p className="ins-stat-strip__value">
+                  <AnimatedStat target={s.target} suffix={s.suffix} prefix={s.prefix} duration={1800 + i * 150} />
+                </p>
+                <p className="ins-stat-strip__label">{s.label}</p>
+                <p className="ins-stat-strip__sub">{s.sub}</p>
+              </div>
+            ))}
           </div>
         </FadeUp>
       </div>

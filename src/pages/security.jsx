@@ -157,8 +157,7 @@ function SecurityContent() {
           </div>
           <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))', gap:'var(--ins-size-4)'}}>
             {securityCards.map((v, i) => (
-              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-16)', padding:'var(--ins-size-7)', position:'relative', overflow:'hidden'}}>
-                <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
+              <div key={i} className="ins-feature-card">
                 <div style={{width:'40px', height:'40px', borderRadius:'10px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'var(--ins-size-4)'}}>
                   {v.icon}
                 </div>
@@ -182,10 +181,7 @@ function SecurityContent() {
           </div>
           <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))', gap:'var(--ins-size-4)', maxWidth:'960px', margin:'0 auto'}}>
             {complianceCards.map((c, i) => (
-              <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-16)', padding:'36px 28px', position:'relative', overflow:'hidden', textAlign:'center', transition:'all .2s'}}
-                onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-                onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-border-default)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
-                <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
+              <div key={i} className="ins-feature-card ins-feature-card--interactive" style={{padding:'36px 28px', textAlign:'center'}}>
                 <div style={{display:'flex', justifyContent:'center', marginBottom:'var(--ins-size-5)'}}>
                   {c.icon}
                 </div>
@@ -208,8 +204,7 @@ function SecurityContent() {
             />
           </div>
           <div style={{maxWidth:'720px', margin:'0 auto'}}>
-            <div style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-16)', padding:'36px', position:'relative', overflow:'hidden'}}>
-              <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
+            <div className="ins-feature-card" style={{padding:'36px'}}>
               <div style={{display:'flex', flexDirection:'column', gap:'var(--ins-size-5)'}}>
                 {promises.map((p, i) => (
                   <div key={i} style={{display:'flex', alignItems:'flex-start', gap:'14px'}}>

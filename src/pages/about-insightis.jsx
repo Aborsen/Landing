@@ -30,11 +30,11 @@ function AboutHero() {
         <p className="fu2 ins-text-body-xl" style={{maxWidth:'580px', margin:'0 auto'}}>
           Insightis is the AI analytics workspace that lets anyone — not just analysts — ask questions about their data and get instant, accurate answers. No SQL. No dashboards. No waiting.
         </p>
-        <div className="fu3" style={{display:'flex', justifyContent:'center', gap:'0', marginTop:'var(--ins-size-14)', borderTop:'1px solid var(--ins-border-default)', borderBottom:'1px solid var(--ins-border-default)', flexWrap:'wrap'}}>
+        <div className="fu3 ins-stat-strip" style={{marginTop:'var(--ins-size-14)'}}>
           {stats.map((s, i) => (
-            <div key={i} style={{flex:'1 1 160px', padding:'28px 24px', textAlign:'center', borderRight: i < stats.length-1 ? '1px solid var(--ins-border-default)' : 'none'}}>
-              <div style={{fontSize:'clamp(28px,3.5vw,44px)', fontWeight:600, color:'var(--ins-text-highlight)', letterSpacing:'-.02em', lineHeight:1}}>{s.num}</div>
-              <div style={{fontSize:'var(--ins-font-size-12)', color:'var(--ins-color-white-a-45)', marginTop:'var(--ins-size-2)', letterSpacing:'.02em'}}>{s.label}</div>
+            <div key={i} className="ins-stat-strip__item">
+              <div className="ins-stat-strip__value">{s.num}</div>
+              <div className="ins-stat-strip__label">{s.label}</div>
             </div>
           ))}
         </div>
@@ -75,8 +75,7 @@ function MissionValues() {
         </div>
         <div style={{display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'var(--ins-size-4)'}} className="md:grid-cols-3 grid-cols-1" >
           {values.map((v, i) => (
-            <div key={i} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-16)', padding:'var(--ins-size-7)', position:'relative', overflow:'hidden'}}>
-              <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
+            <div key={i} className="ins-feature-card">
               <div style={{width:'40px', height:'40px', borderRadius:'10px', background:'var(--ins-surface-brand-tint)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'var(--ins-size-4)'}}>
                 {v.icon}
               </div>

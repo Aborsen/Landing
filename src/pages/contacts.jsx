@@ -29,7 +29,7 @@ function ContactHero() {
 
 /* ── CONTACT OPTIONS ── */
 function ContactOptions({ onOpenDemo, onOpenSupport }) {
-  const cardStyle = {background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-16)', padding:'var(--ins-size-8)', position:'relative', overflow:'hidden', transition:'all .2s'};
+  const cardStyle = {padding:'var(--ins-size-8)'};
 
   return (
     <section style={{padding:'40px 0 80px'}}>
@@ -37,10 +37,7 @@ function ContactOptions({ onOpenDemo, onOpenSupport }) {
         <div style={{display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'var(--ins-size-4)'}} className="md:grid-cols-3 grid-cols-1">
 
           {/* Talk to Sales */}
-          <div style={cardStyle}
-            onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-            onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-border-default)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
-            <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
+          <div className="ins-feature-card ins-feature-card--interactive" style={cardStyle}>
             <div style={{width:'48px', height:'48px', borderRadius:'50%', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'var(--ins-size-5)'}}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             </div>
@@ -53,10 +50,7 @@ function ContactOptions({ onOpenDemo, onOpenSupport }) {
           </div>
 
           {/* Get Support */}
-          <div style={cardStyle}
-            onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-            onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-border-default)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
-            <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
+          <div className="ins-feature-card ins-feature-card--interactive" style={cardStyle}>
             <div style={{width:'48px', height:'48px', borderRadius:'50%', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'var(--ins-size-5)'}}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
             </div>
@@ -71,10 +65,7 @@ function ContactOptions({ onOpenDemo, onOpenSupport }) {
           </div>
 
           {/* Help Center */}
-          <div style={cardStyle}
-            onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-            onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-border-default)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
-            <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
+          <div className="ins-feature-card ins-feature-card--interactive" style={cardStyle}>
             <div style={{width:'48px', height:'48px', borderRadius:'50%', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'var(--ins-size-5)'}}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
             </div>
@@ -272,10 +263,7 @@ function QuickLinks() {
         </div>
         <div style={{display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:'var(--ins-size-4)'}} className="md:grid-cols-4 sm:grid-cols-2 grid-cols-1">
           {links.map((l, i) => (
-            <a key={i} href={l.href} style={{background:'rgba(13,17,23,.6)', border:'1px solid var(--ins-border-default)', borderRadius:'var(--ins-radius-16)', padding:'var(--ins-size-7)', position:'relative', overflow:'hidden', transition:'all .2s', textDecoration:'none', display:'block'}}
-              onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-              onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-border-default)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}>
-              <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
+            <a key={i} href={l.href} className="ins-feature-card ins-feature-card--interactive">
               <div style={{width:'44px', height:'44px', borderRadius:'50%', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.2)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'var(--ins-size-4)'}}>
                 {l.icon}
               </div>
