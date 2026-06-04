@@ -516,6 +516,7 @@ function App() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search 200+ connectors..."
+            style={{marginBottom:'var(--ins-size-6)'}}
           />
           <ConnectorGrid items={filtered} onAskChat={handleAskChat} onConnect={handleConnect} />
 
