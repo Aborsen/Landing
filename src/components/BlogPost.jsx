@@ -169,8 +169,8 @@ function TableOfContents({ items }) {
   const socials = [
     { label: 'Insightis on X (formerly Twitter)', href: 'https://x.com/Insightisai',                  Icon: XIcon },
     { label: 'Insightis on TikTok',               href: 'https://www.tiktok.com/@insightisai',        Icon: TikTokIcon },
-    { label: 'Insightis on LinkedIn',             href: 'https://www.linkedin.com/company/112025589', Icon: LinkedInIcon },
     { label: 'Insightis on YouTube',              href: 'https://www.youtube.com/@InsightisAI',       Icon: YouTubeIcon },
+    { label: 'Insightis on LinkedIn',             href: 'https://www.linkedin.com/company/112025589', Icon: LinkedInIcon },
   ];
 
   return (
@@ -329,8 +329,8 @@ function TopicsSidebar({ currentSlug }) {
   const socials = [
     { label: 'Insightis on X (formerly Twitter)', href: 'https://x.com/Insightisai',                  Icon: XIcon },
     { label: 'Insightis on TikTok',               href: 'https://www.tiktok.com/@insightisai',        Icon: TikTokIcon },
-    { label: 'Insightis on LinkedIn',             href: 'https://www.linkedin.com/company/112025589', Icon: LinkedInIcon },
     { label: 'Insightis on YouTube',              href: 'https://www.youtube.com/@InsightisAI',       Icon: YouTubeIcon },
+    { label: 'Insightis on LinkedIn',             href: 'https://www.linkedin.com/company/112025589', Icon: LinkedInIcon },
   ];
   return (
     <aside className="blog-side-right">
