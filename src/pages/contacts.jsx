@@ -46,9 +46,9 @@ function ContactOptions({ onOpenDemo, onOpenSupport }) {
             </div>
             <h3 style={{fontSize:'var(--ins-font-size-18)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'10px'}}>Talk to Sales</h3>
             <p className="ins-text-body" style={{marginBottom:'var(--ins-size-5)'}}>Get a personalized demo of Insightis for your team. We'll show you exactly how it works with your data sources.</p>
-            <button onClick={onOpenDemo} style={{display:'inline-flex', alignItems:'center', gap:'var(--ins-size-2)', padding:'10px 24px', fontSize:'var(--ins-font-size-12)', fontWeight:600, color:'var(--ins-text-body)', background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))', borderRadius:'999px', border:'none', cursor:'pointer', fontFamily:'var(--ins-font-family-sans)'}}>
+            <Button variant="primary" onClick={onOpenDemo}>
               Book a demo
-            </button>
+            </Button>
             <p className="ins-text-body-xs ins-text--muted ins-text--mono" style={{marginTop:'14px'}}>Typically responds within 2 hours</p>
           </div>
 

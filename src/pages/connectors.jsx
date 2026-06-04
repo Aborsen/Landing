@@ -545,23 +545,15 @@ function App() {
                 Tell us what you use and we'll prioritize the connector.
               </p>
             </div>
-            <button
+            <Button
+              variant="primary"
+              size="md"
+              radius="md"
               onClick={handleRequestConnector}
-              style={{
-                display:'inline-flex', alignItems:'center', gap:'var(--ins-size-2)',
-                padding:'10px 18px', borderRadius:'var(--ins-radius-8)',
-                border:'none', background:'var(--ins-button-primary-bg)', color:'var(--ins-text-body)',
-                fontSize:'var(--ins-font-size-14)', fontWeight:600, fontFamily:'var(--ins-font-family-sans)',
-                cursor:'pointer', transition:'background .15s',
-              }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--ins-button-primary-bg-hover)'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = 'var(--ins-button-primary-bg)'; }}
+              iconStart={<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>}
             >
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-              </svg>
               Request a connector
-            </button>
+            </Button>
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CheckIcon from '../components/CheckIcon';
+import Button from '../components/Button';
 
 /* ── ICONS ── */
 
@@ -472,22 +473,16 @@ function SuggestCTA() {
                 Tell us what you'd like to see in Insightis. We review every suggestion.
               </p>
             </div>
-            <button onClick={() => setOpen(true)} style={{
-              display:'inline-flex', alignItems:'center', gap:8,
-              padding:'12px 24px', flexShrink:0,
-              fontSize:14, fontWeight:500, color:'var(--ins-text-body)',
-              background:'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))',
-              borderRadius:10, border:'none', cursor:'pointer',
-              fontFamily:'var(--ins-font-family-sans)', letterSpacing:'.01em',
-              boxShadow:'0 0 24px rgba(9,160,157,.18)',
-              transition:'opacity .15s',
-            }}
-              onMouseEnter={e => e.currentTarget.style.opacity='.85'}
-              onMouseLeave={e => e.currentTarget.style.opacity='1'}
+            <Button
+              variant="primary"
+              size="md"
+              radius="md"
+              onClick={() => setOpen(true)}
+              style={{flexShrink:0}}
+              iconEnd={<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>}
             >
-              Request a Feature
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-            </button>
+              Request a feature
+            </Button>
           </div>
         </div>
       </section>

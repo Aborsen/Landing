@@ -15,7 +15,7 @@
     outline: 2px solid var(--ins-text-highlight, #0EC4C1);
     outline-offset: 2px;
     border-radius: 4px;
-    box-shadow: 0 0 0 4px rgba(9, 160, 157, 0.25);
+    box-shadow: var(--ins-focus-ring);   /* audit #15 — DS token (3px teal-a-20), not a brighter hardcoded ring */
   }
   /* Buttons / anchors with their own border radius keep the ring snug. */
   a:focus-visible, button:focus-visible {
