@@ -7,16 +7,16 @@
 /* ─ @font-face (variable fonts, local) ───────────────────────── */
 @font-face {
   font-family: 'Geist';
-  src: url('/Design system/design-system/assets/fonts/Geist-Variable.ttf') format('truetype-variations'),
-       url('/Design system/design-system/assets/fonts/Geist-Variable.ttf') format('truetype');
+  src: url('/fonts/Geist-Variable.ttf') format('truetype-variations'),
+       url('/fonts/Geist-Variable.ttf') format('truetype');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Geist Mono';
-  src: url('/Design system/design-system/assets/fonts/GeistMono-Variable.ttf') format('truetype-variations'),
-       url('/Design system/design-system/assets/fonts/GeistMono-Variable.ttf') format('truetype');
+  src: url('/fonts/GeistMono-Variable.ttf') format('truetype-variations'),
+       url('/fonts/GeistMono-Variable.ttf') format('truetype');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -412,7 +412,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: inherit; font-size: inherit; }
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-image: url('/Design system/design-system/assets/img/noise.svg');
+  background-image: url('/img/noise.svg');
   background-repeat: repeat;
   background-size: 200px 200px;
   background-attachment: scroll;

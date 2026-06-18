@@ -446,27 +446,21 @@ import TestimonialCard from './TestimonialCard';
 
 ## CSS source
 
-All visual treatments live in `public/Design system/design-system/assets/components.css`:
+All visual treatments live in **`design-system/`** — one CSS file per component under `design-system/components/`:
 
-| Section | Range | Component |
-|---|---|---|
-| §1 | lines 1–164 | `.ins-btn` |
-| §3 | lines 165–250 | `.ins-input` / `.ins-textarea` |
-| §6 | lines 505–675 | `.ins-card` + variants |
-| §14 | lines 1170–1240 | `.ins-badge` (Chip) |
-| §31 | new (PR 0) | `.ins-eyebrow` |
-| §32 | new (PR 0) | `.ins-icon-badge` |
-| §33 | new (PR 6) | `.ins-code-chip` |
-| §34 | new (PR 7) | `.ins-bottom-cta` |
-| §35 | new (PR 8) | `.ins-faq` |
-| §36 | new (PR 9) | `.ins-pain-grid` + `.ins-pain-card` |
-| §37 | new (PR 10) | `.ins-compare` |
-| §38 | new (PR 11) | `.ins-steps` |
-| §39 | new (PR 12) | `.ins-testimonial` |
+| Class | File |
+|---|---|
+| `.ins-btn` | `design-system/components/button.css` |
+| `.ins-input` / `.ins-textarea` | `design-system/components/input.css` |
+| `.ins-card` + variants | `design-system/components/card.css` |
+| `.ins-badge` (Chip) | `design-system/components/badge.css` |
+| `.ins-eyebrow` · `.ins-icon-badge` · `.ins-code-chip` · `.ins-bottom-cta` · `.ins-faq` · `.ins-pain-*` · `.ins-compare` · `.ins-steps` · `.ins-testimonial` | the matching `design-system/components/<name>.css` |
 
-Layout primitives (`.ins-section*`) live in `public/Design system/design-system/assets/base.css` lines 268–315.
+The `.ins-text-*` type scale, `@font-face`, and layout primitives live in `design-system/global.css`. Everything is aggregated by `design-system/index.css`, imported once via `src/app.css`.
 
-Tokens that the components consume are in `public/Design system/design-system/assets/tokens.css` — search for `--ins-button-primary-*`, `--ins-color-{teal,red,amber,green,purple}-a-*`, `--ins-text-*`, `--ins-radius-*`, `--ins-space-*`.
+Tokens the components consume live in **`design-system/tokens/`** — `colors.css` (`--ins-button-primary-*`, `--ins-color-*`, `--ins-text-*`), `radii.css` (`--ins-radius-*`), `spacing.css` (`--ins-space-*` / `--ins-size-*`), etc.
+
+Fonts (Geist) are served from `public/fonts/` and the body noise texture from `public/img/noise.svg` (both referenced by absolute URL in `global.css`).
 
 ---
 
@@ -475,12 +469,12 @@ Tokens that the components consume are in `public/Design system/design-system/as
 To verify the library actually delivers the "change once, apply everywhere" goal:
 
 ```bash
-# Change the canonical primary-button color in tokens.css
+# Change the canonical primary-button color token
 sed -i 's/--ins-button-primary-bg:.*$/--ins-button-primary-bg: var(--ins-color-purple-400);/' \
-  "public/Design system/design-system/assets/tokens.css"
+  design-system/tokens/colors.css
 npm run build
 # Every primary button across all 31 pages now renders purple.
-git checkout -- "public/Design system/design-system/assets/tokens.css"
+git checkout -- design-system/tokens/colors.css
 ```
 
 Same approach works for `--ins-radius-pill`, `--ins-button-primary-shadow-hover`, `--ins-color-teal-a-25`, etc.

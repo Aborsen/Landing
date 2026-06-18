@@ -45,8 +45,8 @@ design-system/index.css
 
 `tailwind.config.js` maps its theme to `var(--ins-*)` — so Tailwind utilities and DS
 classes always agree, from one source. Fonts (Geist) are served from
-`public/Design system/design-system/assets/fonts/` (referenced by absolute URL in
-`global.css`'s `@font-face`).
+`public/fonts/` (referenced by absolute URL in `global.css`'s `@font-face`); the
+body noise texture from `public/img/noise.svg`.
 
 ## Using tokens
 
