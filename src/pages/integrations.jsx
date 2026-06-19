@@ -522,17 +522,26 @@ function ConnectorsGallery() {
         <div style={{
           display:'grid',
           gridTemplateColumns:'repeat(auto-fill, minmax(220px, 1fr))',
-          gridAutoRows:'72px',
+          gridAutoRows:'64px',
           gap:'10px',
         }}>
           {AUDIENCE_TABS[activeCat].map((c, i) => {
             const master = MASTER_CONNECTORS.find(m => m.name === c.name);
             return (
-            <div key={`${activeCat}-${i}-${c.name}`} className="connector-card">
-              <ConnectorIcon name={c.name} slug={master?.slug} domain={master?.domain} bg="var(--ins-color-white-a-04)"/>
+            <div key={`${activeCat}-${i}-${c.name}`} className="connector-card has-overlay">
+              <ConnectorIcon name={c.name} slug={master?.slug} domain={master?.domain} bg="var(--ins-color-white-a-04)" size={32}/>
               <div style={{minWidth:0}}>
-                <div className="ins-text-h4" style={{marginBottom:'3px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{c.name}</div>
-                <div style={{fontSize:'var(--ins-font-size-12)',color:'#8A9BA4',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{c.desc}</div>
+                <div className="ins-text-h4" style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{c.name}</div>
+              </div>
+              <div className="connector-overlay">
+                <a className="overlay-btn primary" href="/auth/sign-in/" onClick={(e) => e.stopPropagation()}>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                    <polyline points="10 17 15 12 10 7"/>
+                    <line x1="15" y1="12" x2="3" y2="12"/>
+                  </svg>
+                  Sign in to connect
+                </a>
               </div>
             </div>
             );

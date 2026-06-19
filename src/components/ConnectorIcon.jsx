@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { INTEGRATIONS } from './IntegrationsStrip';
+import { spriteClassFor, isDarkLogo } from '../data/connector-sprite-map.js';
 
 /*
  * Shared connector-icon renderer used by the Resources/Connectors gallery,
@@ -77,7 +78,23 @@ function buildSources(name, slug, domain, hex) {
   ].filter(Boolean);
 }
 
-export default function ConnectorIcon({ name, slug, domain, color = '#0EC4C1', abbr, bg, size = 20 }) {
+export default function ConnectorIcon({ name, slug, domain, color = '#0EC4C1', abbr, bg, size = 20, sprite = true }) {
+  // 0. Skyvia logo sprite (opt-in via `sprite`). Dark marks render as a DS-token
+  //    silhouette via .is-dark; un-mapped connectors fall through to the chain below.
+  if (sprite) {
+    const spriteClass = spriteClassFor({ name, slug });
+    if (spriteClass) {
+      return (
+        <span
+          className={`ins-connector-logo ${spriteClass}${isDarkLogo(spriteClass) ? ' is-dark' : ''}`}
+          style={{ '--ins-connector-size': `${size}px` }}
+          role="img"
+          aria-label={name}
+        />
+      );
+    }
+  }
+
   // 1. Canonical INTEGRATIONS inline SVG (brand-correct, lossless).
   const canonical = INTEGRATIONS.find(i => i.name === name);
   if (canonical) {
@@ -135,6 +152,8 @@ export default function ConnectorIcon({ name, slug, domain, color = '#0EC4C1', a
     <div
       className="connector-icon"
       style={{
+        width: size,
+        height: size,
         background: bg,
         color,
         display: 'flex',
@@ -146,11 +165,9 @@ export default function ConnectorIcon({ name, slug, domain, color = '#0EC4C1', a
       {resolvedSrc ? (
         <img
           src={resolvedSrc}
-          width={size}
-          height={size}
           alt=""
           draggable="false"
-          style={{ display: 'block', width: size, height: size, objectFit: 'contain' }}
+          style={{ display: 'block', width: Math.round(size * 0.78), height: Math.round(size * 0.78), objectFit: 'contain' }}
         />
       ) : (
         <span

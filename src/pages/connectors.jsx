@@ -427,7 +427,8 @@ function ConnectorTile({ c, index, onAskChat, onConnect }) {
             color={c.color}
             abbr={initials}
             bg="transparent"
-            size={32}
+            size={52}
+            sprite
           />
         </div>
         <div className="connector-name" title={c.name}>{c.name}</div>
