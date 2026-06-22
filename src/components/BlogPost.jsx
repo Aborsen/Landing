@@ -52,6 +52,29 @@ function slugify(s) {
     .replace(/-+/g, '-');
 }
 
+// Defensive scrub of LLM authoring artifacts that occasionally leak into the
+// generated article bodies and would otherwise render as literal cruft:
+//   • structural block markers      e.g. [INFORMATIONAL_BLOCK], [/LISTICLE_BLOCK]
+//   • dangling link labels (no URL) e.g. [Sign up for free], [**Book a Demo**]
+// Dangling labels keep their inner text (only the brackets are dropped); real
+// links, images, and reference definitions ([x](url) / ![x](url) / [x][ref] /
+// [ref]: url) are left untouched. Runs on the markdown before marked.parse().
+export function stripAiArtifacts(md) {
+  if (!md) return md;
+  return md
+    // 1. whole-line block markers → drop the line
+    .replace(/^[ \t]*\[\/?[A-Z][A-Z0-9_ ]*\][ \t]*$/gm, '')
+    // 2. any remaining inline [/CLOSE] or [ALL_CAPS_WITH_UNDERSCORE] markers
+    .replace(/\[\/[A-Z0-9_]+\]|\[[A-Z0-9]+(?:_[A-Z0-9]+)+\]/g, '')
+    // 3. dangling [label] not followed by (url) / [ref] / : and not the tail of
+    //    a [text][ref] reference link → keep the inner text, drop the brackets
+    .replace(/(?<!\])\[([^\[\]\n]+)\](?![([:])/g, '$1')
+    // 4. tidy whitespace left by the removals
+    .replace(/[ \t]+$/gm, '')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
 /* ───────────────────────── shared data ───────────────────────── */
 
 // Topic-relevant cover photos. Swap to /assets/blog/<slug>.webp once real
@@ -535,7 +558,7 @@ function RelatedArticles({ currentSlug }) {
  */
 export default function BlogPost({ markdown, slug }) {
   const { meta, body } = parseFrontmatter(markdown);
-  const bodySansH1 = body.replace(/^\s*#\s+[^\n]*\n+/, '');
+  const bodySansH1 = stripAiArtifacts(body.replace(/^\s*#\s+[^\n]*\n+/, ''));
   const rawHtml = marked.parse(bodySansH1);
 
   // Inject id attributes on H2 elements + build the TOC list from them.
@@ -587,6 +610,7 @@ export default function BlogPost({ markdown, slug }) {
   // Build a FAQPage JSON-LD schema from the extracted Q&As to be
   // emitted alongside the article.
   const faqItems = [];
+  let faqOrigId = null;
   html = html.replace(
     // Anchored: the h2's inner text must literally start with "FAQ"
     // (optionally followed by "Section"). Without this anchor the
@@ -609,24 +633,32 @@ export default function BlogPost({ markdown, slug }) {
       }
       if (items.length === 0) return _m;
       faqItems.push(...items);
+      // Remember the id the initial H2 pass gave this heading so we can fix its
+      // (now-stale) TOC entry instead of leaving a broken + duplicate anchor.
+      faqOrigId = (h2Attrs && (h2Attrs.match(/id="([^"]*)"/) || [])[1]) || null;
       const accordion = items.map((it, i) => `
         <details class="blog-faq-item"${i === 0 ? ' open' : ''}>
           <summary>
-            <span class="blog-faq-q">${it.question}</span>
+            <h3 class="blog-faq-q">${it.question}</h3>
             <span class="blog-faq-chev" aria-hidden="true">+</span>
           </summary>
           <div class="blog-faq-a">${it.answerHtml}</div>
         </details>`).join('');
-      const id = 'faq';
-      return `<h2 id="${id}"${h2Attrs || ''}>FAQ</h2>
+      // Single clean id; drop h2Attrs (it only carried the original id we are
+      // replacing) so the element never gets a duplicate id attribute.
+      return `<h2 id="faq">FAQ</h2>
         <div class="blog-faq">${accordion}</div>`;
     }
   );
 
-  // Re-track the FAQ entry in the TOC if we rewrote it (so the sidebar
-  // still links to it cleanly).
-  if (faqItems.length > 0 && !toc.some(t => t.id === 'faq')) {
-    toc.push({ id: 'faq', text: 'FAQ' });
+  // Reconcile the FAQ entry in the TOC. The initial H2 pass added an entry
+  // under the heading's original slug (e.g. "faq-section") pointing at an id
+  // the FAQ rewrite just changed to "faq" — replace it in place so the sidebar
+  // has exactly one working "FAQ" link (no broken anchor, no duplicate).
+  if (faqItems.length > 0) {
+    const fi = toc.findIndex(t => t.id === faqOrigId || /^faq\b/i.test(t.text));
+    if (fi >= 0) toc[fi] = { id: 'faq', text: 'FAQ' };
+    else if (!toc.some(t => t.id === 'faq')) toc.push({ id: 'faq', text: 'FAQ' });
   }
 
   const faqSchema = faqItems.length > 0 ? {
@@ -980,7 +1012,18 @@ export default function BlogPost({ markdown, slug }) {
         .blog-faq-item > summary::-webkit-details-marker { display: none; }
         .blog-faq-item > summary:hover { color: var(--ins-text-heading); }
         .blog-faq-item[open] > summary { color: var(--ins-text-heading); }
-        .blog-faq-q { flex: 1; }
+        /* FAQ question is an <h3> (keeps the Q&As in the document outline for
+           SEO), but inside .blog-prose it must not inherit prose-h3 sizing or
+           margins — it should look exactly like the summary text. */
+        .blog-faq .blog-faq-q {
+          flex: 1;
+          margin: 0;
+          font-size: inherit;
+          font-weight: inherit;
+          line-height: inherit;
+          letter-spacing: normal;
+          color: inherit;
+        }
         .blog-faq-chev {
           font-size: var(--ins-font-size-20);
           font-weight: 300;
