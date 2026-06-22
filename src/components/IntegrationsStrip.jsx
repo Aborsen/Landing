@@ -1,10 +1,15 @@
 import React from 'react';
+import ConnectorIcon from './ConnectorIcon';
+import { spriteClassFor } from '../data/connector-sprite-map.js';
 
 /*
  * Shared "200+ Integrations" marquee strip.
- * Logos sourced from Simple Icons (CC0 — https://simpleicons.org/).
- * Used on home (src/main.jsx) and the Solutions/by-role pages.
- * Edit this file to update logos / list across every page.
+ * Icons are rendered via <ConnectorIcon> from the site-wide Skyvia logo sprite
+ * (same source as the Connectors gallery / Integrations cards). The marquee only
+ * shows logos that resolve to a sprite cell — so every mark is consistent.
+ * The INTEGRATIONS map below stays complete because it also doubles as
+ * ConnectorIcon's canonical inline-SVG source (e.g. AWS is used by the home
+ * hero); entries without a sprite cell are simply filtered out of the strip.
  */
 
 export const INTEGRATIONS = [
@@ -163,7 +168,10 @@ export const INTEGRATIONS = [
 ];
 
 export default function IntegrationsStrip() {
-  const loop = [...INTEGRATIONS, ...INTEGRATIONS];
+  // Only show logos that have a Skyvia sprite cell, so the strip is fully
+  // consistent with the rest of the site (AWS / Mixpanel have no cell → hidden).
+  const spriteBacked = INTEGRATIONS.filter(({ name }) => spriteClassFor({ name }));
+  const loop = [...spriteBacked, ...spriteBacked];
   return (
     <div className="w-full border-t border-b border-[var(--ins-border-default)] bg-white/[0.02] py-5 relative z-10">
       <div className="max-w-7xl mx-auto px-6 flex items-center gap-6">
@@ -178,13 +186,13 @@ export default function IntegrationsStrip() {
           }}
         >
           <div className="flex gap-3.5 marquee-left" style={{ width: 'max-content' }}>
-            {loop.map(({ name, Icon }, i) => (
+            {loop.map(({ name }, i) => (
               <div
                 key={`${name}-${i}`}
                 className="flex items-center gap-2 px-3.5 py-1.5 bg-[var(--ins-surface-card)] border border-[var(--ins-border-default)] rounded-full flex-shrink-0 hover:border-[var(--ins-border-hover)] transition-colors"
               >
-                <div className="w-5 h-5 flex items-center justify-center">
-                  <Icon size={20} />
+                <div className="w-[22px] h-[22px] flex items-center justify-center">
+                  <ConnectorIcon name={name} size={22} sprite />
                 </div>
                 <span className="text-[13px] text-[var(--ins-text-body)] whitespace-nowrap">{name}</span>
               </div>
