@@ -7,7 +7,6 @@ import IntegrationsStrip from './components/IntegrationsStrip';
 import Button from './components/Button';
 import Card from './components/Card';
 import BottomCTA from './components/BottomCTA';
-import TestimonialCard from './components/TestimonialCard';
 import CheckIcon from './components/CheckIcon';
 import ComparisonCards from './components/ComparisonCards';
 import RealConnectorIcon from './components/ConnectorIcon';
@@ -232,7 +231,7 @@ function Hero() {
         {/* Chat Mockup */}
         <FadeUp delay={0.2}>
           <div className="max-w-[720px] mx-auto mb-8">
-            <div className="bg-[var(--ins-surface-card)]/80 backdrop-blur-xl border border-[var(--ins-border-default)] rounded-2xl" style={{ boxShadow: 'none' }}>
+            <div className="bg-[var(--ins-surface-card)] backdrop-blur-xl border border-[var(--ins-border-hover)] rounded-2xl" style={{ boxShadow: '0 12px 40px -16px var(--ins-color-black-a-50)' }}>
 
               {/* Input area */}
               <div className="px-5 pt-5 pb-3 cursor-text" onClick={handleChatClick} style={{ minHeight: '180px' }}>
@@ -785,59 +784,6 @@ function HowItWorks() {
 }
 
 
-// ─── TESTIMONIALS ───
-function Testimonials() {
-  const testimonials = [
-    { quote: "Insightis transformed how we make decisions. The AI insights are incredibly accurate — we now move 3x faster on strategic calls.", name: "Sarah Chen", role: "VP of Analytics · Meridian Health", initials: "SC", avatar: "https://randomuser.me/api/portraits/women/44.jpg" },
-    { quote: "We cut analysis time by 80%. Natural language queries make complex data accessible to every team member, not just data scientists.", name: "Michael Torres", role: "CTO · Arcline Logistics", initials: "MT", avatar: "https://randomuser.me/api/portraits/men/32.jpg" },
-    { quote: "Automated insights caught revenue trends we'd have missed for months. It's like having a senior data scientist available around the clock.", name: "Emily Watson", role: "CEO · Brightpath Ventures", initials: "EW", avatar: "https://randomuser.me/api/portraits/women/68.jpg" },
-    { quote: "Setup integrations took under an hour. ROI was immediate — we found a $200K cost saving in the first week alone.", name: "James Park", role: "Head of Finance · Crestview Capital", initials: "JP", avatar: "https://randomuser.me/api/portraits/men/77.jpg" },
-    { quote: "Our marketing team loves natural language queries. They pull data without filing tickets to engineering every single day.", name: "Priya Sharma", role: "CMO · Vantage Media Group", initials: "PS", avatar: "https://randomuser.me/api/portraits/women/26.jpg" },
-    { quote: "Enterprise-grade security with startup speed. Passed our SOC 2 audit with zero issues. The compliance tooling alone is worth it.", name: "David Kim", role: "CISO · Ledgerpoint Financial", initials: "DK", avatar: "https://randomuser.me/api/portraits/men/53.jpg" },
-  ];
-
-  const stats = [
-    { value: "10x", label: "Faster Insights", sub: "vs. traditional BI tools" },
-    { value: "80%", label: "Time Saved", sub: "on data analysis tasks" },
-    { value: "200+", label: "Connectors", sub: "supported out-of-the-box" },
-    { value: "99.9%", label: "Uptime SLA", sub: "enterprise-grade reliability" },
-  ];
-
-  return (
-    <section className="py-24 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
-        <FadeUp>
-          <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-4" style={{background: 'rgba(7,128,126,0.1)', border: '1px solid rgba(7,128,126,0.4)'}}>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[var(--ins-text-highlight)]"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
-              <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">Verified Impact</span>
-            </div>
-            <h2 className="ins-text-display">Loved by a community</h2>
-          </div>
-        </FadeUp>
-
-        {/* 3x2 static card grid */}
-        <FadeUp delay={0.1}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
-            {testimonials.map((t, i) => (
-              <TestimonialCard
-                key={i}
-                quote={t.quote}
-                name={t.name}
-                role={t.role}
-                avatar={t.avatar}
-                initials={t.initials}
-                showStars
-              />
-            ))}
-          </div>
-        </FadeUp>
-
-      </div>
-    </section>
-  );
-}
-
 // ─── WHAT IS INSIGHTIS ───
 function AnimatedStat({ target, suffix, prefix, duration = 1800 }) {
   // Initialize at target so SSR + initial hydration render the REAL number
@@ -1044,7 +990,6 @@ function App() {
         <Architecture />
         <HowItWorks />
         <SubscribeBanner />
-        <Testimonials />
         <WhatIsInsightis />
         <Pricing />
         <BottomCTASection />
