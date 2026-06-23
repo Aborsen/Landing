@@ -493,8 +493,7 @@ function BeforeAfter() {
             title="Two ways to run the company"
             lede="Same metrics, two operating speeds — only one keeps pace with the board."
             sparkle
-          />
-        </div>
+          />        </div>
 
         <ComparisonCards
           before={{
@@ -520,13 +519,6 @@ function BeforeAfter() {
             ],
           }}
         />
-
-        <div style={{textAlign:'center',marginTop:'36px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:'var(--ins-size-3)'}}>
-            <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',lineHeight:1,flexShrink:0}}>7×</span>
-            <span className="ins-text-body-lg" style={{whiteSpace:'nowrap'}}>faster strategic answers. Zero analyst handoffs.</span>
-          </div>
-        </div>
       </div>
     </section>
   );

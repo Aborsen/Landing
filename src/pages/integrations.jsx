@@ -622,8 +622,7 @@ function IntegrationImpact() {
             lede="One source of truth. Answers in seconds."
             sparkle
             size="lg"
-          />
-          {/* TODO SEO [P1]: Replace the two <div>-based comparison cards below with a semantic <table>
+          />          {/* TODO SEO [P1]: Replace the two <div>-based comparison cards below with a semantic <table>
               for AI/SERP extraction. Columns: "Dimension | Disconnected data | Insightis".
               Rows from audit:
                 Time to one answer        | 3-5 days              | Seconds
@@ -694,14 +693,6 @@ function IntegrationImpact() {
             />
             <p className="ins-text-body-sm ins-text--italic" style={{color:'var(--ins-text-highlight-muted)'}}>Direct connectors + Semantic Layer. Real numbers, refreshed continuously.</p>
           </Card>
-        </div>
-
-        {/* Headline callout */}
-        <div style={{textAlign:'center',marginTop:'var(--ins-size-10)'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:'14px',flexWrap:'wrap',justifyContent:'center'}}>
-            <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',lineHeight:1,flexShrink:0}}>60s</span>
-            <span className="ins-text-body-lg" style={{whiteSpace:'nowrap'}}>to connect a new source — OAuth, no pipelines to maintain.</span>
-          </div>
         </div>
 
       </div>

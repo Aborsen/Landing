@@ -995,8 +995,7 @@ function AccuracyComparison() {
             lede="Generic AI guesses. Insightis knows."
             sparkle
             size="lg"
-          />
-        </div>
+          />        </div>
 
         {/* TODO SEO [P1]: Emit a semantic <table> companion to the comparison cards below.
             Rule: Block 4 comparison must be a <table> (AI prioritizes tabular data).
@@ -1032,14 +1031,6 @@ function AccuracyComparison() {
             />
             <p className="ins-text-body-sm ins-text--italic" style={{color:'var(--ins-text-highlight-muted)'}}>Queries your Stripe + PostgreSQL through Semantic Layer. Always your numbers.</p>
           </Card>
-        </div>
-
-        {/* 3x badge */}
-        <div style={{textAlign:'center',marginTop:'36px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:'var(--ins-size-3)'}}>
-            <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',lineHeight:1,flexShrink:0}}>3×</span>
-            <span className="ins-text-body-lg" style={{whiteSpace:'nowrap'}}>more accurate because it knows your data, not the internet's.</span>
-          </div>
         </div>
       </div>
     </section>

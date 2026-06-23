@@ -516,8 +516,7 @@ function BeforeAfter() {
             title="Pipeline reviews at the speed of standup"
             lede="Trade two-day SQL pulls for live charts in seconds — no analyst tax."
             sparkle
-          />
-        </div>
+          />        </div>
 
         <ComparisonCards
           before={{
@@ -543,13 +542,6 @@ function BeforeAfter() {
             ],
           }}
         />
-
-        <div style={{textAlign:'center',marginTop:'36px'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:'var(--ins-size-3)'}}>
-            <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',lineHeight:1,flexShrink:0}}>5×</span>
-            <span className="ins-text-body-lg" style={{whiteSpace:'nowrap'}}>faster revenue reporting. Zero spreadsheet wrangling.</span>
-          </div>
-        </div>
       </div>
     </section>
   );
