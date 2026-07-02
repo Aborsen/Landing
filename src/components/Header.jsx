@@ -63,12 +63,12 @@ export default function Header() {
     'Integrations': '/Platform/Integrations',
     'Semantic Layer': '/Platform/Semantic Layer',
     'Memory & Storage': '/Platform/Memory & Storage',
-    'For RevOps & BizOps': '/Solutions/RevOps BizOps',
-    'For Founders & CEOs': '/Solutions/Founders CEOs',
-    'For CMOs & Marketers': '/Solutions/Marketing Teams',
+    'For Revenue Operations Teams': '/Solutions/RevOps BizOps',
+    'For Executive Teams': '/Solutions/Founders CEOs',
+    'For Marketing Teams': '/Solutions/Marketing Teams',
     'For Product Teams': '/Solutions/Product Teams',
     'For Data & Analytics Teams': '/Solutions/Data Analytics Teams',
-    'For Operations & Finance': '/Solutions/Operations Finance',
+    'For Operations & Finance Teams': '/Solutions/Operations Finance',
     'Pricing': '/Pricing',
     'Documentation': '/docs/',
     'Blog': '/blog/',
@@ -99,15 +99,15 @@ export default function Header() {
     },
     Solutions: {
       sections: [
-        { heading: 'BY ROLE', items: [
-          { label: 'For RevOps & BizOps', desc: 'Revenue operations and business intelligence', icon: 'dollar' },
-          { label: 'For Founders & CEOs', desc: 'Strategic KPIs and company health at a glance', icon: 'star' },
-          { label: 'For CMOs & Marketers', desc: 'Campaign analytics and cross-channel attribution', icon: 'pulse' },
+        { heading: 'GROWTH', items: [
+          { label: 'For Revenue Operations Teams', desc: 'Revenue operations and business intelligence', icon: 'dollar' },
+          { label: 'For Executive Teams', desc: 'Strategic KPIs and company health at a glance', icon: 'star' },
+          { label: 'For Marketing Teams', desc: 'Campaign analytics and cross-channel attribution', icon: 'pulse' },
         ]},
-        { heading: 'BY TEAM', items: [
+        { heading: 'OPERATIONS', items: [
           { label: 'For Product Teams', desc: 'Usage metrics and feature adoption tracking', icon: 'box' },
           { label: 'For Data & Analytics Teams', desc: 'Advanced querying and data exploration', icon: 'bars' },
-          { label: 'For Operations & Finance', desc: 'Cost tracking and operational efficiency', icon: 'settings' },
+          { label: 'For Operations & Finance Teams', desc: 'Cost tracking and operational efficiency', icon: 'settings' },
         ]},
       ]
     },
@@ -216,7 +216,7 @@ export default function Header() {
               <div className="flex gap-10">
                 {dropdowns[activeDropdown].sections.map((section, si) => (
                   <div key={si} style={{flex:'1'}}>
-                    <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-text-muted mb-4 px-3">{section.heading}</p>
+                    {section.heading && <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-text-muted mb-4 px-3">{section.heading}</p>}
                     <div className="flex flex-col gap-0.5">
                       {section.items.map((item, ii) => {
                         const inner = (<>

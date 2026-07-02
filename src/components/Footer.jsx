@@ -21,12 +21,12 @@ export default function Footer() {
     'Integrations': '/Platform/Integrations',
     'Semantic Layer': '/Platform/Semantic Layer',
     'Memory & Storage': '/Platform/Memory & Storage',
-    'For RevOps & BizOps': '/Solutions/RevOps BizOps',
-    'For Founders & CEOs': '/Solutions/Founders CEOs',
-    'For CMOs & Marketers': '/Solutions/Marketing Teams',
+    'For Revenue Operations Teams': '/Solutions/RevOps BizOps',
+    'For Executive Teams': '/Solutions/Founders CEOs',
+    'For Marketing Teams': '/Solutions/Marketing Teams',
     'For Product Teams': '/Solutions/Product Teams',
     'For Data & Analytics Teams': '/Solutions/Data Analytics Teams',
-    'For Operations & Finance': '/Solutions/Operations Finance',
+    'For Operations & Finance Teams': '/Solutions/Operations Finance',
     'Pricing': '/Pricing',
     'Documentation': '/docs/',
     'Blog': '/blog/',
@@ -69,7 +69,7 @@ export default function Footer() {
             <div>
               <div className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-primary mb-4 whitespace-nowrap">Solutions</div>
               <ul className="flex flex-col gap-2.5">
-                {['For RevOps & BizOps', 'For Founders & CEOs', 'For CMOs & Marketers', 'For Product Teams', 'For Data & Analytics Teams', 'For Operations & Finance'].map(link => (
+                {['For Revenue Operations Teams', 'For Executive Teams', 'For Marketing Teams', 'For Product Teams', 'For Data & Analytics Teams', 'For Operations & Finance Teams'].map(link => (
                   <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-text-secondary hover:text-text-primary transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
               </ul>

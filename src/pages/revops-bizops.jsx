@@ -49,7 +49,7 @@ function Hero() {
           <div>
             <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-5)'}}>
               <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
-              <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>For RevOps &amp; BizOps teams</span>
+              <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>For Revenue Operations Teams</span>
             </div>
 
             <h1 className="ins-text-display-xl" style={{marginBottom:'var(--ins-size-5)'}}>
@@ -72,7 +72,7 @@ function Hero() {
 
           {/* Right: hero section image — shared HeroMockup shell */}
           <HeroMockup
-            title="Insightis — For RevOps &amp; BizOps"
+            title="Insightis — For Revenue Operations Teams"
             accentLine="rgba(14,196,193,.55)"
             glow="radial-gradient(circle at 25% 30%, rgba(14,196,193,.16) 0%, transparent 55%), radial-gradient(circle at 80% 80%, rgba(167,139,250,.12) 0%, transparent 50%)"
             badge={
