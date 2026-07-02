@@ -8,6 +8,8 @@ import BottomCTA from '../components/BottomCTA';
 import FAQAccordion from '../components/FAQAccordion';
 import SectionHeader from '../components/SectionHeader';
 import CheckIcon from '../components/CheckIcon';
+import ConnectorIcon from '../components/ConnectorIcon';
+import HeroMockup from '../components/HeroMockup';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -51,9 +53,9 @@ function Hero() {
             </div>
 
             <h1 className="ins-text-display-xl" style={{marginBottom:'var(--ins-size-5)'}}>
-              <span style={{color:'var(--ins-text-heading-soft)'}}>Stop chasing numbers</span>
+              <span style={{color:'var(--ins-text-heading-soft)'}}>Stop reconciling numbers</span>
               <br/>
-              <span style={{color:'var(--ins-text-highlight)'}}>across spreadsheets.</span>
+              <span style={{color:'var(--ins-text-highlight)'}}>across all systems.</span>
             </h1>
 
             <p className="fu2 ins-text-body-xl" style={{marginBottom:'var(--ins-size-7)',maxWidth:'480px'}}>
@@ -68,59 +70,52 @@ function Hero() {
 
           </div>
 
-          {/* Right: ops & finance hero visual (static) */}
-          <div className="fu2" style={{position:'relative'}}>
-            {/* Ambient glow — amber-leaning to differentiate from other persona pages */}
-            <div style={{
-              position:'absolute', inset:'-60px',
-              background:'radial-gradient(circle at 25% 30%, rgba(251,191,36,.16) 0%, transparent 55%), radial-gradient(circle at 80% 80%, rgba(9,160,157,.12) 0%, transparent 50%)',
-              pointerEvents:'none',
-              filter:'blur(44px)',
-              zIndex:'var(--ins-z-base)',
-            }}/>
-
-            {/* Main panel */}
-            <div style={{
-              position:'relative',
-              background:'linear-gradient(135deg, rgba(13,17,23,0.95) 0%, rgba(15,20,28,0.92) 100%)',
-              border:'1px solid var(--ins-color-white-a-08)',
-              borderRadius:'24px',
-              padding:'var(--ins-size-6)',
-              backdropFilter:'blur(24px)',
-              WebkitBackdropFilter:'blur(24px)',
-              boxShadow:'none',
-              overflow:'hidden',
-              zIndex:1,
-              minHeight:'540px',
-            }}>
-              {/* Top gradient line — amber accent */}
-              <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(251,191,36,.55),transparent)',zIndex:1}}/>
-
-              {/* Window chrome */}
-              <div style={{
-                margin:'-24px -24px 16px',
-                padding:'10px 14px',
-                borderBottom:'1px solid var(--ins-color-white-a-06)',
-                background:'rgba(255,255,255,0.015)',
-                display:'flex',
-                alignItems:'center',
-                position:'relative',
-              }}>
-                <div style={{display:'flex',gap:'6px'}}>
-                  <div style={{width:'10px',height:'10px',borderRadius:'50%',background:'#FF5F57'}}/>
-                  <div style={{width:'10px',height:'10px',borderRadius:'50%',background:'#FEBC2E'}}/>
-                  <div style={{width:'10px',height:'10px',borderRadius:'50%',background:'#28C840'}}/>
+          {/* Right: ops & finance hero visual — shared HeroMockup shell */}
+          <HeroMockup
+            title="Insightis — For Operations &amp; Finance"
+            accentLine="rgba(251,191,36,.55)"
+            glow="radial-gradient(circle at 25% 30%, rgba(251,191,36,.16) 0%, transparent 55%), radial-gradient(circle at 80% 80%, rgba(9,160,157,.12) 0%, transparent 50%)"
+            badge={
+              <HeroMockup.Badge accentRgb="251,191,36">
+                <div style={{
+                  width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-status-warning-fg)',
+                  flexShrink:0,
+                }}/>
+                <div>
+                  <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>Over budget</div>
+                  <div style={{fontSize:'12.5px',color:'var(--ins-status-warning-fg)',fontWeight:500,fontFamily:'var(--ins-font-family-mono)',marginTop:'1px'}}>cloud_infra +$24K</div>
                 </div>
-                <span style={{
-                  position:'absolute',left:'50%',top:'50%',
-                  transform:'translate(-50%,-50%)',
-                  fontFamily:'var(--ins-font-family-mono)',
-                  fontSize:'10.5px',
-                  color:'var(--ins-text-body)',
-                  letterSpacing:'.08em',
-                  whiteSpace:'nowrap',
-                }}>Insightis — For Operations &amp; Finance</span>
-              </div>
+              </HeroMockup.Badge>
+            }
+            card={
+              <HeroMockup.FloatCard accentRgb="9,160,157">
+                <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'var(--ins-size-2)'}}>
+                  <span style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>Q2 close</span>
+                  <span style={{fontSize:'10.5px',color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontWeight:500}}>5 / 7 done</span>
+                </div>
+                <div style={{display:'flex',flexDirection:'column',gap:'3px'}}>
+                  {[
+                    {step:'AP reconciliation', done:true},
+                    {step:'Payroll posted',    done:true},
+                    {step:'Accruals booked',   done:true},
+                    {step:'Variance review',   done:false},
+                  ].map((s,i)=>(
+                    <div key={i} style={{display:'flex',alignItems:'center',gap:'7px'}}>
+                      <div style={{
+                        width:'10px',height:'10px',borderRadius:'3px',
+                        background:s.done?'var(--ins-color-teal-a-18)':'var(--ins-color-white-a-04)',
+                        border:`1px solid ${s.done?'rgba(14,196,193,.5)':'var(--ins-color-white-a-10)'}`,
+                        display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,
+                      }}>
+                        {s.done && <svg width="6" height="6" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+                      </div>
+                      <span style={{fontSize:'10.5px',color:s.done?'var(--ins-text-body)':'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)'}}>{s.step}</span>
+                    </div>
+                  ))}
+                </div>
+              </HeroMockup.FloatCard>
+            }
+          >
 
               {/* Header */}
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'14px'}}>
@@ -244,76 +239,7 @@ function Hero() {
                   </div>
                 ))}
               </div>
-            </div>
-
-            {/* Floating top-right: amber Over Budget card (distinct from green/lavender on other persona pages) */}
-            <div style={{
-              position:'absolute',
-              top:'-18px',
-              right:'-14px',
-              background:'linear-gradient(135deg, rgba(251,191,36,.22) 0%, rgba(13,17,23,0.95) 100%)',
-              border:'1px solid rgba(251,191,36,.4)',
-              borderRadius:'14px',
-              padding:'10px 14px',
-              boxShadow:'0 16px 40px rgba(251,191,36,0.18), 0 8px 24px var(--ins-color-black-a-50)',
-              backdropFilter:'blur(16px)',
-              WebkitBackdropFilter:'blur(16px)',
-              display:'flex',alignItems:'center',gap:'10px',
-              transform:'rotate(2.5deg)',
-              zIndex:2,
-            }}>
-              <div style={{
-                width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-status-warning-fg)',
-                flexShrink:0,
-              }}/>
-              <div>
-                <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>Over budget</div>
-                <div style={{fontSize:'12.5px',color:'var(--ins-status-warning-fg)',fontWeight:500,fontFamily:'var(--ins-font-family-mono)',marginTop:'1px'}}>cloud_infra +$24K</div>
-              </div>
-            </div>
-
-            {/* Floating bottom-left: Q2 close progress checklist (different from product retention curve) */}
-            <div style={{
-              position:'absolute',
-              bottom:'-22px',
-              left:'-18px',
-              background:'linear-gradient(135deg, rgba(9,160,157,.2) 0%, rgba(13,17,23,0.95) 100%)',
-              border:'1px solid rgba(9,160,157,.4)',
-              borderRadius:'14px',
-              padding:'12px 14px',
-              boxShadow:'0 16px 40px rgba(9,160,157,0.18), 0 8px 24px var(--ins-color-black-a-50)',
-              backdropFilter:'blur(16px)',
-              WebkitBackdropFilter:'blur(16px)',
-              transform:'rotate(-2deg)',
-              minWidth:'180px',
-              zIndex:2,
-            }}>
-              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'var(--ins-size-2)'}}>
-                <span style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>Q2 close</span>
-                <span style={{fontSize:'10.5px',color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontWeight:500}}>5 / 7 done</span>
-              </div>
-              <div style={{display:'flex',flexDirection:'column',gap:'3px'}}>
-                {[
-                  {step:'AP reconciliation', done:true},
-                  {step:'Payroll posted',    done:true},
-                  {step:'Accruals booked',   done:true},
-                  {step:'Variance review',   done:false},
-                ].map((s,i)=>(
-                  <div key={i} style={{display:'flex',alignItems:'center',gap:'7px'}}>
-                    <div style={{
-                      width:'10px',height:'10px',borderRadius:'3px',
-                      background:s.done?'var(--ins-color-teal-a-18)':'var(--ins-color-white-a-04)',
-                      border:`1px solid ${s.done?'rgba(14,196,193,.5)':'var(--ins-color-white-a-10)'}`,
-                      display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,
-                    }}>
-                      {s.done && <svg width="6" height="6" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
-                    </div>
-                    <span style={{fontSize:'10.5px',color:s.done?'var(--ins-text-body)':'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)'}}>{s.step}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          </HeroMockup>
         </div>
       </div>
     </section>
@@ -942,149 +868,22 @@ function UseCases() {
 /* ── RELEVANT INTEGRATIONS ── */
 function RelevantIntegrations() {
   const connectors = [
-    {
-      name:'QuickBooks', bg:'rgba(44,160,28,.12)', desc:'Accounting',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" fill="#2ca01c" opacity=".2"/>
-        <path d="M10 8h4a2 2 0 0 1 0 4H10V8z" fill="#2ca01c"/>
-        <path d="M10 12h4a2 2 0 0 1 0 4H10v-4z" fill="#2ca01c" opacity=".7"/>
-        <line x1="12" y1="6" x2="12" y2="7.5" stroke="#2ca01c" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="12" y1="16.5" x2="12" y2="18" stroke="#2ca01c" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>,
-    },
-    {
-      name:'Xero', bg:'rgba(19,181,234,.12)', desc:'Accounting',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" fill="#13b5ea" opacity=".2"/>
-        <line x1="8" y1="8" x2="16" y2="16" stroke="#13b5ea" strokeWidth="2.2" strokeLinecap="round"/>
-        <line x1="16" y1="8" x2="8" y2="16" stroke="#13b5ea" strokeWidth="2.2" strokeLinecap="round"/>
-      </svg>,
-    },
-    {
-      name:'Stripe', bg:'rgba(99,91,255,.12)', desc:'Billing & revenue',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z" fill="#635bff"/>
-      </svg>,
-    },
-    {
-      name:'Chargebee', bg:'rgba(249,171,0,.12)', desc:'Subscription mgmt',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" fill="#f9ab00" opacity=".18"/>
-        <path d="M15.5 8.5A5 5 0 1 0 15.5 15.5" stroke="#f9ab00" strokeWidth="2" strokeLinecap="round"/>
-      </svg>,
-    },
-    {
-      name:'Gusto', bg:'rgba(244,93,72,.12)', desc:'Payroll',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="8" r="3.5" fill="#f45d48" opacity=".9"/>
-        <path d="M5 20c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="#f45d48" strokeWidth="2" strokeLinecap="round" fill="none"/>
-        <circle cx="12" cy="20" r="1.5" fill="#f45d48" opacity=".5"/>
-      </svg>,
-    },
-    {
-      name:'Rippling', bg:'rgba(255,107,0,.12)', desc:'HR & payroll',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M4 8 Q12 5 20 8" stroke="#ff6b00" strokeWidth="2" strokeLinecap="round" fill="none"/>
-        <path d="M4 12 Q12 9 20 12" stroke="#ff6b00" strokeWidth="2" strokeLinecap="round" fill="none"/>
-        <path d="M4 16 Q12 13 20 16" stroke="#ff6b00" strokeWidth="2" strokeLinecap="round" fill="none"/>
-      </svg>,
-    },
-    {
-      name:'Expensify', bg:'rgba(12,138,1,.12)', desc:'Expense mgmt',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" fill="#0c8a01" opacity=".18"/>
-        <path d="M8 8h8v2H8z M8 11h6v2H8z M8 14h4v2H8z" fill="#0c8a01"/>
-        <path d="M16 15l2 2" stroke="#0c8a01" strokeWidth="2" strokeLinecap="round"/>
-      </svg>,
-    },
-    {
-      name:'Ramp', bg:'rgba(0,212,168,.12)', desc:'Corporate cards',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="7" width="18" height="12" rx="2" stroke="#00d4a8" strokeWidth="1.8" fill="none"/>
-        <line x1="3" y1="11" x2="21" y2="11" stroke="#00d4a8" strokeWidth="1.8"/>
-        <rect x="6" y="14" width="5" height="2" rx="0.5" fill="#00d4a8"/>
-      </svg>,
-    },
-    {
-      name:'PostgreSQL', bg:'rgba(51,103,145,.12)', desc:'Data warehouse',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <ellipse cx="12" cy="5" rx="9" ry="3" stroke="#336791" strokeWidth="1.5" fill="#336791" fillOpacity=".15"/>
-        <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5" stroke="#336791" strokeWidth="1.5" fill="none"/>
-        <path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3" stroke="#336791" strokeWidth="1.2" fill="none"/>
-        <circle cx="18" cy="8" r="2.5" fill="#336791" fillOpacity=".6" stroke="#336791" strokeWidth="1"/>
-      </svg>,
-    },
-    {
-      name:'BigQuery', bg:'rgba(66,133,244,.12)', desc:'Cloud analytics',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#4285f4"/>
-        <path d="M2 17l10 5 10-5" stroke="#34a853" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-        <path d="M2 12l10 5 10-5" stroke="#fbbc04" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-      </svg>,
-    },
-    {
-      name:'Snowflake', bg:'rgba(41,181,232,.12)', desc:'Data platform',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <line x1="12" y1="2" x2="12" y2="22" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
-        <line x1="2" y1="7" x2="22" y2="17" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
-        <line x1="22" y1="7" x2="2" y2="17" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
-        <circle cx="12" cy="2" r="1.5" fill="#29b5e8"/>
-        <circle cx="12" cy="22" r="1.5" fill="#29b5e8"/>
-        <circle cx="2" cy="7" r="1.5" fill="#29b5e8"/>
-        <circle cx="22" cy="17" r="1.5" fill="#29b5e8"/>
-        <circle cx="22" cy="7" r="1.5" fill="#29b5e8"/>
-        <circle cx="2" cy="17" r="1.5" fill="#29b5e8"/>
-        <circle cx="12" cy="12" r="2.5" fill="#29b5e8"/>
-      </svg>,
-    },
-    {
-      name:'Google Sheets', bg:'rgba(15,157,88,.12)', desc:'Spreadsheet data',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="2" width="13" height="16" rx="1.5" fill="#0f9d58" opacity=".2" stroke="#0f9d58" strokeWidth="1.5"/>
-        <path d="M16 2l5 5v15a1 1 0 0 1-1 1H5" stroke="#0f9d58" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-        <line x1="3" y1="10" x2="16" y2="10" stroke="#0f9d58" strokeWidth="1.2"/>
-        <line x1="3" y1="14" x2="16" y2="14" stroke="#0f9d58" strokeWidth="1.2"/>
-        <line x1="9" y1="6" x2="9" y2="18" stroke="#0f9d58" strokeWidth="1.2"/>
-      </svg>,
-    },
-    {
-      name:'HubSpot', bg:'rgba(255,122,89,.12)', desc:'CRM revenue data',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="3" fill="#ff7a59"/>
-        <line x1="12" y1="3.5" x2="12" y2="9" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/>
-        <line x1="12" y1="15" x2="12" y2="20.5" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/>
-        <line x1="3.5" y1="12" x2="9" y2="12" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/>
-        <line x1="15" y1="12" x2="20.5" y2="12" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/>
-        <circle cx="12" cy="3.5" r="1.8" fill="#ff7a59"/>
-        <circle cx="12" cy="20.5" r="1.8" fill="#ff7a59"/>
-        <circle cx="3.5" cy="12" r="1.8" fill="#ff7a59"/>
-        <circle cx="20.5" cy="12" r="1.8" fill="#ff7a59"/>
-      </svg>,
-    },
-    {
-      name:'Salesforce', bg:'rgba(0,161,224,.12)', desc:'CRM & accounts',
-      icon: <svg width="22" height="16" viewBox="0 0 66 46" fill="none">
-        <path d="M27.5 5.8a13.2 13.2 0 0 1 9.7-4.3c5 0 9.4 2.8 11.7 6.9a14.6 14.6 0 0 1 6.7-1.6C62.7 6.8 69 13.1 69 21s-6.3 14.2-14.4 14.2H15C7.7 35.2 1.8 29.3 1.8 22c0-6.5 4.7-11.9 10.9-13.3a13.2 13.2 0 0 1 14.8-2.9z" fill="#00a1e0"/>
-      </svg>,
-    },
-    {
-      name:'dbt', bg:'rgba(255,105,74,.12)', desc:'Data transforms',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M12 2 L22 19 L2 19 Z" fill="#ff694a" opacity=".2" stroke="#ff694a" strokeWidth="1.5" strokeLinejoin="round"/>
-        <circle cx="12" cy="14" r="3" fill="#ff694a"/>
-        <line x1="12" y1="2" x2="12" y2="11" stroke="#ff694a" strokeWidth="1.8" strokeLinecap="round"/>
-      </svg>,
-    },
-    {
-      name:'Notion', bg:'rgba(232,242,245,.06)', desc:'Reports & docs',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <rect x="4" y="3" width="16" height="18" rx="2" stroke="var(--ins-color-gray-100)" strokeWidth="1.5" opacity=".5" fill="none"/>
-        <line x1="7" y1="8" x2="17" y2="8" stroke="var(--ins-color-gray-100)" strokeWidth="1.2" opacity=".5"/>
-        <line x1="7" y1="11" x2="17" y2="11" stroke="var(--ins-color-gray-100)" strokeWidth="1.2" opacity=".5"/>
-        <line x1="7" y1="14" x2="13" y2="14" stroke="var(--ins-color-gray-100)" strokeWidth="1.2" opacity=".5"/>
-        <line x1="7" y1="17" x2="11" y2="17" stroke="var(--ins-color-gray-100)" strokeWidth="1.2" opacity=".5"/>
-      </svg>,
-    },
+    { name:'QuickBooks',  desc:'Accounting' },
+    { name:'Xero',        desc:'Accounting' },
+    { name:'NetSuite',    desc:'Finance & ERP' },
+    { name:'Stripe',      desc:'Billing & revenue' },
+    { name:'Chargebee',   desc:'Subscription billing' },
+    { name:'Zuora',       desc:'Subscription billing' },
+    { name:'Recurly',     desc:'Subscription billing' },
+    { name:'ChartMogul',  desc:'Subscription analytics' },
+    { name:'Salesforce',  desc:'CRM & revenue' },
+    { name:'HubSpot',     desc:'CRM & revenue' },
+    { name:'Snowflake',   desc:'Data warehouse' },
+    { name:'BigQuery',    desc:'Cloud analytics' },
+    { name:'PostgreSQL',  desc:'Data warehouse' },
+    { name:'Paddle',      desc:'Payments' },
+    { name:'Google Sheets', desc:'Spreadsheet data' },
+    { name:'Notion',      desc:'Reports & docs' },
   ];
 
   return (
@@ -1102,9 +901,7 @@ function RelevantIntegrations() {
         <div data-connectors-grid style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'10px',marginBottom:'var(--ins-size-8)'}}>
           {connectors.map((c,i) => (
             <div key={i} className="connector-card">
-              <div className="connector-icon" style={{background:c.bg, display:'flex', alignItems:'center', justifyContent:'center'}}>
-                {c.icon}
-              </div>
+              <ConnectorIcon name={c.name} size={32} />
               <div>
                 <div style={{fontSize:'13px',fontWeight:500,color:'var(--ins-color-gray-100)'}}>{c.name}</div>
                 <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-inactive)',marginTop:'var(--ins-size-half)'}}>{c.desc}</div>

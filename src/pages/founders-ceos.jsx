@@ -4,14 +4,12 @@ import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
-import IntegrationsStrip from '../components/IntegrationsStrip';
-import CodeChip from '../components/CodeChip';
 import BottomCTA from '../components/BottomCTA';
 import FAQAccordion from '../components/FAQAccordion';
-import PainPointGrid from '../components/PainPointGrid';
-import ComparisonCards from '../components/ComparisonCards';
-import StepsProcess from '../components/StepsProcess';
 import SectionHeader from '../components/SectionHeader';
+import CheckIcon from '../components/CheckIcon';
+import ConnectorIcon from '../components/ConnectorIcon';
+import HeroMockup from '../components/HeroMockup';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -34,491 +32,731 @@ function MiniBarChart({ data, color }) {
   );
 }
 
-function TreemapChart({ items }) {
-  const colors = ['var(--ins-text-highlight)','var(--ins-button-primary-bg-hover)','#818CF8','var(--ins-status-warning-fg)','var(--ins-status-error-fg)','#34D399','#60A5FA'];
-  const sorted = [...items].sort((a,b) => b.value - a.value);
-  const total = sorted.reduce((s,i) => s + i.value, 0);
-  const W = 860, H = 270, gap = 4;
-  const leftW = Math.round((sorted[0].value / total) * W);
-  const rest = sorted.slice(1);
-  const restTotal = rest.reduce((s,i) => s + i.value, 0) || 1;
-  const cells = [{ x:0, y:0, w:leftW - gap, h:H, item:sorted[0], color:sorted[0].color || colors[0] }];
-  let y = 0;
-  rest.forEach((item, i) => {
-    const h = Math.round((item.value / restTotal) * H);
-    cells.push({ x:leftW, y, w:W - leftW, h:h - gap, item, color:item.color || colors[i+1] });
-    y += h;
-  });
-  return (
-    <div style={{margin:'12px 0'}}>
-      <svg viewBox={`0 0 ${W} ${H}`} style={{width:'100%',maxHeight:'280px'}}>
-        {cells.map((c,i) => (
-          <g key={i}>
-            <rect x={c.x} y={c.y} width={c.w} height={c.h} fill={c.color} opacity=".78" rx="6"/>
-            <text x={c.x+c.w/2} y={c.y+c.h/2-(c.h>60?16:0)} textAnchor="middle" dominantBaseline="middle"
-              style={{fontSize:c.w>200?'12px':'11px',fill:'rgba(255,255,255,.8)',fontFamily:'var(--ins-font-family-mono)'}}>
-              {c.item.label}
-            </text>
-            {c.h>60 && <text x={c.x+c.w/2} y={c.y+c.h/2+18} textAnchor="middle" dominantBaseline="middle"
-              style={{fontSize:'var(--ins-font-size-20)',fill:'#fff',fontFamily:'var(--ins-font-family-mono)',fontWeight:500}}>
-              {c.item.display}
-            </text>}
-          </g>
-        ))}
-      </svg>
-    </div>
-  );
-}
-
-function PieChart({ slices }) {
-  const total = slices.reduce((s, d) => s + Math.abs(d.value), 0);
-  const colors = ['var(--ins-text-highlight)','var(--ins-button-primary-bg-hover)','var(--ins-status-error-fg)','var(--ins-status-warning-fg)','#818CF8','#34D399'];
-  let angle = -Math.PI / 2;
-  const cx = 90, cy = 90, r = 75, ri = 38;
-  const paths = slices.map((s, i) => {
-    const sweep = (Math.abs(s.value) / total) * 2 * Math.PI;
-    const x1 = cx + r * Math.cos(angle), y1 = cy + r * Math.sin(angle);
-    const x2 = cx + r * Math.cos(angle + sweep), y2 = cy + r * Math.sin(angle + sweep);
-    const xi1 = cx + ri * Math.cos(angle), yi1 = cy + ri * Math.sin(angle);
-    const xi2 = cx + ri * Math.cos(angle + sweep), yi2 = cy + ri * Math.sin(angle + sweep);
-    const large = sweep > Math.PI ? 1 : 0;
-    const d = `M${x1},${y1} A${r},${r} 0 ${large},1 ${x2},${y2} L${xi2},${yi2} A${ri},${ri} 0 ${large},0 ${xi1},${yi1} Z`;
-    angle += sweep;
-    return { d, color: s.color || colors[i % colors.length], label: s.label, pct: Math.round((Math.abs(s.value)/total)*100) };
-  });
-  return (
-    <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-8)',margin:'12px 0'}}>
-      <svg viewBox="0 0 180 180" style={{width:'240px',height:'240px',flexShrink:0}}>
-        {paths.map((p,i) => <path key={i} d={p.d} fill={p.color} opacity=".85"/>)}
-      </svg>
-      <div style={{display:'flex',flexDirection:'column',gap:'14px',flex:1}}>
-        {paths.map((p,i) => (
-          <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
-            <div style={{width:'12px',height:'12px',borderRadius:'3px',background:p.color,flexShrink:0}}/>
-            <span style={{fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)',flex:1}}>{p.label}</span>
-            <span style={{fontSize:'var(--ins-font-size-14)',color:'var(--ins-color-gray-100)',fontFamily:'var(--ins-font-family-mono)',fontWeight:500}}>{p.pct}%</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function HorizontalBarChart({ bars }) {
-  const maxVal = Math.max(...bars.map(b => Math.abs(b.value)));
-  return (
-    <div style={{display:'flex',flexDirection:'column',gap:'10px',margin:'12px 0'}}>
-      {bars.map((b,i) => (
-        <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
-          <span style={{fontSize:'var(--ins-font-size-12)',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)',minWidth:'180px',textAlign:'right',flexShrink:0}}>{b.label}</span>
-          <div style={{flex:1,background:'var(--ins-color-white-a-04)',borderRadius:'var(--ins-radius-4)',height:'22px',position:'relative',overflow:'hidden'}}>
-            <div style={{
-              width:`${(Math.abs(b.value)/maxVal)*100}%`,
-              height:'100%',borderRadius:'var(--ins-radius-4)',
-              background: b.color || (b.value < 0 ? 'rgba(220,80,80,.7)' : 'rgba(9,160,157,.6)'),
-            }}/>
-          </div>
-          <span style={{fontSize:'var(--ins-font-size-12)',fontFamily:'var(--ins-font-family-mono)',color: b.value < 0 ? '#E06060' : 'var(--ins-text-highlight)',minWidth:'60px',flexShrink:0}}>{b.display}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function LineChart({ points, labels }) {
-  const max = Math.max(...points);
-  const min = Math.min(...points) * 0.9;
-  const range = max - min || 1;
-  const w = 420, h = 120, px = 30, py = 10;
-  const chartW = w - px*2, chartH = h - py*2;
-  const coords = points.map((v,i) => ({
-    x: px + (i / (points.length-1)) * chartW,
-    y: py + chartH - ((v - min) / range) * chartH,
-  }));
-  const line = coords.map((c,i) => `${i===0?'M':'L'}${c.x},${c.y}`).join(' ');
-  const area = line + ` L${coords[coords.length-1].x},${h-py} L${coords[0].x},${h-py} Z`;
-  return (
-    <div style={{margin:'12px 0'}}>
-      <svg viewBox={`0 0 ${w} ${h}`} style={{width:'100%',height:'auto'}}>
-        <defs><linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="var(--ins-button-primary-bg-hover)" stopOpacity=".25"/><stop offset="100%" stopColor="var(--ins-button-primary-bg-hover)" stopOpacity=".02"/></linearGradient></defs>
-        {[0,.25,.5,.75,1].map(f => <line key={f} x1={px} y1={py+chartH*f} x2={w-px} y2={py+chartH*f} stroke="rgba(255,255,255,.05)" strokeWidth="1"/>)}
-        <path d={area} fill="url(#areaFill)"/>
-        <path d={line} fill="none" stroke="var(--ins-text-highlight)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        {coords.map((c,i) => <circle key={i} cx={c.x} cy={c.y} r="3" fill="var(--ins-text-highlight)" stroke="var(--ins-surface-page)" strokeWidth="1.5"/>)}
-        {labels && labels.map((l,i) => <text key={i} x={coords[i].x} y={h-1} textAnchor="middle" style={{fontSize:'9px',fill:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>{l}</text>)}
-      </svg>
-    </div>
-  );
-}
-
-/* ── REVOPS Q&A DATA (verbatim from AI Chat.html GALLERY_DATA['RevOps & BizOps']) ── */
-const REVOPS_QA = {
-  questions: [
-    'Why did MRR drop last week?',
-    'Which deals are at risk of slipping this quarter?',
-    "What's our average sales cycle by deal size?",
-    'Which pipeline stage has the highest drop-off rate?',
-    'How is our CAC trending vs. 6 months ago?',
-  ],
-  replies: [
-    {
-      type: 'graph', chart: 'horizontalBar',
-      chartData: [
-        { label:'Trial expiry (activation)', value:-740, display:'-$740' },
-        { label:'Pro → Starter downgrade', value:-260, display:'-$260' },
-        { label:'Low engagement churn', value:-240, display:'-$240' },
-        { label:'Annual → Monthly switch', value:-180, display:'-$180' },
-        { label:'Seat count reduction', value:-120, display:'-$120' },
-        { label:'Late payment write-off', value:-80, display:'-$80' },
-      ],
-      caption: "Trial expiry without activation drove 60% of last week's $1,240 MRR drop. Six distinct causes identified.",
-      action: 'Trigger a re-engagement sequence for accounts with <5 logins in the last 14 days',
-    },
-    {
-      type: 'graph', chart: 'treemap',
-      chartData: [
-        { label:'NovaCorp', value:52, display:'$52K', color:'var(--ins-status-error-fg)' },
-        { label:'AlphaBase', value:38, display:'$38K', color:'var(--ins-status-warning-fg)' },
-        { label:'Meridian', value:31, display:'$31K', color:'var(--ins-status-error-fg)' },
-        { label:'Quell Inc.', value:28, display:'$28K', color:'var(--ins-status-warning-fg)' },
-        { label:'Vertexio', value:22, display:'$22K', color:'#818CF8' },
-        { label:'Others', value:13, display:'$13K', color:'#8AA6B3' },
-      ],
-      caption: '7 deals totalling $184K at risk of slipping past Q2. NovaCorp ($52K) untouched for 21 days.',
-      action: 'Schedule executive business reviews for the top 3 at-risk deals before end of week',
-    },
-    {
-      type: 'paragraph',
-      text: "Average sales cycle is 18 days for small deals (<$5K), 34 days for mid-market ($5K–$20K), and 67 days for enterprise ($20K+). Enterprise deals take 3.7× longer — the proposal-to-legal handoff is the single biggest drag, accounting for 28 of those 67 days on average. This quarter, mid-market cycles improved by 4 days vs. Q4, driven by the mutual action plan template adopted in January. Enterprise cycles remain flat. Deals re-engaged within 5 business days of proposal stall close at 68% — that rate drops to 31% after 10 days. Accelerating the legal handoff phase alone could unlock an estimated $140K in deals currently sitting idle.",
-      action: 'Build a 2-touch mid-market sequence targeting legal sign-off to cut 5–7 days from the cycle',
-    },
-    {
-      type: 'graph', chart: 'pie',
-      chartData: [
-        { label:'Prospect → MQL drop-off', value:71, color:'var(--ins-status-error-fg)' },
-        { label:'MQL → SQL drop-off', value:38, color:'var(--ins-status-warning-fg)' },
-        { label:'SQL → Proposal drop-off', value:22, color:'#818CF8' },
-        { label:'Proposal → Closed Won drop-off', value:14, color:'#34D399' },
-      ],
-      caption: '71% of prospects never qualify — improving lead scoring at the top of funnel unlocks the most pipeline without additional spend.',
-      action: 'Refine ICP scoring criteria in HubSpot to filter low-intent leads at the MQL stage',
-    },
-    {
-      type: 'graph', chart: 'line',
-      chartData: [410, 395, 378, 355, 338, 322],
-      chartLabels: ['Oct','Nov','Dec','Jan','Feb','Mar'],
-      caption: 'CAC has dropped $88 over 6 months — PLG improvements and better lead quality are compounding each other.',
-      action: 'Double down on PLG onboarding investment to sustain the downward CAC trend into Q3',
-    },
-  ],
-};
-
-/* ── HERO ── (static SVG dashboard, matching the other Solutions pages) */
-function FoundersHeroIllustration() {
-  // KEY METRICS scorecard — 3 cols × 2 rows (static board snapshot).
-  const metrics = [
-    { label: 'ARR',                   target: 24.0, fmt: (v) => `$${v.toFixed(1)}M`, trend: '▲ +118% YoY',  trendFill: 'var(--ins-text-highlight)' },
-    { label: 'NET REVENUE RETENTION', target: 128,  fmt: (v) => `${Math.round(v)}%`, trend: '▲ expansion',  trendFill: 'var(--ins-text-highlight)' },
-    { label: 'RULE OF 40',            target: 67,   fmt: (v) => `${Math.round(v)}`,   sub: '42% growth + 25% FCF margin' },
-    { label: 'BURN MULTIPLE',         target: 0.8,  fmt: (v) => `${v.toFixed(1)}x`,   trend: '▼ efficient',  trendFill: 'var(--ins-status-success-fg)' },
-    { label: 'CAC PAYBACK',           target: 11,   fmt: (v) => `${Math.round(v)} mo`, trend: 'fast payback', trendFill: 'var(--ins-text-body)' },
-    { label: 'RUNWAY',                target: 31,   fmt: (v) => `${Math.round(v)} mo`, trend: '▲ +4 mo',     trendFill: 'var(--ins-text-highlight)' },
-  ];
-  const gx = 68, gy = 132, colW = 152, rowH = 120, gpX = 14, gpY = 16;
-  const cardPos = (i) => ({ x: gx + (i % 3) * (colW + gpX), y: gy + Math.floor(i / 3) * (rowH + gpY) });
-
-  // Runway ring (bottom-left card)
-  const RING_R = 34, RING_C = 2 * Math.PI * RING_R;
-  const ringOffset = RING_C * (1 - 31 / 36);   // static ~86% fill
-
-  return (
-    <svg viewBox="0 0 620 540" width="100%" style={{maxWidth:'580px',height:'auto',display:'block',filter:'drop-shadow(0 30px 60px rgba(0,0,0,0.55))'}} aria-hidden="true">
-      <defs>
-        <linearGradient id="ro_cardBg" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#10171E"/>
-          <stop offset="100%" stopColor="var(--ins-surface-page)"/>
-        </linearGradient>
-        <radialGradient id="ro_glow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="var(--ins-text-highlight)" stopOpacity="0.18"/>
-          <stop offset="100%" stopColor="var(--ins-text-highlight)" stopOpacity="0"/>
-        </radialGradient>
-      </defs>
-
-      {/* Soft glow behind */}
-      <ellipse cx="310" cy="270" rx="290" ry="200" fill="url(#ro_glow)"/>
-
-      {/* Main dashboard card */}
-      <g>
-        <rect x="50" y="40" width="520" height="400" rx="18" fill="url(#ro_cardBg)" stroke="rgba(255,255,255,0.08)" strokeWidth="1"/>
-
-        {/* Header strip */}
-        <rect x="50" y="40" width="520" height="44" rx="18" fill="rgba(255,255,255,0.025)"/>
-        <rect x="50" y="68" width="520" height="16" fill="rgba(255,255,255,0.025)"/>
-        <line x1="50" y1="84" x2="570" y2="84" stroke="rgba(255,255,255,0.06)" strokeWidth="1"/>
-        <circle cx="70" cy="62" r="4" fill="#FF5F57" opacity="0.55"/>
-        <circle cx="84" cy="62" r="4" fill="#FFBD2E" opacity="0.55"/>
-        <circle cx="98" cy="62" r="4" fill="#28C840" opacity="0.55"/>
-        <text x="310" y="66" textAnchor="middle" fontFamily="Geist Mono, monospace" fontSize="11" fill="var(--ins-text-body)">Company health · Live</text>
-        <rect x="478" y="55" width="76" height="18" rx="5" fill="rgba(9,160,157,0.12)" stroke="rgba(9,160,157,0.35)" strokeWidth="0.5"/>
-        <circle cx="488" cy="64" r="2.5" fill="var(--ins-status-success-fg)"/>
-        <text x="496" y="67" fontFamily="Geist Mono, monospace" fontSize="9" fill="var(--ins-text-highlight)" fontWeight="500">AI active</text>
-
-        {/* Section title row */}
-        <text x="68" y="112" fontFamily="Geist Mono,monospace" fontSize="10" fill="var(--ins-text-body)" letterSpacing="1.5">KEY METRICS</text>
-        <text x="552" y="112" textAnchor="end" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-highlight)" letterSpacing="1">FY2025 · live</text>
-
-        {/* Metric scorecard — 3 × 2 (static) */}
-        {metrics.map((m, i) => {
-          const { x, y } = cardPos(i);
-          return (
-            <g key={m.label} transform={`translate(${x}, ${y})`}>
-              <rect x="0" y="0" width={colW} height={rowH} rx="10" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.07)" strokeWidth="1"/>
-              <text x="16" y="28" fontFamily="Geist Mono,monospace" fontSize="8" fill="var(--ins-text-inactive)" letterSpacing="0.5">{m.label}</text>
-              <text x="16" y="70" fontFamily="Geist,sans-serif" fontSize="26" fontWeight="600" fill="var(--ins-text-heading)" letterSpacing="-0.02em">{m.fmt(m.target)}</text>
-              {m.trend && (
-                <text x="16" y="96" fontFamily="Geist Mono,monospace" fontSize="9" fill={m.trendFill} letterSpacing="0.5">{m.trend}</text>
-              )}
-              {m.sub && (
-                <text x="16" y="96" fontFamily="Geist Mono,monospace" fontSize="7.5" fill="var(--ins-text-body)" letterSpacing="0.2">{m.sub}</text>
-              )}
-            </g>
-          );
-        })}
-      </g>
-
-      {/* Floating donut card — bottom-left, partially overlapping */}
-      <g transform="translate(14, 358)">
-        <rect x="0" y="0" width="200" height="158" rx="14" fill="rgba(15,20,25,0.97)" stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
-        <text x="14" y="24" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)" letterSpacing="1.5">CASH &amp; RUNWAY</text>
-
-        {/* Runway ring (static ~86% fill) */}
-        <g transform="translate(100, 84)">
-          <circle r={RING_R} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="9"/>
-          <circle r={RING_R} fill="none" stroke="var(--ins-text-highlight)" strokeWidth="9" strokeLinecap="round"
-            strokeDasharray={RING_C} strokeDashoffset={ringOffset} transform="rotate(-90)"/>
-          <text x="0" y="3" textAnchor="middle" fontFamily="Geist,sans-serif" fontSize="17" fontWeight="600" fill="var(--ins-color-gray-100)">31 mo</text>
-          <text x="0" y="18" textAnchor="middle" fontFamily="Geist Mono,monospace" fontSize="8" fill="var(--ins-text-body)" letterSpacing="1">runway</text>
-        </g>
-
-        {/* Footer */}
-        <text x="100" y="148" textAnchor="middle" fontFamily="Geist Mono,monospace" fontSize="8.5" fill="var(--ins-text-body)">Cash $19M · Burn $610K/mo</text>
-      </g>
-
-      {/* Floating AI insight card — bottom-right, partially overlapping */}
-      <g transform="translate(390,420)">
-        <rect x="0" y="0" width="220" height="84" rx="14" fill="rgba(15,20,25,0.97)" stroke="rgba(9,160,157,0.45)" strokeWidth="1"/>
-        <g transform="translate(16,16)">
-          <rect x="0" y="0" width="22" height="22" rx="6" fill="rgba(9,160,157,0.18)" stroke="rgba(9,160,157,0.4)" strokeWidth="0.5"/>
-          <text x="11" y="16" textAnchor="middle" fontFamily="Geist Mono,monospace" fontSize="10" fontWeight="600" fill="var(--ins-text-highlight)">AI</text>
-        </g>
-        <text x="48" y="26" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-highlight)" fontWeight="500" letterSpacing="1">INSIGHT · LIVE</text>
-        <text x="48" y="46" fontFamily="Geist,sans-serif" fontSize="12" fill="var(--ins-color-gray-100)" fontWeight="500">Burn multiple down to 0.8x</text>
-        <text x="48" y="62" fontFamily="Geist,sans-serif" fontSize="12" fill="var(--ins-color-gray-100)" fontWeight="500">→ runway extended 4 months</text>
-        <text x="48" y="78" fontFamily="Geist Mono,monospace" fontSize="9" fill="var(--ins-text-body)">Runway 27 → 31 mo →</text>
-      </g>
-    </svg>
-  );
-}
-
+/* ── HERO ── */
 function Hero() {
   return (
-    <section style={{padding:'120px 0 80px',position:'relative',overflow:'hidden'}}>
+    <section style={{padding:'96px 0 56px',position:'relative',overflow:'hidden'}}>
       {/* Background glows — copied from AI Chat hero for visual parity */}
       <div className="ins-hero-glow" />
-
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px',position:'relative'}}>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px',position:'relative',zIndex:10}}>
         <div data-hero-grid style={{
           display:'grid',
-          gridTemplateColumns:'1.05fr 1fr',
-          gap:'var(--ins-size-14)',
+          gridTemplateColumns:'1fr 1fr',
+          gap:'var(--ins-size-16)',
           alignItems:'center',
         }}>
-            {/* Left: text */}
-            <div>
-              <h1 className="fu0 ins-text-display-xl">
-                <span style={{color:'var(--ins-text-heading-soft)'}}>AI analytics for </span>
-                <span style={{color:'var(--ins-text-highlight)'}}>Founders &amp; CEOs</span>
-              </h1>
-
-              <p className="fu2 ins-text-body-xl" style={{marginBottom:'36px',
-                maxWidth:'520px'}}>
-                Strategic answers in seconds. Ask in plain English — runway, ARR growth, NRR, burn — and walk into your board meeting with live numbers, not last week's deck.
-              </p>
-
-              <div className="fu3">
-                <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
-                  Start for free
-                </Button>
-              </div>
+          {/* Left: text */}
+          <div>
+            <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-5)'}}>
+              <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
+              <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>For Founders &amp; CEOs</span>
             </div>
 
-          {/* Right: static SVG illustration */}
-          <div className="fu2" style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-            <FoundersHeroIllustration/>
+            <h1 className="ins-text-display-xl" style={{marginBottom:'var(--ins-size-5)'}}>
+              <span style={{color:'var(--ins-text-heading-soft)'}}>Stop running the company</span>
+              <br/>
+              <span style={{color:'var(--ins-text-highlight)'}}>on stale numbers.</span>
+            </h1>
+
+            <p className="fu2 ins-text-body-xl" style={{marginBottom:'var(--ins-size-7)',maxWidth:'480px'}}>
+              Strategic answers in seconds. Ask in plain English — runway, ARR growth, NRR, burn — and walk into the board meeting with live numbers, not last week's deck.
+            </p>
+
+            <div className="fu3" style={{display:'flex',gap:'var(--ins-size-3)',flexWrap:'wrap',marginBottom:'var(--ins-size-7)'}}>
+              <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
+                Start for free
+              </Button>
+            </div>
+
           </div>
+
+          {/* Right: hero section image — shared HeroMockup shell */}
+          <HeroMockup
+            title="Insightis — For Founders &amp; CEOs"
+            accentLine="rgba(14,196,193,.55)"
+            glow="radial-gradient(circle at 30% 30%, rgba(9,160,157,.18) 0%, transparent 55%), radial-gradient(circle at 80% 80%, rgba(110,60,200,.10) 0%, transparent 50%)"
+            badge={
+              <HeroMockup.Badge accentRgb="34,197,94">
+                <div style={{
+                  width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-status-success-fg)',
+                  flexShrink:0,
+                }}/>
+                <div>
+                  <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>Board-ready</div>
+                  <div style={{fontSize:'12.5px',color:'var(--ins-status-success-fg)',fontWeight:500,fontFamily:'var(--ins-font-family-mono)',marginTop:'1px'}}>metrics certified</div>
+                </div>
+              </HeroMockup.Badge>
+            }
+            card={
+              <HeroMockup.FloatCard accentRgb="9,160,157">
+                <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'var(--ins-size-2)'}}>
+                  <span style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>Runway</span>
+                  <span style={{fontSize:'10.5px',color:'var(--ins-status-success-fg)',fontFamily:'var(--ins-font-family-mono)',fontWeight:500}}>19 mo</span>
+                </div>
+                <div style={{display:'flex',alignItems:'flex-end',gap:'2.5px',height:'24px',marginBottom:'6px'}}>
+                  {[92,88,84,80,74,70,64,58,52].map((v,i)=>(
+                    <div key={i} style={{
+                      flex:1,
+                      height:`${v}%`,
+                      background: i>=6 ? 'linear-gradient(180deg,var(--ins-text-highlight),var(--ins-button-primary-bg-hover))' : 'rgba(14,196,193,0.32)',
+                      borderRadius:'2px 2px 0 0',
+                      minHeight:'4px',
+                    }}/>
+                  ))}
+                </div>
+                <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-body)',fontWeight:400}}>Cash burn ↓ at current spend</div>
+              </HeroMockup.FloatCard>
+            }
+          >
+
+              {/* Header */}
+              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'14px'}}>
+                <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)'}}>
+                  <div style={{width:'6px',height:'6px',borderRadius:'50%',background:'var(--ins-status-success-fg)',boxShadow:'0 0 8px var(--ins-status-success-fg)'}}/>
+                  <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10.5px',color:'var(--ins-text-body)',letterSpacing:'.08em',textTransform:'uppercase'}}>Company health · live</span>
+                </div>
+                <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-highlight)',padding:'3px 9px',borderRadius:'999px',background:'rgba(9,160,157,.1)',border:'1px solid rgba(9,160,157,.25)',letterSpacing:'.08em',textTransform:'uppercase'}}>board</span>
+              </div>
+
+              {/* Headline + caption */}
+              <h3 style={{fontSize:'var(--ins-font-size-17)',fontWeight:500,color:'var(--ins-text-heading-soft)',marginBottom:'6px',letterSpacing:'-.015em',lineHeight:1.35}}>
+                Net revenue retention climbed to <span style={{color:'var(--ins-status-success-fg)'}}>128%</span>
+              </h3>
+              <p className="ins-text-body-sm" style={{marginBottom:'var(--ins-size-4)'}}>
+                <span style={{color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontSize:'11.5px'}}>net_revenue_retention</span> rose <span style={{color:'var(--ins-status-success-fg)',fontWeight:500}}>+9pts</span> QoQ as expansion outpaced churn. Reconciled across CRM, billing, and product in real time.
+              </p>
+
+              {/* Chart */}
+              <div style={{
+                background:'rgba(255,255,255,.018)',
+                border:'1px solid var(--ins-color-white-a-05)',
+                borderRadius:'14px',
+                padding:'16px 14px 12px',
+                marginBottom:'14px',
+                position:'relative',
+              }}>
+                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'var(--ins-size-2)'}}>
+                  <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.06em',textTransform:'uppercase'}}>NRR / quarter</span>
+                  <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-body)'}}>last 8 qtrs</span>
+                </div>
+                <svg viewBox="0 0 280 84" width="100%" height="126" preserveAspectRatio="none" style={{display:'block'}}>
+                  <defs>
+                    <linearGradient id="hero-area-grad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="var(--ins-text-highlight)" stopOpacity="0.32"/>
+                      <stop offset="100%" stopColor="var(--ins-text-highlight)" stopOpacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <line x1="0" y1="22" x2="280" y2="22" stroke="rgba(255,255,255,0.04)" strokeDasharray="2,3"/>
+                  <line x1="0" y1="52" x2="280" y2="52" stroke="rgba(255,255,255,0.04)" strokeDasharray="2,3"/>
+                  <path d="M0,60 L18,58 L36,56 L54,54 L72,50 L90,48 L108,44 L126,42 L144,40 L162,36 L180,32 L198,30 L216,26 L234,22 L252,18 L270,16 L280,14 L280,84 L0,84 Z" fill="url(#hero-area-grad)"/>
+                  <path d="M0,60 L18,58 L36,56 L54,54 L72,50 L90,48 L108,44 L126,42 L144,40 L162,36" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M162,36 L180,32 L198,30 L216,26 L234,22 L252,18 L270,16 L280,14" fill="none" stroke="var(--ins-status-success-fg)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <line x1="162" y1="0" x2="162" y2="84" stroke="rgba(34,197,94,0.25)" strokeDasharray="2,2"/>
+                  <circle cx="280" cy="14" r="3.5" fill="var(--ins-status-success-fg)"/>
+                </svg>
+              </div>
+
+              {/* Metric tiles */}
+              <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'var(--ins-size-2)'}}>
+                {[
+                  {label:'ARR',     val:'$8.4M',    color:'var(--ins-status-success-fg)'},
+                  {label:'NRR',     val:'128%',     color:'var(--ins-status-success-fg)'},
+                  {label:'Runway',  val:'19 mo',    color:'var(--ins-text-highlight)'},
+                ].map((m,i) => (
+                  <div key={i} style={{
+                    background:'rgba(255,255,255,.025)',
+                    border:'1px solid var(--ins-color-white-a-06)',
+                    borderRadius:'10px',
+                    padding:'10px 12px',
+                  }}>
+                    <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'var(--ins-size-1)'}}>{m.label}</div>
+                    <div style={{fontSize:'var(--ins-font-size-14)',fontWeight:500,color:m.color,fontFamily:'var(--ins-font-family-mono)',letterSpacing:'-.01em'}}>{m.val}</div>
+                  </div>
+                ))}
+              </div>
+          </HeroMockup>
         </div>
       </div>
     </section>
   );
 }
 
-/* ── INTEGRATIONS STRIP (marquee) ── */
-/* ── PAIN POINTS ── */
-function PainPoints() {
-  const pains = [
-    {
-      title: 'Board prep eats your week',
-      body: 'Pulling ARR, runway, NRR, and burn for the deck means stitching exports from finance, ops, and sales — by Sunday they\'re already stale.',
-    },
-    {
-      title: 'Numbers never agree across teams',
-      body: 'Finance says $4.2M. RevOps says $4.4M. The deck rounds to $4.3M — every team calculates ARR a slightly different way, and you sign off on all three.',
-    },
-    {
-      title: 'Strategic questions wait for days',
-      body: 'When an investor asks why NRR slipped 3 points, you need the answer in the call — not after a Jira ticket and a tired analyst.',
-    },
-    {
-      title: 'No live picture of company health',
-      body: 'Dashboards refresh weekly at best. Between updates the board, finance, and you all guess at what\'s happening.',
-    },
-    {
-      title: 'Forecasting always needs an analyst',
-      body: 'Building a credible 12-month plan means cornering an analyst, defending the assumptions, and waiting two weeks. The model lands already out of date.',
-    },
-    {
-      title: 'Cohort signals get lost in tabs',
-      body: 'Retention curves, magic number, CAC payback — they live in five spreadsheets and BI tools. The pattern is buried.',
-    },
+/* ── RELEVANT INTEGRATIONS ── */
+function RelevantIntegrations() {
+  const connectors = [
+    { name:'Salesforce',  desc:'CRM & pipeline' },
+    { name:'HubSpot',     desc:'CRM & marketing' },
+    { name:'Stripe',      desc:'Billing & revenue' },
+    { name:'NetSuite',    desc:'Finance & ERP' },
+    { name:'QuickBooks',  desc:'Finance data' },
+    { name:'Xero',        desc:'Finance data' },
+    { name:'Snowflake',   desc:'Data warehouse' },
+    { name:'BigQuery',    desc:'Cloud analytics' },
+    { name:'PostgreSQL',  desc:'Data warehouse' },
+    { name:'Segment',     desc:'Customer data' },
+    { name:'Amplitude',   desc:'Product analytics' },
+    { name:'Google Analytics', desc:'Web analytics' },
+    { name:'Databricks',  desc:'Lakehouse & BI' },
+    { name:'ChartMogul',  desc:'Subscription analytics' },
+    { name:'Zuora',       desc:'Subscription billing' },
+    { name:'Notion',      desc:'Docs & planning' },
   ];
 
-  return (
-    <section style={{padding:'120px 0 100px',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'var(--ins-size-16)'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'rgba(248,113,113,.08)',border:'1px solid rgba(248,113,113,.22)',borderRadius:'999px',marginBottom:'var(--ins-size-4)'}}>
-            <span style={{color:'var(--ins-status-error-fg)',fontSize:'var(--ins-font-size-12)'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-status-error-fg)',fontFamily:'var(--ins-font-family-mono)'}}>The Problem</span>
-          </div>
-          <h2 className="ins-text-display" style={{marginBottom:'14px',textWrap:'balance'}}>
-            Founders fly blind between board meetings
-          </h2>
-          <p className="ins-text-body-lg" style={{maxWidth:'480px',margin:'0 auto'}}>
-            Sound familiar? These are the problems Insightis eliminates.
-          </p>
-        </div>
-
-        <PainPointGrid items={pains} />
-      </div>
-    </section>
-  );
-}
-
-/* ── MID CTA ── */
-function MidCTA() {
-  return (
-    <section className="pt-16 pb-16 relative">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="fade-up is-visible">
-          <BottomCTA
-            variant="text"
-            title={<>Skip the board prep marathon. <BottomCTA.Highlight>Start asking.</BottomCTA.Highlight></>}
-            ctaLabel="Get started for free"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── HOW INSIGHTIS HELPS ── */
-/* ── QUESTIONS FOR REVOPS ── */
-/* ── HOW IT WORKS ── */
-function HowItWorks() {
-  const steps = [
-    {
-      n: '01',
-      title: 'Plug in your entire stack',
-      body: 'Pull in CRM, billing, accounting, and your warehouse in one click. Every source stays in sync — no late-night CSV exports.',
-      example: 'CRM + Billing → in sync',
-    },
-    {
-      n: '02',
-      title: 'Settle the math once and for all',
-      body: 'Lock in ARR, NRR, Runway, and Burn Multiple in a semantic layer. Finance, the board, and you read the same number.',
-      example: 'ARR + NRR → one source',
-    },
-    {
-      n: '03',
-      title: 'Strategic answers, fast',
-      body: 'Type the question on your mind and Insightis returns a chart with sources cited. No analyst, no waiting.',
-      example: '"How much runway?" → 18 mos',
-    },
-    {
-      n: '04',
-      title: 'Present with confidence',
-      body: 'Walk into board meetings with live numbers — not month-old slides. Answer deep-dive questions on the spot.',
-      example: 'Board Q&A → answered live',
-    },
-  ];
-
-  return (
-    <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{marginBottom:'var(--ins-size-16)'}}>
-          <SectionHeader
-            eyebrow="The Solution"
-            title="Wire it in. Lock it down. Run the company."
-            lede="Three steps from scattered systems to numbers fit for the boardroom."
-            sparkle
-            size="lg"
-          />
-        </div>
-
-        {/* Horizontal stepper */}
-        <StepsProcess steps={steps} />
-      </div>
-    </section>
-  );
-}
-
-/* ── BEFORE / AFTER ── */
-function BeforeAfter() {
   return (
     <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{marginBottom:'52px'}}>
+        <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
-            eyebrow="The old way VS Insightis"
-            title="Two ways to run the company"
-            lede="Same metrics, two operating speeds — only one keeps pace with the board."
+            eyebrow="Your Company Stack"
+            title="Connects to every source of company truth"
+            lede="Insightis integrates with your CRM, billing, finance, product, and warehouse stack."
             sparkle
-          />        </div>
+          />
+        </div>
 
-        <ComparisonCards
-          before={{
-            label: 'Before Insightis',
-            items: [
-              'Building the board deck eats five business days',
-              'Every deck cites a different ARR',
-              'Forecasts only refresh at quarter close',
-              'Every strategic ask sits in the analyst queue',
-              'Investors are reading numbers from the last close',
-              'Cohort signals hide across five BI tools',
-            ],
+        <div data-connectors-grid style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'10px',marginBottom:'var(--ins-size-8)'}}>
+          {connectors.map((c,i) => (
+            <div key={i} className="connector-card">
+              <ConnectorIcon name={c.name} size={32} />
+              <div>
+                <div style={{fontSize:'13px',fontWeight:500,color:'var(--ins-color-gray-100)'}}>{c.name}</div>
+                <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-inactive)',marginTop:'var(--ins-size-half)'}}>{c.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{textAlign:'center'}}>
+          <a href="/Resources/Connectors" style={{
+            display:'inline-flex',alignItems:'center',gap:'6px',
+            fontSize:'13px',color:'var(--ins-text-body)',
+            textDecoration:'none',
+            border:'1px solid var(--ins-color-white-a-07)',
+            borderRadius:'999px',
+            padding:'8px 20px',
+            background:'var(--ins-color-white-a-02)',
+            transition:'all .15s',
           }}
-          after={{
-            label: 'With Insightis',
-            items: [
-              'Boardroom-ready answers in seconds',
-              'One agreed ARR every team trusts',
-              'Forecasts built on live company data',
-              'Strategic asks answered in the meeting itself',
-              'Investor numbers refreshed this morning',
-              'Cohort patterns surface from a single ask',
-            ],
-          }}
+          onMouseEnter={e=>{e.currentTarget.style.color='var(--ins-text-highlight)';e.currentTarget.style.borderColor='rgba(9,160,157,.3)';}}
+          onMouseLeave={e=>{e.currentTarget.style.color='var(--ins-text-body)';e.currentTarget.style.borderColor='var(--ins-color-white-a-07)';}}
+          >
+            See all 200+ integrations
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── BOTTOM CTA ── */
+function BottomCTASection() {
+  return (
+    <section style={{paddingTop:'var(--ins-size-8)',paddingBottom:'var(--ins-size-32)',position:'relative'}}>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
+        <BottomCTA
+          variant="form"
+          title={<>Stop building <BottomCTA.Highlight>reports.</BottomCTA.Highlight> Start getting <BottomCTA.Highlight> answers.</BottomCTA.Highlight></>}
+          inputPlaceholder="Show me ARR vs target..."
+          ctaLabel="Get started"
         />
+      </div>
+    </section>
+  );
+}
+
+/* ── FEATURE SPOTLIGHT VISUALS ── */
+function SpotlightChat() {
+  return (
+    <div style={{
+      width:'100%',
+      background:'rgba(13,17,23,0.9)',
+      border:'1px solid var(--ins-color-white-a-08)',
+      borderRadius:'var(--ins-radius-20)',
+      overflow:'hidden',
+      boxShadow:'none',
+      display:'flex',
+      flexDirection:'column',
+    }}>
+      <div style={{padding:'14px 18px',borderBottom:'1px solid var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'10px',flexShrink:0}}>
+        <div style={{display:'flex',gap:'5px'}}>
+          {['#FF5F57','#FFBD2E','#28C840'].map((c,i) => (
+            <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
+          ))}
+        </div>
+        <div style={{flex:1,textAlign:'center',fontSize:'var(--ins-font-size-12)',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>
+          board prep · founder
+        </div>
+      </div>
+      <div style={{padding:'22px 18px',display:'flex',flexDirection:'column',gap:'var(--ins-size-3)',flex:1,justifyContent:'center'}}>
+        <div className="chat-bubble-user">
+          What's our net revenue retention this quarter?
+        </div>
+        <div className="chat-bubble-ai">
+          NRR is 128% in Q2, up 9pts QoQ — expansion outpaced churn across every segment. Runway sits at 19 months at current burn. Sourced from <span style={{color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-12)'}}>finance.fct_nrr</span> — certified in your semantic layer.
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ChromeHeader({ label }) {
+  return (
+    <div style={{padding:'14px 18px',borderBottom:'1px solid var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'10px',flexShrink:0,position:'relative',zIndex:1}}>
+      <div style={{display:'flex',gap:'5px'}}>
+        {['#FF5F57','#FFBD2E','#28C840'].map((c,i) => (
+          <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
+        ))}
+      </div>
+      <div style={{flex:1,textAlign:'center',fontSize:'var(--ins-font-size-12)',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>
+        {label}
+      </div>
+    </div>
+  );
+}
+
+function SpotlightSemantic() {
+  return (
+    <div style={{
+      width:'100%',
+      background:'rgba(13,17,23,0.9)',
+      border:'1px solid var(--ins-color-white-a-08)',
+      borderRadius:'var(--ins-radius-20)',
+      overflow:'hidden',
+      boxShadow:'none',
+      display:'flex',
+      flexDirection:'column',
+    }}>
+      <ChromeHeader label="semantic layer · nrr" />
+      <div style={{padding:'26px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'18px'}}>
+          <div style={{display:'flex',alignItems:'center',gap:'10px'}}>
+            <div style={{width:'34px',height:'34px',borderRadius:'9px',background:'rgba(9,160,157,.1)',border:'1px solid rgba(9,160,157,.25)',display:'flex',alignItems:'center',justifyContent:'center'}}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.8"><path d="M3 6h18M3 12h18M3 18h12"/></svg>
+            </div>
+            <div>
+              <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-14)',color:'var(--ins-color-gray-100)',fontWeight:500}}>net_revenue_retention</div>
+              <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-inactive)',marginTop:'var(--ins-size-half)'}}>Owned by Finance · v3.2</div>
+            </div>
+          </div>
+          <span style={{
+            display:'inline-flex',alignItems:'center',gap:'5px',
+            padding:'4px 10px',borderRadius:'999px',
+            background:'rgba(34,197,94,.08)',border:'1px solid rgba(34,197,94,.3)',
+            fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-status-success-fg)',
+            letterSpacing:'.06em',textTransform:'uppercase',
+          }}>
+            <span style={{width:'5px',height:'5px',borderRadius:'50%',background:'var(--ins-status-success-fg)',boxShadow:'0 0 6px var(--ins-status-success-fg)'}}/>
+            Certified
+          </span>
+        </div>
+        <div style={{
+          background:'rgba(255,255,255,.025)',
+          border:'1px solid var(--ins-color-white-a-06)',
+          borderRadius:'10px',
+          padding:'14px',
+          marginBottom:'14px',
+          fontFamily:'var(--ins-font-family-mono)',
+          fontSize:'12.5px',
+          lineHeight:1.6,
+          color:'var(--ins-text-body)',
+        }}>
+          (<span style={{color:'var(--ins-text-highlight)'}}>starting_arr</span> <span style={{color:'var(--ins-text-body)'}}>+</span> <span style={{color:'var(--ins-text-highlight)'}}>expansion</span> <span style={{color:'var(--ins-text-body)'}}>−</span> <span style={{color:'var(--ins-text-highlight)'}}>churn</span>) <span style={{color:'var(--ins-text-body)'}}>/</span> <span style={{color:'var(--ins-text-highlight)'}}>starting_arr</span>
+        </div>
+        <div style={{display:'flex',flexDirection:'column',gap:'var(--ins-size-2)'}}>
+          {[
+            {label:'Source', val:'billing.fct_subscriptions, crm.dim_accounts'},
+            {label:'Lineage', val:'Stripe → Semantic Layer → Insightis'},
+            {label:'Used by', val:'Board deck · investor update · 3 teams'},
+          ].map((row,i) => (
+            <div key={i} style={{display:'flex',gap:'var(--ins-size-3)',fontSize:'var(--ins-font-size-12)'}}>
+              <span style={{minWidth:'70px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.04em',textTransform:'uppercase',fontSize:'10px',paddingTop:'var(--ins-size-half)'}}>{row.label}</span>
+              <span style={{color:'var(--ins-text-body)'}}>{row.val}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SpotlightAnomalies() {
+  return (
+    <div style={{
+      width:'100%',
+      background:'rgba(13,17,23,0.9)',
+      border:'1px solid var(--ins-color-white-a-08)',
+      borderRadius:'var(--ins-radius-20)',
+      overflow:'hidden',
+      boxShadow:'none',
+      display:'flex',
+      flexDirection:'column',
+    }}>
+      <ChromeHeader label="watchlist · before the board call" />
+      <div style={{padding:'20px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
+        {/* User question */}
+        <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)',marginBottom:'10px'}}>
+          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.08em',textTransform:'uppercase'}}>flagged</span>
+          <span style={{fontSize:'12.5px',color:'var(--ins-text-body)'}}>"Any KPI risk before the board call?"</span>
+        </div>
+
+        {/* Headline finding */}
+        <div style={{
+          display:'flex',alignItems:'center',gap:'10px',
+          padding:'10px 12px',marginBottom:'var(--ins-size-3)',
+          background:'var(--ins-color-red-a-06)',border:'1px solid rgba(248,113,113,.22)',
+          borderRadius:'10px',
+        }}>
+          <span style={{
+            width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-status-error-fg)',
+            boxShadow:'0 0 8px var(--ins-status-error-fg)',flexShrink:0,
+          }}/>
+          <span style={{fontSize:'12.5px',color:'var(--ins-color-gray-100)',lineHeight:1.45}}>
+            <span style={{fontWeight:500,color:'var(--ins-status-error-fg)'}}>−6pts</span> dip in <span style={{fontFamily:'var(--ins-font-family-mono)',color:'var(--ins-text-highlight)',fontSize:'11.5px'}}>enterprise_nrr</span> as two top accounts contracted
+          </span>
+        </div>
+
+        {/* Chart with annotated anomaly */}
+        <div style={{
+          background:'rgba(255,255,255,.018)',
+          border:'1px solid var(--ins-color-white-a-05)',
+          borderRadius:'10px',
+          padding:'12px 12px 8px',
+          marginBottom:'var(--ins-size-3)',
+          position:'relative',
+        }}>
+          <svg viewBox="0 0 280 60" width="100%" height="60" preserveAspectRatio="none" style={{display:'block'}}>
+            <defs>
+              <linearGradient id="anom-area" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="var(--ins-text-highlight)" stopOpacity="0.32"/>
+                <stop offset="100%" stopColor="var(--ins-text-highlight)" stopOpacity="0"/>
+              </linearGradient>
+            </defs>
+            <line x1="0" y1="18" x2="280" y2="18" stroke="rgba(255,255,255,0.04)" strokeDasharray="2,3"/>
+            <line x1="0" y1="38" x2="280" y2="38" stroke="rgba(255,255,255,0.04)" strokeDasharray="2,3"/>
+            <path d="M0,24 L20,22 L40,26 L60,20 L80,18 L100,22 L120,16 L140,14 L160,18 L168,46 L180,42 L200,38 L220,40 L240,34 L260,30 L280,28 L280,60 L0,60 Z" fill="url(#anom-area)"/>
+            <path d="M0,24 L20,22 L40,26 L60,20 L80,18 L100,22 L120,16 L140,14 L160,18" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M160,18 L168,46 L180,42 L200,38 L220,40 L240,34 L260,30 L280,28" fill="none" stroke="var(--ins-status-error-fg)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            <line x1="168" y1="0" x2="168" y2="60" stroke="rgba(248,113,113,0.3)" strokeDasharray="2,2"/>
+            <circle cx="168" cy="46" r="3" fill="var(--ins-status-error-fg)"/>
+            <circle cx="168" cy="46" r="3" fill="none" stroke="var(--ins-status-error-fg)" strokeWidth="1.2" opacity="0.5">
+              <animate attributeName="r" from="3" to="11" dur="1.6s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" from="0.6" to="0" dur="1.6s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+        </div>
+
+        {/* 2 explanatory micro-cards */}
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'var(--ins-size-2)'}}>
+          <div style={{
+            background:'rgba(255,255,255,.025)',
+            border:'1px solid var(--ins-color-white-a-06)',
+            borderRadius:'10px',
+            padding:'9px 11px',
+          }}>
+            <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'3px'}}>Where</div>
+            <div style={{fontSize:'var(--ins-font-size-12)',color:'var(--ins-color-gray-100)'}}>2 enterprise accounts</div>
+          </div>
+          <div style={{
+            background:'rgba(255,255,255,.025)',
+            border:'1px solid var(--ins-color-white-a-06)',
+            borderRadius:'10px',
+            padding:'9px 11px',
+          }}>
+            <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'3px'}}>ARR at risk</div>
+            <div style={{fontSize:'var(--ins-font-size-12)',color:'var(--ins-status-error-fg)'}}>$240K</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SpotlightStack() {
+  const sources = [
+    { name:'CRM', color:'#0EC4C1', bg:'rgba(14,196,193,.12)',
+      icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <circle cx="9" cy="8" r="3" stroke="#0EC4C1" strokeWidth="1.6"/>
+        <path d="M4 20a5 5 0 0 1 10 0" stroke="#0EC4C1" strokeWidth="1.6" strokeLinecap="round"/>
+        <path d="M16 6a3 3 0 0 1 0 6" stroke="#0EC4C1" strokeWidth="1.6" strokeLinecap="round"/>
+      </svg>},
+    { name:'Billing', color:'#22C55E', bg:'rgba(34,197,94,.12)',
+      icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="6" width="18" height="12" rx="2" stroke="#22C55E" strokeWidth="1.6"/>
+        <path d="M3 10h18" stroke="#22C55E" strokeWidth="1.6"/>
+        <path d="M7 14h4" stroke="#22C55E" strokeWidth="1.6" strokeLinecap="round"/>
+      </svg>},
+    { name:'Finance', color:'#A78BFA', bg:'rgba(167,139,250,.12)',
+      icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <path d="M3 3v18h18" stroke="#A78BFA" strokeWidth="1.6" strokeLinecap="round"/>
+        <path d="M7 14l4-4 3 3 4-6" stroke="#A78BFA" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>},
+    { name:'Product', color:'#FBBF24', bg:'rgba(251,191,36,.12)',
+      icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="12" width="4" height="8" rx="1" stroke="#FBBF24" strokeWidth="1.6"/>
+        <rect x="10" y="7" width="4" height="13" rx="1" stroke="#FBBF24" strokeWidth="1.6"/>
+        <rect x="17" y="3" width="4" height="17" rx="1" stroke="#FBBF24" strokeWidth="1.6"/>
+      </svg>},
+  ];
+  return (
+    <div style={{
+      width:'100%',
+      background:'rgba(13,17,23,0.9)',
+      border:'1px solid var(--ins-color-white-a-08)',
+      borderRadius:'var(--ins-radius-20)',
+      boxShadow:'none',
+      position:'relative',
+      overflow:'hidden',
+      display:'flex',
+      flexDirection:'column',
+    }}>
+      <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(9,160,157,.06) 0%, transparent 70%)',pointerEvents:'none'}}/>
+      <ChromeHeader label="lineage · board-ready" />
+      <div style={{padding:'24px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center',position:'relative'}}>
+        {/* Section label */}
+        <div style={{display:'flex',justifyContent:'center',marginBottom:'10px'}}>
+          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>your company data</span>
+        </div>
+
+        {/* Source tiles row */}
+        <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'var(--ins-size-2)',marginBottom:'14px'}}>
+          {sources.map((s,i) => (
+            <div key={i} style={{
+              background:'rgba(255,255,255,.025)',
+              border:`1px solid ${s.color}33`,
+              borderRadius:'var(--ins-radius-12)',
+              padding:'12px 6px',
+              display:'flex',flexDirection:'column',alignItems:'center',gap:'7px',
+              minWidth:0,
+            }}>
+              <div style={{
+                width:'34px',height:'34px',borderRadius:'9px',
+                background:s.bg,
+                display:'flex',alignItems:'center',justifyContent:'center',
+              }}>{s.icon}</div>
+              <div style={{fontSize:'var(--ins-font-size-11)',fontWeight:500,color:'var(--ins-color-gray-100)',textAlign:'center'}}>{s.name}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Connector arrow */}
+        <div style={{display:'flex',justifyContent:'center',marginBottom:'10px'}}>
+          <svg width="14" height="22" viewBox="0 0 14 22" fill="none">
+            <path d="M7 1v18m0 0l-5-5m5 5l5-5" stroke="var(--ins-text-highlight)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity=".55"/>
+          </svg>
+        </div>
+
+        {/* Insightis destination */}
+        <div style={{
+          background:'linear-gradient(135deg, rgba(9,160,157,.14) 0%, rgba(9,160,157,.06) 100%)',
+          border:'1px solid rgba(9,160,157,.35)',
+          borderRadius:'var(--ins-radius-12)',
+          padding:'12px 14px',
+          display:'flex',alignItems:'center',gap:'var(--ins-size-3)',
+        }}>
+          <div style={{
+            width:'36px',height:'36px',borderRadius:'10px',
+            background:'rgba(9,160,157,.18)',
+            display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,
+          }}>
+            <svg width="20" height="20" viewBox="0 0 26 26" fill="none">
+              <path d="M25.5 10.4L21.7 12.7L25.5 15.1L12.7 22.8L0 15.1L3.8 12.7L0 10.4L5.7 6.9L7.6 8.1L3.8 10.4L12.7 15.8L21.7 10.4L17.8 8.1L19.8 6.9L25.5 10.4Z" fill="var(--ins-text-highlight)"/>
+            </svg>
+          </div>
+          <div style={{flex:1,minWidth:0}}>
+            <div style={{fontSize:'13px',fontWeight:600,color:'var(--ins-color-gray-100)'}}>Insightis</div>
+            <div style={{fontSize:'10.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.04em',textTransform:'uppercase',marginTop:'var(--ins-size-half)'}}>Semantic Layer</div>
+          </div>
+          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-highlight)',padding:'3px 9px',borderRadius:'999px',background:'rgba(9,160,157,.1)',border:'1px solid rgba(9,160,157,.25)',letterSpacing:'.08em',textTransform:'uppercase'}}>connected</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── FEATURE SPOTLIGHTS ── */
+function FeatureSpotlights() {
+  const spots = [
+    {
+      eyebrow:'Self-Serve',
+      title:'Board answers on demand',
+      body:'Ask any company-health question in plain English and get an answer rooted in your real numbers — runway, ARR growth, NRR, burn — no analyst, no waiting for the next deck.',
+      bullets:['Conversational answers across every company metric','Walk into the board meeting with live numbers'],
+      visual:<SpotlightChat />,
+    },
+    {
+      eyebrow:'Certified Metrics',
+      title:'One definition for ARR, NRR, and runway',
+      body:'Finance, the board, and the founder shouldn\'t argue about whose number is right. Insightis aligns ARR, NRR, and runway under a single certified definition the whole company trusts.',
+      bullets:['ARR, NRR, and runway agreed across the company','Versioning, ownership, and lineage built in'],
+      visual:<SpotlightSemantic />,
+    },
+    {
+      eyebrow:'Risk & Anomaly Detection',
+      title:'Spot KPI risk before the board call',
+      body:'Insightis scans every answer for churn spikes, NRR dips, and burn drift — risks surface inline, so nothing surprises you in front of the board.',
+      bullets:['Churn and KPI risk flagged inside every answer','Unusual burn or retention movement called out'],
+      visual:<SpotlightAnomalies />,
+    },
+    {
+      eyebrow:'Trace to Source',
+      title:'Board-ready answers, with full lineage',
+      body:'Every number carries its sources, owners, and timestamps — the board and your finance team see the same trail, with no reconciliation pass before the meeting.',
+      bullets:['Full lineage from metric down to the source system','Owner, timestamp, and version stamped on every figure'],
+      visual:<SpotlightStack />,
+    },
+  ];
+
+  return (
+    <section id="spotlights" style={{padding:'80px 0 100px',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
+        <div style={{marginBottom:'72px'}}>
+          <SectionHeader
+            eyebrow="How it works"
+            title="Built for the way leadership actually runs the company"
+            lede="Four capabilities that put live company metrics at the founder's and the board's fingertips."
+            sparkle
+          />
+        </div>
+
+        <div style={{display:'flex',flexDirection:'column',gap:'88px'}}>
+          {spots.map((s,i) => {
+            const reverse = i % 2 === 1;
+            return (
+              <div key={i} data-spotlight-grid style={{
+                display:'grid',
+                gridTemplateColumns:'1fr 1fr',
+                gap:'var(--ins-size-16)',
+                alignItems:'center',
+              }}>
+                <div data-spotlight-text style={{order: reverse ? 2 : 0}}>
+                  <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'18px'}}>
+                    <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
+                    <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>{s.eyebrow}</span>
+                  </div>
+                  <h3 className="ins-text-h2" style={{marginBottom:'18px'}}>
+                    {s.title}
+                  </h3>
+                  <p className="ins-text-body-lg" style={{marginBottom:'22px'}}>
+                    {s.body}
+                  </p>
+                  <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px'}}>
+                    {s.bullets.map((b,bi) => (
+                      <li key={bi} style={{display:'flex',alignItems:'flex-start',gap:'10px',fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)',lineHeight:1.55}}>
+                        <CheckIcon size={12} style={{flexShrink:0,marginTop:'var(--ins-size-1)'}} />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div data-spotlight-visual style={{
+                  order: reverse ? 0 : 2,
+                  display:'flex',
+                  alignItems:'stretch',
+                  height:'440px',
+                }}>
+                  {s.visual}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── USE CASES ── */
+function UseCases() {
+  const cases = [
+    {
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M9 8h6M9 12h6M9 16h4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      title:'Board prep in minutes, not days',
+      desc:'Build the board deck and investor update on live data — charts that update in the room. Walk in with answers, not last month\'s export.',
+    },
+    {
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m6-5h6M8 3v18m8-18v18M16 3h3a2 2 0 0 1 2 2v3M2 9h20M2 15h20M2 21h3m16 0h3" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      title:'Certified company metrics',
+      desc:'One semantic layer governs every metric — ARR, NRR, runway, burn — owned and versioned by finance. No more arguments about whose number is right.',
+    },
+    {
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      title:'Runway & burn scenarios',
+      desc:'Model runway and burn under different hiring and spend plans — and get flagged the moment a KPI drifts, not at the end-of-quarter board call.',
+    },
+    {
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M7 9h10M7 13h6" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      title:'NRR & cohort health',
+      desc:'Any retention question answered instantly — NRR by segment, cohort expansion, logo churn — no analyst queue or pivot-table archaeology.',
+    },
+    {
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><line x1="12" y1="9" x2="12" y2="13" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/><line x1="12" y1="17" x2="12.01" y2="17" stroke="var(--ins-text-highlight)" strokeWidth="2" strokeLinecap="round"/></svg>,
+      title:'Fundraising metrics, ready to share',
+      desc:'Every metric investors ask for — ARR, growth rate, magic number, CAC payback — reconciled to source and ready to drop into the data room.',
+    },
+    {
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="12" width="4" height="9" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><rect x="9" y="7" width="4" height="14" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><rect x="16" y="3" width="4" height="18" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/></svg>,
+      title:'Cross-source company view',
+      desc:'Correlate CRM, billing, finance, and product usage in one question — no SQL, no analyst, no two-week turnaround. The whole company\'s health in one place.',
+    },
+  ];
+
+  return (
+    <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
+        <div style={{marginBottom:'var(--ins-size-20)'}}>
+          <div style={{
+            position:'relative',borderRadius:'var(--ins-radius-16)',
+            border:'1px solid rgba(30,30,48,1)',
+            padding:'32px 48px',overflow:'hidden',
+            display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'var(--ins-size-6)',
+            flexWrap:'wrap',
+            background:'linear-gradient(135deg,var(--ins-color-promo-a) 0%,var(--ins-color-promo-b) 50%,var(--ins-color-promo-a) 100%)',
+          }}>
+            <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
+            <div style={{flex:'1 1 360px',minWidth:0}}>
+              <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'var(--ins-size-2)'}}>
+                See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own numbers</span>.
+              </h3>
+              <p className="ins-text-body">
+                Connect your CRM and billing and ask Insightis the company-health question you need answered before the next board meeting.
+              </p>
+            </div>
+            <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
+              Get started for free
+            </Button>
+          </div>
+        </div>
+        <div style={{marginBottom:'var(--ins-size-14)'}}>
+          <SectionHeader
+            eyebrow="Use cases"
+            title="What founders & CEOs use Insightis for"
+            sparkle
+          />
+        </div>
+
+        <div data-usecase-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'14px'}}>
+          {cases.map((c,i) => (
+            <div key={i}
+              style={{
+                background:'rgba(13,17,23,.6)',
+                border:'1px solid var(--ins-color-white-a-06)',
+                borderRadius:'var(--ins-radius-16)',padding:'var(--ins-size-6)',
+                position:'relative',overflow:'hidden',
+                transition:'all .2s',
+              }}
+              onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
+              onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-color-white-a-06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}
+            >
+              <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
+              <div style={{width:'38px',height:'38px',borderRadius:'10px',background:'var(--ins-color-teal-a-08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'14px'}}>
+                {c.icon}
+              </div>
+              <h3 style={{fontSize:'var(--ins-font-size-15)',fontWeight:600,color:'var(--ins-text-heading-soft)',marginBottom:'6px'}}>{c.title}</h3>
+              <p className="ins-text-body">{c.desc}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -528,28 +766,28 @@ function BeforeAfter() {
 function FAQ() {
   const items = [
     {
-      q: 'How accurate are the numbers compared to what finance reports?',
-      a: 'Identical. Insightis pulls from the same source-of-truth systems your finance team uses — your warehouse, your billing system, your CRM. The numbers reconcile down to the cent, and every answer cites the source so anyone can trace it back.',
+      q:'How accurate are the numbers compared to what finance reports?',
+      a:'Identical. Insightis pulls from the same source-of-truth systems your finance team uses — your warehouse, your billing system, your CRM. The numbers reconcile down to the cent, and every answer cites the source so anyone can trace it back.',
     },
     {
-      q: 'Can investors and the board see the same data we see?',
-      a: 'Yes. Generate a board-ready link from any chart with view-only access, or export a static snapshot for the deck. Live links update in real time when new data arrives, so the board always sees the freshest read — never last month\'s numbers.',
+      q:'Can investors and the board see the same data we see?',
+      a:'Yes. Generate a board-ready link from any chart with view-only access, or export a static snapshot for the deck. Live links update in real time when new data arrives, so the board always sees the freshest read — never last month\'s numbers.',
     },
     {
-      q: 'How does Insightis fit alongside our finance team and existing tools?',
-      a: 'Insightis amplifies finance, it does not replace it. The team continues to own metric definitions in the semantic layer; you and the rest of the company query against those certified definitions. Everyone reads the same number, every time.',
+      q:'How does Insightis fit alongside our finance team and existing tools?',
+      a:'Insightis amplifies finance, it does not replace it. The team continues to own metric definitions in the semantic layer; you and the rest of the company query against those certified definitions. Everyone reads the same number, every time.',
     },
     {
-      q: 'Can we trust the AI for board-level decisions?',
-      a: 'Every answer shows its work — the underlying SQL, the data sources, and the time range. Nothing is generated from public benchmarks; only your real numbers. If an answer surprises you, the trace back to source is one click away.',
+      q:'Can we trust the AI for board-level decisions?',
+      a:'Every answer shows its work — the underlying SQL, the data sources, and the time range. Nothing is generated from public benchmarks; only your real numbers. If an answer surprises you, the trace back to source is one click away.',
     },
     {
-      q: 'What happens to our metric definitions as we scale or pivot?',
-      a: 'The semantic layer is versioned. When ARR definition changes — say, after acquiring a new product line — historical answers reflect both old and new definitions. No more retroactive number changes that confuse the board between meetings.',
+      q:'What happens to our metric definitions as we scale or pivot?',
+      a:'The semantic layer is versioned. When an ARR definition changes — say, after acquiring a new product line — historical answers reflect both old and new definitions. No more retroactive number changes that confuse the board between meetings.',
     },
     {
-      q: 'What\'s the security and compliance posture for sharing financials?',
-      a: 'SOC 2 Type II, encryption at rest and in transit, single sign-on with MFA, granular role-based access. Your data never leaves your warehouse — Insightis queries on top of it. Audit logs track every view and every share.',
+      q:'What\'s the security and compliance posture for sharing financials?',
+      a:'SOC 2 Type II, encryption at rest and in transit, single sign-on with MFA, granular role-based access. Your data never leaves your warehouse — Insightis queries on top of it. Audit logs track every view and every share.',
     },
   ];
 
@@ -562,30 +800,11 @@ function FAQ() {
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>FAQ</span>
           </div>
           <h2 className="ins-text-display mb-3">
-            What founders and CEOs ask first
+            Questions founders and CEOs ask
           </h2>
-          <p className="ins-text-body-lg" style={{maxWidth:'560px',margin:'0 auto'}}>
-            Six things on every founder’s mind before bringing Insightis into the boardroom.
-          </p>
         </div>
 
         <FAQAccordion items={items} />
-      </div>
-    </section>
-  );
-}
-
-/* ── BOTTOM CTA ── */
-function BottomCTASection() {
-  return (
-    <section style={{paddingTop:'var(--ins-size-8)',paddingBottom:'var(--ins-size-16)',position:'relative'}}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <BottomCTA
-          variant="form"
-          title={<>Stop building <BottomCTA.Highlight>reports.</BottomCTA.Highlight> Start getting <BottomCTA.Highlight>answers.</BottomCTA.Highlight></>}
-          inputPlaceholder="Show me ARR vs target..."
-          ctaLabel="Get started"
-        />
       </div>
     </section>
   );
@@ -598,11 +817,9 @@ function App() {
       <Header />
       <main>
       <Hero />
-      <IntegrationsStrip />
-      <PainPoints />
-      <HowItWorks />
-      <MidCTA />
-      <BeforeAfter />
+      <FeatureSpotlights />
+      <UseCases />
+      <RelevantIntegrations />
       <FAQ />
       <BottomCTASection />
             </main>

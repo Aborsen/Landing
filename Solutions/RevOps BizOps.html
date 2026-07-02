@@ -176,9 +176,14 @@ section { position: relative; }
   [data-pain-grid] { grid-template-columns: 1fr !important; }
   [data-connectors-grid] { grid-template-columns: repeat(2,1fr) !important; }
   [data-compare-grid] { grid-template-columns: 1fr !important; }
-  [data-howit-grid] { grid-template-columns: 1fr !important; }
-  [data-cases-grid] { grid-template-columns: 1fr !important; }
-  [data-vs-grid] { grid-template-columns: 1fr !important; }
+  [data-spotlight-grid] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  [data-spotlight-grid] > [data-spotlight-text] { order: 0 !important; }
+  [data-spotlight-grid] > [data-spotlight-visual] { order: 1 !important; }
+  [data-usecase-grid] { grid-template-columns: 1fr !important; }
+  [data-testimonials-grid] { grid-template-columns: 1fr !important; }
 }
 </style>
     <link rel="canonical" href="https://insightis.ai/solutions/revops-bizops/">

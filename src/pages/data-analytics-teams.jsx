@@ -11,6 +11,8 @@ import ComparisonCards from '../components/ComparisonCards';
 import TestimonialCard from '../components/TestimonialCard';
 import SectionHeader from '../components/SectionHeader';
 import CheckIcon from '../components/CheckIcon';
+import ConnectorIcon from '../components/ConnectorIcon';
+import HeroMockup from '../components/HeroMockup';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -54,13 +56,13 @@ function Hero() {
             </div>
 
             <h1 className="ins-text-display-xl" style={{marginBottom:'var(--ins-size-5)'}}>
-              <span style={{color:'var(--ins-text-heading-soft)'}}>Stop answering</span>
+              <span style={{color:'var(--ins-text-heading-soft)'}}>Stop answering the same</span>
               <br/>
-              <span style={{color:'var(--ins-text-highlight)'}}>repeat questions.</span>
+              <span style={{color:'var(--ins-text-highlight)'}}>questions twice.</span>
             </h1>
 
             <p className="fu2 ins-text-body-xl" style={{marginBottom:'var(--ins-size-7)',maxWidth:'480px'}}>
-              Empower every team to self-serve their data. Insightis sits on top of your Semantic Layer and answers questions in plain English — so you focus on analysis, not reporting.
+              Empower every team to self-serve their data. Insightis sits on your Semantic Layer and answers in plain English — so you analyze, not report.
             </p>
 
             <div className="fu3" style={{display:'flex',gap:'var(--ins-size-3)',flexWrap:'wrap',marginBottom:'var(--ins-size-7)'}}>
@@ -71,59 +73,44 @@ function Hero() {
 
           </div>
 
-          {/* Right: modern hero visual */}
-          <div className="fu2" style={{position:'relative'}}>
-            {/* Ambient glow */}
-            <div style={{
-              position:'absolute', inset:'-60px',
-              background:'radial-gradient(circle at 30% 30%, rgba(9,160,157,.18) 0%, transparent 55%), radial-gradient(circle at 80% 80%, rgba(110,60,200,.10) 0%, transparent 50%)',
-              pointerEvents:'none',
-              filter:'blur(40px)',
-              zIndex:'var(--ins-z-base)',
-            }}/>
-
-            {/* Main insight panel */}
-            <div style={{
-              position:'relative',
-              background:'linear-gradient(135deg, rgba(13,17,23,0.95) 0%, rgba(15,20,28,0.92) 100%)',
-              border:'1px solid var(--ins-color-white-a-08)',
-              borderRadius:'24px',
-              padding:'var(--ins-size-6)',
-              backdropFilter:'blur(24px)',
-              WebkitBackdropFilter:'blur(24px)',
-              boxShadow:'none',
-              overflow:'hidden',
-              zIndex:1,
-              minHeight:'540px',
-            }}>
-              {/* Top gradient line */}
-              <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(14,196,193,.55),transparent)',zIndex:1}}/>
-
-              {/* Window chrome */}
-              <div style={{
-                margin:'-24px -24px 16px',
-                padding:'10px 14px',
-                borderBottom:'1px solid var(--ins-color-white-a-06)',
-                background:'rgba(255,255,255,0.015)',
-                display:'flex',
-                alignItems:'center',
-                position:'relative',
-              }}>
-                <div style={{display:'flex',gap:'6px'}}>
-                  <div style={{width:'10px',height:'10px',borderRadius:'50%',background:'#FF5F57'}}/>
-                  <div style={{width:'10px',height:'10px',borderRadius:'50%',background:'#FEBC2E'}}/>
-                  <div style={{width:'10px',height:'10px',borderRadius:'50%',background:'#28C840'}}/>
+          {/* Right: modern hero visual — shared HeroMockup shell */}
+          <HeroMockup
+            title="Insightis — For Data Analytics"
+            accentLine="rgba(14,196,193,.55)"
+            glow="radial-gradient(circle at 30% 30%, rgba(9,160,157,.18) 0%, transparent 55%), radial-gradient(circle at 80% 80%, rgba(110,60,200,.10) 0%, transparent 50%)"
+            badge={
+              <HeroMockup.Badge accentRgb="34,197,94">
+                <div style={{
+                  width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-status-success-fg)',
+                  flexShrink:0,
+                }}/>
+                <div>
+                  <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>Resolved</div>
+                  <div style={{fontSize:'12.5px',color:'var(--ins-status-success-fg)',fontWeight:500,fontFamily:'var(--ins-font-family-mono)',marginTop:'1px'}}>checkout_complete</div>
                 </div>
-                <span style={{
-                  position:'absolute',left:'50%',top:'50%',
-                  transform:'translate(-50%,-50%)',
-                  fontFamily:'var(--ins-font-family-mono)',
-                  fontSize:'10.5px',
-                  color:'var(--ins-text-body)',
-                  letterSpacing:'.08em',
-                  whiteSpace:'nowrap',
-                }}>Insightis — For Data Analytics</span>
-              </div>
+              </HeroMockup.Badge>
+            }
+            card={
+              <HeroMockup.FloatCard accentRgb="9,160,157">
+                <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'var(--ins-size-2)'}}>
+                  <span style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>Self-serve</span>
+                  <span style={{fontSize:'10.5px',color:'var(--ins-status-success-fg)',fontFamily:'var(--ins-font-family-mono)',fontWeight:500}}>+72%</span>
+                </div>
+                <div style={{display:'flex',alignItems:'flex-end',gap:'2.5px',height:'24px',marginBottom:'6px'}}>
+                  {[40,52,48,60,72,68,82,78,92].map((v,i)=>(
+                    <div key={i} style={{
+                      flex:1,
+                      height:`${v}%`,
+                      background: i>=6 ? 'linear-gradient(180deg,var(--ins-text-highlight),var(--ins-button-primary-bg-hover))' : 'rgba(14,196,193,0.32)',
+                      borderRadius:'2px 2px 0 0',
+                      minHeight:'4px',
+                    }}/>
+                  ))}
+                </div>
+                <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-body)',fontWeight:400}}>Ad hoc tickets ↓ this week</div>
+              </HeroMockup.FloatCard>
+            }
+          >
 
               {/* Header */}
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'18px'}}>
@@ -155,7 +142,7 @@ function Hero() {
                   <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.06em',textTransform:'uppercase'}}>events / 30min</span>
                   <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-body)'}}>last 24h</span>
                 </div>
-                <svg viewBox="0 0 280 84" width="100%" height="84" preserveAspectRatio="none" style={{display:'block'}}>
+                <svg viewBox="0 0 280 84" width="100%" height="120" preserveAspectRatio="none" style={{display:'block'}}>
                   <defs>
                     <linearGradient id="hero-area-grad" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="0%" stopColor="var(--ins-text-highlight)" stopOpacity="0.32"/>
@@ -190,68 +177,7 @@ function Hero() {
                   </div>
                 ))}
               </div>
-            </div>
-
-            {/* Floating top-right resolved badge */}
-            <div style={{
-              position:'absolute',
-              top:'-18px',
-              right:'-14px',
-              background:'linear-gradient(135deg, rgba(34,197,94,.2) 0%, rgba(13,17,23,0.95) 100%)',
-              border:'1px solid rgba(34,197,94,.4)',
-              borderRadius:'14px',
-              padding:'10px 14px',
-              boxShadow:'0 16px 40px rgba(34,197,94,0.18), 0 8px 24px var(--ins-color-black-a-50)',
-              backdropFilter:'blur(16px)',
-              WebkitBackdropFilter:'blur(16px)',
-              display:'flex',alignItems:'center',gap:'10px',
-              transform:'rotate(2.5deg)',
-              zIndex:2,
-            }}>
-              <div style={{
-                width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-status-success-fg)',
-                flexShrink:0,
-              }}/>
-              <div>
-                <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>Resolved</div>
-                <div style={{fontSize:'12.5px',color:'var(--ins-status-success-fg)',fontWeight:500,fontFamily:'var(--ins-font-family-mono)',marginTop:'1px'}}>checkout_complete</div>
-              </div>
-            </div>
-
-            {/* Floating bottom-left ticket-deflection card */}
-            <div style={{
-              position:'absolute',
-              bottom:'-22px',
-              left:'-18px',
-              background:'linear-gradient(135deg, rgba(9,160,157,.2) 0%, rgba(13,17,23,0.95) 100%)',
-              border:'1px solid rgba(9,160,157,.4)',
-              borderRadius:'14px',
-              padding:'12px 14px',
-              boxShadow:'0 16px 40px rgba(9,160,157,0.18), 0 8px 24px var(--ins-color-black-a-50)',
-              backdropFilter:'blur(16px)',
-              WebkitBackdropFilter:'blur(16px)',
-              transform:'rotate(-2deg)',
-              minWidth:'160px',
-              zIndex:2,
-            }}>
-              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'var(--ins-size-2)'}}>
-                <span style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>Self-serve</span>
-                <span style={{fontSize:'10.5px',color:'var(--ins-status-success-fg)',fontFamily:'var(--ins-font-family-mono)',fontWeight:500}}>+72%</span>
-              </div>
-              <div style={{display:'flex',alignItems:'flex-end',gap:'2.5px',height:'24px',marginBottom:'6px'}}>
-                {[40,52,48,60,72,68,82,78,92].map((v,i)=>(
-                  <div key={i} style={{
-                    flex:1,
-                    height:`${v}%`,
-                    background: i>=6 ? 'linear-gradient(180deg,var(--ins-text-highlight),var(--ins-button-primary-bg-hover))' : 'rgba(14,196,193,0.32)',
-                    borderRadius:'2px 2px 0 0',
-                    minHeight:'4px',
-                  }}/>
-                ))}
-              </div>
-              <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-body)',fontWeight:400}}>Ad hoc tickets ↓ this week</div>
-            </div>
-          </div>
+          </HeroMockup>
         </div>
       </div>
     </section>
@@ -312,145 +238,22 @@ function PainPoints() {
 /* ── RELEVANT INTEGRATIONS ── */
 function RelevantIntegrations() {
   const connectors = [
-    {
-      name:'PostgreSQL', bg:'rgba(51,103,145,.12)', desc:'Data warehouse',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <ellipse cx="12" cy="5" rx="9" ry="3" stroke="#336791" strokeWidth="1.5" fill="#336791" fillOpacity=".15"/>
-        <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5" stroke="#336791" strokeWidth="1.5" fill="none"/>
-        <path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3" stroke="#336791" strokeWidth="1.2" fill="none"/>
-        <circle cx="18" cy="8" r="2.5" fill="#336791" fillOpacity=".6" stroke="#336791" strokeWidth="1"/>
-      </svg>,
-    },
-    {
-      name:'BigQuery', bg:'rgba(66,133,244,.12)', desc:'Cloud analytics',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#4285f4"/>
-        <path d="M2 17l10 5 10-5" stroke="#34a853" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-        <path d="M2 12l10 5 10-5" stroke="#fbbc04" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-      </svg>,
-    },
-    {
-      name:'Snowflake', bg:'rgba(41,181,232,.12)', desc:'Data platform',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <line x1="12" y1="2" x2="12" y2="22" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
-        <line x1="2" y1="7" x2="22" y2="17" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
-        <line x1="22" y1="7" x2="2" y2="17" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
-        <circle cx="12" cy="2" r="1.5" fill="#29b5e8"/>
-        <circle cx="12" cy="22" r="1.5" fill="#29b5e8"/>
-        <circle cx="2" cy="7" r="1.5" fill="#29b5e8"/>
-        <circle cx="22" cy="17" r="1.5" fill="#29b5e8"/>
-        <circle cx="22" cy="7" r="1.5" fill="#29b5e8"/>
-        <circle cx="2" cy="17" r="1.5" fill="#29b5e8"/>
-        <circle cx="12" cy="12" r="2.5" fill="#29b5e8"/>
-      </svg>,
-    },
-    {
-      name:'Redshift', bg:'rgba(140,79,255,.12)', desc:'Data warehouse',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <ellipse cx="12" cy="7" rx="9" ry="3" stroke="#8c4fff" strokeWidth="1.5" fill="#8c4fff" opacity=".15"/>
-        <path d="M3 7v5c0 1.66 4.03 3 9 3s9-1.34 9-3V7" stroke="#8c4fff" strokeWidth="1.5" fill="none"/>
-        <path d="M3 12v5c0 1.66 4.03 3 9 3s9-1.34 9-3v-5" stroke="#8c4fff" strokeWidth="1.5" fill="none"/>
-      </svg>,
-    },
-    {
-      name:'Databricks', bg:'rgba(228,23,63,.12)', desc:'Data lakehouse',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M12 2L22 8v8l-10 6L2 16V8L12 2z" fill="#e4173f" fillOpacity=".15" stroke="#e4173f" strokeWidth="1.5" strokeLinejoin="round"/>
-        <path d="M12 2v20M2 8l10 6 10-6" stroke="#e4173f" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>,
-    },
-    {
-      name:'Fivetran', bg:'rgba(0,115,230,.12)', desc:'Data pipelines',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <polygon points="12,2 20.66,7 20.66,17 12,22 3.34,17 3.34,7" stroke="#0073e6" strokeWidth="1.5" fill="none"/>
-      </svg>,
-    },
-    {
-      name:'Airbyte', bg:'rgba(97,94,240,.12)', desc:'Open-source ELT',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M4 12L12 4l8 8-8 8-8-8z" fill="#615ef0" fillOpacity=".15" stroke="#615ef0" strokeWidth="1.5" strokeLinejoin="round"/>
-        <path d="M12 4l4 4-4 4-4-4 4-4z" fill="#615ef0" fillOpacity=".6"/>
-        <line x1="12" y1="12" x2="12" y2="20" stroke="#615ef0" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>,
-    },
-    {
-      name:'Stripe', bg:'rgba(99,91,255,.12)', desc:'Billing data',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z" fill="#635bff"/>
-      </svg>,
-    },
-    {
-      name:'HubSpot', bg:'rgba(255,122,89,.12)', desc:'CRM data',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="3" fill="#ff7a59"/>
-        <line x1="12" y1="3.5" x2="12" y2="9" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/>
-        <line x1="12" y1="15" x2="12" y2="20.5" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/>
-        <line x1="3.5" y1="12" x2="9" y2="12" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/>
-        <line x1="15" y1="12" x2="20.5" y2="12" stroke="#ff7a59" strokeWidth="2.2" strokeLinecap="round"/>
-        <circle cx="12" cy="3.5" r="1.8" fill="#ff7a59"/>
-        <circle cx="12" cy="20.5" r="1.8" fill="#ff7a59"/>
-        <circle cx="3.5" cy="12" r="1.8" fill="#ff7a59"/>
-        <circle cx="20.5" cy="12" r="1.8" fill="#ff7a59"/>
-      </svg>,
-    },
-    {
-      name:'Salesforce', bg:'rgba(0,161,224,.12)', desc:'CRM data',
-      icon: <svg width="22" height="16" viewBox="0 0 66 46" fill="none">
-        <path d="M27.5 5.8a13.2 13.2 0 0 1 9.7-4.3c5 0 9.4 2.8 11.7 6.9a14.6 14.6 0 0 1 6.7-1.6C62.7 6.8 69 13.1 69 21s-6.3 14.2-14.4 14.2H15C7.7 35.2 1.8 29.3 1.8 22c0-6.5 4.7-11.9 10.9-13.3a13.2 13.2 0 0 1 14.8-2.9z" fill="#00a1e0"/>
-      </svg>,
-    },
-    {
-      name:'Mixpanel', bg:'rgba(120,86,255,.12)', desc:'Event data',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" fill="#7856ff" opacity=".15"/>
-        <circle cx="8" cy="12" r="2.5" fill="#7856ff"/>
-        <circle cx="16" cy="12" r="2.5" fill="#7856ff"/>
-        <circle cx="12" cy="7" r="2.5" fill="#7856ff"/>
-        <circle cx="12" cy="17" r="2.5" fill="#7856ff"/>
-      </svg>,
-    },
-    {
-      name:'Amplitude', bg:'rgba(25,124,230,.12)', desc:'Behavioral data',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M3 17l4-8 4 10 3-6 2 4 5-12" stroke="#197ce6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>,
-    },
-    {
-      name:'Segment', bg:'rgba(82,189,149,.12)', desc:'Customer data',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" stroke="#52bd95" strokeWidth="1.5" fill="none"/>
-        <path d="M8 12a4 4 0 0 1 4-4 4 4 0 0 1 2.83 1.17" stroke="#52bd95" strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M16 12a4 4 0 0 1-4 4 4 4 0 0 1-2.83-1.17" stroke="#52bd95" strokeWidth="1.5" strokeLinecap="round"/>
-        <circle cx="17" cy="9" r="1.5" fill="#52bd95"/>
-      </svg>,
-    },
-    {
-      name:'Looker', bg:'rgba(161,66,244,.12)', desc:'BI & dashboards',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <ellipse cx="12" cy="12" rx="9" ry="6" stroke="#a142f4" strokeWidth="1.5" fill="none"/>
-        <circle cx="12" cy="12" r="3" fill="#a142f4" fillOpacity=".4" stroke="#a142f4" strokeWidth="1.5"/>
-        <circle cx="12" cy="12" r="1.2" fill="#a142f4"/>
-      </svg>,
-    },
-    {
-      name:'Tableau', bg:'rgba(233,118,39,.12)', desc:'Data visualization',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="8" width="3.5" height="13" rx="1" fill="#e97627"/>
-        <rect x="8.5" y="4" width="3.5" height="17" rx="1" fill="#e97627" fillOpacity=".7"/>
-        <rect x="14" y="11" width="3.5" height="10" rx="1" fill="#e97627" fillOpacity=".5"/>
-        <rect x="19.5" y="6" width="2" height="15" rx="1" fill="#4e7ec2" fillOpacity=".6"/>
-      </svg>,
-    },
-    {
-      name:'ClickHouse', bg:'rgba(255,204,1,.12)', desc:'Columnar warehouse',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <rect x="2.5" y="3" width="3.2" height="18" rx="0.5" fill="#FFCC01"/>
-        <rect x="7" y="3" width="3.2" height="18" rx="0.5" fill="#FFCC01"/>
-        <rect x="11.5" y="3" width="3.2" height="18" rx="0.5" fill="#FFCC01"/>
-        <rect x="16" y="3" width="3.2" height="18" rx="0.5" fill="#FFCC01"/>
-        <rect x="20.5" y="10" width="1.2" height="4" rx="0.4" fill="#FFCC01"/>
-      </svg>,
-    },
+    { name:'Snowflake',   desc:'Data warehouse' },
+    { name:'BigQuery',    desc:'Cloud analytics' },
+    { name:'Redshift',    desc:'Data warehouse' },
+    { name:'Databricks',  desc:'Lakehouse' },
+    { name:'PostgreSQL',  desc:'Database' },
+    { name:'MySQL',       desc:'Database' },
+    { name:'SQL Server',  desc:'Database' },
+    { name:'Oracle',      desc:'Database' },
+    { name:'MongoDB',     desc:'NoSQL database' },
+    { name:'MariaDB',     desc:'Database' },
+    { name:'Segment',     desc:'Customer data' },
+    { name:'Amplitude',   desc:'Behavioral data' },
+    { name:'Google Analytics', desc:'Web analytics' },
+    { name:'Salesforce',  desc:'CRM data' },
+    { name:'HubSpot',     desc:'CRM data' },
+    { name:'Stripe',      desc:'Billing data' },
   ];
 
   return (
@@ -468,9 +271,7 @@ function RelevantIntegrations() {
         <div data-connectors-grid style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'10px',marginBottom:'var(--ins-size-8)'}}>
           {connectors.map((c,i) => (
             <div key={i} className="connector-card">
-              <div className="connector-icon" style={{background:c.bg, display:'flex', alignItems:'center', justifyContent:'center'}}>
-                {c.icon}
-              </div>
+              <ConnectorIcon name={c.name} size={32} />
               <div>
                 <div style={{fontSize:'13px',fontWeight:500,color:'var(--ins-color-gray-100)'}}>{c.name}</div>
                 <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-inactive)',marginTop:'var(--ins-size-half)'}}>{c.desc}</div>

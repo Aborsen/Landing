@@ -11,6 +11,8 @@ import ComparisonCards from '../components/ComparisonCards';
 import TestimonialCard from '../components/TestimonialCard';
 import SectionHeader from '../components/SectionHeader';
 import CheckIcon from '../components/CheckIcon';
+import ConnectorIcon from '../components/ConnectorIcon';
+import HeroMockup from '../components/HeroMockup';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -54,9 +56,9 @@ function Hero() {
             </div>
 
             <h1 className="ins-text-display-xl" style={{marginBottom:'var(--ins-size-5)'}}>
-              <span style={{color:'var(--ins-text-heading-soft)'}}>Stop guessing</span>
+              <span style={{color:'var(--ins-text-heading-soft)'}}>Stop guessing what users</span>
               <br/>
-              <span style={{color:'var(--ins-text-highlight)'}}>what users actually do.</span>
+              <span style={{color:'var(--ins-text-highlight)'}}>actually do.</span>
             </h1>
 
             <p className="fu2 ins-text-body-xl" style={{marginBottom:'var(--ins-size-7)',maxWidth:'480px'}}>
@@ -71,59 +73,47 @@ function Hero() {
 
           </div>
 
-          {/* Right: product-flavored hero visual (static) */}
-          <div className="fu2" style={{position:'relative'}}>
-            {/* Ambient glow — lavender-leaning to differentiate from Analytics */}
-            <div style={{
-              position:'absolute', inset:'-60px',
-              background:'radial-gradient(circle at 25% 25%, rgba(167,139,250,.18) 0%, transparent 55%), radial-gradient(circle at 80% 80%, rgba(9,160,157,.12) 0%, transparent 50%)',
-              pointerEvents:'none',
-              filter:'blur(44px)',
-              zIndex:'var(--ins-z-base)',
-            }}/>
-
-            {/* Main panel */}
-            <div style={{
-              position:'relative',
-              background:'linear-gradient(135deg, rgba(13,17,23,0.95) 0%, rgba(15,20,28,0.92) 100%)',
-              border:'1px solid var(--ins-color-white-a-08)',
-              borderRadius:'24px',
-              padding:'var(--ins-size-6)',
-              backdropFilter:'blur(24px)',
-              WebkitBackdropFilter:'blur(24px)',
-              boxShadow:'none',
-              overflow:'hidden',
-              zIndex:1,
-              minHeight:'540px',
-            }}>
-              {/* Top gradient line — lavender accent */}
-              <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(167,139,250,.55),transparent)',zIndex:1}}/>
-
-              {/* Window chrome */}
-              <div style={{
-                margin:'-24px -24px 16px',
-                padding:'10px 14px',
-                borderBottom:'1px solid var(--ins-color-white-a-06)',
-                background:'rgba(255,255,255,0.015)',
-                display:'flex',
-                alignItems:'center',
-                position:'relative',
-              }}>
-                <div style={{display:'flex',gap:'6px'}}>
-                  <div style={{width:'10px',height:'10px',borderRadius:'50%',background:'#FF5F57'}}/>
-                  <div style={{width:'10px',height:'10px',borderRadius:'50%',background:'#FEBC2E'}}/>
-                  <div style={{width:'10px',height:'10px',borderRadius:'50%',background:'#28C840'}}/>
+          {/* Right: product-flavored hero visual (static) — shared HeroMockup shell */}
+          <HeroMockup
+            title="Insightis — For Product Teams"
+            accentLine="rgba(167,139,250,.55)"
+            glow="radial-gradient(circle at 25% 25%, rgba(167,139,250,.18) 0%, transparent 55%), radial-gradient(circle at 80% 80%, rgba(9,160,157,.12) 0%, transparent 50%)"
+            badge={
+              <HeroMockup.Badge accentRgb="167,139,250">
+                <div style={{
+                  width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-color-purple-400)',
+                  flexShrink:0,
+                }}/>
+                <div>
+                  <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>Experiment</div>
+                  <div style={{fontSize:'12.5px',color:'var(--ins-color-purple-400)',fontWeight:500,fontFamily:'var(--ins-font-family-mono)',marginTop:'1px'}}>onboarding_v3</div>
                 </div>
-                <span style={{
-                  position:'absolute',left:'50%',top:'50%',
-                  transform:'translate(-50%,-50%)',
-                  fontFamily:'var(--ins-font-family-mono)',
-                  fontSize:'10.5px',
-                  color:'var(--ins-text-body)',
-                  letterSpacing:'.08em',
-                  whiteSpace:'nowrap',
-                }}>Insightis — For Product Teams</span>
-              </div>
+              </HeroMockup.Badge>
+            }
+            card={
+              <HeroMockup.FloatCard accentRgb="9,160,157">
+                <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'var(--ins-size-2)'}}>
+                  <span style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>Retention</span>
+                  <span style={{fontSize:'10.5px',color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontWeight:500}}>W12 · 28%</span>
+                </div>
+                <svg viewBox="0 0 140 32" width="100%" height="28" preserveAspectRatio="none" style={{display:'block',marginBottom:'var(--ins-size-1)'}}>
+                  <defs>
+                    <linearGradient id="retn-fill" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="var(--ins-text-highlight)" stopOpacity="0.32"/>
+                      <stop offset="100%" stopColor="var(--ins-text-highlight)" stopOpacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M0,2 C20,12 40,18 60,22 C80,25 100,27 120,28 L140,28 L140,32 L0,32 Z" fill="url(#retn-fill)"/>
+                  <path d="M0,2 C20,12 40,18 60,22 C80,25 100,27 120,28 L140,28" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.6" strokeLinecap="round"/>
+                  <circle cx="0" cy="2" r="2" fill="var(--ins-text-highlight)"/>
+                  <circle cx="140" cy="28" r="2" fill="var(--ins-text-highlight)"/>
+                </svg>
+                <div style={{display:'flex',justifyContent:'space-between',fontSize:'9px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.04em'}}>
+                  <span>W0</span><span>W4</span><span>W8</span><span>W12</span>
+                </div>
+              </HeroMockup.FloatCard>
+            }
+          >
 
               {/* Header */}
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'14px'}}>
@@ -139,7 +129,7 @@ function Hero() {
                 Onboarding cliff at <span style={{color:'var(--ins-color-purple-400)'}}>step 3</span>
               </h3>
               <p className="ins-text-body-sm" style={{marginBottom:'var(--ins-size-4)'}}>
-                <span style={{color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontSize:'11.5px'}}>workspace_created</span> dropped <span style={{color:'var(--ins-status-error-fg)',fontWeight:500}}>−41%</span>. 87% on mobile. New invite flow shipped Tuesday.
+                <span style={{color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontSize:'11.5px'}}>workspace_created</span> dropped <span style={{color:'var(--ins-status-error-fg)',fontWeight:500}}>−41%</span>. 87% on mobile.<br/>New invite flow shipped Tuesday.
               </p>
 
               {/* Funnel breakdown */}
@@ -147,14 +137,14 @@ function Hero() {
                 background:'rgba(255,255,255,.018)',
                 border:'1px solid var(--ins-color-white-a-05)',
                 borderRadius:'14px',
-                padding:'14px 14px 12px',
+                padding:'14px 14px 18px',
                 marginBottom:'14px',
               }}>
                 <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'var(--ins-size-3)'}}>
                   <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.06em',textTransform:'uppercase'}}>activation funnel</span>
                   <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-body)'}}>n = 12,840</span>
                 </div>
-                <div style={{display:'flex',flexDirection:'column',gap:'7px'}}>
+                <div style={{display:'flex',flexDirection:'column',gap:'10px'}}>
                   {[
                     {label:'sign_up',           pct:100, val:'12,840', cliff:false},
                     {label:'email_verified',    pct:92,  val:'11,816', cliff:false},
@@ -209,71 +199,7 @@ function Hero() {
                   </div>
                 ))}
               </div>
-            </div>
-
-            {/* Floating top-right: Experiment running card (lavender — distinct from Analytics) */}
-            <div style={{
-              position:'absolute',
-              top:'-18px',
-              right:'-14px',
-              background:'linear-gradient(135deg, rgba(167,139,250,.22) 0%, rgba(13,17,23,0.95) 100%)',
-              border:'1px solid rgba(167,139,250,.4)',
-              borderRadius:'14px',
-              padding:'10px 14px',
-              boxShadow:'0 16px 40px rgba(167,139,250,0.18), 0 8px 24px var(--ins-color-black-a-50)',
-              backdropFilter:'blur(16px)',
-              WebkitBackdropFilter:'blur(16px)',
-              display:'flex',alignItems:'center',gap:'10px',
-              transform:'rotate(2.5deg)',
-              zIndex:2,
-            }}>
-              <div style={{
-                width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-color-purple-400)',
-                flexShrink:0,
-              }}/>
-              <div>
-                <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>Experiment</div>
-                <div style={{fontSize:'12.5px',color:'var(--ins-color-purple-400)',fontWeight:500,fontFamily:'var(--ins-font-family-mono)',marginTop:'1px'}}>onboarding_v3</div>
-              </div>
-            </div>
-
-            {/* Floating bottom-left: Cohort retention curve (sparkline — distinct from Analytics' bars) */}
-            <div style={{
-              position:'absolute',
-              bottom:'-22px',
-              left:'-18px',
-              background:'linear-gradient(135deg, rgba(9,160,157,.2) 0%, rgba(13,17,23,0.95) 100%)',
-              border:'1px solid rgba(9,160,157,.4)',
-              borderRadius:'14px',
-              padding:'12px 14px',
-              boxShadow:'0 16px 40px rgba(9,160,157,0.18), 0 8px 24px var(--ins-color-black-a-50)',
-              backdropFilter:'blur(16px)',
-              WebkitBackdropFilter:'blur(16px)',
-              transform:'rotate(-2deg)',
-              minWidth:'168px',
-              zIndex:2,
-            }}>
-              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'var(--ins-size-2)'}}>
-                <span style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>Retention</span>
-                <span style={{fontSize:'10.5px',color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontWeight:500}}>W12 · 28%</span>
-              </div>
-              <svg viewBox="0 0 140 32" width="100%" height="28" preserveAspectRatio="none" style={{display:'block',marginBottom:'var(--ins-size-1)'}}>
-                <defs>
-                  <linearGradient id="retn-fill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="var(--ins-text-highlight)" stopOpacity="0.32"/>
-                    <stop offset="100%" stopColor="var(--ins-text-highlight)" stopOpacity="0"/>
-                  </linearGradient>
-                </defs>
-                <path d="M0,2 C20,12 40,18 60,22 C80,25 100,27 120,28 L140,28 L140,32 L0,32 Z" fill="url(#retn-fill)"/>
-                <path d="M0,2 C20,12 40,18 60,22 C80,25 100,27 120,28 L140,28" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.6" strokeLinecap="round"/>
-                <circle cx="0" cy="2" r="2" fill="var(--ins-text-highlight)"/>
-                <circle cx="140" cy="28" r="2" fill="var(--ins-text-highlight)"/>
-              </svg>
-              <div style={{display:'flex',justifyContent:'space-between',fontSize:'9px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.04em'}}>
-                <span>W0</span><span>W4</span><span>W8</span><span>W12</span>
-              </div>
-            </div>
-          </div>
+          </HeroMockup>
         </div>
       </div>
     </section>
@@ -334,131 +260,22 @@ function PainPoints() {
 /* ── RELEVANT INTEGRATIONS ── */
 function RelevantIntegrations() {
   const connectors = [
-    {
-      name:'Mixpanel', bg:'rgba(120,86,255,.12)', desc:'Product analytics',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" fill="#7856ff" opacity=".15"/>
-        <circle cx="8" cy="12" r="2.5" fill="#7856ff"/>
-        <circle cx="16" cy="12" r="2.5" fill="#7856ff"/>
-        <circle cx="12" cy="7" r="2.5" fill="#7856ff"/>
-        <circle cx="12" cy="17" r="2.5" fill="#7856ff"/>
-      </svg>,
-    },
-    {
-      name:'Amplitude', bg:'rgba(25,124,230,.12)', desc:'Product analytics',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M3 17l4-8 4 10 3-6 2 4 5-12" stroke="#197ce6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>,
-    },
-    {
-      name:'PostHog', bg:'rgba(245,78,0,.12)', desc:'Product analytics',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="13" width="3.5" height="8" rx="1" fill="#f54e00"/>
-        <rect x="8" y="9" width="3.5" height="12" rx="1" fill="#f54e00" fillOpacity=".7"/>
-        <rect x="13" y="5" width="3.5" height="16" rx="1" fill="#f54e00" fillOpacity=".55"/>
-        <rect x="18" y="2" width="3" height="19" rx="1" fill="#f54e00" fillOpacity=".4"/>
-      </svg>,
-    },
-    {
-      name:'Heap', bg:'rgba(216,0,42,.12)', desc:'Auto-captured events',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="15" width="18" height="5" rx="1.2" fill="#d8002a" fillOpacity=".22" stroke="#d8002a" strokeWidth="1.3"/>
-        <rect x="5" y="9.5" width="14" height="5" rx="1.2" fill="#d8002a" fillOpacity=".4" stroke="#d8002a" strokeWidth="1.3"/>
-        <rect x="7.5" y="4" width="9" height="5" rx="1.2" fill="#d8002a" fillOpacity=".6" stroke="#d8002a" strokeWidth="1.3"/>
-      </svg>,
-    },
-    {
-      name:'Firebase', bg:'rgba(255,109,0,.12)', desc:'Mobile analytics',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M5.5 20L8 10l3.5 4L14 6l4.5 14H5.5z" fill="#ff6d00" fillOpacity=".3" stroke="#ff6d00" strokeWidth="1.3" strokeLinejoin="round"/>
-        <path d="M5.5 20L11 8l3 6" stroke="#ff9800" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-        <path d="M14 6l4.5 14" stroke="#ff6d00" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
-      </svg>,
-    },
-    {
-      name:'Segment', bg:'rgba(82,189,149,.12)', desc:'Customer data',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" stroke="#52bd95" strokeWidth="1.5" fill="none"/>
-        <path d="M8 12a4 4 0 0 1 4-4 4 4 0 0 1 2.83 1.17" stroke="#52bd95" strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M16 12a4 4 0 0 1-4 4 4 4 0 0 1-2.83-1.17" stroke="#52bd95" strokeWidth="1.5" strokeLinecap="round"/>
-        <circle cx="17" cy="9" r="1.5" fill="#52bd95"/>
-      </svg>,
-    },
-    {
-      name:'Hotjar', bg:'rgba(252,80,29,.12)', desc:'Session insights',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" fill="#fc501d" fillOpacity=".15" stroke="#fc501d" strokeWidth="1.4"/>
-        <path d="M12 5c-2 4 4 5 0 14" stroke="#fc501d" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-      </svg>,
-    },
-    {
-      name:'FullStory', bg:'rgba(255,86,57,.12)', desc:'Session replay',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" fill="#ff5639" fillOpacity=".18" stroke="#ff5639" strokeWidth="1.4"/>
-        <path d="M10 8.5l5 3.5-5 3.5z" fill="#ff5639"/>
-      </svg>,
-    },
-    {
-      name:'Pendo', bg:'rgba(255,79,124,.12)', desc:'In-app guidance',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M7 4h7a5 5 0 0 1 0 10h-4v6H7V4z" fill="#ff4f7c" fillOpacity=".2" stroke="#ff4f7c" strokeWidth="1.5" strokeLinejoin="round"/>
-        <circle cx="14" cy="9" r="2" fill="#ff4f7c"/>
-      </svg>,
-    },
-    {
-      name:'Productboard', bg:'rgba(25,118,210,.12)', desc:'Roadmap & feedback',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="3" width="18" height="18" rx="3" stroke="#1976d2" strokeWidth="1.5" fill="#1976d2" fillOpacity=".15"/>
-        <rect x="6" y="6" width="3" height="12" rx="1" fill="#1976d2"/>
-        <rect x="11" y="6" width="3" height="8" rx="1" fill="#1976d2" fillOpacity=".7"/>
-        <rect x="16" y="6" width="2.5" height="5" rx="1" fill="#1976d2" fillOpacity=".5"/>
-      </svg>,
-    },
-    {
-      name:'Jira', bg:'rgba(38,132,255,.12)', desc:'Issue tracking',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M11 2L21 12l-10 10-4-4 6-6-6-6z" fill="#2684ff" fillOpacity=".25" stroke="#2684ff" strokeWidth="1.4" strokeLinejoin="round"/>
-        <path d="M7 6l6 6-6 6" stroke="#2684ff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-      </svg>,
-    },
-    {
-      name:'Linear', bg:'rgba(94,106,210,.12)', desc:'Issue tracking',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" fill="#5e6ad2" fillOpacity=".15" stroke="#5e6ad2" strokeWidth="1.3"/>
-        <path d="M5 13l6 6M5 9l10 10M5 5l14 14M9 5l10 10M13 5l6 6" stroke="#5e6ad2" strokeWidth="1.4" strokeLinecap="round"/>
-      </svg>,
-    },
-    {
-      name:'LaunchDarkly', bg:'rgba(64,91,255,.12)', desc:'Feature flags',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M5 3v18M5 4c4 0 6 3 10 3 2 0 4-.5 4-.5v8s-2 .5-4 .5c-4 0-6-3-10-3" fill="#405bff" fillOpacity=".22" stroke="#405bff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>,
-    },
-    {
-      name:'Optimizely', bg:'rgba(0,125,197,.12)', desc:'A/B testing',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" stroke="#007dc5" strokeWidth="1.5" fill="none"/>
-        <path d="M12 2a10 10 0 0 1 10 10" stroke="#007dc5" strokeWidth="3" strokeLinecap="round" fill="none"/>
-        <circle cx="12" cy="12" r="2" fill="#007dc5"/>
-      </svg>,
-    },
-    {
-      name:'Intercom', bg:'rgba(40,110,241,.12)', desc:'Customer feedback',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <rect x="2" y="2" width="20" height="20" rx="5" fill="#286ef1" fillOpacity=".18"/>
-        <rect x="2" y="2" width="20" height="20" rx="5" stroke="#286ef1" strokeWidth="1.5" fill="none"/>
-        <circle cx="8" cy="12" r="1.5" fill="#286ef1"/>
-        <circle cx="12" cy="12" r="1.5" fill="#286ef1"/>
-        <circle cx="16" cy="12" r="1.5" fill="#286ef1"/>
-      </svg>,
-    },
-    {
-      name:'Notion', bg:'var(--ins-color-white-a-06)', desc:'Specs & docs',
-      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="3" width="18" height="18" rx="2.5" fill="#fff" fillOpacity=".06" stroke="var(--ins-color-gray-100)" strokeWidth="1.4"/>
-        <path d="M8 7v10M8 7l8 10M16 7v10" stroke="var(--ins-color-gray-100)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>,
-    },
+    { name:'Amplitude',   desc:'Product analytics' },
+    { name:'Segment',     desc:'Customer data' },
+    { name:'Google Analytics', desc:'Web analytics' },
+    { name:'FullStory',   desc:'Session replay' },
+    { name:'Intercom',    desc:'Customer messaging' },
+    { name:'Zendesk',     desc:'Support tickets' },
+    { name:'Jira',        desc:'Issue tracking' },
+    { name:'GitHub',      desc:'Source & releases' },
+    { name:'Slack',       desc:'Team comms' },
+    { name:'Notion',      desc:'Specs & docs' },
+    { name:'Salesforce',  desc:'CRM data' },
+    { name:'HubSpot',     desc:'CRM data' },
+    { name:'Stripe',      desc:'Billing data' },
+    { name:'Snowflake',   desc:'Data warehouse' },
+    { name:'BigQuery',    desc:'Cloud analytics' },
+    { name:'PostgreSQL',  desc:'Database' },
   ];
 
   return (
@@ -476,9 +293,7 @@ function RelevantIntegrations() {
         <div data-connectors-grid style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'10px',marginBottom:'var(--ins-size-8)'}}>
           {connectors.map((c,i) => (
             <div key={i} className="connector-card">
-              <div className="connector-icon" style={{background:c.bg, display:'flex', alignItems:'center', justifyContent:'center'}}>
-                {c.icon}
-              </div>
+              <ConnectorIcon name={c.name} size={32} />
               <div>
                 <div style={{fontSize:'13px',fontWeight:500,color:'var(--ins-color-gray-100)'}}>{c.name}</div>
                 <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-inactive)',marginTop:'var(--ins-size-half)'}}>{c.desc}</div>
