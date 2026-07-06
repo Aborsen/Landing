@@ -11,7 +11,7 @@ import ComparisonCards from '../components/ComparisonCards';
 import TestimonialCard from '../components/TestimonialCard';
 import SectionHeader from '../components/SectionHeader';
 import CheckIcon from '../components/CheckIcon';
-import ConnectorIcon from '../components/ConnectorIcon';
+import ConnectorCard from '../components/ConnectorCard';
 import HeroMockup from '../components/HeroMockup';
 
 const ArrowRightIcon = () => (
@@ -184,57 +184,6 @@ function Hero() {
   );
 }
 
-/* ── PAIN POINTS ── */
-function PainPoints() {
-  const pains = [
-    {
-      title: '90% of requests are repetitive',
-      body: 'Your team spends most of its time answering the same questions from sales, marketing, and product — questions that should be self-serve but aren\'t.',
-    },
-    {
-      title: 'Every team defines metrics differently',
-      body: 'Marketing defines CAC one way. Finance defines it another. Without a governed Semantic Layer, every team has their own version of the truth.',
-    },
-    {
-      title: 'Pipeline monitoring is reactive',
-      body: 'You find out about data freshness issues and pipeline failures when a stakeholder complains that their dashboard is showing wrong numbers.',
-    },
-    {
-      title: 'Ad hoc SQL requests never stop',
-      body: 'Every strategic question that can\'t be answered by an existing dashboard becomes an ad hoc SQL ticket. The backlog grows faster than it can be cleared.',
-    },
-    {
-      title: 'Schema drift breaks things silently',
-      body: 'When an upstream source changes a column name, your downstream models break — and nobody notices until a key metric drops to zero.',
-    },
-    {
-      title: 'You can\'t show ROI on the data platform',
-      body: 'Leadership asks what the data team delivered this quarter. You know you unblocked dozens of decisions, but quantifying that impact is nearly impossible.',
-    },
-  ];
-
-  return (
-    <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'var(--ins-size-14)'}}>
-          <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
-            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>The Problem</span>
-          </div>
-          <h2 className="ins-text-display mb-3">
-            Data teams spend 80% of time on reporting
-          </h2>
-          <p className="ins-text-body-lg" style={{maxWidth:'460px',margin:'0 auto'}}>
-            Sound familiar? These are the problems Insightis eliminates.
-          </p>
-        </div>
-
-        <PainPointGrid items={pains} />
-      </div>
-    </section>
-  );
-}
-
 /* ── RELEVANT INTEGRATIONS ── */
 function RelevantIntegrations() {
   const connectors = [
@@ -270,13 +219,7 @@ function RelevantIntegrations() {
 
         <div data-connectors-grid style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'10px',marginBottom:'var(--ins-size-8)'}}>
           {connectors.map((c,i) => (
-            <div key={i} className="connector-card">
-              <ConnectorIcon name={c.name} size={32} />
-              <div>
-                <div style={{fontSize:'13px',fontWeight:500,color:'var(--ins-color-gray-100)'}}>{c.name}</div>
-                <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-inactive)',marginTop:'var(--ins-size-half)'}}>{c.desc}</div>
-              </div>
-            </div>
+            <ConnectorCard key={i} name={c.name} desc={c.desc} />
           ))}
         </div>
 
@@ -298,46 +241,6 @@ function RelevantIntegrations() {
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
           </a>
         </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── METRICS ── */
-function Metrics() {
-  const metrics = [
-    'Data Freshness','Pipeline Run Time','Model Coverage','Query Success Rate',
-    'Schema Drift Alerts','Lineage Coverage','Data Quality Score','SLA Compliance',
-    'Self-Serve Rate','Ticket Deflection','Query Volume','P95 Query Latency',
-    'Table Row Counts','Pipeline Failure Rate','Cost per Query','Data Utilization Rate',
-    'dbt Model Coverage','Sync Lag','Error Rate','Warehouse Spend',
-  ];
-
-  return (
-    <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'var(--ins-size-12)'}}>
-          <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
-            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>Metrics That Matter</span>
-          </div>
-          <h2 className="ins-text-display mb-3">
-            Every KPI a data team monitors
-          </h2>
-          <p className="ins-text-body-lg" style={{maxWidth:'460px',margin:'0 auto'}}>
-            Ask about any of these — or any metric you define — in plain English.
-          </p>
-        </div>
-
-        <div style={{display:'flex',flexWrap:'wrap',gap:'10px',justifyContent:'center',marginBottom:'var(--ins-size-7)'}}>
-          {metrics.map((m,i) => (
-            <span key={i} className="metric-pill">{m}</span>
-          ))}
-        </div>
-
-        <p className="ins-text-body-sm ins-text--muted ins-text--mono ins-text--italic" style={{textAlign:'center'}}>
-          These are just examples — ask about any metric in plain English.
-        </p>
       </div>
     </section>
   );
@@ -461,15 +364,15 @@ function SpotlightChat() {
           ))}
         </div>
         <div style={{flex:1,textAlign:'center',fontSize:'var(--ins-font-size-12)',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>
-          self-serve · marketing
+          self-serve · analytics
         </div>
       </div>
       <div style={{padding:'22px 18px',display:'flex',flexDirection:'column',gap:'var(--ins-size-3)',flex:1,justifyContent:'center'}}>
         <div className="chat-bubble-user">
-          What's our blended CAC by channel for Q1?
+          Which customer segment has the highest churn?
         </div>
         <div className="chat-bubble-ai">
-          Blended CAC for Q1 across paid channels: $148. Paid Search $132, Paid Social $164, Display $189. Sourced from <span style={{color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-12)'}}>marketing.fct_cac</span> — governed by your Semantic Layer.
+          SMB monthly plans churn highest at 4.8%/mo — 2.1× the enterprise rate. Annual contracts hold at 1.3%. Sourced from <span style={{color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-12)'}}>billing.fct_churn</span> — governed by your Semantic Layer.
         </div>
       </div>
     </div>
@@ -503,7 +406,7 @@ function SpotlightSemantic() {
       display:'flex',
       flexDirection:'column',
     }}>
-      <ChromeHeader label="semantic layer · cac" />
+      <ChromeHeader label="semantic layer · churn" />
       <div style={{padding:'26px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'18px'}}>
           <div style={{display:'flex',alignItems:'center',gap:'10px'}}>
@@ -511,7 +414,7 @@ function SpotlightSemantic() {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.8"><path d="M3 6h18M3 12h18M3 18h12"/></svg>
             </div>
             <div>
-              <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-14)',color:'var(--ins-color-gray-100)',fontWeight:500}}>customer_acquisition_cost</div>
+              <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-14)',color:'var(--ins-color-gray-100)',fontWeight:500}}>churn_rate</div>
               <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-inactive)',marginTop:'var(--ins-size-half)'}}>Owned by Data Engineering · v3.2</div>
             </div>
           </div>
@@ -537,11 +440,11 @@ function SpotlightSemantic() {
           lineHeight:1.6,
           color:'var(--ins-text-body)',
         }}>
-          <span style={{color:'var(--ins-text-body)'}}>SUM</span>(<span style={{color:'var(--ins-text-highlight)'}}>marketing_spend</span>) <span style={{color:'var(--ins-text-body)'}}>/</span> <span style={{color:'var(--ins-text-body)'}}>COUNT</span>(<span style={{color:'var(--ins-text-highlight)'}}>new_customers</span>)
+          <span style={{color:'var(--ins-text-body)'}}>COUNT</span>(<span style={{color:'var(--ins-text-highlight)'}}>churned_customers</span>) <span style={{color:'var(--ins-text-body)'}}>/</span> <span style={{color:'var(--ins-text-body)'}}>COUNT</span>(<span style={{color:'var(--ins-text-highlight)'}}>starting_customers</span>)
         </div>
         <div style={{display:'flex',flexDirection:'column',gap:'var(--ins-size-2)'}}>
           {[
-            {label:'Source', val:'marketing.fct_spend, sales.dim_customers'},
+            {label:'Source', val:'warehouse.fct_subscriptions, crm.dim_customers'},
             {label:'Lineage', val:'Snowflake → Semantic Layer → Insightis'},
             {label:'Used by', val:'17 reports · 4 teams'},
           ].map((row,i) => (
@@ -765,7 +668,7 @@ function FeatureSpotlights() {
       eyebrow:'Semantic Layer',
       title:'One source of truth',
       body:'Marketing and Finance define CAC differently. With a governed Semantic Layer, every team works from the same numbers — owned and versioned.',
-      bullets:['One certified definition per metric','Versioning, ownership, and lineage built in'],
+      bullets:['One certified definition per metric','Version control for every metric definition'],
       visual:<SpotlightSemantic />,
     },
     {

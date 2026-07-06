@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import Button from '../components/Button';
 import { INTEGRATIONS } from '../components/IntegrationsStrip';
 import ConnectorIcon from '../components/ConnectorIcon';
+import ConnectorCard from '../components/ConnectorCard';
 import { CONNECTORS as MASTER_CONNECTORS } from '../data/connectors';
 import Card from '../components/Card';
 import Chip from '../components/Chip';
@@ -528,22 +529,7 @@ function ConnectorsGallery() {
           {AUDIENCE_TABS[activeCat].map((c, i) => {
             const master = MASTER_CONNECTORS.find(m => m.name === c.name);
             return (
-            <div key={`${activeCat}-${i}-${c.name}`} className="connector-card has-overlay">
-              <ConnectorIcon name={c.name} slug={master?.slug} domain={master?.domain} bg="var(--ins-color-white-a-04)" size={32}/>
-              <div style={{minWidth:0}}>
-                <div className="ins-text-h4" style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{c.name}</div>
-              </div>
-              <div className="connector-overlay">
-                <a className="overlay-btn primary" href="/auth/sign-in/" onClick={(e) => e.stopPropagation()}>
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
-                    <polyline points="10 17 15 12 10 7"/>
-                    <line x1="15" y1="12" x2="3" y2="12"/>
-                  </svg>
-                  Sign in to connect
-                </a>
-              </div>
-            </div>
+            <ConnectorCard key={`${activeCat}-${i}-${c.name}`} name={c.name} slug={master?.slug} domain={master?.domain} />
             );
           })}
         </div>

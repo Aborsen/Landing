@@ -42,9 +42,11 @@ export default function Footer() {
   return (
     <footer className="pt-16 pb-8 border-t border-border-strong">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row gap-10 md:gap-16 mb-14 items-start">
+        {/* Row layout only from lg — at md widths (768–1023px) the five link
+            columns don't fit next to the brand block and get clipped (QA #1). */}
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 mb-14 items-start">
           {/* Brand */}
-          <div className="shrink-0 md:w-[220px]">
+          <div className="shrink-0 lg:w-[220px]">
             <a href="/" aria-label="Insightis home" className="flex items-center gap-2.5 mb-4">
               <Logo height={26}/>
             </a>
@@ -53,7 +55,7 @@ export default function Footer() {
           </div>
 
           {/* 5 text columns — pushed to the right edge */}
-          <div className="md:ml-auto grid grid-cols-2 gap-8 md:flex md:flex-row md:gap-16">
+          <div className="lg:ml-auto grid grid-cols-2 gap-8 lg:flex lg:flex-row lg:gap-16">
 
             {/* Platform */}
             <div>

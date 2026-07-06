@@ -8,10 +8,12 @@ const ArrowRightIcon = () => (
 /**
  * BottomCTA — flagship organism for the above-footer call-to-action section.
  *
- * Three variants:
+ * Four variants:
  *   - "form"    : title + form-input + submit button (16 page-level uses)
  *   - "buttons" : title + primary CTA + optional secondary CTA (pricing-style)
  *   - "text"    : title + single CTA button (no form, no secondary)
+ *   - "row"     : one-line banner — title (with trustNote beneath it) on the
+ *                 left, primary CTA button on the right
  *
  * Text-preservation principle: every call site supplies its own title,
  * input placeholder, button labels, and form action. The component is a
@@ -29,6 +31,8 @@ const ArrowRightIcon = () => (
  *  ctaHref            string — form action / anchor href (default: "/auth/sign-up/")
  *  secondaryCtaLabel  string — for "buttons" variant
  *  secondaryCtaHref   string — for "buttons" variant
+ *  trustNote          string — optional one-line reassurance strip rendered
+ *                     under the actions (e.g. "Free plan · No credit card")
  *  className          string — extra classes on outer .ins-bottom-cta
  *  style              object — extra inline styles
  *
@@ -58,6 +62,7 @@ function BottomCTA({
   ctaHref = '/auth/sign-up/',
   secondaryCtaLabel,
   secondaryCtaHref,
+  trustNote,
   className = '',
   style,
   ...rest
@@ -70,7 +75,14 @@ function BottomCTA({
 
   return (
     <div className={classes} style={style} {...rest}>
-      <h2 className="ins-bottom-cta__title">{title}</h2>
+      {variant !== 'row' && <h2 className="ins-bottom-cta__title">{title}</h2>}
+
+      {variant === 'row' && (
+        <div className="ins-bottom-cta__lead">
+          <h2 className="ins-bottom-cta__title">{title}</h2>
+          {trustNote && <p className="ins-bottom-cta__note">{trustNote}</p>}
+        </div>
+      )}
 
       {variant === 'form' && (
         <form
@@ -134,6 +146,24 @@ function BottomCTA({
             {ctaLabel}
           </Button>
         </div>
+      )}
+
+      {variant === 'row' && (
+        <div className="ins-bottom-cta__actions">
+          <Button
+            as="a"
+            href={ctaHref}
+            variant="primary"
+            size="lg"
+            iconEnd={<ArrowRightIcon />}
+          >
+            {ctaLabel}
+          </Button>
+        </div>
+      )}
+
+      {trustNote && variant !== 'row' && (
+        <p className="ins-bottom-cta__note">{trustNote}</p>
       )}
     </div>
   );

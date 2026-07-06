@@ -348,7 +348,7 @@ const PROMPTS = [
 ];
 
 /* ── PROMPT LIBRARY SIDEBAR ── */
-function PromptLibrarySidebar({ selectedTeams, toggleTeam, clearAll }) {
+function PromptLibrarySidebar({ selectedTeams, toggleTeam, clearAll, mobileOpen = false }) {
   const [openTeams, setOpenTeams] = useState(true);
   const total = selectedTeams.size;
 
@@ -394,7 +394,7 @@ function PromptLibrarySidebar({ selectedTeams, toggleTeam, clearAll }) {
   );
 
   return (
-    <aside className="prompt-sidebar-col">
+    <aside className={'prompt-sidebar-col' + (mobileOpen ? ' is-open' : '')}>
       {/* Reserve fixed-height slot so the Teams list does not shift when a filter is selected */}
       <div style={{ padding:'0 16px 14px', minHeight:'42px' }}>
         <button
@@ -849,6 +849,8 @@ function App() {
   // Only one prompt can be expanded at a time — clicking a second prompt
   // collapses the first.
   const [expandedTitle, setExpandedTitle] = useState(null);
+  // Mobile-only (≤900px): whether the filters panel is expanded.
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const toggleExpand = (title) =>
     setExpandedTitle(prev => (prev === title ? null : title));
 
@@ -876,10 +878,24 @@ function App() {
       <main>
       <PromptLibraryHero />
       <div className="prompt-layout">
+        {/* Mobile-only toggle for the team filters (QA #3) */}
+        <button
+          type="button"
+          className="prompt-filters-toggle"
+          onClick={() => setFiltersOpen(o => !o)}
+          aria-expanded={filtersOpen}
+        >
+          Filters{selectedTeams.size > 0 ? ` (${selectedTeams.size})` : ''}
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+            style={{ transition: 'transform .15s', transform: filtersOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
         <PromptLibrarySidebar
           selectedTeams={selectedTeams}
           toggleTeam={toggleTeam}
           clearAll={clearAll}
+          mobileOpen={filtersOpen}
         />
         <div className="prompt-content">
           <SearchInput

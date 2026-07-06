@@ -8,7 +8,7 @@ import BottomCTA from '../components/BottomCTA';
 import FAQAccordion from '../components/FAQAccordion';
 import SectionHeader from '../components/SectionHeader';
 import CheckIcon from '../components/CheckIcon';
-import ConnectorIcon from '../components/ConnectorIcon';
+import ConnectorCard from '../components/ConnectorCard';
 import HeroMockup from '../components/HeroMockup';
 
 const ArrowRightIcon = () => (
@@ -216,13 +216,7 @@ function RelevantIntegrations() {
 
         <div data-connectors-grid style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'10px',marginBottom:'var(--ins-size-8)'}}>
           {connectors.map((c,i) => (
-            <div key={i} className="connector-card">
-              <ConnectorIcon name={c.name} size={32} />
-              <div>
-                <div style={{fontSize:'13px',fontWeight:500,color:'var(--ins-color-gray-100)'}}>{c.name}</div>
-                <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-inactive)',marginTop:'var(--ins-size-half)'}}>{c.desc}</div>
-              </div>
-            </div>
+            <ConnectorCard key={i} name={c.name} desc={c.desc} />
           ))}
         </div>
 
@@ -256,7 +250,7 @@ function BottomCTASection() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
           variant="form"
-          title={<>Stop building <BottomCTA.Highlight>reports.</BottomCTA.Highlight> Start getting <BottomCTA.Highlight> answers.</BottomCTA.Highlight></>}
+          title={<>Stop waiting on <BottomCTA.Highlight>decks.</BottomCTA.Highlight> Start seeing <BottomCTA.Highlight> live numbers.</BottomCTA.Highlight></>}
           inputPlaceholder="Show me ARR vs target..."
           ctaLabel="Get started"
         />
@@ -585,24 +579,24 @@ function FeatureSpotlights() {
       visual:<SpotlightChat />,
     },
     {
-      eyebrow:'Certified Metrics',
+      eyebrow:'Board Metrics',
       title:'One definition for ARR, NRR, and runway',
       body:'Finance, the board, and the founder shouldn\'t argue about whose number is right. Insightis aligns ARR, NRR, and runway under a single certified definition the whole company trusts.',
-      bullets:['ARR, NRR, and runway agreed across the company','Versioning, ownership, and lineage built in'],
+      bullets:['ARR, NRR, and runway agreed across the company','One certified number for every board metric'],
       visual:<SpotlightSemantic />,
     },
     {
-      eyebrow:'Risk & Anomaly Detection',
+      eyebrow:'KPI Risk Watch',
       title:'Spot KPI risk before the board call',
       body:'Insightis scans every answer for churn spikes, NRR dips, and burn drift — risks surface inline, so nothing surprises you in front of the board.',
       bullets:['Churn and KPI risk flagged inside every answer','Unusual burn or retention movement called out'],
       visual:<SpotlightAnomalies />,
     },
     {
-      eyebrow:'Trace to Source',
+      eyebrow:'Full Lineage',
       title:'Board-ready answers, with full lineage',
       body:'Every number carries its sources, owners, and timestamps — the board and your finance team see the same trail, with no reconciliation pass before the meeting.',
-      bullets:['Full lineage from metric down to the source system','Owner, timestamp, and version stamped on every figure'],
+      bullets:['Full lineage from metric down to the source system','Every figure shows its owner and last change'],
       visual:<SpotlightStack />,
     },
   ];

@@ -8,7 +8,7 @@ import BottomCTA from '../components/BottomCTA';
 import FAQAccordion from '../components/FAQAccordion';
 import SectionHeader from '../components/SectionHeader';
 import CheckIcon from '../components/CheckIcon';
-import ConnectorIcon from '../components/ConnectorIcon';
+import ConnectorCard from '../components/ConnectorCard';
 import HeroMockup from '../components/HeroMockup';
 
 const ArrowRightIcon = () => (
@@ -109,7 +109,7 @@ function Hero() {
                       }}>
                         {s.done && <svg width="6" height="6" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
                       </div>
-                      <span style={{fontSize:'10.5px',color:s.done?'var(--ins-text-body)':'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)'}}>{s.step}</span>
+                      <span style={{fontSize:'10.5px',lineHeight:1,color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)'}}>{s.step}</span>
                     </div>
                   ))}
                 </div>
@@ -900,13 +900,7 @@ function RelevantIntegrations() {
 
         <div data-connectors-grid style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'10px',marginBottom:'var(--ins-size-8)'}}>
           {connectors.map((c,i) => (
-            <div key={i} className="connector-card">
-              <ConnectorIcon name={c.name} size={32} />
-              <div>
-                <div style={{fontSize:'13px',fontWeight:500,color:'var(--ins-color-gray-100)'}}>{c.name}</div>
-                <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-inactive)',marginTop:'var(--ins-size-half)'}}>{c.desc}</div>
-              </div>
-            </div>
+            <ConnectorCard key={i} name={c.name} desc={c.desc} />
           ))}
         </div>
 

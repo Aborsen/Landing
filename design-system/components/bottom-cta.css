@@ -144,7 +144,8 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: var(--ins-space-4xl) var(--ins-space-xl);
+  gap: var(--ins-space-lg);
+  padding: var(--ins-space-2xl) var(--ins-space-xl);
 }
 .ins-bottom-cta--buttons .ins-bottom-cta__actions,
 .ins-bottom-cta--text .ins-bottom-cta__actions {
@@ -157,6 +158,40 @@
 .ins-bottom-cta--text .ins-bottom-cta__title {
   text-align: center;
   font-size: var(--ins-font-size-28);
+}
+
+/* Optional one-line reassurance strip under the actions */
+.ins-bottom-cta__note {
+  margin-top: var(--ins-space-md);
+  font-size: var(--ins-font-size-12);
+  color: var(--ins-text-inactive);
+  letter-spacing: .02em;
+  text-align: center;
+}
+
+/* Row variant — one-line banner: title (with note beneath) left, CTA right.
+   Direction comes from the base class (column on mobile, row on desktop). */
+.ins-bottom-cta--row .ins-bottom-cta__lead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ins-space-sm);
+  min-width: 0;
+}
+.ins-bottom-cta--row .ins-bottom-cta__note {
+  margin-top: 0;
+}
+.ins-bottom-cta--row .ins-bottom-cta__actions {
+  display: flex;
+  flex-shrink: 0;
+}
+@media (min-width: 768px) {
+  .ins-bottom-cta--row .ins-bottom-cta__lead {
+    align-items: flex-start;
+  }
+  .ins-bottom-cta--row .ins-bottom-cta__note {
+    text-align: left;
+  }
 }
 @media (min-width: 768px) {
   .ins-bottom-cta--buttons .ins-bottom-cta__title,

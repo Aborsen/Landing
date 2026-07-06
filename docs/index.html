@@ -102,9 +102,61 @@ section { position: relative; }
   .docs-layout { grid-template-columns: 220px 1fr; }
   .docs-toc-col { display: none; }
 }
+/* Opt out of the global `main > *` content-visibility optimization: it makes
+   this wrapper a containing block, which would trap the mobile drawer's
+   position:fixed inside it instead of the viewport. */
+main > .docs-page-wrap { content-visibility: visible; contain-intrinsic-size: none; }
+
+/* Mobile docs nav (QA #2) — breadcrumb bar with a menu icon that opens the
+   navigation as a full-screen drawer. Hidden on desktop. */
+.docs-mobile-breadcrumb { display: none; }
+.docs-drawer-close { display: none; }
 @media (max-width: 768px) {
   .docs-layout { grid-template-columns: 1fr; }
   .docs-sidebar-col { display: none; }
+  .docs-mobile-breadcrumb {
+    display: flex; align-items: center; gap: 12px;
+    width: 100%; margin: 8px 0 0; padding: 12px 2px;
+    border-bottom: 1px solid rgba(255,255,255,0.055);
+    font-size: 14px; color: var(--ins-text-disabled);
+    min-width: 0;
+  }
+  .docs-mobile-breadcrumb__menu {
+    display: flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px; flex-shrink: 0;
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 8px;
+    color: var(--ins-text-body); cursor: pointer;
+  }
+  .docs-mobile-breadcrumb__trail {
+    display: flex; align-items: center; gap: 8px;
+    min-width: 0; white-space: nowrap; overflow: hidden;
+  }
+  .docs-mobile-breadcrumb__trail strong {
+    color: var(--ins-color-gray-100); font-weight: 500;
+    overflow: hidden; text-overflow: ellipsis;
+  }
+  .docs-sidebar-col.is-open {
+    display: block;
+    position: fixed; inset: 0; z-index: 80;
+    max-height: none; overflow-y: auto;
+    background: var(--ins-surface-page);
+    border-right: none;
+    padding: 12px 12px 32px;
+  }
+  /* While the drawer is open, lift the docs layout's stacking context above
+     the sticky site header (z-index 50) so the drawer fully covers it. */
+  .docs-layout:has(.docs-sidebar-col.is-open) { z-index: 90; }
+  .docs-drawer-close {
+    display: flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px;
+    margin: 4px 4px 12px auto;
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 8px;
+    color: var(--ins-text-body); cursor: pointer;
+  }
   .docs-content-col { padding: 24px 20px 60px; }
 }
 

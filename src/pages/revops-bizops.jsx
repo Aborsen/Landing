@@ -8,7 +8,7 @@ import BottomCTA from '../components/BottomCTA';
 import FAQAccordion from '../components/FAQAccordion';
 import SectionHeader from '../components/SectionHeader';
 import CheckIcon from '../components/CheckIcon';
-import ConnectorIcon from '../components/ConnectorIcon';
+import ConnectorCard from '../components/ConnectorCard';
 import HeroMockup from '../components/HeroMockup';
 
 const ArrowRightIcon = () => (
@@ -93,7 +93,7 @@ function Hero() {
                 <div style={{display:'flex',flexDirection:'column',gap:'3px'}}>
                   {[
                     {step:'Pipeline synced',   done:true},
-                    {step:'Metrics certified', done:true},
+                    {step:'Numbers signed off', done:true},
                     {step:'Forecast updated',  done:true},
                     {step:'QBR deck',          done:false},
                   ].map((s,i)=>(
@@ -106,7 +106,7 @@ function Hero() {
                       }}>
                         {s.done && <svg width="6" height="6" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
                       </div>
-                      <span style={{fontSize:'10.5px',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)'}}>{s.step}</span>
+                      <span style={{fontSize:'10.5px',lineHeight:1,color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)'}}>{s.step}</span>
                     </div>
                   ))}
                 </div>
@@ -199,13 +199,13 @@ function SpotlightChat() {
 
         {/* Inbox header */}
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'var(--ins-size-3)'}}>
-          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>requests · today</span>
+          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>revenue asks · today</span>
           <span style={{
             fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-status-success-fg)',
             padding:'2px 8px',borderRadius:'999px',
             background:'var(--ins-color-status-success-bg)',border:'1px solid rgba(34,197,94,.3)',
             letterSpacing:'.08em',textTransform:'uppercase',
-          }}>3 auto-answered</span>
+          }}>4 auto-answered</span>
         </div>
 
         {/* Expanded request: CFO */}
@@ -260,7 +260,7 @@ function SpotlightChat() {
 
         {/* Other auto-answered requests */}
         {[
-          {who:'Head of Sales',  init:'HS', q:'Win rate by segment this quarter?', when:'09:18', tone:'#A78BFA'},
+          {who:'VP Partnerships', init:'VP', q:'Win rate by segment this quarter?', when:'09:18', tone:'#A78BFA'},
           {who:'BizOps',         init:'BO', q:'CAC by channel since June?',        when:'08:55', tone:'var(--ins-status-warning-fg)'},
         ].map((r,i)=>(
           <div key={i} style={{
@@ -300,7 +300,7 @@ function SpotlightSemantic() {
   const versions = [
     {ver:'v3.2', state:'certified', owner:'RevOps',   when:'2 weeks ago',  note:'new logo + expansion − churn (full)'},
     {ver:'v3.0', state:'deprecated', owner:'RevOps',  when:'Q1 2026',       note:'missing mid-cycle expansion'},
-    {ver:'v2.4', state:'deprecated', owner:'Finance', when:'Q4 2025',       note:'bookings-based, not recognized'},
+    {ver:'v2.4', state:'deprecated', owner:'Sales Ops', when:'Q4 2025',       note:'bookings-based, not recognized'},
     {ver:'v1.0', state:'deprecated', owner:'Sales',   when:'Q2 2025',       note:'sales team\'s spreadsheet definition'},
   ];
   return (
@@ -318,7 +318,7 @@ function SpotlightSemantic() {
       <div style={{padding:'22px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
         {/* Eyebrow */}
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'14px'}}>
-          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>version history</span>
+          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>definition history</span>
           <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-body)'}}>4 revisions</span>
         </div>
 
@@ -409,7 +409,7 @@ function SpotlightAnomalies() {
       display:'flex',
       flexDirection:'column',
     }}>
-      <ChromeHeader label="watchlist · this week" />
+      <ChromeHeader label="watchlist · before the QBR" />
       <div style={{padding:'20px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
         {/* Eyebrow row */}
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'var(--ins-size-3)'}}>
@@ -528,8 +528,8 @@ function SpotlightStack() {
 
         {/* Trace eyebrow */}
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'7px'}}>
-          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>↳ trace to source</span>
-          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-body)'}}>4 components</span>
+          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>↳ drill to source</span>
+          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-body)'}}>4 revenue drivers</span>
         </div>
 
         {/* Lineage rows */}
@@ -608,24 +608,24 @@ function FeatureSpotlights() {
       visual:<SpotlightChat />,
     },
     {
-      eyebrow:'Certified Metrics',
-      title:'Every metric has one definition',
+      eyebrow:'Versioned Metrics',
+      title:'One revenue definition, versioned',
       body:'Sales, Finance, and Marketing each define MRR a little differently. Insightis aligns MRR, win rate, and CAC under a single certified definition the whole company trusts.',
-      bullets:['MRR, win rate, and CAC agreed across teams','Versioning, ownership, and lineage built in'],
+      bullets:['MRR, win rate, and CAC agreed across teams','Definition changes tracked with owner and date'],
       visual:<SpotlightSemantic />,
     },
     {
-      eyebrow:'Risk & Anomaly Detection',
+      eyebrow:'Pipeline Risk Alerts',
       title:'Spot revenue risk before the QBR',
       body:'Insightis scans every revenue answer for churn spikes, win-rate dips, and CAC drift — risks surface inline, not after the quarter has slipped.',
       bullets:['Churn and slippage flagged inside every answer','Unusual CAC or pipeline movement called out'],
       visual:<SpotlightAnomalies />,
     },
     {
-      eyebrow:'Trace to Source',
-      title:'Board-ready answers, all in one place',
+      eyebrow:'Deal-Level Audit',
+      title:'QBR-ready numbers, end to end',
       body:'Every number carries its deals, owners, and timestamps in one place — the board and finance see the same trail without a reconciliation pass.',
-      bullets:['Full lineage from metric down to the deal','Owner, timestamp, and version stamped on every figure'],
+      bullets:['Full lineage from metric down to the deal','Every number carries its owner and sign-off'],
       visual:<SpotlightStack />,
     },
   ];
@@ -820,13 +820,7 @@ function RelevantIntegrations() {
 
         <div data-connectors-grid style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'10px',marginBottom:'var(--ins-size-8)'}}>
           {connectors.map((c,i) => (
-            <div key={i} className="connector-card">
-              <ConnectorIcon name={c.name} size={32} />
-              <div>
-                <div style={{fontSize:'13px',fontWeight:500,color:'var(--ins-color-gray-100)'}}>{c.name}</div>
-                <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-inactive)',marginTop:'var(--ins-size-half)'}}>{c.desc}</div>
-              </div>
-            </div>
+            <ConnectorCard key={i} name={c.name} desc={c.desc} />
           ))}
         </div>
 
@@ -908,7 +902,7 @@ function BottomCTASection() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
           variant="form"
-          title={<>Stop building <BottomCTA.Highlight>reports.</BottomCTA.Highlight> Start getting <BottomCTA.Highlight> answers.</BottomCTA.Highlight></>}
+          title={<>Stop chasing <BottomCTA.Highlight>numbers.</BottomCTA.Highlight> Start trusting <BottomCTA.Highlight> them.</BottomCTA.Highlight></>}
           inputPlaceholder="Show me pipeline by stage..."
           ctaLabel="Get started"
         />

@@ -11,7 +11,7 @@ import ComparisonCards from '../components/ComparisonCards';
 import TestimonialCard from '../components/TestimonialCard';
 import SectionHeader from '../components/SectionHeader';
 import CheckIcon from '../components/CheckIcon';
-import ConnectorIcon from '../components/ConnectorIcon';
+import ConnectorCard from '../components/ConnectorCard';
 import HeroMockup from '../components/HeroMockup';
 
 const ArrowRightIcon = () => (
@@ -206,57 +206,6 @@ function Hero() {
   );
 }
 
-/* ── PAIN POINTS ── */
-function PainPoints() {
-  const pains = [
-    {
-      title: '90% of requests are repetitive',
-      body: 'Your team spends most of its time answering the same questions from sales, marketing, and product — questions that should be self-serve but aren\'t.',
-    },
-    {
-      title: 'Every team defines metrics differently',
-      body: 'Marketing defines CAC one way. Finance defines it another. Without a governed Semantic Layer, every team has their own version of the truth.',
-    },
-    {
-      title: 'Pipeline monitoring is reactive',
-      body: 'You find out about data freshness issues and pipeline failures when a stakeholder complains that their dashboard is showing wrong numbers.',
-    },
-    {
-      title: 'Ad hoc SQL requests never stop',
-      body: 'Every strategic question that can\'t be answered by an existing dashboard becomes an ad hoc SQL ticket. The backlog grows faster than it can be cleared.',
-    },
-    {
-      title: 'Schema drift breaks things silently',
-      body: 'When an upstream source changes a column name, your downstream models break — and nobody notices until a key metric drops to zero.',
-    },
-    {
-      title: 'You can\'t show ROI on the data platform',
-      body: 'Leadership asks what the data team delivered this quarter. You know you unblocked dozens of decisions, but quantifying that impact is nearly impossible.',
-    },
-  ];
-
-  return (
-    <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'var(--ins-size-14)'}}>
-          <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
-            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>The Problem</span>
-          </div>
-          <h2 className="ins-text-display mb-3">
-            Data teams spend 80% of time on reporting
-          </h2>
-          <p className="ins-text-body-lg" style={{maxWidth:'460px',margin:'0 auto'}}>
-            Sound familiar? These are the problems Insightis eliminates.
-          </p>
-        </div>
-
-        <PainPointGrid items={pains} />
-      </div>
-    </section>
-  );
-}
-
 /* ── RELEVANT INTEGRATIONS ── */
 function RelevantIntegrations() {
   const connectors = [
@@ -292,13 +241,7 @@ function RelevantIntegrations() {
 
         <div data-connectors-grid style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'10px',marginBottom:'var(--ins-size-8)'}}>
           {connectors.map((c,i) => (
-            <div key={i} className="connector-card">
-              <ConnectorIcon name={c.name} size={32} />
-              <div>
-                <div style={{fontSize:'13px',fontWeight:500,color:'var(--ins-color-gray-100)'}}>{c.name}</div>
-                <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-inactive)',marginTop:'var(--ins-size-half)'}}>{c.desc}</div>
-              </div>
-            </div>
+            <ConnectorCard key={i} name={c.name} desc={c.desc} />
           ))}
         </div>
 
@@ -320,46 +263,6 @@ function RelevantIntegrations() {
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
           </a>
         </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── METRICS ── */
-function Metrics() {
-  const metrics = [
-    'Data Freshness','Pipeline Run Time','Model Coverage','Query Success Rate',
-    'Schema Drift Alerts','Lineage Coverage','Data Quality Score','SLA Compliance',
-    'Self-Serve Rate','Ticket Deflection','Query Volume','P95 Query Latency',
-    'Table Row Counts','Pipeline Failure Rate','Cost per Query','Data Utilization Rate',
-    'dbt Model Coverage','Sync Lag','Error Rate','Warehouse Spend',
-  ];
-
-  return (
-    <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'var(--ins-size-12)'}}>
-          <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
-            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>Metrics That Matter</span>
-          </div>
-          <h2 className="ins-text-display mb-3">
-            Every KPI a data team monitors
-          </h2>
-          <p className="ins-text-body-lg" style={{maxWidth:'460px',margin:'0 auto'}}>
-            Ask about any of these — or any metric you define — in plain English.
-          </p>
-        </div>
-
-        <div style={{display:'flex',flexWrap:'wrap',gap:'10px',justifyContent:'center',marginBottom:'var(--ins-size-7)'}}>
-          {metrics.map((m,i) => (
-            <span key={i} className="metric-pill">{m}</span>
-          ))}
-        </div>
-
-        <p className="ins-text-body-sm ins-text--muted ins-text--mono ins-text--italic" style={{textAlign:'center'}}>
-          These are just examples — ask about any metric in plain English.
-        </p>
       </div>
     </section>
   );
@@ -419,45 +322,6 @@ function BottomCTASection() {
           inputPlaceholder="Show me feature adoption..."
           ctaLabel="Get started"
         />
-      </div>
-    </section>
-  );
-}
-
-/* ── POSITIONING BAND ── */
-function Positioning() {
-  return (
-    <section style={{
-      padding:'56px 0 64px',
-      position:'relative',
-      background:'radial-gradient(ellipse 60% 60% at 50% 50%, rgba(9,160,157,.05) 0%, transparent 70%)',
-    }}>
-      <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px',textAlign:'center'}}>
-        <h2 style={{
-          fontSize:'clamp(26px,3.4vw,38px)',
-          fontWeight:500,
-          color:'var(--ins-text-heading)',
-          letterSpacing:'-.025em',
-          lineHeight:1.2,
-          marginBottom:'18px',
-        }}>
-          Stop being a <span style={{color:'var(--ins-text-highlight)'}}>reporting service.</span> Start doing <span style={{color:'var(--ins-text-highlight)'}}>real analysis.</span>
-        </h2>
-        <p className="ins-text-body-lg" style={{marginBottom:'var(--ins-size-7)'}}>
-          Sound familiar? These are the problems Insightis eliminates.
-        </p>
-        <a href="#spotlights" style={{
-          display:'inline-flex',alignItems:'center',gap:'var(--ins-size-2)',
-          padding:'10px 20px',borderRadius:'999px',
-          border:'1px solid var(--ins-color-white-a-12)',
-          color:'var(--ins-text-body)',fontSize:'var(--ins-font-size-14)',fontWeight:400,
-          textDecoration:'none',
-          background:'var(--ins-color-white-a-03)',
-          transition:'all .2s',
-        }}>
-          See how it works
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14"/><path d="M19 12l-7 7-7-7"/></svg>
-        </a>
       </div>
     </section>
   );
@@ -863,14 +727,14 @@ function FeatureSpotlights() {
       eyebrow:'Activation Metrics',
       title:'One definition per metric',
       body:'Marketing counts trials, CS counts logins, Product counts core actions. Define each metric once — owned, versioned, and used everywhere.',
-      bullets:['One certified definition per metric','Versioning, ownership, and lineage built in'],
+      bullets:['Certify a metric once, reuse it everywhere','Owned definitions with full change history'],
       visual:<SpotlightSemantic />,
     },
     {
       eyebrow:'Cohort Anomaly Detection',
       title:'Spot the breaking cohort early',
       body:'Insightis scans every answer for the cohort, segment, or platform pulling a metric the wrong way — surfaced inline, not on a dashboard you forgot to open.',
-      bullets:['Outliers flagged inside every answer','Cohort and segment breakdowns automatically'],
+      bullets:['Unusual movement surfaced as you ask','Cohort and segment breakdowns automatically'],
       visual:<SpotlightAnomalies />,
     },
     {

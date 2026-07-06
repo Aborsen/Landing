@@ -8,7 +8,7 @@ import BottomCTA from '../components/BottomCTA';
 import FAQAccordion from '../components/FAQAccordion';
 import SectionHeader from '../components/SectionHeader';
 import CheckIcon from '../components/CheckIcon';
-import ConnectorIcon from '../components/ConnectorIcon';
+import ConnectorCard from '../components/ConnectorCard';
 import HeroMockup from '../components/HeroMockup';
 
 const ArrowRightIcon = () => (
@@ -272,7 +272,7 @@ function SpotlightSemantic() {
       <div style={{padding:'22px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
         {/* Section eyebrow */}
         <div style={{textAlign:'center',marginBottom:'var(--ins-size-3)'}}>
-          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>three teams · three definitions</span>
+          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>three platforms · three numbers</span>
         </div>
 
         {/* Three conflicting team definitions */}
@@ -316,7 +316,7 @@ function SpotlightSemantic() {
               letterSpacing:'.06em',textTransform:'uppercase',
             }}>
               <span style={{width:'5px',height:'5px',borderRadius:'50%',background:'var(--ins-status-success-fg)'}}/>
-              Certified · v2.4
+              Certified · v3.1
             </span>
           </div>
           <div style={{
@@ -334,7 +334,7 @@ function SpotlightSemantic() {
           </div>
           <div style={{display:'flex',justifyContent:'space-between',gap:'10px',fontSize:'10.5px',color:'var(--ins-text-body)'}}>
             <span><span style={{color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.06em',textTransform:'uppercase',fontSize:'9px',marginRight:'5px'}}>Owned</span>Marketing Ops</span>
-            <span><span style={{color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.06em',textTransform:'uppercase',fontSize:'9px',marginRight:'5px'}}>Used by</span>12 reports · 3 teams</span>
+            <span><span style={{color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.06em',textTransform:'uppercase',fontSize:'9px',marginRight:'5px'}}>Used by</span>9 dashboards · 4 channels</span>
           </div>
         </div>
       </div>
@@ -553,21 +553,21 @@ function FeatureSpotlights() {
       visual:<SpotlightChat />,
     },
     {
-      eyebrow:'Certified Metrics',
+      eyebrow:'One Attribution Model',
       title:'One attribution model everyone trusts',
       body:'Demand Gen counts last-touch, Brand counts first-touch, Finance counts blended CAC. Insightis aligns ROAS and CAC under one certified attribution model the whole company trusts.',
       bullets:['ROAS and CAC agreed across teams','Attribution model defined once, applied everywhere'],
       visual:<SpotlightSemantic />,
     },
     {
-      eyebrow:'Risk & Anomaly Detection',
+      eyebrow:'CAC Drift Alerts',
       title:'Catch CAC drift before quarter-end',
       body:'Insightis scans every answer for the channel quietly running CAC up or letting ROAS decay — surfaced inline, not on a dashboard you only open at the QBR.',
       bullets:['CAC drift and channel decline flagged inside every answer','Channel and platform breakdowns automatically'],
       visual:<SpotlightAnomalies />,
     },
     {
-      eyebrow:'Trace to Source',
+      eyebrow:'Spend Lineage',
       title:'Every number traced to the spend',
       body:'Every ROAS and CAC figure carries its channels, spend, and timestamps in one place — finance and the board see the same trail without a reconciliation pass.',
       bullets:['Full lineage from metric down to the campaign','Channel, spend, and timestamp stamped on every figure'],
@@ -758,13 +758,7 @@ function RelevantIntegrations() {
 
         <div data-connectors-grid style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'10px',marginBottom:'var(--ins-size-8)'}}>
           {connectors.map((c,i) => (
-            <div key={i} className="connector-card">
-              <ConnectorIcon name={c.name} size={32} />
-              <div>
-                <div style={{fontSize:'13px',fontWeight:500,color:'var(--ins-color-gray-100)'}}>{c.name}</div>
-                <div style={{fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-inactive)',marginTop:'var(--ins-size-half)'}}>{c.desc}</div>
-              </div>
-            </div>
+            <ConnectorCard key={i} name={c.name} desc={c.desc} />
           ))}
         </div>
 
@@ -846,7 +840,7 @@ function BottomCTASection() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
           variant="form"
-          title={<>Stop building <BottomCTA.Highlight>reports.</BottomCTA.Highlight> Start getting <BottomCTA.Highlight>answers.</BottomCTA.Highlight></>}
+          title={<>Stop debating <BottomCTA.Highlight>attribution.</BottomCTA.Highlight> Start scaling <BottomCTA.Highlight>what works.</BottomCTA.Highlight></>}
           inputPlaceholder="Show me CAC by channel..."
           ctaLabel="Get started"
         />

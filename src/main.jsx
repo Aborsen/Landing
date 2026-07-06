@@ -966,11 +966,10 @@ function BottomCTASection() {
       <div className="max-w-7xl mx-auto px-6">
         <FadeUp>
           <BottomCTA
-            variant="form"
+            variant="row"
             title={<>Still waiting on <BottomCTA.Highlight>insights</BottomCTA.Highlight> that take <BottomCTA.Highlight>days?</BottomCTA.Highlight></>}
-            inputPlaceholder="Show me MRR by region..."
-            inputAriaLabel="Ask a question"
-            ctaLabel="Get insights"
+            ctaLabel="Start for free"
+            trustNote="Free plan · No credit card · First answer in under 2 minutes"
           />
         </FadeUp>
       </div>
@@ -988,8 +987,8 @@ function App() {
           <Hero />
         </header>
         <Architecture />
-        <HowItWorks />
         <SubscribeBanner />
+        <HowItWorks />
         <WhatIsInsightis />
         <Pricing />
         <BottomCTASection />

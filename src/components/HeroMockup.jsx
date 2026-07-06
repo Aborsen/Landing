@@ -85,13 +85,16 @@ HeroMockup.Badge = function Badge({ accentRgb = '251,191,36', children }) {
       position: 'absolute',
       top: '-18px',
       right: '-14px',
-      background: `linear-gradient(135deg, rgba(${accentRgb},.22) 0%, rgba(13,17,23,0.95) 100%)`,
+      // Accent tint layered over a near-opaque dark base — the card must stay
+      // solid without backdrop-filter (removed: it blurred the rotated text).
+      background: `linear-gradient(135deg, rgba(${accentRgb},.22) 0%, rgba(${accentRgb},0) 65%), rgba(13,17,23,0.97)`,
       border: `1px solid rgba(${accentRgb},.4)`,
       borderRadius: '14px',
       padding: '10px 14px',
       boxShadow: `0 8px 24px var(--ins-color-black-a-50)`,
-      backdropFilter: 'blur(16px)',
-      WebkitBackdropFilter: 'blur(16px)',
+      // No backdrop-filter here: combined with rotate() it forces the browser
+      // to rasterize the card (text included) into a texture and resample it,
+      // which blurs the type. Without it, rotated text stays sharp.
       display: 'flex', alignItems: 'center', gap: '10px',
       minWidth: '185px', minHeight: '64px',
       transform: 'rotate(2.5deg)',
@@ -107,13 +110,12 @@ HeroMockup.FloatCard = function FloatCard({ accentRgb = '9,160,157', children })
       position: 'absolute',
       bottom: '-22px',
       left: '-18px',
-      background: `linear-gradient(135deg, rgba(${accentRgb},.2) 0%, rgba(13,17,23,0.95) 100%)`,
+      background: `linear-gradient(135deg, rgba(${accentRgb},.2) 0%, rgba(${accentRgb},0) 65%), rgba(13,17,23,0.97)`,
       border: `1px solid rgba(${accentRgb},.4)`,
       borderRadius: '14px',
       padding: '12px 14px',
       boxShadow: `0 8px 24px var(--ins-color-black-a-50)`,
-      backdropFilter: 'blur(16px)',
-      WebkitBackdropFilter: 'blur(16px)',
+      // No backdrop-filter — see Badge above; it softens rotated text.
       transform: 'rotate(-2deg)',
       minWidth: '185px',
       minHeight: '128px',

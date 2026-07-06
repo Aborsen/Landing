@@ -172,7 +172,7 @@ function DocsTabs({ activeTab, setActiveTab }) {
 
 
 /* ── DOCS SIDEBAR ── */
-function DocsSidebar({ activePage, setActivePage, expandedSections, setExpandedSections, sidebarSearch, setSidebarSearch }) {
+function DocsSidebar({ activePage, setActivePage, expandedSections, setExpandedSections, sidebarSearch, setSidebarSearch, mobileOpen = false, onClose }) {
   const q = sidebarSearch.toLowerCase().trim();
 
   const toggleSection = (section) => {
@@ -185,7 +185,14 @@ function DocsSidebar({ activePage, setActivePage, expandedSections, setExpandedS
   })).filter(group => !q || group.items.length > 0);
 
   return (
-    <div className="docs-sidebar-col">
+    <div className={'docs-sidebar-col' + (mobileOpen ? ' is-open' : '')}>
+      {/* Close button — only visible in the mobile drawer */}
+      <button type="button" className="docs-drawer-close" onClick={onClose} aria-label="Close navigation">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+
       {/* Search */}
       <div style={{ padding:'0 16px 20px' }}>
         <div className="ins-input-wrap">
@@ -457,12 +464,12 @@ function PageFeedback() {
 }
 
 /* ── DOCS CONTENT ── */
-function CopyPageButton({ page }) {
+function CopyPageButton({ page, trail }) {
   const [copied, setCopied] = React.useState(false);
   const handleCopy = () => {
     // Rebuild the full page as Markdown from the structured data.
     const parts = [];
-    if (page.breadcrumb && page.breadcrumb.length) parts.push(`> ${page.breadcrumb.join(' › ')}`);
+    if (trail && trail.length) parts.push(`> ${trail.join(' › ')}`);
     if (page.title) parts.push(`# ${page.title}`);
     if (page.description) parts.push(page.description);
     for (const s of page.sections || []) {
@@ -503,7 +510,7 @@ function CopyPageButton({ page }) {
   );
 }
 
-function DocsContent({ page, prevNext, activePage, setActivePage, activeSection, setActiveSection, scrollSpySuppressRef }) {
+function DocsContent({ page, breadcrumbs, prevNext, activePage, setActivePage, activeSection, setActiveSection, scrollSpySuppressRef }) {
   useEffect(() => {
     const headings = document.querySelectorAll('.doc-section-heading');
     if (!headings.length) return;
@@ -523,14 +530,25 @@ function DocsContent({ page, prevNext, activePage, setActivePage, activeSection,
 
   return (
     <div className="docs-content-col">
-      {/* Breadcrumb */}
+      {/* Breadcrumb — generated from the sidebar structure; every crumb
+          except the current page navigates. */}
       <div className="ins-breadcrumbs" role="navigation" aria-label="Breadcrumb" style={{ marginBottom:'var(--ins-size-7)' }}>
-        {page.breadcrumb.map((crumb, i) => {
-          const isCurrent = i === page.breadcrumb.length - 1;
+        {breadcrumbs.map((crumb, i) => {
+          const isCurrent = i === breadcrumbs.length - 1;
           return (
             <React.Fragment key={i}>
               {i > 0 && <span className="ins-breadcrumbs__separator" aria-hidden="true">/</span>}
-              <span className="ins-breadcrumbs__item" {...(isCurrent ? { 'aria-current': 'page' } : {})}>{crumb}</span>
+              {isCurrent || !crumb.target ? (
+                <span className="ins-breadcrumbs__item" {...(isCurrent ? { 'aria-current': 'page' } : {})}>{crumb.label}</span>
+              ) : (
+                <button
+                  type="button"
+                  className="ins-breadcrumbs__item"
+                  onClick={() => setActivePage(crumb.target)}
+                >
+                  {crumb.label}
+                </button>
+              )}
             </React.Fragment>
           );
         })}
@@ -541,7 +559,7 @@ function DocsContent({ page, prevNext, activePage, setActivePage, activeSection,
         <h1 className="ins-text-h1" style={{ margin: 0 }}>
           {page.title}
         </h1>
-        <CopyPageButton page={page} />
+        <CopyPageButton page={page} trail={breadcrumbs.map(c => c.label)} />
       </div>
 
       {/* Description */}
@@ -1000,6 +1018,8 @@ function App() {
   const [expandedSections, setExpandedSections] = useState({ 'Getting started': true });
   const [sidebarSearch, setSidebarSearch] = useState('');
   const [activeSection, setActiveSection] = useState('');
+  // Mobile-only (≤768px): whether the docs navigation panel is expanded.
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   // Timestamp until which the scroll-spy is paused after a TOC click.
   const scrollSpySuppressRef = useRef(0);
 
@@ -1012,6 +1032,17 @@ function App() {
     prev: navIdx > 0 ? flatNav[navIdx - 1] : null,
     next: navIdx > -1 && navIdx < flatNav.length - 1 ? flatNav[navIdx + 1] : null,
   };
+
+  // Breadcrumb trail generated from the sidebar structure so every crumb maps
+  // to a real destination: Docs → welcome, section → its first page.
+  const currentGroup = navIdx > -1 ? SIDEBAR_NAV.find(g => g.section === flatNav[navIdx].section) : null;
+  const breadcrumbs = navIdx > -1
+    ? [
+        { label: 'Docs', target: 'welcome' },
+        { label: currentGroup.section, target: currentGroup.items[0].id },
+        { label: flatNav[navIdx].label, target: null },
+      ]
+    : [{ label: 'Docs', target: 'welcome' }];
 
   useEffect(() => {
     setActiveSection('');
@@ -1038,18 +1069,48 @@ function App() {
     <div>
       <Header />
       <main>
-      <div style={{ maxWidth:'1240px', width:'calc(100% - 32px)', margin:'0 auto' }}>
+      {/* .docs-page-wrap opts out of the global `main > *` content-visibility
+          optimization — it creates a containing block that would trap the
+          mobile nav drawer's position:fixed. */}
+      <div className="docs-page-wrap" style={{ maxWidth:'1240px', width:'calc(100% - 32px)', margin:'0 auto' }}>
       <div className="docs-layout">
+        {/* Mobile-only breadcrumb bar — the menu icon opens the docs
+            navigation as a full-screen drawer (QA #2). */}
+        <div className="docs-mobile-breadcrumb">
+          <button
+            type="button"
+            className="docs-mobile-breadcrumb__menu"
+            onClick={() => setMobileNavOpen(true)}
+            aria-label="Open documentation navigation"
+            aria-expanded={mobileNavOpen}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/>
+            </svg>
+          </button>
+          {navIdx > -1 && (
+            <span className="docs-mobile-breadcrumb__trail">
+              <span>{flatNav[navIdx].section}</span>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, opacity: .6 }}>
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+              <strong>{flatNav[navIdx].label}</strong>
+            </span>
+          )}
+        </div>
         <DocsSidebar
           activePage={activePage}
-          setActivePage={(id) => { setActivePage(id); setSidebarSearch(''); }}
+          setActivePage={(id) => { setActivePage(id); setSidebarSearch(''); setMobileNavOpen(false); }}
           expandedSections={expandedSections}
           setExpandedSections={setExpandedSections}
           sidebarSearch={sidebarSearch}
           setSidebarSearch={setSidebarSearch}
+          mobileOpen={mobileNavOpen}
+          onClose={() => setMobileNavOpen(false)}
         />
         <DocsContent
           page={currentPage}
+          breadcrumbs={breadcrumbs}
           prevNext={prevNext}
           activePage={activePage}
           setActivePage={setActivePage}

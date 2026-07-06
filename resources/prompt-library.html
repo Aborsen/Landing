@@ -81,9 +81,27 @@ section { position: relative; }
   gap: var(--ins-size-3);
   min-width: 0;
 }
+/* Mobile filters toggle — hidden on desktop, shown <=900px (QA #3) */
+.prompt-filters-toggle { display: none; }
 @media (max-width: 900px) {
   .prompt-layout { grid-template-columns: 1fr; }
   .prompt-sidebar-col { display: none; }
+  .prompt-filters-toggle {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%; margin: 16px 0 0; padding: 11px 14px;
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 10px;
+    color: var(--ins-text-body); font-size: 14px; font-weight: 500;
+    font-family: inherit; cursor: pointer;
+  }
+  .prompt-sidebar-col.is-open {
+    display: block;
+    position: static; max-height: none;
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.055);
+    padding: 12px 0 16px;
+  }
   .prompt-content { padding: 16px 0 100px 0; }
 }
 
