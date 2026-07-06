@@ -1,27 +1,39 @@
 ---
 title: Metrics
-description: Metrics are the canonical business definitions that power every answer in Insightis. Defining a metric once in the Semantic Layer means every team, every chart, and every AI Chat answer uses the same numbers — no more dueling dashboards.
+description: Metrics are the governed business definitions that power every answer in Insightis — the Semantic Layer the AI runs on. Define a metric once and every chart and every AI Chat answer uses the same number. Insightis gives you built-in metrics out of the box and lets you add your own custom metrics on top.
 breadcrumb: Docs / Semantic Layer / Metrics
 ---
 
-## Why metrics live in the Semantic Layer
+## What metrics are
 
-Most analytics tools recompute the same definitions over and over in dashboards, spreadsheets, and ad-hoc queries. That is how two teams end up with different revenue numbers for the same quarter. The Semantic Layer fixes this by holding a single, governed definition of every important measure your business cares about. Once "Active Users" or "Net Revenue Retention" is defined there, every surface in Insightis — AI Chat, Reports, embeds, alerts — reads from the same source.
+A metric is a single, governed definition of a business measure — Revenue, MRR, churn, CAC, conversion rate. Together, your metrics form the Semantic Layer: the trust layer between your raw data and the AI. Without it, an AI answer is a guess. With it, every answer is grounded in a definition your team can see and rely on, so the same question always returns the same number — whether it is asked in Sales, Marketing, or Finance.
 
-## Defining a metric
+Insightis metrics come in two kinds: **built-in metrics** that appear automatically when you connect a data source, and **custom metrics** that you create for the measures unique to your business. Once a metric exists, it behaves the same way everywhere — there is no difference in how built-in and custom metrics are used.
 
-A metric definition declares four things: the source data, the aggregation, the filters, and the grain. Source data is whichever table or view in a connected database holds the underlying rows. Aggregation describes how to reduce those rows to a number — a sum, a count of distinct values, an average, a ratio. Filters scope the metric to relevant records, such as excluding test accounts or refunds. Grain is the smallest time bucket the metric can be sliced by, typically daily.
+## Built-in metrics
 
-Metrics can be created through the visual builder or expressed directly in YAML for teams that prefer version-controlled definitions. Either way, the result is stored centrally and immediately available everywhere.
+Every data source ships with a set of predefined metrics for that source. The moment you connect the source, those metrics become available automatically — you do not have to define or configure anything to start asking about them.
 
-## Certification and ownership
+- Connect Stripe and you immediately get standard billing metrics like MRR, active subscriptions, and churn.
+- Connect Google Ads and you get spend, clicks, CPC, and ROAS.
+- Connect your CRM and you get pipeline, win rate, and deal count.
 
-Each metric carries an owner and a certification status. Certified metrics are reviewed and approved for business-wide use; draft metrics are flagged in the UI so consumers know the definition is still being worked on. AI Chat will prefer certified metrics when answering questions, and will surface a notice when a question requires a draft metric so the asker knows the answer is preliminary.
+Because these definitions are fixed, **every request that touches a built-in metric is calculated the same way in every chat**, for every person on the team. Nobody has to agree on how "MRR" is computed — the source's built-in definition already does, and it is applied consistently everywhere.
 
-## Formula metrics versus raw metrics
+## Custom metrics
 
-A raw metric is computed directly from source rows — for example, "sum of order amount". A formula metric is derived from other metrics — for example, "gross margin = revenue - cost_of_goods_sold". Formula metrics let you compose KPIs out of trusted building blocks, so when an underlying definition changes, every derived metric stays consistent automatically.
+Built-in metrics cover the common measures; custom metrics cover the ones that are specific to how *your* company works. When you have a KPI that does not exist out of the box — "gross margin minus refunds", "qualified leads by channel", "activation within seven days" — you create it once as a custom metric, without engineering help.
 
-## How metrics flow into AI Chat
+You can build a custom metric for any use case or scenario your team needs to track. **Once a custom metric is added, it works exactly like a built-in one**: it is available in every chat, calculated the same way each time, and grounded so the AI answers from your definition instead of improvising. Custom and built-in metrics sit side by side in the same catalog and are indistinguishable in use.
 
-When you ask a question, AI Chat first tries to match your wording to known metric names and their aliases. If a match is found, the answer is computed from the metric's definition instead of being improvised. This is what makes natural-language analytics reliable enough to put in front of executives: the conversational front end is asking the same governed metric your finance team built, not generating ad-hoc SQL each time.
+## How the AI proposes a metric
+
+You do not have to open an editor to create a metric. While you chat, if you ask about something that is not defined yet, the AI can propose a definition based on your data. It shows you the source, the formula, and the filters in a **Confirmation Card**, and you approve it with one click. From that moment on, the metric is part of your catalog and every future question across the team uses that same governed definition.
+
+If you prefer to define metrics up front, you can also create them directly in the editor. Either path produces the same result: a certified definition stored centrally and available everywhere.
+
+## Why every chat returns the same number
+
+The whole point of the Semantic Layer is consistency. Because each metric — built-in or custom — has one reviewed definition behind it, the AI cannot invent its own version of "revenue" or "active user". The result is answers that are consistent across teams and auditable back to source: no more reconciliation meetings, and no more two dashboards disagreeing about the same quarter.
+
+This is also what keeps AI answers reliable. Raw text-to-SQL on real business data is only as good as the model's guess about what your columns mean. With certified metric definitions in context, the AI stops guessing and starts answering from the definitions your team already trusts.

@@ -325,7 +325,7 @@ function Hero() {
                           ))}
                         </div>
                         <div className="px-4 py-3 border-t border-[var(--ins-border-hover)]">
-                          <a href="/Resources/Connectors" className="flex items-center gap-1.5 text-xs text-[var(--ins-color-teal-500)] hover:text-[var(--ins-color-teal-400)] transition-colors">
+                          <a href="/resources/connectors" className="flex items-center gap-1.5 text-xs text-[var(--ins-color-teal-500)] hover:text-[var(--ins-color-teal-400)] transition-colors">
                             <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>
                             View all 200+ connectors
                           </a>
@@ -919,7 +919,7 @@ function Pricing() {
 
         <FadeUp delay={0.25}>
           <div className="text-center mt-10">
-            <a href="/Pricing" className="ins-btn ins-btn--secondary ins-btn--lg">
+            <a href="/pricing" className="ins-btn ins-btn--secondary ins-btn--lg">
               Explore pricing
             </a>
           </div>

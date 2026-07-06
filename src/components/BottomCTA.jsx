@@ -45,7 +45,7 @@ const ArrowRightIcon = () => (
  *     title="Start free. Upgrade when you're ready."
  *     ctaLabel="Get started for free"
  *     secondaryCtaLabel="Talk to sales"
- *     secondaryCtaHref="/Company/Contacts"
+ *     secondaryCtaHref="/company/contacts"
  *   />
  */
 function BottomCTA({

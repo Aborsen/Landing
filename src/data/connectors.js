@@ -1,6 +1,6 @@
 // Skyvia-derived master connector catalog. Single source of truth used by:
-//  - src/pages/connectors.jsx  (Resources/Connectors gallery)
-//  - src/pages/integrations.jsx  (Platform/Integrations "Built for every team" audience tabs)
+//  - src/pages/connectors.jsx  (resources/connectors gallery)
+//  - src/pages/integrations.jsx  (platform/integrations "Built for every team" audience tabs)
 //
 // Edit this file to add / move / rename a connector and both pages update.
 

@@ -273,7 +273,7 @@ function PrivacyContent() {
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Email:</strong> <a href="mailto:privacy@insightis.ai" className="ins-link--inline">privacy@insightis.ai</a></li>
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Company:</strong> Devart, the developer of Insightis</li>
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Address:</strong> 3422 Old Capitol Trl, Wilmington, Delaware, USA 19808</li>
-            <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Support:</strong> <a href="../Resources/Contact Support" className="ins-link--inline">Contact Support</a></li>
+            <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Support:</strong> <a href="../resources/contact-support" className="ins-link--inline">Contact Support</a></li>
           </ul>
           <p className="ins-text-body-lg" style={pStyle}>
             For EU residents, you also have the right to lodge a complaint with your local data protection authority if you believe your data has been processed in violation of applicable law.

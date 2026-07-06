@@ -71,7 +71,7 @@ function ContactOptions({ onOpenDemo, onOpenSupport }) {
             </div>
             <h3 style={{fontSize:'var(--ins-font-size-18)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'10px'}}>Help Center</h3>
             <p className="ins-text-body" style={{marginBottom:'var(--ins-size-5)'}}>Browse our knowledge base for guides, FAQs, troubleshooting tips, and everything you need to get the most out of Insightis.</p>
-            <Button as="a" href="../Resources/Contact Support" variant="primary">
+            <Button as="a" href="../resources/contact-support" variant="primary">
               Visit help center
             </Button>
             <p className="ins-text-body-xs ins-text--muted ins-text--mono" style={{marginTop:'14px'}}>Guides, FAQs & troubleshooting</p>
@@ -230,25 +230,25 @@ function QuickLinks() {
       icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>,
       title: 'Video Guides',
       desc: 'Step-by-step walkthroughs to help you get started and master advanced features.',
-      href: '../Resources/Documentation',
+      href: '/docs/',
     },
     {
       icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>,
       title: 'Documentation',
       desc: 'In-depth technical docs, API references, and integration guides.',
-      href: '../Resources/Documentation',
+      href: '/docs/',
     },
     {
       icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
       title: 'Community',
       desc: 'Join discussions, share ideas, and connect with other Insightis users.',
-      href: '../Resources/Community',
+      href: '/resources/contact-support',
     },
     {
       icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>,
       title: 'Roadmap',
       desc: 'See what\'s coming next and vote on features that matter to you.',
-      href: '../Resources/Roadmap',
+      href: '/resources/roadmap',
     },
   ];
 

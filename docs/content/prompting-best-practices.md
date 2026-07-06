@@ -14,7 +14,11 @@ If your Semantic Layer defines a metric called "Activated Users", ask for "activ
 
 ## Iterate, do not start over
 
-After an answer, you can refine the result by sending a follow-up in the same conversation. "Now break that down by month", "exclude internal users", "compare year over year" — these continue the previous query instead of starting from scratch, and the chart updates in place. Starting a fresh conversation only when the topic actually changes saves credits and keeps your scroll-back coherent.
+After an answer, you can refine the result by sending a follow-up in the same conversation. "Now break that down by month", "exclude internal users", "compare year over year" — these continue the previous query instead of starting from scratch, and the chart updates in place. Starting a fresh conversation only when the topic actually changes saves tokens and keeps your scroll-back coherent.
+
+## Start from a ready-made prompt
+
+You do not have to write every question from scratch. The [Prompt Library](/resources/prompt-library) is a gallery of ready-made prompts for common business questions — campaign performance, revenue trends, funnel analysis, cohort retention, and more. Pick one that matches your case, adjust the metric or time window to fit your data, and paste it into AI Chat. It is also the fastest way to learn what a well-formed question looks like before writing your own.
 
 ## When to use AI Chat versus build a report
 

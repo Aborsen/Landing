@@ -552,7 +552,7 @@ function ConnectorsGallery() {
         <div style={{textAlign:'center',marginTop:'var(--ins-size-8)'}}>
           <span style={{fontSize:'12.5px',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)'}}>
             + 200 more connectors available ·{' '}
-            <a href="/Resources/Connectors" className="ins-link--inline">see full list →</a>
+            <a href="/resources/connectors" className="ins-link--inline">see full list →</a>
           </span>
         </div>
       </div>

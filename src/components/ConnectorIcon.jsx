@@ -3,8 +3,8 @@ import { INTEGRATIONS } from './IntegrationsStrip';
 import { spriteClassFor, isDarkLogo } from '../data/connector-sprite-map.js';
 
 /*
- * Shared connector-icon renderer used by the Resources/Connectors gallery,
- * the Platform/Integrations "Built for every team" tabs, and Solutions/by-role.
+ * Shared connector-icon renderer used by the resources/connectors gallery,
+ * the platform/integrations "Built for every team" tabs, and Solutions/by-role.
  *
  * Source chain (first hit wins):
  *   1. INTEGRATIONS canonical map (lossless inline SVG — Slack 4-color, etc.)

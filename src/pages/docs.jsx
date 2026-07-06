@@ -86,7 +86,7 @@ const SIDEBAR_NAV = [
     items: [
       { id: 'welcome', label: 'Welcome to Insightis' },
       { id: 'create-an-account', label: 'Create an account' },
-      { id: 'plans-and-credits', label: 'Plans and credits' },
+      { id: 'plans-and-credits', label: 'Plans and tokens' },
       { id: 'prompting-best-practices', label: 'Prompting best practices' },
       { id: 'quick-start', label: 'Quick start' },
     ],
@@ -102,7 +102,7 @@ const SIDEBAR_NAV = [
   {
     section: 'Reference',
     items: [
-      { id: 'ai-model', label: 'AI Model' },
+      { id: 'ai-model', label: 'AI Models' },
       { id: 'copyrights', label: 'Copyrights' },
       { id: 'data-storage', label: 'Data Storage' },
     ],
@@ -255,7 +255,7 @@ function DocsSidebar({ activePage, setActivePage, expandedSections, setExpandedS
 
 
 /* ── DOCS TOC ── */
-function DocsTOC({ toc, activeSection, setActiveSection }) {
+function DocsTOC({ toc, activeSection, setActiveSection, scrollSpySuppressRef }) {
   if (!toc || !toc.length) return <div className="docs-toc-col" />;
   return (
     <div className="docs-toc-col">
@@ -268,6 +268,11 @@ function DocsTOC({ toc, activeSection, setActiveSection }) {
             className={'ins-toc__link' + (activeSection === item.id ? ' is-active' : '')}
             onClick={(e) => {
               e.preventDefault();
+              // Pause the scroll-spy while the smooth scroll settles, so a
+              // neighbouring heading entering the viewport (common near the
+              // bottom of the page) cannot steal the highlight from the
+              // item the user actually clicked.
+              if (scrollSpySuppressRef) scrollSpySuppressRef.current = Date.now() + 1200;
               setActiveSection(item.id);
               const el = document.getElementById(item.id);
               if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
@@ -287,7 +292,7 @@ function DocsAskQuestion() {
   const [question, setQuestion] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
-    window.location.href = '../Platform/AI Chat';
+    window.location.href = '../platform/ai-chat';
   };
   return (
     <div style={{
@@ -498,12 +503,16 @@ function CopyPageButton({ page }) {
   );
 }
 
-function DocsContent({ page, activePage, setActivePage, activeSection, setActiveSection }) {
+function DocsContent({ page, prevNext, activePage, setActivePage, activeSection, setActiveSection, scrollSpySuppressRef }) {
   useEffect(() => {
     const headings = document.querySelectorAll('.doc-section-heading');
     if (!headings.length) return;
     const observer = new IntersectionObserver(
-      (entries) => { entries.forEach(entry => { if (entry.isIntersecting) setActiveSection(entry.target.id); }); },
+      (entries) => {
+        // Ignore scroll-spy updates while a TOC-click smooth scroll is settling.
+        if (scrollSpySuppressRef && Date.now() < scrollSpySuppressRef.current) return;
+        entries.forEach(entry => { if (entry.isIntersecting) setActiveSection(entry.target.id); });
+      },
       { rootMargin: '-120px 0px -60% 0px' }
     );
     headings.forEach(h => observer.observe(h));
@@ -610,19 +619,16 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
         ))}
       </div>
 
-      {/* Page Feedback */}
-      <PageFeedback key={activePage} />
-
       {/* Prev / Next */}
-      {page.prevNext && (
+      {prevNext && (prevNext.prev || prevNext.next) && (
         <div style={{
           display:'flex', gap:'var(--ins-size-3)', marginTop:'var(--ins-size-12)',
           borderTop:'1px solid var(--ins-border-default)',
           paddingTop:'var(--ins-size-8)', marginBottom:'36px',
         }}>
-          {page.prevNext.prev && (
+          {prevNext.prev && (
             <button
-              onClick={() => setActivePage(page.prevNext.prev.id)}
+              onClick={() => setActivePage(prevNext.prev.id)}
               style={{
                 flex:1, display:'flex', flexDirection:'column', alignItems:'flex-start', gap:'var(--ins-size-1)',
                 padding:'16px 20px', borderRadius:'10px',
@@ -634,13 +640,13 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
               onMouseLeave={(e) => e.currentTarget.style.borderColor = 'var(--ins-color-white-a-07)'}
             >
               <span style={{ fontSize:'var(--ins-font-size-11)', color:'var(--ins-text-disabled)', fontWeight:500 }}>← Previous</span>
-              <span style={{ fontSize:'var(--ins-font-size-14)', color:'var(--ins-color-gray-100)', fontWeight:500 }}>{page.prevNext.prev.label}</span>
-              <span style={{ fontSize:'var(--ins-font-size-11)', color:'var(--ins-text-disabled)' }}>{page.prevNext.prev.section}</span>
+              <span style={{ fontSize:'var(--ins-font-size-14)', color:'var(--ins-color-gray-100)', fontWeight:500 }}>{prevNext.prev.label}</span>
+              <span style={{ fontSize:'var(--ins-font-size-11)', color:'var(--ins-text-disabled)' }}>{prevNext.prev.section}</span>
             </button>
           )}
-          {page.prevNext.next && (
+          {prevNext.next && (
             <button
-              onClick={() => setActivePage(page.prevNext.next.id)}
+              onClick={() => setActivePage(prevNext.next.id)}
               style={{
                 flex:1, display:'flex', flexDirection:'column', alignItems:'flex-end', gap:'var(--ins-size-1)',
                 padding:'16px 20px', borderRadius:'10px',
@@ -652,8 +658,8 @@ function DocsContent({ page, activePage, setActivePage, activeSection, setActive
               onMouseLeave={(e) => e.currentTarget.style.borderColor = 'var(--ins-color-white-a-07)'}
             >
               <span style={{ fontSize:'var(--ins-font-size-11)', color:'var(--ins-text-disabled)', fontWeight:500 }}>Next →</span>
-              <span style={{ fontSize:'var(--ins-font-size-14)', color:'var(--ins-color-gray-100)', fontWeight:500 }}>{page.prevNext.next.label}</span>
-              <span style={{ fontSize:'var(--ins-font-size-11)', color:'var(--ins-text-disabled)' }}>{page.prevNext.next.section}</span>
+              <span style={{ fontSize:'var(--ins-font-size-14)', color:'var(--ins-color-gray-100)', fontWeight:500 }}>{prevNext.next.label}</span>
+              <span style={{ fontSize:'var(--ins-font-size-11)', color:'var(--ins-text-disabled)' }}>{prevNext.next.section}</span>
             </button>
           )}
         </div>
@@ -994,13 +1000,26 @@ function App() {
   const [expandedSections, setExpandedSections] = useState({ 'Getting started': true });
   const [sidebarSearch, setSidebarSearch] = useState('');
   const [activeSection, setActiveSection] = useState('');
-  const [assistantQuery, setAssistantQuery] = useState(null);
+  // Timestamp until which the scroll-spy is paused after a TOC click.
+  const scrollSpySuppressRef = useRef(0);
 
   const currentPage = PAGES[activePage] || PAGES['welcome'];
+
+  // Prev/next navigation follows the sidebar order.
+  const flatNav = SIDEBAR_NAV.flatMap(g => g.items.map(item => ({ ...item, section: g.section })));
+  const navIdx = flatNav.findIndex(item => item.id === activePage);
+  const prevNext = {
+    prev: navIdx > 0 ? flatNav[navIdx - 1] : null,
+    next: navIdx > -1 && navIdx < flatNav.length - 1 ? flatNav[navIdx + 1] : null,
+  };
 
   useEffect(() => {
     setActiveSection('');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Keep the sidebar in sync: expand the section that contains the active
+    // page so prev/next navigation always shows where the user landed.
+    const group = SIDEBAR_NAV.find(g => g.items.some(item => item.id === activePage));
+    if (group) setExpandedSections(prev => ({ ...prev, [group.section]: true }));
   }, [activePage]);
 
   useEffect(() => {
@@ -1031,27 +1050,23 @@ function App() {
         />
         <DocsContent
           page={currentPage}
+          prevNext={prevNext}
           activePage={activePage}
           setActivePage={setActivePage}
           activeSection={activeSection}
           setActiveSection={setActiveSection}
+          scrollSpySuppressRef={scrollSpySuppressRef}
         />
         <DocsTOC
           toc={currentPage.toc || []}
           activeSection={activeSection}
           setActiveSection={setActiveSection}
+          scrollSpySuppressRef={scrollSpySuppressRef}
         />
       </div>
       </div>
             </main>
       <Footer />
-      <FloatingChat onSubmit={(q) => setAssistantQuery(q)} />
-      {assistantQuery && (
-        <AIAssistantPanel
-          query={assistantQuery}
-          onClose={() => setAssistantQuery(null)}
-        />
-      )}
     </div>
   );
 }

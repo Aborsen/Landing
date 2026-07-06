@@ -22,4 +22,4 @@ Business and Enterprise workspaces can require single sign-on via Google Workspa
 
 ## What to do next
 
-You now have a workspace. The fastest next step is **Quick start** — connect a data source, define one metric, and ask your first question. If you would rather understand the pricing model first, read **Plans and credits**.
+You now have a workspace. The fastest next step is **Quick start** — connect a data source, define one metric, and ask your first question. If you would rather understand the pricing model first, read **Plans and tokens**.

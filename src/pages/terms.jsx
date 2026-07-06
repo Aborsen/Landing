@@ -83,7 +83,7 @@ function TermsContent() {
             <li>Reports for saving, scheduling, and sharing analytical outputs</li>
             <li>Memory and contextual learning capabilities that adapt to your business over time</li>
           </ul>
-          <p className="ins-text-body-lg" style={pStyle}>The specific features available to you may vary depending on your subscription plan. Feature availability and limits are described on our <a href="../Pricing" className="ins-link--inline">Pricing</a> page.</p>
+          <p className="ins-text-body-lg" style={pStyle}>The specific features available to you may vary depending on your subscription plan. Feature availability and limits are described on our <a href="../pricing" className="ins-link--inline">Pricing</a> page.</p>
         </div>
 
         {/* 3. Account Registration and Security */}
@@ -141,7 +141,7 @@ function TermsContent() {
         {/* 7. Subscription and Billing */}
         <div id="billing" style={sectionStyle}>
           <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>7. Subscription and Billing</h2>
-          <p className="ins-text-body-lg" style={pStyle}>Insightis offers various subscription plans as described on our <a href="../Pricing" className="ins-link--inline">Pricing</a> page. By subscribing to a paid plan, you agree to pay all applicable fees in accordance with the billing terms presented at the time of purchase.</p>
+          <p className="ins-text-body-lg" style={pStyle}>Insightis offers various subscription plans as described on our <a href="../pricing" className="ins-link--inline">Pricing</a> page. By subscribing to a paid plan, you agree to pay all applicable fees in accordance with the billing terms presented at the time of purchase.</p>
           <ul style={ulStyle}>
             <li><strong style={{color:'var(--ins-text-body)'}}>Auto-Renewal:</strong> Paid subscriptions automatically renew at the end of each billing cycle (monthly or annually) unless you cancel before the renewal date.</li>
             <li><strong style={{color:'var(--ins-text-body)'}}>Cancellation:</strong> You may cancel your subscription at any time through your account settings. Cancellation takes effect at the end of the current billing period. You will continue to have access to paid features until the end of that period.</li>

@@ -17,27 +17,27 @@ function TikTokIcon({ size = 16, color = "currentColor" }) {
 
 export default function Footer() {
   const linkUrls = {
-    'AI Chat': '/Platform/AI Chat',
-    'Integrations': '/Platform/Integrations',
-    'Semantic Layer': '/Platform/Semantic Layer',
-    'Memory & Storage': '/Platform/Memory & Storage',
-    'For Revenue Operations Teams': '/Solutions/RevOps BizOps',
-    'For Executive Teams': '/Solutions/Founders CEOs',
-    'For Marketing Teams': '/Solutions/Marketing Teams',
-    'For Product Teams': '/Solutions/Product Teams',
-    'For Data & Analytics Teams': '/Solutions/Data Analytics Teams',
-    'For Operations & Finance Teams': '/Solutions/Operations Finance',
-    'Pricing': '/Pricing',
+    'AI Chat': '/platform/ai-chat',
+    'Integrations': '/platform/integrations',
+    'Semantic Layer': '/platform/semantic-layer',
+    'Memory & Storage': '/platform/memory-storage',
+    'For Revenue Operations Teams': '/solutions/revops-bizops',
+    'For Executive Teams': '/solutions/founders-ceos',
+    'For Marketing Teams': '/solutions/marketing-teams',
+    'For Product Teams': '/solutions/product-teams',
+    'For Data & Analytics Teams': '/solutions/data-analytics-teams',
+    'For Operations & Finance Teams': '/solutions/operations-finance',
+    'Pricing': '/pricing',
     'Documentation': '/docs/',
     'Blog': '/blog/',
-    'Support Center': '/Resources/Contact Support',
-    'Roadmap': '/Resources/Roadmap',
-    'Prompt Library': '/Resources/Prompt Library',
-    'Data Connectors': '/Resources/Connectors',
-    'About Insightis': '/Company/About Insightis',
-    'Contacts': '/Company/Contacts',
-    'Success Stories': '/Company/Success Stories',
-    'Press & Media': '/Company/Press Media',
+    'Support Center': '/resources/contact-support',
+    'Roadmap': '/resources/roadmap',
+    'Prompt Library': '/resources/prompt-library',
+    'Data Connectors': '/resources/connectors',
+    'About Insightis': '/company/about-insightis',
+    'Contacts': '/company/contacts',
+    'Success Stories': '/company/success-stories',
+    'Press & Media': '/company/press-media',
   };
   return (
     <footer className="pt-16 pb-8 border-t border-border-strong">
@@ -90,10 +90,10 @@ export default function Footer() {
               <div className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-primary mb-4 whitespace-nowrap">Company</div>
               <ul className="flex flex-col gap-2.5">
                 {[
-                  { label: 'About Insightis', href: '../Company/About Insightis' },
+                  { label: 'About Insightis', href: '../company/about-insightis' },
                   { label: 'About Devart', href: 'https://www.devart.com/company/' },
                   { label: 'Careers', href: 'https://www.devart.com/vacancies/' },
-                  { label: 'Contacts', href: '../Company/Contacts' },
+                  { label: 'Contacts', href: '../company/contacts' },
                 ].map(link => (
                   <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-text-secondary hover:text-text-primary transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
@@ -105,10 +105,10 @@ export default function Footer() {
               <div className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-primary mb-4 whitespace-nowrap">Legal</div>
               <ul className="flex flex-col gap-2.5">
                 {[
-                  { label: 'Privacy', href: '../Security/Privacy' },
-                  { label: 'Terms', href: '../Security/Terms' },
-                  { label: 'Security', href: '../Security/Security' },
-                  { label: 'Cookie Settings', href: '../Security/Cookie Settings' },
+                  { label: 'Privacy', href: '../security/privacy' },
+                  { label: 'Terms', href: '../security/terms' },
+                  { label: 'Security', href: '../security/security' },
+                  { label: 'Cookie Settings', href: '../security/cookie-settings' },
                 ].map(link => (
                   <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-text-secondary hover:text-text-primary transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}

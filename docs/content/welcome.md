@@ -14,7 +14,7 @@ Insightis is built for the people who need answers fast — founders, revenue an
 
 ## What's in this documentation
 
-These docs walk you through everything you need to get value out of the product. Start with Quick start to be up and running in five minutes, read Plans and credits to understand how usage works, and skim Prompting best practices before your first conversation with AI Chat. Once you are comfortable, the Insightis Workspace section explains the three pillars that power every answer.
+These docs walk you through everything you need to get value out of the product. Start with Quick start to be up and running in five minutes, read Plans and tokens to understand how usage works, and skim Prompting best practices before your first conversation with AI Chat. Once you are comfortable, the Insightis Workspace section explains the three pillars that power every answer.
 
 ## Where to go next
 
