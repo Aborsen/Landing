@@ -66,31 +66,6 @@ function HubSpotMark({size=20}) {
 // Renders the same canonical brand SVG as <IntegrationsStrip /> by looking up
 // the integration by name. Keeps the visual hero animation in lockstep with
 // the strip — edit src/components/IntegrationsStrip.jsx and both update.
-function BrandTile({name, color, size=22}) {
-  const integration = INTEGRATIONS.find(i => i.name === name);
-  const Icon = integration?.Icon;
-  const iconSize = Math.round(size * 0.72);
-  const fallbackSize = Math.round(size * 0.6);
-  return (
-    <span style={{
-      width:`${size}px`,height:`${size}px`,borderRadius: size >= 28 ? '8px' : '6px',
-      background:'var(--ins-color-white-a-04)',border:'1px solid var(--ins-color-white-a-08)',
-      display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,
-      overflow:'hidden',
-    }}>
-      {Icon ? (
-        <Icon size={iconSize}/>
-      ) : (
-        <svg width={fallbackSize} height={fallbackSize} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-          <ellipse cx="12" cy="6" rx="8" ry="3"/>
-          <path d="M4 6v12c0 1.66 3.58 3 8 3s8-1.34 8-3V6"/>
-          <path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/>
-        </svg>
-      )}
-    </span>
-  );
-}
-
 const CONN_SOURCES = [
   {name:'HubSpot',   slug:'hubspot',        domain:'hubspot.com',   color:'#FF7A59', desc:'CRM'},
   {name:'Stripe',    slug:'stripe',         domain:'stripe.com',    color:'#635BFF', desc:'Payments'},
@@ -150,19 +125,19 @@ function ConnectionChatAnimationInner() {
 
   // Deterministic fixed ring positions — one dedicated, stable spot per connector
   // (computed from index, never random). Feeds both the cards and the SVG beams.
-  const ringRx = isMobile ? Math.min(size.W * 0.34, size.W / 2 - 80) : Math.min(size.W * 0.36, 220);
-  const ringRy = Math.min((size.H - 60) * 0.36, 160);
+  const ringRx = isMobile ? Math.min(size.W * 0.34, size.W / 2 - 80) : Math.min(size.W * 0.37, 234);
+  const ringRy = Math.min((size.H - 60) * 0.37, 168);
   const positions = CONN_SOURCES.map((_, i) => {
     const angle = (i / CONN_SOURCES.length) * Math.PI * 2 - Math.PI / 2;
     return { tx: ringRx * Math.cos(angle), ty: ringRy * Math.sin(angle) };
   });
 
-  const engineBox = isMobile ? 80 : 116;
-  const gridSize  = isMobile ? 22 : 30;
-  const tileSize  = isMobile ? 26 : 40;
-  const cardPadV  = isMobile ? 6 : 10;
-  const cardPadH  = isMobile ? 9 : 14;
-  const cardGap   = isMobile ? 7 : 11;
+  const engineBox = isMobile ? 80 : 136;
+  const gridSize  = isMobile ? 22 : 36;
+  const tileSize  = isMobile ? 26 : 48;
+  const cardPadV  = isMobile ? 6 : 12;
+  const cardPadH  = isMobile ? 9 : 16;
+  const cardGap   = isMobile ? 7 : 12;
 
   return (
     <div ref={containerRef} style={{
@@ -176,19 +151,6 @@ function ConnectionChatAnimationInner() {
     }}>
       {/* Background */}
       <div style={{position:'absolute',inset:0,pointerEvents:'none',background:'radial-gradient(ellipse 55% 50% at 50% 55%, rgba(14,196,193,0.09) 0%, transparent 65%)'}}/>
-
-      {/* Header */}
-      <div style={{position:'absolute',top:0,left:0,right:0,padding:'13px 18px',borderBottom:'1px solid var(--ins-color-white-a-07)',display:'flex',alignItems:'center',gap:'9px',background:'rgba(255,255,255,0.015)',zIndex:10}}>
-        <div style={{display:'flex',gap:'7px'}}>
-          {['#FF5F57','#FFBD2E','#28C840'].map((c,i) => (
-            <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
-          ))}
-        </div>
-        <div style={{flex:1,textAlign:'center',fontSize:'var(--ins-font-size-12)',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.02em'}}>
-          insightis — integrations
-        </div>
-        <div style={{width:'46px'}}/>
-      </div>
 
       {/* SVG beams from each fixed source to center, with animated colored particles */}
       <svg
@@ -211,7 +173,7 @@ function ConnectionChatAnimationInner() {
           // Stop the beam at the edge of the engine box.
           const dx = cx - sx, dy = cy - sy;
           const absDx = Math.abs(dx), absDy = Math.abs(dy);
-          const halfBox = 64;
+          const halfBox = 74;
           const t = absDx > absDy ? halfBox / absDx : halfBox / absDy;
           const ex = cx - dx * t;
           const ey = cy - dy * t;
@@ -225,7 +187,7 @@ function ConnectionChatAnimationInner() {
                 {!reduceMotion && <animate attributeName="opacity" values="0.55;0.95;0.55" dur={`${4 + (i % 3) * 0.7}s`} repeatCount="indefinite"/>}
               </path>
               {!reduceMotion && (
-                <circle r="2.4" fill={color} opacity="0.9" style={{filter:`drop-shadow(0 0 4px ${color})`}}>
+                <circle r="2.8" fill={color} opacity="0.9" style={{filter:`drop-shadow(0 0 4px ${color})`}}>
                   <animateMotion dur={`${dur}s`} begin={`${begin}s`} repeatCount="indefinite" path={d}/>
                 </circle>
               )}
@@ -280,11 +242,11 @@ function ConnectionChatAnimationInner() {
               transition: 'opacity .5s ease, transform .5s cubic-bezier(0.34,1.56,0.64,1)',
               transitionDelay: `${(i * 0.09).toFixed(2)}s`,
             }}>
-              <BrandTile name={s.name} color={s.color} size={tileSize}/>
+              <ConnectorIcon name={s.name} slug={s.slug} domain={s.domain} bg="var(--ins-color-white-a-04)" size={tileSize}/>
               <div style={{display:'flex', flexDirection:'column', gap:'1px'}}>
-                <span style={{fontSize: isMobile ? 'var(--ins-font-size-11)' : 'var(--ins-font-size-14)', fontWeight:600, color:'var(--ins-text-heading)', letterSpacing:'-0.01em', whiteSpace:'nowrap', lineHeight:1.2}}>{s.name}</span>
+                <span style={{fontSize: isMobile ? 'var(--ins-font-size-11)' : 'var(--ins-font-size-15)', fontWeight:600, color:'var(--ins-text-heading)', letterSpacing:'-0.01em', whiteSpace:'nowrap', lineHeight:1.2}}>{s.name}</span>
                 {!isMobile && (
-                  <span style={{fontSize:'var(--ins-font-size-11)', fontWeight:400, color:'var(--ins-text-inactive)', letterSpacing:'-0.005em', whiteSpace:'nowrap', lineHeight:1.2}}>{s.desc}</span>
+                  <span style={{fontSize:'var(--ins-font-size-12)', fontWeight:400, color:'var(--ins-text-inactive)', letterSpacing:'-0.005em', whiteSpace:'nowrap', lineHeight:1.2}}>{s.desc}</span>
                 )}
               </div>
             </div>
@@ -313,11 +275,17 @@ function Hero() {
           justifyContent: 'space-between',
           padding: '24px 0',
         }}>
+          <div>
+          <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-5)'}}>
+            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>Integrations</span>
+          </div>
           <h1 className="ins-text-display-xl">
             <span style={{color:'var(--ins-text-heading-soft)'}}>Connect it all.</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>Get the why</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>behind numbers.</span>
           </h1>
+          </div>
           <p className="ins-text-body-xl" style={{marginBottom:'36px',maxWidth:'520px'}}>
             Plug in your CRM, warehouse, ads and product tools. Query every source in plain English — no SQL, no waiting.
           </p>

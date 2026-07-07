@@ -220,7 +220,7 @@ function PricingCards() {
             );
           })}
         </div>
-        <style>{`
+        <style dangerouslySetInnerHTML={{ __html: `
           /* Align CTAs across cards: each button sits directly below the
              equal-height price block. Overrides the DS rule
              .ins-card--pricing .ins-btn{margin-top:auto} — with the button placed
@@ -230,7 +230,7 @@ function PricingCards() {
           @media (max-width: 900px) {
             [data-pricing-grid] { grid-template-columns: 1fr !important; max-width: 480px; margin: 0 auto; }
           }
-        `}</style>
+        ` }} />
       </div>
     </section>
   );
@@ -329,12 +329,12 @@ function FeatureComparison() {
             ))}
           </div>
         </div>
-        <style>{`
+        <style dangerouslySetInnerHTML={{ __html: `
           @media (max-width: 768px) {
             [data-compare-wrap] { font-size: 12px; }
             [data-compare-wrap] > div > div { padding: 11px 12px !important; }
           }
-        `}</style>
+        ` }} />
       </div>
     </section>
   );

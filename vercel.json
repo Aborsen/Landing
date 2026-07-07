@@ -4,19 +4,19 @@
   "framework": "vite",
   "cleanUrls": true,
   "redirects": [
-    { "source": "/Platform/AI Chat", "destination": "/platform/ai-chat", "permanent": true },
-    { "source": "/Platform/Semantic Layer", "destination": "/platform/semantic-layer", "permanent": true },
-    { "source": "/Solutions/Marketing Teams", "destination": "/solutions/marketing-teams", "permanent": true },
-    { "source": "/Solutions/RevOps BizOps", "destination": "/solutions/revops-bizops", "permanent": true },
-    { "source": "/Solutions/Founders CEOs", "destination": "/solutions/founders-ceos", "permanent": true },
-    { "source": "/Solutions/Product Teams", "destination": "/solutions/product-teams", "permanent": true },
-    { "source": "/Solutions/Data Analytics Teams", "destination": "/solutions/data-analytics-teams", "permanent": true },
-    { "source": "/Solutions/Operations Finance", "destination": "/solutions/operations-finance", "permanent": true },
-    { "source": "/Resources/Contact Support", "destination": "/resources/contact-support", "permanent": true },
-    { "source": "/Resources/Prompt Library", "destination": "/resources/prompt-library", "permanent": true },
-    { "source": "/Company/About Insightis", "destination": "/company/about-insightis", "permanent": true },
-    { "source": "/Company/Press Media", "destination": "/company/press-media", "permanent": true },
-    { "source": "/Company/Success Stories", "destination": "/company/success-stories", "permanent": true },
-    { "source": "/Security/Cookie Settings", "destination": "/security/cookie-settings", "permanent": true }
+    { "source": "/Platform/AI%20Chat", "destination": "/platform/ai-chat", "permanent": true },
+    { "source": "/Platform/Semantic%20Layer", "destination": "/platform/semantic-layer", "permanent": true },
+    { "source": "/Solutions/Marketing%20Teams", "destination": "/solutions/marketing-teams", "permanent": true },
+    { "source": "/Solutions/RevOps%20BizOps", "destination": "/solutions/revops-bizops", "permanent": true },
+    { "source": "/Solutions/Founders%20CEOs", "destination": "/solutions/founders-ceos", "permanent": true },
+    { "source": "/Solutions/Product%20Teams", "destination": "/solutions/product-teams", "permanent": true },
+    { "source": "/Solutions/Data%20Analytics%20Teams", "destination": "/solutions/data-analytics-teams", "permanent": true },
+    { "source": "/Solutions/Operations%20Finance", "destination": "/solutions/operations-finance", "permanent": true },
+    { "source": "/Resources/Contact%20Support", "destination": "/resources/contact-support", "permanent": true },
+    { "source": "/Resources/Prompt%20Library", "destination": "/resources/prompt-library", "permanent": true },
+    { "source": "/Company/About%20Insightis", "destination": "/company/about-insightis", "permanent": true },
+    { "source": "/Company/Press%20Media", "destination": "/company/press-media", "permanent": true },
+    { "source": "/Company/Success%20Stories", "destination": "/company/success-stories", "permanent": true },
+    { "source": "/Security/Cookie%20Settings", "destination": "/security/cookie-settings", "permanent": true }
   ]
 }

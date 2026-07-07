@@ -206,7 +206,7 @@ function HelpTopics({ search }) {
         )}
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @media (max-width: 900px) {
           section > div[style*="grid"] {
             grid-template-columns: repeat(2, 1fr) !important;
@@ -217,7 +217,7 @@ function HelpTopics({ search }) {
             grid-template-columns: 1fr !important;
           }
         }
-      `}</style>
+      ` }} />
     </section>
   );
 }

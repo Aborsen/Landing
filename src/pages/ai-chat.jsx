@@ -16,206 +16,6 @@ const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
 );
 
-/* ── AMBIENT DATA FIELD ── */
-const AMBIENT_ITEMS = [
-  '$47.2K','↑ 12.4%','NRR 113%','CAC $430','LTV $2.9K','ARR $564K',
-  '2.1% churn','38 deals','↓ 0.8pp','MRR $47K','Win rate 38%',
-  '350 leads','MAU 1,280','↑ 7.3%','$73% GM','85 trials','ROAS 3.4x',
-  'NPS 44','↑ $12K MoM','Payback 8mo','$8.2K new rev','3,300 ADS',
-];
-
-// Deterministic pseudo-random — keeps SSR and client renders identical
-// (Math.random() would mismatch and trigger React hydration error #418)
-function detRand(seed) {
-  const x = Math.sin(seed * 9999) * 10000;
-  return x - Math.floor(x);
-}
-
-function AmbientField() {
-  const items = [];
-  for (let i = 0; i < 28; i++) {
-    const left = detRand(i * 4 + 1) * 100;
-    const top  = detRand(i * 4 + 2) * 100;
-    const dur  = 8 + detRand(i * 4 + 3) * 12;
-    const delay = detRand(i * 4 + 4) * 8;
-    const text = AMBIENT_ITEMS[i % AMBIENT_ITEMS.length];
-    items.push(
-      <div key={i} className="ambient-item" style={{
-        left:`${left}%`, top:`${top}%`,
-        animationDuration:`${dur}s`,
-        animationDelay:`${delay}s`,
-      }}>{text}</div>
-    );
-  }
-  return <div className="ambient-field">{items}</div>;
-}
-
-/* ── ANIMATED CHAT MOCK ── */
-const CONVERSATIONS = [
-  {
-    q: "Why did our MRR drop last week?",
-    a: "Your MRR dropped by $1,240 last week, mainly from 3 churned Starter accounts. The primary reason was plan downgrade after trial expiry — these accounts averaged 4 logins in their last 30 days.",
-    chart: true,
-    chartData: [82,78,80,77,74,71,68,72],
-    chartColor: 'var(--ins-status-error-fg)',
-  },
-  {
-    q: "Which channel has the best CAC?",
-    a: "Organic search has your lowest CAC at $180 — 2.4× better than paid social ($430). Content-attributed signups also show 34% higher 6-month retention.",
-    chart: false,
-  },
-  {
-    q: "What's our NRR this quarter?",
-    a: "Your Net Revenue Retention is 113% this quarter, up from 108% last quarter. Expansion revenue from Starter → Pro upgrades drove the improvement — 22 accounts upgraded in Q1.",
-    chart: true,
-    chartData: [96,99,101,103,106,108,110,113],
-    chartColor: 'var(--ins-status-success-fg)',
-  },
-];
-
-function MiniBarChart({ data, color }) {
-  const max = Math.max(...data);
-  return (
-    <div style={{display:'flex',alignItems:'flex-end',gap:'3px',height:'36px',marginTop:'10px'}}>
-      {data.map((v,i) => (
-        <div key={i} style={{
-          flex:1, borderRadius:'2px 2px 0 0',
-          background: i===data.length-1 ? color : color+'55',
-          height:`${(v/max)*100}%`,
-          minHeight:'4px',
-        }}/>
-      ))}
-    </div>
-  );
-}
-
-function ChatMock() {
-  const [phase, setPhase]       = useState('idle');   // idle → typing-q → q → typing-a → a → pause
-  const [convIdx, setConvIdx]   = useState(0);
-  const [typedQ, setTypedQ]     = useState('');
-  const [typedA, setTypedA]     = useState('');
-  const [showChart, setShowChart] = useState(false);
-
-  const conv = CONVERSATIONS[convIdx];
-
-  useEffect(() => {
-    let timeout;
-    if (phase === 'idle') {
-      setTypedQ(''); setTypedA(''); setShowChart(false);
-      timeout = setTimeout(() => setPhase('typing-q'), 800);
-    }
-    else if (phase === 'typing-q') {
-      if (typedQ.length < conv.q.length) {
-        timeout = setTimeout(() => setTypedQ(conv.q.slice(0, typedQ.length + 1)), 38);
-      } else {
-        timeout = setTimeout(() => setPhase('q'), 400);
-      }
-    }
-    else if (phase === 'q') {
-      timeout = setTimeout(() => setPhase('typing-a'), 900);
-    }
-    else if (phase === 'typing-a') {
-      if (typedA.length < conv.a.length) {
-        timeout = setTimeout(() => setTypedA(conv.a.slice(0, typedA.length + 2)), 18);
-      } else {
-        timeout = setTimeout(() => { setShowChart(true); setPhase('a'); }, 200);
-      }
-    }
-    else if (phase === 'a') {
-      timeout = setTimeout(() => {
-        setPhase('idle');
-        setConvIdx((convIdx + 1) % CONVERSATIONS.length);
-      }, 3500);
-    }
-    return () => clearTimeout(timeout);
-  }, [phase, typedQ, typedA, convIdx]);
-
-  return (
-    <div style={{
-      background:'rgba(13,17,23,0.9)',
-      border:'1px solid var(--ins-color-white-a-08)',
-      borderRadius:'var(--ins-radius-20)',
-      overflow:'hidden',
-      backdropFilter:'blur(20px)',
-      boxShadow:'none',
-    }}>
-      {/* Chat header */}
-      <div style={{padding:'14px 18px',borderBottom:'1px solid var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'10px'}}>
-        <div style={{display:'flex',gap:'5px'}}>
-          {['#FF5F57','#FFBD2E','#28C840'].map((c,i) => (
-            <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
-          ))}
-        </div>
-        <div style={{flex:1,textAlign:'center',fontSize:'var(--ins-font-size-12)',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)'}}>
-          insightis — ai chat
-        </div>
-        <div style={{display:'flex',alignItems:'center',gap:5,padding:'3px 8px',background:'var(--ins-color-teal-a-08)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'5px'}}>
-          <div style={{width:'5px',height:'5px',borderRadius:'50%',background:'var(--ins-status-success-fg)',boxShadow:'0 0 6px var(--ins-status-success-fg)'}}/>
-          <span style={{fontSize:'10px',fontFamily:'var(--ins-font-family-mono)',color:'var(--ins-text-highlight)',fontWeight:500}}>Gemini Pro</span>
-        </div>
-      </div>
-
-      {/* Messages */}
-      <div style={{padding:'18px',display:'flex',flexDirection:'column',gap:'10px',minHeight:'200px'}}>
-        {/* User bubble */}
-        {(phase !== 'idle') && (
-          <div className="chat-bubble-user" style={{animation:'slideUp .25s ease both'}}>
-            {typedQ}
-            {phase === 'typing-q' && (
-              <span style={{display:'inline-block',width:'2px',height:'13px',background:'var(--ins-text-highlight)',marginLeft:'var(--ins-size-half)',verticalAlign:'middle',animation:'blink .7s ease-in-out infinite'}}/>
-            )}
-          </div>
-        )}
-
-        {/* AI response */}
-        {(phase === 'typing-a' || phase === 'a') && (
-          <div className="chat-bubble-ai" style={{animation:'slideUp .25s ease both'}}>
-            {phase === 'typing-a' && typedA.length === 0 ? (
-              <div style={{display:'flex',gap:'5px',alignItems:'center',padding:'2px 0'}}>
-                <div className="typing-dot"/>
-                <div className="typing-dot"/>
-                <div className="typing-dot"/>
-              </div>
-            ) : (
-              <>
-                <span>{typedA}</span>
-                {phase === 'typing-a' && (
-                  <span style={{display:'inline-block',width:'2px',height:'13px',background:'var(--ins-text-body)',marginLeft:'var(--ins-size-half)',verticalAlign:'middle',animation:'blink .7s ease-in-out infinite'}}/>
-                )}
-                {showChart && conv.chart && (
-                  <MiniBarChart data={conv.chartData} color={conv.chartColor}/>
-                )}
-              </>
-            )}
-          </div>
-        )}
-
-        {/* Idle state */}
-        {phase === 'idle' && (
-          <div style={{flex:1,display:'flex',alignItems:'center',justifyContent:'center',color:'var(--ins-text-inactive)',fontSize:'var(--ins-font-size-12)',fontFamily:'var(--ins-font-family-mono)'}}>
-            Ask anything about your data...
-          </div>
-        )}
-      </div>
-
-      {/* Input bar */}
-      <div style={{padding:'12px 16px',borderTop:'1px solid var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'var(--ins-size-2)'}}>
-        <div style={{flex:1,background:'var(--ins-color-white-a-04)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'10px',padding:'9px 12px',fontSize:'13px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-sans)'}}>
-          Ask anything about your data…
-        </div>
-        <div style={{display:'flex',alignItems:'center',gap:'5px'}}>
-          <div style={{width:'28px',height:'28px',borderRadius:'7px',background:'var(--ins-color-white-a-04)',border:'1px solid var(--ins-color-white-a-08)',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer'}}>
-            <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M14 10a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h1l2-2h2l2 2h1a2 2 0 012 2v4z" stroke="var(--ins-text-inactive)" strokeWidth="1.3"/></svg>
-          </div>
-          <div style={{width:'28px',height:'28px',borderRadius:'7px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer',boxShadow:'0 0 10px rgba(9,160,157,.3)'}}>
-            <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 /* ── INLINE CHART COMPONENTS ── */
 function TreemapChart({ items }) {
   const colors = ['var(--ins-text-highlight)','var(--ins-button-primary-bg-hover)','#818CF8','var(--ins-status-warning-fg)','var(--ins-status-error-fg)','#34D399','#60A5FA'];
@@ -858,22 +658,17 @@ function QuestionsGallery() {
             animation:'fadeIn .15s ease both',
             height:'520px', overflow:'hidden',
           }}>
-            <div style={{flex:1, padding:'24px 32px', display:'flex', flexDirection:'column', gap:'var(--ins-size-3)', overflow:'hidden'}}>
+            <div className="ins-chat" style={{flex:1, padding:'24px 32px', overflow:'hidden'}}>
 
               {/* User bubble */}
-              <div style={{
-                alignSelf:'flex-end', maxWidth:'80%',
-                background:'rgba(9,160,157,.15)', border:'1px solid rgba(9,160,157,.3)',
-                borderRadius:'16px 16px 4px 16px', padding:'12px 16px',
-                fontSize:'var(--ins-font-size-14)', color:'var(--ins-color-gray-100)', lineHeight:1.5,
-              }}>
+              <div className="ins-chat__bubble ins-chat__bubble--user">
                 {cat.questions[activeQ]}
               </div>
 
               {/* AI reply card */}
-              <div data-ai-reply-card style={{
-                alignSelf:'stretch', width:'100%',
-                background:'var(--ins-color-white-a-03)', border:'1px solid var(--ins-color-white-a-07)',
+              <div data-ai-reply-card className="ins-chat__bubble ins-chat__bubble--ai" style={{
+                alignSelf:'stretch', width:'100%', maxWidth:'100%',
+                whiteSpace:'normal',
                 borderRadius:'4px 16px 16px 16px', padding:'20px 24px',
                 flex:'1 1 auto', minHeight:0,
                 display:'flex', flexDirection:'column',
@@ -912,7 +707,7 @@ function QuestionsGallery() {
         </div>
 
         {/* Mobile responsive overrides */}
-        <style>{`
+        <style dangerouslySetInnerHTML={{ __html: `
           @media (max-width: 768px) {
             [data-gallery-grid] {
               grid-template-columns: 1fr !important;
@@ -936,7 +731,7 @@ function QuestionsGallery() {
               white-space: nowrap !important;
             }
           }
-        `}</style>
+        ` }} />
       </div>
     </section>
   );
@@ -1007,7 +802,7 @@ function AccuracyComparison() {
               | SQL required                    | n/a (no data access)                | No — plain-English questions translated by the engine  |
             The table can be visually hidden (sr-only) or styled as the existing cards — either way, emit the markup so crawlers/AI see it.
         */}
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'var(--ins-size-4)',alignItems:'stretch'}}>
+        <div className="ins-comparison" style={{alignItems:'stretch'}}>
           {/* Generic AI */}
           <Card variant="glow" className="ins-card--glow--error compare-card" style={{padding:'var(--ins-size-8)',display:'flex',flexDirection:'column'}}>
             <div className="ins-card__header" style={{marginBottom:'22px'}}>Generic AI</div>
@@ -1147,11 +942,13 @@ function ChatMockAnimationInner() {
 
   const t = tick;
   const windowOpacity = Math.min(1, t / 380);
-  const inputText = (t >= TYPING_START && t < SEND_TIME)
-    ? QUESTION.slice(0, Math.min(QUESTION.length, Math.floor((t - TYPING_START) / TYPING_SPEED)))
-    : '';
-  const showCursor = t < SEND_TIME;
-  const showUserBubble = t >= SEND_TIME;
+  // The question types directly inside the user bubble — no separate input
+  // field below the conversation.
+  const typedQuestion = t >= SEND_TIME
+    ? QUESTION
+    : QUESTION.slice(0, Math.max(0, Math.min(QUESTION.length, Math.floor((t - TYPING_START) / TYPING_SPEED))));
+  const showCursor = t >= TYPING_START && t < SEND_TIME;
+  const showUserBubble = t >= TYPING_START;
   const showThinking = t >= THINKING_START;
   const thinkingDone = t >= REPLY_START;
   const showStep1 = showThinking && t >= STEP1_TIME;
@@ -1184,31 +981,15 @@ function ChatMockAnimationInner() {
       boxShadow: 'none',
     }}>
 
-      {/* ── Header ── */}
-      <div style={{padding:'13px 18px', borderBottom:'1px solid var(--ins-color-white-a-07)', display:'flex', alignItems:'center', gap:'10px', background:'rgba(255,255,255,0.015)', flexShrink:0}}>
-        <div style={{display:'flex', gap:'6px'}}>
-          {['#FF5F57','#FFBD2E','#28C840'].map((c,i) => (
-            <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
-          ))}
-        </div>
-        <div style={{flex:1, textAlign:'center', fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-inactive)', fontFamily:'var(--ins-font-family-mono)', letterSpacing:'.02em'}}>
-          insightis — ai chat
-        </div>
-        <div style={{width:'46px'}}/>
-      </div>
-
       {/* ── Messages ── */}
-      <div style={{flex:1, padding:'20px 18px 16px', display:'flex', flexDirection:'column', gap:'var(--ins-size-4)', overflowY:'hidden'}}>
+      <div className="ins-chat" style={{flex:1, padding:'20px 18px 16px', gap:'var(--ins-size-4)', overflowY:'hidden'}}>
 
         {showUserBubble && (
-          <div style={{
-            alignSelf:'flex-end', maxWidth:'78%',
-            background:'var(--ins-chat-user-bg)', border:'1px solid var(--ins-chat-user-border)',
-            borderRadius:'14px 14px 3px 14px',
-            padding:'11px 15px', fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-heading)',
-            animation:'slideUp .25s ease both',
-          }}>
-            {QUESTION}
+          <div className="ins-chat__bubble ins-chat__bubble--user" style={{animation:'slideUp .25s ease both'}}>
+            {typedQuestion}
+            {showCursor && (
+              <span style={{display:'inline-block',width:'1.5px',height:'15px',background:'var(--ins-text-highlight)',marginLeft:'2px',animation:'blink 1s step-end infinite',verticalAlign:'middle'}}/>
+            )}
           </div>
         )}
 
@@ -1219,11 +1000,11 @@ function ChatMockAnimationInner() {
               <InsightisIcon size={18}/>
               <span style={{fontSize:'var(--ins-font-size-12)', color: thinkingDone ? 'var(--ins-text-highlight-muted)' : 'var(--ins-text-highlight)', fontWeight:500, transition:'color .4s ease'}}>Thinking</span>
               {!thinkingDone ? (
-                <div style={{display:'flex', gap:'3px', alignItems:'center', marginLeft:'1px'}}>
-                  {[0, 0.2, 0.4].map(d => (
-                    <span key={d} style={{width:'4.5px',height:'4.5px',borderRadius:'50%',background:'var(--ins-text-highlight)',display:'block',animation:`pulse 1.2s ease-in-out ${d}s infinite`}}/>
-                  ))}
-                </div>
+                <span className="ins-typing ins-typing--sm ins-typing--brand ins-motion-state" style={{marginLeft:'1px'}}>
+                  <span className="ins-typing__dot ins-motion-state"/>
+                  <span className="ins-typing__dot ins-motion-state"/>
+                  <span className="ins-typing__dot ins-motion-state"/>
+                </span>
               ) : (
                 <span style={{width:'14px',height:'14px',borderRadius:'50%',background:'rgba(14,196,193,0.12)',border:'1px solid rgba(14,196,193,0.28)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'8px',fontWeight:700,color:'var(--ins-text-highlight)',flexShrink:0}}><CheckIcon size={8} color="currentColor" /></span>
               )}
@@ -1266,12 +1047,7 @@ function ChatMockAnimationInner() {
 
         {showReply && (
           <div style={{animation:'slideUp .3s ease both'}}>
-            <div style={{
-              maxWidth:'90%',
-              background:'rgba(255,255,255,0.033)', border:'1px solid var(--ins-color-white-a-07)',
-              borderRadius:'3px 14px 14px 14px',
-              padding:'11px 14px', fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-body)', lineHeight:'var(--ins-line-height-relaxed)',
-            }}>
+            <div className="ins-chat__bubble ins-chat__bubble--ai" style={{maxWidth:'90%', fontSize:'var(--ins-font-size-12)'}}>
               {REPLY_LINE1.slice(0, l1chars)}
               {l1chars >= REPLY_LINE1.length && l2chars > 0 && (
                 <div style={{marginTop:'var(--ins-size-1)'}}>{REPLY_LINE2.slice(0, l2chars)}</div>
@@ -1338,26 +1114,6 @@ function ChatMockAnimationInner() {
         )}
       </div>
 
-      {/* ── Input (display only, not interactive) ── */}
-      <div style={{padding:'10px 14px 13px', borderTop:'1px solid var(--ins-color-white-a-06)', flexShrink:0}}>
-        <div style={{
-          background:'rgba(255,255,255,0.038)', border:'1px solid var(--ins-color-white-a-08)',
-          borderRadius:'9px', padding:'10px 13px',
-          fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-heading)',
-          display:'flex', alignItems:'center', minHeight:'38px',
-          pointerEvents:'none', userSelect:'none',
-        }}>
-          {inputText ? (
-            <span>{inputText}</span>
-          ) : (
-            <span style={{color:'var(--ins-text-disabled)', fontSize:'var(--ins-font-size-14)'}}>Ask anything…</span>
-          )}
-          {showCursor && (
-            <span style={{display:'inline-block',width:'1.5px',height:'15px',background:'var(--ins-text-highlight)',marginLeft:'1px',animation:'blink 1s step-end infinite',verticalAlign:'middle'}}/>
-          )}
-        </div>
-      </div>
-
     </div>
   );
 }
@@ -1380,11 +1136,17 @@ function Hero() {
           justifyContent: 'space-between',
           padding: '24px 0',
         }}>
+          <div>
+          <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-5)'}}>
+            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>AI Chat</span>
+          </div>
           <h1 className="ins-text-display-xl">
             <span style={{color:'var(--ins-text-heading-soft)'}}>Ask anything.</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>Get answers in</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>seconds.</span>
           </h1>
+          </div>
           <p className="ins-text-body-xl" style={{marginBottom:'36px',maxWidth:'520px'}}>
             Type any business question in plain English. Insightis queries your real data — no SQL, no analyst, no waiting.
           </p>

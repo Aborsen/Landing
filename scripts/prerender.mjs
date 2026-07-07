@@ -99,6 +99,10 @@ for (const [name, htmlPath] of Object.entries(entries)) {
   catch (err) { console.warn(`[prerender] skip ${name}: ssr load failed — ${err.message}`); skipCount++; continue; }
   if (!mod.default) { console.warn(`[prerender] skip ${name}: no default export`); skipCount++; continue; }
 
+  // Expose the served path so components (Header/Footer aria-current) can
+  // mark the active link in the static HTML. Read via src/components/currentPath.js.
+  globalThis.__PRERENDER_PATH__ = '/' + htmlPath;
+
   let body;
   try { body = renderToString(createElement(mod.default)); }
   catch (err) { console.warn(`[prerender] skip ${name}: render failed — ${err.message}`); skipCount++; continue; }
@@ -118,5 +122,6 @@ for (const [name, htmlPath] of Object.entries(entries)) {
   okCount++;
 }
 
+delete globalThis.__PRERENDER_PATH__;
 console.log(`\n[prerender] done: ${okCount} ok, ${skipCount} skipped`);
 await server.close();

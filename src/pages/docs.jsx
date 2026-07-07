@@ -1023,6 +1023,19 @@ function App() {
   // Timestamp until which the scroll-spy is paused after a TOC click.
   const scrollSpySuppressRef = useRef(0);
 
+  // While the mobile nav drawer is open: lock body scroll and close on Esc.
+  useEffect(() => {
+    if (!mobileNavOpen) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e) => { if (e.key === 'Escape') setMobileNavOpen(false); };
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [mobileNavOpen]);
+
   const currentPage = PAGES[activePage] || PAGES['welcome'];
 
   // Prev/next navigation follows the sidebar order.
@@ -1073,10 +1086,11 @@ function App() {
           optimization — it creates a containing block that would trap the
           mobile nav drawer's position:fixed. */}
       <div className="docs-page-wrap" style={{ maxWidth:'1240px', width:'calc(100% - 32px)', margin:'0 auto' }}>
-      <div className="docs-layout">
-        {/* Mobile-only breadcrumb bar — the menu icon opens the docs
-            navigation as a full-screen drawer (QA #2). */}
-        <div className="docs-mobile-breadcrumb">
+      {/* Mobile-only breadcrumb bar — sticky below the site header; the menu
+          icon opens the docs navigation as a full-screen drawer (QA #2).
+          Lives OUTSIDE the grid: a grid item can only stick within its own
+          row, so position:sticky would be inert inside .docs-layout. */}
+      <div className="docs-mobile-breadcrumb">
           <button
             type="button"
             className="docs-mobile-breadcrumb__menu"
@@ -1097,7 +1111,9 @@ function App() {
               <strong>{flatNav[navIdx].label}</strong>
             </span>
           )}
-        </div>
+      </div>
+
+      <div className="docs-layout">
         <DocsSidebar
           activePage={activePage}
           setActivePage={(id) => { setActivePage(id); setSidebarSearch(''); setMobileNavOpen(false); }}

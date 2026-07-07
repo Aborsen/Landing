@@ -1,5 +1,6 @@
 import React from 'react';
 import Logo from './Logo';
+import { getCurrentPath, normalizePath } from './currentPath';
 
 
 function TwitterXIcon({ size = 16, color = "currentColor" }) {
@@ -39,6 +40,11 @@ export default function Footer() {
     'Success Stories': '/company/success-stories',
     'Press & Media': '/company/press-media',
   };
+  // QA: mark the link to the page we're on with aria-current="page".
+  // getCurrentPath works during prerender too (static HTML carries it).
+  const currentPath = getCurrentPath();
+  const isActiveUrl = (url) => !!url && !url.startsWith('http') && normalizePath(url) === currentPath;
+  const isActive = (label) => isActiveUrl(linkUrls[label]);
   return (
     <footer className="pt-16 pb-8 border-t border-border-strong">
       <div className="max-w-7xl mx-auto px-6">
@@ -62,7 +68,7 @@ export default function Footer() {
               <div className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-primary mb-4 whitespace-nowrap">Platform</div>
               <ul className="flex flex-col gap-2.5">
                 {['AI Chat', 'Integrations', 'Semantic Layer'].map(link => (
-                  <li key={link}><a href={linkUrls[link] || '#'} className="text-sm text-text-secondary hover:text-text-primary transition-colors whitespace-nowrap">{link}</a></li>
+                  <li key={link}><a href={linkUrls[link] || '#'} aria-current={isActive(link) ? 'page' : undefined} className={`text-sm hover:text-text-primary transition-colors whitespace-nowrap ${isActive(link) ? 'text-text-primary' : 'text-text-secondary'}`}>{link}</a></li>
                 ))}
               </ul>
             </div>
@@ -72,7 +78,7 @@ export default function Footer() {
               <div className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-primary mb-4 whitespace-nowrap">Solutions</div>
               <ul className="flex flex-col gap-2.5">
                 {['For Revenue Operations Teams', 'For Executive Teams', 'For Marketing Teams', 'For Product Teams', 'For Data & Analytics Teams', 'For Operations & Finance Teams'].map(link => (
-                  <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-text-secondary hover:text-text-primary transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                  <li key={link}><a href={linkUrls[link] || '#'} aria-current={isActive(link) ? 'page' : undefined} className={`text-sm hover:text-text-primary transition-colors whitespace-nowrap ${isActive(link) ? 'text-text-primary' : 'text-text-secondary'}`}>{link}</a></li>
                 ))}
               </ul>
             </div>
@@ -82,7 +88,7 @@ export default function Footer() {
               <div className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-primary mb-4 whitespace-nowrap">Resources</div>
               <ul className="flex flex-col gap-2.5">
                 {['Documentation', 'Prompt Library', 'Blog', 'Support Center', 'Roadmap', 'Data Connectors'].map(link => (
-                  <li key={link}><a href={linkUrls[link] || '#'} {...(link === 'Video Tutorials' ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-text-secondary hover:text-text-primary transition-colors whitespace-nowrap">{link}{link === 'Video Tutorials' && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                  <li key={link}><a href={linkUrls[link] || '#'} aria-current={isActive(link) ? 'page' : undefined} className={`text-sm hover:text-text-primary transition-colors whitespace-nowrap ${isActive(link) ? 'text-text-primary' : 'text-text-secondary'}`}>{link}</a></li>
                 ))}
               </ul>
             </div>
@@ -92,12 +98,12 @@ export default function Footer() {
               <div className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-primary mb-4 whitespace-nowrap">Company</div>
               <ul className="flex flex-col gap-2.5">
                 {[
-                  { label: 'About Insightis', href: '../company/about-insightis' },
+                  { label: 'About Insightis', href: '/company/about-insightis' },
                   { label: 'About Devart', href: 'https://www.devart.com/company/' },
                   { label: 'Careers', href: 'https://www.devart.com/vacancies/' },
-                  { label: 'Contacts', href: '../company/contacts' },
+                  { label: 'Contacts', href: '/company/contacts' },
                 ].map(link => (
-                  <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-text-secondary hover:text-text-primary transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                  <li key={link.label}><a href={link.href} aria-current={isActiveUrl(link.href) ? 'page' : undefined} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className={`text-sm hover:text-text-primary transition-colors whitespace-nowrap ${isActiveUrl(link.href) ? 'text-text-primary' : 'text-text-secondary'}`}>{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
                 ))}
               </ul>
             </div>
@@ -107,12 +113,12 @@ export default function Footer() {
               <div className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-primary mb-4 whitespace-nowrap">Legal</div>
               <ul className="flex flex-col gap-2.5">
                 {[
-                  { label: 'Privacy', href: '../security/privacy' },
-                  { label: 'Terms', href: '../security/terms' },
-                  { label: 'Security', href: '../security/security' },
-                  { label: 'Cookie Settings', href: '../security/cookie-settings' },
+                  { label: 'Privacy', href: '/security/privacy' },
+                  { label: 'Terms', href: '/security/terms' },
+                  { label: 'Security', href: '/security/security' },
+                  { label: 'Cookie Settings', href: '/security/cookie-settings' },
                 ].map(link => (
-                  <li key={link.label}><a href={link.href} {...(link.href.startsWith('http') ? {target:'_blank', rel:'noopener noreferrer'} : {})} className="text-sm text-text-secondary hover:text-text-primary transition-colors whitespace-nowrap">{link.label}{link.href.startsWith('http') && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{width:'10px',height:'10px',marginLeft:'4px',display:'inline',verticalAlign:'middle',opacity:0.5}}><path d="M3.5 2H10V8.5"/><path d="M10 2L2 10"/></svg>}</a></li>
+                  <li key={link.label}><a href={link.href} aria-current={isActiveUrl(link.href) ? 'page' : undefined} className={`text-sm hover:text-text-primary transition-colors whitespace-nowrap ${isActiveUrl(link.href) ? 'text-text-primary' : 'text-text-secondary'}`}>{link.label}</a></li>
                 ))}
               </ul>
             </div>

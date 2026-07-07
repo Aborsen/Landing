@@ -125,19 +125,6 @@ function SemanticLayerMockAnimation() {
       boxShadow:'none',
     }}>
 
-      {/* ── Header ── */}
-      <div style={{padding:'12px 18px', borderBottom:'1px solid var(--ins-color-white-a-07)', display:'flex', alignItems:'center', gap:'10px', background:'rgba(255,255,255,0.015)', flexShrink:0}}>
-        <div style={{display:'flex', gap:'6px'}}>
-          {['#FF5F57','#FFBD2E','#28C840'].map((c,i) => (
-            <div key={i} style={{width:'10px',height:'10px',borderRadius:'50%',background:c,opacity:.6}}/>
-          ))}
-        </div>
-        <div style={{flex:1, textAlign:'center', fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-inactive)', fontFamily:'var(--ins-font-family-mono)', letterSpacing:'.02em'}}>
-          insightis — semantic layer
-        </div>
-        <div style={{width:'46px'}}/>
-      </div>
-
       {/* ── Body: one screen at a time ── */}
       <div style={{flex:1, position:'relative', overflow:'hidden'}}>
 
@@ -349,11 +336,17 @@ function Hero() {
           justifyContent: 'space-between',
           padding: '24px 0',
         }}>
+          <div>
+          <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-5)'}}>
+            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
+            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>Semantic Layer</span>
+          </div>
           <h1 className="ins-text-display-xl">
             <span style={{color:'var(--ins-text-heading-soft)'}}>One platform.</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>Every team's</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>numbers.</span>
           </h1>
+          </div>
           <p className="ins-text-body-xl" style={{marginBottom:'36px',maxWidth:'520px'}}>
             Your Semantic Layer certifies every metric once. Not generic guesses — your actual data, your exact logic.
           </p>

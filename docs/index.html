@@ -120,6 +120,12 @@ main > .docs-page-wrap { content-visibility: visible; contain-intrinsic-size: no
     border-bottom: 1px solid rgba(255,255,255,0.055);
     font-size: 14px; color: var(--ins-text-disabled);
     min-width: 0;
+    /* Pin to the very top while scrolling (the site header does not stick,
+       so no room is reserved for it). Solid background hides the content
+       scrolling beneath. */
+    position: sticky; top: 0; z-index: 30;
+    background: var(--ins-surface-page);
+    padding-top: 14px;
   }
   .docs-mobile-breadcrumb__menu {
     display: flex; align-items: center; justify-content: center;
@@ -144,6 +150,14 @@ main > .docs-page-wrap { content-visibility: visible; contain-intrinsic-size: no
     background: var(--ins-surface-page);
     border-right: none;
     padding: 12px 12px 32px;
+    animation: docsDrawerIn .25s ease-out;
+  }
+  @keyframes docsDrawerIn {
+    from { transform: translateX(-100%); }
+    to   { transform: translateX(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .docs-sidebar-col.is-open { animation: none; }
   }
   /* While the drawer is open, lift the docs layout's stacking context above
      the sticky site header (z-index 50) so the drawer fully covers it. */
@@ -158,6 +172,9 @@ main > .docs-page-wrap { content-visibility: visible; contain-intrinsic-size: no
     color: var(--ins-text-body); cursor: pointer;
   }
   .docs-content-col { padding: 24px 20px 60px; }
+  /* The sticky breadcrumb bar above already shows the same trail —
+     don't duplicate it inside the article on mobile. */
+  .docs-content-col .ins-breadcrumbs { display: none; }
 }
 
 /* ── DOCS MD-SECTION BODY ── */

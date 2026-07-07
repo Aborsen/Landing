@@ -14,7 +14,7 @@ const ALIAS_MAP = {
   sqlserver: 'sqlserver',
   googleworkspace: 'googleapps',
   gsuite: 'googleapps',
-  dynamics365: 'dynamics',
+  dynamics365: 'dynamicscrm',
   microsoftexcel: 'excelonline',
   confluence: 'rst_confluence_cloud',
   confluencecloud: 'rst_confluence_cloud',
@@ -37,6 +37,12 @@ const ALIAS_MAP = {
   pipelinercrm: 'hbr_pipeliner',
   productiveio: 'hbr_productive',
   freshsalesclassic: 'freshsales',
+  // Keyed by derived NAME, not the shared "microsoftazure" slug — a slug key
+  // would hijack the other Azure connectors that resolve to their own cells.
+  azuremysql: 'sqlazure',
+  azurepostgresql: 'sqlazure',
+  dynamics365businesscentral: 'd365businesscentral',
+  dynamics365financeops: 'dynamics365finops',
 };
 
 // sprite classes whose mark is dark/low-contrast on our dark theme -> render as a

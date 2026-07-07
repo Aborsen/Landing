@@ -28,6 +28,8 @@ const SIMPLEICONS_404 = new Set([
   'copper', 'gong', 'chargebee', 'freshworks', 'freshsales',
   'mondaydotcom', 'monday', 'pipedrive', 'salesloft', 'zendesksell',
   'docusign', 'recurly',
+  // Simple Icons carries no Microsoft brand marks — these slugs always 404.
+  'dynamics365', 'microsoftazure',
 ]);
 
 const ICONIFY_LOGOS = new Set([
@@ -167,6 +169,7 @@ export default function ConnectorIcon({ name, slug, domain, color = '#0EC4C1', a
           src={resolvedSrc}
           alt=""
           draggable="false"
+          onError={() => setResolvedSrc(null)}
           style={{ display: 'block', width: Math.round(size * 0.78), height: Math.round(size * 0.78), objectFit: 'contain' }}
         />
       ) : (

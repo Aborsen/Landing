@@ -88,10 +88,10 @@ function BottomCTA({
         <form
           action={ctaHref}
           method="get"
-          className="ins-bottom-cta__form"
+          className="ins-input-group ins-bottom-cta__form"
         >
           <input
-            className="ins-bottom-cta__input"
+            className="ins-input ins-bottom-cta__input"
             name={inputName}
             type="text"
             required

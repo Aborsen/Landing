@@ -892,7 +892,7 @@ export default function BlogPost({ markdown, slug }) {
       {/* Floating back-to-top button (appears once scrolled > 400px) */}
       <BackToTop />
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         /* Grid shell — left sidebar (TOC + Topics + Social) + article.
            Outer dimensions match the Header / docs pattern exactly:
               max-width: 1240px; width: calc(100% - 32px); margin: 0 auto;
@@ -1117,7 +1117,7 @@ export default function BlogPost({ markdown, slug }) {
           text-align: left;
         }
         .blog-prose th { background: var(--ins-surface-card); color: var(--ins-text-heading); font-weight: 600; }
-      `}</style>
+      ` }} />
 
       <Footer />
     </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Logo from './Logo';
 import Button from './Button';
 import Chip from './Chip';
+import { getCurrentPath, normalizePath } from './currentPath';
 
 function MenuIcon({ size = 24 }) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>;
@@ -130,6 +131,12 @@ export default function Header() {
   const hasDropdown = (link) => !!dropdowns[link];
   const anyOpen = activeDropdown !== null;
 
+  // QA: mark the link to the page we're on (mega-menu + mobile) with
+  // aria-current="page". getCurrentPath works during prerender too, so the
+  // attribute lands in the static HTML.
+  const currentPath = getCurrentPath();
+  const isActive = (label) => !!linkUrls[label] && normalizePath(linkUrls[label]) === currentPath;
+
   return (
     <>
       <div style={{
@@ -175,7 +182,7 @@ export default function Header() {
                       </svg>
                     </button>
                   ) : (
-                    <a href={linkUrls[link] || '#'} className="flex items-center px-4 py-1.5 rounded-full text-sm text-text-muted hover:!text-text-primary hover:bg-surface-hover transition-colors">
+                    <a href={linkUrls[link] || '#'} aria-current={isActive(link) ? 'page' : undefined} className={`flex items-center px-4 py-1.5 rounded-full text-sm hover:bg-surface-hover transition-colors ${isActive(link) ? 'text-text-primary' : 'text-text-muted hover:!text-text-primary'}`}>
                       {link}
                     </a>
                   )}
@@ -246,8 +253,8 @@ export default function Header() {
                         return item.notClickable ? (
                           <div key={ii} className="flex items-start gap-3 px-3 py-2.5 rounded-xl group" aria-disabled="true">{inner}</div>
                         ) : (
-                          <a key={ii} href={linkUrls[item.label] || '#'} {...(item.external ? {target:'_blank', rel:'noopener noreferrer'} : {})} onClick={() => setActiveDropdown(null)}
-                            className="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-surface-hover transition-colors group">{inner}</a>
+                          <a key={ii} href={linkUrls[item.label] || '#'} aria-current={isActive(item.label) ? 'page' : undefined} {...(item.external ? {target:'_blank', rel:'noopener noreferrer'} : {})} onClick={() => setActiveDropdown(null)}
+                            className={`flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-surface-hover transition-colors group ${isActive(item.label) ? 'bg-surface-hover' : ''}`}>{inner}</a>
                         );
                       })}
                     </div>
@@ -273,7 +280,7 @@ export default function Header() {
             {['Platform', 'Solutions', 'Resources', 'Pricing'].map(link => {
               const dd = dropdowns[link];
               if (!dd) {
-                return <a key={link} href={linkUrls[link] || '#'} className="block py-3 text-text-muted hover:!text-text-primary transition-colors">{link}</a>;
+                return <a key={link} href={linkUrls[link] || '#'} aria-current={isActive(link) ? 'page' : undefined} className={`block py-3 transition-colors ${isActive(link) ? 'text-text-primary' : 'text-text-muted hover:!text-text-primary'}`}>{link}</a>;
               }
               return (
                 <details key={link} name="mobile-nav" style={{borderBottom:'1px solid var(--ins-border-default)'}}>
@@ -285,7 +292,7 @@ export default function Header() {
                     {dd.sections.flatMap(s => s.items).map(item => (
                       item.notClickable
                         ? <div key={item.label} aria-disabled="true" className="block py-2 text-sm text-text-disabled">{item.label}{item.comingSoon && <Chip variant="brand" className="ml-2" style={{ fontSize: '9px' }}>Coming soon</Chip>}</div>
-                        : <a key={item.label} href={linkUrls[item.label] || '#'} className={`block py-2 text-sm hover:text-text-primary transition-colors ${item.comingSoon ? 'text-text-disabled' : 'text-text-muted'}`}>{item.label}{item.comingSoon && <Chip variant="brand" className="ml-2" style={{ fontSize: '9px' }}>Coming soon</Chip>}</a>
+                        : <a key={item.label} href={linkUrls[item.label] || '#'} aria-current={isActive(item.label) ? 'page' : undefined} className={`block py-2 text-sm hover:text-text-primary transition-colors ${item.comingSoon ? 'text-text-disabled' : (isActive(item.label) ? 'text-text-primary' : 'text-text-muted')}`}>{item.label}{item.comingSoon && <Chip variant="brand" className="ml-2" style={{ fontSize: '9px' }}>Coming soon</Chip>}</a>
                     ))}
                   </div>
                 </details>

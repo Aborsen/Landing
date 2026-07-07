@@ -61,7 +61,10 @@
 }
 
 .ins-bottom-cta__title {
-  flex-shrink: 0;
+  /* Must be allowed to shrink: with flex-shrink:0 a long title can't wrap in
+     the ≥768px row layout and gets clipped by the card's overflow:hidden
+     (QA: 768px viewport). The form wraps below it instead when tight. */
+  min-width: 0;
   font-family: var(--ins-font-family-sans);
   font-size: var(--ins-font-size-22);
   line-height: 1.2;
@@ -84,26 +87,14 @@
 }
 
 /* Form variant — input + submit button laid out horizontally in a single
-   rounded chrome. */
+   rounded chrome. The rail itself (bg, border, radius, padding, hover/focus
+   states, inner button sizing) comes from the kit .ins-input-group class on
+   the same element — only BottomCTA-specific layout lives here. */
 .ins-bottom-cta__form {
-  display: flex;
-  align-items: center;
   width: 100%;
-  background: var(--ins-surface-card);
-  border: var(--ins-border-width-1) solid var(--ins-border-default);
-  border-radius: var(--ins-radius-input);
-  padding: 3px;
-  gap: var(--ins-space-xs);
-  transition: border-color var(--ins-duration-base) var(--ins-easing-standard),
-              box-shadow   var(--ins-duration-base) var(--ins-easing-standard);
 }
 @media (min-width: 768px) {
   .ins-bottom-cta__form { width: auto; min-width: 0; flex: 0 0 auto; }
-}
-.ins-bottom-cta__form:hover { border-color: var(--ins-border-hover); }   /* audit #45 — input hover state */
-.ins-bottom-cta__form:focus-within {
-  border-color: var(--ins-border-focus);
-  box-shadow: var(--ins-focus-ring);
 }
 .ins-bottom-cta__form .ins-bottom-cta__input {
   flex: 1;
@@ -130,14 +121,6 @@
   outline: none;
   border: none;
 }
-/* Inner submit button — match the DS composer's small button override:
-   34 px height, 16 px horizontal padding, md (6 px) radius. */
-.ins-bottom-cta__form .ins-btn {
-  height: 34px;
-  padding: 0 var(--ins-space-lg);
-  border-radius: var(--ins-radius-md);
-}
-
 /* Buttons + text variants — center the CTA pair beneath the title. */
 .ins-bottom-cta--buttons,
 .ins-bottom-cta--text {
