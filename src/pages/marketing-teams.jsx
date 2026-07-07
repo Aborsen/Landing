@@ -839,10 +839,12 @@ function BottomCTASection() {
     <section style={{paddingTop:'var(--ins-size-8)',paddingBottom:'var(--ins-size-32)',position:'relative'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
-          variant="form"
+          variant="buttons"
           title={<>Stop debating <BottomCTA.Highlight>attribution.</BottomCTA.Highlight> Start scaling <BottomCTA.Highlight>what works.</BottomCTA.Highlight></>}
-          inputPlaceholder="Show me CAC by channel..."
-          ctaLabel="Get started"
+          description="Unify campaigns, CRM, and billing so every channel's true CAC and revenue impact is one question away — no more blended guesswork. Free to start, no credit card required."
+          ctaLabel="Start for free"
+          secondaryCtaLabel="Explore Pricing"
+          secondaryCtaHref="/pricing"
         />
       </div>
     </section>

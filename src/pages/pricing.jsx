@@ -374,10 +374,13 @@ function BottomCTASection() {
     <section style={{padding:'80px 0 100px'}}>
       <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
-          variant="text"
+          variant="buttons"
           title={<>Start free. <BottomCTA.Highlight>Upgrade when you're ready.</BottomCTA.Highlight></>}
-          ctaLabel="Get started for free"
+          description="Pick the plan that fits your team today and change it the moment your needs do — every tier ships with the Semantic Layer, AI Chat, and 200+ connectors. Free to start, no credit card required."
+          ctaLabel="Start for free"
           ctaHref="/auth/sign-up/"
+          secondaryCtaLabel="Talk to sales"
+          secondaryCtaHref="/company/contacts"
         />
       </div>
     </section>

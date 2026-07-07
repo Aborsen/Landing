@@ -1054,10 +1054,12 @@ function BottomCTASection() {
     <section className="pt-8 pb-16 relative">
       <div className="max-w-7xl mx-auto px-6">
         <BottomCTA
-          variant="form"
+          variant="buttons"
           title={<>Stop arguing about <BottomCTA.Highlight> which number</BottomCTA.Highlight> is right.</>}
-          inputPlaceholder="Which metric to unify..."
-          ctaLabel="Get started"
+          description="Define every metric once, certify it, and let every dashboard, report, and chat read the same source of truth. Ship insights instead of reconciliations — free to start, no credit card required."
+          ctaLabel="Start for free"
+          secondaryCtaLabel="Explore Pricing"
+          secondaryCtaHref="/pricing"
         />
       </div>
     </section>

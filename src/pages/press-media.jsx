@@ -275,10 +275,12 @@ function BottomCTA() {
     <section style={{paddingTop:'var(--ins-size-8)', paddingBottom:'var(--ins-size-16)', position:'relative'}}>
       <div className="max-w-7xl mx-auto px-6">
         <BottomCTABlock
-          variant="form"
+          variant="buttons"
           title={<>Ready to see your data <BottomCTABlock.Highlight>clearly?</BottomCTABlock.Highlight></>}
-          inputPlaceholder="Enter your work email..."
+          description="See the platform behind the story — turn raw data into answers your whole team can act on in minutes, not days. Free to start, no credit card required."
           ctaLabel="Start for free"
+          secondaryCtaLabel="Explore Pricing"
+          secondaryCtaHref="/pricing"
         />
       </div>
     </section>

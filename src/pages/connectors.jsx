@@ -340,22 +340,20 @@ function AIAssistantPanel({ query, onClose }) {
 
 function ConnectorsHero() {
   return (
-    <section style={{padding:'72px 0 36px', position:'relative', zIndex:1}}>
-      <div style={{maxWidth:'1240px', margin:'0 auto', padding:'0 24px'}}>
-
-        {/* text */}
-        <div>
-          <h1 className="ins-text-display-xl" style={{marginBottom:'22px', textWrap:'balance'}}>
-            <span style={{color:'var(--ins-text-highlight)'}}>Connect</span>{' '}
-            <span>to any source</span>
-          </h1>
-          <p className="ins-text-body-xl" style={{maxWidth:'520px', marginBottom:'30px'}}>
-            Explore 200+ prebuilt connectors, create custom ones with REST and GraphQL connectors, or request the data source you're missing.
-          </p>
-          <Button as="a" href="/auth/sign-up/" variant="primary" size="md" iconEnd={<ArrowRightIcon />} className="fu3">
-            Start for free
-          </Button>
+    <section style={{padding:'80px 0 40px', textAlign:'center', position:'relative', zIndex:1}}>
+      <div style={{maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
+        <div className="fu0" style={{display:'inline-flex', alignItems:'center', gap:'6px', padding:'6px 14px', borderRadius:'999px', border:'1px solid var(--ins-color-white-a-07)', background:'var(--ins-color-white-a-03)', fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-body)', fontWeight:500, letterSpacing:'0.04em', marginBottom:'var(--ins-size-6)'}}>
+          ✦ DATA CONNECTORS
         </div>
+        <h1 className="ins-text-display" style={{marginBottom:'var(--ins-size-5)'}}>
+          <span style={{color:'var(--ins-text-highlight)'}}>Connect</span> to any source.
+        </h1>
+        <p className="fu2 ins-text-body-xl" style={{maxWidth:'560px', margin:'0 auto var(--ins-size-6)'}}>
+          Explore 200+ prebuilt connectors, create custom ones with REST and GraphQL, or request the data source you're missing.
+        </p>
+        <Button as="a" href="/auth/sign-up/" variant="primary" size="md" iconEnd={<ArrowRightIcon />} className="fu3">
+          Start for free
+        </Button>
       </div>
     </section>
   );

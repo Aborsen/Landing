@@ -59,12 +59,24 @@
   gap: 10px;
   transition: opacity .2s, transform .2s;
   text-align: center;
+  max-width: 100%;
 }
 .connector-name {
   font-size: 12.5px; color: #C8D8DE; font-weight: 500;
   text-align: center; line-height: 1.25;
   max-width: 100%;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  /* Long names ("Dynamics 365 Business Central") wrap onto a second line
+     instead of clipping; clamp at 2 lines so square tiles stay aligned.
+     Reserve the full 2-line height always (min-height) so single- and
+     two-line names share the same baseline across a row — the logo and the
+     name's first line line up tile-to-tile. */
+  min-height: 2.5em;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 }
 
 /* ── Connector card (Platform/Integrations is the source of truth; reused by

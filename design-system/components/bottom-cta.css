@@ -143,13 +143,32 @@
   font-size: var(--ins-font-size-28);
 }
 
+/* Supporting sentence between title and actions (reference-style CTA).
+   Sits tight under the title, then the flex-column gap separates it from
+   the buttons. */
+.ins-bottom-cta__desc {
+  max-width: 34rem;
+  margin: calc(-1 * var(--ins-space-sm)) auto 0;
+  font-size: var(--ins-font-size-16);
+  line-height: var(--ins-line-height-relaxed);
+  color: var(--ins-text-body);
+  text-align: center;
+}
+
 /* Optional one-line reassurance strip under the actions */
 .ins-bottom-cta__note {
   margin-top: var(--ins-space-md);
   font-size: var(--ins-font-size-12);
-  color: var(--ins-text-inactive);
+  color: var(--ins-text-body);
   letter-spacing: .02em;
   text-align: center;
+}
+/* In the centered buttons/text variants the flex-column gap already spaces the
+   note from the actions — drop the extra margin so the actions→note gap matches
+   the title→actions gap above. */
+.ins-bottom-cta--buttons .ins-bottom-cta__note,
+.ins-bottom-cta--text .ins-bottom-cta__note {
+  margin-top: 0;
 }
 
 /* Row variant — one-line banner: title (with note beneath) left, CTA right.

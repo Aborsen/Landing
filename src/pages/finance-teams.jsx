@@ -49,17 +49,17 @@ function Hero() {
           <div>
             <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-5)'}}>
               <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
-              <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>For Revenue Operations Teams</span>
+              <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>For Finance Teams</span>
             </div>
 
             <h1 className="ins-text-display-xl" style={{marginBottom:'var(--ins-size-5)'}}>
-              <span style={{color:'var(--ins-text-heading-soft)'}}>Stop stitching revenue</span>
+              <span style={{color:'var(--ins-text-heading-soft)'}}>Stop reconciling numbers</span>
               <br/>
-              <span style={{color:'var(--ins-text-highlight)'}}>together by hand.</span>
+              <span style={{color:'var(--ins-text-highlight)'}}>across all systems.</span>
             </h1>
 
             <p className="fu2 ins-text-body-xl" style={{marginBottom:'var(--ins-size-7)',maxWidth:'480px'}}>
-              Ask any revenue question in plain English — Insightis answers from your CRM, billing, and product data in seconds.
+              Stop reconciling AP, HR, and billing tools by hand. Ask any cost question in plain English — Insightis consolidates spend instantly.
             </p>
 
             <div className="fu3" style={{display:'flex',gap:'var(--ins-size-3)',flexWrap:'wrap',marginBottom:'var(--ins-size-7)'}}>
@@ -70,32 +70,35 @@ function Hero() {
 
           </div>
 
-          {/* Right: hero section image — shared HeroMockup shell */}
+          {/* Right: ops & finance hero visual — shared HeroMockup shell */}
           <HeroMockup
-            title="Insightis — For Revenue Operations Teams"
-            accentLine="rgba(14,196,193,.55)"
-            glow="radial-gradient(circle at 25% 30%, rgba(14,196,193,.16) 0%, transparent 55%), radial-gradient(circle at 80% 80%, rgba(167,139,250,.12) 0%, transparent 50%)"
+            title="Insightis — For Finance Teams"
+            accentLine="rgba(251,191,36,.55)"
+            glow="radial-gradient(circle at 25% 30%, rgba(251,191,36,.16) 0%, transparent 55%), radial-gradient(circle at 80% 80%, rgba(9,160,157,.12) 0%, transparent 50%)"
             badge={
               <HeroMockup.Badge accentRgb="251,191,36">
-                <div style={{width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-status-warning-fg)',flexShrink:0}}/>
+                <div style={{
+                  width:'8px',height:'8px',borderRadius:'50%',background:'var(--ins-status-warning-fg)',
+                  flexShrink:0,
+                }}/>
                 <div>
-                  <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>Churn risk</div>
-                  <div style={{fontSize:'12.5px',color:'var(--ins-status-warning-fg)',fontWeight:500,fontFamily:'var(--ins-font-family-mono)',marginTop:'1px'}}>2 accounts flagged</div>
+                  <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>Over budget</div>
+                  <div style={{fontSize:'12.5px',color:'var(--ins-status-warning-fg)',fontWeight:500,fontFamily:'var(--ins-font-family-mono)',marginTop:'1px'}}>cloud_infra +$24K</div>
                 </div>
               </HeroMockup.Badge>
             }
             card={
               <HeroMockup.FloatCard accentRgb="9,160,157">
                 <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'var(--ins-size-2)'}}>
-                  <span style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>QBR prep</span>
+                  <span style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase'}}>Q2 close</span>
                   <span style={{fontSize:'10.5px',color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontWeight:500}}>5 / 7 done</span>
                 </div>
                 <div style={{display:'flex',flexDirection:'column',gap:'3px'}}>
                   {[
-                    {step:'Pipeline synced',   done:true},
-                    {step:'Numbers signed off', done:true},
-                    {step:'Forecast updated',  done:true},
-                    {step:'QBR deck',          done:false},
+                    {step:'AP reconciliation', done:true},
+                    {step:'Payroll posted',    done:true},
+                    {step:'Accruals booked',   done:true},
+                    {step:'Variance review',   done:false},
                   ].map((s,i)=>(
                     <div key={i} style={{display:'flex',alignItems:'center',gap:'7px'}}>
                       <div style={{
@@ -114,50 +117,127 @@ function Hero() {
             }
           >
 
-              {/* Status row — label with a dot */}
+              {/* Header */}
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'14px'}}>
                 <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)'}}>
-                  <div style={{width:'6px',height:'6px',borderRadius:'50%',background:'var(--ins-text-highlight)',boxShadow:'0 0 8px rgba(14,196,193,.6)'}}/>
-                  <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10.5px',color:'var(--ins-text-body)',letterSpacing:'.08em',textTransform:'uppercase'}}>Pipeline · live</span>
+                  <div style={{width:'6px',height:'6px',borderRadius:'50%',background:'var(--ins-status-warning-fg)',boxShadow:'0 0 8px rgba(251,191,36,.6)'}}/>
+                  <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10.5px',color:'var(--ins-text-body)',letterSpacing:'.08em',textTransform:'uppercase'}}>Q2 budget · MTD</span>
                 </div>
-                <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-highlight)',padding:'3px 9px',borderRadius:'999px',background:'var(--ins-color-teal-a-08)',border:'1px solid rgba(14,196,193,.3)',letterSpacing:'.08em',textTransform:'uppercase'}}>Q2 · MTD</span>
+                <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-status-warning-fg)',padding:'3px 9px',borderRadius:'999px',background:'var(--ins-color-status-warning-bg)',border:'1px solid rgba(251,191,36,.3)',letterSpacing:'.08em',textTransform:'uppercase'}}>variance</span>
               </div>
 
               {/* Headline + caption */}
               <h3 style={{fontSize:'var(--ins-font-size-17)',fontWeight:500,color:'var(--ins-text-heading-soft)',marginBottom:'6px',letterSpacing:'-.015em',lineHeight:1.35}}>
-                Net new ARR tracking <span style={{color:'var(--ins-status-success-fg)'}}>+18%</span> ahead of plan
+                Cloud infra running <span style={{color:'var(--ins-status-error-fg)'}}>+41%</span> over budget
               </h3>
-              <p className="ins-text-body-sm" style={{marginBottom:'var(--ins-size-5)'}}>
-                Reconciled across <span style={{color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontSize:'11.5px'}}>CRM · Billing · Product</span> in real time.
+              <p className="ins-text-body-sm" style={{marginBottom:'var(--ins-size-4)'}}>
+                Reconciled across <span style={{color:'var(--ins-status-warning-fg)',fontFamily:'var(--ins-font-family-mono)',fontSize:'11.5px'}}>AP · HR · Billing</span> in real time. Two categories tracking past plan; rest on or under.
               </p>
 
-              {/* KPI blocks — 3 × 2 grid */}
-              <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'16px'}}>
+              {/* Variance butterfly chart — bars pivot from a centered "plan" baseline */}
+              <div style={{
+                background:'rgba(255,255,255,.018)',
+                border:'1px solid var(--ins-color-white-a-05)',
+                borderRadius:'14px',
+                padding:'14px 14px 12px',
+                marginBottom:'14px',
+              }}>
+                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'10px'}}>
+                  <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.06em',textTransform:'uppercase'}}>variance · vs plan</span>
+                  <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-body)'}}>Q2 · MTD</span>
+                </div>
+
+                {/* Axis header: −50% / plan / +50% */}
+                <div style={{display:'flex',alignItems:'center',gap:'10px',marginBottom:'6px'}}>
+                  <span style={{width:'92px',flexShrink:0}}/>
+                  <div style={{flex:1,display:'flex',justifyContent:'space-between'}}>
+                    <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9px',color:'var(--ins-text-inactive)',letterSpacing:'.06em'}}>−50%</span>
+                    <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9px',color:'var(--ins-status-warning-fg)',letterSpacing:'.06em',fontWeight:500}}>plan</span>
+                    <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9px',color:'var(--ins-text-inactive)',letterSpacing:'.06em'}}>+50%</span>
+                  </div>
+                  <span style={{width:'48px',flexShrink:0}}/>
+                </div>
+
+                <div style={{display:'flex',flexDirection:'column',gap:'7px'}}>
+                  {[
+                    {label:'Cloud Infra',  v:+41},
+                    {label:'Contractors',  v:+18},
+                    {label:'Salaries',     v:+1},
+                    {label:'SaaS',         v:-8},
+                    {label:'Travel',       v:-22},
+                  ].map((r,i) => {
+                    const cap = 50;
+                    const abs = Math.abs(r.v);
+                    const barPct = Math.min(abs, cap) / cap * 50; // % of full bar width to fill, max 50% (one half)
+                    const isOver = r.v > 1;
+                    const isUnder = r.v < -1;
+                    const isNeutral = !isOver && !isUnder;
+                    const labelColor = isOver ? 'var(--ins-status-error-fg)' : isNeutral ? 'var(--ins-text-body)' : 'var(--ins-text-body)';
+                    const valColor = isOver ? 'var(--ins-status-error-fg)' : isNeutral ? 'var(--ins-text-body)' : 'var(--ins-status-success-fg)';
+                    return (
+                      <div key={i} style={{display:'flex',alignItems:'center',gap:'10px'}}>
+                        <span style={{
+                          fontFamily:'var(--ins-font-family-mono)',
+                          fontSize:'10px',
+                          color:labelColor,
+                          width:'92px',flexShrink:0,
+                          whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',
+                        }}>{r.label}</span>
+
+                        {/* Butterfly bar */}
+                        <div style={{flex:1,height:'14px',background:'var(--ins-color-white-a-04)',borderRadius:'3px',position:'relative',overflow:'hidden'}}>
+                          {/* Center "plan" line */}
+                          <div style={{
+                            position:'absolute',
+                            top:'-2px',bottom:'-2px',
+                            left:'50%',
+                            width:'1px',
+                            background:'rgba(251,191,36,.7)',
+                          }}/>
+                          {/* Variance bar — pivots from center */}
+                          <div style={{
+                            position:'absolute',
+                            top:0,bottom:0,
+                            left: isOver ? '50%' : `${50 - barPct}%`,
+                            width: `${barPct}%`,
+                            background: isOver
+                              ? 'linear-gradient(90deg, rgba(248,113,113,.45), rgba(248,113,113,.8))'
+                              : isNeutral
+                                ? 'linear-gradient(90deg, rgba(192,212,220,.2), rgba(192,212,220,.32))'
+                                : 'linear-gradient(90deg, rgba(34,197,94,.55), rgba(34,197,94,.32))',
+                            borderRadius: isOver ? '0 3px 3px 0' : isUnder ? '3px 0 0 3px' : '3px',
+                          }}/>
+                        </div>
+
+                        <span style={{
+                          fontFamily:'var(--ins-font-family-mono)',
+                          fontSize:'10.5px',
+                          color:valColor,
+                          width:'48px',textAlign:'right',flexShrink:0,
+                        }}>{r.v > 0 ? '+' : ''}{r.v}%</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Metric tiles — finance flavored */}
+              <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'var(--ins-size-2)'}}>
                 {[
-                  {label:'ARR',           val:'$24.0M', delta:'▲ +18% YoY',  hl:false},
-                  {label:'Net New ARR',   val:'$4.2M',  delta:'▲ +12% QoQ',  hl:false},
-                  {label:'Win Rate',      val:'32%',    delta:'▲ +3 pts',    hl:false},
-                  {label:'NRR',           val:'118%',   delta:'▲ expansion', hl:false},
-                  {label:'Pipeline Cov.', val:'3.4×',   delta:'on target',   hl:true},
-                  {label:'CAC Payback',   val:'14 mo',  delta:'▼ faster',    hl:false},
+                  {label:'Overage',  val:'+$24K',  color:'var(--ins-status-error-fg)'},
+                  {label:'Sources',  val:'AP·HR·Billing', color:'var(--ins-status-warning-fg)'},
+                  {label:'On plan',  val:'3 / 5',   color:'var(--ins-status-success-fg)'},
                 ].map((m,i) => (
                   <div key={i} style={{
                     background:'rgba(255,255,255,.025)',
                     border:'1px solid var(--ins-color-white-a-06)',
-                    borderRadius:'12px',
-                    padding:'16px 14px',
+                    borderRadius:'10px',
+                    padding:'10px 12px',
                   }}>
-                    <div style={{fontSize:'9px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'10px',whiteSpace:'nowrap'}}>{m.label}</div>
-                    <div style={{fontSize:'21px',fontWeight:500,color:'var(--ins-text-heading)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'-.02em',lineHeight:1}}>{m.val}</div>
-                    <div style={{fontSize:'9.5px',color:m.hl?'var(--ins-text-highlight)':'var(--ins-status-success-fg)',fontFamily:'var(--ins-font-family-mono)',marginTop:'8px'}}>{m.delta}</div>
+                    <div style={{fontSize:'9.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'var(--ins-size-1)'}}>{m.label}</div>
+                    <div style={{fontSize:m.val.length>8?'11.5px':'14px',fontWeight:500,color:m.color,fontFamily:'var(--ins-font-family-mono)',letterSpacing:'-.01em'}}>{m.val}</div>
                   </div>
                 ))}
-              </div>
-
-              {/* Insight footer */}
-              <div style={{marginTop:'24px',paddingTop:'12px',borderTop:'1px dashed var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'8px',fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-body)',letterSpacing:'.02em'}}>
-                <span style={{color:'var(--ins-text-highlight)'}}>↳</span>
-                <span>Enterprise pipeline +23% this quarter · 2 churn risks flagged</span>
               </div>
           </HeroMockup>
         </div>
@@ -194,18 +274,18 @@ function SpotlightChat() {
       display:'flex',
       flexDirection:'column',
     }}>
-      <ChromeHeader label="revops · inbox" />
+      <ChromeHeader label="fp&a · inbox" />
       <div style={{padding:'18px 20px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
 
         {/* Inbox header */}
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'var(--ins-size-3)'}}>
-          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>revenue asks · today</span>
+          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>requests · today</span>
           <span style={{
             fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-status-success-fg)',
             padding:'2px 8px',borderRadius:'999px',
             background:'var(--ins-color-status-success-bg)',border:'1px solid rgba(34,197,94,.3)',
             letterSpacing:'.08em',textTransform:'uppercase',
-          }}>4 auto-answered</span>
+          }}>3 auto-answered</span>
         </div>
 
         {/* Expanded request: CFO */}
@@ -225,8 +305,8 @@ function SpotlightChat() {
                 display:'flex',alignItems:'center',justifyContent:'center',
                 fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',fontWeight:500,color:'var(--ins-text-highlight)',
                 flexShrink:0,
-              }}>CR</div>
-              <span style={{fontSize:'11.5px',fontWeight:500,color:'var(--ins-color-gray-100)'}}>CRO</span>
+              }}>CF</div>
+              <span style={{fontSize:'11.5px',fontWeight:500,color:'var(--ins-color-gray-100)'}}>CFO</span>
               <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)'}}>10:42</span>
             </div>
             <span style={{
@@ -239,7 +319,7 @@ function SpotlightChat() {
 
           {/* Question */}
           <div style={{fontSize:'12.5px',color:'var(--ins-text-body)',marginBottom:'var(--ins-size-2)',lineHeight:1.5}}>
-            "Why did net MRR dip last week?"
+            "Where are we vs plan this month?"
           </div>
 
           {/* Answer — single compact line */}
@@ -250,18 +330,18 @@ function SpotlightChat() {
             borderTop:'1px dashed var(--ins-color-white-a-06)',
           }}>
             <span style={{color:'var(--ins-text-highlight)'}}>↳</span>
-            <span style={{color:'var(--ins-color-gray-100)'}}>$48.2K</span>
+            <span style={{color:'var(--ins-color-gray-100)'}}>$187K</span>
             <span style={{color:'var(--ins-text-inactive)'}}>vs</span>
-            <span style={{color:'var(--ins-text-body)'}}>$49.6K last wk</span>
+            <span style={{color:'var(--ins-text-body)'}}>$178K plan</span>
             <span style={{color:'var(--ins-text-inactive)'}}>·</span>
-            <span style={{color:'var(--ins-status-error-fg)',fontWeight:500}}>−$1.4K (2 churns)</span>
+            <span style={{color:'var(--ins-status-error-fg)',fontWeight:500}}>+$9K (cloud_infra)</span>
           </div>
         </div>
 
         {/* Other auto-answered requests */}
         {[
-          {who:'VP Partnerships', init:'VP', q:'Win rate by segment this quarter?', when:'09:18', tone:'#A78BFA'},
-          {who:'BizOps',         init:'BO', q:'CAC by channel since June?',        when:'08:55', tone:'var(--ins-status-warning-fg)'},
+          {who:'Head of Sales',  init:'HS', q:'Headcount cost by team Q2?',     when:'09:18', tone:'#A78BFA'},
+          {who:'COO',            init:'CO', q:'Contractor rollup since June?',   when:'08:55', tone:'var(--ins-status-warning-fg)'},
         ].map((r,i)=>(
           <div key={i} style={{
             display:'flex',alignItems:'center',gap:'10px',
@@ -298,10 +378,10 @@ function SpotlightChat() {
 
 function SpotlightSemantic() {
   const versions = [
-    {ver:'v3.2', state:'certified', owner:'RevOps',   when:'2 weeks ago',  note:'new logo + expansion − churn (full)'},
-    {ver:'v3.0', state:'deprecated', owner:'RevOps',  when:'Q1 2026',       note:'missing mid-cycle expansion'},
-    {ver:'v2.4', state:'deprecated', owner:'Sales Ops', when:'Q4 2025',       note:'bookings-based, not recognized'},
-    {ver:'v1.0', state:'deprecated', owner:'Sales',   when:'Q2 2025',       note:'sales team\'s spreadsheet definition'},
+    {ver:'v3.2', state:'certified', owner:'FP&A',     when:'2 weeks ago',  note:'payroll + saas + infra (full stack)'},
+    {ver:'v3.0', state:'deprecated', owner:'FP&A',    when:'Q1 2026',       note:'missing infra spend'},
+    {ver:'v2.4', state:'deprecated', owner:'Finance', when:'Q4 2025',       note:'payroll + saas only'},
+    {ver:'v1.0', state:'deprecated', owner:'Marketing', when:'Q2 2025',     note:'CMO\'s spreadsheet definition'},
   ];
   return (
     <div style={{
@@ -314,11 +394,11 @@ function SpotlightSemantic() {
       display:'flex',
       flexDirection:'column',
     }}>
-      <ChromeHeader label="metric · net_mrr" />
+      <ChromeHeader label="metric · gross_burn_rate" />
       <div style={{padding:'22px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
         {/* Eyebrow */}
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'14px'}}>
-          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>definition history</span>
+          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>version history</span>
           <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-body)'}}>4 revisions</span>
         </div>
 
@@ -388,10 +468,10 @@ function SpotlightSemantic() {
 
 function SpotlightAnomalies() {
   const items = [
-    {sev:'high', label:'SMB churn +$14K',        when:'Tue 14:32', why:'3 logos lost · onboarding gap',  tag:'churn'},
-    {sev:'med',  label:'Win rate −6pts · ENT',   when:'Mon 09:15', why:'slipping at procurement stage', tag:'win_rate'},
-    {sev:'med',  label:'CAC up 18% · paid',      when:'Sun 22:00', why:'rising CPC · Q4 ramp',           tag:'cac'},
-    {sev:'ok',   label:'Pipeline coverage 3.4×', when:'Today',     why:'on track for target',            tag:'coverage'},
+    {sev:'high', label:'Cloud Infra +$24K',     when:'Tue 14:32', why:'unplanned scale-up · compute', tag:'infra_spend'},
+    {sev:'med',  label:'Contractors +$13K',     when:'Mon 09:15', why:'new vendor · marketing ops',   tag:'contractor_spend'},
+    {sev:'med',  label:'SaaS auto-renew $8K',   when:'Sun 22:00', why:'expected · annual seat reset',  tag:'saas_spend'},
+    {sev:'ok',   label:'Payroll on plan',       when:'Today',     why:'matches Gusto run',              tag:'payroll'},
   ];
   const sevConfig = {
     high: {color:'var(--ins-status-error-fg)', bg:'var(--ins-color-red-a-06)', border:'rgba(248,113,113,.28)', icon:'!', iconBg:'rgba(248,113,113,.18)', iconBorder:'var(--ins-status-error-fg)'},
@@ -409,11 +489,11 @@ function SpotlightAnomalies() {
       display:'flex',
       flexDirection:'column',
     }}>
-      <ChromeHeader label="watchlist · before the QBR" />
+      <ChromeHeader label="watchlist · this week" />
       <div style={{padding:'20px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
         {/* Eyebrow row */}
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'var(--ins-size-3)'}}>
-          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>flagged before the QBR</span>
+          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>flagged before close</span>
           <div style={{display:'flex',gap:'10px',fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px'}}>
             <span style={{color:'var(--ins-status-error-fg)'}}>● 1 high</span>
             <span style={{color:'var(--ins-status-warning-fg)'}}>● 2 med</span>
@@ -477,10 +557,10 @@ function SpotlightAnomalies() {
 
 function SpotlightStack() {
   const trace = [
-    {label:'New logos',   amt:'+$31K', src:'Salesforce', detail:'18 deals',     owner:'Sales', ts:'06:30 UTC'},
-    {label:'Expansion',   amt:'+$22K', src:'Stripe',     detail:'42 upgrades',  owner:'CS',    ts:'06:30 UTC'},
-    {label:'Contraction', amt:'−$3K',  src:'Stripe',     detail:'7 downgrades', owner:'CS',    ts:'06:30 UTC'},
-    {label:'Churn',       amt:'−$2K',  src:'Salesforce', detail:'3 logos',      owner:'CS',    ts:'06:30 UTC'},
+    {label:'Payroll',     amt:'$98K', src:'Gusto',      detail:'142 entries',  owner:'HR',  ts:'06:30 UTC'},
+    {label:'SaaS spend',  amt:'$32K', src:'Ramp',       detail:'18 vendors',   owner:'IT',  ts:'06:30 UTC'},
+    {label:'Infra spend', amt:'$42K', src:'QuickBooks', detail:'24 line-items',owner:'Eng', ts:'06:30 UTC'},
+    {label:'Contractors', amt:'$15K', src:'QuickBooks', detail:'6 vendors',    owner:'Ops', ts:'06:30 UTC'},
   ];
   return (
     <div style={{
@@ -493,7 +573,7 @@ function SpotlightStack() {
       display:'flex',
       flexDirection:'column',
     }}>
-      <ChromeHeader label="audit · net_mrr" />
+      <ChromeHeader label="audit · gross_burn_rate" />
       <div style={{padding:'20px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
 
         {/* Headline KPI with audit stamp */}
@@ -507,11 +587,11 @@ function SpotlightStack() {
         }}>
           <div style={{minWidth:0}}>
             <div style={{display:'flex',alignItems:'baseline',gap:'10px'}}>
-              <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-22)',fontWeight:500,color:'var(--ins-color-gray-100)',letterSpacing:'-.01em'}}>$48.2K</span>
-              <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-body)'}}>net_mrr · Q2 MTD</span>
+              <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-22)',fontWeight:500,color:'var(--ins-color-gray-100)',letterSpacing:'-.01em'}}>$187K</span>
+              <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-body)'}}>gross_burn · Q2 MTD</span>
             </div>
             <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.06em',textTransform:'uppercase',marginTop:'var(--ins-size-1)'}}>
-              RevOps · v3.2 · 4 source systems
+              FP&amp;A · v3.2 · 4 source systems
             </div>
           </div>
           <span style={{
@@ -528,8 +608,8 @@ function SpotlightStack() {
 
         {/* Trace eyebrow */}
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'7px'}}>
-          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>↳ drill to source</span>
-          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-body)'}}>4 revenue drivers</span>
+          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>↳ trace to source</span>
+          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-body)'}}>4 components</span>
         </div>
 
         {/* Lineage rows */}
@@ -588,9 +668,9 @@ function SpotlightStack() {
         }}>
           <span style={{display:'inline-flex',alignItems:'center',gap:'6px'}}>
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ins-status-success-fg)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
-            <span>SOC 2 trail</span>
+            <span>SOX-ready trail</span>
           </span>
-          <span>signed off by RevOps · 06:42 UTC</span>
+          <span>signed off by FP&amp;A · 06:42 UTC</span>
         </div>
       </div>
     </div>
@@ -602,30 +682,30 @@ function FeatureSpotlights() {
   const spots = [
     {
       eyebrow:'Self-Serve',
-      title:'Revenue answers on demand',
-      body:'Type any pipeline or revenue question conversationally and get an answer rooted in your real CRM and billing data — no SQL, no dashboard backlog, no analyst wait.',
-      bullets:['Conversational answers across pipeline, MRR, and CAC','Sales, CS, and ops leads finally self-serve'],
+      title:'Finance answers on demand',
+      body:'Type any cost or budget question conversationally and get an answer rooted in your real ledger — no spreadsheet maze, no FP&A wait.',
+      bullets:['Conversational answers across budget, payroll, and spend','CFO and ops leads finally self-serve'],
       visual:<SpotlightChat />,
     },
     {
-      eyebrow:'Versioned Metrics',
-      title:'One revenue definition, versioned',
-      body:'Sales, Finance, and Marketing each define MRR a little differently. Insightis aligns MRR, win rate, and CAC under a single certified definition the whole company trusts.',
-      bullets:['MRR, win rate, and CAC agreed across teams','Definition changes tracked with owner and date'],
+      eyebrow:'Unified Cost Model',
+      title:'Every metric has one definition',
+      body:'Marketing and Finance often define the same metric differently. Insightis aligns burn, margin, and headcount under a single agreed definition.',
+      bullets:['Burn, margin, headcount agreed across teams','Versioning, ownership, and lineage built in'],
       visual:<SpotlightSemantic />,
     },
     {
-      eyebrow:'Pipeline Risk Alerts',
-      title:'Spot revenue risk before the QBR',
-      body:'Insightis scans every revenue answer for churn spikes, win-rate dips, and CAC drift — risks surface inline, not after the quarter has slipped.',
-      bullets:['Churn and slippage flagged inside every answer','Unusual CAC or pipeline movement called out'],
+      eyebrow:'Variance & Anomaly Detection',
+      title:'Spot overruns before month-end',
+      body:'Insightis scans every spend answer for variance, one-time charges, and regime shifts — overruns surface inline, not after the close.',
+      bullets:['Budget overruns flagged inside every answer','Unusual vendor or contractor spend called out'],
       visual:<SpotlightAnomalies />,
     },
     {
-      eyebrow:'Deal-Level Audit',
-      title:'QBR-ready numbers, end to end',
-      body:'Every number carries its deals, owners, and timestamps in one place — the board and finance see the same trail without a reconciliation pass.',
-      bullets:['Full lineage from metric down to the deal','Every number carries its owner and sign-off'],
+      eyebrow:'Audit-Ready',
+      title:'Audit-ready answers, all in one place',
+      body:'Every figure carries its transactions, owners, and timestamps in one place — auditors and finance see the same trail without a reconciliation pass.',
+      bullets:['Full lineage from KPI down to source transaction','Owner, timestamp, and version stamped on every figure'],
       visual:<SpotlightStack />,
     },
   ];
@@ -636,8 +716,8 @@ function FeatureSpotlights() {
         <div style={{marginBottom:'72px'}}>
           <SectionHeader
             eyebrow="How it works"
-            title="Built for the way revenue teams actually work"
-            lede="Four capabilities that turn RevOps from a reporting queue into a real-time revenue engine."
+            title="Built for the way finance teams actually work"
+            lede="Four capabilities that turn finance from a spreadsheet pipeline into a real-time control function."
             sparkle
           />
         </div>
@@ -694,33 +774,33 @@ function UseCases() {
   const cases = [
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 3v18h18" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/><path d="M7 14l4-4 4 4 5-6" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
-      title:'Live pipeline vs. plan',
-      desc:'Live pipeline and bookings vs. plan anytime — no more waiting until Wednesday for Monday\'s numbers. Every stage, every segment, real-time.',
+      title:'Live budget vs. actuals',
+      desc:'Live budget vs. actuals available anytime — no more waiting until Wednesday for Monday\'s numbers. Every department, every line item, real-time.',
     },
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m6-5h6M8 3v18m8-18v18M16 3h3a2 2 0 0 1 2 2v3M2 9h20M2 15h20M2 21h3m16 0h3" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
-      title:'Certified revenue metrics',
-      desc:'One semantic layer governs every metric — MRR, win rate, CAC — owned and versioned by RevOps. No more arguments about whose number is right.',
+      title:'Governed cost definitions',
+      desc:'One unified cost model governs every metric — burn rate, gross margin, COGS — owned and versioned by Finance. No more arguments about whose number is right.',
     },
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
-      title:'Proactive churn & risk alerts',
-      desc:'Revenue risk flagged before it compounds. The moment a segment churns or a deal slips, you know — not at the end-of-quarter QBR.',
+      title:'Proactive overrun alerts',
+      desc:'Overspend flagged before it compounds. The moment a department or vendor breaks plan, you know — not three weeks later when the bill hits.',
     },
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M7 9h10M7 13h6" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
-      title:'Ad hoc revenue analysis without SQL',
-      desc:'Any revenue question answered instantly — win rate by segment, CAC by channel, NRR under different scenarios. No more analyst queue or pivot-table archaeology.',
+      title:'Ad hoc finance analysis without Excel',
+      desc:'Any finance question answered instantly — gross margin by product, fully-loaded cost by team, runway under different burn scenarios. No more pivot-table archaeology.',
     },
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="14" rx="2" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><line x1="3" y1="10" x2="21" y2="10" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><line x1="8" y1="3" x2="8" y2="9" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><line x1="16" y1="3" x2="16" y2="9" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/></svg>,
-      title:'Forecast &amp; QBR prep in minutes',
-      desc:'Board decks and forecast calls built on live data — charts that update in the room. Walk in with answers, not last week\'s export.',
+      title:'Vendor &amp; SaaS contract tracking',
+      desc:'Vendor obligations tracked automatically — past-due invoices, auto-renewing SaaS contracts, unused licenses. Stop discovering them on a renewal email.',
     },
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/><circle cx="9" cy="7" r="4" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M22 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
-      title:'Cross-source revenue analysis',
-      desc:'Correlate CRM with billing and product usage in one question — no SQL, no analyst, no two-week turnaround. Pipeline, revenue, and retention in one place.',
+      title:'Fully-loaded headcount cost in seconds',
+      desc:'Fully-loaded cost by team in seconds — pulling from HR, payroll, and benefits automatically. The kind of answer that used to take a day, before the CEO asked again.',
     },
   ];
 
@@ -739,10 +819,10 @@ function UseCases() {
             <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
             <div style={{flex:'1 1 360px',minWidth:0}}>
               <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'var(--ins-size-2)'}}>
-                See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own pipeline</span>.
+                See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own ledger</span>.
               </h3>
               <p className="ins-text-body">
-                Connect Salesforce or HubSpot and ask Insightis the revenue question that always takes too long to answer.
+                Connect QuickBooks or Xero and ask Insightis the cost question that always takes too long to answer.
               </p>
             </div>
             <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
@@ -753,7 +833,7 @@ function UseCases() {
         <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
             eyebrow="Use cases"
-            title="What RevOps & BizOps teams use Insightis for"
+            title="What finance teams use Insightis for"
             sparkle
           />
         </div>
@@ -788,22 +868,22 @@ function UseCases() {
 /* ── RELEVANT INTEGRATIONS ── */
 function RelevantIntegrations() {
   const connectors = [
-    { name:'Salesforce',  desc:'CRM & pipeline' },
-    { name:'HubSpot',     desc:'CRM & marketing' },
+    { name:'QuickBooks',  desc:'Accounting' },
+    { name:'Xero',        desc:'Accounting' },
+    { name:'NetSuite',    desc:'Finance & ERP' },
     { name:'Stripe',      desc:'Billing & revenue' },
     { name:'Chargebee',   desc:'Subscription billing' },
     { name:'Zuora',       desc:'Subscription billing' },
-    { name:'Pipedrive',   desc:'Sales CRM' },
-    { name:'Outreach',    desc:'Sales engagement' },
-    { name:'Gong',        desc:'Revenue intelligence' },
+    { name:'Recurly',     desc:'Subscription billing' },
     { name:'ChartMogul',  desc:'Subscription analytics' },
+    { name:'Salesforce',  desc:'CRM & revenue' },
+    { name:'HubSpot',     desc:'CRM & revenue' },
     { name:'Snowflake',   desc:'Data warehouse' },
     { name:'BigQuery',    desc:'Cloud analytics' },
     { name:'PostgreSQL',  desc:'Data warehouse' },
-    { name:'Segment',     desc:'Customer data' },
-    { name:'NetSuite',    desc:'Finance & ERP' },
-    { name:'QuickBooks',  desc:'Finance data' },
-    { name:'Xero',        desc:'Finance data' },
+    { name:'Paddle',      desc:'Payments' },
+    { name:'Google Sheets', desc:'Spreadsheet data' },
+    { name:'Notion',      desc:'Reports & docs' },
   ];
 
   return (
@@ -811,9 +891,9 @@ function RelevantIntegrations() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
-            eyebrow="Your Revenue Stack"
-            title="Works with every CRM, billing, and finance tool"
-            lede="Insightis integrates with your CRM, billing, subscription, finance, and warehouse stack."
+            eyebrow="Your Finance Stack"
+            title="Works with every accounting, payroll, and billing tool"
+            lede="Insightis integrates with your accounting, billing, payroll, and warehouse stack."
             sparkle
           />
         </div>
@@ -851,28 +931,28 @@ function RelevantIntegrations() {
 function FAQ() {
   const items = [
     {
-      q:'How does Insightis handle our existing Salesforce custom fields?',
-      a:'Insightis maps every custom field, picklist, and formula in your Salesforce org during the initial sync. Custom-defined revenue and pipeline fields show up alongside standard ones — and you can reference them by name in any plain-English question.',
+      q:'Does Insightis replace QuickBooks or Xero, or sit on top?',
+      a:'It sits on top. Insightis reads your accounting, payroll, billing, and warehouse data in place — no shadow ledger, no parallel chart of accounts. QuickBooks or Xero stays your system of record, owned by Finance.',
     },
     {
-      q:'Can we define our own metrics, or are we stuck with the defaults?',
-      a:'You can define any metric in the semantic layer. Set a custom Pipeline Coverage formula, your own win-rate logic, or a stage-conversion definition unique to your business. Once defined, Insightis uses your version every time the metric is referenced.',
+      q:'What happens when teams have conflicting metric definitions?',
+      a:'Definitions are resolved at the unified cost model, not in the spreadsheet. Each metric — burn rate, gross margin, fully-loaded headcount cost — has one certified version, an owner, and a version history. When someone asks for "burn" in chat, Insightis answers using the governed definition and links to the source.',
     },
     {
-      q:'How fresh is the data — and how often does it sync?',
-      a:'Real-time for streaming sources like Stripe, webhooks, and event pipelines. Pull-based sources (CRM, warehouse) sync every 5 minutes by default and can be tuned down to once per minute on enterprise plans.',
+      q:'How does it handle late-arriving journals and month-end close adjustments?',
+      a:'Insightis re-reads your ledger continuously, so accruals, reclasses, and late-arriving journals flow through automatically. Numbers update as your close progresses — no manual refresh, no stale reports sitting in Drive.',
     },
     {
-      q:'Does Insightis replace our existing BI tools like Looker or Tableau?',
-      a:'Not necessarily. Most teams use Insightis for ad-hoc questions and quick answers, while keeping Looker for governed dashboards. Insightis can read from the same warehouse models, so there\'s no duplicate data layer to maintain.',
+      q:'Will this coexist with our existing FP&A or BI tool (Mosaic, Cube, Looker)?',
+      a:'Yes. Most teams keep their FP&A or BI tool for the curated board and forecast deck, and use Insightis for the long-tail finance questions that would otherwise become a Slack thread or another spreadsheet. Both can read the same unified cost model.',
     },
     {
-      q:'How long is the typical setup for a RevOps team?',
-      a:'Most teams are running real questions within an afternoon. Salesforce and Stripe connect in minutes; defining your first dozen metrics in the semantic layer takes another hour or two if you want a polished, fully-certified setup.',
+      q:'How long does implementation take?',
+      a:'Most finance teams are answering real questions within a week — connect QuickBooks or Xero plus your payroll and billing tools, register your top 10–20 metrics in the cost model, and start asking. Broader rollout to ops and department leads typically follows in the second or third week.',
     },
     {
-      q:'Where does our pipeline data live — and how is it secured?',
-      a:'Your data stays in your warehouse. Insightis runs queries on top via secure read-only connectors, with SOC 2 Type II, single sign-on, and row-level access controls. Nothing leaves your environment unless you explicitly share it.',
+      q:'How is security and access handled?',
+      a:'Insightis respects the permissions in your source systems and warehouse — every query runs as the connected role, so role-level and column-level security stays in force. No financial data is moved out of your warehouse, and full audit trails are preserved.',
     },
   ];
 
@@ -885,7 +965,7 @@ function FAQ() {
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>FAQ</span>
           </div>
           <h2 className="ins-text-display mb-3">
-            Questions RevOps &amp; BizOps teams ask
+            Questions finance teams ask
           </h2>
         </div>
 
@@ -901,10 +981,12 @@ function BottomCTASection() {
     <section style={{paddingTop:'var(--ins-size-8)',paddingBottom:'var(--ins-size-32)',position:'relative'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
-          variant="form"
-          title={<>Stop chasing <BottomCTA.Highlight>numbers.</BottomCTA.Highlight> Start trusting <BottomCTA.Highlight> them.</BottomCTA.Highlight></>}
-          inputPlaceholder="Show me pipeline by stage..."
-          ctaLabel="Get started"
+          variant="buttons"
+          title={<>Stop reconciling <BottomCTA.Highlight>spreadsheets.</BottomCTA.Highlight> Start controlling <BottomCTA.Highlight> costs.</BottomCTA.Highlight></>}
+          description="Give your finance team a single source of truth for spend, budgets, and forecasts — and answers the moment you ask, not days later. Free to start, no credit card required."
+          ctaLabel="Start for free"
+          secondaryCtaLabel="Explore Pricing"
+          secondaryCtaHref="/pricing"
         />
       </div>
     </section>

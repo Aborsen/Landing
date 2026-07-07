@@ -249,10 +249,12 @@ function BottomCTASection() {
     <section style={{paddingTop:'var(--ins-size-8)',paddingBottom:'var(--ins-size-32)',position:'relative'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
-          variant="form"
+          variant="buttons"
           title={<>Stop waiting on <BottomCTA.Highlight>decks.</BottomCTA.Highlight> Start seeing <BottomCTA.Highlight> live numbers.</BottomCTA.Highlight></>}
-          inputPlaceholder="Show me ARR vs target..."
-          ctaLabel="Get started"
+          description="Ask your board and revenue questions in plain English and get certified answers in seconds — no analyst queue, no stale slides. Free to start, no credit card required."
+          ctaLabel="Start for free"
+          secondaryCtaLabel="Explore Pricing"
+          secondaryCtaHref="/pricing"
         />
       </div>
     </section>
@@ -724,7 +726,7 @@ function UseCases() {
         <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
             eyebrow="Use cases"
-            title="What founders & CEOs use Insightis for"
+            title="What executive teams use Insightis for"
             sparkle
           />
         </div>
@@ -794,7 +796,7 @@ function FAQ() {
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>FAQ</span>
           </div>
           <h2 className="ins-text-display mb-3">
-            Questions founders and CEOs ask
+            Questions executive teams ask
           </h2>
         </div>
 

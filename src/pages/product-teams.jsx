@@ -317,10 +317,12 @@ function BottomCTASection() {
     <section style={{paddingTop:'var(--ins-size-8)',paddingBottom:'var(--ins-size-32)',position:'relative'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
-          variant="form"
+          variant="buttons"
           title={<>Stop <BottomCTA.Highlight>guessing.</BottomCTA.Highlight> Start <BottomCTA.Highlight>shipping.</BottomCTA.Highlight></>}
-          inputPlaceholder="Show me feature adoption..."
-          ctaLabel="Get started"
+          description="Ask questions in plain English and get product insights in seconds — no SQL, no waiting on the data team. Free to start, no credit card required."
+          ctaLabel="Start for free"
+          secondaryCtaLabel="Explore Pricing"
+          secondaryCtaHref="/pricing"
         />
       </div>
     </section>

@@ -64,12 +64,12 @@ export default function Header() {
     'Integrations': '/platform/integrations',
     'Semantic Layer': '/platform/semantic-layer',
     'Memory & Storage': '/platform/memory-storage',
-    'For Revenue Operations Teams': '/solutions/revops-bizops',
-    'For Executive Teams': '/solutions/founders-ceos',
+    'For Revenue Teams': '/solutions/revenue-teams',
+    'For Executive Teams': '/solutions/executive-teams',
     'For Marketing Teams': '/solutions/marketing-teams',
     'For Product Teams': '/solutions/product-teams',
-    'For Data & Analytics Teams': '/solutions/data-analytics-teams',
-    'For Operations & Finance Teams': '/solutions/operations-finance',
+    'For Analytics Teams': '/solutions/analytics-teams',
+    'For Finance Teams': '/solutions/finance-teams',
     'Pricing': '/pricing',
     'Documentation': '/docs/',
     'Blog': '/blog/',
@@ -101,14 +101,14 @@ export default function Header() {
     Solutions: {
       sections: [
         { heading: 'GROWTH', items: [
-          { label: 'For Revenue Operations Teams', desc: 'Revenue operations and business intelligence', icon: 'dollar' },
+          { label: 'For Revenue Teams', desc: 'Revenue operations and business intelligence', icon: 'dollar' },
           { label: 'For Executive Teams', desc: 'Strategic KPIs and company health at a glance', icon: 'star' },
           { label: 'For Marketing Teams', desc: 'Campaign analytics and cross-channel attribution', icon: 'pulse' },
         ]},
         { heading: 'OPERATIONS', items: [
           { label: 'For Product Teams', desc: 'Usage metrics and feature adoption tracking', icon: 'box' },
-          { label: 'For Data & Analytics Teams', desc: 'Advanced querying and data exploration', icon: 'bars' },
-          { label: 'For Operations & Finance Teams', desc: 'Cost tracking and operational efficiency', icon: 'settings' },
+          { label: 'For Analytics Teams', desc: 'Advanced querying and data exploration', icon: 'bars' },
+          { label: 'For Finance Teams', desc: 'Cost tracking and operational efficiency', icon: 'settings' },
         ]},
       ]
     },

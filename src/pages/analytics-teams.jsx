@@ -52,7 +52,7 @@ function Hero() {
           <div>
             <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-5)'}}>
               <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
-              <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>For Data &amp; Analytics Teams</span>
+              <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>For Analytics Teams</span>
             </div>
 
             <h1 className="ins-text-display-xl" style={{marginBottom:'var(--ins-size-5)'}}>
@@ -75,7 +75,7 @@ function Hero() {
 
           {/* Right: modern hero visual — shared HeroMockup shell */}
           <HeroMockup
-            title="Insightis — For Data &amp; Analytics Teams"
+            title="Insightis — For Analytics Teams"
             accentLine="rgba(14,196,193,.55)"
             glow="radial-gradient(circle at 30% 30%, rgba(9,160,157,.18) 0%, transparent 55%), radial-gradient(circle at 80% 80%, rgba(110,60,200,.10) 0%, transparent 50%)"
             badge={
@@ -295,10 +295,12 @@ function BottomCTASection() {
     <section style={{paddingTop:'var(--ins-size-8)',paddingBottom:'var(--ins-size-32)',position:'relative'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
-          variant="form"
+          variant="buttons"
           title={<>Stop being a <BottomCTA.Highlight>reporting service.</BottomCTA.Highlight> Start doing <BottomCTA.Highlight> real analysis.</BottomCTA.Highlight></>}
-          inputPlaceholder="Show me churn by cohort..."
-          ctaLabel="Get started"
+          description="Give your analytics team back the hours lost to ad hoc SQL requests — let business users self-serve in plain English while you focus on the deep work. Free to start, no credit card required."
+          ctaLabel="Start for free"
+          secondaryCtaLabel="Explore Pricing"
+          secondaryCtaHref="/pricing"
         />
       </div>
     </section>
@@ -693,7 +695,7 @@ function FeatureSpotlights() {
         <div style={{marginBottom:'72px'}}>
           <SectionHeader
             eyebrow="How it works"
-            title="Built for how data teams work"
+            title="Built for how analytics teams work"
             lede="Four capabilities that turn the data team from a reporting service into a strategic function."
             sparkle
           />
@@ -810,7 +812,7 @@ function UseCases() {
         <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
             eyebrow="Use cases"
-            title="What data teams use Insightis for"
+            title="What analytics teams use Insightis for"
             sparkle
           />
         </div>
@@ -915,7 +917,7 @@ function FAQ() {
     },
     {
       q:'How long does implementation take?',
-      a:'Most data teams are answering real questions within a week — connect your warehouse, register your top 10–20 metrics in the Semantic Layer, and start asking. Broader rollout to business teams typically follows in the second or third week.',
+      a:'Most analytics teams are answering real questions within a week — connect your warehouse, register your top 10–20 metrics in the Semantic Layer, and start asking. Broader rollout to business teams typically follows in the second or third week.',
     },
     {
       q:'How is security and access handled?',
@@ -932,7 +934,7 @@ function FAQ() {
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>FAQ</span>
           </div>
           <h2 className="ins-text-display mb-3">
-            Questions data teams ask
+            Questions analytics teams ask
           </h2>
         </div>
 

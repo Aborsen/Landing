@@ -55,6 +55,7 @@ const ArrowRightIcon = () => (
 function BottomCTA({
   variant = 'form',
   title,
+  description,
   inputPlaceholder,
   inputAriaLabel,
   inputName = 'q',
@@ -76,6 +77,12 @@ function BottomCTA({
   return (
     <div className={classes} style={style} {...rest}>
       {variant !== 'row' && <h2 className="ins-bottom-cta__title">{title}</h2>}
+
+      {/* Optional supporting sentence between the title and the actions
+          (buttons/text variants) — reference-style CTA layout. */}
+      {variant !== 'row' && description && (
+        <p className="ins-bottom-cta__desc">{description}</p>
+      )}
 
       {variant === 'row' && (
         <div className="ins-bottom-cta__lead">

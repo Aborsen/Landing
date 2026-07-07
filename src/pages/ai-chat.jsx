@@ -17,19 +17,32 @@ const ArrowRightIcon = () => (
 );
 
 /* ── INLINE CHART COMPONENTS ── */
+/* Brand-aligned categorical palette — cool, teal-forward tones that sit on the
+   dark surface without the traffic-light red/gold/green that clashed with the
+   design system. Categorical charts (treemap, pie, categorical bars) color by
+   INDEX from this list; any per-datum `color` in GALLERY_DATA is ignored. */
+const CHART_PALETTE = [
+  'var(--ins-text-highlight)', // teal #0EC4C1 (brand)
+  '#818CF8',                   // indigo
+  '#38BDF8',                   // sky
+  '#5EEAD4',                   // mint-teal
+  '#6D8AA0',                   // slate
+  '#A78BFA',                   // violet
+];
+
 function TreemapChart({ items }) {
-  const colors = ['var(--ins-text-highlight)','var(--ins-button-primary-bg-hover)','#818CF8','var(--ins-status-warning-fg)','var(--ins-status-error-fg)','#34D399','#60A5FA'];
+  const colors = CHART_PALETTE;
   const sorted = [...items].sort((a,b) => b.value - a.value);
   const total = sorted.reduce((s,i) => s + i.value, 0);
   const W = 860, H = 210, gap = 4;
   const leftW = Math.round((sorted[0].value / total) * W);
   const rest = sorted.slice(1);
   const restTotal = rest.reduce((s,i) => s + i.value, 0) || 1;
-  const cells = [{ x:0, y:0, w:leftW - gap, h:H, item:sorted[0], color:sorted[0].color || colors[0] }];
+  const cells = [{ x:0, y:0, w:leftW - gap, h:H, item:sorted[0], color:colors[0] }];
   let y = 0;
   rest.forEach((item, i) => {
     const h = Math.round((item.value / restTotal) * H);
-    cells.push({ x:leftW, y, w:W - leftW, h:h - gap, item, color:item.color || colors[i+1] });
+    cells.push({ x:leftW, y, w:W - leftW, h:h - gap, item, color:colors[(i+1) % colors.length] });
     y += h;
   });
   return (
@@ -55,7 +68,7 @@ function TreemapChart({ items }) {
 
 function PieChart({ slices }) {
   const total = slices.reduce((s, d) => s + Math.abs(d.value), 0);
-  const colors = ['var(--ins-text-highlight)','var(--ins-button-primary-bg-hover)','var(--ins-status-error-fg)','var(--ins-status-warning-fg)','#818CF8','#34D399'];
+  const colors = CHART_PALETTE;
   let angle = -Math.PI / 2;
   const cx = 90, cy = 90, r = 75, ri = 38;
   const paths = slices.map((s, i) => {
@@ -67,7 +80,7 @@ function PieChart({ slices }) {
     const large = sweep > Math.PI ? 1 : 0;
     const d = `M${x1},${y1} A${r},${r} 0 ${large},1 ${x2},${y2} L${xi2},${yi2} A${ri},${ri} 0 ${large},0 ${xi1},${yi1} Z`;
     angle += sweep;
-    return { d, color: s.color || colors[i % colors.length], label: s.label, pct: Math.round((Math.abs(s.value)/total)*100) };
+    return { d, color: colors[i % colors.length], label: s.label, pct: Math.round((Math.abs(s.value)/total)*100) };
   });
   return (
     <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-8)',margin:'12px 0'}}>
@@ -98,7 +111,7 @@ function HorizontalBarChart({ bars }) {
             <div style={{
               width:`${(Math.abs(b.value)/maxVal)*100}%`,
               height:'100%',borderRadius:'var(--ins-radius-4)',
-              background: b.color || (b.value < 0 ? 'rgba(220,80,80,.7)' : 'rgba(9,160,157,.6)'),
+              background: b.color ? CHART_PALETTE[i % CHART_PALETTE.length] : (b.value < 0 ? 'rgba(220,80,80,.7)' : 'rgba(9,160,157,.6)'),
             }}/>
           </div>
           <span style={{fontSize:'var(--ins-font-size-12)',fontFamily:'var(--ins-font-family-mono)',color: b.value < 0 ? '#E06060' : 'var(--ins-text-highlight)',minWidth:'60px',flexShrink:0}}>{b.display}</span>
@@ -855,10 +868,12 @@ function BottomCTASection() {
     <section className="pt-8 pb-16 relative">
       <div className="max-w-7xl mx-auto px-6">
         <BottomCTA
-          variant="form"
+          variant="buttons"
           title={<>Still waiting on <BottomCTA.Highlight> insights</BottomCTA.Highlight> that take <BottomCTA.Highlight> days?</BottomCTA.Highlight></>}
-          inputPlaceholder="What are you looking for..."
-          ctaLabel="Get started"
+          description="Ask your data in plain language and get answers grounded in your own numbers — not internet averages — in seconds. Free to start, no credit card required."
+          ctaLabel="Start for free"
+          secondaryCtaLabel="Explore Pricing"
+          secondaryCtaHref="/pricing"
         />
       </div>
     </section>

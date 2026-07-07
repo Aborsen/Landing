@@ -16,11 +16,11 @@ export default defineConfig({
         'semantic-layer':         resolve(__dirname, 'platform/semantic-layer.html'),
         // ── Batch 2: Solutions pages ──
         'marketing-teams':        resolve(__dirname, 'solutions/marketing-teams.html'),
-        'revops-bizops':          resolve(__dirname, 'solutions/revops-bizops.html'),
-        'founders-ceos':          resolve(__dirname, 'solutions/founders-ceos.html'),
+        'revenue-teams':          resolve(__dirname, 'solutions/revenue-teams.html'),
+        'executive-teams':          resolve(__dirname, 'solutions/executive-teams.html'),
         'product-teams':          resolve(__dirname, 'solutions/product-teams.html'),
-        'data-analytics-teams':   resolve(__dirname, 'solutions/data-analytics-teams.html'),
-        'operations-finance':     resolve(__dirname, 'solutions/operations-finance.html'),
+        'analytics-teams':   resolve(__dirname, 'solutions/analytics-teams.html'),
+        'finance-teams':     resolve(__dirname, 'solutions/finance-teams.html'),
         // ── Batch 3: Pricing + Resources + Company + Security + blog + docs ──
         'pricing':                resolve(__dirname, 'pricing.html'),
         'connectors':             resolve(__dirname, 'resources/connectors.html'),

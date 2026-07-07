@@ -851,7 +851,7 @@ function WhatIsInsightis() {
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[var(--ins-text-highlight)]"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
               <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">By the numbers</span>
             </div>
-            <h2 className="text-4xl md:text-[48px] font-medium text-[var(--ins-text-heading)] tracking-tight leading-[1.1]">What is Insightis</h2>
+            <h2 className="text-4xl md:text-[48px] font-medium text-[var(--ins-text-heading)] tracking-tight leading-[1.1]">Insightis in numbers</h2>
             <p className="ins-text-body-lg mt-4 max-w-xl mx-auto">
               The AI analytics workspace that turns raw data into clear decisions — instantly, accurately, and without SQL.
             </p>
@@ -917,13 +917,6 @@ function Pricing() {
         </FadeUp>
 
 
-        <FadeUp delay={0.25}>
-          <div className="text-center mt-10">
-            <a href="/pricing" className="ins-btn ins-btn--secondary ins-btn--lg">
-              Explore pricing
-            </a>
-          </div>
-        </FadeUp>
       </div>
     </section>
   );
@@ -965,11 +958,21 @@ function BottomCTASection() {
     <section className="pt-8 pb-16 relative">
       <div className="max-w-7xl mx-auto px-6">
         <FadeUp>
+          {/* FIRST OPTION restored for review — the big centered "buttons" version.
+              To switch back to the compact one-line row, swap the block below for:
+              <BottomCTA
+                variant="row"
+                title={<>Still waiting on <BottomCTA.Highlight>insights</BottomCTA.Highlight> that take <BottomCTA.Highlight>days?</BottomCTA.Highlight></>}
+                ctaLabel="Start for free"
+                trustNote="Free plan · No credit card · First answer in under 2 minutes"
+              /> */}
           <BottomCTA
-            variant="row"
-            title={<>Still waiting on <BottomCTA.Highlight>insights</BottomCTA.Highlight> that take <BottomCTA.Highlight>days?</BottomCTA.Highlight></>}
+            variant="buttons"
+            title={<>Ask your data <BottomCTA.Highlight>anything.</BottomCTA.Highlight></>}
+            description="Connect your stack and get a decision-ready answer in under two minutes — no SQL, no analyst queue. Free to start, no credit card required."
             ctaLabel="Start for free"
-            trustNote="Free plan · No credit card · First answer in under 2 minutes"
+            secondaryCtaLabel="Explore Pricing"
+            secondaryCtaHref="/pricing"
           />
         </FadeUp>
       </div>

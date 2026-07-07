@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import SectionHeader from '../components/SectionHeader';
+import BottomCTABlock from '../components/BottomCTA';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -325,17 +326,16 @@ function BottomCTA() {
   return (
     <section style={{paddingTop:'var(--ins-size-8)', paddingBottom:'var(--ins-size-16)', position:'relative'}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-        <div style={{position:'relative', borderRadius:'var(--ins-radius-16)', border:'1px solid rgba(30,30,48,1)', padding:'32px 48px', overflow:'hidden', display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:'var(--ins-size-6)', flexWrap:'wrap', background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)'}}>
+        <div style={{position:'relative', borderRadius:'var(--ins-radius-16)', border:'1px solid rgba(30,30,48,1)', padding:'32px 48px', overflow:'hidden', background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)'}}>
           <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
-          <h3 style={{fontSize:'clamp(22px,3vw,30px)', fontWeight:500, color:'var(--ins-text-heading)', letterSpacing:'-.03em', lineHeight:1.2, flexShrink:0}}>
-            Ready to see your data <span style={{color:'var(--ins-button-primary-bg)'}}>clearly?</span>
-          </h3>
-          <div style={{display:'flex', alignItems:'center', width:'100%', maxWidth:'420px', background:'#0D0D1A', border:'1px solid rgba(46,46,64,1)', borderRadius:'var(--ins-radius-12)', overflow:'hidden', flex:'1 1 340px'}}>
-            <Input hideLabel label="Work email" type="email" placeholder="Enter your work email..." style={{flex:1, background:'transparent', fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-body)', padding:'12px 16px', outline:'none', border:'none', fontFamily:'var(--ins-font-family-sans)', minWidth:0, height:'auto', borderRadius:0, boxShadow:'none'}} />
-            <Button variant="primary" size="sm" radius="lg" iconEnd={<ArrowRightIcon />} className="m-1 flex-shrink-0">
-              Start for free
-            </Button>
-          </div>
+          <BottomCTABlock
+            variant="buttons"
+            title={<>Ready to see your data <BottomCTABlock.Highlight>clearly?</BottomCTABlock.Highlight></>}
+            description="Join the teams turning questions into answers in seconds — ask in plain English, get trusted results grounded in your own data. Free to start, no credit card required."
+            ctaLabel="Start for free"
+            secondaryCtaLabel="Explore Pricing"
+            secondaryCtaHref="/pricing"
+          />
         </div>
       </div>
     </section>

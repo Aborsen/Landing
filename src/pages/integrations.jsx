@@ -679,10 +679,12 @@ function CTA() {
     <section className="pt-8 pb-16 relative">
       <div className="max-w-7xl mx-auto px-6">
         <BottomCTA
-          variant="form"
+          variant="buttons"
           title={<>Your data is already there.<BottomCTA.Highlight> Connect it in minutes.</BottomCTA.Highlight></>}
-          inputPlaceholder="Which tool to connect..."
-          ctaLabel="Get started"
+          description="Link 200+ sources in a few clicks and ask questions in plain English — no SQL, no pipelines, no waiting. Free to start, no credit card required."
+          ctaLabel="Start for free"
+          secondaryCtaLabel="Explore Pricing"
+          secondaryCtaHref="/pricing"
         />
       </div>
     </section>

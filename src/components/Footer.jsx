@@ -22,12 +22,12 @@ export default function Footer() {
     'Integrations': '/platform/integrations',
     'Semantic Layer': '/platform/semantic-layer',
     'Memory & Storage': '/platform/memory-storage',
-    'For Revenue Operations Teams': '/solutions/revops-bizops',
-    'For Executive Teams': '/solutions/founders-ceos',
+    'For Revenue Teams': '/solutions/revenue-teams',
+    'For Executive Teams': '/solutions/executive-teams',
     'For Marketing Teams': '/solutions/marketing-teams',
     'For Product Teams': '/solutions/product-teams',
-    'For Data & Analytics Teams': '/solutions/data-analytics-teams',
-    'For Operations & Finance Teams': '/solutions/operations-finance',
+    'For Analytics Teams': '/solutions/analytics-teams',
+    'For Finance Teams': '/solutions/finance-teams',
     'Pricing': '/pricing',
     'Documentation': '/docs/',
     'Blog': '/blog/',
@@ -77,7 +77,7 @@ export default function Footer() {
             <div>
               <div className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-primary mb-4 whitespace-nowrap">Solutions</div>
               <ul className="flex flex-col gap-2.5">
-                {['For Revenue Operations Teams', 'For Executive Teams', 'For Marketing Teams', 'For Product Teams', 'For Data & Analytics Teams', 'For Operations & Finance Teams'].map(link => (
+                {['For Revenue Teams', 'For Executive Teams', 'For Marketing Teams', 'For Product Teams', 'For Analytics Teams', 'For Finance Teams'].map(link => (
                   <li key={link}><a href={linkUrls[link] || '#'} aria-current={isActive(link) ? 'page' : undefined} className={`text-sm hover:text-text-primary transition-colors whitespace-nowrap ${isActive(link) ? 'text-text-primary' : 'text-text-secondary'}`}>{link}</a></li>
                 ))}
               </ul>
