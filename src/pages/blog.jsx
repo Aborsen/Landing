@@ -34,7 +34,7 @@ function BlogHero() {
           ✦ BLOG
         </div>
         <h1 className="ins-text-display" style={{marginBottom:'var(--ins-size-5)'}}>
-          Insights about insights.
+          Insights about insights
         </h1>
         <p className="fu2 ins-text-body-xl" style={{maxWidth:'540px', margin:'0 auto'}}>
           Data analytics tips, product updates, and deep dives into how teams are using AI to replace spreadsheet chaos.
@@ -213,7 +213,7 @@ function BottomCTA() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTABlock
           variant="buttons"
-          title={<>Stop reading about <BottomCTABlock.Highlight>analytics.</BottomCTABlock.Highlight> Start doing it.</>}
+          title={<>Stop reading about <BottomCTABlock.Highlight>analytics.</BottomCTABlock.Highlight> Start doing it</>}
           description="Turn the ideas on this blog into real answers from your own data — ask a question, get an insight, no dashboards to wrangle. Free to start, no credit card required."
           ctaLabel="Start for free"
           secondaryCtaLabel="Explore Pricing"

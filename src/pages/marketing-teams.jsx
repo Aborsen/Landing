@@ -55,7 +55,7 @@ function Hero() {
             <h1 className="ins-text-display-xl" style={{marginBottom:'var(--ins-size-5)'}}>
               <span style={{color:'var(--ins-text-heading-soft)'}}>Stop guessing which channel</span>
               <br/>
-              <span style={{color:'var(--ins-text-highlight)'}}>actually works.</span>
+              <span style={{color:'var(--ins-text-highlight)'}}>actually works</span>
             </h1>
 
             <p className="fu2 ins-text-body-xl" style={{marginBottom:'var(--ins-size-7)',maxWidth:'480px'}}>
@@ -684,7 +684,7 @@ function UseCases() {
             <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
             <div style={{flex:'1 1 360px',minWidth:0}}>
               <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'var(--ins-size-2)'}}>
-                See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own campaigns</span>.
+                See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own campaigns</span>
               </h3>
               <p className="ins-text-body">
                 Connect Google Ads or Meta and ask Insightis the campaign question that always takes too long to answer.
@@ -840,7 +840,7 @@ function BottomCTASection() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
           variant="buttons"
-          title={<>Stop debating <BottomCTA.Highlight>attribution.</BottomCTA.Highlight> Start scaling <BottomCTA.Highlight>what works.</BottomCTA.Highlight></>}
+          title={<>Stop debating <BottomCTA.Highlight>attribution.</BottomCTA.Highlight> Start scaling <BottomCTA.Highlight>what works</BottomCTA.Highlight></>}
           description="Unify campaigns, CRM, and billing so every channel's true CAC and revenue impact is one question away — no more blended guesswork. Free to start, no credit card required."
           ctaLabel="Start for free"
           secondaryCtaLabel="Explore Pricing"

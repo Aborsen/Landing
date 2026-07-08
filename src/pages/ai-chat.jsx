@@ -209,6 +209,26 @@ function RetainedVsChurnedChart({ bars }) {
   );
 }
 
+function TableChart({ columns, rows }) {
+  const cols = `1.4fr repeat(${columns.length - 1}, 1fr)`;
+  return (
+    <div style={{margin:'12px 0', border:'1px solid var(--ins-color-white-a-08)', borderRadius:'var(--ins-radius-12)', overflow:'hidden', background:'var(--ins-color-white-a-02)'}}>
+      <div style={{display:'grid', gridTemplateColumns:cols, gap:'10px', padding:'10px 16px', background:'var(--ins-color-white-a-03)', borderBottom:'1px solid var(--ins-border-default)'}}>
+        {columns.map(c => (
+          <span key={c} style={{fontSize:'var(--ins-font-size-11)', fontWeight:600, letterSpacing:'.08em', textTransform:'uppercase', color:'var(--ins-text-body)', fontFamily:'var(--ins-font-family-mono)'}}>{c}</span>
+        ))}
+      </div>
+      {rows.map((r, i) => (
+        <div key={i} style={{display:'grid', gridTemplateColumns:cols, gap:'10px', padding:'10px 16px', borderTop: i > 0 ? '1px solid var(--ins-color-white-a-04)' : 'none', alignItems:'center'}}>
+          {r.map((cell, j) => (
+            <span key={j} style={{fontSize:'var(--ins-font-size-13)', color: j === 0 ? 'var(--ins-color-gray-100)' : 'var(--ins-text-body)', fontFamily: j === 0 ? 'var(--ins-font-family-sans)' : 'var(--ins-font-family-mono)', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap'}}>{cell}</span>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 /* ── QUESTIONS DATA ── */
 const GALLERY_DATA = {
   'RevOps & BizOps': {
@@ -231,24 +251,28 @@ const GALLERY_DATA = {
           { label:'Late payment write-off', value:-80, display:'-$80' },
         ],
         caption: "Trial expiry without activation drove 60% of last week's $1,240 MRR drop. Six distinct causes identified.",
+        source: 'Stripe · HubSpot',
         action: 'Trigger a re-engagement sequence for accounts with <5 logins in the last 14 days',
       },
       {
-        type: 'graph', chart: 'treemap',
-        chartData: [
-          { label:'NovaCorp', value:52, display:'$52K', color:'var(--ins-status-error-fg)' },
-          { label:'AlphaBase', value:38, display:'$38K', color:'var(--ins-status-warning-fg)' },
-          { label:'Meridian', value:31, display:'$31K', color:'var(--ins-status-error-fg)' },
-          { label:'Quell Inc.', value:28, display:'$28K', color:'var(--ins-status-warning-fg)' },
-          { label:'Vertexio', value:22, display:'$22K', color:'#818CF8' },
-          { label:'Others', value:13, display:'$13K', color:'#8AA6B3' },
+        type: 'graph', chart: 'table',
+        columns: ['Deal', 'Amount', 'Stage', 'Days untouched'],
+        rows: [
+          ['NovaCorp', '$52K', 'Negotiation', '21'],
+          ['AlphaBase', '$38K', 'Proposal', '14'],
+          ['Meridian', '$31K', 'Negotiation', '12'],
+          ['Quell Inc.', '$28K', 'Proposal', '9'],
+          ['Vertexio', '$22K', 'Discovery', '11'],
+          ['2 smaller deals', '$13K', 'Mixed', '8–10'],
         ],
         caption: '7 deals totalling $184K at risk of slipping past Q2. NovaCorp ($52K) untouched for 21 days.',
+        source: 'HubSpot CRM',
         action: 'Schedule executive business reviews for the top 3 at-risk deals before end of week',
       },
       {
         type: 'paragraph',
         text: "Average sales cycle is 18 days for small deals (<$5K), 34 days for mid-market ($5K–$20K), and 67 days for enterprise ($20K+). Enterprise deals take 3.7× longer — the proposal-to-legal handoff is the single biggest drag, accounting for 28 of those 67 days on average. This quarter, mid-market cycles improved by 4 days vs. Q4, driven by the mutual action plan template adopted in January. Enterprise cycles remain flat. Deals re-engaged within 5 business days of proposal stall close at 68% — that rate drops to 31% after 10 days. Accelerating the legal handoff phase alone could unlock an estimated $140K in deals currently sitting idle.",
+        source: 'HubSpot CRM',
         action: 'Build a 2-touch mid-market sequence targeting legal sign-off to cut 5–7 days from the cycle',
       },
       {
@@ -260,6 +284,7 @@ const GALLERY_DATA = {
           { label:'Proposal → Closed Won drop-off', value:14, color:'#34D399' },
         ],
         caption: '71% of prospects never qualify — improving lead scoring at the top of funnel unlocks the most pipeline without additional spend.',
+        source: 'HubSpot · Google Analytics',
         action: 'Refine ICP scoring criteria in HubSpot to filter low-intent leads at the MQL stage',
       },
       {
@@ -267,6 +292,7 @@ const GALLERY_DATA = {
         chartData: [410, 395, 378, 355, 338, 322],
         chartLabels: ['Oct','Nov','Dec','Jan','Feb','Mar'],
         caption: 'CAC has dropped $88 over 6 months \u2014 PLG improvements and better lead quality are compounding each other.',
+        source: 'Stripe · Google Ads · HubSpot',
         action: 'Double down on PLG onboarding investment to sustain the downward CAC trend into Q3',
       },
     ],
@@ -285,19 +311,23 @@ const GALLERY_DATA = {
         chartData: [1.8, 1.95, 2.1, 2.2, 2.32, 2.4],
         chartLabels: ['Nov','Dec','Jan','Feb','Mar','Apr'],
         caption: 'ARR reached $2.4M this month \u2014 34% YoY growth, accelerating over the last quarter.',
+        source: 'Stripe',
         action: 'Review Mid-Market expansion capacity before Q3 planning',
       },
       {
-        type: 'graph', chart: 'horizontalBar',
-        chartData: [
-          { label:'Mid-Market', value:48, display:'+48% QoQ' },
-          { label:'Self-Serve / PLG', value:35, display:'+35% QoQ' },
-          { label:'SMB', value:21, display:'+21% QoQ' },
-          { label:'Enterprise', value:12, display:'+12% QoQ' },
-          { label:'Channel Partners', value:8, display:'+8% QoQ' },
-          { label:'Gov / Nonprofit', value:5, display:'+5% QoQ' },
+        type: 'graph', chart: 'table',
+        columns: ['Segment', 'Grouping', 'Growth QoQ'],
+        rows: [
+          ['Mid-Market', 'Company size', '+48%'],
+          ['SMB', 'Company size', '+21%'],
+          ['Enterprise', 'Company size', '+12%'],
+          ['Self-serve / PLG', 'Sales motion', '+35%'],
+          ['Sales-driven', 'Sales motion', '+19%'],
+          ['Inbound', 'Channel', '+27%'],
+          ['Partner', 'Channel', '+8%'],
         ],
-        caption: 'Mid-Market is outpacing every other segment \u2014 driven by self-serve upgrades from the PLG motion launched in January.',
+        caption: 'Mid-Market is outpacing every other segment — driven by self-serve upgrades from the PLG motion launched in January.',
+        source: 'Stripe · HubSpot',
         action: 'Allocate additional AE capacity to Mid-Market before Q3 to capitalise on momentum',
       },
       {
@@ -310,11 +340,13 @@ const GALLERY_DATA = {
           { label:'Other', value:8, display:'$8K', color:'#8AA6B3' },
         ],
         caption: '$187K/month burn, $4.2M in bank = 22.5 months runway. Payroll is 60% of total spend.',
+        source: 'QuickBooks · Stripe',
         action: 'Model two hiring-pace scenarios (full plan vs. 70%) ahead of the board meeting',
       },
       {
         type: 'paragraph',
         text: "Net Revenue Retention this quarter is 112%, up from 108% last quarter and 103% a year ago — a consistent upward trend driven by systematic expansion motions. Expansion revenue from seat upgrades and plan upsells contributed $38K, while gross churn held at 1.4%. Mid-Market accounts are the primary driver — NRR for that segment is 124%, vs. 98% for SMB and 107% for Enterprise. The top 20 expanding accounts each showed a usage spike of 40%+ in the 60 days before their upgrade. Enterprise NRR is lagging partly due to two non-renewals in January worth $22K ARR combined, both citing lack of SSO support.",
+        source: 'Stripe · HubSpot',
         action: 'Build an expansion playbook targeting the top 20 accounts showing usage spikes this month',
       },
       {
@@ -326,6 +358,7 @@ const GALLERY_DATA = {
           { label:'Professional Services', value:22, color:'var(--ins-status-warning-fg)' },
         ],
         caption: 'Analytics Suite delivers the highest gross margin — its infrastructure cost is largely fixed while revenue scales with seats.',
+        source: 'Stripe · QuickBooks',
         action: 'Prioritise Analytics Suite in the next sales enablement refresh and bundle with Pro upsell',
       },
     ],
@@ -349,6 +382,7 @@ const GALLERY_DATA = {
           { label:'Google Ads', value:21, display:'21 MQLs', color:'var(--ins-status-error-fg)' },
         ],
         caption: "Webinar series generated 214 MQLs at $18/lead — 5× cheaper than LinkedIn Ads.",
+        source: 'HubSpot · Google Analytics',
         action: 'Schedule 2 additional webinars targeting the same ICP segment in Q3',
       },
       {
@@ -361,11 +395,20 @@ const GALLERY_DATA = {
           { label:'Google Ads', value:127, display:'$127' },
         ],
         caption: 'Blended CAC is $58. Owned channels are 3\u00d7 more efficient than paid \u2014 shifting 15% of paid budget to content would materially improve unit economics.',
+        source: 'Google Ads · LinkedIn Ads · Stripe',
         action: 'Reallocate $8K/month from Google Ads to webinar production and SEO content',
       },
       {
-        type: 'paragraph',
-        text: "The \u2018Start for free\u2019 landing page converts at 8.4% \u2014 the highest of any tracked page. The pricing page is second at 4.1%, followed by the integration directory at 2.9%. The blog-to-trial CTA added in February contributed an additional 0.8 percentage points to organic conversion, making it the 4th-highest converting entry point. Mobile conversion across all pages remains 2.1\u00d7 lower than desktop, with the largest gap on the pricing page (1.9% mobile vs. 5.8% desktop). Pages with a single primary CTA outperform multi-CTA pages by 2.3\u00d7 — a pattern consistent across the last three quarters.",
+        type: 'graph', chart: 'table',
+        columns: ['Page URL', 'Conv. rate', 'Sessions / mo'],
+        rows: [
+          ['/auth/sign-up', '8.4%', '12,400'],
+          ['/pricing', '4.1%', '9,800'],
+          ['/resources/connectors', '2.9%', '5,300'],
+          ['/blog (trial CTA)', '2.6%', '7,100'],
+        ],
+        caption: 'Mobile converts 2.1× lower than desktop — the largest gap is on /pricing (1.9% vs 5.8%). Pages with a single primary CTA outperform multi-CTA pages by 2.3×.',
+        source: 'Google Analytics',
         action: 'Run an A/B test on the hero headline for the Start for free page to push past 9%',
       },
       {
@@ -373,18 +416,20 @@ const GALLERY_DATA = {
         chartData: [18400, 21200, 24800, 28100, 31600, 36200],
         chartLabels: ['Oct','Nov','Dec','Jan','Feb','Mar'],
         caption: 'Organic sessions grew 97% in 6 months while paid spend held flat \u2014 content investment is compounding month over month.',
+        source: 'Google Analytics',
         action: 'Publish 4 additional pillar pages targeting high-intent keywords before end of Q2',
       },
       {
-        type: 'graph', chart: 'pie',
+        type: 'graph', chart: 'horizontalBar',
         chartData: [
-          { label:'Webinar', value:41, color:'var(--ins-text-highlight)' },
-          { label:'Organic Search', value:28, color:'#818CF8' },
-          { label:'G2 / Review Sites', value:22, color:'var(--ins-button-primary-bg-hover)' },
-          { label:'LinkedIn Ads', value:14, color:'var(--ins-status-warning-fg)' },
-          { label:'Google Ads', value:9, color:'var(--ins-status-error-fg)' },
+          { label:'Webinar', value:41, display:'41%' },
+          { label:'Organic Search', value:28, display:'28%' },
+          { label:'G2 / Review Sites', value:22, display:'22%' },
+          { label:'LinkedIn Ads', value:14, display:'14%' },
+          { label:'Google Ads', value:9, display:'9%' },
         ],
         caption: 'Webinar-sourced leads convert to SQL at 41% — nearly 3× the rate of paid search, reflecting much stronger intent.',
+        source: 'HubSpot',
         action: 'Add a post-webinar nurture sequence with a 3-day trial CTA to capture intent at peak',
       },
     ],
@@ -406,6 +451,7 @@ const GALLERY_DATA = {
           { label:'CSV Export', retained:44, churned:40 },
         ],
         caption: "Retained customers use Saved Reports 3.7\u00d7 more than churned accounts \u2014 it\u2019s your strongest activation signal.",
+        source: 'Mixpanel · Stripe',
         action: 'Add Saved Reports to the onboarding checklist for all new trials',
       },
       {
@@ -419,6 +465,7 @@ const GALLERY_DATA = {
           { label:'Oct cohort (Outbound)', value:-72, display:'72%' },
         ],
         caption: "API signups activate at 18% \u2014 lowest of any cohort. They skip the setup wizard, so they rarely reach the first \u2018aha\u2019 moment.",
+        source: 'Mixpanel',
         action: 'Add an API-specific onboarding flow that surfaces the first query result within 5 minutes',
       },
       {
@@ -431,11 +478,13 @@ const GALLERY_DATA = {
           { label:'Step 1 — Verify Email', value:4, display:'4% drop', color:'#34D399' },
         ],
         caption: '312 users onboarded this week (+18%). Step 3 (connect source) causes 31% abandonment — worst on mobile.',
+        source: 'Mixpanel',
         action: 'Add a "connect later" skip option at step 3 to reduce mobile abandonment',
       },
       {
         type: 'paragraph',
         text: "Average time-to-value for new signups is 4.2 days \u2014 defined as the first saved report or shared insight. Users who connect a data source on day 1 reach value in 1.8 days on average; users who defer connection average 9.4 days, and 62% churn before ever reaching their first insight. The onboarding cohort that received the in-app data-connection prompt on the welcome screen converted at 34% vs. 19% for the control group. Teams with 3+ members invited during signup retain at 91% over 30 days vs. 54% for solo users. Each 1-day reduction in time-to-value correlates with a 6-point improvement in 90-day retention based on the last 8 cohorts.",
+        source: 'Mixpanel · Intercom',
         action: 'Gate the welcome email sequence on data-source connection to incentivise same-day setup',
       },
       {
@@ -447,6 +496,7 @@ const GALLERY_DATA = {
           { label:'Role-based permissions', value:38, color:'var(--ins-status-error-fg)' },
         ],
         caption: 'Custom date filters lead by a wide margin — strong signal for Q3 prioritisation across all customer segments.',
+        source: 'Zendesk · Intercom',
         action: 'Add custom date range filters to the Q3 roadmap and notify the 87 requesters on release',
       },
     ],
@@ -461,14 +511,15 @@ const GALLERY_DATA = {
     ],
     replies: [
       {
-        type: 'graph', chart: 'treemap',
+        type: 'graph', chart: 'horizontalBar',
         chartData: [
-          { label:'checkout_complete', value:41, display:'-41%', color:'var(--ins-status-error-fg)' },
-          { label:'page_view (bot filter)', value:18, display:'-18%', color:'var(--ins-status-warning-fg)' },
-          { label:'session_start', value:9, display:'-9%', color:'var(--ins-status-warning-fg)' },
-          { label:'feature_activated', value:5, display:'−5%', color:'#8AA6B3' },
+          { label:'checkout_complete', value:-41, display:'-41%' },
+          { label:'page_view (bot filter)', value:-18, display:'-18%' },
+          { label:'session_start', value:-9, display:'-9%' },
+          { label:'feature_activated', value:-5, display:'-5%' },
         ],
         caption: '3 anomalies in yesterday\'s pipeline. checkout_complete −41% (14:00–16:00 UTC) — Stripe webhook delay. All resolved by 18:30 UTC.',
+        source: 'PostgreSQL warehouse · Stripe',
         action: 'Confirm Stripe webhook backfill completed and close the incident log',
       },
       {
@@ -482,11 +533,13 @@ const GALLERY_DATA = {
           { label:'feature_activated', value:28, display:'+2.8\u03c3' },
         ],
         caption: 'Two metrics are in significant negative deviation \u2014 both linked to Tuesday\u2019s webhook delay. The positive spikes in activation and invites are genuine growth signals.',
+        source: 'PostgreSQL warehouse',
         action: 'Add automated alerting for checkout_complete drops exceeding 2\u03c3 within any 2-hour window',
       },
       {
         type: 'paragraph',
         text: "All 6 data pipelines are currently healthy and processing within normal thresholds. Stripe sync is current as of 2 minutes ago; HubSpot last synced 8 minutes ago. The PostgreSQL warehouse refresh completed on schedule at 03:00 UTC with zero row-level errors. The only anomaly was the Salesforce pipeline \u2014 delayed 47 minutes overnight due to API rate limiting during the batch window, but now fully caught up. Over the past 30 days, average pipeline latency across all sources is 6.2 minutes, down from 11.4 minutes in January following the async queue refactor. Data freshness SLA (under 15 minutes) has been met 99.1% of the time this month.",
+        source: 'Stripe · HubSpot · Salesforce · PostgreSQL',
         action: 'Stagger the Salesforce sync start time to 02:15 UTC to avoid API rate-limit collisions',
       },
       {
@@ -500,6 +553,7 @@ const GALLERY_DATA = {
           { label:'identity_sync', value:22, display:'22 qps / 45m old' },
         ],
         caption: 'billing_snapshots and feature_flags are queried heavily but refreshed infrequently \u2014 stale reads may be skewing downstream dashboards.',
+        source: 'PostgreSQL · dbt',
         action: 'Increase refresh cadence for billing_snapshots to every 4 hours and feature_flags to every 2 hours',
       },
       {
@@ -510,6 +564,7 @@ const GALLERY_DATA = {
           { label:'<2 logins/wk → $610 LTV', value:610, color:'var(--ins-status-error-fg)' },
         ],
         caption: 'Strong correlation (r=0.74). 4+ weekly logins → $2,840 LTV vs $610 for low-engagement. Days 8–14 login frequency is the strongest 12-month retention predictor.',
+        source: 'Mixpanel · Stripe',
         action: 'Add login-frequency triggers to the lifecycle email sequence starting at day 8 for low-engagement users',
       },
     ],
@@ -532,17 +587,20 @@ const GALLERY_DATA = {
           { label:'Other', actual:16, budget:18 },
         ],
         caption: 'Cloud infrastructure and unplanned contractor spend account for the full $22K budget overrun this month.',
+        source: 'QuickBooks · AWS',
         action: 'Submit contractor budget amendment and review cloud cost allocation with engineering',
       },
       {
-        type: 'graph', chart: 'treemap',
-        chartData: [
-          { label:'Cloudflare', value:4200, display:'$4,200', color:'var(--ins-status-error-fg)' },
-          { label:'Segment', value:2800, display:'$2,800', color:'var(--ins-status-warning-fg)' },
-          { label:'SaaS Auto-renew #1', value:1400, display:'$1,400', color:'#818CF8' },
-          { label:'SaaS Auto-renew #2', value:1000, display:'$1,000', color:'#818CF8' },
+        type: 'graph', chart: 'table',
+        columns: ['Vendor', 'Amount due', 'Days past terms'],
+        rows: [
+          ['Cloudflare', '$4,200', '18'],
+          ['Segment', '$2,800', '12'],
+          ['SaaS auto-renew #1', '$1,400', '8'],
+          ['SaaS auto-renew #2', '$1,000', '6'],
         ],
         caption: '$9,400 total exposure across 4 vendors. Cloudflare 18 days past due — 1.5%/month penalty kicks in at 30 days.',
+        source: 'QuickBooks',
         action: 'Process Cloudflare and Segment payments today and flag auto-renewals for AP policy review',
       },
       {
@@ -555,6 +613,7 @@ const GALLERY_DATA = {
           { label:'G&A', value:18, display:'$18K' },
         ],
         caption: 'Engineering is 43% of total headcount cost. Two open reqs in Sales, if filled, will shift the balance toward revenue-generating roles.',
+        source: 'QuickBooks · Gusto',
         action: 'Prioritise the two open Sales AE roles to rebalance headcount ratio toward revenue capacity',
       },
       {
@@ -562,6 +621,7 @@ const GALLERY_DATA = {
         chartData: [148, 162, 171, 183, 194, 208],
         chartLabels: ['Oct','Nov','Dec','Jan','Feb','Mar'],
         caption: 'Actual revenue has exceeded forecast every month for 6 consecutive months \u2014 the model is consistently 6\u20138% conservative.',
+        source: 'QuickBooks · Stripe',
         action: 'Recalibrate the revenue forecast model to reduce systematic underestimation ahead of Q2 board review',
       },
       {
@@ -574,6 +634,7 @@ const GALLERY_DATA = {
           { label:'Headcount 3% under', value:3, color:'var(--ins-text-highlight)' },
         ],
         caption: 'Contractors are the most over-budget at 72% above plan — 3 unplanned engineering engagements approved outside the budget cycle.',
+        source: 'QuickBooks',
         action: 'Require CFO sign-off for any contractor engagement exceeding $5K not in the approved budget',
       },
     ],
@@ -604,6 +665,9 @@ function QuestionsGallery() {
     }
     if (reply.chart === 'retainedVsChurned') {
       return <RetainedVsChurnedChart bars={reply.chartData}/>;
+    }
+    if (reply.chart === 'table') {
+      return <TableChart columns={reply.columns} rows={reply.rows}/>;
     }
     if (reply.chart === 'pie') {
       return <PieChart slices={reply.chartData}/>;
@@ -704,6 +768,12 @@ function QuestionsGallery() {
                   {renderReply(cat.replies[activeQ])}
                   {cat.replies[activeQ].caption && (
                     <p style={{fontSize:'var(--ins-font-size-14)',color:'#8FB8C4',lineHeight:1.6,marginTop:'var(--ins-size-2)'}}>{cat.replies[activeQ].caption}</p>
+                  )}
+                  {cat.replies[activeQ].source && (
+                    <div style={{display:'flex',alignItems:'center',gap:'6px',marginTop:'var(--ins-size-3)',fontSize:'var(--ins-font-size-11)',fontFamily:'var(--ins-font-family-mono)',color:'var(--ins-text-inactive)'}}>
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                      Source: {cat.replies[activeQ].source}
+                    </div>
                   )}
                 </>
 
@@ -869,8 +939,8 @@ function BottomCTASection() {
       <div className="max-w-7xl mx-auto px-6">
         <BottomCTA
           variant="buttons"
-          title={<>Still waiting on <BottomCTA.Highlight> insights</BottomCTA.Highlight> that take <BottomCTA.Highlight> days?</BottomCTA.Highlight></>}
-          description="Ask your data in plain language and get answers grounded in your own numbers — not internet averages — in seconds. Free to start, no credit card required."
+          title={<>Get answers from your data <BottomCTA.Highlight>in seconds</BottomCTA.Highlight>, not days</>}
+          description="Connect your first tool free in minutes. No credit card, cancel anytime."
           ctaLabel="Start for free"
           secondaryCtaLabel="Explore Pricing"
           secondaryCtaHref="/pricing"

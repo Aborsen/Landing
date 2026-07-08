@@ -35,7 +35,7 @@ function TreeHero() {
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', textAlign:'center'}}>
 
         <h1 className="ins-text-display-xl" style={{marginBottom:20}}>
-          Our product roadmap.
+          Our product roadmap
         </h1>
 
         <p className="fu2 ins-text-body-xl" style={{maxWidth:560, margin:'0 auto 52px'}}>
@@ -344,7 +344,7 @@ function RoadmapSections() {
         {/* Section heading */}
         <div style={{marginBottom:40}}>
           <h2 className="ins-text-h1" style={{marginBottom:12}}>
-            What's on deck.
+            What's on deck
           </h2>
           <p className="ins-text-body-lg" style={{maxWidth:520, margin:0}}>
             A curated look at what we're building. Curated by hand — not auto-generated.
@@ -467,7 +467,7 @@ function SuggestCTA() {
             <div style={{position:'absolute',top:0,left:0,right:0,height:1,background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
             <div style={{maxWidth:520}}>
               <h3 style={{fontSize:'clamp(18px,2.5vw,24px)', fontWeight:500, color:'var(--ins-text-heading-soft)', letterSpacing:'-.02em', marginBottom:8}}>
-                Missing something? <span style={{color:'var(--ins-button-primary-bg)'}}>Suggest a feature.</span>
+                Missing something? <span style={{color:'var(--ins-button-primary-bg)'}}>Suggest a feature</span>
               </h3>
               <p className="ins-text-body">
                 Tell us what you'd like to see in Insightis. We review every suggestion.

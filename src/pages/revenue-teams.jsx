@@ -55,7 +55,7 @@ function Hero() {
             <h1 className="ins-text-display-xl" style={{marginBottom:'var(--ins-size-5)'}}>
               <span style={{color:'var(--ins-text-heading-soft)'}}>Stop stitching revenue</span>
               <br/>
-              <span style={{color:'var(--ins-text-highlight)'}}>together by hand.</span>
+              <span style={{color:'var(--ins-text-highlight)'}}>together by hand</span>
             </h1>
 
             <p className="fu2 ins-text-body-xl" style={{marginBottom:'var(--ins-size-7)',maxWidth:'480px'}}>
@@ -739,7 +739,7 @@ function UseCases() {
             <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
             <div style={{flex:'1 1 360px',minWidth:0}}>
               <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'var(--ins-size-2)'}}>
-                See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own pipeline</span>.
+                See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own pipeline</span>
               </h3>
               <p className="ins-text-body">
                 Connect Salesforce or HubSpot and ask Insightis the revenue question that always takes too long to answer.
@@ -902,7 +902,7 @@ function BottomCTASection() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
           variant="buttons"
-          title={<>Stop chasing <BottomCTA.Highlight>numbers.</BottomCTA.Highlight> Start trusting <BottomCTA.Highlight> them.</BottomCTA.Highlight></>}
+          title={<>Stop chasing <BottomCTA.Highlight>numbers.</BottomCTA.Highlight> Start trusting <BottomCTA.Highlight> them</BottomCTA.Highlight></>}
           description="Give every rep and RevOps lead a single, trusted view of pipeline, forecast, and revenue — answered in seconds, straight from your warehouse. Free to start, no credit card required."
           ctaLabel="Start for free"
           secondaryCtaLabel="Explore Pricing"

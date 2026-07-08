@@ -13,7 +13,7 @@ function PressHero() {
       <div className="max-w-7xl mx-auto px-6 text-center relative">
         <SectionHeader
           eyebrow="Press & Media"
-          title="Insightis in the news."
+          title="Insightis in the news"
           lede="Press resources, brand assets, and media inquiries. Everything you need to write about Insightis."
           as="h1"
           size="lg"

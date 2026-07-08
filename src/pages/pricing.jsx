@@ -22,7 +22,7 @@ function PricingHero() {
       <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px',position:'relative'}}>
         <SectionHeader
           eyebrow="Pricing"
-          title={<><span>Simple pricing. </span><span style={{color:'var(--ins-text-highlight)'}}>Powerful insights.</span></>}
+          title={<><span>Simple pricing. </span><span style={{color:'var(--ins-text-highlight)'}}>Powerful insights</span></>}
           lede="Start free. Scale as your team grows. Every plan includes the Semantic Layer, AI Chat, and 200+ connectors."
           as="h1"
           size="lg"
@@ -377,7 +377,7 @@ function BottomCTASection() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
           variant="buttons"
-          title={<>Start free. <BottomCTA.Highlight>Upgrade when you're ready.</BottomCTA.Highlight></>}
+          title={<>Start free. <BottomCTA.Highlight>Upgrade when you're ready</BottomCTA.Highlight></>}
           description="Pick the plan that fits your team today and change it the moment your needs do — every tier ships with the Semantic Layer, AI Chat, and 200+ connectors. Free to start, no credit card required."
           ctaLabel="Start for free"
           ctaHref="/auth/sign-up/"

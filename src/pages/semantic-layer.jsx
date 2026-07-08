@@ -342,13 +342,13 @@ function Hero() {
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>Semantic Layer</span>
           </div>
           <h1 className="ins-text-display-xl">
-            <span style={{color:'var(--ins-text-heading-soft)'}}>One platform.</span><br/>
-            <span style={{color:'var(--ins-text-highlight)'}}>Every team's</span><br/>
-            <span style={{color:'var(--ins-text-highlight)'}}>numbers.</span>
+            <span style={{color:'var(--ins-text-heading-soft)'}}>The same numbers.</span><br/>
+            <span style={{color:'var(--ins-text-highlight)'}}>Every team.</span><br/>
+            <span style={{color:'var(--ins-text-highlight)'}}>Any report</span>
           </h1>
           </div>
           <p className="ins-text-body-xl" style={{marginBottom:'36px',maxWidth:'520px'}}>
-            Your Semantic Layer certifies every metric once. Not generic guesses — your actual data, your exact logic.
+            Insightis locks in one definition for every metric — your actual data and logic, not generic AI guesses.
           </p>
           <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-3)',flexWrap:'wrap',marginBottom:'var(--ins-size-6)'}}>
             <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
@@ -402,7 +402,7 @@ function WhatItDoes() {
         <div style={{marginBottom:'var(--ins-size-16)'}}>
           <SectionHeader
             eyebrow="How it works"
-            title="One layer. Every metric. Always right."
+            title="One layer. Every metric. Always right"
             sparkle
             size="lg"
           />
@@ -1039,7 +1039,7 @@ function MidCTA() {
         <div className="fade-up is-visible">
           <BottomCTA
             variant="text"
-            title={<>Skip the metric debates. <BottomCTA.Highlight>Start asking.</BottomCTA.Highlight></>}
+            title={<>Skip the metric debates. <BottomCTA.Highlight>Start asking</BottomCTA.Highlight></>}
             ctaLabel="Start for free"
           />
         </div>
@@ -1055,7 +1055,7 @@ function BottomCTASection() {
       <div className="max-w-7xl mx-auto px-6">
         <BottomCTA
           variant="buttons"
-          title={<>Stop arguing about <BottomCTA.Highlight> which number</BottomCTA.Highlight> is right.</>}
+          title={<>Stop arguing about <BottomCTA.Highlight> which number</BottomCTA.Highlight> is right</>}
           description="Define every metric once, certify it, and let every dashboard, report, and chat read the same source of truth. Ship insights instead of reconciliations — free to start, no credit card required."
           ctaLabel="Start for free"
           secondaryCtaLabel="Explore Pricing"

@@ -26,7 +26,7 @@ function AboutHero() {
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', textAlign:'center', position:'relative'}}>
         <h1 className="ins-text-display-xl" style={{marginBottom:'var(--ins-size-5)'}}>
           Every dataset has an insight.<br/>
-          <span style={{color:'var(--ins-text-highlight)'}}>We help you find it.</span>
+          <span style={{color:'var(--ins-text-highlight)'}}>We help you find it</span>
         </h1>
         <p className="fu2 ins-text-body-xl" style={{maxWidth:'580px', margin:'0 auto'}}>
           Insightis is the AI analytics workspace that lets anyone — not just analysts — ask questions about their data and get instant, accurate answers. No SQL. No dashboards. No waiting.

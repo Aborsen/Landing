@@ -283,7 +283,7 @@ function Hero() {
           <h1 className="ins-text-display-xl">
             <span style={{color:'var(--ins-text-heading-soft)'}}>Connect it all.</span><br/>
             <span style={{color:'var(--ins-text-highlight)'}}>Get the why</span><br/>
-            <span style={{color:'var(--ins-text-highlight)'}}>behind numbers.</span>
+            <span style={{color:'var(--ins-text-highlight)'}}>behind numbers</span>
           </h1>
           </div>
           <p className="ins-text-body-xl" style={{marginBottom:'36px',maxWidth:'520px'}}>
@@ -572,7 +572,7 @@ function IntegrationImpact() {
         <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
             eyebrow="Direct integration"
-            title="Tools guess. Insightis answers."
+            title="Tools guess. Insightis answers"
             lede="One source of truth. Answers in seconds."
             sparkle
             size="lg"
@@ -664,7 +664,7 @@ function MidCTA() {
         <div className="fade-up is-visible">
           <BottomCTA
             variant="text"
-            title={<>Skip the data engineering. <BottomCTA.Highlight>Start asking.</BottomCTA.Highlight></>}
+            title={<>Skip the data engineering. <BottomCTA.Highlight>Start asking</BottomCTA.Highlight></>}
             ctaLabel="Start for free"
           />
         </div>
@@ -680,7 +680,7 @@ function CTA() {
       <div className="max-w-7xl mx-auto px-6">
         <BottomCTA
           variant="buttons"
-          title={<>Your data is already there.<BottomCTA.Highlight> Connect it in minutes.</BottomCTA.Highlight></>}
+          title={<>Your data is already there.<BottomCTA.Highlight> Connect it in minutes</BottomCTA.Highlight></>}
           description="Link 200+ sources in a few clicks and ask questions in plain English — no SQL, no pipelines, no waiting. Free to start, no credit card required."
           ctaLabel="Start for free"
           secondaryCtaLabel="Explore Pricing"

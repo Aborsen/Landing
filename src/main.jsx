@@ -218,7 +218,7 @@ function Hero() {
         <FadeUp delay={0.1}>
           <h1 className="ins-text-hero text-center mb-6">
             <span style={{display:'block'}} className="text-[var(--ins-text-heading-soft)]">Talk to your data.</span>
-            <span style={{display:'block',color:'var(--ins-text-highlight)'}}>It already knows the answer.</span>
+            <span style={{display:'block',color:'var(--ins-text-highlight)'}}>It already knows the answer</span>
           </h1>
         </FadeUp>
 
@@ -1011,7 +1011,7 @@ function BottomCTASection() {
               /> */}
           <BottomCTA
             variant="buttons"
-            title={<>Ask your data <BottomCTA.Highlight>anything.</BottomCTA.Highlight></>}
+            title={<>Ask your data <BottomCTA.Highlight>anything</BottomCTA.Highlight></>}
             description="Connect your stack and get a decision-ready answer in under two minutes — no SQL, no analyst queue. Free to start, no credit card required."
             ctaLabel="Start for free"
             secondaryCtaLabel="Explore Pricing"

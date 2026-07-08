@@ -23,7 +23,7 @@ function StoriesHero() {
       icon: 'file',
     },
     {
-      company: 'Vantage Data Co.',
+      company: 'Vantage Data Co',
       image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=360&fit=crop',
       quote: '"It has saved my time, which is money. And now my stakeholders get a better response time from me."',
       product: 'Insights Engine',
@@ -82,7 +82,7 @@ function StoryGrid() {
     { type: 'E-commerce', size: '30 employees', image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=280&fit=crop', challenge: 'Manually pulling Shopify + GA4 data into spreadsheets every Monday took the founder 4 hours.', solution: 'Connected both sources to Insightis. Now asks "How did we perform last week?" every Monday morning.', result: '4 hours \u2192 3 minutes', resultLabel: 'weekly reporting', team: 'Founder & CEO' },
     { type: 'FinTech', size: '200 employees', image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=500&h=280&fit=crop', challenge: 'Data team was overwhelmed with ad-hoc requests from product and marketing.', solution: 'Insightis gave every team self-serve access to certified data. Ad-hoc requests dropped dramatically.', result: '74% fewer', resultLabel: 'analyst tickets', team: 'Data & Analytics' },
     { type: 'Marketing Agency', size: '15 employees', image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=500&h=280&fit=crop', challenge: 'Client reporting across 8 ad platforms required 2 full days of manual work per month.', solution: 'Connected all ad platforms to Insightis. Generates client-ready answers and exports in minutes.', result: '2 days \u2192 20 minutes', resultLabel: 'client reporting', team: 'Marketing' },
-    { type: 'Health Tech', size: '80 employees', image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&h=280&fit=crop', challenge: 'Product team couldn\'t correlate feature usage with retention without filing a data request.', solution: 'Insightis cross-references Mixpanel usage data with Stripe billing. Product team asks questions directly.', result: '3x faster', resultLabel: 'product decisions', team: 'Product Team' },
+    { type: 'Health Tech', size: '80 employees', image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&h=280&fit=crop', challenge: 'Product team couldn\'t correlate feature usage with retention without filing a data request.', solution: 'Insightis cross-references Mixpanel usage data with Stripe billing. Product team asks questions directly.', result: '3× faster', resultLabel: 'product decisions', team: 'Product Team' },
     { type: 'Logistics', size: '50 employees', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=280&fit=crop', challenge: 'Finance needed real-time burn rate and runway calculations but only got monthly spreadsheet updates.', solution: 'Connected QuickBooks and payroll data. CFO now asks "What\'s our runway?" anytime and gets a live answer.', result: 'Real-time', resultLabel: 'financial visibility', team: 'Ops & Finance' },
   ];
 
@@ -285,7 +285,7 @@ function BottomCTA() {
         <div style={{position:'relative', borderRadius:'var(--ins-radius-16)', border:'1px solid rgba(30,30,48,1)', padding:'32px 48px', overflow:'hidden', display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:'var(--ins-size-6)', flexWrap:'wrap', background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)'}}>
           <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
           <h3 style={{fontSize:'clamp(22px,3vw,30px)', fontWeight:500, color:'var(--ins-text-heading)', letterSpacing:'-.03em', lineHeight:1.2, flexShrink:0}}>
-            Join teams who <span style={{color:'var(--ins-button-primary-bg)'}}>stopped guessing.</span>
+            Join teams who <span style={{color:'var(--ins-button-primary-bg)'}}>stopped guessing</span>
           </h3>
           <div style={{display:'flex', alignItems:'center', width:'100%', maxWidth:'420px', background:'#0D0D1A', border:'1px solid rgba(46,46,64,1)', borderRadius:'var(--ins-radius-12)', overflow:'hidden', flex:'1 1 340px'}}>
             <input type="email" placeholder="Enter your work email..." style={{flex:1, background:'transparent', fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-body)', padding:'12px 16px', outline:'none', border:'none', fontFamily:'var(--ins-font-family-sans)', minWidth:0}} />

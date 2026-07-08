@@ -346,7 +346,7 @@ function ConnectorsHero() {
           ✦ DATA CONNECTORS
         </div>
         <h1 className="ins-text-display" style={{marginBottom:'var(--ins-size-5)'}}>
-          <span style={{color:'var(--ins-text-highlight)'}}>Connect</span> to any source.
+          <span style={{color:'var(--ins-text-highlight)'}}>Connect</span> to any source
         </h1>
         <p className="fu2 ins-text-body-xl" style={{maxWidth:'560px', margin:'0 auto var(--ins-size-6)'}}>
           Explore 200+ prebuilt connectors, create custom ones with REST and GraphQL, or request the data source you're missing.

@@ -17,7 +17,7 @@ function ContactHero() {
     <section style={{padding:'120px 0 60px', position:'relative'}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', textAlign:'center', position:'relative'}}>
         <h1 className="ins-text-display" style={{marginBottom:'var(--ins-size-5)'}}>
-          Let's talk.
+          Let's talk
         </h1>
         <p className="fu1 ins-text-body-lg" style={{maxWidth:'520px', margin:'0 auto'}}>
           Whether you have a question, need a demo, or want to discuss Enterprise pricing — we'd love to hear from you.
@@ -71,7 +71,7 @@ function ContactOptions({ onOpenDemo, onOpenSupport }) {
             </div>
             <h3 style={{fontSize:'var(--ins-font-size-18)', fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:'10px'}}>Help Center</h3>
             <p className="ins-text-body" style={{marginBottom:'var(--ins-size-5)'}}>Browse our knowledge base for guides, FAQs, troubleshooting tips, and everything you need to get the most out of Insightis.</p>
-            <Button as="a" href="../resources/contact-support" variant="primary">
+            <Button as="a" href="/resources/contact-support" variant="primary">
               Visit help center
             </Button>
             <p className="ins-text-body-xs ins-text--muted ins-text--mono" style={{marginTop:'14px'}}>Guides, FAQs & troubleshooting</p>

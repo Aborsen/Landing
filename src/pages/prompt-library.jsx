@@ -26,7 +26,7 @@ function PromptLibraryHero() {
           ✦ PROMPT LIBRARY
         </div>
         <h1 className="ins-text-display" style={{marginBottom:'var(--ins-size-5)'}}>
-          Prompts for every team.
+          Prompts for every team
         </h1>
         <p className="fu2 ins-text-body-xl" style={{maxWidth:'560px', margin:'0 auto'}}>
           Curated prompt templates for analytics, ops, and go-to-market teams — connected to the tools you already use.
@@ -513,7 +513,7 @@ function BottomCTA() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTABlock
           variant="buttons"
-          title={<>Stop reading about <BottomCTABlock.Highlight>analytics.</BottomCTABlock.Highlight> Start doing it.</>}
+          title={<>Stop reading about <BottomCTABlock.Highlight>analytics.</BottomCTABlock.Highlight> Start doing it</>}
           description={<>Copy a prompt, connect your data, and get real answers in plain language — no SQL, no waiting on a report. Free to start, no credit card required.</>}
           ctaLabel="Start for free"
           secondaryCtaLabel="Explore Pricing"

@@ -58,7 +58,7 @@ function Hero() {
             <h1 className="ins-text-display-xl" style={{marginBottom:'var(--ins-size-5)'}}>
               <span style={{color:'var(--ins-text-heading-soft)'}}>Stop answering the same</span>
               <br/>
-              <span style={{color:'var(--ins-text-highlight)'}}>questions twice.</span>
+              <span style={{color:'var(--ins-text-highlight)'}}>questions twice</span>
             </h1>
 
             <p className="fu2 ins-text-body-xl" style={{marginBottom:'var(--ins-size-7)',maxWidth:'480px'}}>
@@ -296,7 +296,7 @@ function BottomCTASection() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
           variant="buttons"
-          title={<>Stop being a <BottomCTA.Highlight>reporting service.</BottomCTA.Highlight> Start doing <BottomCTA.Highlight> real analysis.</BottomCTA.Highlight></>}
+          title={<>Stop being a <BottomCTA.Highlight>reporting service.</BottomCTA.Highlight> Start doing <BottomCTA.Highlight> real analysis</BottomCTA.Highlight></>}
           description="Give your analytics team back the hours lost to ad hoc SQL requests — let business users self-serve in plain English while you focus on the deep work. Free to start, no credit card required."
           ctaLabel="Start for free"
           secondaryCtaLabel="Explore Pricing"
@@ -324,7 +324,7 @@ function Positioning() {
           lineHeight:1.2,
           marginBottom:'18px',
         }}>
-          Stop being a <span style={{color:'var(--ins-text-highlight)'}}>reporting service.</span> Start doing <span style={{color:'var(--ins-text-highlight)'}}>real analysis.</span>
+          Stop being a <span style={{color:'var(--ins-text-highlight)'}}>reporting service.</span> Start doing <span style={{color:'var(--ins-text-highlight)'}}>real analysis</span>
         </h2>
         <p className="ins-text-body-lg" style={{marginBottom:'var(--ins-size-7)'}}>
           Sound familiar? These are the problems Insightis eliminates.
@@ -798,7 +798,7 @@ function UseCases() {
             <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
             <div style={{flex:'1 1 360px',minWidth:0}}>
               <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'var(--ins-size-2)'}}>
-                See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own data</span>.
+                See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own data</span>
               </h3>
               <p className="ins-text-body">
                 Connect your warehouse and ask Insightis a real question your team gets every week.
