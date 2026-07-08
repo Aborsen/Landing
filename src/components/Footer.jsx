@@ -45,11 +45,12 @@ export default function Footer() {
   return (
     <footer className="pt-16 pb-8 border-t border-border-strong">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Row layout only from lg — at md widths (768–1023px) the five link
-            columns don't fit next to the brand block and get clipped (QA #1). */}
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 mb-14 items-start">
+        {/* Row layout only from xl — below 1280px the five link columns plus the
+            brand block need ~1110px and get clipped by overflow (QA: footer Legal
+            column cut off at 1024px iPad Pro portrait). */}
+        <div className="flex flex-col xl:flex-row gap-10 xl:gap-16 mb-14 items-start">
           {/* Brand */}
-          <div className="shrink-0 lg:w-[220px]">
+          <div className="shrink-0 xl:w-[220px]">
             <a href="/" aria-label="Insightis home" className="flex items-center gap-2.5 mb-4">
               <Logo height={26}/>
             </a>
@@ -58,7 +59,7 @@ export default function Footer() {
           </div>
 
           {/* 5 text columns — pushed to the right edge */}
-          <div className="lg:ml-auto grid grid-cols-2 gap-8 lg:flex lg:flex-row lg:gap-16">
+          <div className="xl:ml-auto grid grid-cols-2 sm:grid-cols-3 gap-8 xl:flex xl:flex-row xl:gap-16">
 
             {/* Platform */}
             <div>
