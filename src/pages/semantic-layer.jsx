@@ -548,7 +548,7 @@ const CONNECTORS = {
     { name:'Vendor Spend',         abbr:'VS',  color:'#f9ab00', bg:'rgba(249,171,0,.12)',   desc:'Monthly third-party vendor cost' },
     { name:'License Utilization',  abbr:'LU',  color:'#47a248', bg:'rgba(71,162,72,.12)',   desc:'Licensed seats actually used' },
     { name:'Invoice Lead Time',    abbr:'ILT', color:'#a855f7', bg:'rgba(168,85,247,.12)',  desc:'Days from trigger to sent invoice' },
-    { name:'Compliance Incidents', abbr:'CI',  color:'#d13212', bg:'rgba(209,50,18,.12)',   desc:'SOC2/GDPR issues per quarter' },
+    { name:'Compliance Incidents', abbr:'CI',  color:'#d13212', bg:'rgba(209,50,18,.12)',   desc:'Compliance issues per quarter' },
   ],
 };
 

@@ -217,15 +217,15 @@ function Hero() {
         {/* Headline */}
         <FadeUp delay={0.1}>
           <h1 className="ins-text-hero text-center mb-6">
-            <span style={{display:'block'}} className="text-[var(--ins-text-heading-soft)]">Your data knows the answer</span>
-            <span style={{display:'block',color:'var(--ins-text-highlight)'}}>Now you can ask it</span>
+            <span style={{display:'block'}} className="text-[var(--ins-text-heading-soft)]">Talk to your data.</span>
+            <span style={{display:'block',color:'var(--ins-text-highlight)'}}>It already knows the answer.</span>
           </h1>
         </FadeUp>
 
         {/* Description */}
         <FadeUp delay={0.17}>
           <p className="ins-text-body-lg max-w-2xl mx-auto mb-8">
-            Insightis connects your real data and delivers answers <span style={{color:'var(--ins-text-highlight)', fontWeight:500}}>3× more accurate</span> than spreadsheets.
+            Connect your tools and ask in plain English. Insightis gives you trusted, source-linked answers in seconds — no SQL, no CSV exports, no guessing.
           </p>
         </FadeUp>
         {/* Chat Mockup */}
@@ -745,7 +745,7 @@ function HowItWorks() {
     return () => { cancelled = true; };
   }, []);
   const steps = [
-    { n: '01', title: 'Connect your data', desc: 'OAuth or API key. Most connectors live in under 5 minutes — read-only and SOC 2 secured.' },
+    { n: '01', title: 'Connect your data', desc: 'OAuth or API key. Most connectors live in under 5 minutes — read-only and encrypted.' },
     { n: '02', title: 'Configure the semantic layer', desc: 'Map your fields to certified metrics — MRR, CAC, NRR, WAU. One trusted truth across every source.' },
     { n: '03', title: 'Ask in plain English', desc: 'Your team asks questions. Insightis queries the right sources and returns precise answers in seconds.' },
     { n: '04', title: 'Get instant insights', desc: 'Charts, contributing factors, and follow-up suggestions — saved as live reports in one click.' },
@@ -836,10 +836,10 @@ function AnimatedStat({ target, suffix, prefix, duration = 1800 }) {
 
 function WhatIsInsightis() {
   const stats = [
-    { target: 10,   suffix: "x",  prefix: "",  label: "Faster Insights",  sub: "vs. traditional BI tools" },
-    { target: 80,   suffix: "%",  prefix: "",  label: "Time Saved",        sub: "on data analysis tasks" },
-    { target: 200,  suffix: "+",  prefix: "",  label: "Connectors",        sub: "supported out-of-the-box" },
-    { target: 99,   suffix: ".9%",prefix: "",  label: "Uptime SLA",        sub: "enterprise-grade reliability" },
+    { target: 200,   suffix: "+", prefix: "", label: "Connectors",           sub: "supported out-of-the-box" },
+    { target: 270,   suffix: "+", prefix: "", label: "Pre-built metrics",    sub: "auto-mapped from your tools" },
+    { target: 28,    suffix: "",  prefix: "", label: "Years of data tooling", sub: "built by the Devart team" },
+    { target: 40000, suffix: "+", prefix: "", label: "Companies",            sub: "rely on Devart data tools" },
   ];
 
   return (
@@ -849,9 +849,9 @@ function WhatIsInsightis() {
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5" style={{background: 'rgba(7,128,126,0.1)', border: '1px solid rgba(7,128,126,0.4)'}}>
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[var(--ins-text-highlight)]"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
-              <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">By the numbers</span>
+              <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">What you get</span>
             </div>
-            <h2 className="text-4xl md:text-[48px] font-medium text-[var(--ins-text-heading)] tracking-tight leading-[1.1]">Insightis in numbers</h2>
+            <h2 className="text-4xl md:text-[48px] font-medium text-[var(--ins-text-heading)] tracking-tight leading-[1.1]">What you get with Insightis</h2>
             <p className="ins-text-body-lg mt-4 max-w-xl mx-auto">
               The AI analytics workspace that turns raw data into clear decisions — instantly, accurately, and without SQL.
             </p>

@@ -263,7 +263,7 @@ function ResultsBanner() {
         <div style={{textAlign:'center', marginBottom:'var(--ins-size-10)'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
             <span style={{fontSize:'var(--ins-font-size-12)'}}>&#10022;</span>
-            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', fontFamily:'var(--ins-font-family-mono)'}}>Verified Impact</span>
+            <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', fontFamily:'var(--ins-font-family-mono)'}}>Built for faster decisions</span>
           </div>
         </div>
         <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', gap:'clamp(32px,6vw,80px)', flexWrap:'wrap'}}>

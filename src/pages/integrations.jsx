@@ -523,8 +523,8 @@ function HowSyncWorks() {
       // and use it consistently across hero copy, this step, the FAQ answer, and SoftwareApplication schema.
       // Assumed canonical = "200+" per the audit's "Out of scope" reconciliation note; change if product confirms "40+".
       n:'01', title:'Connect in minutes',
-      body:'Authenticate securely with OAuth or API key. 200+ read-only connectors go live instantly in under 5 minutes — SOC 2 secured.',
-      example:'OAuth / API key → 200+ connectors in 5 min, read-only & SOC 2 secured',
+      body:'Authenticate securely with OAuth or API key. 200+ read-only connectors go live instantly in under 5 minutes — encrypted in transit and at rest.',
+      example:'OAuth / API key → 200+ connectors in 5 min, read-only & encrypted',
     },
     {
       n:'02', title:'Semantic layer maps it',
@@ -704,7 +704,7 @@ function App() {
 
           "Scattered data slows every team down. Answers live in five tools - HubSpot, Stripe, the warehouse,
           the ad platforms, product analytics - and pulling them together takes days of CSV exports and VLOOKUPs.
-          Insightis fixes that at the source: 200+ certified connectors (OAuth, read-only, SOC 2) feed a semantic
+          Insightis fixes that at the source: 200+ certified connectors (OAuth, read-only, encrypted) feed a semantic
           layer that unifies MRR, CAC, NRR, WAU and every other metric your team asks about. You ask in plain
           English; Insightis queries the right sources, joins the data, and returns a precise answer in seconds
           - no SQL, no tickets, no waiting." (96 words)
@@ -724,7 +724,7 @@ function App() {
           Q1. How long does it take to connect a data source to Insightis?
           A. Most connectors go live in under five minutes. You authenticate with OAuth or an API key,
           pick the objects you want, and Insightis starts syncing immediately. Connections are read-only,
-          SOC 2 secured, and refreshed continuously - no engineering work or pipeline maintenance required.
+          encrypted, and refreshed continuously - no engineering work or pipeline maintenance required.
 
           Q2. Which data sources does Insightis integrate with?
           A. Insightis supports 200+ connectors across CRMs (HubSpot, Salesforce, Pipedrive),
@@ -739,7 +739,7 @@ function App() {
 
           Q4. Is my data secure once it's connected?
           A. Yes. All connectors are read-only and authenticated via OAuth or scoped API keys.
-          Insightis is SOC 2 Type II compliant, encrypts data in transit and at rest, and never writes
+          Insightis encrypts data in transit and at rest, never uses your data to train AI models, and never writes
           back to your source systems. You can revoke a connection at any time from the admin panel.
 
           Q5. What happens when fields or metrics conflict across sources?

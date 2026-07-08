@@ -218,7 +218,7 @@ Improvado does not offer public self-service tiers. Pricing is custom and based 
 - **End-to-end data mapping:** Automated workflows to ensure data from different platforms aligns correctly.
 - **MCM (Marketing Common Model):** A specialized framework for unifying disparate marketing data points into a single schema.
 - **Automated data hygiene:** Built-in tools to clean and validate data before it reaches your visualization layer.
-- **Enterprise-grade security:** Features like SOC 2 compliance and granular user permissions.
+- **Enterprise-grade security:** Features like end-to-end encryption and granular user permissions.
 
 #### Who Should Use It?
 Improvado is best for enterprise data teams and large marketing agencies managing 50+ **Data Sources**. It is the right choice for organizations that need a dedicated data pipeline to feed a massive Snowflake or BigQuery instance for manual dashboarding.

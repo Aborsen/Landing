@@ -22,5 +22,12 @@
     { "source": "/Company/Press%20Media", "destination": "/company/press-media", "permanent": true },
     { "source": "/Company/Success%20Stories", "destination": "/company/success-stories", "permanent": true },
     { "source": "/Security/Cookie%20Settings", "destination": "/security/cookie-settings", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": ".*\\.vercel\\.app" }],
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    }
   ]
 }

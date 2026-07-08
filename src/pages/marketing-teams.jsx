@@ -533,7 +533,7 @@ function SpotlightStack() {
         }}>
           <span style={{display:'inline-flex',alignItems:'center',gap:'6px'}}>
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ins-status-success-fg)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
-            <span>SOC 2 trail</span>
+            <span>Audit trail</span>
           </span>
           <span>signed off by Marketing Ops · 06:42 UTC</span>
         </div>
@@ -806,7 +806,7 @@ function FAQ() {
     },
     {
       q:'What about marketing data privacy and PII?',
-      a:'PII fields can be masked, hashed, or excluded from queries via field-level access controls. SOC 2 Type II certified, GDPR-aligned, with full audit logs on every query and share. Your data never leaves your warehouse.',
+      a:'PII fields can be masked, hashed, or excluded from queries via field-level access controls. Read-only and encrypted, GDPR-aligned, with full audit logs on every query and share. Your data never leaves your warehouse.',
     },
     {
       q:'How long until our marketing team uses it daily?',

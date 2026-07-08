@@ -60,18 +60,18 @@ function SecurityContent() {
   const complianceCards = [
     {
       icon: <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M24 44s16-8 16-20V10l-16-6-16 6v14c0 12 16 20 16 20z"/><path d="M18 24l4 4 8-8"/></svg>,
-      title: 'SOC 2 Type II',
-      desc: 'Audited annually for security, availability, and confidentiality controls.',
+      title: 'Read-only & encrypted',
+      desc: 'Connectors are read-only and never write back; data is encrypted at rest (AES-256) and in transit (TLS 1.3).',
     },
     {
       icon: <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="24" cy="24" r="16"/><path d="M16 18h16v12H16z"/><circle cx="24" cy="24" r="3"/><path d="M15 24h-3"/><path d="M36 24h-3"/><path d="M24 15v-3"/><path d="M24 36v-3"/></svg>,
-      title: 'GDPR',
-      desc: 'Full compliance with EU data protection regulations and privacy requirements.',
+      title: 'GDPR-aligned',
+      desc: 'Data processed in-region with a transparent subprocessor list, full export and deletion at any time.',
     },
     {
       icon: <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="10" y="6" width="28" height="36" rx="2"/><path d="M18 14h12"/><path d="M18 20h12"/><path d="M18 26h8"/><circle cx="24" cy="34" r="3"/><path d="M21 34l3 3 3-3"/></svg>,
-      title: 'ISO 27001',
-      desc: 'Certified information security management system with continuous improvement.',
+      title: 'No AI training',
+      desc: 'Your connected data is never used to train, fine-tune, or improve AI models.',
     },
   ];
 
@@ -86,7 +86,7 @@ function SecurityContent() {
   const faqs = [
     {
       q: 'Where is my data stored?',
-      a: 'Your data is stored in secure, SOC 2-compliant cloud infrastructure. We use regionally distributed data centers to ensure low latency and compliance with data residency requirements. All data is encrypted at rest using AES-256 and in transit using TLS 1.3.',
+      a: 'Your data is stored in secure, encrypted cloud infrastructure. We use regionally distributed data centers to ensure low latency and compliance with data residency requirements. All data is encrypted at rest using AES-256 and in transit using TLS 1.3.',
     },
     {
       q: 'Is my data used to train AI models?',
@@ -114,7 +114,7 @@ function SecurityContent() {
     },
     {
       q: 'What compliance certifications do you hold?',
-      a: 'Insightis maintains SOC 2 Type II certification, GDPR compliance, and ISO 27001 certification. We undergo annual third-party audits and continuously monitor our compliance posture. Additional certifications are available upon request.',
+      a: 'Insightis is GDPR-aligned and runs on cloud infrastructure from certified providers. All connections are read-only, data is encrypted in transit and at rest, and your data is never used to train AI models. Formal certifications are on our security roadmap.',
     },
   ];
 

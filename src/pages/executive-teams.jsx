@@ -783,7 +783,7 @@ function FAQ() {
     },
     {
       q:'What\'s the security and compliance posture for sharing financials?',
-      a:'SOC 2 Type II, encryption at rest and in transit, single sign-on with MFA, granular role-based access. Your data never leaves your warehouse — Insightis queries on top of it. Audit logs track every view and every share.',
+      a:'Encryption at rest and in transit, single sign-on with MFA, granular role-based access — and your data is never used to train AI models. Your data never leaves your warehouse — Insightis queries on top of it. Audit logs track every view and every share.',
     },
   ];
 

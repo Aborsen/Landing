@@ -350,7 +350,7 @@ function FAQ() {
     { q:'What does "data source" mean?',
       a:'A connected system — Stripe, HubSpot, Postgres, BigQuery, etc. Connectors authenticate via OAuth or read-only API keys and sync continuously.' },
     { q:'Is my data secure?',
-      a:'Insightis is SOC 2 Type II and HIPAA-ready. All connections are read-only, all traffic is TLS-encrypted, and your data never leaves your warehouse on Enterprise plans.' },
+      a:'All connections are read-only, all traffic is TLS-encrypted, your data is never used to train AI models — and it never leaves your warehouse on Enterprise plans.' },
     { q:'How does annual billing work?',
       a:'Pay for 12 months up front, save 20% per seat. Invoices and ACH/wire transfer available on Team and Enterprise.' },
     { q:'Can I bring my own LLM?',

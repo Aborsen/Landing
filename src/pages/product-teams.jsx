@@ -973,7 +973,7 @@ function FAQ() {
     },
     {
       q:'How is security and PII handled?',
-      a:'Insightis respects your warehouse and source-tool permissions — every query runs as the connected role, so row-level and column-level security stay in force. No event data is copied out of your sources. SOC 2 Type II compliant.',
+      a:'Insightis respects your warehouse and source-tool permissions — every query runs as the connected role, so row-level and column-level security stay in force. No event data is copied out of your sources, and your data is never used to train AI models.',
     },
   ];
 

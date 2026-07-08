@@ -199,7 +199,7 @@ function PrivacyContent() {
           <ul style={ulStyle}>
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Encryption:</strong> All data is encrypted in transit using TLS 1.2+ and at rest using AES-256 encryption.</li>
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Access controls:</strong> Role-based access control (RBAC), multi-factor authentication (MFA), and the principle of least privilege govern access to systems and data.</li>
-            <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Infrastructure security:</strong> Our platform is hosted on enterprise-grade cloud infrastructure with SOC 2 Type II certified providers.</li>
+            <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Infrastructure security:</strong> Our platform is hosted on enterprise-grade cloud infrastructure with encryption at rest and in transit.</li>
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Regular audits:</strong> We conduct regular security assessments, penetration testing, and vulnerability scanning.</li>
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Incident response:</strong> We maintain a documented incident response plan and will notify affected users within 72 hours of a confirmed data breach.</li>
           </ul>

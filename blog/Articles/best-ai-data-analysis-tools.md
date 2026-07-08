@@ -274,7 +274,7 @@ Insightis is specifically designed for users who need a **business metrics platf
 To prevent hallucinations, you must use a tool with a governed **Semantic Layer**. Generic AI assistants hallucinate because they don't know your specific business logic. Insightis solves this by using a **Metrics Catalog** that provides **certified business definitions** for your KPIs. Because the AI is grounded in these approved formulas, it cannot "invent" its own version of your revenue or churn.
 
 ### Is my company data safe with AI tools?
-Security is a non-negotiable part of any **governed ai insights** strategy. When choosing a tool, look for enterprise-grade encryption and SOC2 compliance. Insightis prioritizes data privacy by ensuring:
+Security is a non-negotiable part of any **governed ai insights** strategy. When choosing a tool, look for enterprise-grade encryption and granular access controls. Insightis prioritizes data privacy by ensuring:
 1.  **No Training on Customer Data:** Your private business data is never used to train our global AI models.
 2.  **Granular Permissions:** You control exactly who can access specific **Data Sources**.
 3.  **Encrypted Connections:** All data is handled through secure, industry-standard protocols.
