@@ -14,6 +14,10 @@
   transform:scale(var(--logo-scale,1));
 }
 .ins-connector-logo.is-dark::before{filter:invert(1) hue-rotate(180deg);}
+/* amazonrds (Amazon RDS + Aurora): the generic invert leaves the yellow boxes
+   muddy-orange — boost saturation/brightness to pull them back to brand yellow
+   while the black wordmark stays inverted to white. */
+.ins-connector-logo.amazonrds.is-dark::before{filter:invert(1) hue-rotate(180deg) saturate(1.75) brightness(1.3);}
 .ins-connector-logo.actito{--logo-x:0;--logo-scale:1.18}
 .ins-connector-logo.activecampaign{--logo-x:.3740885245%;--logo-scale:1.38}
 .ins-connector-logo.acuityscheduling{--logo-x:.7481770491%;--logo-scale:1.26}

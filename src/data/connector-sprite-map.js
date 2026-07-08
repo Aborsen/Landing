@@ -49,6 +49,10 @@ const ALIAS_MAP = {
 // DS-token-colored silhouette (.is-dark). AUTO-DETECTED by luminance-sampling each
 // sprite cell (low luminance, or dark + near-greyscale). Regenerate, don't hand-edit.
 export const DARK_SPRITE_LOGOS = new Set([
+  // hand-added: navy Dynamics-family marks are near-invisible on the dark theme
+  'dynamicscrm', 'd365businesscentral', 'dynamics365finops',
+  // hand-added: amazonrds (used by Amazon RDS + Aurora) has a black wordmark
+  'amazonrds',
   'acuityscheduling', 'bigcommerce', 'box', 'dbt-streamline', 'drip', 'dropbox',
   'emailoctopus', 'graphql', 'grok', 'hbr_azure_devops', 'hbr_booqable', 'hbr_front', 'hbr_fullstory',
   'hbr_intercom', 'hbr_motion', 'hbr_paymo', 'hbr_pipeliner', 'hbr_smartsheet',

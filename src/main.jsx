@@ -303,24 +303,24 @@ function Hero() {
                     {tooltip === 'connectors' && (
                       <div className="absolute bottom-full left-0 mb-2 w-64 bg-[var(--ins-surface-card)] border border-[var(--ins-border-hover)] rounded-2xl shadow-2xl z-[100] overflow-hidden" onClick={e => e.stopPropagation()}>
                         <div className="px-3 pt-3 pb-1">
-                          <p className="text-[10px] font-medium text-[var(--ins-text-body)] uppercase tracking-wider px-1 mb-2">Not configured</p>
                           {[
                             { name: 'Salesforce', domain: 'salesforce.com', slug: 'salesforce' },
                             { name: 'Shopify', domain: 'shopify.com' },
                             { name: 'Facebook Ads', domain: 'facebook.com', slug: 'facebook' },
                             { name: 'Dynamics 365', domain: 'microsoft.com' },
-                            { name: 'Quickbooks', domain: 'quickbooks.intuit.com', slug: 'quickbooks' },
+                            { name: 'QuickBooks', domain: 'quickbooks.intuit.com', slug: 'quickbooks' },
                             { name: 'HubSpot', domain: 'hubspot.com' },
                             { name: 'Google BigQuery', domain: 'cloud.google.com', slug: 'googlebigquery' },
                           ].map(c => (
                             <div key={c.name} className="flex items-center justify-between px-2 py-2 rounded-xl">
                               <div className="flex items-center gap-2.5">
-                                <div className="w-6 h-6 rounded-md bg-[var(--ins-border-default)] border border-[var(--ins-border-hover)] flex items-center justify-center flex-shrink-0 overflow-hidden">
-                                  <RealConnectorIcon name={c.name} slug={c.slug} domain={c.domain} bg="transparent" size={14} />
+                                {/* Bare sprite logo — same standard as the connectors page (no chip box) */}
+                                <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
+                                  <RealConnectorIcon name={c.name} slug={c.slug} domain={c.domain} bg="transparent" size={20} />
                                 </div>
                                 <span className="text-sm text-[var(--ins-text-body)]">{c.name}</span>
                               </div>
-                              <a href="/auth/sign-in/" onClick={e => e.stopPropagation()} className="text-xs font-medium text-[var(--ins-color-teal-500)] hover:text-[var(--ins-color-teal-400)] transition-colors flex-shrink-0">Sign in</a>
+                              <a href="/auth/sign-in/" onClick={e => e.stopPropagation()} className="text-xs font-medium text-[var(--ins-color-teal-500)] hover:text-[var(--ins-color-teal-400)] transition-colors flex-shrink-0">Connect</a>
                             </div>
                           ))}
                         </div>
@@ -544,11 +544,11 @@ function Architecture() {
           <div className="text-center mb-16 arch-heading">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-4" style={{background: 'rgba(7,128,126,0.1)', border: '1px solid rgba(7,128,126,0.4)'}}>
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[var(--ins-text-highlight)]"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
-              <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">Architecture</span>
+              <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">One source of truth</span>
             </div>
-            <h2 className="ins-text-display mb-4">The semantic intelligence layer</h2>
+            <h2 className="ins-text-display mb-4">Every number means the same thing</h2>
             <p className="ins-text-body-lg max-w-2xl mx-auto">
-              Bring all your data sources into a single AI-ready layer, turning fragmented systems into a trusted semantic foundation that delivers consistent meaning, and business clarity across your organization.
+              Each of your tools defines “revenue” or “MRR” a little differently — so your reports never quite match. Insightis sets one trusted definition for each metric. Define it once, and every report shows the same number.
             </p>
           </div>
         </FadeUp>
@@ -746,10 +746,10 @@ function HowItWorks() {
   }, []);
   const steps = [
     { n: '01', title: 'Connect your data', desc: 'OAuth or API key. Most connectors live in under 5 minutes — read-only and encrypted.' },
-    { n: '02', title: 'Configure the semantic layer', desc: 'Map your fields to certified metrics — MRR, CAC, NRR, WAU. One trusted truth across every source.' },
+    { n: '02', title: 'Auto-map your metrics', desc: 'Insightis maps the metrics that matter — MRR, CAC, active users — from 270+ pre-built definitions. Edit anytime.' },
     { n: '03', title: 'Ask in plain English', desc: 'Your team asks questions. Insightis queries the right sources and returns precise answers in seconds.' },
-    { n: '04', title: 'Get instant insights', desc: 'Charts, contributing factors, and follow-up suggestions — saved as live reports in one click.' },
-    { n: '05', title: 'Share with your team', desc: 'Publish answers to Slack, dashboards, or Teams. Every figure stays linked to its source.' },
+    { n: '04', title: 'Get instant insights', desc: 'Charts, contributing factors, and follow-up suggestions — with the source behind every figure.' },
+    { n: '05', title: 'Trust every answer', desc: 'Every number links back to its sources and shows the exact SQL behind it, so you can verify the work.' },
   ];
   return (
     <section id="how-it-works" style={{padding:'100px 0', background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)', position:'relative'}}>
@@ -901,6 +901,10 @@ function Pricing() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <FadeUp>
           <div className="text-center mb-14">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5" style={{background: 'rgba(7,128,126,0.1)', border: '1px solid rgba(7,128,126,0.4)'}}>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[var(--ins-text-highlight)]"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
+              <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">Why Insightis</span>
+            </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-[var(--ins-text-heading)] tracking-tight mb-4">Why teams switch to Insightis</h2>
             <p className="ins-text-body-lg max-w-2xl mx-auto">
               Instead of charging for every person in your company, Insightis ties cost to actual AI activity and the storage you need — so pricing stays fair, scalable, and aligned with value.
@@ -922,28 +926,67 @@ function Pricing() {
   );
 }
 
-// ─── FOOTER ───
-// ─── SUBSCRIBE BANNER ───
-function SubscribeBanner() {
+// ─── PRICING SNAPSHOT (launch pack §11) ───
+function PricingSnapshot() {
+  const tiers = [
+    { name: 'Free',    price: '$0',     old: null,     tag: 'For getting started', bullets: ['1 user', '500 AI tokens / month', 'Up to 3 data connectors'] },
+    { name: 'Starter', price: '$9.99',  old: '$19.99', tag: 'For small teams',     bullets: ['Up to 5 users', '5,000 AI tokens / month', 'Unlimited connectors'] },
+    { name: 'Pro',     price: '$19.99', old: '$39.99', tag: 'For growing teams',   popular: true, bullets: ['Unlimited users', '25,000 AI tokens / month', '15-minute data refresh'] },
+  ];
   return (
-    <section className="pt-16 pb-16 relative overflow-hidden">
+    <section className="py-24 relative">
       <div className="max-w-7xl mx-auto px-6">
         <FadeUp>
-          <div className="relative rounded-2xl py-10 px-8 md:px-16 text-center overflow-hidden" style={{ border: '1px solid rgba(7,128,126,0.3)', background: 'linear-gradient(135deg, rgba(7,128,126,0.12) 0%, rgba(13,13,26,0.9) 40%, rgba(10,18,32,0.85) 70%, rgba(7,128,126,0.08) 100%)', boxShadow: 'none' }}>
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-[var(--ins-color-teal-600)]/60 to-transparent"></div>
-            <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-[var(--ins-color-teal-600)]/10 to-transparent pointer-events-none"></div>
-
-            <div className="relative z-10">
-              <h2 className="ins-bottom-cta__title text-center mb-3">
-                Start making smarter decisions <span className="text-[var(--ins-text-highlight)]">today</span>
-              </h2>
-              <p className="text-sm md:text-base mb-7 max-w-lg mx-auto leading-relaxed" style={{color:'var(--ins-text-body)'}}>
-                Set up in minutes, no credit card required, and cancel anytime.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <Button as="a" href="/auth/sign-up/" variant="primary" size="lg">Start free trial</Button>
-              </div>
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5" style={{background: 'rgba(7,128,126,0.1)', border: '1px solid rgba(7,128,126,0.4)'}}>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[var(--ins-text-highlight)]"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
+              <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">Pricing</span>
             </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-[var(--ins-text-heading)] tracking-tight mb-4">Start free. Upgrade when you're ready</h2>
+            <p className="ins-text-body-lg max-w-xl mx-auto">Launch pricing — 50% off standard. No credit card required.</p>
+          </div>
+        </FadeUp>
+        <FadeUp delay={0.1}>
+          <div className="grid gap-4 md:grid-cols-3 items-stretch">
+            {tiers.map(t => (
+              <div key={t.name} className="relative flex flex-col rounded-2xl p-6" style={{
+                background: 'var(--ins-surface-card)',
+                border: t.popular ? '1px solid var(--ins-border-brand)' : '1px solid var(--ins-border-default)',
+                boxShadow: t.popular ? 'var(--ins-shadow-glow-brand)' : 'none',
+              }}>
+                {t.popular && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-[10px] font-medium uppercase tracking-wider" style={{background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',color:'var(--ins-text-heading)'}}>
+                    Most popular
+                  </div>
+                )}
+                <h3 className="text-lg font-semibold text-[var(--ins-text-heading)]">{t.name}</h3>
+                <p className="ins-text-body-sm mb-4">{t.tag}</p>
+                <div className="flex items-baseline gap-2 mb-5">
+                  {t.old && <span className="text-base line-through text-[var(--ins-text-disabled)]">{t.old}</span>}
+                  <span className="text-3xl font-medium text-[var(--ins-text-heading)] tracking-tight">{t.price}</span>
+                  {t.old && <span className="ins-text-body-sm">/mo</span>}
+                </div>
+                <ul className="flex flex-col gap-2 mb-6">
+                  {t.bullets.map(b => (
+                    <li key={b} className="flex items-center gap-2 text-sm text-[var(--ins-text-body)]">
+                      <CheckIcon size={13} color="var(--ins-text-highlight)" />{b}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-auto">
+                  <Button as="a" href="/auth/sign-up/" variant={t.popular ? 'primary' : 'secondary'} size="md" style={{width:'100%',justifyContent:'center'}}>
+                    Start for free
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </FadeUp>
+        <FadeUp delay={0.15}>
+          <div className="text-center mt-10">
+            <a href="/pricing" className="ins-btn ins-btn--secondary ins-btn--lg">
+              Compare Plans
+            </a>
           </div>
         </FadeUp>
       </div>
@@ -951,7 +994,7 @@ function SubscribeBanner() {
   );
 }
 
-
+// ─── FOOTER ───
 // ─── BOTTOM CTA ───
 function BottomCTASection() {
   return (
@@ -990,9 +1033,9 @@ function App() {
           <Hero />
         </header>
         <Architecture />
-        <SubscribeBanner />
-        <HowItWorks />
         <WhatIsInsightis />
+        <HowItWorks />
+        <PricingSnapshot />
         <Pricing />
         <BottomCTASection />
       </main>

@@ -1040,7 +1040,7 @@ function MidCTA() {
           <BottomCTA
             variant="text"
             title={<>Skip the metric debates. <BottomCTA.Highlight>Start asking.</BottomCTA.Highlight></>}
-            ctaLabel="Get started for free"
+            ctaLabel="Start for free"
           />
         </div>
       </div>

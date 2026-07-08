@@ -719,7 +719,7 @@ function UseCases() {
               </p>
             </div>
             <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
-              Get started for free
+              Start for free
             </Button>
           </div>
         </div>

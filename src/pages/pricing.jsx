@@ -106,7 +106,7 @@ function PricingCards() {
       price:9.99,
       originalPrice:19.99,
       discount:'50% OFF',
-      cta:'Start free trial',
+      cta:'Start for free',
       ctaStyle:'outline',
       features:[
         'Up to 5 users',
@@ -123,7 +123,7 @@ function PricingCards() {
       price:19.99,
       originalPrice:39.99,
       discount:'50% OFF',
-      cta:'Start free trial',
+      cta:'Start for free',
       ctaStyle:'primary',
       highlight:true,
       features:[
@@ -148,7 +148,7 @@ function PricingCards() {
 
   return (
     <section style={{padding:'24px 0 80px'}}>
-      <div style={{maxWidth:'1100px',margin:'0 auto',padding:'0 24px'}}>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         {/* Billing-cycle toggle */}
         <div style={{display:'flex',justifyContent:'center',marginBottom:'var(--ins-size-8)'}}>
           <BillingToggle cycle={cycle} onChange={setCycle} />
@@ -176,7 +176,9 @@ function PricingCards() {
                   )}
                 </div>
                 <p className="ins-text-body" style={{marginBottom:'var(--ins-size-3)'}}>{plan.tag}</p>
-                <div style={{marginBottom:'var(--ins-size-6)',minHeight:'128px'}}>
+                {/* min-height = tallest price state (yearly: price + per-user + billed-annually
+                    lines) so CTAs stay aligned across cards in both billing cycles. */}
+                <div style={{marginBottom:'var(--ins-size-4)',minHeight:'96px'}}>
                   {plan.price === 0 ? (
                     <div>
                       <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-0.03em'}}>$0</span>
@@ -276,7 +278,7 @@ function FeatureComparison() {
   const cols = '1.6fr 1fr 1fr 1fr';
   return (
     <section style={{padding:'80px 0 60px'}}>
-      <div style={{maxWidth:'1100px',margin:'0 auto',padding:'0 24px'}}>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{marginBottom:'var(--ins-size-12)'}}>
           <SectionHeader title="Compare features" lede="Everything you get on every plan." />
         </div>
@@ -313,8 +315,8 @@ function FeatureComparison() {
             <span style={{fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)'}}>Choose your plan</span>
             {[
               { label:'Start for free',   primary:false },
-              { label:'Start free trial', primary:false },
-              { label:'Start free trial', primary:true  },
+              { label:'Start for free', primary:false },
+              { label:'Start for free', primary:true  },
             ].map((cta, i) => (
               <div key={i} style={{display:'flex',justifyContent:'center'}}>
                 <Button
@@ -372,7 +374,7 @@ function FAQ() {
 function BottomCTASection() {
   return (
     <section style={{padding:'80px 0 100px'}}>
-      <div style={{maxWidth:'820px',margin:'0 auto',padding:'0 24px'}}>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
           variant="buttons"
           title={<>Start free. <BottomCTA.Highlight>Upgrade when you're ready.</BottomCTA.Highlight></>}

@@ -27,7 +27,7 @@ export default function ConnectorCard({ name, slug, domain, desc = null, size = 
         )}
       </div>
       <div className="connector-overlay">
-        <a className="overlay-btn primary" href="/auth/sign-in/" onClick={(e) => e.stopPropagation()}>
+        <a className="ins-btn ins-btn--secondary ins-btn--sm" href="/auth/sign-in/" onClick={(e) => e.stopPropagation()}>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
             <polyline points="10 17 15 12 10 7"/>

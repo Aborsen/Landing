@@ -26,7 +26,7 @@ const ArrowRightIcon = () => (
  *  inputPlaceholder   string — REQUIRED for variant="form"
  *  inputAriaLabel     string — defaults to inputPlaceholder
  *  inputName          string — form input `name` attribute (default: "q")
- *  ctaLabel           string — submit button label (default: "Get started"
+ *  ctaLabel           string — submit button label (default: "Start for free"
  *                     for form variant; required for other variants)
  *  ctaHref            string — form action / anchor href (default: "/auth/sign-up/")
  *  secondaryCtaLabel  string — for "buttons" variant
@@ -41,13 +41,13 @@ const ArrowRightIcon = () => (
  *     variant="form"
  *     title={<>Stop arguing about <BottomCTA.Highlight>which number</BottomCTA.Highlight> is right.</>}
  *     inputPlaceholder="What metric do you want to unify?"
- *     ctaLabel="Get started"
+ *     ctaLabel="Start for free"
  *   />
  *
  *   <BottomCTA
  *     variant="buttons"
  *     title="Start free. Upgrade when you're ready."
- *     ctaLabel="Get started for free"
+ *     ctaLabel="Start for free"
  *     secondaryCtaLabel="Talk to sales"
  *     secondaryCtaHref="/company/contacts"
  *   />
@@ -59,7 +59,7 @@ function BottomCTA({
   inputPlaceholder,
   inputAriaLabel,
   inputName = 'q',
-  ctaLabel = 'Get started',
+  ctaLabel = 'Start for free',
   ctaHref = '/auth/sign-up/',
   secondaryCtaLabel,
   secondaryCtaHref,

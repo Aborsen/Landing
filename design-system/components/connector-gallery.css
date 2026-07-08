@@ -127,22 +127,7 @@
   text-align: center;
   margin-bottom: var(--ins-size-half);
 }
-.overlay-btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  padding: 9px 18px;
-  border-radius: var(--ins-radius-6); border: none; cursor: pointer;
-  font-size: 11.5px; font-weight: 600;
-  font-family: var(--ins-font-family-sans);
-  line-height: 1.2; text-align: center; text-decoration: none;
-  transition: background .15s, transform .15s;
-}
-.overlay-btn.primary {
-  background: var(--ins-surface-page); color: #fff;
-  border: 1px solid rgba(255,255,255,0.12);
-}
-.overlay-btn.primary:hover { background: #000; transform: translateY(-1px); }
-.overlay-btn.secondary {
-  background: var(--ins-color-white-a-12); color: #fff;
-  border: 1px solid rgba(255,255,255,0.18);
-}
-.overlay-btn.secondary:hover { background: rgba(255,255,255,0.2); transform: translateY(-1px); }
+/* Overlay CTA now uses the DS secondary button (.ins-btn ins-btn--secondary
+   ins-btn--sm) — the custom .overlay-btn recipe was retired so the hover
+   button matches secondary buttons everywhere. Icon gap comes from .ins-btn. */
+.connector-overlay .ins-btn { gap: 6px; }
