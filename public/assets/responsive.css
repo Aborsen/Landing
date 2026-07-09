@@ -66,17 +66,45 @@
     min-height: auto !important;
   }
 
-  /* FeatureSpotlights (was height: 440px on the visual wrapper) */
-  [data-spotlight-grid] {
-    grid-template-columns: 1fr !important;
+  /* FeatureSpotlights (was height: 440px on the visual wrapper).
+     Doubled [data-spotlight-grid] raises specificity so this wins over the
+     generic 1fr-1fr collapse rule below (equal specificity otherwise, and that
+     rule is later in source order). minmax(0,1fr) floors the single column at 0
+     so the dense mockups (nowrap mono rows, fixed-px labels/timestamps) can't
+     force the track wider than the phone. min-width:0 on the visual wrapper +
+     its child lets the grid/flex items shrink to the track; the mockup's own
+     overflow:hidden then crops its internals inside the rounded card instead of
+     overflowing the viewport (QA: block ran off the right edge at ~400px). */
+  [data-spotlight-grid][data-spotlight-grid] {
+    grid-template-columns: minmax(0, 1fr) !important;
     gap: 32px !important;
   }
   [data-spotlight-grid] > [data-spotlight-visual] {
     height: auto !important;
     min-height: 320px !important;
+    min-width: 0 !important;
+    order: 1 !important;
+  }
+  [data-spotlight-grid] > [data-spotlight-visual] > * {
+    min-width: 0 !important;
+    max-width: 100% !important;
   }
   [data-spotlight-grid] > [data-spotlight-text] { order: 0 !important; }
-  [data-spotlight-grid] > [data-spotlight-visual] { order: 1 !important; }
+
+  /* Solutions use-cases + connectors grids use repeat(N,1fr), which the generic
+     rule below does NOT match (it keys off the literal "1fr 1fr" substring), so
+     they stay 3-col / 4-col on phones and overflow. Collapse them here.
+     minmax(0,1fr) keeps the tracks from being floored by card min-content. */
+  [data-usecase-grid] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  [data-connectors-grid] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+
+  /* HeroMockup float badges (shared across the 6 Solutions heroes) sit at
+     negative offsets (top:-18px/right:-14px and bottom:-22px/left:-18px) so they
+     protrude past the hero column and get clipped at the viewport edge on phones.
+     Matched by their unique inline-offset signatures (NOT the generic .fu2 class,
+     which is on ~40 files); pull them just inside the panel on mobile. */
+  [style*="top:-18px"][style*="right:-14px"] { top: 8px !important; right: 8px !important; }
+  [style*="bottom:-22px"][style*="left:-18px"] { bottom: 8px !important; left: 8px !important; }
 
   /* Generic two-column → one-column for content grids.
      React renders inline style camelCase props as kebab-case in the
@@ -100,6 +128,9 @@
    Phone-only typography clamp (≤ 640px)
    =========================================================== */
 @media (max-width: 640px) {
+  /* Solutions use-cases grid: down to a single column on phones (2-col at
+     641-768px). Text cards read better full-width than cramped side by side. */
+  [data-usecase-grid] { grid-template-columns: minmax(0, 1fr) !important; }
   h1 {
     font-size: clamp(1.85rem, 8vw, 2.6rem) !important;
     line-height: 1.1 !important;

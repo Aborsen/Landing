@@ -651,6 +651,37 @@ export default function BlogPost({ markdown, slug }) {
     }
   );
 
+  // QA: wide comparison tables (e.g. the 5-column "Cheat Sheet") don't fit a
+  // phone viewport and a <table> can't shrink below its min-content width.
+  // Two things per table: (1) wrap it in a scroll container for tablet widths,
+  // and (2) stamp each body cell with a data-label carrying its column header
+  // so the mobile CSS (≤640px) can restack the row into a labelled card where
+  // every column is visible without horizontal scroll. Runs last so tables
+  // moved into the FAQ accordion get processed too.
+  html = html.replace(/<table>([\s\S]*?)<\/table>/g, (_m, inner) => {
+    // Column headers from the first header row (for the data-labels).
+    const headScope = (inner.match(/<thead>([\s\S]*?)<\/thead>/i) || [null, inner])[1];
+    const labels = [];
+    const thRe = /<th[^>]*>([\s\S]*?)<\/th>/gi;
+    let th;
+    while ((th = thRe.exec(headScope)) !== null) {
+      labels.push(decodeEntities(th[1].replace(/<[^>]+>/g, '')).trim());
+    }
+    // Add data-label to each <td> by its column index within the row.
+    const body = labels.length
+      ? inner.replace(/<tr>([\s\S]*?)<\/tr>/gi, (_r, row) => {
+          let col = 0;
+          const stamped = row.replace(/<td([^>]*)>/gi, (tdTag, attrs) => {
+            const label = labels[col++] || '';
+            if (/\sdata-label=/.test(attrs)) return tdTag; // don't double-stamp
+            return `<td${attrs} data-label="${label.replace(/"/g, '&quot;')}">`;
+          });
+          return `<tr>${stamped}</tr>`;
+        })
+      : inner;
+    return `<div class="blog-table-wrap"><table>${body}</table></div>`;
+  });
+
   // Reconcile the FAQ entry in the TOC. The initial H2 pass added an entry
   // under the heading's original slug (e.g. "faq-section") pointing at an id
   // the FAQ rewrite just changed to "faq" — replace it in place so the sidebar
@@ -1106,6 +1137,11 @@ export default function BlogPost({ markdown, slug }) {
           border-radius: var(--ins-radius-md);
           margin-top: var(--ins-size-2);
         }
+        /* QA: tables pan horizontally on narrow viewports instead of clipping */
+        .blog-table-wrap {
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+        }
         .blog-prose table {
           border-collapse: collapse;
           width: 100%;
@@ -1117,6 +1153,60 @@ export default function BlogPost({ markdown, slug }) {
           text-align: left;
         }
         .blog-prose th { background: var(--ins-surface-card); color: var(--ins-text-heading); font-weight: 600; }
+
+        /* QA: wide tables don't fit a phone. Below 640px, restack each row into
+           a labelled card so every column is visible without horizontal scroll.
+           The first cell becomes the card title; the rest show
+           "Header  value" rows via the data-label stamped on each <td>. */
+        @media (max-width: 640px) {
+          .blog-table-wrap { overflow-x: visible; }
+          .blog-prose table { border: none; }
+          .blog-prose thead {
+            position: absolute;
+            width: 1px; height: 1px;
+            padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0 0 0 0);
+            white-space: nowrap; border: 0;
+          }
+          .blog-prose tr {
+            display: block;
+            border: 1px solid var(--ins-border-default);
+            border-radius: var(--ins-radius-md);
+            margin-bottom: var(--ins-size-3);
+            overflow: hidden;
+            background: var(--ins-surface-card);
+          }
+          .blog-prose td {
+            display: flex;
+            justify-content: space-between;
+            gap: var(--ins-size-4);
+            border: none;
+            border-bottom: 1px solid var(--ins-border-default);
+            padding: 8px 14px;
+            text-align: right;
+          }
+          .blog-prose td:last-child { border-bottom: none; }
+          .blog-prose td::before {
+            content: attr(data-label);
+            font-weight: 600;
+            color: var(--ins-text-heading);
+            text-align: left;
+            flex: 0 1 auto;
+            margin-right: var(--ins-size-4);
+          }
+          /* First cell (e.g. the tool/row name) = card title, no label prefix. */
+          .blog-prose td:first-child {
+            display: block;
+            text-align: left;
+            font-weight: 600;
+            font-size: var(--ins-font-size-16);
+            color: var(--ins-text-heading);
+            background: var(--ins-surface-elevated);
+          }
+          .blog-prose td:first-child::before { content: none; }
+          /* A cell with an empty header still gets no dangling label. */
+          .blog-prose td[data-label=""]::before { content: none; }
+        }
       ` }} />
 
       <Footer />
