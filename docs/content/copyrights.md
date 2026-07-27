@@ -6,7 +6,7 @@ breadcrumb: Docs / Reference / Copyrights
 
 ## Ownership of the Insightis product
 
-The Insightis software, including its source code, user interface, documentation, illustrations, and brand assets, is © Insightis. All rights reserved. The product is licensed, not sold; your right to use it is governed by the subscription agreement and the Terms of Service published at insightis.ai/terms.
+The Insightis software, including its source code, user interface, documentation, illustrations, and brand assets, is © Insightis. All rights reserved. The product is licensed, not sold; your right to use it is governed by the subscription agreement and the [Terms of Service](/security/terms).
 
 The contents of this documentation site — written material, diagrams, screenshots, and example queries — are also © Insightis and may not be republished or redistributed without written permission. Short excerpts may be quoted for review, education, or critical commentary with attribution to Insightis and a link to the source page.
 
@@ -16,7 +16,7 @@ The contents of this documentation site — written material, diagrams, screensh
 
 ## User content ownership
 
-Data that you connect to Insightis remains yours. Insightis is granted only the limited license needed to read, process, and present that data on your behalf, as described in the subscription agreement. Insightis does not claim ownership of your customer records, your business metrics, or the answers AI Chat returns from your data. Saved reports, defined metrics, and configurations that you create inside the product are your work product; you can export or delete them at any time.
+Data that you connect to Insightis remains yours. Insightis is granted only the limited license needed to read, process, and present that data on your behalf, as described in the subscription agreement. Insightis does not claim ownership of your customer records, your business metrics, or the answers AI Chat returns from your data. Defined metrics, generated files, and configurations that you create inside the product are your work product; you can delete them at any time (see [Data Storage](/docs/data-storage) and the [Privacy Policy](/security/privacy)).
 
 ## Third-party software and attributions
 

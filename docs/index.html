@@ -186,8 +186,22 @@ main > .docs-page-wrap { content-visibility: visible; contain-intrinsic-size: no
 .doc-section-body li { margin: 4px 0; }
 .doc-section-body li::marker { color: #3A5260; }
 .doc-section-body strong { color: var(--ins-text-body); font-weight: 600; }
-.doc-section-body a { color: var(--ins-text-highlight); text-decoration: none; }
-.doc-section-body a:hover { color: #14E0DD; }
+/* Links carry a visible underline so they read as links in body copy, not just
+   as differently-coloured words. The card grid opts out (it has its own frame). */
+.doc-section-body a {
+  color: var(--ins-text-highlight);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(14,196,193,0.45);
+  text-underline-offset: 3px;
+  transition: color .15s, text-decoration-color .15s;
+}
+.doc-section-body a:hover {
+  color: #14E0DD;
+  text-decoration-color: #14E0DD;
+}
+.doc-section-body a.doc-card,
+.doc-section-body a.doc-card:hover { text-decoration: none; }
 .doc-section-body code {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.08);
@@ -197,6 +211,223 @@ main > .docs-page-wrap { content-visibility: visible; contain-intrinsic-size: no
   color: #E8F2F5;
   font-family: 'Geist Mono', ui-monospace, monospace;
 }
+/* ── PRODUCT SCREENSHOTS ──
+   Captured from the app in dark mode and cropped to the relevant UI, so they
+   sit natively on the dark docs page — no frame needed. Rendered at roughly
+   half the text column so a screenshot supports the step instead of
+   dominating it. */
+.doc-section-body img {
+  display: block;
+  /* Screenshots are full-page app views, so they run the width of the column —
+     enough to read the layout at a glance. Click to open full size. The height
+     cap keeps tall portrait shots from running down the page; both caps apply
+     and the aspect ratio is preserved. */
+  max-width: 100%;
+  max-height: 620px;
+  width: auto;
+  height: auto;
+  margin: 18px 0;
+  cursor: zoom-in;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.07);
+  transition: border-color .15s;
+}
+.doc-section-body img:hover { border-color: rgba(10,152,150,0.55); }
+
+/* Screenshots are wrapped in a figure by the renderer so a hover badge can
+   advertise that the image opens full size. */
+.doc-figure {
+  position: relative;
+  display: table;      /* shrink-wraps to the image's rendered width */
+  margin: 18px 0;
+}
+.doc-figure img { margin: 0; }
+.doc-figure__zoom {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 9px;
+  border-radius: 6px;
+  background: rgba(6,10,14,0.82);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: #E8F2F5;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  opacity: 0;
+  transform: translateY(-2px);
+  transition: opacity .15s, transform .15s;
+  pointer-events: none;
+}
+.doc-figure:hover .doc-figure__zoom,
+.doc-figure:focus-within .doc-figure__zoom { opacity: 1; transform: translateY(0); }
+@media (hover: none) { .doc-figure__zoom { opacity: 1; } }
+
+/* ── IMAGE LIGHTBOX ── click a screenshot to view it full size */
+.doc-lightbox {
+  position: fixed;
+  inset: 0;
+  /* Above the sticky site header (z-index 50) and the mobile nav drawer.
+     Only effective because the overlay is portalled to <body> — see docs.jsx. */
+  z-index: 9000;
+  background: rgba(4,8,12,0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 40px 28px;
+  cursor: zoom-out;
+  animation: docLightboxIn .14s ease-out;
+}
+@keyframes docLightboxIn { from { opacity: 0; } to { opacity: 1; } }
+.doc-lightbox img {
+  /* Screenshots ship at 1800px wide, so allow the full resolution — the point
+     of enlarging is to read the sidebar and panel detail. */
+  max-width: min(100%, 1800px);
+  max-height: calc(100vh - 130px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 24px 70px rgba(0,0,0,0.6);
+  cursor: default;
+}
+.doc-lightbox__caption {
+  margin: 0;
+  max-width: 700px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ins-text-body);
+}
+.doc-lightbox__close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #E8F2F5;
+  cursor: pointer;
+  transition: background .15s;
+}
+.doc-lightbox__close:hover { background: rgba(255,255,255,0.14); }
+@media (max-width: 768px) {
+  .doc-lightbox { padding: 56px 14px 24px; }
+  .doc-lightbox img { max-height: calc(100vh - 150px); }
+}
+
+/* ── STEPS ──
+   Ordered lists in the docs are procedures, so they render as steps:
+   numbered token + connecting rail. Screenshots can sit inside a step. */
+.doc-section-body ol {
+  list-style: none;
+  padding-left: 0;
+  margin: 18px 0;
+  counter-reset: doc-step;
+}
+.doc-section-body ol > li {
+  counter-increment: doc-step;
+  position: relative;
+  padding-left: 38px;
+  margin: 0 0 16px;
+  list-style: none;
+}
+.doc-section-body ol > li::marker { content: none; }
+.doc-section-body ol > li::before {
+  content: counter(doc-step);
+  position: absolute;
+  left: 0; top: 0;
+  width: 23px; height: 23px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: rgba(9,160,157,0.14);
+  border: 1px solid rgba(9,160,157,0.42);
+  color: var(--ins-text-highlight);
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 11px;
+  line-height: 21px;
+  text-align: center;
+}
+.doc-section-body ol > li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 11px; top: 27px; bottom: -12px;
+  width: 1px;
+  background: rgba(255,255,255,0.08);
+}
+.doc-section-body ol > li > img { margin: 12px 0 2px; }
+
+/* ── CALLOUTS ── written as `> [!NOTE]` / `[!TIP]` / `[!WARNING]` in markdown */
+.doc-callout {
+  margin: 18px 0;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.09);
+  border-left: 2px solid var(--ins-text-highlight);
+  background: rgba(255,255,255,0.03);
+}
+.doc-callout__label {
+  display: block;
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ins-text-highlight);
+  margin-bottom: 6px;
+}
+.doc-callout__body p { margin: 0; }
+.doc-callout__body p + p { margin-top: 10px; }
+.doc-callout--warning { border-left-color: #FBBF24; }
+.doc-callout--warning .doc-callout__label { color: #FBBF24; }
+
+/* ── CARD GRID ── used on the docs home page to point at the main sections */
+.doc-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+  margin: 20px 0 4px;
+}
+.doc-card {
+  display: block;
+  padding: 16px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+  text-decoration: none;
+}
+.doc-card:hover {
+  border-color: rgba(10,152,150,0.45);
+  background: rgba(255,255,255,0.05);
+}
+.doc-card__title {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ins-color-gray-100, #E8F2F5);
+  margin-bottom: 4px;
+}
+.doc-card__desc {
+  display: block;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ins-text-body);
+}
+.doc-card:hover .doc-card__title { color: var(--ins-text-highlight); }
 </style>
     <link rel="canonical" href="https://insightis.ai/docs/">
     <meta property="og:title" content="Documentation — Insightis">

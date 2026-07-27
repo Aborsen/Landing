@@ -20,10 +20,6 @@ After an answer, you can refine the result by sending a follow-up in the same co
 
 You do not have to write every question from scratch. The [Prompt Library](/resources/prompt-library) is a gallery of ready-made prompts for common business questions — campaign performance, revenue trends, funnel analysis, cohort retention, and more. Pick one that matches your case, adjust the metric or time window to fit your data, and paste it into AI Chat. It is also the fastest way to learn what a well-formed question looks like before writing your own.
 
-## When to use AI Chat versus build a report
-
-AI Chat is best for exploratory questions and one-off answers. If you find yourself asking the same question every Monday, save the answer as a scheduled report so it lands in your inbox or Slack automatically. Treat AI Chat as the way you discover an answer, and Reports as the way you keep getting it.
-
 ## If the answer is wrong
 
-A wrong answer usually means one of three things: the metric you wanted is not defined in the Semantic Layer, the connector underneath does not have the data, or AI Chat picked a different definition than you expected. Click the **Explain** button on any answer to see exactly which metric, which filters, and which source were used. If the answer is using the wrong metric, the fix is to update the definition (or its aliases) in the Semantic Layer — not to re-prompt around it.
+A wrong answer usually means one of three things: the metric you wanted is not defined in the Semantic Layer, the connector underneath does not have the data, or AI Chat picked a different definition than you expected. Expand the step summary above an answer to see what Insightis actually ran — which source it queried and how it computed the result. If the answer is using the wrong metric, the fix is to update the definition (or its alias) on the [Metrics](/docs/metrics) page — not to re-prompt around it.

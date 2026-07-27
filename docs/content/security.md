@@ -1,25 +1,39 @@
 ---
 title: Security
-description: How Insightis keeps your account and your data safe — authentication, single sign-on, two-factor, session controls, and the audit log that records every action.
+description: How Insightis keeps your account and your data safe — how you sign in, how to change your password or delete your account, how your connected data is protected, and how to report a security issue.
 breadcrumb: Docs / Account / Security
 ---
 
-## Authentication options
+## How you sign in
 
-Out of the box, every Insightis account supports email-and-password sign-in plus social sign-in through Google and Microsoft. Business and Enterprise workspaces can enforce single sign-on through any SAML 2.0 identity provider — once enforced, members can only sign in through your IdP and password auth is disabled for the workspace.
+Insightis accounts sign in one of two ways, and you choose which when you [create your account](/docs/create-an-account):
 
-## Two-factor authentication
+- **Email and password** — the email you signed up with, plus a password you set.
+- **Google** — click **Continue with Google** and authenticate with your Google account. There is no separate Insightis password to manage.
 
-Two-factor authentication (2FA) is available to every user and can be required for everyone in a workspace by an Admin. Insightis supports time-based one-time passwords (TOTP) from any standard authenticator app, and security keys using WebAuthn — including platform authenticators like Touch ID and Windows Hello. Backup codes are generated when 2FA is enabled so you can recover access if you lose your device.
+## Changing your password
 
-## Sessions and devices
+Open the account menu at the bottom of the sidebar, choose **My Account**, and use **Change password**. If you signed in with Google there is no Insightis password to change — your Google account controls access.
 
-The **Settings → Security** page lists every active session — browser, IP, last activity — and lets you revoke any of them with a single click. Sessions expire automatically after a configurable idle period; Enterprise plans can tighten this down to as little as fifteen minutes. Signing out of one device does not affect the others unless you explicitly revoke the session.
+Locked out? Use the **Forgot password?** link on the [sign-in page](/auth/sign-in) to receive a reset link at your account email.
 
-## Audit log
+## How your connected data is protected
 
-Every action that touches data, permissions, or billing is recorded in the workspace audit log. Admins can filter by user, by action type, or by time range, and export the log as CSV or JSON. Enterprise plans support streaming the log to your own SIEM (Splunk, Datadog, or any S3-compatible bucket) so it lives alongside the rest of your security telemetry. Audit log retention follows the windows described on the Data Storage page.
+Insightis is designed to read your systems, not to copy them:
+
+- **Read-only access.** Connectors request the minimum permission needed to read the data you selected — never to write or delete.
+- **Encrypted in transit and at rest.** Traffic uses TLS, and stored data is encrypted on disk.
+- **Credentials are kept separate.** Connection credentials are stored encrypted, are not displayed again after you enter them, and are never sent to the AI models that answer your questions.
+- **Never used to train AI models.** Your data is not used to train models.
+
+See [Data Storage](/docs/data-storage) for exactly what is stored, and the [Privacy Policy](/security/privacy) for the formal commitments.
+
+## Deleting your account
+
+From **My Account** you can delete your Insightis account outright. Deleting is permanent: the datasets you have connected or uploaded and your chat sessions are cleared as well. If you only want to stop being billed, change your plan from **Manage Plan** instead — see [Payments & Billing](/docs/payments-billing).
 
 ## Reporting a security issue
 
-If you believe you have found a vulnerability in Insightis, please report it to security@insightis.ai. We acknowledge reports within one business day and aim to ship fixes for confirmed issues within thirty days. Responsible disclosure is welcomed and we publish a credit list for researchers whose findings are validated.
+If you believe you have found a vulnerability in Insightis, email **security@insightis.ai**. We acknowledge reports within one business day and aim to ship fixes for confirmed issues within thirty days. Responsible disclosure is welcomed.
+
+For anything else security-related, [contact us](/company/contacts) or reach the team from **Support** in the account menu.

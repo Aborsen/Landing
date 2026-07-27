@@ -6,24 +6,20 @@ breadcrumb: Docs / Getting started / Quick start
 
 ## Step 1 — Create your workspace
 
-Sign up at insightis.ai with your work email and pick a region. If your team already has an Insightis workspace, ask an Admin to invite you instead of starting a new one — that way reports, metrics, and connectors stay together.
+[Sign up](/auth/sign-up) with your work email, or continue with Google. It takes under a minute — see [Create an account](/docs/create-an-account) for the details.
 
 ## Step 2 — Connect a data source
 
-Open **Integrations** and click **Add source**. The catalog includes warehouses (BigQuery, Snowflake, Postgres), CRMs (HubSpot, Salesforce), billing (Stripe, Chargebee), product analytics (Amplitude, Mixpanel), and 200+ more. Each connector walks you through OAuth or read-only credentials and verifies the connection before saving. Most sources are live in under two minutes.
+Open **Data Sources** in the sidebar and find your source on the **Catalog** tab — warehouses (BigQuery, Snowflake, PostgreSQL), CRMs (HubSpot, Salesforce), billing (Stripe, Chargebee), product analytics (Amplitude, Mixpanel), and 200+ more. Click **Connect**, enter the connection details, and **Save**. Full walkthrough in [Data Connectors](/docs/data-connectors), and you can browse the whole catalogue on the [Data Connectors page](/resources/connectors).
 
 ## Step 3 — Define your first metric
 
-Click **Metrics → New metric** and pick the source table you want to measure. Choose the aggregation (sum, count, average), set any filters (exclude test accounts, refunds, internal users), and give the metric a clear name like "Monthly Recurring Revenue" or "Weekly Active Users". Save. Your metric is now available to every teammate and every answer.
+Connecting a source already gives you its built-in metrics, so you may not need to define anything. To add your own, open **Metrics** and click **Create metric**: give it a name, an alias, and a definition, then **Save**. See [Metrics](/docs/metrics) for the full flow.
 
 ## Step 4 — Ask your first question
 
-Open **AI Chat** and type a question in plain English: "What was MRR last quarter?" or "Show me weekly active users by plan tier over the last 90 days." Within seconds you will get a chart, a headline number, and a short written explanation of what the numbers mean.
-
-## Step 5 — Save and share the answer
-
-Click **Save report** to keep the answer. From the saved report you can share it with a teammate by link, schedule it to run weekly and post to Slack or email, or embed it in another tool. Anything you save respects the same permissions as the underlying data — only people with access to the source can see the result.
+Open **New Chat** and type a question in plain English: *"What was MRR last quarter?"* or *"Show me total revenue by region."* You get the figures, a written summary, and any chart it generated. See [AI Chat](/docs/ai-chat) for attachments, sources, and models — and the [Prompt Library](/resources/prompt-library) for ready-made questions.
 
 ## What to read next
 
-To go deeper on the three pillars that power every answer, jump to **AI Chat**, **Data Connectors**, and **Metrics** in the Insightis Workspace section.
+To go deeper on the three pillars behind every answer, read [AI Chat](/docs/ai-chat), [Data Connectors](/docs/data-connectors), and [Metrics](/docs/metrics). For phrasing that gets better answers, see [Prompting best practices](/docs/prompting-best-practices).

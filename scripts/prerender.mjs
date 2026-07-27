@@ -122,6 +122,60 @@ for (const [name, htmlPath] of Object.entries(entries)) {
   okCount++;
 }
 
+// ── Docs sub-pages ────────────────────────────────────────────────────────
+// The docs are one Vite entry but many pages. Emit a real HTML file per page
+// (dist/docs/<slug>.html → /docs/<slug>) by re-rendering the same App with the
+// served path set, then patching the head so each page carries its own title,
+// description and canonical. That makes every page linkable and separately
+// indexable without adding fourteen Vite entries.
+function patchHead(html, { title, description, canonical }) {
+  const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  let out = html;
+  const setMeta = (attr, name, value) => {
+    const re = new RegExp(`(<meta\\s+${attr}=["']${name}["']\\s+content=["'])[^"']*(["'])`, 'i');
+    if (re.test(out)) out = out.replace(re, `$1${esc(value)}$2`);
+  };
+  out = out.replace(/<title>[\s\S]*?<\/title>/i, `<title>${esc(title)}</title>`);
+  setMeta('name', 'description', description);
+  setMeta('property', 'og:title', title);
+  setMeta('property', 'og:description', description);
+  setMeta('property', 'og:url', canonical);
+  setMeta('name', 'twitter:title', title);
+  setMeta('name', 'twitter:description', description);
+  out = out.replace(/(<link\s+rel=["']canonical["']\s+href=["'])[^"']*(["'])/i, `$1${esc(canonical)}$2`);
+  return out;
+}
+
+try {
+  const docsMod = await server.ssrLoadModule(resolve(root, 'src/pages/docs.jsx'));
+  const routes = (docsMod.DOC_ROUTES || []).filter(r => r.slug);
+  const baseDistHtml = await readFile(resolve(root, 'dist', 'docs/index.html'), 'utf8');
+
+  for (const route of routes) {
+    const servedPath = `/docs/${route.slug}`;
+    globalThis.__PRERENDER_PATH__ = servedPath;
+    let body;
+    try { body = renderToString(createElement(docsMod.default)); }
+    catch (err) { console.warn(`[prerender] skip docs/${route.slug}: render failed — ${err.message}`); skipCount++; continue; }
+
+    const withContent = replaceRootContent(baseDistHtml, body);
+    if (withContent === null) {
+      console.warn(`[prerender] skip docs/${route.slug}: <div id="root"> not found`);
+      skipCount++; continue;
+    }
+    const html = patchHead(withContent, {
+      title: `${route.title} — Insightis Documentation`,
+      description: route.description,
+      canonical: `https://insightis.ai${servedPath}`,
+    });
+    await writeFile(resolve(root, 'dist', `docs/${route.slug}.html`), html, 'utf8');
+    console.log(`[prerender] ok   docs/${route.slug}`);
+    okCount++;
+  }
+} catch (err) {
+  console.warn(`[prerender] docs sub-pages skipped: ${err.message}`);
+}
+
 delete globalThis.__PRERENDER_PATH__;
 console.log(`\n[prerender] done: ${okCount} ok, ${skipCount} skipped`);
 await server.close();

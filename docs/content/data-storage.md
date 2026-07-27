@@ -6,17 +6,17 @@ breadcrumb: Docs / Reference / Data Storage
 
 ## Where your data lives
 
-Insightis runs on managed cloud infrastructure with regional data residency. By default, customer workspaces are provisioned in the region you select at signup — typically United States or European Union — and metadata, configuration, and cached query results remain in that region for the life of the workspace. Enterprise customers can request additional regions and dedicated infrastructure as part of their contract.
+Insightis runs on managed cloud infrastructure. Your workspace settings, metric definitions, cached schema metadata, and any files you upload or generate are stored there. Your business data itself stays in the systems you connect — Insightis queries it in place rather than copying it.
 
 ## What is stored versus queried in place
 
-Insightis is designed to minimize how much of your data physically leaves your source systems. The product distinguishes three categories:
+Insightis is designed to minimise how much of your data physically leaves your source systems (see [Security](/docs/security) for how access is protected). The product distinguishes three categories:
 
 - **Queried in place.** When you ask a question, Insightis composes a query and executes it directly against the connected source (a warehouse, database, or SaaS API). The raw rows are not copied into Insightis storage unless a cache is in use.
 - **Cached for performance.** Query results, schema metadata, and Semantic Layer definitions are cached inside Insightis to keep AI Chat responsive. Caches are scoped per workspace and expire on a configurable interval.
-- **Stored long-term.** Saved reports, metric definitions, user accounts, audit logs, and workspace settings are stored persistently so you can revisit and share them.
+- **Stored long-term.** Metric definitions, uploaded and generated files, your account, and workspace settings are stored persistently so you can come back to them.
 
-You can see which sources have caching enabled and tune cache lifetimes from the Integrations settings page.
+Each connection has its own **Metadata Cache** setting, which you choose when you create or edit it on the [Data Sources](/docs/data-connectors) page.
 
 ## Encryption
 
@@ -26,15 +26,12 @@ All data in Insightis is encrypted in transit using TLS 1.2 or higher and encryp
 
 Default retention policies are:
 
-- **Cached query results** — 24 hours, configurable per source down to off or up to 7 days.
-- **Audit logs** — 13 months on standard plans, longer on Enterprise.
-- **Saved reports and metrics** — retained until you delete them.
+- **Cached metadata** — controlled by the **Metadata Cache** setting on each connection.
+- **Metric definitions and files** — retained until you delete them.
 - **Deleted workspaces** — purged from primary storage within 30 days and from backups within 90 days.
-
-Custom retention windows are available for regulated industries through Enterprise contracts.
 
 ## Deletion and export
 
-You retain full control over your data. From the Workspace settings page you can export every report and metric you have created as a portable file, and you can request deletion of any individual record or the entire workspace. Deletion requests are honored within 30 days for primary storage and 90 days for system backups, in line with common data-protection standards.
+You retain full control over your data. You can remove a connection at any time from **My Connections**, delete uploaded and generated files from **Files**, and delete your account outright from **My Account** — which also clears your datasets and chat sessions (see [Managing your account](/docs/managing-your-account)). Deletions are honored within 30 days for primary storage and 90 days for system backups, in line with common data-protection standards.
 
-For data-subject access requests under GDPR, CCPA, or comparable laws, contact privacy@insightis.ai. Standard requests are completed within the statutory window.
+For data-subject access requests under GDPR, CCPA, or comparable laws, contact **privacy@insightis.ai**. Standard requests are completed within the statutory window. See also the [Privacy Policy](/security/privacy) and [Security](/docs/security).

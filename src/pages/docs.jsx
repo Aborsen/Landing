@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import ReactDOM from 'react-dom/client';
+import { createPortal } from 'react-dom';
 import { marked } from 'marked';
 import '../app.css';
 
@@ -47,6 +48,36 @@ function parseFrontmatter(raw) {
   return { meta, body: m[2] };
 }
 
+// Turn GitHub-style alert blockquotes into styled callouts:
+//   > [!NOTE]
+//   > Body text.
+// marked renders that as a <blockquote><p>[!NOTE]\nBody text.</p>, so the
+// marker is rewritten after parsing rather than with a custom tokenizer.
+const CALLOUT_LABELS = { note: 'Note', tip: 'Tip', warning: 'Warning', important: 'Important' };
+const ZOOM_BADGE = '<span class="doc-figure__zoom" aria-hidden="true">'
+  + '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">'
+  + '<circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>'
+  + '</svg>Click to enlarge</span>';
+
+function enhanceHtml(html) {
+  return html
+    .replace(
+      /<blockquote>\s*<p>\s*\[!(NOTE|TIP|WARNING|IMPORTANT)\]\s*(?:<br\s*\/?>)?\s*([\s\S]*?)<\/p>\s*<\/blockquote>/gi,
+      (_m, kind, body) => {
+        const k = kind.toLowerCase();
+        return `<div class="doc-callout doc-callout--${k}">`
+          + `<span class="doc-callout__label">${CALLOUT_LABELS[k] || 'Note'}</span>`
+          + `<div class="doc-callout__body"><p>${body.trim()}</p></div></div>`;
+      }
+    )
+    // A standalone screenshot (marked wraps it in its own <p>) becomes a figure
+    // so a "click to enlarge" badge can sit over it on hover.
+    .replace(
+      /<p>\s*(<img\b[^>]*>)\s*<\/p>/gi,
+      (_m, img) => `<figure class="doc-figure">${img}${ZOOM_BADGE}</figure>`
+    );
+}
+
 function mdToPage(raw) {
   const { meta, body } = parseFrontmatter(raw);
   const parts = body.split(/^## /m).map(p => p).filter(p => p.trim().length);
@@ -57,7 +88,7 @@ function mdToPage(raw) {
     return {
       id: slugifyHeading(heading),
       heading,
-      html: marked.parse(rest),
+      html: enhanceHtml(marked.parse(rest)),
       markdown: rest.trim(),
     };
   });
@@ -133,6 +164,65 @@ const PAGES = {
   'security':                 mdToPage(securityMd),
   'payments-billing':         mdToPage(paymentsBillingMd),
 };
+
+/* ── ROUTING ──
+   Every docs page has its own URL: /docs/<slug>, with the welcome page at
+   /docs/. Slugs are flat — no group segment — so a shared link keeps working
+   when a page is moved between sidebar sections (the breadcrumb already shows
+   which group a page belongs to). This map is the single source of truth:
+   scripts/prerender.mjs reads DOC_ROUTES to emit one real HTML file per page,
+   so each one is directly linkable and separately indexable. */
+const DOC_SLUGS = {
+  'welcome':                  '',            // /docs/
+  'create-an-account':        'create-an-account',
+  'plans-and-credits':        'plans-and-tokens',
+  'prompting-best-practices': 'prompting-best-practices',
+  'quick-start':              'quick-start',
+  'ai-chat-overview':         'ai-chat',
+  'data-connectors':          'data-connectors',
+  'metrics':                  'metrics',
+  'ai-model':                 'ai-models',
+  'copyrights':               'copyrights',
+  'data-storage':             'data-storage',
+  'managing-your-account':    'managing-your-account',
+  'security':                 'security',
+  'payments-billing':         'payments-billing',
+};
+const SLUG_TO_PAGE = Object.fromEntries(
+  Object.entries(DOC_SLUGS).map(([id, slug]) => [slug, id])
+);
+
+// Consumed by scripts/prerender.mjs to generate a page per route.
+export const DOC_ROUTES = Object.entries(DOC_SLUGS).map(([id, slug]) => ({
+  id,
+  slug,
+  title: (PAGES[id] && PAGES[id].title) || '',
+  description: (PAGES[id] && PAGES[id].description) || '',
+}));
+
+export function docHref(id) {
+  const slug = DOC_SLUGS[id];
+  return slug ? `/docs/${slug}` : '/docs/';
+}
+
+function pageFromPath(path) {
+  const clean = String(path || '').replace(/[?#].*$/, '');
+  const m = clean.match(/\/docs\/?(.*)$/);
+  if (!m) return 'welcome';
+  const slug = m[1].replace(/\.html$/, '').replace(/\/+$/, '');
+  if (!slug || slug === 'index') return 'welcome';
+  return SLUG_TO_PAGE[slug] || 'welcome';
+}
+
+// During prerender the served path comes from globalThis (set per file);
+// in the browser it comes from the address bar.
+function initialPage() {
+  if (typeof globalThis !== 'undefined' && globalThis.__PRERENDER_PATH__) {
+    return pageFromPath(globalThis.__PRERENDER_PATH__);
+  }
+  if (typeof window !== 'undefined') return pageFromPath(window.location.pathname);
+  return 'welcome';
+}
 
 /* ── DOCS TABS ── */
 function DocsTabs({ activeTab, setActiveTab }) {
@@ -238,13 +328,22 @@ function DocsSidebar({ activePage, setActivePage, expandedSections, setExpandedS
           {(expandedSections[group.section] || q) && (
             <div style={{ padding:'2px 0 8px' }}>
               {group.items.map(item => (
-                <button
+                // A real href so the page is crawlable, shareable, and
+                // middle-click/⌘-click opens it in a new tab; the click is
+                // intercepted for instant in-page switching.
+                <a
                   key={item.id}
-                  onClick={() => setActivePage(item.id)}
+                  href={docHref(item.id)}
+                  onClick={(e) => {
+                    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                    e.preventDefault();
+                    setActivePage(item.id);
+                  }}
+                  aria-current={activePage === item.id ? 'page' : undefined}
                   className={'ins-doc-nav__item' + (activePage === item.id ? ' is-active' : '')}
                 >
                   {item.label}
-                </button>
+                </a>
               ))}
             </div>
           )}
@@ -510,7 +609,51 @@ function CopyPageButton({ page, trail }) {
   );
 }
 
+/* ── IMAGE LIGHTBOX ──
+   Screenshots render at column width in the article; clicking one opens it full
+   size. Closes on Escape, on a backdrop click, or via the close button.
+
+   Rendered through a portal on document.body: `.docs-layout` sets
+   position:relative + z-index:1, which creates a stacking context, so an
+   overlay rendered inside it can never paint above the sticky site header
+   (z-index 50) no matter how high its own z-index is. */
+function ImageLightbox({ src, alt, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [onClose]);
+
+  if (typeof document === 'undefined') return null;
+
+  return createPortal(
+    <div
+      className="doc-lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label={alt || 'Expanded screenshot'}
+      onClick={onClose}
+    >
+      <button type="button" className="doc-lightbox__close" onClick={onClose} aria-label="Close image">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      {/* Stop propagation so clicking the image itself doesn't close the overlay. */}
+      <img src={src} alt={alt || ''} onClick={(e) => e.stopPropagation()} />
+      {alt ? <p className="doc-lightbox__caption">{alt}</p> : null}
+    </div>,
+    document.body
+  );
+}
+
 function DocsContent({ page, breadcrumbs, prevNext, activePage, setActivePage, activeSection, setActiveSection, scrollSpySuppressRef }) {
+  const [zoomed, setZoomed] = useState(null);
   useEffect(() => {
     const headings = document.querySelectorAll('.doc-section-heading');
     if (!headings.length) return;
@@ -541,13 +684,17 @@ function DocsContent({ page, breadcrumbs, prevNext, activePage, setActivePage, a
               {isCurrent || !crumb.target ? (
                 <span className="ins-breadcrumbs__item" {...(isCurrent ? { 'aria-current': 'page' } : {})}>{crumb.label}</span>
               ) : (
-                <button
-                  type="button"
+                <a
                   className="ins-breadcrumbs__item"
-                  onClick={() => setActivePage(crumb.target)}
+                  href={docHref(crumb.target)}
+                  onClick={(e) => {
+                    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                    e.preventDefault();
+                    setActivePage(crumb.target);
+                  }}
                 >
                   {crumb.label}
-                </button>
+                </a>
               )}
             </React.Fragment>
           );
@@ -626,6 +773,23 @@ function DocsContent({ page, breadcrumbs, prevNext, activePage, setActivePage, a
             {section.html ? (
               <div
                 className="doc-section-body"
+                // Two delegated behaviours for rendered markdown:
+                //  - a screenshot opens full size in the lightbox
+                //  - `data-doc-link="<page-id>"` switches docs page (home cards);
+                //    the docs are a single-page app, so the click is intercepted
+                //    rather than followed as a navigation.
+                onClick={(e) => {
+                  if (e.target.tagName === 'IMG') {
+                    setZoomed({ src: e.target.currentSrc || e.target.src, alt: e.target.alt || '' });
+                    return;
+                  }
+                  const link = e.target.closest && e.target.closest('[data-doc-link]');
+                  if (!link) return;
+                  const id = link.getAttribute('data-doc-link');
+                  if (!id || !PAGES[id]) return;
+                  e.preventDefault();
+                  setActivePage(id);
+                }}
                 dangerouslySetInnerHTML={{ __html: section.html }}
               />
             ) : (
@@ -645,14 +809,19 @@ function DocsContent({ page, breadcrumbs, prevNext, activePage, setActivePage, a
           paddingTop:'var(--ins-size-8)', marginBottom:'36px',
         }}>
           {prevNext.prev && (
-            <button
-              onClick={() => setActivePage(prevNext.prev.id)}
+            <a
+              href={docHref(prevNext.prev.id)}
+              onClick={(e) => {
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                e.preventDefault();
+                setActivePage(prevNext.prev.id);
+              }}
               style={{
                 flex:1, display:'flex', flexDirection:'column', alignItems:'flex-start', gap:'var(--ins-size-1)',
                 padding:'16px 20px', borderRadius:'10px',
                 background:'var(--ins-color-white-a-03)',
                 border:'1px solid var(--ins-color-white-a-07)',
-                cursor:'pointer', transition:'border-color 0.15s', fontFamily:'var(--ins-font-family-sans)',
+                cursor:'pointer', transition:'border-color 0.15s', fontFamily:'var(--ins-font-family-sans)', textDecoration:'none',
               }}
               onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(10,152,150,0.3)'}
               onMouseLeave={(e) => e.currentTarget.style.borderColor = 'var(--ins-color-white-a-07)'}
@@ -660,17 +829,22 @@ function DocsContent({ page, breadcrumbs, prevNext, activePage, setActivePage, a
               <span style={{ fontSize:'var(--ins-font-size-11)', color:'var(--ins-text-disabled)', fontWeight:500 }}>← Previous</span>
               <span style={{ fontSize:'var(--ins-font-size-14)', color:'var(--ins-color-gray-100)', fontWeight:500 }}>{prevNext.prev.label}</span>
               <span style={{ fontSize:'var(--ins-font-size-11)', color:'var(--ins-text-disabled)' }}>{prevNext.prev.section}</span>
-            </button>
+            </a>
           )}
           {prevNext.next && (
-            <button
-              onClick={() => setActivePage(prevNext.next.id)}
+            <a
+              href={docHref(prevNext.next.id)}
+              onClick={(e) => {
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                e.preventDefault();
+                setActivePage(prevNext.next.id);
+              }}
               style={{
                 flex:1, display:'flex', flexDirection:'column', alignItems:'flex-end', gap:'var(--ins-size-1)',
                 padding:'16px 20px', borderRadius:'10px',
                 background:'var(--ins-color-white-a-03)',
                 border:'1px solid var(--ins-color-white-a-07)',
-                cursor:'pointer', transition:'border-color 0.15s', fontFamily:'var(--ins-font-family-sans)',
+                cursor:'pointer', transition:'border-color 0.15s', fontFamily:'var(--ins-font-family-sans)', textDecoration:'none',
               }}
               onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(10,152,150,0.3)'}
               onMouseLeave={(e) => e.currentTarget.style.borderColor = 'var(--ins-color-white-a-07)'}
@@ -678,11 +852,14 @@ function DocsContent({ page, breadcrumbs, prevNext, activePage, setActivePage, a
               <span style={{ fontSize:'var(--ins-font-size-11)', color:'var(--ins-text-disabled)', fontWeight:500 }}>Next →</span>
               <span style={{ fontSize:'var(--ins-font-size-14)', color:'var(--ins-color-gray-100)', fontWeight:500 }}>{prevNext.next.label}</span>
               <span style={{ fontSize:'var(--ins-font-size-11)', color:'var(--ins-text-disabled)' }}>{prevNext.next.section}</span>
-            </button>
+            </a>
           )}
         </div>
       )}
 
+      {zoomed && (
+        <ImageLightbox src={zoomed.src} alt={zoomed.alt} onClose={() => setZoomed(null)} />
+      )}
     </div>
   );
 }
@@ -1014,7 +1191,25 @@ function AIAssistantPanel({ query, onClose }) {
 
 function App() {
   const [activeTab, setActiveTab] = useState('introduction');
-  const [activePage, setActivePage] = useState('welcome');
+  const [activePage, setActivePageState] = useState(initialPage);
+
+  // Switching page updates the address bar so the current page is linkable and
+  // the browser's back/forward buttons work. `fromHistory` avoids pushing a new
+  // entry when the change *came from* history (popstate).
+  const setActivePage = useCallback((id, opts) => {
+    setActivePageState(id);
+    if (typeof window === 'undefined' || (opts && opts.fromHistory)) return;
+    const href = docHref(id);
+    if (window.location.pathname !== href) {
+      window.history.pushState({ docPage: id }, '', href);
+    }
+  }, []);
+
+  useEffect(() => {
+    const onPop = () => setActivePageState(pageFromPath(window.location.pathname));
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
   const [expandedSections, setExpandedSections] = useState({ 'Getting started': true });
   const [sidebarSearch, setSidebarSearch] = useState('');
   const [activeSection, setActiveSection] = useState('');

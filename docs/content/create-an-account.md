@@ -1,25 +1,22 @@
 ---
 title: Create an account
-description: Sign up for Insightis in under a minute, invite your team, and pick the right workspace region for your data.
+description: Sign up for Insightis in under a minute with your work email or a Google account.
 breadcrumb: Docs / Getting started / Create an account
 ---
 
 ## Signing up
 
-Go to insightis.ai and click **Get started for free**. Use your work email — this becomes your default workspace owner account and lets us route teammates from the same email domain into your workspace automatically. You will be asked to verify the email and set a password, or you can sign in with Google or Microsoft single sign-on.
+Click [**Start for free**](/auth/sign-up) on the home page. There are two ways to create your account:
 
-## Picking a workspace region
+![The Insightis sign-up page — create an account with an email and password, or continue with Google](/assets/docs/create-account-signup.png)
 
-After signing in you choose a region for your workspace. Insightis offers United States and European Union regions today; your metadata, configuration, and cached query results stay inside the region you pick. Enterprise plans support additional regions and dedicated infrastructure — contact sales if you have specific residency requirements.
+- **With your work email** — enter your email, choose a password, tick **I accept [Terms of Service](/security/terms)**, and click **Continue**. Your workspace is created under this email, so use the address you want the account tied to.
+- **With Google** — click **Continue with Google** and pick your Google account. There is no password to set and no email to verify.
 
-## Inviting teammates
-
-Once the workspace exists, open **Settings → Team** and invite teammates by email. Each person joins as a Member by default — they can ask questions in AI Chat, view shared reports, and read certified metrics. Promote people to Admin if you want them to manage connectors, define metrics, or change billing. Roles are workspace-wide; for finer-grained access use the row-level and column-level permissions on each connector.
-
-## Single sign-on for teams
-
-Business and Enterprise workspaces can require single sign-on via Google Workspace, Microsoft Entra, or any SAML 2.0 provider. Once SSO is enforced, new teammates from your verified email domains can join without an invite, and password authentication is disabled for the workspace.
+If you already have an account, use the [sign-in page](/auth/sign-in) instead.
 
 ## What to do next
 
-You now have a workspace. The fastest next step is **Quick start** — connect a data source, define one metric, and ask your first question. If you would rather understand the pricing model first, read **Plans and tokens**.
+Your workspace is ready. The fastest next step is [Quick start](/docs/quick-start) — connect a data source, define one metric, and ask your first question. If you would rather understand pricing first, read [Plans and tokens](/docs/plans-and-tokens) or the [Pricing page](/pricing).
+
+For how sign-in, passwords, and account deletion work, see [Security](/docs/security).

@@ -12,9 +12,19 @@ Because AI Chat is grounded in your Semantic Layer, the answers reflect the metr
 
 ## How a question becomes an answer
 
-Every question runs through the same pipeline before a number comes back. Insightis parses what you typed, resolves the entities and metrics against your Metrics Catalog, picks the right data sources, generates the query, executes it, and formats the result. Each answer ships with the underlying query attached, so an analyst can review, copy, or rerun exactly what produced the number — the AI's work is fully auditable.
+Every question runs through the same pipeline before a number comes back. Insightis parses what you typed, resolves the entities and metrics against your [metric definitions](/docs/metrics), picks the right data sources, generates the query, executes it, and formats the result. Each answer shows the steps it ran, so you can expand them and see what produced the number.
 
 If your question is ambiguous — for example, a metric name that maps to two different definitions — AI Chat asks a clarifying follow-up rather than silently guessing.
+
+## Sending a message
+
+Type your question into the message box at the bottom of the chat and press **Send** (or hit Enter). Insightis interprets the request, works through it against your data, and replies in the thread with the result — a chart, the underlying numbers, and a short written summary. For a multi-step analysis it briefly outlines its plan first, so you can confirm the approach before it runs.
+
+![An answered question in AI Chat — the figures, a written summary, and the chart Insightis generated](/assets/docs/chat-basic-message.png)
+
+1. Type a question in plain English — for example, *"What is total revenue by region?"*
+2. Press **Send**. Insightis outlines the steps it will take, then runs the analysis once you confirm.
+3. Read the answer — the figures, a plain-language summary, and any chart it generated. Generated charts and files are saved to your workspace so you can reuse them later.
 
 ## Asking follow-up questions
 
@@ -28,9 +38,11 @@ Each follow-up builds on the previous result instead of starting over, which is 
 
 ## Attaching files to a question
 
-Sometimes the data you want to ask about is not in a connected source yet — a spreadsheet a colleague sent you, an export from another tool, a one-off CSV. You can attach that file directly to a chat and ask questions about it alongside your connected data. Use the attach control in the message box to add a file, then ask your question as usual — for example, "join this list of accounts to our billing data and show me their MRR."
+Sometimes the data you want to ask about is not in a connected source yet — a spreadsheet a colleague sent you, an export from another tool, a one-off CSV. You can attach that file directly to a chat and ask questions about it alongside your connected data. Use the paperclip in the message box to add a file, then ask your question as usual — for example, "join this list of accounts to our billing data and show me their MRR."
 
-Supported file types include spreadsheets and delimited files such as `.csv`, `.xlsx`, and `.xls`. Attached files are read into the same query engine as your connected sources, so the AI can filter, aggregate, and join them the same way it works with any other data.
+![A CSV file attached in the message box, ready to send with your question](/assets/docs/chat-attach-file.png)
+
+Supported file types include spreadsheets and delimited files such as `.csv`, `.xlsx`, and `.xls`. Attached files are read into the same query engine as your [connected sources](/docs/data-connectors), so the AI can filter, aggregate, and join them the same way it works with any other data.
 
 ## Your files are saved to the workspace
 
@@ -40,6 +52,29 @@ Every file connected to a chat is kept in your workspace so you never lose it or
 - **Files the AI generates** — exported charts, result tables, generated spreadsheets — are stored the same way, so you can come back and download or reuse them whenever you need them.
 
 Because both sides of the conversation are retained, a chat becomes a working record you can return to: the question you asked, the answer you got, and every file involved on either side.
+
+## Choosing which sources to query
+
+Use the **Connections** menu in the message box to control which connected data sources Insightis draws on for the current chat. Toggle a source on to include it in your next question, or open **Manage Connections** to add and configure sources.
+
+> [!NOTE]
+> The connectors you can toggle here are the connections your workspace has already set up on the **Data Sources** page — see [Data Connectors](/docs/data-connectors) for how to browse the catalogue, add a source, and manage existing connections.
+
+![The Connections menu open in the message box, listing the sources this chat can use](/assets/docs/chat-connector.png)
+
+1. Click **Connections** in the message box.
+2. Toggle on the sources you want this chat to use.
+3. Ask your question — Insightis answers using only the sources you enabled.
+
+## Choosing a model
+
+Insightis offers three models, switchable from the message box at any point in a conversation:
+
+- **Insightis Light** — fast, everyday answers; best for quick lookups and follow-ups.
+- **Insightis Standard** — the balanced choice for most analytical work.
+- **Insightis Ultra** — the deepest reasoning, for complex multi-step analyses.
+
+Open the model menu in the message box — it shows the model currently in use — and pick the one that fits your question. The choice applies to your next message, so you can start on Light and switch to a deeper model mid-conversation if an answer needs more analysis. See [AI Models](/docs/ai-models) for what each one is tuned for.
 
 ## Writing effective questions
 
@@ -53,16 +88,16 @@ You do not need to phrase questions as SQL. Casual phrasing works well, and nami
 
 ## What you get back
 
-Every answer includes three things side by side:
+A typical answer gives you:
 
-1. **A visualization** chosen automatically based on the shape of the result — a line chart for trends, a bar chart for breakdowns, a table for granular detail.
-2. **The headline number or set of numbers** the visualization summarizes, so you can quote a single figure without opening the chart.
-3. **A natural-language explanation** describing what changed, where the movement came from, and any notable outliers in the data.
+1. **The figures** — the numbers themselves, so you can quote one without opening anything.
+2. **A written explanation** of what the result shows and anything notable in it.
+3. **A chart**, when the question calls for one — generated as a file and saved to **Files**, so you can download or reuse it.
 
-Every answer also carries the query that produced it, and any files it generates are saved to your workspace for reuse.
+The steps Insightis ran sit above the answer; expand them to see how the number was produced.
 
 ## Grounded in your metrics
 
-AI Chat is at its best when a question maps to a metric defined in the Semantic Layer, because the answer is computed from a definition your team reviewed and approved rather than improvised. For data that has not been modeled yet, the recommended pattern is to define the metric once — with the AI's help or directly in the editor — and then ask about it freely.
+AI Chat is at its best when a question maps to a metric defined in the Semantic Layer, because the answer is computed from a definition your team reviewed and approved rather than improvised. For data that has not been modeled yet, the recommended pattern is to define the metric once — with the AI's help, or yourself on the [Metrics](/docs/metrics) page — and then ask about it freely.
 
-Access is governed throughout. AI Chat respects the same role- and source-level permissions that apply everywhere else in Insightis, so it can never return rows a user would not otherwise be allowed to see.
+Access is governed throughout. AI Chat can only read the sources connected to your workspace, and only the ones you enable for the chat — see [Data Connectors](/docs/data-connectors) and [Security](/docs/security).
