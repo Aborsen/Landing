@@ -688,7 +688,6 @@ function QuestionsGallery() {
             eyebrow="What you can ask"
             title="What kind of questions can you ask Insightis?"
             lede={"From daily standups to board meetings \u2014 ask in plain English, get precise answers."}
-            sparkle
             size="lg"
           />
         </div>
@@ -849,7 +848,6 @@ function HowItWorks() {
           <SectionHeader
             eyebrow="How it works"
             title="From question to answer in seconds"
-            sparkle
             size="lg"
           />
         </div>
@@ -871,7 +869,6 @@ function AccuracyComparison() {
             eyebrow="Accuracy"
             title="Not the internet. Your data."
             lede="Generic AI guesses. Insightis knows."
-            sparkle
             size="lg"
           />        </div>
 
@@ -940,7 +937,7 @@ function BottomCTASection() {
         <BottomCTA
           variant="buttons"
           title={<>Get answers from your data <BottomCTA.Highlight>in seconds</BottomCTA.Highlight>, not days</>}
-          description="Connect your first tool free in minutes. No credit card, cancel anytime."
+          description="Ask your first question in under two minutes — no SQL, no analyst queue, no waiting. Free to start, no credit card required."
           ctaLabel="Start for free"
           secondaryCtaLabel="Explore Pricing"
           secondaryCtaHref="/pricing"
@@ -1223,7 +1220,6 @@ function Hero() {
         }}>
           <div>
           <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-5)'}}>
-            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>AI Chat</span>
           </div>
           <h1 className="ins-text-display-xl">

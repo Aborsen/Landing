@@ -51,7 +51,6 @@ function Hero() {
           {/* Left: text */}
           <div>
             <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-5)'}}>
-              <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
               <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>For Product Teams</span>
             </div>
 
@@ -235,7 +234,6 @@ function RelevantIntegrations() {
             eyebrow="Your Product Stack"
             title="Connects to every product data source"
             lede="Joins event analytics, warehouse, billing, and CRM so you can see the full user journey in one answer."
-            sparkle
           />
         </div>
 
@@ -275,7 +273,6 @@ function BeforeAfter() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'52px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
-            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>The Difference</span>
           </div>
           <h2 className="ins-text-display mb-3">
@@ -319,7 +316,7 @@ function BottomCTASection() {
         <BottomCTA
           variant="buttons"
           title={<>Stop <BottomCTA.Highlight>guessing.</BottomCTA.Highlight> Start <BottomCTA.Highlight>shipping</BottomCTA.Highlight></>}
-          description="Ask questions in plain English and get product insights in seconds — no SQL, no waiting on the data team. Free to start, no credit card required."
+          description="Activation, retention and feature adoption in seconds — no SQL, no data-team queue. Free to start, no credit card required."
           ctaLabel="Start for free"
           secondaryCtaLabel="Explore Pricing"
           secondaryCtaHref="/pricing"
@@ -756,7 +753,6 @@ function FeatureSpotlights() {
             eyebrow="How it works"
             title="Built for the way product teams actually work"
             lede="Four capabilities that turn the data layer from a bottleneck into something you can ship against."
-            sparkle
           />
         </div>
 
@@ -772,7 +768,6 @@ function FeatureSpotlights() {
               }}>
                 <div data-spotlight-text style={{order: reverse ? 2 : 0}}>
                   <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'18px'}}>
-                    <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
                     <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>{s.eyebrow}</span>
                   </div>
                   <h3 className="ins-text-h2" style={{marginBottom:'18px'}}>
@@ -872,7 +867,6 @@ function UseCases() {
           <SectionHeader
             eyebrow="Use cases"
             title="What product teams use Insightis for"
-            sparkle
           />
         </div>
 
@@ -924,7 +918,6 @@ function Testimonials() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'var(--ins-size-14)'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
-            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>Stories</span>
           </div>
           <h2 className="ins-text-display mb-3">
@@ -982,7 +975,6 @@ function FAQ() {
       <div style={{maxWidth:'880px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'52px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
-            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>FAQ</span>
           </div>
           <h2 className="ins-text-display mb-3">

@@ -17,7 +17,6 @@ function PressHero() {
           lede="Press resources, brand assets, and media inquiries. Everything you need to write about Insightis."
           as="h1"
           size="lg"
-          sparkle
         />
       </div>
     </section>

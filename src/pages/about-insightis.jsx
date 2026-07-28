@@ -33,7 +33,6 @@ function AboutHero() {
       <div style={{position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:'100%', height:'100%', background:'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(9,160,157,.06) 0%, transparent 70%)', pointerEvents:'none'}}/>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', textAlign:'center', position:'relative'}}>
         <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-6)'}}>
-          <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
           <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', fontFamily:'var(--ins-font-family-mono)'}}>Insightis, a Devart product</span>
         </div>
         <h1 className="ins-text-display-xl" style={{marginBottom:'var(--ins-size-5)'}}>
@@ -122,7 +121,6 @@ function MissionValues() {
           <SectionHeader
             eyebrow="What we believe"
             title="Three principles behind everything we build"
-            sparkle
           />
         </div>
         <div style={{display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'var(--ins-size-4)'}} className="md:grid-cols-3 grid-cols-1" >
@@ -159,7 +157,6 @@ function OurStory() {
             title="From data tools to data intelligence"
             lede="We didn't start yesterday. Insightis is the newest chapter in a story Devart has been writing since 1997 — and the same obsession with reliability runs through all of it."
             align="left"
-            sparkle
           />
         </div>
         {/* TODO(assets): team / office / culture photo row per the CMO reference —
@@ -215,7 +212,6 @@ function DevartFamily() {
             eyebrow="Part of the Devart family"
             title="Insightis is built by Devart"
             lede="This isn't a weekend AI project. Insightis comes from Devart — the team behind 200+ data tools that 40,000+ companies have trusted for nearly 30 years. Same obsession with reliability, now pointed at a new problem: making analytics something anyone can use."
-            sparkle
           />
         </div>
         <div className="grid gap-4 md:grid-cols-4">

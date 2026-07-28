@@ -1,8 +1,15 @@
 /* ══════════════════════════════════════════════════════════════════
    31. EYEBROW (PR 0)
    Small uppercase label that sits above section h2s. Optional pill
-   treatment via .ins-eyebrow--pill. Optional sparkle slot for the
-   Lucide Sparkles icon used in the homepage hero.
+   treatment via .ins-eyebrow--pill.
+
+   The four-pointed star is part of the base class, not an opt-in slot:
+   the site had three competing marks side by side — a Lucide Sparkles
+   glyph with satellite dots, an eight-ray asterisk, and this star —
+   depending on which section you happened to be looking at. Putting it
+   on .ins-eyebrow means a label cannot be built without it. Same glyph
+   as .section-label::before in src/app.css, which is the showcase
+   template's own label and the one this was standardised on.
    ══════════════════════════════════════════════════════════════════ */
 
 .ins-eyebrow {
@@ -17,6 +24,14 @@
   color: var(--ins-text-highlight);
   margin: 0;
   line-height: 1;
+}
+
+/* colour is inherited, so the --error / --grey variants tint the star with the text */
+.ins-eyebrow::before {
+  content: '✦';
+  font-size: 13px;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
 /* Pill treatment — used in hero eyebrows + section eyebrows that need more presence. */
@@ -45,10 +60,5 @@
   border-color: var(--ins-color-white-a-12);
 }
 
-.ins-eyebrow__sparkle {
-  width: 12px;
-  height: 12px;
-  flex-shrink: 0;
-}
 
 

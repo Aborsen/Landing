@@ -28,7 +28,6 @@ function PricingHero() {
           lede="Start free. Scale as your team grows. Every plan includes the Semantic Layer, AI Chat, and 200+ connectors."
           as="h1"
           size="lg"
-          sparkle
         />
       </div>
     </section>

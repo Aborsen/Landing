@@ -1,0 +1,266 @@
+/* ══════════════════════════════════════════════════════════════════
+   40. SOLUTIONS ACCORDION
+   A row of photo panels, one expanded at a time (see
+   src/components/SolutionsAccordion.jsx). Layout is entirely CSS —
+   flex-basis on the panel, keyed off [data-open] — because
+   src/app.css gives `main > *` content-visibility:auto, so an
+   off-screen section has no layout to measure from JS.
+   Below lg the accordion is display:none and the stacked .ins-solacc-card
+   list takes over; that swap lives in the JSX (hidden lg:flex).
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-solacc {
+  gap: var(--ins-space-md);
+  height: 460px;
+  width: 100%;
+}
+
+/* ── Panel ───────────────────────────────────────────────────────── */
+.ins-solacc__panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--ins-radius-16);
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  /* min-width:0 so a collapsed panel's basis can never floor the row wider
+     than the viewport — same defense responsive.css applies to the spotlight grid */
+  min-width: 0;
+  /* Collapsed strips are deliberately narrow. The reference has four panels, so 190px
+     strips still leave the open one ~590px; with six, five 190px strips would eat
+     1050px of a 1222px row and starve it. 104px strips + vertical titles leave ~640px.
+
+     Every panel keeps the SAME flex-basis and only flex-grow changes, so the open panel
+     is "one strip plus all the slack". Animating basis as well would interpolate a
+     length against a percentage — the browser resolves that to a stuck
+     calc(0% + 104px) and the row never finishes settling. One animated axis only. */
+  flex: 0 1 104px;
+  transition: flex-grow var(--ins-duration-slow) var(--ins-easing-standard),
+              border-color var(--ins-duration-base) var(--ins-easing-standard);
+}
+.ins-solacc__panel[data-open] {
+  flex-grow: 1;
+  border-color: var(--ins-color-teal-a-25);
+}
+@media (min-width: 1280px) {
+  .ins-solacc__panel { flex-basis: 116px; }
+}
+
+/* ── Media ───────────────────────────────────────────────────────── */
+/* object-position pins the crop to the left edge so a collapsed panel keeps the
+   subject rather than a slice of background. The photos already carry a baked
+   bottom gradient; __scrim adds the rest of the contrast the text needs. */
+.ins-solacc__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 30% center;
+  z-index: 0;
+  transition: transform var(--ins-duration-slow) var(--ins-easing-standard);
+}
+.ins-solacc__img--placeholder {
+  background:
+    radial-gradient(ellipse 90% 60% at 30% 20%, var(--ins-color-teal-a-18) 0%, transparent 70%),
+    linear-gradient(160deg, var(--ins-surface-elevated) 0%, var(--ins-color-gray-900) 100%);
+}
+
+.ins-solacc__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    /* bottom fade, so the title and description clear AA over any photo */
+    linear-gradient(to top, var(--ins-color-gray-950) 0%, transparent 72%),
+    /* flat veil, so warm stock imagery reads as part of a dark page */
+    linear-gradient(var(--ins-color-black-a-30), var(--ins-color-black-a-30));
+  transition: opacity var(--ins-duration-base) var(--ins-easing-standard);
+}
+
+/* Collapsed panels are pushed further back — desaturated and dimmed — so the open
+   one reads as the subject. Hovering a collapsed panel brings its photo forward,
+   which is the affordance that says "this is clickable". */
+.ins-solacc__panel:not([data-open]) .ins-solacc__img {
+  filter: grayscale(0.55) brightness(0.62);
+  transition: filter var(--ins-duration-slow) var(--ins-easing-standard),
+              transform var(--ins-duration-slow) var(--ins-easing-standard);
+}
+.ins-solacc__panel:not([data-open]):hover .ins-solacc__img {
+  filter: grayscale(0) brightness(0.85);
+  transform: scale(1.04);
+}
+.ins-solacc__panel:not([data-open]):hover {
+  border-color: var(--ins-border-hover);
+}
+
+/* ── Content ─────────────────────────────────────────────────────── */
+.ins-solacc__body {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 2;
+  padding: var(--ins-space-lg);
+}
+.ins-solacc__hd { margin: 0; }
+
+.ins-solacc__trigger {
+  /* The trigger spans the whole panel so the entire tile is the click target,
+     while the accessible name stays just the title. */
+  position: static;
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--ins-font-size-18);
+  font-weight: var(--ins-font-weight-600);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--ins-color-white);
+}
+.ins-solacc__trigger::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+}
+.ins-solacc__panel[data-open] .ins-solacc__trigger {
+  font-size: var(--ins-font-size-24);
+  cursor: default;
+}
+
+/* ── Collapsed: the title runs up the strip ──────────────────────────
+   vertical-rl writes top-to-bottom; the 180° flip makes it read bottom-to-top,
+   which is the convention for a vertical tab label. */
+.ins-solacc__panel:not([data-open]) .ins-solacc__body {
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+}
+.ins-solacc__panel:not([data-open]) .ins-solacc__label {
+  display: inline-block;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  font-size: var(--ins-font-size-16);
+}
+/* The open panel's own link must sit above the trigger's hit area, or the ::after
+   overlay would swallow the click that actually navigates. */
+.ins-solacc__panel[data-open] .ins-solacc__trigger::after { content: none; }
+
+/* Focus ring on the panel, not the thin text run — the trigger's visible box is a
+   title at the bottom of a 460px tile, so a ring around it reads as an orphan.
+   Same :has() lift as accordion.css. */
+.ins-solacc__trigger:focus-visible { outline: none; }
+.ins-solacc__panel:has(.ins-solacc__trigger:focus-visible) {
+  border-color: var(--ins-border-focus);
+  box-shadow: var(--ins-focus-ring);
+}
+/* :has() fallback — older Safari/Firefox keep a ring on the trigger itself */
+@supports not selector(:has(*)) {
+  .ins-solacc__trigger:focus-visible {
+    outline: var(--ins-border-width-2) solid var(--ins-border-focus);
+    outline-offset: 3px;
+  }
+}
+
+.ins-solacc__region { padding-top: var(--ins-space-sm); }
+
+.ins-solacc__desc {
+  /* white at 82% rather than --ins-text-body: that grey is tuned for a flat card
+     surface, and this text sits over a photograph */
+  color: var(--ins-color-white);
+  opacity: 0.82;
+  font-size: var(--ins-font-size-14);
+  line-height: var(--ins-line-height-relaxed);
+  margin: 0;
+  max-width: 46ch;
+}
+
+.ins-solacc__link {
+  position: relative;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ins-space-xs);
+  margin-top: var(--ins-space-md);
+  color: var(--ins-text-highlight);
+  font-size: var(--ins-font-size-14);
+  font-weight: var(--ins-font-weight-500);
+  text-decoration: none;
+}
+.ins-solacc__link:hover,
+.ins-solacc__link:focus-visible { color: var(--ins-color-teal-400); }
+.ins-solacc__arrow {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  transition: transform var(--ins-duration-base) var(--ins-easing-standard);
+}
+.ins-solacc__link:hover .ins-solacc__arrow,
+.ins-solacc__link:focus-visible .ins-solacc__arrow { transform: translateX(3px); }
+
+.ins-solacc__cta {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--ins-space-xl);
+}
+
+/* ── Mobile / tablet stacked cards ───────────────────────────────── */
+.ins-solacc-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--ins-radius-16);
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  background: var(--ins-surface-card);
+  min-height: 208px;
+  text-decoration: none;
+  transition: border-color var(--ins-duration-base) var(--ins-easing-standard);
+}
+.ins-solacc-card:hover { border-color: var(--ins-color-teal-a-25); }
+.ins-solacc-card:focus-visible {
+  outline: none;
+  border-color: var(--ins-border-focus);
+  box-shadow: var(--ins-focus-ring);
+}
+.ins-solacc-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 30% center;
+  z-index: 0;
+  filter: brightness(0.5);
+}
+.ins-solacc-card__body {
+  position: relative;
+  z-index: 2;
+  padding: var(--ins-space-lg);
+  /* the photo sits behind at brightness(0.5); this floors the contrast for the
+     text regardless of what the image does under it */
+  background: linear-gradient(to top, var(--ins-color-gray-950) 0%, var(--ins-color-overlay) 62%, var(--ins-color-black-a-50) 100%);
+  min-height: 208px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.ins-solacc-card__title {
+  margin: 0 0 var(--ins-space-sm);
+  font-size: var(--ins-font-size-20);
+  font-weight: var(--ins-font-weight-600);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--ins-color-white);
+}
+
+/* ── Reduced motion ──────────────────────────────────────────────────
+   The three global blocks (src/app.css, design-system/global.css,
+   public/assets/responsive.css) already zero every transition-duration, so timing
+   is handled. What they do NOT cancel is a transform end-state, which would then
+   snap in one frame — so cancel the zoom outright, as button.css does. */
+@media (prefers-reduced-motion: reduce) {
+  .ins-solacc__panel:not([data-open]):hover .ins-solacc__img { transform: none; }
+}

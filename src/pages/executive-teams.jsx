@@ -48,7 +48,6 @@ function Hero() {
           {/* Left: text */}
           <div>
             <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-5)'}}>
-              <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
               <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>For Executive Teams</span>
             </div>
 
@@ -210,7 +209,6 @@ function RelevantIntegrations() {
             eyebrow="Your Company Stack"
             title="Connects to every source of company truth"
             lede="Insightis integrates with your CRM, billing, finance, product, and warehouse stack."
-            sparkle
           />
         </div>
 
@@ -251,7 +249,7 @@ function BottomCTASection() {
         <BottomCTA
           variant="buttons"
           title={<>Stop waiting on <BottomCTA.Highlight>decks.</BottomCTA.Highlight> Start seeing <BottomCTA.Highlight> live numbers</BottomCTA.Highlight></>}
-          description="Ask your board and revenue questions in plain English and get certified answers in seconds — no analyst queue, no stale slides. Free to start, no credit card required."
+          description="Board-level numbers answered in seconds — no analyst queue, no stale decks. Free to start, no credit card required."
           ctaLabel="Start for free"
           secondaryCtaLabel="Explore Pricing"
           secondaryCtaHref="/pricing"
@@ -611,7 +609,6 @@ function FeatureSpotlights() {
             eyebrow="How it works"
             title="Built for the way leadership actually runs the company"
             lede="Four capabilities that put live company metrics at the founder's and the board's fingertips."
-            sparkle
           />
         </div>
 
@@ -627,7 +624,6 @@ function FeatureSpotlights() {
               }}>
                 <div data-spotlight-text style={{order: reverse ? 2 : 0}}>
                   <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'18px'}}>
-                    <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
                     <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>{s.eyebrow}</span>
                   </div>
                   <h3 className="ins-text-h2" style={{marginBottom:'18px'}}>
@@ -727,7 +723,6 @@ function UseCases() {
           <SectionHeader
             eyebrow="Use cases"
             title="What executive teams use Insightis for"
-            sparkle
           />
         </div>
 
@@ -792,7 +787,6 @@ function FAQ() {
       <div style={{maxWidth:'880px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'52px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
-            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>FAQ</span>
           </div>
           <h2 className="ins-text-display mb-3">

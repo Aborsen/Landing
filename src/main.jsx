@@ -6,12 +6,11 @@ import Footer from './components/Footer';
 import IntegrationsStrip from './components/IntegrationsStrip';
 import Button from './components/Button';
 import Card from './components/Card';
+import SolutionsAccordion from './components/SolutionsAccordion';
 import BottomCTA from './components/BottomCTA';
 import CheckIcon from './components/CheckIcon';
 import ComparisonCards from './components/ComparisonCards';
 import RealConnectorIcon from './components/ConnectorIcon';
-import BillingToggle from './components/BillingToggle';
-import { PLANS, DEFAULT_CYCLE, priceFor, standardFor, yearlyTotalFor } from './data/pricing';
 
 /* Single shared IntersectionObserver for all fade-ups.
    Replaces 33 per-component framer-motion `useInView` observers + re-render cascades.
@@ -62,6 +61,16 @@ function StarIcon({ size = 14, color = "var(--ins-color-teal-600)" }) {
 }
 function SparkleIcon({ size = 20, color = "var(--ins-color-teal-600)" }) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l1.912 5.813a2 2 0 001.275 1.275L21 12l-5.813 1.912a2 2 0 00-1.275 1.275L12 21l-1.912-5.813a2 2 0 00-1.275-1.275L3 12l5.813-1.912a2 2 0 001.275-1.275L12 3z"/></svg>;
+}
+// The Insightis mark itself (same geometry as public/favicon.svg). Used where the
+// brand needs to appear as a glyph rather than the full lockup — the <Logo> component
+// renders the lockup with the wordmark, which would duplicate adjacent "Insightis" text.
+function InsightisMark({ size = 32, color = "var(--ins-color-teal-500)" }) {
+  return (
+    <svg width={size} height={size * (22.84 / 25.5)} viewBox="0 0 25.5 22.84" aria-hidden="true">
+      <path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill={color}/>
+    </svg>
+  );
 }
 function GridIcon({ size = 24, color = "var(--ins-color-teal-600)" }) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>;
@@ -219,7 +228,7 @@ function Hero() {
         {/* Headline */}
         <FadeUp delay={0.1}>
           <h1 className="ins-text-hero text-center mb-6">
-            <span style={{display:'block'}} className="text-[var(--ins-text-heading-soft)]">Talk to your data.</span>
+            <span style={{display:'block'}} className="text-[var(--ins-text-heading-soft)]">Talk to your data</span>
             <span style={{display:'block',color:'var(--ins-text-highlight)'}}>It already knows the answer</span>
           </h1>
         </FadeUp>
@@ -488,33 +497,33 @@ function Architecture() {
 
   // Chaotic swarm — scattered to fill full area matching right panel
   const chaosSwarm = [
-    { name: 'PostgreSQL', top: '2%',  left: '22%', rotate: 0, opacity: 0.9 },
+    { name: 'Jira',      top: '2%',  left: '22%', rotate: 0, opacity: 0.9 },
     { name: 'Snowflake', top: '5%',  left: '72%', rotate: 0, opacity: 0.85 },
     { name: 'Slack',     top: '35%', left: '0%',  rotate: 0, opacity: 0.9 },
-    { name: 'BigQuery',  top: '40%', left: '50%', rotate: 0, opacity: 0.85 },
+    { name: 'Shopify',   top: '40%', left: '50%', rotate: 0, opacity: 0.85 },
     { name: 'HubSpot',   top: '80%', left: '18%', rotate: 0, opacity: 0.9 },
-    { name: 'AWS',       top: '82%', left: '70%', rotate: 0, opacity: 0.85 },
+    { name: 'Salesforce', top: '82%', left: '70%', rotate: 0, opacity: 0.85 },
   ];
   // Icon centers mapped to viewBox 0 0 100 100 (left% + ~7, top% + ~8)
-  // PostgreSQL: (29,10), Snowflake: (79,13), Slack: (7,43), BigQuery: (57,48), HubSpot: (25,88), AWS: (77,90)
+  // Jira: (29,10), Snowflake: (79,13), Slack: (7,43), Shopify: (57,48), HubSpot: (25,88), Salesforce: (77,90)
   const chaosLines = [
-    { d: 'M29,10 L79,13' },        // PostgreSQL → Snowflake
-    { d: 'M29,10 L7,43' },         // PostgreSQL → Slack
-    { d: 'M29,10 L57,48' },        // PostgreSQL → BigQuery
-    { d: 'M79,13 L57,48' },        // Snowflake → BigQuery
-    { d: 'M79,13 L77,90' },        // Snowflake → AWS
-    { d: 'M7,43 L57,48' },         // Slack → BigQuery
+    { d: 'M29,10 L79,13' },        // Jira → Snowflake
+    { d: 'M29,10 L7,43' },         // Jira → Slack
+    { d: 'M29,10 L57,48' },        // Jira → Shopify
+    { d: 'M79,13 L57,48' },        // Snowflake → Shopify
+    { d: 'M79,13 L77,90' },        // Snowflake → Salesforce
+    { d: 'M7,43 L57,48' },         // Slack → Shopify
     { d: 'M7,43 L25,88' },         // Slack → HubSpot
-    { d: 'M57,48 L25,88' },        // BigQuery → HubSpot
-    { d: 'M57,48 L77,90' },        // BigQuery → AWS
-    { d: 'M25,88 L77,90' },        // HubSpot → AWS
+    { d: 'M57,48 L25,88' },        // Shopify → HubSpot
+    { d: 'M57,48 L77,90' },        // Shopify → Salesforce
+    { d: 'M25,88 L77,90' },        // HubSpot → Salesforce
     // Lines from icons to right edge (connecting to wire stream)
-    { d: 'M29,10 Q65,25 100,48' },   // PostgreSQL → right
+    { d: 'M29,10 Q65,25 100,48' },   // Jira → right
     { d: 'M79,13 Q90,30 100,46' },   // Snowflake → right
     { d: 'M7,43 Q50,44 100,50' },    // Slack → right
-    { d: 'M57,48 Q78,49 100,50' },   // BigQuery → right
+    { d: 'M57,48 Q78,49 100,50' },   // Shopify → right
     { d: 'M25,88 Q65,72 100,52' },   // HubSpot → right
-    { d: 'M77,90 Q90,70 100,54' },   // AWS → right
+    { d: 'M77,90 Q90,70 100,54' },   // Salesforce → right
   ];
 
   const ClockIcon = ({ size = 16, color = 'var(--ins-color-teal-500)' }) => (
@@ -544,10 +553,7 @@ function Architecture() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <FadeUp>
           <div className="text-center mb-16 arch-heading">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-4" style={{background: 'rgba(7,128,126,0.1)', border: '1px solid rgba(7,128,126,0.4)'}}>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[var(--ins-text-highlight)]"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
-              <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">One source of truth</span>
-            </div>
+            <span className="ins-eyebrow ins-eyebrow--pill mb-4">One source of truth</span>
             <h2 className="ins-text-display mb-4">Every number means the same thing</h2>
             <p className="ins-text-body-lg max-w-2xl mx-auto">
               Each of your tools defines “revenue” or “MRR” a little differently — so your reports never quite match. Insightis sets one trusted definition for each metric. Define it once, and every report shows the same number.
@@ -580,7 +586,7 @@ function Architecture() {
                   opacity: item.opacity,
                   animation: `chaosFloat ${4 + (i % 3) * 1.5}s ease-in-out ${i * 0.5}s infinite alternate`,
                 }}>
-                  <ConnectorIcon name={item.name} size={30} />
+                  <RealConnectorIcon name={item.name} size={30} />
                 </div>
               ))}
             </div>
@@ -619,7 +625,7 @@ function Architecture() {
             {/* Center core engine */}
             <div className="flex flex-col items-center justify-center">
               <div className="w-36 h-36 rounded-2xl flex flex-col items-center justify-center gap-3" style={{ border: '1px solid rgba(7,128,126,0.5)', background: 'linear-gradient(135deg, rgba(7,128,126,0.25), rgba(7,128,126,0.08))', animation: 'corePulse 3s ease-in-out infinite' }}>
-                <GridIcon size={36} color="var(--ins-color-teal-500)" />
+                <InsightisMark size={38} />
                 <span className="text-[13px] font-medium text-[var(--ins-color-teal-500)] text-center leading-tight">Insightis<br/>Semantic AI</span>
               </div>
               <span className="text-[10px] font-medium uppercase tracking-[0.1em] text-text-muted mt-2">AI Engine</span>
@@ -636,24 +642,24 @@ function Architecture() {
               const mobileSwarm = [
                 { name: 'Slack',      top: '4%',  left: '8%'  },
                 { name: 'Snowflake',  top: '4%',  left: '68%' },
-                { name: 'PostgreSQL', top: '38%', left: '-2%' },
-                { name: 'BigQuery',   top: '38%', left: '74%' },
+                { name: 'Jira',       top: '38%', left: '-2%' },
+                { name: 'Shopify',    top: '38%', left: '74%' },
                 { name: 'HubSpot',    top: '70%', left: '16%' },
-                { name: 'AWS',        top: '70%', left: '58%' },
+                { name: 'Salesforce', top: '70%', left: '58%' },
               ];
               // Dashed-line connection paths between approximate icon centers (viewBox 0 0 100 100).
               const mobileLines = [
                 'M14,12 L74,12',          // Slack → Snowflake
-                'M14,12 L4,46',           // Slack → PostgreSQL
+                'M14,12 L4,46',           // Slack → Jira
                 'M14,12 L24,78',          // Slack → HubSpot
-                'M74,12 L80,46',          // Snowflake → BigQuery
-                'M74,12 L66,78',          // Snowflake → AWS
-                'M4,46 L80,46',           // PostgreSQL → BigQuery
-                'M4,46 L24,78',           // PostgreSQL → HubSpot
-                'M80,46 L66,78',          // BigQuery → AWS
-                'M24,78 L66,78',          // HubSpot → AWS
-                'M4,46 L66,78',           // PostgreSQL → AWS (diagonal)
-                'M80,46 L24,78',          // BigQuery → HubSpot (diagonal)
+                'M74,12 L80,46',          // Snowflake → Shopify
+                'M74,12 L66,78',          // Snowflake → Salesforce
+                'M4,46 L80,46',           // Jira → Shopify
+                'M4,46 L24,78',           // Jira → HubSpot
+                'M80,46 L66,78',          // Shopify → Salesforce
+                'M24,78 L66,78',          // HubSpot → Salesforce
+                'M4,46 L66,78',           // Jira → Salesforce (diagonal)
+                'M80,46 L24,78',          // Shopify → HubSpot (diagonal)
               ];
               return (
                 <div className="relative w-full" style={{height:'260px'}}>
@@ -669,7 +675,7 @@ function Architecture() {
                       boxShadow: 'var(--ins-shadow-sm)',
                       animation: `chaosFloat ${4 + (i % 3) * 1.5}s ease-in-out ${i * 0.5}s infinite alternate`,
                     }}>
-                      <ConnectorIcon name={item.name} size={20} />
+                      <RealConnectorIcon name={item.name} size={20} />
                     </div>
                   ))}
                 </div>
@@ -701,7 +707,7 @@ function Architecture() {
             </div>
 
             <div className="w-28 h-28 rounded-2xl flex flex-col items-center justify-center gap-2" style={{ border: '1px solid rgba(7,128,126,0.5)', background: 'linear-gradient(135deg, rgba(7,128,126,0.25), rgba(7,128,126,0.08))', animation: 'corePulse 3s ease-in-out infinite' }}>
-              <GridIcon size={28} color="var(--ins-color-teal-500)" />
+              <InsightisMark size={30} />
               <span className="text-[11px] font-medium text-[var(--ins-color-teal-500)] text-center leading-tight">Insightis<br/>Semantic AI</span>
             </div>
 
@@ -748,20 +754,15 @@ function HowItWorks() {
   }, []);
   const steps = [
     { n: '01', title: 'Connect your data', desc: 'OAuth or API key. Most connectors live in under 5 minutes — read-only and encrypted.' },
-    { n: '02', title: 'Map your metrics', desc: 'Insightis maps the metrics that matter — MRR, CAC, active users — from 270+ pre-built definitions. Edit anytime.' },
+    { n: '02', title: 'Map your metrics', desc: 'Insightis maps the metrics that matter — MRR, CAC, active users — from 500+ pre-built definitions. Edit anytime.' },
     { n: '03', title: 'Ask in plain English', desc: 'Your team asks questions. Insightis queries the right sources and returns precise answers in seconds.' },
-    { n: '04', title: 'Pick your depth', desc: 'Light for quick lookups, Medium for everyday analysis, Pro for the hard questions — chosen per message.' },
-    { n: '05', title: 'Ask the next question', desc: 'Change subject mid-thread. Any connected source, answered on the spot — no filters to re-type.' },
   ];
   return (
     <section id="how-it-works" style={{padding:'100px 0', background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)', position:'relative'}}>
       {/* Mobile / reduced-motion text-only summary — hidden on desktop via responsive.css */}
       <div className="how-it-works-text-only" style={{display:'none', maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
         <div style={{textAlign:'center', marginBottom:'var(--ins-size-10)'}}>
-          <div style={{display:'inline-flex',alignItems:'center',gap:5,padding:'4px 12px',background:'var(--ins-surface-brand-tint)',border:'1px solid var(--ins-border-brand)',borderRadius:'999px',marginBottom:'14px'}}>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{color:'var(--ins-text-highlight)'}}><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)'}}>How it works</span>
-          </div>
+          <span className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>How it works</span>
           <h2 style={{fontSize:'clamp(1.8rem,6vw,2.4rem)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.02em',lineHeight:1.15}}>From your stack to a precise answer</h2>
         </div>
         <ol style={{listStyle:'none',padding:0,margin:0,display:'flex',flexDirection:'column',gap:'18px'}}>
@@ -839,7 +840,7 @@ function AnimatedStat({ target, suffix, prefix, duration = 1800 }) {
 function WhatIsInsightis() {
   const stats = [
     { target: 200,   suffix: "+", prefix: "", label: "Connectors",           sub: "supported out-of-the-box" },
-    { target: 270,   suffix: "+", prefix: "", label: "Pre-built metrics",    sub: "auto-mapped from your tools" },
+    { target: 500,   suffix: "+", prefix: "", label: "Pre-built metrics",    sub: "auto-mapped from your tools" },
     { target: 28,    suffix: "",  prefix: "", label: "Years of data tooling", sub: "built by the Devart team" },
     { target: 40000, suffix: "+", prefix: "", label: "Companies",            sub: "rely on Devart data tools" },
   ];
@@ -849,10 +850,7 @@ function WhatIsInsightis() {
       <div className="max-w-7xl mx-auto px-6">
         <FadeUp>
           <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5" style={{background: 'rgba(7,128,126,0.1)', border: '1px solid rgba(7,128,126,0.4)'}}>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[var(--ins-text-highlight)]"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
-              <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">What you get</span>
-            </div>
+            <span className="ins-eyebrow ins-eyebrow--pill mb-5">What you get</span>
             <h2 className="text-4xl md:text-[48px] font-medium text-[var(--ins-text-heading)] tracking-tight leading-[1.1]">What you get with Insightis</h2>
             <p className="ins-text-body-lg mt-4 max-w-xl mx-auto">
               The AI analytics workspace that turns raw data into clear decisions — instantly, accurately, and without SQL.
@@ -903,10 +901,7 @@ function Pricing() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <FadeUp>
           <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5" style={{background: 'rgba(7,128,126,0.1)', border: '1px solid rgba(7,128,126,0.4)'}}>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[var(--ins-text-highlight)]"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
-              <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">Why Insightis</span>
-            </div>
+            <span className="ins-eyebrow ins-eyebrow--pill mb-5">Why Insightis</span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-[var(--ins-text-heading)] tracking-tight mb-4">Why teams switch to Insightis</h2>
             <p className="ins-text-body-lg max-w-2xl mx-auto">
               Instead of charging for every person in your company, Insightis ties cost to actual AI activity and the storage you need — so pricing stays fair, scalable, and aligned with value.
@@ -928,80 +923,20 @@ function Pricing() {
   );
 }
 
-// ─── PRICING SNAPSHOT (launch pack §11) ───
-function PricingSnapshot() {
-  // Same plans, prices and toggle as /pricing — see src/data/pricing.js.
-  const [cycle, setCycle] = useState(DEFAULT_CYCLE);
+// ─── SOLUTIONS ───
+/* Sits where the pricing snapshot used to. Pricing still lives on /pricing (linked from
+   the header and the bottom CTA), so nothing was lost by taking it off the home page —
+   and the six solutions pages had no entry point above the footer.
+
+   Markup and data both live outside this file now: src/components/SolutionsAccordion.jsx
+   and src/data/solutions.js, because the same section also goes on all six solutions
+   pages. Only the FadeUp wrapper is home-page-specific — the solutions pages have no
+   fade-up machinery, which is why the component does not own it. */
+function Solutions() {
   return (
-    <section className="py-24 relative">
-      <div className="max-w-7xl mx-auto px-6">
-        <FadeUp>
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5" style={{background: 'rgba(7,128,126,0.1)', border: '1px solid rgba(7,128,126,0.4)'}}>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[var(--ins-text-highlight)]"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
-              <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">Pricing</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-[var(--ins-text-heading)] tracking-tight mb-4">Start free. Upgrade when you're ready</h2>
-            <p className="ins-text-body-lg max-w-xl mx-auto">Launch pricing — 50% off. No credit card required.</p>
-          </div>
-        </FadeUp>
-        <FadeUp delay={0.05}>
-          <div className="flex justify-center mb-8">
-            <BillingToggle cycle={cycle} onChange={setCycle} />
-          </div>
-        </FadeUp>
-        <FadeUp delay={0.1}>
-          <div className="grid gap-4 md:grid-cols-3 items-stretch">
-            {PLANS.map(t => (
-              <div key={t.name} className="relative flex flex-col rounded-2xl p-6" style={{
-                background: 'var(--ins-surface-card)',
-                border: t.highlight ? '1px solid var(--ins-border-brand)' : '1px solid var(--ins-border-default)',
-                boxShadow: t.highlight ? 'var(--ins-shadow-glow-brand)' : 'none',
-              }}>
-                {t.highlight && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-[10px] font-medium uppercase tracking-wider" style={{background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',color:'var(--ins-text-heading)'}}>
-                    Most popular
-                  </div>
-                )}
-                <h3 className="text-lg font-semibold text-[var(--ins-text-heading)]">{t.name}</h3>
-                <p className="ins-text-body-sm mb-4">{t.tag}</p>
-                <div className="flex items-baseline gap-2 mb-1">
-                  <span className="text-3xl font-medium text-[var(--ins-text-heading)] tracking-tight">
-                    {t.free ? '$0' : `$${priceFor(t, cycle)}`}
-                  </span>
-                  {!t.free && <span className="text-base line-through text-[var(--ins-text-disabled)]">${standardFor(t, cycle)}</span>}
-                  {!t.free && <span className="ins-text-body-sm">/mo</span>}
-                </div>
-                {/* always rendered, hidden when it does not apply — reserves its own height
-                    so switching cycle never reflows the card (see the same note in pricing.jsx) */}
-                <p className="ins-text-body-sm mb-5" style={{visibility:(!t.free && cycle==='yearly')?'visible':'hidden'}}>
-                  {t.free ? ' ' : `billed annually · $${yearlyTotalFor(t).toFixed(2)}/yr`}
-                </p>
-                <ul className="flex flex-col gap-2 mb-6">
-                  {t.features.map(b => (
-                    <li key={b} className="flex items-center gap-2 text-sm text-[var(--ins-text-body)]">
-                      <CheckIcon size={13} color="var(--ins-text-highlight)" />{b}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-auto">
-                  <Button as="a" href="/auth/sign-up/" variant={t.highlight ? 'primary' : 'secondary'} size="md" style={{width:'100%',justifyContent:'center'}}>
-                    Start for free
-                  </Button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </FadeUp>
-        <FadeUp delay={0.15}>
-          <div className="text-center mt-10">
-            <a href="/pricing" className="ins-btn ins-btn--secondary ins-btn--lg">
-              Compare Plans
-            </a>
-          </div>
-        </FadeUp>
-      </div>
-    </section>
+    <FadeUp>
+      <SolutionsAccordion />
+    </FadeUp>
   );
 }
 
@@ -1046,7 +981,7 @@ function App() {
         <Architecture />
         <WhatIsInsightis />
         <HowItWorks />
-        <PricingSnapshot />
+        <Solutions />
         <Pricing />
         <BottomCTASection />
       </main>

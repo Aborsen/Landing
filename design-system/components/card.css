@@ -275,5 +275,13 @@
   border-color: var(--ins-color-teal-a-25);
   background: var(--ins-color-teal-a-04);
 }
+/* Keyboard parity with the hover state — these cards are whole-card <a>s, so without
+   this a tab-through leaves no visible focus (the hover rule only fires on pointer).
+   Same recipe as .ins-card--interactive:focus-visible above. */
+.ins-feature-card--interactive:focus-visible {
+  outline: none;
+  box-shadow: var(--ins-focus-ring);
+  border-color: var(--ins-border-focus);
+}
 
 

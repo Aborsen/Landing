@@ -338,7 +338,6 @@ function Hero() {
         }}>
           <div>
           <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-5)'}}>
-            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>Semantic Layer</span>
           </div>
           <h1 className="ins-text-display-xl">
@@ -386,7 +385,7 @@ function WhatItDoes() {
     {
       n:'02', title:'Auto-certified data',
       body:'Freshness, completeness, and business-logic checks run on every query — so you know the instant data goes stale or breaks, not after the board meeting.',
-      example:'freshness · completeness · lineage → certified ✓',
+      example:'Freshness · completeness · logic · lineage → certified ✓',
     },
     {
       n:'03', title:'AI-ready foundation',
@@ -403,7 +402,6 @@ function WhatItDoes() {
           <SectionHeader
             eyebrow="How it works"
             title="One layer. Every metric. Always right"
-            sparkle
             size="lg"
           />
         </div>
@@ -897,7 +895,6 @@ function FeaturesShowcase() {
           <SectionHeader
             eyebrow="How it works"
             title="Your Semantic Layer, fully in control"
-            sparkle
             size="lg"
           />
         </div>
@@ -923,7 +920,6 @@ function ConnectorGallery() {
             eyebrow="Metrics catalog"
             title="Define, certify, and version your metrics"
             lede="Every metric defined once, certified, and used by every team — across RevOps, Finance, and Marketing."
-            sparkle
             size="lg"
           />
         </div>
@@ -996,7 +992,6 @@ function BeforeAfter() {
             eyebrow="The difference"
             title="Without vs with Semantic Layer"
             lede="Four teams guess. Insightis certifies."
-            sparkle
             size="lg"
           />        </div>
 
@@ -1056,7 +1051,7 @@ function BottomCTASection() {
         <BottomCTA
           variant="buttons"
           title={<>Stop arguing about <BottomCTA.Highlight> which number</BottomCTA.Highlight> is right</>}
-          description="Define every metric once, certify it, and let every dashboard, report, and chat read the same source of truth. Ship insights instead of reconciliations — free to start, no credit card required."
+          description="Define each metric once and every dashboard, report and chat agrees. Free to start, no credit card required."
           ctaLabel="Start for free"
           secondaryCtaLabel="Explore Pricing"
           secondaryCtaHref="/pricing"

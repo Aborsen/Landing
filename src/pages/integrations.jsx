@@ -277,7 +277,6 @@ function Hero() {
         }}>
           <div>
           <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-5)'}}>
-            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>Integrations</span>
           </div>
           <h1 className="ins-text-display-xl">
@@ -463,7 +462,6 @@ function ConnectorsGallery() {
             eyebrow="Built for every team"
             title="Which data sources does Insightis integrate with?"
             lede="200+ connectors across CRMs, warehouses, and finance — synced live, ready to query."
-            sparkle
             size="lg"
           />
         </div>
@@ -545,7 +543,6 @@ function HowSyncWorks() {
           <SectionHeader
             eyebrow="How it works"
             title="How does Insightis connect to your data sources?"
-            sparkle
             size="lg"
           />
         </div>
@@ -574,7 +571,6 @@ function IntegrationImpact() {
             eyebrow="Direct integration"
             title="Tools guess. Insightis answers"
             lede="One source of truth. Answers in seconds."
-            sparkle
             size="lg"
           />          {/* TODO SEO [P1]: Replace the two <div>-based comparison cards below with a semantic <table>
               for AI/SERP extraction. Columns: "Dimension | Disconnected data | Insightis".
@@ -681,7 +677,7 @@ function CTA() {
         <BottomCTA
           variant="buttons"
           title={<>Your data is already there.<BottomCTA.Highlight> Connect it in minutes</BottomCTA.Highlight></>}
-          description="Link 200+ sources in a few clicks and ask questions in plain English — no SQL, no pipelines, no waiting. Free to start, no credit card required."
+          description="Link 200+ sources in a few clicks — no pipelines to build, nothing to maintain. Free to start, no credit card required."
           ctaLabel="Start for free"
           secondaryCtaLabel="Explore Pricing"
           secondaryCtaHref="/pricing"

@@ -48,7 +48,6 @@ function Hero() {
           {/* Left: text */}
           <div>
             <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-5)'}}>
-              <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
               <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>For Marketing Teams</span>
             </div>
 
@@ -583,7 +582,6 @@ function FeatureSpotlights() {
             eyebrow="How it works"
             title="Built for the way marketing teams actually work"
             lede="Four capabilities that turn marketing data from a Monday-morning bottleneck into answers you can act on today."
-            sparkle
           />
         </div>
 
@@ -599,7 +597,6 @@ function FeatureSpotlights() {
               }}>
                 <div data-spotlight-text style={{order: reverse ? 2 : 0}}>
                   <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'18px'}}>
-                    <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
                     <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>{s.eyebrow}</span>
                   </div>
                   <h3 className="ins-text-h2" style={{marginBottom:'18px'}}>
@@ -699,7 +696,6 @@ function UseCases() {
           <SectionHeader
             eyebrow="Use cases"
             title="What marketing teams use Insightis for"
-            sparkle
           />
         </div>
 
@@ -752,7 +748,6 @@ function RelevantIntegrations() {
             eyebrow="Your Marketing Stack"
             title="Connects to every ad platform and channel"
             lede="Insightis integrates with your ad platforms, analytics, CRM, and warehouse stack."
-            sparkle
           />
         </div>
 
@@ -819,7 +814,6 @@ function FAQ() {
       <div style={{maxWidth:'880px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'52px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
-            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>FAQ</span>
           </div>
           <h2 className="ins-text-display mb-3">
@@ -841,7 +835,7 @@ function BottomCTASection() {
         <BottomCTA
           variant="buttons"
           title={<>Stop debating <BottomCTA.Highlight>attribution.</BottomCTA.Highlight> Start scaling <BottomCTA.Highlight>what works</BottomCTA.Highlight></>}
-          description="Unify campaigns, CRM, and billing so every channel's true CAC and revenue impact is one question away — no more blended guesswork. Free to start, no credit card required."
+          description="Every channel's true CAC and revenue impact — one question away, no guesswork. Free to start, no credit card required."
           ctaLabel="Start for free"
           secondaryCtaLabel="Explore Pricing"
           secondaryCtaHref="/pricing"

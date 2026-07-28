@@ -125,7 +125,6 @@ function SecurityContent() {
         <div style={{position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:'100%', height:'100%', background:'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(9,160,157,.06) 0%, transparent 70%)', pointerEvents:'none'}}/>
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', textAlign:'center', position:'relative'}}>
           <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-5)'}}>
-            <span style={{fontSize:'var(--ins-font-size-12)'}}>&#x2726;</span>
             <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', fontFamily:'var(--ins-font-family-mono)'}}>Security</span>
           </div>
           <h1 className="ins-text-display" style={{marginBottom:'var(--ins-size-5)'}}>
@@ -152,7 +151,6 @@ function SecurityContent() {
             <SectionHeader
               eyebrow="Enterprise Security"
               title="Built-in security at every layer"
-              sparkle
             />
           </div>
           <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))', gap:'var(--ins-size-4)'}}>
@@ -176,7 +174,6 @@ function SecurityContent() {
             <SectionHeader
               eyebrow="Compliance"
               title="Industry-standard certifications"
-              sparkle
             />
           </div>
           <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))', gap:'var(--ins-size-4)', maxWidth:'960px', margin:'0 auto'}}>
@@ -200,7 +197,6 @@ function SecurityContent() {
             <SectionHeader
               eyebrow="Data Protection"
               title="Your data, your rules"
-              sparkle
             />
           </div>
           <div style={{maxWidth:'720px', margin:'0 auto'}}>

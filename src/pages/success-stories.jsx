@@ -93,7 +93,6 @@ function StoryGrid() {
           <SectionHeader
             eyebrow="More Stories"
             title="How teams use Insightis"
-            sparkle
           />
         </div>
         <div style={{display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'var(--ins-size-4)'}} className="md:grid-cols-3 grid-cols-1">
@@ -262,7 +261,6 @@ function ResultsBanner() {
       <div style={{maxWidth:'1240px', width:'calc(100% - 32px)', margin:'0 auto'}}>
         <div style={{textAlign:'center', marginBottom:'var(--ins-size-10)'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
-            <span style={{fontSize:'var(--ins-font-size-12)'}}>&#10022;</span>
             <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', fontFamily:'var(--ins-font-family-mono)'}}>Built for faster decisions</span>
           </div>
         </div>

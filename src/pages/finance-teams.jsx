@@ -48,7 +48,6 @@ function Hero() {
           {/* Left: text */}
           <div>
             <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-5)'}}>
-              <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
               <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>For Finance Teams</span>
             </div>
 
@@ -718,7 +717,6 @@ function FeatureSpotlights() {
             eyebrow="How it works"
             title="Built for the way finance teams actually work"
             lede="Four capabilities that turn finance from a spreadsheet pipeline into a real-time control function."
-            sparkle
           />
         </div>
 
@@ -734,7 +732,6 @@ function FeatureSpotlights() {
               }}>
                 <div data-spotlight-text style={{order: reverse ? 2 : 0}}>
                   <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'18px'}}>
-                    <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
                     <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>{s.eyebrow}</span>
                   </div>
                   <h3 className="ins-text-h2" style={{marginBottom:'18px'}}>
@@ -834,7 +831,6 @@ function UseCases() {
           <SectionHeader
             eyebrow="Use cases"
             title="What finance teams use Insightis for"
-            sparkle
           />
         </div>
 
@@ -894,7 +890,6 @@ function RelevantIntegrations() {
             eyebrow="Your Finance Stack"
             title="Works with every accounting, payroll, and billing tool"
             lede="Insightis integrates with your accounting, billing, payroll, and warehouse stack."
-            sparkle
           />
         </div>
 
@@ -961,7 +956,6 @@ function FAQ() {
       <div style={{maxWidth:'880px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'52px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
-            <span style={{fontSize:'var(--ins-font-size-12)'}}>✦</span>
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>FAQ</span>
           </div>
           <h2 className="ins-text-display mb-3">
@@ -983,7 +977,7 @@ function BottomCTASection() {
         <BottomCTA
           variant="buttons"
           title={<>Stop reconciling <BottomCTA.Highlight>spreadsheets.</BottomCTA.Highlight> Start controlling <BottomCTA.Highlight> costs</BottomCTA.Highlight></>}
-          description="Give your finance team a single source of truth for spend, budgets, and forecasts — and answers the moment you ask, not days later. Free to start, no credit card required."
+          description="Spend, budgets and forecasts in one place — answered the moment you ask. Free to start, no credit card required."
           ctaLabel="Start for free"
           secondaryCtaLabel="Explore Pricing"
           secondaryCtaHref="/pricing"

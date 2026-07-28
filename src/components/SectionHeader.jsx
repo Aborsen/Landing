@@ -13,7 +13,7 @@ import React from 'react';
  *  align      'center' | 'left'                  (default: 'center')
  *  size       'md' | 'lg'                        (default: 'md' — h2 scale; lg = hero/h1 scale)
  *  as         'h1' | 'h2' | 'h3'                 (default: 'h2')
- *  sparkle    boolean — prefix eyebrow with the Lucide Sparkles icon
+ *  (the eyebrow star is drawn by .ins-eyebrow::before — see components/eyebrow.css)
  *  eyebrowVariant  'pill' | 'plain'              (default: 'pill')
  *
  * All other props pass through to the wrapping <div>.
@@ -25,7 +25,6 @@ function SectionHeader({
   align = 'center',
   size = 'md',
   as: Heading = 'h2',
-  sparkle = false,
   eyebrowVariant = 'pill',
   className = '',
   ...rest
@@ -60,11 +59,6 @@ function SectionHeader({
     <div className={className} style={wrapperStyle} {...rest}>
       {eyebrow && (
         <span className={eyebrowClasses}>
-          {sparkle && (
-            <svg className="ins-eyebrow__sparkle" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M12 3v3M12 18v3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M3 12h3M18 12h3M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" />
-            </svg>
-          )}
           {eyebrow}
         </span>
       )}
