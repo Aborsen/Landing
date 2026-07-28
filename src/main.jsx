@@ -10,6 +10,8 @@ import BottomCTA from './components/BottomCTA';
 import CheckIcon from './components/CheckIcon';
 import ComparisonCards from './components/ComparisonCards';
 import RealConnectorIcon from './components/ConnectorIcon';
+import BillingToggle from './components/BillingToggle';
+import { PLANS, DEFAULT_CYCLE, priceFor, standardFor, yearlyTotalFor } from './data/pricing';
 
 /* Single shared IntersectionObserver for all fade-ups.
    Replaces 33 per-component framer-motion `useInView` observers + re-render cascades.
@@ -746,10 +748,10 @@ function HowItWorks() {
   }, []);
   const steps = [
     { n: '01', title: 'Connect your data', desc: 'OAuth or API key. Most connectors live in under 5 minutes — read-only and encrypted.' },
-    { n: '02', title: 'Auto-map your metrics', desc: 'Insightis maps the metrics that matter — MRR, CAC, active users — from 270+ pre-built definitions. Edit anytime.' },
+    { n: '02', title: 'Map your metrics', desc: 'Insightis maps the metrics that matter — MRR, CAC, active users — from 270+ pre-built definitions. Edit anytime.' },
     { n: '03', title: 'Ask in plain English', desc: 'Your team asks questions. Insightis queries the right sources and returns precise answers in seconds.' },
-    { n: '04', title: 'Get instant insights', desc: 'Charts, contributing factors, and follow-up suggestions — with the source behind every figure.' },
-    { n: '05', title: 'Trust every answer', desc: 'Every number links back to its sources and shows the exact SQL behind it, so you can verify the work.' },
+    { n: '04', title: 'Pick your depth', desc: 'Light for quick lookups, Medium for everyday analysis, Pro for the hard questions — chosen per message.' },
+    { n: '05', title: 'Ask the next question', desc: 'Change subject mid-thread. Any connected source, answered on the spot — no filters to re-type.' },
   ];
   return (
     <section id="how-it-works" style={{padding:'100px 0', background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)', position:'relative'}}>
@@ -928,11 +930,8 @@ function Pricing() {
 
 // ─── PRICING SNAPSHOT (launch pack §11) ───
 function PricingSnapshot() {
-  const tiers = [
-    { name: 'Free',    price: '$0',     old: null,     tag: 'For getting started', bullets: ['1 user', '500 AI tokens / month', 'Up to 3 data connectors'] },
-    { name: 'Starter', price: '$9.99',  old: '$19.99', tag: 'For small teams',     bullets: ['Up to 5 users', '5,000 AI tokens / month', 'Unlimited connectors'] },
-    { name: 'Pro',     price: '$19.99', old: '$39.99', tag: 'For growing teams',   popular: true, bullets: ['Unlimited users', '25,000 AI tokens / month', '15-minute data refresh'] },
-  ];
+  // Same plans, prices and toggle as /pricing — see src/data/pricing.js.
+  const [cycle, setCycle] = useState(DEFAULT_CYCLE);
   return (
     <section className="py-24 relative">
       <div className="max-w-7xl mx-auto px-6">
@@ -943,38 +942,50 @@ function PricingSnapshot() {
               <span className="text-[11px] font-medium uppercase tracking-widest text-[var(--ins-text-highlight)]">Pricing</span>
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-[var(--ins-text-heading)] tracking-tight mb-4">Start free. Upgrade when you're ready</h2>
-            <p className="ins-text-body-lg max-w-xl mx-auto">Launch pricing — 50% off standard. No credit card required.</p>
+            <p className="ins-text-body-lg max-w-xl mx-auto">Launch pricing — 50% off. No credit card required.</p>
+          </div>
+        </FadeUp>
+        <FadeUp delay={0.05}>
+          <div className="flex justify-center mb-8">
+            <BillingToggle cycle={cycle} onChange={setCycle} />
           </div>
         </FadeUp>
         <FadeUp delay={0.1}>
           <div className="grid gap-4 md:grid-cols-3 items-stretch">
-            {tiers.map(t => (
+            {PLANS.map(t => (
               <div key={t.name} className="relative flex flex-col rounded-2xl p-6" style={{
                 background: 'var(--ins-surface-card)',
-                border: t.popular ? '1px solid var(--ins-border-brand)' : '1px solid var(--ins-border-default)',
-                boxShadow: t.popular ? 'var(--ins-shadow-glow-brand)' : 'none',
+                border: t.highlight ? '1px solid var(--ins-border-brand)' : '1px solid var(--ins-border-default)',
+                boxShadow: t.highlight ? 'var(--ins-shadow-glow-brand)' : 'none',
               }}>
-                {t.popular && (
+                {t.highlight && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-[10px] font-medium uppercase tracking-wider" style={{background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',color:'var(--ins-text-heading)'}}>
                     Most popular
                   </div>
                 )}
                 <h3 className="text-lg font-semibold text-[var(--ins-text-heading)]">{t.name}</h3>
                 <p className="ins-text-body-sm mb-4">{t.tag}</p>
-                <div className="flex items-baseline gap-2 mb-5">
-                  {t.old && <span className="text-base line-through text-[var(--ins-text-disabled)]">{t.old}</span>}
-                  <span className="text-3xl font-medium text-[var(--ins-text-heading)] tracking-tight">{t.price}</span>
-                  {t.old && <span className="ins-text-body-sm">/mo</span>}
+                <div className="flex items-baseline gap-2 mb-1">
+                  <span className="text-3xl font-medium text-[var(--ins-text-heading)] tracking-tight">
+                    {t.free ? '$0' : `$${priceFor(t, cycle)}`}
+                  </span>
+                  {!t.free && <span className="text-base line-through text-[var(--ins-text-disabled)]">${standardFor(t, cycle)}</span>}
+                  {!t.free && <span className="ins-text-body-sm">/mo</span>}
                 </div>
+                {/* always rendered, hidden when it does not apply — reserves its own height
+                    so switching cycle never reflows the card (see the same note in pricing.jsx) */}
+                <p className="ins-text-body-sm mb-5" style={{visibility:(!t.free && cycle==='yearly')?'visible':'hidden'}}>
+                  {t.free ? ' ' : `billed annually · $${yearlyTotalFor(t).toFixed(2)}/yr`}
+                </p>
                 <ul className="flex flex-col gap-2 mb-6">
-                  {t.bullets.map(b => (
+                  {t.features.map(b => (
                     <li key={b} className="flex items-center gap-2 text-sm text-[var(--ins-text-body)]">
                       <CheckIcon size={13} color="var(--ins-text-highlight)" />{b}
                     </li>
                   ))}
                 </ul>
                 <div className="mt-auto">
-                  <Button as="a" href="/auth/sign-up/" variant={t.popular ? 'primary' : 'secondary'} size="md" style={{width:'100%',justifyContent:'center'}}>
+                  <Button as="a" href="/auth/sign-up/" variant={t.highlight ? 'primary' : 'secondary'} size="md" style={{width:'100%',justifyContent:'center'}}>
                     Start for free
                   </Button>
                 </div>

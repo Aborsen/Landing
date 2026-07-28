@@ -9,6 +9,8 @@ import BottomCTA from '../components/BottomCTA';
 import FAQAccordion from '../components/FAQAccordion';
 import SectionHeader from '../components/SectionHeader';
 import CheckIcon from '../components/CheckIcon';
+import BillingToggle from '../components/BillingToggle';
+import { PLANS, DEFAULT_CYCLE, priceFor, standardFor, yearlyTotalFor, badgeFor } from '../data/pricing';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -34,117 +36,12 @@ function PricingHero() {
 }
 
 /* ── PRICING CARDS ── */
-
-// 20% discount when paying yearly. Per-month-equivalent price = monthly * (1 - YEARLY_DISCOUNT).
-const YEARLY_DISCOUNT = 0.20;
-
-function BillingToggle({ cycle, onChange }) {
-  const segment = (label, value) => {
-    const active = cycle === value;
-    return (
-      <button
-        type="button"
-        role="tab"
-        aria-selected={active}
-        onClick={() => onChange(value)}
-        style={{
-          padding: '9px 18px',
-          borderRadius: '999px',
-          border: 'none',
-          background: active ? 'var(--ins-surface-elevated)' : 'transparent',
-          color: active ? 'var(--ins-text-heading)' : 'var(--ins-text-body)',
-          fontSize: 'var(--ins-font-size-14)',
-          fontWeight: 500,
-          fontFamily: 'var(--ins-font-family-sans)',
-          cursor: 'pointer',
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: 'var(--ins-size-2)',
-          transition: 'background-color 180ms, color 180ms',
-        }}
-      >
-        {label}
-      </button>
-    );
-  };
-  return (
-    <div role="tablist" aria-label="Billing cycle" style={{
-      display: 'inline-flex',
-      padding: 'var(--ins-size-1)',
-      background: 'var(--ins-surface-card)',
-      border: '1px solid var(--ins-border-default)',
-      borderRadius: '999px',
-      gap: 'var(--ins-size-1)',
-    }}>
-      {segment('Yearly', 'yearly')}
-      {segment('Monthly', 'monthly')}
-    </div>
-  );
-}
+// Plans, prices and the cycle toggle all come from src/data/pricing.js.
 
 function PricingCards() {
-  const [cycle, setCycle] = useState('monthly');
+  const [cycle, setCycle] = useState(DEFAULT_CYCLE);
 
-  const plans = [
-    {
-      name:'Free',
-      tag:'For getting started',
-      price:0,
-      cta:'Start for free',
-      ctaStyle:'outline',
-      features:[
-        '1 user',
-        '500 AI tokens / month',
-        'Up to 3 data connectors',
-        '24-hour data refresh',
-        'Community support',
-      ],
-    },
-    {
-      name:'Starter',
-      tag:'For small teams',
-      price:9.99,
-      originalPrice:19.99,
-      discount:'50% OFF',
-      cta:'Start for free',
-      ctaStyle:'outline',
-      features:[
-        'Up to 5 users',
-        '5,000 AI tokens / month',
-        'Unlimited data connectors',
-        '1-hour data refresh',
-        'Custom semantic layer',
-        'Priority email support',
-      ],
-    },
-    {
-      name:'Pro',
-      tag:'For growing teams',
-      price:19.99,
-      originalPrice:39.99,
-      discount:'50% OFF',
-      cta:'Start for free',
-      ctaStyle:'primary',
-      highlight:true,
-      features:[
-        'Unlimited users',
-        '25,000 AI tokens / month',
-        'Unlimited data connectors',
-        '15-minute data refresh',
-        'Full semantic-layer governance',
-        'Email + live-chat support',
-      ],
-    },
-  ];
-
-  const displayPrice = (monthly) => {
-    if (cycle === 'monthly') return monthly;
-    // Yearly: per-month-equivalent at YEARLY_DISCOUNT off.
-    return Math.round(monthly * (1 - YEARLY_DISCOUNT) * 100) / 100;
-  };
-  // Compute yearly total from the rounded monthly so the displayed math
-  // is consistent ($7.99 × 12 = $95.88, not $95.90 from raw multiplication).
-  const yearlyTotal = (monthly) => Math.round(displayPrice(monthly) * 12 * 100) / 100;
+  const plans = PLANS;
 
   return (
     <section style={{padding:'24px 0 80px'}}>
@@ -171,34 +68,29 @@ function PricingCards() {
                 )}
                 <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)',marginBottom:'var(--ins-size-1)'}}>
                   <h3 style={{fontSize:'var(--ins-font-size-22)',fontWeight:600,color:'var(--ins-text-heading)',letterSpacing:'-0.02em',margin:0}}>{plan.name}</h3>
-                  {plan.discount && (
-                    <span style={{display:'inline-flex',alignItems:'center',padding:'2px 8px',background:'var(--ins-surface-brand-tint)',border:'1px solid var(--ins-border-brand)',borderRadius:'var(--ins-radius-sm)',fontSize:'10px',fontFamily:'var(--ins-font-family-mono)',color:'var(--ins-text-highlight)',fontWeight:600,letterSpacing:'.04em'}}>{plan.discount}</span>
+                  {badgeFor(plan) && (
+                    <span style={{display:'inline-flex',alignItems:'center',padding:'2px 8px',background:'var(--ins-surface-brand-tint)',border:'1px solid var(--ins-border-brand)',borderRadius:'var(--ins-radius-sm)',fontSize:'10px',fontFamily:'var(--ins-font-family-mono)',color:'var(--ins-text-highlight)',fontWeight:600,letterSpacing:'.04em'}}>{badgeFor(plan)}</span>
                   )}
                 </div>
                 <p className="ins-text-body" style={{marginBottom:'var(--ins-size-3)'}}>{plan.tag}</p>
-                {/* min-height = tallest price state (yearly: price + per-user + billed-annually
-                    lines) so CTAs stay aligned across cards in both billing cycles. */}
-                <div style={{marginBottom:'var(--ins-size-4)',minHeight:'96px'}}>
-                  {plan.price === 0 ? (
-                    <div>
-                      <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-0.03em'}}>$0</span>
-                    </div>
-                  ) : (
-                    <div>
-                      <div style={{display:'flex',alignItems:'baseline',gap:'10px',flexWrap:'wrap'}}>
-                        <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-0.03em'}}>${displayPrice(plan.price)}</span>
-                        {plan.originalPrice && (
-                          <span style={{fontSize:'var(--ins-font-size-18)',color:'var(--ins-text-inactive)',textDecoration:'line-through'}}>${plan.originalPrice}</span>
-                        )}
-                      </div>
-                      <div style={{fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)',marginTop:'var(--ins-size-half)'}}>per user / month</div>
-                      {cycle === 'yearly' && (
-                        <div style={{fontSize:'var(--ins-font-size-12)',color:'var(--ins-text-inactive)',marginTop:'var(--ins-size-half)'}}>
-                          billed annually · ${yearlyTotal(plan.price).toFixed(2)}/yr
-                        </div>
-                      )}
-                    </div>
-                  )}
+                {/* Every card renders the same three rows — price, per-user, billed-annually —
+                    and hides the ones that do not apply instead of omitting them. That keeps
+                    the block's height identical across plans AND billing cycles, so nothing
+                    reflows when you switch and the CTAs stay on one baseline. A min-height
+                    magic number used to do this job and was 7px short of the yearly state. */}
+                <div style={{marginBottom:'var(--ins-size-4)'}}>
+                  <div style={{display:'flex',alignItems:'baseline',gap:'10px',flexWrap:'wrap'}}>
+                    <span style={{fontSize:'40px',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-0.03em'}}>
+                      {plan.free ? '$0' : `$${priceFor(plan, cycle)}`}
+                    </span>
+                    <span style={{fontSize:'var(--ins-font-size-18)',color:'var(--ins-text-inactive)',textDecoration:'line-through',visibility:plan.free?'hidden':'visible'}}>
+                      {plan.free ? ' ' : `$${standardFor(plan, cycle)}`}
+                    </span>
+                  </div>
+                  <div style={{fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)',marginTop:'var(--ins-size-half)',visibility:plan.free?'hidden':'visible'}}>per user / month</div>
+                  <div style={{fontSize:'var(--ins-font-size-12)',color:'var(--ins-text-inactive)',marginTop:'var(--ins-size-half)',visibility:(!plan.free && cycle==='yearly')?'visible':'hidden'}}>
+                    {plan.free ? ' ' : `billed annually · $${yearlyTotalFor(plan).toFixed(2)}/yr`}
+                  </div>
                 </div>
                 <Button
                   as="a"
@@ -240,19 +132,21 @@ function PricingCards() {
 
 /* ── FEATURE COMPARISON ── */
 function FeatureComparison() {
+  // Rows that restate a plan limit read it from src/data/pricing.js, so the table
+  // cannot contradict the cards above it.
   const sections = [
     {
       title: 'AI & Analytics',
       rows: [
         { label:'AI Chat',                          values:[true, true, true] },
         { label:'Insightis AI model',               values:[true, true, true] },
-        { label:'AI tokens',                        values:['500 / mo', '5,000 / mo', '25,000 / mo'] },
+        { label:'AI tokens',                        values:PLANS.map(p => p.limits.tokens) },
       ]
     },
     {
       title: 'Data connections',
       rows: [
-        { label:'Data connectors',                  values:['Up to 3', 'Unlimited', 'Unlimited'] },
+        { label:'Data connectors',                  values:PLANS.map(p => p.limits.connectors) },
         { label:'Several sources at the same time', values:[false, true, true] },
         { label:'Data upload (CSV, Excel)',         values:[true, true, true] },
       ]
@@ -268,7 +162,7 @@ function FeatureComparison() {
     {
       title: 'Support & security',
       rows: [
-        { label:'Support',                  values:['Community', 'Priority email', 'Email + live chat'] },
+        { label:'Support',                  values:PLANS.map(p => p.limits.support) },
         { label:'SLA',                      values:[false, false, '99.5%'] },
         { label:'Data encryption',          values:[true, true, true] },
       ]
@@ -286,7 +180,7 @@ function FeatureComparison() {
           {/* Column headers */}
           <div style={{display:'grid',gridTemplateColumns:cols,padding:'18px 20px',background:'var(--ins-color-white-a-03)',borderBottom:'1px solid var(--ins-border-default)'}}>
             <span style={{fontSize:'var(--ins-font-size-12)',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)'}}>Feature</span>
-            {['Free','Starter','Pro'].map(p => (
+            {PLANS.map(({ name: p }) => (
               <span key={p} style={{textAlign:'center',fontSize:'var(--ins-font-size-14)',fontWeight:600,color:'var(--ins-text-heading)'}}>{p}</span>
             ))}
           </div>
