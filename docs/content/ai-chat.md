@@ -20,11 +20,11 @@ If your question is ambiguous — for example, a metric name that maps to two di
 
 Type your question into the message box at the bottom of the chat and press **Send** (or hit Enter). Insightis interprets the request, works through it against your data, and replies in the thread with the result — a chart, the underlying numbers, and a short written summary. For a multi-step analysis it briefly outlines its plan first, so you can confirm the approach before it runs.
 
-![An answered question in AI Chat — the figures, a written summary, and the chart Insightis generated](/assets/docs/chat-basic-message.png)
+![An answered question in AI Chat — how Insightis read the question, a Key numbers table, what stands out, and the chart it generated](/assets/docs/chat-basic-message.png)
 
-1. Type a question in plain English — for example, *"What is total revenue by region?"*
-2. Press **Send**. Insightis outlines the steps it will take, then runs the analysis once you confirm.
-3. Read the answer — the figures, a plain-language summary, and any chart it generated. Generated charts and files are saved to your workspace so you can reuse them later.
+1. Type a question in plain English — for example, *"show me a trend for @avg_lost_deal_size by month"*. Typing `@` brings up your [metrics](/docs/metrics), so an answer is grounded in the definition you already agreed on.
+2. Press **Send**. Insightis states how it interpreted the question, then works through it — you can stop it at any point while it runs.
+3. Read the answer — a **Key numbers** table, a short *What stands out* summary, and any chart it generated. Generated charts and files are saved to your workspace so you can reuse them later.
 
 ## Asking follow-up questions
 
@@ -71,10 +71,12 @@ Use the **Connections** menu in the message box to control which connected data 
 Insightis offers three models, switchable from the message box at any point in a conversation:
 
 - **Insightis Light** — fast, everyday answers; best for quick lookups and follow-ups.
-- **Insightis Standard** — the balanced choice for most analytical work.
-- **Insightis Ultra** — the deepest reasoning, for complex multi-step analyses.
+- **Insightis Medium** — the balanced choice for most analytical work.
+- **Insightis Pro** — the deepest reasoning, for complex multi-step analyses.
 
 Open the model menu in the message box — it shows the model currently in use — and pick the one that fits your question. The choice applies to your next message, so you can start on Light and switch to a deeper model mid-conversation if an answer needs more analysis. See [AI Models](/docs/ai-models) for what each one is tuned for.
+
+![The model menu open in the message box, listing Insightis Light, Medium, and Pro](/assets/docs/chat-model-select.png)
 
 ## Writing effective questions
 
