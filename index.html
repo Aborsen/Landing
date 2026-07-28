@@ -113,109 +113,71 @@
               <path d="M2 2l10.5 5.5-4.5 1.5-2 5L2 2z" fill="white" stroke="#111" stroke-width=".8" stroke-linejoin="round"/>
             </svg>
 
-            <!-- SUB-SCREEN A: Connector list -->
-            <div id="p0s1" style="padding:var(--ins-size-3);display:flex;flex-direction:column;gap:9px;transition:opacity .35s ease,transform .35s ease">
-              <div style="font-family:var(--ins-font-family-mono);font-size:8.5px;color:var(--ins-text-inactive);letter-spacing:.1em;text-transform:uppercase">Recently Added</div>
-              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
-                <!-- Salesforce -->
-                <div style="background:var(--ins-color-white-a-06);border:1px solid var(--ins-border-default);border-radius:var(--ins-radius-lg);padding:9px">
-                  <div style="display:flex;align-items:center;gap:6px;margin-bottom:7px">
-                    <span class="ins-connector-logo salesforce" style="--ins-connector-size:20px;background:var(--ins-color-white-a-04);border-radius:5px"></span>
-                    <div style="font-size:var(--ins-font-size-11);font-weight:500;color:var(--ins-text-heading);flex:1">Salesforce</div>
-                    <div style="font-size:8px;font-weight:500;color:var(--ins-text-highlight);background:rgba(10,152,150,.12);border:1px solid rgba(10,152,150,.25);padding:1px 5px;border-radius:3px;font-family:var(--ins-font-family-mono)">Synced</div>
-                  </div>
-                  <div style="display:flex;justify-content:space-between;margin-bottom:var(--ins-size-half)"><span style="font-size:9.5px;color:var(--ins-text-inactive)">Last Sync</span><span style="font-size:9.5px;color:var(--ins-text-body);font-family:var(--ins-font-family-mono)">2m ago</span></div>
-                  <div style="display:flex;justify-content:space-between"><span style="font-size:9.5px;color:var(--ins-text-inactive)">Records</span><span style="font-size:9.5px;color:var(--ins-text-body);font-family:var(--ins-font-family-mono)">38,201</span></div>
-                </div>
-                <!-- Google Ads -->
-                <div style="background:var(--ins-color-white-a-06);border:1px solid var(--ins-border-default);border-radius:var(--ins-radius-lg);padding:9px">
-                  <div style="display:flex;align-items:center;gap:6px;margin-bottom:7px">
-                    <span class="ins-connector-logo googleads" style="--ins-connector-size:20px;background:var(--ins-color-white-a-04);border-radius:5px"></span>
-                    <div style="font-size:var(--ins-font-size-11);font-weight:500;color:var(--ins-text-heading);flex:1">Google Ads</div>
-                    <div style="font-size:8px;font-weight:500;color:var(--ins-text-highlight);background:rgba(10,152,150,.12);border:1px solid rgba(10,152,150,.25);padding:1px 5px;border-radius:3px;font-family:var(--ins-font-family-mono)">Synced</div>
-                  </div>
-                  <div style="display:flex;justify-content:space-between;margin-bottom:var(--ins-size-half)"><span style="font-size:9.5px;color:var(--ins-text-inactive)">Last Sync</span><span style="font-size:9.5px;color:var(--ins-text-body);font-family:var(--ins-font-family-mono)">5m ago</span></div>
-                  <div style="display:flex;justify-content:space-between"><span style="font-size:9.5px;color:var(--ins-text-inactive)">Records</span><span style="font-size:9.5px;color:var(--ins-text-body);font-family:var(--ins-font-family-mono)">9,412</span></div>
-                </div>
-                <!-- ClickUp -->
-                <div style="background:var(--ins-color-white-a-06);border:1px solid var(--ins-border-default);border-radius:var(--ins-radius-lg);padding:9px">
-                  <div style="display:flex;align-items:center;gap:6px;margin-bottom:7px">
-                    <span class="ins-connector-logo hbr_clickup" style="--ins-connector-size:20px;background:var(--ins-color-white-a-04);border-radius:5px"></span>
-                    <div style="font-size:var(--ins-font-size-11);font-weight:500;color:var(--ins-text-heading);flex:1">ClickUp</div>
-                    <div style="font-size:8px;font-weight:500;color:var(--ins-text-highlight);background:rgba(10,152,150,.12);border:1px solid rgba(10,152,150,.25);padding:1px 5px;border-radius:3px;font-family:var(--ins-font-family-mono)">Synced</div>
-                  </div>
-                  <div style="display:flex;justify-content:space-between;margin-bottom:var(--ins-size-half)"><span style="font-size:9.5px;color:var(--ins-text-inactive)">Last Sync</span><span style="font-size:9.5px;color:var(--ins-text-body);font-family:var(--ins-font-family-mono)">12m ago</span></div>
-                  <div style="display:flex;justify-content:space-between"><span style="font-size:9.5px;color:var(--ins-text-inactive)">Records</span><span style="font-size:9.5px;color:var(--ins-text-body);font-family:var(--ins-font-family-mono)">6,347</span></div>
-                </div>
+            <!-- SUB-SCREEN A: Data Sources catalog (mirrors the app's /data-sources) -->
+            <div id="p0s1" style="padding:var(--ins-size-3);display:flex;flex-direction:column;gap:8px;height:100%;transition:opacity .35s ease,transform .35s ease">
+              <div class="ds-title">Data Sources</div>
+            
+              <div class="ds-tabs">
+                <div class="ds-tab active">Catalog</div>
+                <div class="ds-tab">My Connections</div>
               </div>
-
-              <div style="font-family:var(--ins-font-family-mono);font-size:8.5px;color:var(--ins-text-inactive);letter-spacing:.1em;text-transform:uppercase">Connector Catalog</div>
-              <div style="display:flex;gap:5px;flex-wrap:wrap">
-                <div style="padding:3px 9px;border-radius:var(--ins-radius-pill);font-size:10px;font-weight:500;background:var(--ins-color-teal-500);color:#fff;border:1px solid var(--ins-color-teal-500)">All 150+</div>
-                <div style="padding:3px 9px;border-radius:var(--ins-radius-pill);font-size:10px;color:var(--ins-text-inactive);border:1px solid var(--ins-border-default)">Marketing</div>
-                <div style="padding:3px 9px;border-radius:var(--ins-radius-pill);font-size:10px;color:var(--ins-text-inactive);border:1px solid var(--ins-border-default)">RevOps</div>
-                <div style="padding:3px 9px;border-radius:var(--ins-radius-pill);font-size:10px;color:var(--ins-text-inactive);border:1px solid var(--ins-border-default)">Finance</div>
+            
+              <div class="ds-search">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                Search data sources…
               </div>
-              <div style="position:relative">
-                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px">
-                  <!-- HubSpot — hover target -->
-                  <div id="p0hubspot" style="display:flex;align-items:center;gap:7px;padding:8px 9px;background:var(--ins-color-white-a-06);border:1px solid var(--ins-border-default);border-radius:var(--ins-radius-md);position:relative;overflow:hidden;cursor:pointer;transition:all .2s" onclick="p0go(2)">
-                    <div id="p0hubspot-bg" style="position:absolute;inset:0;background:rgba(0,0,0,0);transition:background .3s;border-radius:var(--ins-radius-md);pointer-events:none;z-index:2"></div>
-                    <span class="ins-connector-logo hubspot" style="--ins-connector-size:22px;background:var(--ins-color-white-a-04);border-radius:5px"></span>
-                    <div><div style="font-size:10.5px;font-weight:500;color:var(--ins-text-heading)">HubSpot</div><div style="font-size:9px;color:var(--ins-text-inactive)">CRM &amp; Marketing</div></div>
-                    <div id="p0hubspot-btn" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s;z-index:3">
-                      <div style="padding:4px 10px;background:var(--ins-status-success-fg);border-radius:var(--ins-radius-pill);font-size:9.5px;font-weight:500;color:#fff;box-shadow:0 0 10px rgba(34,197,94,.4)">Connect</div>
-                    </div>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:7px;padding:8px 9px;background:var(--ins-color-white-a-06);border:1px solid rgba(10,152,150,.2);border-radius:var(--ins-radius-md);position:relative">
-                    <span class="ins-connector-logo salesforce" style="--ins-connector-size:22px;background:var(--ins-color-white-a-04);border-radius:5px"></span>
-                    <div><div style="font-size:10.5px;font-weight:500;color:var(--ins-text-heading)">Salesforce</div><div style="font-size:9px;color:var(--ins-text-inactive)">CRM</div></div>
-                    <div style="position:absolute;right:7px;top:50%;transform:translateY(-50%);width:12px;height:12px;border-radius:50%;background:rgba(10,152,150,.15);border:1px solid rgba(10,152,150,.4);display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 8 8" fill="none" width="7" height="7"><path d="M1.5 4l2 2L6.5 2" stroke="rgba(14,196,193,.9)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:7px;padding:8px 9px;background:var(--ins-color-white-a-06);border:1px solid rgba(10,152,150,.2);border-radius:var(--ins-radius-md);position:relative">
-                    <span class="ins-connector-logo googleads" style="--ins-connector-size:22px;background:var(--ins-color-white-a-04);border-radius:5px"></span>
-                    <div><div style="font-size:10.5px;font-weight:500;color:var(--ins-text-heading)">Google Ads</div><div style="font-size:9px;color:var(--ins-text-inactive)">Advertising</div></div>
-                    <div style="position:absolute;right:7px;top:50%;transform:translateY(-50%);width:12px;height:12px;border-radius:50%;background:rgba(10,152,150,.15);border:1px solid rgba(10,152,150,.4);display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 8 8" fill="none" width="7" height="7"><path d="M1.5 4l2 2L6.5 2" stroke="rgba(14,196,193,.9)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:7px;padding:8px 9px;background:var(--ins-color-white-a-06);border:1px solid var(--ins-border-default);border-radius:var(--ins-radius-md)">
-                    <span class="ins-connector-logo shopify" style="--ins-connector-size:22px;background:var(--ins-color-white-a-04);border-radius:5px"></span>
-                    <div><div style="font-size:10.5px;font-weight:500;color:var(--ins-text-heading)">Shopify</div><div style="font-size:9px;color:var(--ins-text-inactive)">E-commerce</div></div>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:7px;padding:8px 9px;background:var(--ins-color-white-a-06);border:1px solid var(--ins-border-default);border-radius:var(--ins-radius-md)">
-                    <span class="ins-connector-logo postgresql" style="--ins-connector-size:22px;background:var(--ins-color-white-a-04);border-radius:5px"></span>
-                    <div><div style="font-size:10.5px;font-weight:500;color:var(--ins-text-heading)">PostgreSQL</div><div style="font-size:9px;color:var(--ins-text-inactive)">Database</div></div>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:7px;padding:8px 9px;background:var(--ins-color-white-a-06);border:1px solid var(--ins-border-default);border-radius:var(--ins-radius-md)">
-                    <span class="ins-connector-logo quickbooks" style="--ins-connector-size:22px;background:var(--ins-color-white-a-04);border-radius:5px"></span>
-                    <div><div style="font-size:10.5px;font-weight:500;color:var(--ins-text-heading)">QuickBooks</div><div style="font-size:9px;color:var(--ins-text-inactive)">Accounting</div></div>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:7px;padding:8px 9px;background:var(--ins-color-white-a-06);border:1px solid var(--ins-border-default);border-radius:var(--ins-radius-md)">
-                    <span class="ins-connector-logo googleanalytics" style="--ins-connector-size:22px;background:var(--ins-color-white-a-04);border-radius:5px"></span>
-                    <div><div style="font-size:10.5px;font-weight:500;color:var(--ins-text-heading)">Google Analytics</div><div style="font-size:9px;color:var(--ins-text-inactive)">Analytics</div></div>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:7px;padding:8px 9px;background:var(--ins-color-white-a-06);border:1px solid var(--ins-border-default);border-radius:var(--ins-radius-md)">
-                    <span class="ins-connector-logo slack" style="--ins-connector-size:22px;background:var(--ins-color-white-a-04);border-radius:5px"></span>
-                    <div><div style="font-size:10.5px;font-weight:500;color:var(--ins-text-heading)">Slack</div><div style="font-size:9px;color:var(--ins-text-inactive)">Messaging</div></div>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:7px;padding:8px 9px;background:var(--ins-color-white-a-06);border:1px solid var(--ins-border-default);border-radius:var(--ins-radius-md)">
-                    <span class="ins-connector-logo jira" style="--ins-connector-size:22px;background:var(--ins-color-white-a-04);border-radius:5px"></span>
-                    <div><div style="font-size:10.5px;font-weight:500;color:var(--ins-text-heading)">Jira</div><div style="font-size:9px;color:var(--ins-text-inactive)">Project Mgmt</div></div>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:7px;padding:8px 9px;background:var(--ins-color-white-a-06);border:1px solid var(--ins-border-default);border-radius:var(--ins-radius-md)">
-                    <span class="ins-connector-logo bigquery" style="--ins-connector-size:22px;background:var(--ins-color-white-a-04);border-radius:5px"></span>
-                    <div><div style="font-size:10.5px;font-weight:500;color:var(--ins-text-heading)">BigQuery</div><div style="font-size:9px;color:var(--ins-text-inactive)">Data Warehouse</div></div>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:7px;padding:8px 9px;background:var(--ins-color-white-a-06);border:1px solid var(--ins-border-default);border-radius:var(--ins-radius-md)">
-                    <span class="ins-connector-logo snowflake" style="--ins-connector-size:22px;background:var(--ins-color-white-a-04);border-radius:5px"></span>
-                    <div><div style="font-size:10.5px;font-weight:500;color:var(--ins-text-heading)">Snowflake</div><div style="font-size:9px;color:var(--ins-text-inactive)">Data Warehouse</div></div>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:7px;padding:8px 9px;background:var(--ins-color-white-a-06);border:1px solid var(--ins-border-default);border-radius:var(--ins-radius-md)">
-                    <span class="ins-connector-logo redshift" style="--ins-connector-size:22px;background:var(--ins-color-white-a-04);border-radius:5px"></span>
-                    <div><div style="font-size:10.5px;font-weight:500;color:var(--ins-text-heading)">Redshift</div><div style="font-size:9px;color:var(--ins-text-inactive)">Data Warehouse</div></div>
-                  </div>
+            
+              <div class="ds-pills">
+                            <div class="ds-pill active">All <i>203</i></div>
+                            <div class="ds-pill">Business Intelligence <i>5</i></div>
+                            <div class="ds-pill">Commerce <i>35</i></div>
+                            <div class="ds-pill">Communication <i>12</i></div>
+                            <div class="ds-pill">IT Operations <i>20</i></div>
+                            <div class="ds-pill">Marketing <i>29</i></div>
+                            <div class="ds-pill">Productivity <i>34</i></div>
+                            <div class="ds-pill">Sales & CRM <i>38</i></div>
+                            <div class="ds-pill">Storage & Files <i>1</i></div>
+                            <div class="ds-pill">Support <i>15</i></div>
+                            <div class="ds-pill">Other <i>14</i></div>
+              </div>
+            
+              <div style="position:relative;flex:1;min-height:0">
+                <div class="ds-grid">
+                            <!-- HubSpot — the demo hovers this card, then clicks its Connect pill -->
+                            <div class="ds-card" id="p0hubspot" style="cursor:pointer" onclick="p0go(2)">
+                              <div id="p0hubspot-bg" style="position:absolute;inset:0;background:rgba(0,0,0,0);transition:background .3s"></div>
+                              <span class="ins-connector-logo hubspot" style="--ins-connector-size:22px"></span>
+                              <div class="ds-card-nm">HubSpot</div>
+                              <div id="p0hubspot-btn" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s">
+                                <span style="padding:3px 11px;border-radius:var(--ins-radius-pill);background:var(--ins-button-primary-bg);color:var(--ins-button-primary-fg);font-size:9px;font-weight:500">Connect</span>
+                              </div>
+                            </div>
+                            <div class="ds-card"><span class="ins-connector-logo salesforce" style="--ins-connector-size:22px"></span><div class="ds-card-nm">Salesforce</div></div>
+                            <div class="ds-card"><span class="ins-connector-logo googleads" style="--ins-connector-size:22px"></span><div class="ds-card-nm">Google Ads</div></div>
+                            <div class="ds-card"><span class="ins-connector-logo shopify" style="--ins-connector-size:22px"></span><div class="ds-card-nm">Shopify</div></div>
+                            <div class="ds-card"><span class="ins-connector-logo stripe" style="--ins-connector-size:22px"></span><div class="ds-card-nm">Stripe</div></div>
+                            <div class="ds-card"><span class="ins-connector-logo slack" style="--ins-connector-size:22px"></span><div class="ds-card-nm">Slack</div></div>
+                            <div class="ds-card"><span class="ins-connector-logo postgresql" style="--ins-connector-size:22px"></span><div class="ds-card-nm">PostgreSQL</div></div>
+                            <div class="ds-card"><span class="ins-connector-logo snowflake" style="--ins-connector-size:22px"></span><div class="ds-card-nm">Snowflake</div></div>
+                            <div class="ds-card"><span class="ins-connector-logo redshift" style="--ins-connector-size:22px"></span><div class="ds-card-nm">Redshift</div></div>
+                            <div class="ds-card"><span class="ins-connector-logo mongodb" style="--ins-connector-size:22px"></span><div class="ds-card-nm">MongoDB</div></div>
+                            <div class="ds-card"><span class="ins-connector-logo jira" style="--ins-connector-size:22px"></span><div class="ds-card-nm">Jira</div></div>
+                            <div class="ds-card"><span class="ins-connector-logo hbr_clickup" style="--ins-connector-size:22px"></span><div class="ds-card-nm">ClickUp</div></div>
+                            <div class="ds-card"><span class="ins-connector-logo quickbooks" style="--ins-connector-size:22px"></span><div class="ds-card-nm">QuickBooks</div></div>
+                            <div class="ds-card"><span class="ins-connector-logo googleanalytics" style="--ins-connector-size:22px"></span><div class="ds-card-nm">Google Analytics</div></div>
+                            <div class="ds-card"><span class="ins-connector-logo amplitude" style="--ins-connector-size:22px"></span><div class="ds-card-nm">Amplitude</div></div>
+                            <div class="ds-card"><span class="ins-connector-logo facebookads" style="--ins-connector-size:22px"></span><div class="ds-card-nm">Facebook Ads</div></div>
+                            <div class="ds-card"><span class="ins-connector-logo linkedinads" style="--ins-connector-size:22px"></span><div class="ds-card-nm">LinkedIn Ads</div></div>
+                            <div class="ds-card"><span class="ins-connector-logo databricks" style="--ins-connector-size:22px"></span><div class="ds-card-nm">Databricks</div></div>
+                            <div class="ds-card"><span class="ins-connector-logo mysql" style="--ins-connector-size:22px"></span><div class="ds-card-nm">MySQL</div></div>
+                            <div class="ds-card"><span class="ins-connector-logo googlesheets" style="--ins-connector-size:22px"></span><div class="ds-card-nm">Google Sheets</div></div>
+                            <div class="ds-card"><span class="ins-connector-logo asana" style="--ins-connector-size:22px"></span><div class="ds-card-nm">Asana</div></div>
+                            <div class="ds-card"><span class="ins-connector-logo airtable" style="--ins-connector-size:22px"></span><div class="ds-card-nm">Airtable</div></div>
+                            <div class="ds-card"><span class="ins-connector-logo xero" style="--ins-connector-size:22px"></span><div class="ds-card-nm">Xero</div></div>
+                            <div class="ds-card"><span class="ins-connector-logo intercom" style="--ins-connector-size:22px"></span><div class="ds-card-nm">Intercom</div></div>
                 </div>
-                <!-- Fade overlay to suggest more content below -->
-                <div style="position:absolute;bottom:0;left:0;right:0;height:55px;background:linear-gradient(to bottom,transparent,rgba(10,14,19,.98));pointer-events:none"></div>
+                <!-- fade at the foot of the grid: the real catalog scrolls on past 203 sources -->
+                <div style="position:absolute;left:0;right:0;bottom:0;height:34px;background:linear-gradient(to top,var(--ins-color-gray-900),transparent);pointer-events:none"></div>
               </div>
             </div><!-- /p0s1 -->
 
@@ -619,58 +581,58 @@
 
                 <!-- User message -->
                 <div class="ch-u" id="p2msgUser" style="display:none">
-                  <div class="ch-u-bubble">show me a trend for <span class="ch-tok">@avg_lost_deal_size</span> by month</div>
+                  <div class="ch-u-bubble">show me <span class="ch-tok">@return_on_ad_spend</span> by month</div>
                 </div>
 
                 <!-- Assistant — working -->
                 <div class="ch-a" id="p2working" style="display:none">
                   <div class="ch-toolrow"><svg width="9" height="9" viewBox="0 0 14 14" fill="none"><path d="M9.8 1.4a3.4 3.4 0 00-3.1 4.7L1.6 11.2a1.2 1.2 0 001.7 1.7l5.1-5.1a3.4 3.4 0 104-6.9l-1.7 1.7-1.4-1.4 1.7-1.7a3.4 3.4 0 00-1.2-.1z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg><span>Tool calls</span><svg width="4" height="7" viewBox="0 0 4 7" fill="none"><path d="M.8.8L3 3.5.8 6.2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></div>
-                  <div class="ch-p"><strong>Interpretation:</strong> I'll build a month-by-month trend of the average lost deal size using the Deals table and the metric's lost-deal definition.</div>
+                  <div class="ch-p"><strong>Interpretation:</strong> I'll pull monthly conversion value and ad spend from Google Ads and divide them using the Return on ad spend definition.</div>
                   <div class="ch-toolrow"><svg width="9" height="9" viewBox="0 0 14 14" fill="none"><path d="M9.8 1.4a3.4 3.4 0 00-3.1 4.7L1.6 11.2a1.2 1.2 0 001.7 1.7l5.1-5.1a3.4 3.4 0 104-6.9l-1.7 1.7-1.4-1.4 1.7-1.7a3.4 3.4 0 00-1.2-.1z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg><span>Tool calls</span><svg width="7" height="4" viewBox="0 0 7 4" fill="none"><path d="M.8.8L3.5 3 6.2.8" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></div>
-                  <div class="ch-toolcall"><span class="ch-spin"></span><code>Zoho_CRM__Execute</code><svg width="4" height="7" viewBox="0 0 4 7" fill="none"><path d="M.8.8L3 3.5.8 6.2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></div>
+                  <div class="ch-toolcall"><span class="ch-spin"></span><code>Google_Ads__Execute</code><svg width="4" height="7" viewBox="0 0 4 7" fill="none"><path d="M.8.8L3 3.5.8 6.2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></div>
                   <div class="ch-think">Thinking…</div>
                 </div>
 
                 <!-- Assistant — the answer. The chart is part of the reply body, and the
                      whole reply is sized to fit the thread without scrolling. -->
                 <div class="ch-a" id="p2reply" style="display:none">
-                  <div class="ch-toolrow"><svg width="9" height="9" viewBox="0 0 14 14" fill="none"><path d="M9.8 1.4a3.4 3.4 0 00-3.1 4.7L1.6 11.2a1.2 1.2 0 001.7 1.7l5.1-5.1a3.4 3.4 0 104-6.9l-1.7 1.7-1.4-1.4 1.7-1.7a3.4 3.4 0 00-1.2-.1z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg><span>Tool calls</span><svg width="4" height="7" viewBox="0 0 4 7" fill="none"><path d="M.8.8L3 3.5.8 6.2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg><span class="ch-toolsep">·</span><span>Plot lost deal trend</span><svg width="4" height="7" viewBox="0 0 4 7" fill="none"><path d="M.8.8L3 3.5.8 6.2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></div>
+                  <div class="ch-toolrow"><svg width="9" height="9" viewBox="0 0 14 14" fill="none"><path d="M9.8 1.4a3.4 3.4 0 00-3.1 4.7L1.6 11.2a1.2 1.2 0 001.7 1.7l5.1-5.1a3.4 3.4 0 104-6.9l-1.7 1.7-1.4-1.4 1.7-1.7a3.4 3.4 0 00-1.2-.1z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg><span>Tool calls</span><svg width="4" height="7" viewBox="0 0 4 7" fill="none"><path d="M.8.8L3 3.5.8 6.2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg><span class="ch-toolsep">·</span><span>Plot return on ad spend</span><svg width="4" height="7" viewBox="0 0 4 7" fill="none"><path d="M.8.8L3 3.5.8 6.2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></div>
 
                   <div class="ch-chart">
                     <div class="ch-chart-hd">
-                      <span class="ch-chart-t">Average Lost Deal Size by Month</span>
-                      <span class="ch-chart-m">Last 12 months · Deals</span>
+                      <span class="ch-chart-t">Return on Ad Spend by Month</span>
+                      <span class="ch-chart-m">Last 12 months · Google Ads</span>
                     </div>
-                      <svg class="ch-chart-svg" viewBox="0 0 830 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Average lost deal size by month, August 2025 to July 2026: high of $2,640 in September, low of $320 in February">
+                      <svg class="ch-chart-svg" viewBox="0 0 830 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Return on ad spend by month, August 2025 to July 2026: high of 5.2× in December, low of 2.2× in February">
                       <defs><linearGradient id="chFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0EC4C1" stop-opacity=".28"/><stop offset="1" stop-color="#0EC4C1" stop-opacity="0"/></linearGradient></defs>
                       <line x1="34" y1="92.0" x2="772" y2="92.0" stroke="rgba(255,255,255,.07)" stroke-width=".8"/>
-                      <text x="780" y="95.0" font-size="8.5" fill="rgba(168,191,200,.6)">$0</text>
+                      <text x="780" y="95.0" font-size="8.5" fill="rgba(168,191,200,.6)">0×</text>
                       <line x1="34" y1="66.0" x2="772" y2="66.0" stroke="rgba(255,255,255,.07)" stroke-width=".8"/>
-                      <text x="780" y="69.0" font-size="8.5" fill="rgba(168,191,200,.6)">$1k</text>
+                      <text x="780" y="69.0" font-size="8.5" fill="rgba(168,191,200,.6)">2×</text>
                       <line x1="34" y1="40.0" x2="772" y2="40.0" stroke="rgba(255,255,255,.07)" stroke-width=".8"/>
-                      <text x="780" y="43.0" font-size="8.5" fill="rgba(168,191,200,.6)">$2k</text>
+                      <text x="780" y="43.0" font-size="8.5" fill="rgba(168,191,200,.6)">4×</text>
                       <line x1="34" y1="14.0" x2="772" y2="14.0" stroke="rgba(255,255,255,.07)" stroke-width=".8"/>
-                      <text x="780" y="17.0" font-size="8.5" fill="rgba(168,191,200,.6)">$3k</text>
-                      <polygon points="34.0,92 34.0,61.3 101.1,23.4 168.2,71.7 235.3,55.3 302.4,78.5 369.5,41.0 436.5,83.7 503.6,52.0 570.7,68.9 637.8,42.6 704.9,75.4 772.0,59.8 772.0,92" fill="url(#chFill)" class="ch-chart-area"/>
-                      <polyline class="ch-chart-line" points="34.0,61.3 101.1,23.4 168.2,71.7 235.3,55.3 302.4,78.5 369.5,41.0 436.5,83.7 503.6,52.0 570.7,68.9 637.8,42.6 704.9,75.4 772.0,59.8" fill="none" stroke="#0EC4C1" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+                      <text x="780" y="17.0" font-size="8.5" fill="rgba(168,191,200,.6)">6×</text>
+                      <polygon points="34.0,92 34.0,55.6 101.1,51.7 168.2,58.2 235.3,42.6 302.4,24.4 369.5,53.0 436.5,63.4 503.6,54.3 570.7,45.2 637.8,38.7 704.9,34.8 772.0,29.6 772.0,92" fill="url(#chFill)" class="ch-chart-area"/>
+                      <polyline class="ch-chart-line" points="34.0,55.6 101.1,51.7 168.2,58.2 235.3,42.6 302.4,24.4 369.5,53.0 436.5,63.4 503.6,54.3 570.7,45.2 637.8,38.7 704.9,34.8 772.0,29.6" fill="none" stroke="#0EC4C1" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
                       <g class="ch-chart-dots">
-                      <circle cx="34.0" cy="61.3" r="2.2" fill="#0EC4C1"/>
-                      <circle cx="101.1" cy="23.4" r="2.2" fill="#0EC4C1"/>
-                      <circle cx="168.2" cy="71.7" r="2.2" fill="#0EC4C1"/>
-                      <circle cx="235.3" cy="55.3" r="2.2" fill="#0EC4C1"/>
-                      <circle cx="302.4" cy="78.5" r="2.2" fill="#0EC4C1"/>
-                      <circle cx="369.5" cy="41.0" r="2.2" fill="#0EC4C1"/>
-                      <circle cx="436.5" cy="83.7" r="2.2" fill="#0EC4C1"/>
-                      <circle cx="503.6" cy="52.0" r="2.2" fill="#0EC4C1"/>
-                      <circle cx="570.7" cy="68.9" r="2.2" fill="#0EC4C1"/>
-                      <circle cx="637.8" cy="42.6" r="2.2" fill="#0EC4C1"/>
-                      <circle cx="704.9" cy="75.4" r="2.2" fill="#0EC4C1"/>
-                      <circle cx="772.0" cy="59.8" r="2.2" fill="#0EC4C1"/>
+                      <circle cx="34.0" cy="55.6" r="2.2" fill="#0EC4C1"/>
+                      <circle cx="101.1" cy="51.7" r="2.2" fill="#0EC4C1"/>
+                      <circle cx="168.2" cy="58.2" r="2.2" fill="#0EC4C1"/>
+                      <circle cx="235.3" cy="42.6" r="2.2" fill="#0EC4C1"/>
+                      <circle cx="302.4" cy="24.4" r="2.2" fill="#0EC4C1"/>
+                      <circle cx="369.5" cy="53.0" r="2.2" fill="#0EC4C1"/>
+                      <circle cx="436.5" cy="63.4" r="2.2" fill="#0EC4C1"/>
+                      <circle cx="503.6" cy="54.3" r="2.2" fill="#0EC4C1"/>
+                      <circle cx="570.7" cy="45.2" r="2.2" fill="#0EC4C1"/>
+                      <circle cx="637.8" cy="38.7" r="2.2" fill="#0EC4C1"/>
+                      <circle cx="704.9" cy="34.8" r="2.2" fill="#0EC4C1"/>
+                      <circle cx="772.0" cy="29.6" r="2.2" fill="#0EC4C1"/>
                       </g>
                       <g class="ch-chart-peak">
-                      <circle cx="101.1" cy="23.4" r="5.5" fill="none" stroke="#0EC4C1" stroke-opacity=".4" stroke-width="1"/>
-                      <text x="110.1" y="26.4" font-size="9" fill="#0EC4C1">high $2,640</text>
-                      <text x="436.5" y="96.7" text-anchor="middle" font-size="9" fill="rgba(168,191,200,.7)">low $320</text>
+                      <circle cx="302.4" cy="24.4" r="5.5" fill="none" stroke="#0EC4C1" stroke-opacity=".4" stroke-width="1"/>
+                      <text x="311.4" y="27.4" font-size="9" fill="#0EC4C1">high 5.2×</text>
+                      <text x="436.5" y="76.4" text-anchor="middle" font-size="9" fill="rgba(168,191,200,.7)">low 2.2×</text>
                       </g>
                       <text x="34.0" y="116" text-anchor="middle" font-size="8.5" fill="rgba(168,191,200,.55)">Aug 25</text>
                       <text x="101.1" y="116" text-anchor="middle" font-size="8.5" fill="rgba(168,191,200,.55)">Sep</text>
@@ -688,12 +650,12 @@
                   </div>
 
                   <div class="ch-h">What I used</div>
-                  <div class="ch-p">The <code>Deals</code> table and the <code>avg_lost_deal_size</code> metric definition, grouped by month of <code>"Closing Date"</code> for closed-lost deals.</div>
+                  <div class="ch-p">Google Ads campaign stats and the <code>return_on_ad_spend</code> metric definition, grouped by month of <code>"Date"</code> across all active campaigns.</div>
 
                   <div class="ch-h">Quick read on the trend</div>
                   <ul class="ch-ul">
-                    <li>September is the year’s high at $2,640; February the low at $320.</li>
-                    <li>Most months land between $500 and $2,000, with no sustained trend either way.</li>
+                    <li>December is the year’s high at 5.2×; February the floor at 2.2×.</li>
+                    <li>Spend has worked harder every month since February — April through July all clear 3.5×.</li>
                   </ul>
                 </div>
 
@@ -702,12 +664,12 @@
 
             <!-- Composer -->
             <div class="ch-composer">
-              <div class="ch-input" id="p2input"><span class="ch-ph" id="p2ph">Ask anything about your data…</span><span class="ch-line"><span id="p2typed"></span><span class="ch-tok" id="p2token" style="display:none">@avg_lost_deal_size</span><span id="p2typed2"></span><span class="ch-caret" id="p2caret"></span></span></div>
+              <div class="ch-input" id="p2input"><span class="ch-ph" id="p2ph">Ask anything about your data…</span><span class="ch-line"><span id="p2typed"></span><span class="ch-tok" id="p2token" style="display:none">@return_on_ad_spend</span><span id="p2typed2"></span><span class="ch-caret" id="p2caret"></span></span></div>
               <div class="ch-crow">
-                <span class="ch-tool" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M11.5 6.2L6.6 11a2.5 2.5 0 01-3.5-3.5l5-5a1.7 1.7 0 012.4 2.4l-5 5a.8.8 0 01-1.2-1.2l4.4-4.4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span class="ch-tool"><svg width="11" height="11" viewBox="0 0 14 14" fill="none"><rect x="1.2" y="1.2" width="4.2" height="4.2" rx="1" stroke="currentColor" stroke-width="1.1"/><rect x="8.6" y="8.6" width="4.2" height="4.2" rx="1" stroke="currentColor" stroke-width="1.1"/><path d="M5.4 3.3h3.6a1.7 1.7 0 011.7 1.7v3.6" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>Connections<svg width="7" height="4" viewBox="0 0 7 4" fill="none"><path d="M.8.8L3.5 3 6.2.8" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></span>
-                <span class="ch-tool"><svg width="11" height="11" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="2.1" stroke="currentColor" stroke-width="1.1"/><ellipse cx="7" cy="7" rx="5.8" ry="2.6" stroke="currentColor" stroke-width="1.1" transform="rotate(-30 7 7)"/></svg>Insightis Light<svg width="7" height="4" viewBox="0 0 7 4" fill="none"><path d="M.8.8L3.5 3 6.2.8" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></span>
-                <button class="ch-send" id="p2sendBtn">
+                  <span class="ch-tool" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M11.5 6.2L6.6 11a2.5 2.5 0 01-3.5-3.5l5-5a1.7 1.7 0 012.4 2.4l-5 5a.8.8 0 01-1.2-1.2l4.4-4.4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="ch-tool"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M10 13a5 5 0 007.5.5l3-3a5 5 0 00-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 00-7.5-.5l-3 3a5 5 0 007 7l1.7-1.7"/></svg>Connections<span class="ch-conn"><span class="ins-connector-logo googleads" style="--ins-connector-size:11px"></span>Google Ads</span><svg width="6" height="4" viewBox="0 0 8 5" fill="none"><path d="M1 1l3 3 3-3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="ch-tool"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.4 5.4 1.8-5.4 1.8L12 17.4l-1.8-5.4L4.8 10.2l5.4-1.8L12 3z"/></svg>Insightis Pro<svg width="6" height="4" viewBox="0 0 8 5" fill="none"><path d="M1 1l3 3 3-3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <button class="ch-send" id="p2sendBtn">
                   <span id="p2sendIco"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M1.2 6l9.6-4.4L7.4 11 6 6.9 1.2 6z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg></span>
                   <span id="p2sendLbl">Send</span>
                 </button>

@@ -589,6 +589,62 @@ footer::before{content:'';position:absolute;width:500px;height:300px;background:
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
 
+/* ── P0 DATA SOURCES (ds-*) ──
+   Mirrors the app's /data-sources Catalog tab: page title, Catalog / My
+   Connections tabs, search field, category pills carrying their real counts,
+   and the connector card grid. Content area only — no nav rail, matching
+   panels 1 and 2, which render the same way.
+   The grid is 6-up rather than the app's 8-up: the panel is a fraction of a
+   real browser's width, so 6 keeps each card at roughly the app's physical
+   size instead of shrinking the logos. */
+.ds-title{font-size:17px;font-weight:500;color:var(--ins-text-heading);letter-spacing:-.03em;flex-shrink:0}
+
+.ds-tabs{display:flex;gap:16px;border-bottom:1px solid var(--ins-border-default);flex-shrink:0}
+.ds-tab{
+  padding-bottom:6px;margin-bottom:-1px;
+  font-size:11px;color:var(--ins-text-inactive);
+  border-bottom:1.5px solid transparent;white-space:nowrap;
+}
+.ds-tab.active{color:var(--ins-text-highlight);border-bottom-color:var(--ins-color-teal-400)}
+
+.ds-search{
+  display:flex;align-items:center;gap:7px;flex-shrink:0;
+  padding:6px 10px;border-radius:var(--ins-radius-md);
+  background:var(--ins-color-white-a-03);
+  border:1px solid var(--ins-border-default);
+  font-size:10.5px;color:var(--ins-text-disabled);
+}
+
+.ds-pills{display:flex;flex-wrap:wrap;gap:4px;flex-shrink:0}
+.ds-pill{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:2.5px 8px;border-radius:var(--ins-radius-pill);
+  border:1px solid var(--ins-border-default);
+  font-size:8.5px;color:var(--ins-text-inactive);white-space:nowrap;
+}
+.ds-pill.active{color:var(--ins-text-highlight);border-color:rgba(14,196,193,.45);background:rgba(10,152,150,.08)}
+/* the count sits in mono, dimmer than the label — as in the app */
+.ds-pill i{font-style:normal;font-family:var(--ins-font-family-mono);color:var(--ins-text-disabled)}
+.ds-pill.active i{color:var(--ins-text-highlight);opacity:.75}
+
+.ds-grid{
+  display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;
+  flex:1;min-height:0;align-content:start;
+}
+.ds-card{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  padding:10px 6px;border-radius:var(--ins-radius-lg);
+  background:var(--ins-color-white-a-03);
+  border:1px solid var(--ins-border-default);
+  position:relative;overflow:hidden;
+}
+.ds-card-nm{
+  font-size:9px;font-weight:500;color:var(--ins-text-heading);
+  text-align:center;line-height:1.25;
+  /* names are one line; the app truncates rather than reflowing the grid */
+  max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+
 /* ── P1 METRICS LIBRARY (mx-*) ──
    Mirrors the app's /metrics page: page header + "Explore your metrics library"
    banner + category pills + per-source cards, and the Create metric modal.
@@ -860,6 +916,17 @@ footer::before{content:'';position:absolute;width:500px;height:300px;background:
 }
 @keyframes caretBlink{0%,100%{opacity:1}50%{opacity:0}}
 .ch-crow{display:flex;align-items:center;gap:12px}
+/* The connection the question runs against, shown inside the Connections chip.
+   It is Google Ads because that is the account step 2 attaches the
+   "Return on ad spend" metric to — the two slides tell one story. */
+.ch-conn{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:1px 6px 1px 4px;border-radius:var(--ins-radius-pill);
+  background:var(--ins-color-teal-a-10);
+  border:1px solid var(--ins-color-teal-a-25);
+  color:var(--ins-text-highlight);
+  font-size:9px;font-weight:500;
+}
 .ch-tool{
   display:flex;align-items:center;gap:5px;
   font-size:10px;color:var(--ins-text-body);white-space:nowrap;

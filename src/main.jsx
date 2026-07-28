@@ -628,7 +628,6 @@ function Architecture() {
                 <InsightisMark size={38} />
                 <span className="text-[13px] font-medium text-[var(--ins-color-teal-500)] text-center leading-tight">Insightis<br/>Semantic AI</span>
               </div>
-              <span className="text-[10px] font-medium uppercase tracking-[0.1em] text-text-muted mt-2">AI Engine</span>
             </div>
 
             {/* Right side — stream + cards, fully synced in one React component */}

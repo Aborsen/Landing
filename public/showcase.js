@@ -1,5 +1,4 @@
 /* ── Showcase global vars + goToStep (click-only, no auto-rotate) ── */
-const TOTAL=5;
 var cur=0, showcaseStarted=false;
 
 function stopAllDemos(){
@@ -123,6 +122,12 @@ function p0reset(){
   if(sp) sp.style.display='none';
   if(bl) bl.style.display='inline';
   if(cursor) cursor.style.display='none';
+  // The hover state was only ever undone by the click beat, so a demo interrupted
+  // mid-hover left HubSpot dimmed with its Connect pill showing. Clear it here too.
+  const hbg=document.getElementById('p0hubspot-bg');
+  const hbt=document.getElementById('p0hubspot-btn');
+  if(hbg) hbg.style.background='rgba(0,0,0,0)';
+  if(hbt) hbt.style.opacity='0';
   p0clearInputs();
 }
 
@@ -167,7 +172,7 @@ function p0showSuccess(){
 // 5.2  moves to "Allow access"
 // 5.7  clicks → spinner
 // 7.7  success screen
-// 10.0 loop
+// 18.7 loop — 11s hold on the success screen
 function p0startDemo(){
   p0stopDemo();
   p0reset();
@@ -235,7 +240,8 @@ function p0startDemo(){
   _p0T(()=>{ _p0clk(document.getElementById('p0ConnectBtn'), ()=>p0showSpinner()); }, 5700);
   _p0T(()=>{ p0showSuccess(); }, 7700);
   // loop: restart after showing success
-  _p0T(()=>{ if(cur === 0) p0startDemo(); }, 10000);
+  // 11s on the success screen, matching steps 2 and 3
+  _p0T(()=>{ if(cur === 0) p0startDemo(); }, 18700);
 }
 
 // Manual click handlers
@@ -257,7 +263,7 @@ function p0connect(){
 /* ── P1/P2/P3/P4 JS engines ── */
 /* ── P1 METRICS PANEL JS ── */
 /* Mirrors the app's /metrics page: browse the built-in library by category, then
-   define a custom metric. Beats (≈13.5s, loops while step 2 is on screen):
+   define a custom metric. Beats (≈21.6s, loops while step 2 is on screen):
    0.4  cursor in — banner reads, Business Intelligence selected
    1.6  click "Marketing"          → heading + card grid swap
    3.3  click "+ Create metric"    → modal
@@ -265,7 +271,8 @@ function p0connect(){
    5.4  type Definition            → char counter tracks
    7.3  click "Connection"         → field label + placeholder swap
    8.0  open the select            → pick "Google Ads (Google Ads)"
-   9.4  click Save                 → spinner → modal closes → toast */
+   9.4  click Save                 → spinner → modal closes → toast
+  10.6  ~11s hold on the saved library (toast for the first 2.6s), then loop */
 
 // p1 metrics panel vars — resolved lazily
 let p1WIN, p1cur;
@@ -481,13 +488,14 @@ async function p1_runDemo(){
   await p1_t(260);
   toast.classList.add('show');
   p1_moveTo(560, 90);
-  await p1_t(1900);
+  await p1_t(2600);
   toast.classList.remove('show');
   p1cur.style.display = 'none';
 
   // loop while this step is still on screen
+  // the rest of the ~11s hold, on the saved metrics list with the toast gone
   p1_loopCount++;
-  await p1_t(800);
+  await p1_t(8140);
   if(cur === 1) p1_runDemo();
 }
 
@@ -500,17 +508,17 @@ function p1Init(){
   setTimeout(p1_runDemo, 300);
 }
 /* ── P2 CHAT PANEL JS ── */
-/* Mirrors the app's /chat. Beats (≈16s, loops while step 3 is on screen):
+/* Mirrors the app's /chat. Beats (≈23s, loops while step 3 is on screen):
    0.3  cursor to the composer
-   0.6  type the question; @avg_lost_deal_size lands as a metric token
+   0.6  type the question; @return_on_ad_spend lands as a metric token
    3.4  Send → user message; Send button becomes Stop
-   4.0  tool calls + interpretation + Zoho_CRM__Execute + "Thinking…"
+   4.0  tool calls + interpretation + Google_Ads__Execute + "Thinking…"
    6.6  the answer replaces it — the chart draws inline in the reply body
-  13.0  back to Send, hold, loop. The whole answer fits without scrolling. */
+  19.8  back to Send, hold ~11s on the finished answer, loop. It fits without scrolling. */
 let p2WIN, p2cur2;
 let p2_chain = [];
 
-const P2_Q1 = 'show me a trend for ';
+const P2_Q1 = 'show me ';
 const P2_Q2 = ' by month';
 
 function p2_t(ms){ return new Promise(r=>{ const id=setTimeout(r,ms); p2_chain.push(id); }); }
@@ -595,7 +603,7 @@ async function p2_runDemo(){
   typed.textContent=''; typed2.textContent='';
   token.style.display='none';
   msgUser.style.display='';
-  title.textContent='Deal Size Trend';
+  title.textContent='Return on Ad Spend';
   sendLbl.textContent='Stop';
   sendIco.style.display='none';
   sendBtn.classList.add('stopping');
@@ -614,7 +622,10 @@ async function p2_runDemo(){
   sendBtn.classList.remove('stopping');
   await p2_t(260);
   chart.classList.add('drawn');
-  await p2_t(4200);          // the whole answer fits — hold on it, no scrolling
+  // Long hold: the finished answer is a chart plus "What I used" and two bullets.
+  // 4.2s was enough to see it land but not to read it, and nothing auto-advances
+  // off this step — a longer hold only means the demo restarts less often.
+  await p2_t(11000);
 
   // loop while this step is still on screen
   if(cur === 2) p2_runDemo();
