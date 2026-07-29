@@ -10,6 +10,7 @@ import SolutionsAccordion from './components/SolutionsAccordion';
 import BottomCTA from './components/BottomCTA';
 import CheckIcon from './components/CheckIcon';
 import ComparisonCards from './components/ComparisonCards';
+import StatStrip from './components/StatStrip';
 import RealConnectorIcon from './components/ConnectorIcon';
 
 /* Single shared IntersectionObserver for all fade-ups.
@@ -785,55 +786,6 @@ function HowItWorks() {
 
 
 // ─── WHAT IS INSIGHTIS ───
-function AnimatedStat({ target, suffix, prefix, duration = 1800 }) {
-  // Initialize at target so SSR + initial hydration render the REAL number
-  // (ISS-02). The count-up animation is purely enhancement: it kicks in only
-  // for below-the-fold elements that scroll into view AFTER mount. Above-fold
-  // elements render their final value immediately — no "0x / 0% / 0+" flash.
-  const [count, setCount] = React.useState(target);
-  const [started, setStarted] = React.useState(false);
-  const ref = React.useRef(null);
-
-  React.useEffect(() => {
-    if (typeof window === 'undefined' || !ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    // If element is already in view at hydration time, skip the animation —
-    // the visitor would see a flash from target → 0 → target otherwise.
-    if (rect.top < window.innerHeight && rect.bottom > 0) return;
-
-    setCount(0); // armed for animation; below the fold, never rendered until scrolled to
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !started) {
-        setStarted(true);
-        observer.disconnect();
-      }
-    }, { threshold: 0.5 });
-    observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  React.useEffect(() => {
-    if (!started) return;
-    let startTime = null;
-    const step = (timestamp) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      // ease-out cubic
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(eased * target));
-      if (progress < 1) requestAnimationFrame(step);
-      else setCount(target);
-    };
-    requestAnimationFrame(step);
-  }, [started, target, duration]);
-
-  return (
-    <span ref={ref}>
-      {prefix}{count.toLocaleString('en-US')}{suffix}
-    </span>
-  );
-}
-
 function WhatIsInsightis() {
   const stats = [
     { target: 200,   suffix: "+", prefix: "", label: "Connectors",           sub: "supported out-of-the-box" },
@@ -856,17 +808,7 @@ function WhatIsInsightis() {
         </FadeUp>
 
         <FadeUp delay={0.1}>
-          <div className="ins-stat-strip">
-            {stats.map((s, i) => (
-              <div key={i} className="ins-stat-strip__item">
-                <p className="ins-stat-strip__value">
-                  <AnimatedStat target={s.target} suffix={s.suffix} prefix={s.prefix} duration={1800 + i * 150} />
-                </p>
-                <p className="ins-stat-strip__label">{s.label}</p>
-                <p className="ins-stat-strip__sub">{s.sub}</p>
-              </div>
-            ))}
-          </div>
+          <StatStrip stats={stats} />
         </FadeUp>
       </div>
     </section>

@@ -133,8 +133,8 @@ function TermsContent() {
         <div id="fees" style={sectionStyle}>
           <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>4. Service Fees</h2>
           <p className="ins-text-body-lg" style={pStyle}>4.1 By subscribing to a paid Subscription Plan You agree to pay the fees quoted at the time of purchase, in advance, for the whole of the subscription term You select.</p>
-          <p className="ins-text-body-lg" style={pStyle}>4.2 2Checkout is the authorised payment provider for Devart products. We do not process Your payment details. 2Checkout collects and stores Your card details and billing information for processing purposes, and We retain only the last four digits and the card brand. Your purchase is also subject to 2Checkout&rsquo;s own terms and privacy policy.</p>
-          <p className="ins-text-body-lg" style={pStyle}>4.3 All fees quoted on the Site are exclusive of VAT or any other taxes that may be applicable in Your jurisdiction.</p>
+          <p className="ins-text-body-lg" style={pStyle}>4.2 2Checkout is the authorised reseller and <strong>merchant of record</strong> for Devart products. Your order is placed with 2Checkout, which sells the Subscription to You, issues the invoice, collects payment and handles refunds. We do not process Your payment details: 2Checkout collects and stores Your card details and billing information for processing purposes, and We retain only the last four digits and the card brand. Your purchase is also subject to 2Checkout&rsquo;s own terms and privacy policy.</p>
+          <p className="ins-text-body-lg" style={pStyle}>4.3 Prices shown on the Site are exclusive of VAT, sales tax and any other applicable taxes. As merchant of record, 2Checkout determines, collects and remits the tax due for Your jurisdiction, and the amount is shown before You confirm the order.</p>
         </div>
 
         {/* 5. Subscription Term and Renewal */}
@@ -165,7 +165,7 @@ function TermsContent() {
         {/* 8. Service Availability */}
         <div id="availability" style={sectionStyle}>
           <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>8. Service Availability</h2>
-          <p className="ins-text-body-lg" style={pStyle}>You acknowledge that 100% availability of the Site and the Services is not technically feasible. However, Devart will make its best efforts to keep the Site and the Services available in the most constant possible way. The Services may be unavailable during maintenance and updates, where a Connected Source or another third-party service is unavailable, or because of circumstances beyond Our reasonable control. [[NEEDS CONFIRMATION: whether the 99.5% uptime figure shown for the Pro plan on the Pricing page is a binding commitment and, if it is, its measurement period, exclusions and remedy]]</p>
+          <p className="ins-text-body-lg" style={pStyle}>You acknowledge that 100% availability of the Site and the Services is not technically feasible. Devart commits to <strong>99.5% monthly uptime</strong> for the Services on the Pro plan, measured per calendar month across the whole month. Excluded from that measurement are scheduled maintenance announced in advance, unavailability of a Connected Source or any other third-party service, and events outside Our reasonable control. Outside those exclusions Devart will make its best efforts to keep the Site and the Services available in the most constant possible way.</p>
         </div>
 
         {/* 9. Restrictions */}

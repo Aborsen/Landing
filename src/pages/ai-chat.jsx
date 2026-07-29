@@ -919,10 +919,13 @@ function MidCTA() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="fade-up is-visible">
           <BottomCTA
-            variant="text"
-            title={<>Skip the analyst queue. <BottomCTA.Highlight>Start asking.</BottomCTA.Highlight></>}
-            ctaLabel="Start for free"
-          />
+          variant="buttons"
+          title={<>Get answers from your data <BottomCTA.Highlight>in seconds</BottomCTA.Highlight>, not days</>}
+          description="Ask your first question in under two minutes — no SQL, no analyst queue, no waiting. Free to start, no credit card required."
+          ctaLabel="Start for free"
+          secondaryCtaLabel="Explore Pricing"
+          secondaryCtaHref="/pricing"
+        />
         </div>
       </div>
     </section>
