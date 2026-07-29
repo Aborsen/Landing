@@ -121,8 +121,8 @@ export default function Header() {
         ]},
         { heading: 'CONNECT', items: [
           { label: 'Support Center', desc: 'Get help from our team', icon: 'support' },
-          { label: 'Roadmap', desc: 'Follow product development in real time', icon: 'map' },
           { label: 'Data Connectors', desc: 'Browse all supported data sources', icon: 'grid' },
+          { label: 'Roadmap', desc: 'Follow product development in real time', icon: 'map' },
         ]},
       ]
     }

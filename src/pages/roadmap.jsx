@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+/* No hooks imported: removing the suggest-a-feature modal took all of this page's state,
+   refs and callbacks with it. The timeline animates entirely in SVG SMIL. */
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import '../app.css';
 import Header from '../components/Header';
@@ -6,7 +8,6 @@ import Footer from '../components/Footer';
 import SectionHeader from '../components/SectionHeader';
 import BottomCTA from '../components/BottomCTA';
 import CheckIcon from '../components/CheckIcon';
-import Button from '../components/Button';
 
 /* ── ICONS ── */
 
@@ -404,61 +405,15 @@ function RoadmapSections() {
   );
 }
 
-/* ── SUGGEST FEATURE CTA ── */
-function SuggestCTA() {
-  const [open, setOpen]       = useState(false);
-  const [text, setText]       = useState('');
-  const [files, setFiles]     = useState([]);
-  const [sent, setSent]       = useState(false);
-  const [dragging, setDragging] = useState(false);
-  const fileRef               = React.useRef();
-
-  const canSubmit = text.trim().length > 0;
-
-  function handleFiles(incoming) {
-    const arr = Array.from(incoming);
-    setFiles(prev => {
-      const existing = new Set(prev.map(f => f.name + f.size));
-      return [...prev, ...arr.filter(f => !existing.has(f.name + f.size))];
-    });
-  }
-
-  function removeFile(idx) {
-    setFiles(prev => prev.filter((_, i) => i !== idx));
-  }
-
-  function handleSubmit() {
-    if (!canSubmit) return;
-    setSent(true);
-    setTimeout(() => {
-      setOpen(false);
-      setTimeout(() => { setText(''); setFiles([]); setSent(false); }, 400);
-    }, 2600);
-  }
-
-  function handleDrop(e) {
-    e.preventDefault(); setDragging(false);
-    handleFiles(e.dataTransfer.files);
-  }
-
-  /* format file size */
-  function fmtSize(b) {
-    if (b < 1024) return b + ' B';
-    if (b < 1048576) return (b/1024).toFixed(1) + ' KB';
-    return (b/1048576).toFixed(1) + ' MB';
-  }
-
-  /* overlay close on backdrop click */
-  function handleBackdrop(e) {
-    if (e.target === e.currentTarget && !sent) setOpen(false);
-  }
-
+/* ── BOTTOM CTA ── */
+/* Was SuggestCTA: a feature-suggestion form in a modal, plus a bespoke CTA strip that opened
+   it. The form is gone at the owner's request, so what remains is the shared BottomCTA — and
+   none of the state, refs or drag-and-drop handlers the form needed. The <section> is the
+   single root now, so the fragment that used to wrap it is gone too.
+   .ins-bottom-cta already draws the border, radius, gradient, top hairline and glow the old
+   strip hand-rolled with hardcoded rgba values and a clamp() heading. */
+function RoadmapBottomCTA() {
   return (
-    <>
-      {/* ── CTA STRIP ── */}
-      {/* The shared BottomCTA rather than a bespoke card: .ins-bottom-cta already draws the
-          border, radius, gradient, top hairline and glow this block used to hand-roll with
-          hardcoded rgba values and a clamp() heading. Same copy as every other page. */}
       <section style={{padding:'64px 0 80px', position:'relative', zIndex:1}}>
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
           <BottomCTA
@@ -469,174 +424,9 @@ function SuggestCTA() {
             secondaryCtaLabel="Explore Pricing"
             secondaryCtaHref="/pricing"
           />
-          {/* The suggestion modal is opened by state, and BottomCTA only accepts
-              secondaryCtaHref — no click handler — so wiring it as a secondary CTA would
-              have rendered a dead button. It gets its own trigger under the card instead. */}
-          <div style={{marginTop:'var(--ins-size-5)', textAlign:'center'}}>
-            <Button variant="ghost" size="md" onClick={() => setOpen(true)}>
-              Missing something? Suggest a feature
-            </Button>
-          </div>
         </div>
       </section>
 
-      {/* ── MODAL ── */}
-      {open && (
-        <div onClick={handleBackdrop} style={{
-          position:'fixed', inset:0, zIndex:9000,
-          background:'rgba(6,10,15,.72)', backdropFilter:'blur(6px)',
-          display:'flex', alignItems:'center', justifyContent:'center',
-          padding:24,
-          animation:'fadeInBg .2s ease',
-        }}>
-          <div style={{
-            width:'100%', maxWidth:520,
-            background:'linear-gradient(145deg,#0E1420,var(--ins-surface-page))',
-            border:'1px solid var(--ins-color-white-a-07)',
-            borderRadius:18, overflow:'hidden',
-            boxShadow:'none',
-            animation:'modalSlideUp .25s cubic-bezier(.22,1,.36,1)',
-          }}>
-
-            {/* header */}
-            <div style={{padding:'22px 28px 0', display:'flex', alignItems:'flex-start', justifyContent:'space-between'}}>
-              <div>
-                <h2 style={{fontSize:18, fontWeight:600, color:'var(--ins-text-heading-soft)', letterSpacing:'-.02em', margin:0}}>Request a Feature</h2>
-                <p className="ins-text-body" style={{margin:'4px 0 0'}}>Describe what you need — we read every request.</p>
-              </div>
-              <button onClick={() => { if (!sent) setOpen(false); }} style={{
-                background:'none', border:'none', cursor:'pointer',
-                color:'var(--ins-text-disabled)', padding:4, marginTop:-2,
-                transition:'color .15s',
-              }}
-                onMouseEnter={e => e.currentTarget.style.color='var(--ins-color-gray-100)'}
-                onMouseLeave={e => e.currentTarget.style.color='var(--ins-text-disabled)'}
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-              </button>
-            </div>
-
-            {sent ? (
-              /* ── THANK YOU STATE ── */
-              <div style={{padding:'48px 28px 52px', textAlign:'center'}}>
-                <div style={{
-                  width:56, height:56, borderRadius:'50%', margin:'0 auto 20px',
-                  background:'rgba(34,197,94,.1)', border:'1px solid rgba(34,197,94,.25)',
-                  display:'flex', alignItems:'center', justifyContent:'center',
-                  animation:'nodeAppear .4s ease',
-                }}>
-                  <CheckIcon size={24} color="var(--ins-status-success-fg)" />
-                </div>
-                <h3 style={{fontSize:20, fontWeight:600, color:'var(--ins-text-heading-soft)', marginBottom:8, letterSpacing:'-.02em'}}>Thanks for your feedback!</h3>
-                <p className="ins-text-body" style={{maxWidth:340, margin:'0 auto'}}>
-                  We've received your feature request and will review it shortly.
-                </p>
-              </div>
-            ) : (
-              /* ── FORM STATE ── */
-              <div style={{padding:'20px 28px 28px'}}>
-
-                {/* textarea */}
-                <div style={{marginBottom:16}}>
-                  <label style={{display:'block', fontSize:12, fontWeight:500, color:'var(--ins-text-body)', letterSpacing:'.04em', marginBottom:8, textTransform:'uppercase'}}>
-                    Description <span style={{color:'var(--ins-text-highlight)'}}>*</span>
-                  </label>
-                  <textarea
-                    className="ins-textarea ins-textarea--sm"
-                    value={text}
-                    onChange={e => setText(e.target.value)}
-                    placeholder="Describe the feature you'd like to see…"
-                    rows={5}
-                  />
-                </div>
-
-                {/* drop zone */}
-                <div style={{marginBottom:20}}>
-                  <label style={{display:'block', fontSize:12, fontWeight:500, color:'var(--ins-text-body)', letterSpacing:'.04em', marginBottom:8, textTransform:'uppercase'}}>
-                    Attachments <span style={{color:'var(--ins-text-disabled)', fontWeight:400, textTransform:'none', letterSpacing:0}}>(optional)</span>
-                  </label>
-                  <div
-                    onDragOver={e => { e.preventDefault(); setDragging(true); }}
-                    onDragLeave={() => setDragging(false)}
-                    onDrop={handleDrop}
-                    onClick={() => fileRef.current.click()}
-                    style={{
-                      borderRadius:10, padding:'18px 14px',
-                      border: dragging ? '1.5px dashed rgba(14,196,193,.5)' : '1.5px dashed var(--ins-color-white-a-10)',
-                      background: dragging ? 'rgba(14,196,193,.05)' : 'var(--ins-color-white-a-02)',
-                      cursor:'pointer', textAlign:'center', transition:'all .15s',
-                    }}
-                  >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-disabled)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{marginBottom:6}}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-                    <p className="ins-text-body-sm" style={{margin:0}}>
-                      Drag & drop files or <span style={{color:'var(--ins-text-highlight)'}}>browse</span>
-                    </p>
-                    <p style={{fontSize:11, color:'var(--ins-text-disabled)', margin:'4px 0 0'}}>Images, PDFs, or any file — up to 20 MB each</p>
-                  </div>
-                  <input ref={fileRef} type="file" multiple style={{display:'none'}} onChange={e => handleFiles(e.target.files)} />
-
-                  {/* file list */}
-                  {files.length > 0 && (
-                    <div style={{marginTop:10, display:'flex', flexDirection:'column', gap:6}}>
-                      {files.map((f, i) => (
-                        <div key={i} style={{
-                          display:'flex', alignItems:'center', justifyContent:'space-between',
-                          padding:'7px 12px', borderRadius:8,
-                          background:'var(--ins-color-white-a-04)', border:'1px solid var(--ins-border-default)',
-                        }}>
-                          <div style={{display:'flex', alignItems:'center', gap:8, minWidth:0}}>
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-body)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                            <span style={{fontSize:12, color:'var(--ins-color-gray-100)', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap'}}>{f.name}</span>
-                            <span style={{fontSize:11, color:'var(--ins-text-disabled)', flexShrink:0}}>{fmtSize(f.size)}</span>
-                          </div>
-                          <button onClick={() => removeFile(i)} style={{
-                            background:'none', border:'none', cursor:'pointer',
-                            color:'var(--ins-text-disabled)', padding:'0 2px', flexShrink:0,
-                            transition:'color .15s',
-                          }}
-                            onMouseEnter={e => e.currentTarget.style.color='var(--ins-color-gray-100)'}
-                            onMouseLeave={e => e.currentTarget.style.color='var(--ins-text-disabled)'}
-                          >
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                {/* actions */}
-                <div style={{display:'flex', gap:10, justifyContent:'flex-end'}}>
-                  <button onClick={() => setOpen(false)} style={{
-                    padding:'10px 20px', borderRadius:9, border:'1px solid var(--ins-color-white-a-08)',
-                    background:'transparent', color:'var(--ins-text-body)', fontSize:14, fontWeight:500,
-                    cursor:'pointer', fontFamily:'var(--ins-font-family-sans)', transition:'all .15s',
-                  }}
-                    onMouseEnter={e => { e.currentTarget.style.background='var(--ins-color-white-a-05)'; e.currentTarget.style.color='var(--ins-color-gray-100)'; }}
-                    onMouseLeave={e => { e.currentTarget.style.background='transparent'; e.currentTarget.style.color='var(--ins-text-body)'; }}
-                  >
-                    Cancel
-                  </button>
-                  <button onClick={handleSubmit} disabled={!canSubmit} style={{
-                    padding:'10px 24px', borderRadius:9, border:'none',
-                    background: canSubmit ? 'linear-gradient(135deg,var(--ins-button-primary-bg),var(--ins-button-primary-bg-hover))' : 'var(--ins-color-white-a-05)',
-                    color: canSubmit ? 'var(--ins-text-heading)' : 'var(--ins-text-disabled)',
-                    fontSize:14, fontWeight:500, cursor: canSubmit ? 'pointer' : 'default',
-                    fontFamily:'var(--ins-font-family-sans)', transition:'all .2s',
-                    boxShadow: canSubmit ? '0 0 20px rgba(9,160,157,.2)' : 'none',
-                    display:'inline-flex', alignItems:'center', gap:7,
-                  }}>
-                    Submit Request
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-                  </button>
-                </div>
-
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-    </>
   );
 }
 
@@ -648,7 +438,7 @@ function App() {
       <main>
       <TreeHero />
       <RoadmapSections />
-      <SuggestCTA />
+      <RoadmapBottomCTA />
             </main>
       <Footer />
     </div>
