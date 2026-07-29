@@ -175,9 +175,9 @@
   margin-bottom: var(--ins-space-md);
 }
 /* Fixed height, not auto: the blocks below have to start at the same y for every
-   metric, and these definitions are 1 to 3 lines. A short one leaves whitespace —
-   that is the trade for "HOW IT IS COMPUTED" never moving. Text is capped to 165
-   characters in src/data/metrics-catalog.js, which is ~3 lines at this width. */
+   metric — that is the trade for "HOW IT IS COMPUTED" never moving. Three lines at
+   this width. The data is capped at 145 characters so nothing clips, and floored at
+   85 so nothing renders as a single line; see src/data/metrics-catalog.js. */
 .ins-mcat__ddesc {
   font-size: var(--ins-font-size-13, 13px);
   line-height: var(--ins-line-height-relaxed);
@@ -208,13 +208,15 @@
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   /* Fixed height for the same reason as the description above — the ask box below
-     must not move. ~4.5 lines; 26 of the 60 formulas are longer than that and one
-     runs to 1044 characters, so this scrolls rather than truncates. A clipped SELECT
-     would print something that is not the query. */
-  /* 70 not 80: the longest alias (37 chars) pushes the ask box below to a third line,
-     and this is the block that can give up 10px without losing anything — it already
-     scrolls. Measured: worst-case content 446 against a 448 box. */
-  height: 70px;
+     must not move. 26 of the 60 formulas are longer than this box and one runs to
+     1044 characters, so it scrolls rather than truncates: a clipped SELECT would
+     print something that is not the query. */
+  /* 88px is 3.5 lines, and the half line is deliberate — it is what tells you there
+     is more to scroll. Sized to swallow the 21px that used to sit dead between the
+     ask box and the panel's bottom padding: measured, the content ended at y=403.5
+     inside a 448.4px box whose padding only accounted for 24 of the remaining 45.
+     Anything taller than this pushes the ask box past the panel's bottom edge. */
+  height: 88px;
   overflow: auto;
 }
 
@@ -254,6 +256,22 @@
 .ins-mcat__foot .ins-mcat__dot {
   width: 3px; height: 3px; border-radius: 50%;
   background: var(--ins-color-white-a-12);
+}
+
+/* ── Stacked layout: release the fixed heights ────────────────────────────
+   The three fixed heights above exist only so the blocks line up at the same y
+   as the grid beside them. Below 1024px there is no grid beside them — the panel
+   is stacked above it at full width, free to be any height inside its 560px cap.
+   Keeping them there just clips text: the description box is three lines at the
+   desktop panel's 350px, and the same 145 characters need four at phone width.
+   Placed at the end of the file on purpose. These are single-class selectors, the
+   same weight as the base rules, so a media block earlier in the file would lose
+   on source order and silently do nothing. */
+@media (max-width: 1023px) {
+  .ins-mcat__ddesc { height: auto; overflow: visible; }
+  .ins-mcat__ask { height: auto; }
+  /* still bounded — one definition's formula runs to 1044 characters */
+  .ins-mcat__sql { height: auto; max-height: 180px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
