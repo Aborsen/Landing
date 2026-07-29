@@ -204,7 +204,7 @@ function SpotlightChat() {
             padding:'2px 8px',borderRadius:'999px',
             background:'var(--ins-color-status-success-bg)',border:'1px solid rgba(34,197,94,.3)',
             letterSpacing:'.08em',textTransform:'uppercase',
-          }}>4 auto-answered</span>
+          }}>3 auto-answered</span>
         </div>
 
         {/* Expanded request: CFO */}
@@ -510,7 +510,7 @@ function SpotlightStack() {
               <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-body)'}}>net_mrr · Q2 MTD</span>
             </div>
             <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.06em',textTransform:'uppercase',marginTop:'var(--ins-size-1)'}}>
-              RevOps · v3.2 · 4 source systems
+              RevOps · v3.2 · 2 source systems
             </div>
           </div>
           <span style={{
@@ -607,7 +607,7 @@ function FeatureSpotlights() {
       visual:<SpotlightChat />,
     },
     {
-      eyebrow:'Versioned Metrics',
+      eyebrow:'Semantic Layer',
       title:'One revenue definition, versioned',
       body:'Sales, Finance, and Marketing each define MRR a little differently. Insightis aligns MRR, win rate, and CAC under a single certified definition the whole company trusts.',
       bullets:['MRR, win rate, and CAC agreed across teams','Definition changes tracked with owner and date'],
@@ -621,10 +621,10 @@ function FeatureSpotlights() {
       visual:<SpotlightAnomalies />,
     },
     {
-      eyebrow:'Deal-Level Audit',
-      title:'QBR-ready numbers, end to end',
+      eyebrow:'Full Lineage',
+      title:'QBR-ready answers, with full lineage',
       body:'Every number carries its deals, owners, and timestamps in one place — the board and finance see the same trail without a reconciliation pass.',
-      bullets:['Full lineage from metric down to the deal','Every number carries its owner and sign-off'],
+      bullets:['Full lineage from metric down to the deal','Owner, timestamp, and sign-off stamped on every figure'],
       visual:<SpotlightStack />,
     },
   ];
@@ -697,7 +697,7 @@ function UseCases() {
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m6-5h6M8 3v18m8-18v18M16 3h3a2 2 0 0 1 2 2v3M2 9h20M2 15h20M2 21h3m16 0h3" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
       title:'Certified revenue metrics',
-      desc:'One semantic layer governs every metric — MRR, win rate, CAC — owned and versioned by RevOps. No more arguments about whose number is right.',
+      desc:'One Semantic Layer governs every metric — MRR, win rate, CAC — owned and versioned by RevOps. No more arguments about whose number is right.',
     },
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
@@ -707,17 +707,17 @@ function UseCases() {
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M7 9h10M7 13h6" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
       title:'Ad hoc revenue analysis without SQL',
-      desc:'Any revenue question answered instantly — win rate by segment, CAC by channel, NRR under different scenarios. No more analyst queue or pivot-table archaeology.',
+      desc:'Any revenue question answered instantly — win rate by segment, CAC by channel, NRR by scenario. No analyst queue, no pivot-table archaeology.',
     },
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="14" rx="2" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><line x1="3" y1="10" x2="21" y2="10" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><line x1="8" y1="3" x2="8" y2="9" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><line x1="16" y1="3" x2="16" y2="9" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/></svg>,
-      title:'Forecast &amp; QBR prep in minutes',
+      title:'Forecast & QBR prep in minutes',
       desc:'Board decks and forecast calls built on live data — charts that update in the room. Walk in with answers, not last week\'s export.',
     },
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/><circle cx="9" cy="7" r="4" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M22 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
       title:'Cross-source revenue analysis',
-      desc:'Correlate CRM with billing and product usage in one question — no SQL, no analyst, no two-week turnaround. Pipeline, revenue, and retention in one place.',
+      desc:'Correlate CRM, billing and product usage in one question — no SQL, no analyst, no two-week turnaround. Revenue and retention in one place.',
     },
   ];
 
@@ -795,11 +795,11 @@ function RelevantIntegrations() {
     { name:'ChartMogul',  desc:'Subscription analytics' },
     { name:'Snowflake',   desc:'Data warehouse' },
     { name:'BigQuery',    desc:'Cloud analytics' },
-    { name:'PostgreSQL',  desc:'Data warehouse' },
+    { name:'PostgreSQL',  desc:'Database' },
     { name:'Segment',     desc:'Customer data' },
     { name:'NetSuite',    desc:'Finance & ERP' },
-    { name:'QuickBooks',  desc:'Finance data' },
-    { name:'Xero',        desc:'Finance data' },
+    { name:'QuickBooks',  desc:'Accounting' },
+    { name:'Xero',        desc:'Accounting' },
   ];
 
   return (
@@ -808,7 +808,7 @@ function RelevantIntegrations() {
         <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
             eyebrow="Your Revenue Stack"
-            title="Works with every CRM, billing, and finance tool"
+            title="Connects to every CRM, billing, and finance tool"
             lede="Insightis integrates with your CRM, billing, subscription, finance, and warehouse stack."
           />
         </div>
@@ -851,7 +851,7 @@ function FAQ() {
     },
     {
       q:'Can we define our own metrics, or are we stuck with the defaults?',
-      a:'You can define any metric in the semantic layer. Set a custom Pipeline Coverage formula, your own win-rate logic, or a stage-conversion definition unique to your business. Once defined, Insightis uses your version every time the metric is referenced.',
+      a:'You can define any metric in the Semantic Layer. Set a custom Pipeline Coverage formula, your own win-rate logic, or a stage-conversion definition unique to your business. Once defined, Insightis uses your version every time the metric is referenced.',
     },
     {
       q:'How fresh is the data — and how often does it sync?',
@@ -863,7 +863,7 @@ function FAQ() {
     },
     {
       q:'How long is the typical setup for a RevOps team?',
-      a:'Most teams are running real questions within an afternoon. Salesforce and Stripe connect in minutes; defining your first dozen metrics in the semantic layer takes another hour or two if you want a polished, fully-certified setup.',
+      a:'Most teams are running real questions within an afternoon. Salesforce and Stripe connect in minutes; defining your first dozen metrics in the Semantic Layer takes another hour or two if you want a polished, fully-certified setup.',
     },
     {
       q:'Where does our pipeline data live — and how is it secured?',
@@ -896,7 +896,7 @@ function BottomCTASection() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
           variant="buttons"
-          title={<>Stop chasing <BottomCTA.Highlight>numbers.</BottomCTA.Highlight> Start trusting <BottomCTA.Highlight> them</BottomCTA.Highlight></>}
+          title={<>Stop chasing <BottomCTA.Highlight>numbers.</BottomCTA.Highlight> Start trusting <BottomCTA.Highlight>them</BottomCTA.Highlight></>}
           description="One trusted view of pipeline, forecast and revenue — answered in seconds. Free to start, no credit card required."
           ctaLabel="Start for free"
           secondaryCtaLabel="Explore Pricing"

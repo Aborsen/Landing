@@ -187,15 +187,15 @@ function RelevantIntegrations() {
     { name:'HubSpot',     desc:'CRM & marketing' },
     { name:'Stripe',      desc:'Billing & revenue' },
     { name:'NetSuite',    desc:'Finance & ERP' },
-    { name:'QuickBooks',  desc:'Finance data' },
-    { name:'Xero',        desc:'Finance data' },
+    { name:'QuickBooks',  desc:'Accounting' },
+    { name:'Xero',        desc:'Accounting' },
     { name:'Snowflake',   desc:'Data warehouse' },
     { name:'BigQuery',    desc:'Cloud analytics' },
-    { name:'PostgreSQL',  desc:'Data warehouse' },
+    { name:'PostgreSQL',  desc:'Database' },
     { name:'Segment',     desc:'Customer data' },
     { name:'Amplitude',   desc:'Product analytics' },
     { name:'Google Analytics', desc:'Web analytics' },
-    { name:'Databricks',  desc:'Lakehouse & BI' },
+    { name:'Databricks',  desc:'Lakehouse' },
     { name:'ChartMogul',  desc:'Subscription analytics' },
     { name:'Zuora',       desc:'Subscription billing' },
     { name:'Notion',      desc:'Docs & planning' },
@@ -248,7 +248,7 @@ function BottomCTASection() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
           variant="buttons"
-          title={<>Stop waiting on <BottomCTA.Highlight>decks.</BottomCTA.Highlight> Start seeing <BottomCTA.Highlight> live numbers</BottomCTA.Highlight></>}
+          title={<>Stop waiting on <BottomCTA.Highlight>decks.</BottomCTA.Highlight> Start seeing <BottomCTA.Highlight>live numbers</BottomCTA.Highlight></>}
           description="Board-level numbers answered in seconds — no analyst queue, no stale decks. Free to start, no credit card required."
           ctaLabel="Start for free"
           secondaryCtaLabel="Explore Pricing"
@@ -287,7 +287,7 @@ function SpotlightChat() {
           What's our net revenue retention this quarter?
         </div>
         <div className="chat-bubble-ai">
-          NRR is 128% in Q2, up 9pts QoQ — expansion outpaced churn across every segment. Runway sits at 19 months at current burn. Sourced from <span style={{color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-12)'}}>finance.fct_nrr</span> — certified in your semantic layer.
+          NRR is 128% in Q2, up 9pts QoQ — expansion outpaced churn in every segment except enterprise, where two accounts contracted. Runway sits at 19 months at current burn. Sourced from <span style={{color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-12)'}}>finance.fct_nrr</span> — certified in your Semantic Layer.
         </div>
       </div>
     </div>
@@ -321,7 +321,7 @@ function SpotlightSemantic() {
       display:'flex',
       flexDirection:'column',
     }}>
-      <ChromeHeader label="semantic layer · nrr" />
+      <ChromeHeader label="metric · nrr" />
       <div style={{padding:'26px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'18px'}}>
           <div style={{display:'flex',alignItems:'center',gap:'10px'}}>
@@ -574,12 +574,12 @@ function FeatureSpotlights() {
     {
       eyebrow:'Self-Serve',
       title:'Board answers on demand',
-      body:'Ask any company-health question in plain English and get an answer rooted in your real numbers — runway, ARR growth, NRR, burn — no analyst, no waiting for the next deck.',
-      bullets:['Conversational answers across every company metric','Walk into the board meeting with live numbers'],
+      body:'Every exec asks in their own words and keeps drilling — company-wide, then one segment, then one account — until the answer holds up. No request filed, no dashboard rebuilt, no analyst in the middle.',
+      bullets:['Conversational answers across every company metric','Follow-ups and drill-downs without a data request'],
       visual:<SpotlightChat />,
     },
     {
-      eyebrow:'Board Metrics',
+      eyebrow:'Semantic Layer',
       title:'One definition for ARR, NRR, and runway',
       body:'Finance, the board, and the founder shouldn\'t argue about whose number is right. Insightis aligns ARR, NRR, and runway under a single certified definition the whole company trusts.',
       bullets:['ARR, NRR, and runway agreed across the company','One certified number for every board metric'],
@@ -596,7 +596,7 @@ function FeatureSpotlights() {
       eyebrow:'Full Lineage',
       title:'Board-ready answers, with full lineage',
       body:'Every number carries its sources, owners, and timestamps — the board and your finance team see the same trail, with no reconciliation pass before the meeting.',
-      bullets:['Full lineage from metric down to the source system','Every figure shows its owner and last change'],
+      bullets:['Full lineage from metric down to the source system','Owner, timestamp, and version stamped on every figure'],
       visual:<SpotlightStack />,
     },
   ];
@@ -607,7 +607,7 @@ function FeatureSpotlights() {
         <div style={{marginBottom:'72px'}}>
           <SectionHeader
             eyebrow="How it works"
-            title="Built for the way leadership actually runs the company"
+            title="Built for the way executive teams actually work"
             lede="Four capabilities that put live company metrics at the founder's and the board's fingertips."
           />
         </div>
@@ -662,34 +662,34 @@ function FeatureSpotlights() {
 function UseCases() {
   const cases = [
     {
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 3v18h18" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/><path d="M7 14l4-4 4 4 5-6" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      title:'Live company KPIs vs. plan',
+      desc:'Live ARR, NRR, and burn vs. plan anytime — no more waiting for the next board deck to be built. Every segment, every month, real-time.',
+    },
+    {
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m6-5h6M8 3v18m8-18v18M16 3h3a2 2 0 0 1 2 2v3M2 9h20M2 15h20M2 21h3m16 0h3" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      title:'Certified company metrics',
+      desc:'One Semantic Layer governs every metric — ARR, NRR, runway, burn — owned and versioned by finance. No more arguments about whose number is right.',
+    },
+    {
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      title:'Proactive KPI risk alerts',
+      desc:'KPI risk flagged before it compounds. The moment NRR dips, burn breaks plan, or a segment contracts, you know — not at the quarterly board call.',
+    },
+    {
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M7 9h10M7 13h6" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      title:'Ad hoc company analysis without SQL',
+      desc:'Any company question answered instantly — NRR by segment, cohort expansion, runway by burn scenario. No analyst queue, no pivot-table archaeology.',
+    },
+    {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M9 8h6M9 12h6M9 16h4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
       title:'Board prep in minutes, not days',
       desc:'Build the board deck and investor update on live data — charts that update in the room. Walk in with answers, not last month\'s export.',
     },
     {
-      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m6-5h6M8 3v18m8-18v18M16 3h3a2 2 0 0 1 2 2v3M2 9h20M2 15h20M2 21h3m16 0h3" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
-      title:'Certified company metrics',
-      desc:'One semantic layer governs every metric — ARR, NRR, runway, burn — owned and versioned by finance. No more arguments about whose number is right.',
-    },
-    {
-      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
-      title:'Runway & burn scenarios',
-      desc:'Model runway and burn under different hiring and spend plans — and get flagged the moment a KPI drifts, not at the end-of-quarter board call.',
-    },
-    {
-      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M7 9h10M7 13h6" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
-      title:'NRR & cohort health',
-      desc:'Any retention question answered instantly — NRR by segment, cohort expansion, logo churn — no analyst queue or pivot-table archaeology.',
-    },
-    {
-      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><line x1="12" y1="9" x2="12" y2="13" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/><line x1="12" y1="17" x2="12.01" y2="17" stroke="var(--ins-text-highlight)" strokeWidth="2" strokeLinecap="round"/></svg>,
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="12" width="4" height="9" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><rect x="9" y="7" width="4" height="14" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><rect x="16" y="3" width="4" height="18" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/></svg>,
       title:'Fundraising metrics, ready to share',
       desc:'Every metric investors ask for — ARR, growth rate, magic number, CAC payback — reconciled to source and ready to drop into the data room.',
-    },
-    {
-      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="12" width="4" height="9" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><rect x="9" y="7" width="4" height="14" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><rect x="16" y="3" width="4" height="18" rx="1" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/></svg>,
-      title:'Cross-source company view',
-      desc:'Correlate CRM, billing, finance, and product usage in one question — no SQL, no analyst, no two-week turnaround. The whole company\'s health in one place.',
     },
   ];
 
@@ -711,7 +711,7 @@ function UseCases() {
                 See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own numbers</span>
               </h3>
               <p className="ins-text-body">
-                Connect your CRM and billing and ask Insightis the company-health question you need answered before the next board meeting.
+                Connect Salesforce or NetSuite and ask Insightis the company-health question that always takes too long to answer.
               </p>
             </div>
             <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
@@ -766,7 +766,7 @@ function FAQ() {
     },
     {
       q:'How does Insightis fit alongside our finance team and existing tools?',
-      a:'Insightis amplifies finance, it does not replace it. The team continues to own metric definitions in the semantic layer; you and the rest of the company query against those certified definitions. Everyone reads the same number, every time.',
+      a:'Insightis amplifies finance, it does not replace it. The team continues to own metric definitions in the Semantic Layer; you and the rest of the company query against those certified definitions. Everyone reads the same number, every time.',
     },
     {
       q:'Can we trust the AI for board-level decisions?',
@@ -774,7 +774,7 @@ function FAQ() {
     },
     {
       q:'What happens to our metric definitions as we scale or pivot?',
-      a:'The semantic layer is versioned. When an ARR definition changes — say, after acquiring a new product line — historical answers reflect both old and new definitions. No more retroactive number changes that confuse the board between meetings.',
+      a:'The Semantic Layer is versioned. When an ARR definition changes — say, after acquiring a new product line — historical answers reflect both old and new definitions. No more retroactive number changes that confuse the board between meetings.',
     },
     {
       q:'What\'s the security and compliance posture for sharing financials?',

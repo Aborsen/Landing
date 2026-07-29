@@ -217,10 +217,10 @@ function RelevantIntegrations() {
     { name:'Jira',        desc:'Issue tracking' },
     { name:'GitHub',      desc:'Source & releases' },
     { name:'Slack',       desc:'Team comms' },
-    { name:'Notion',      desc:'Specs & docs' },
-    { name:'Salesforce',  desc:'CRM data' },
-    { name:'HubSpot',     desc:'CRM data' },
-    { name:'Stripe',      desc:'Billing data' },
+    { name:'Notion',      desc:'Docs & planning' },
+    { name:'Salesforce',  desc:'CRM & pipeline' },
+    { name:'HubSpot',     desc:'CRM & marketing' },
+    { name:'Stripe',      desc:'Billing & revenue' },
     { name:'Snowflake',   desc:'Data warehouse' },
     { name:'BigQuery',    desc:'Cloud analytics' },
     { name:'PostgreSQL',  desc:'Database' },
@@ -233,7 +233,7 @@ function RelevantIntegrations() {
           <SectionHeader
             eyebrow="Your Product Stack"
             title="Connects to every product data source"
-            lede="Joins event analytics, warehouse, billing, and CRM so you can see the full user journey in one answer."
+            lede="Insightis integrates with your event analytics, billing, CRM, and warehouse stack."
           />
         </div>
 
@@ -358,7 +358,7 @@ function SpotlightChat() {
           <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'7px',marginBottom:'10px'}}>
             {[
               {label:'Pro',     val:'78%',   color:'var(--ins-text-highlight)', sub:'best plan'},
-              {label:'QoQ lift',val:'+34pt', color:'var(--ins-status-success-fg)', sub:'avg across plans'},
+              {label:'QoQ lift',val:'+34pt', color:'var(--ins-status-success-fg)', sub:'on Pro'},
               {label:'Free',    val:'18%',   color:'var(--ins-status-error-fg)', sub:'soft spot'},
             ].map((k,i)=>(
               <div key={i} style={{
@@ -486,7 +486,7 @@ function SpotlightSemantic() {
             marginBottom:'10px',
             lineHeight:1.5,
           }}>
-            <span style={{color:'var(--ins-text-body)'}}>users with</span> <span style={{color:'var(--ins-text-highlight)'}}>core_action</span> <span style={{color:'var(--ins-text-body)'}}>in 7d / new_signups</span>
+            <span style={{color:'var(--ins-text-body)'}}>count(distinct user_id) with</span> <span style={{color:'var(--ins-text-highlight)'}}>core_action</span> <span style={{color:'var(--ins-text-body)'}}>in last 7d</span>
           </div>
           <div style={{display:'flex',justifyContent:'space-between',gap:'10px',fontSize:'10.5px',color:'var(--ins-text-body)'}}>
             <span><span style={{color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.06em',textTransform:'uppercase',fontSize:'9px',marginRight:'5px'}}>Owned</span>Product Analytics</span>
@@ -577,33 +577,11 @@ function SpotlightAnomalies() {
 }
 
 function SpotlightStack() {
-  const sources = [
-    { name:'Mixpanel', kind:'events', color:'#7856ff', bg:'rgba(120,86,255,.12)',
-      icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="7" r="2.4" fill="#7856ff"/>
-        <circle cx="12" cy="17" r="2.4" fill="#7856ff"/>
-        <circle cx="7" cy="12" r="2.4" fill="#7856ff"/>
-        <circle cx="17" cy="12" r="2.4" fill="#7856ff"/>
-      </svg>},
-    { name:'Amplitude', kind:'events', color:'#197ce6', bg:'rgba(25,124,230,.12)',
-      icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <path d="M3 17l4-8 4 10 3-6 2 4 5-12" stroke="#197ce6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>},
-    { name:'Snowflake', kind:'warehouse', color:'#29b5e8', bg:'rgba(41,181,232,.12)',
-      icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <line x1="12" y1="2" x2="12" y2="22" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
-        <line x1="2" y1="7" x2="22" y2="17" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
-        <line x1="22" y1="7" x2="2" y2="17" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
-        <circle cx="12" cy="12" r="2.5" fill="#29b5e8"/>
-      </svg>},
-    { name:'Stripe', kind:'billing', color:'#635bff', bg:'rgba(99,91,255,.12)',
-      icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z" fill="#635bff"/>
-      </svg>},
-    { name:'Salesforce', kind:'crm', color:'#00a1e0', bg:'rgba(0,161,224,.12)',
-      icon:<svg width="20" height="18" viewBox="0 0 24 18" fill="none">
-        <path d="M9.5 3.4C10.4 2.5 11.6 2 12.9 2c1.7 0 3.2.9 4 2.3.7-.3 1.5-.5 2.3-.5 3 0 5.5 2.5 5.5 5.6 0 .5-.1 1-.2 1.5-.2.6-1.2.5-1.4-.1-.1-.2-.2-.4-.4-.5-.6-.5-1.5-.5-2.1.1-.4.4-.4 1 0 1.4.3.3.7.4 1.1.4.4 0 .8-.1 1.1-.4.4 1.6-.1 3.4-1.4 4.6-1.4 1.3-3.4 1.7-5.2 1-.7 1.3-2.1 2.2-3.7 2.2-.7 0-1.3-.2-1.9-.4-.8 1.1-2.1 1.8-3.6 1.8-1.6 0-3-.8-3.8-2-.4.1-.8.2-1.3.2-2.5 0-4.5-2-4.5-4.4 0-1.7 1-3.2 2.4-3.9-.1-.4-.1-.7-.1-1.1C-.1 6 1.6 4.3 3.7 4.3c1.2 0 2.3.6 3 1.5.6-.7 1.4-1.2 2.3-1.4.2-.4.4-.7.7-1z" fill="#00a1e0"/>
-      </svg>},
+  const trace = [
+    {label:'Sign-ups',  amt:'12,840', src:'Segment',   detail:'sign_up',           owner:'Growth',  ts:'06:30 UTC'},
+    {label:'Verified',  amt:'11,816', src:'Segment',   detail:'email_verified',    owner:'Growth',  ts:'06:30 UTC'},
+    {label:'Workspace', amt:'6,548',  src:'Amplitude', detail:'workspace_created', owner:'Product', ts:'06:30 UTC'},
+    {label:'Activated', amt:'3,980',  src:'Amplitude', detail:'core_action in 7d', owner:'Product', ts:'06:30 UTC'},
   ];
   return (
     <div style={{
@@ -611,101 +589,109 @@ function SpotlightStack() {
       background:'rgba(13,17,23,0.9)',
       border:'1px solid var(--ins-color-white-a-08)',
       borderRadius:'var(--ins-radius-20)',
-      boxShadow:'none',
-      position:'relative',
       overflow:'hidden',
+      boxShadow:'none',
       display:'flex',
       flexDirection:'column',
     }}>
-      <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 55% 70% at 80% 50%, rgba(9,160,157,.10) 0%, transparent 70%)',pointerEvents:'none'}}/>
-      <ChromeHeader label="stack · flow" />
-      <div style={{padding:'20px 20px',flex:1,display:'flex',alignItems:'center',gap:'var(--ins-size-1)',position:'relative'}}>
-        {/* Left column: source tiles stacked vertically */}
-        <div style={{flex:'1 1 46%',display:'flex',flexDirection:'column',gap:'7px',position:'relative',zIndex:2}}>
-          <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9px',color:'var(--ins-text-inactive)',letterSpacing:'.12em',textTransform:'uppercase',marginBottom:'var(--ins-size-half)'}}>your stack</div>
-          {sources.map((s,i) => (
-            <div key={i} style={{
-              display:'flex',alignItems:'center',gap:'10px',
-              padding:'7px 10px',
-              background:'rgba(255,255,255,.025)',
-              border:`1px solid ${s.color}33`,
-              borderRadius:'9px',
-              position:'relative',
-            }}>
+      <ChromeHeader label="audit · activation_rate" />
+      <div style={{padding:'20px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
+
+        {/* Headline KPI with audit stamp */}
+        <div style={{
+          background:'linear-gradient(135deg, rgba(9,160,157,.10) 0%, rgba(9,160,157,.02) 100%)',
+          border:'1px solid rgba(9,160,157,.32)',
+          borderRadius:'11px',
+          padding:'12px 14px',
+          marginBottom:'var(--ins-size-3)',
+          display:'flex',alignItems:'center',justifyContent:'space-between',gap:'var(--ins-size-3)',
+        }}>
+          <div style={{minWidth:0}}>
+            <div style={{display:'flex',alignItems:'baseline',gap:'10px'}}>
+              <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-22)',fontWeight:500,color:'var(--ins-color-gray-100)',letterSpacing:'-.01em'}}>31.0%</span>
+              <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-body)'}}>activation_rate · May cohort</span>
+            </div>
+            <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.06em',textTransform:'uppercase',marginTop:'var(--ins-size-1)'}}>
+              Product Analytics · v2.4 · 2 source systems
+            </div>
+          </div>
+          <span style={{
+            display:'inline-flex',alignItems:'center',gap:'5px',
+            padding:'4px 10px',borderRadius:'999px',
+            background:'rgba(34,197,94,.08)',border:'1px solid rgba(34,197,94,.3)',
+            fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-status-success-fg)',
+            letterSpacing:'.08em',textTransform:'uppercase',whiteSpace:'nowrap',flexShrink:0,
+          }}>
+            <span style={{width:'5px',height:'5px',borderRadius:'50%',background:'var(--ins-status-success-fg)'}}/>
+            audit-ready
+          </span>
+        </div>
+
+        {/* Trace eyebrow */}
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'7px'}}>
+          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>↳ drill to source</span>
+          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-body)'}}>4 funnel steps</span>
+        </div>
+
+        {/* Lineage rows */}
+        <div style={{position:'relative',paddingLeft:'14px'}}>
+          {/* Tree spine */}
+          <div style={{
+            position:'absolute',
+            left:'4px',top:'4px',bottom:'14px',
+            width:'1px',
+            background:'rgba(14,196,193,.25)',
+          }}/>
+
+          {trace.map((t,i)=>(
+            <div key={i} style={{position:'relative',marginBottom:i<trace.length-1?'5px':'0'}}>
+              {/* Branch tick */}
               <div style={{
-                width:'26px',height:'26px',borderRadius:'7px',
-                background:s.bg,
-                display:'flex',alignItems:'center',justifyContent:'center',
-                flexShrink:0,
-              }}>{s.icon}</div>
-              <div style={{minWidth:0,flex:1}}>
-                <div style={{fontSize:'11.5px',fontWeight:500,color:'var(--ins-color-gray-100)',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{s.name}</div>
-                <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'8.5px',color:'var(--ins-text-inactive)',letterSpacing:'.08em',textTransform:'uppercase'}}>{s.kind}</div>
-              </div>
-              <div style={{
-                width:'7px',height:'7px',borderRadius:'50%',
-                background:s.color,opacity:.85,flexShrink:0,
-                boxShadow:`0 0 6px ${s.color}66`,
+                position:'absolute',
+                left:'-10px',top:'14px',
+                width:'10px',height:'1px',
+                background:'rgba(14,196,193,.32)',
               }}/>
+              <div style={{
+                background:'rgba(255,255,255,.022)',
+                border:'1px solid var(--ins-color-white-a-06)',
+                borderRadius:'var(--ins-radius-8)',
+                padding:'8px 11px',
+                display:'flex',alignItems:'center',gap:'10px',
+              }}>
+                <span style={{fontSize:'11.5px',color:'var(--ins-color-gray-100)',fontWeight:500,minWidth:'92px',flexShrink:0}}>{t.label}</span>
+                <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-12)',color:'var(--ins-text-highlight)',fontWeight:500,minWidth:'46px',flexShrink:0}}>{t.amt}</span>
+                <div style={{flex:1,minWidth:0,display:'flex',alignItems:'center',gap:'6px',fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-body)'}}>
+                  <span style={{
+                    color:'var(--ins-status-warning-fg)',
+                    padding:'1px 6px',borderRadius:'var(--ins-radius-4)',
+                    background:'rgba(251,191,36,.08)',
+                    border:'1px solid rgba(251,191,36,.22)',
+                    letterSpacing:'.04em',
+                    flexShrink:0,
+                  }}>{t.src}</span>
+                  <span style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{t.detail} · {t.owner}</span>
+                </div>
+                <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9px',color:'var(--ins-text-inactive)',whiteSpace:'nowrap',flexShrink:0,letterSpacing:'.04em'}}>{t.ts}</span>
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Middle column: SVG branch lines converging */}
-        <div style={{flex:'0 0 64px',alignSelf:'stretch',position:'relative',display:'flex',alignItems:'center',justifyContent:'center'}}>
-          <svg viewBox="0 0 64 280" preserveAspectRatio="none" width="100%" height="100%" style={{display:'block'}}>
-            <defs>
-              <linearGradient id="stack-flow" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%"  stopColor="var(--ins-text-highlight)" stopOpacity="0.15"/>
-                <stop offset="60%" stopColor="var(--ins-text-highlight)" stopOpacity="0.55"/>
-                <stop offset="100%" stopColor="var(--ins-text-highlight)" stopOpacity="0.85"/>
-              </linearGradient>
-            </defs>
-            {/* 5 curved branches from each source row to a shared right-side convergence point */}
-            <path d="M0,40  C28,40  36,140 64,140" stroke="url(#stack-flow)" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
-            <path d="M0,90  C28,90  36,140 64,140" stroke="url(#stack-flow)" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
-            <path d="M0,140 L64,140" stroke="url(#stack-flow)" strokeWidth="1.6" fill="none" strokeLinecap="round"/>
-            <path d="M0,190 C28,190 36,140 64,140" stroke="url(#stack-flow)" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
-            <path d="M0,240 C28,240 36,140 64,140" stroke="url(#stack-flow)" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
-            {/* Convergence node */}
-            <circle cx="64" cy="140" r="6" fill="none" stroke="var(--ins-text-highlight)" strokeWidth="1" opacity="0.4"/>
-            <circle cx="64" cy="140" r="3" fill="var(--ins-text-highlight)"/>
-          </svg>
-        </div>
-
-        {/* Right column: Insightis Semantic Layer destination */}
-        <div style={{flex:'1 1 36%',position:'relative',zIndex:2}}>
-          <div style={{
-            background:'linear-gradient(135deg, rgba(9,160,157,.18) 0%, rgba(9,160,157,.06) 100%)',
-            border:'1px solid rgba(9,160,157,.45)',
-            borderRadius:'var(--ins-radius-12)',
-            padding:'14px 12px',
-            display:'flex',flexDirection:'column',alignItems:'center',gap:'10px',
-            textAlign:'center',
-            boxShadow:'0 8px 24px rgba(9,160,157,.12), inset 0 1px 0 var(--ins-color-white-a-05)',
-          }}>
-            <div style={{
-              width:'42px',height:'42px',borderRadius:'10px',
-              background:'rgba(9,160,157,.22)',
-              border:'1px solid rgba(9,160,157,.35)',
-              display:'flex',alignItems:'center',justifyContent:'center',
-            }}>
-              <svg width="22" height="22" viewBox="0 0 26 26" fill="none">
-                <path d="M25.5 10.4L21.7 12.7L25.5 15.1L12.7 22.8L0 15.1L3.8 12.7L0 10.4L5.7 6.9L7.6 8.1L3.8 10.4L12.7 15.8L21.7 10.4L17.8 8.1L19.8 6.9L25.5 10.4Z" fill="var(--ins-text-highlight)"/>
-              </svg>
-            </div>
-            <div>
-              <div style={{fontSize:'13.5px',fontWeight:600,color:'var(--ins-color-gray-100)'}}>Insightis</div>
-              <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.08em',textTransform:'uppercase',marginTop:'var(--ins-size-half)'}}>Semantic Layer</div>
-            </div>
-            <span style={{
-              fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-highlight)',
-              padding:'3px 9px',borderRadius:'999px',
-              background:'rgba(9,160,157,.12)',border:'1px solid rgba(9,160,157,.3)',
-              letterSpacing:'.08em',textTransform:'uppercase',
-              whiteSpace:'nowrap',
-            }}>5 connected</span>
-          </div>
+        {/* Audit footer */}
+        <div style={{
+          marginTop:'var(--ins-size-3)',
+          paddingTop:'10px',
+          borderTop:'1px dashed var(--ins-color-white-a-06)',
+          display:'flex',alignItems:'center',justifyContent:'space-between',
+          fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',
+          letterSpacing:'.04em',
+        }}>
+          <span style={{display:'inline-flex',alignItems:'center',gap:'6px'}}>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ins-status-success-fg)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+            <span>Audit trail</span>
+          </span>
+          <span>signed off by Product Analytics · 06:42 UTC</span>
         </div>
       </div>
     </div>
@@ -717,13 +703,13 @@ function FeatureSpotlights() {
   const spots = [
     {
       eyebrow:'Self-Serve',
-      title:'Skip the data ticket queue',
+      title:'Product answers on demand',
       body:'Ask any product question in plain English — adoption, retention, funnel drop-off — and Insightis answers from your event, billing, and CRM data in seconds.',
       bullets:['Plain-English questions across the product org','PMs unblock themselves without SQL'],
       visual:<SpotlightChat />,
     },
     {
-      eyebrow:'Activation Metrics',
+      eyebrow:'Semantic Layer',
       title:'One definition per metric',
       body:'Marketing counts trials, CS counts logins, Product counts core actions. Define each metric once — owned, versioned, and used everywhere.',
       bullets:['Certify a metric once, reuse it everywhere','Owned definitions with full change history'],
@@ -737,10 +723,10 @@ function FeatureSpotlights() {
       visual:<SpotlightAnomalies />,
     },
     {
-      eyebrow:'Stack-Native',
-      title:'Plugs into your existing stack',
-      body:'Insightis runs on top of Mixpanel, Amplitude, your warehouse, Stripe, and Salesforce. No data movement, no parallel modeling, no extra pipeline.',
-      bullets:['Works with Mixpanel, Amplitude, Segment, Firebase','Joins event, billing, and CRM data automatically'],
+      eyebrow:'Full Lineage',
+      title:'Review-ready answers, with full lineage',
+      body:'Every number carries its events, owners, and timestamps in one place — the data team and your exec stakeholders see the same trail without a reconciliation pass.',
+      bullets:['Full lineage from metric down to the event','Owner, timestamp, and version stamped on every figure'],
       visual:<SpotlightStack />,
     },
   ];
@@ -806,24 +792,24 @@ function FeatureSpotlights() {
 function UseCases() {
   const cases = [
     {
-      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M9 8h6M9 12h6M9 16h4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
-      title:'Feature adoption tracking',
-      desc:'Did anyone actually use that feature you shipped last quarter? Get adoption, depth-of-use, and stickiness numbers without filing a data request.',
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 3v18h18" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/><path d="M7 14l4-4 4 4 5-6" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      title:'Live feature adoption by cohort',
+      desc:'Live adoption and retention by cohort anytime — no more waiting two weeks on a data ticket for the numbers. Every plan, every persona, real-time.',
     },
     {
-      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 3v18h18" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/><path d="M7 14l4-4 3 3 5-7" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
-      title:'Cohort & retention analysis',
-      desc:'Slice retention by signup channel, plan, persona, or cohort week — without writing complex SQL joins across event, user, and billing tables.',
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m6-5h6M8 3v18m8-18v18M16 3h3a2 2 0 0 1 2 2v3M2 9h20M2 15h20M2 21h3m16 0h3" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      title:'Certified product metrics',
+      desc:'One Semantic Layer governs activation, retention, and adoption — owned and versioned by the data team. No more arguing whose number is right.',
     },
     {
-      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l3-9 4 18 3-9h4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
-      title:'Onboarding funnel diagnosis',
-      desc:'Find the step where new users abandon, the segment where drop-off is worst, and the cause behind it — before the cohort fully churns.',
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      title:'Proactive cohort risk alerts',
+      desc:'Cohort risk flagged before it compounds. The moment retention dips or drop-off spikes, you know — not at the next quarterly review.',
     },
     {
-      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><polyline points="12 6 12 12 16 14" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
-      title:'Time-to-value measurement',
-      desc:'How long does it take a new user to hit their aha moment? Correlate sign-up, event, and retention data instantly instead of building a one-off analysis.',
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M7 9h10M7 13h6" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      title:'Ad hoc product analysis without SQL',
+      desc:'Any product question answered instantly — retention by plan, adoption by persona, time-to-value by cohort. No analyst queue, no pivot-table archaeology.',
     },
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 18l6-6 4 4 8-10" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><polyline points="14 6 21 6 21 13" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
@@ -852,10 +838,10 @@ function UseCases() {
             <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
             <div style={{flex:'1 1 360px',minWidth:0}}>
               <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'var(--ins-size-2)'}}>
-                Ship faster with <span style={{color:'var(--ins-button-primary-bg)'}}>better data</span>
+                See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own product data</span>
               </h3>
               <p className="ins-text-body">
-                Connect Mixpanel, your warehouse, and Stripe — and ask the next product question yourself.
+                Connect Amplitude or Segment and ask Insightis the product question that always takes too long to answer.
               </p>
             </div>
             <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
@@ -873,8 +859,15 @@ function UseCases() {
         <div data-usecase-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'14px'}}>
           {cases.map((c,i) => (
             <div key={i}
-              className="ins-prompt-card"
-              style={{padding:'var(--ins-size-6)', position:'relative', overflow:'hidden'}}
+              style={{
+                background:'rgba(13,17,23,.6)',
+                border:'1px solid var(--ins-color-white-a-06)',
+                borderRadius:'var(--ins-radius-16)',padding:'var(--ins-size-6)',
+                position:'relative',overflow:'hidden',
+                transition:'all .2s',
+              }}
+              onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
+              onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-color-white-a-06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}
             >
               <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
               <div style={{width:'38px',height:'38px',borderRadius:'10px',background:'var(--ins-color-teal-a-08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'14px'}}>
@@ -958,7 +951,7 @@ function FAQ() {
     },
     {
       q:'How does it handle activation, retention, and other product metrics?',
-      a:'Define each metric once at the semantic layer — what counts as activation, what counts as a retained user, how cohorts are formed. From then on every team uses the same definition. No more "marketing\'s active users vs. product\'s active users" debates.',
+      a:'Define each metric once in the Semantic Layer — what counts as activation, what counts as a retained user, how cohorts are formed. From then on every team uses the same definition. No more "marketing\'s active users vs. product\'s active users" debates.',
     },
     {
       q:'Will this work with experiments and A/B test data?',

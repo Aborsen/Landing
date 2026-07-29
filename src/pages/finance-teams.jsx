@@ -333,7 +333,7 @@ function SpotlightChat() {
             <span style={{color:'var(--ins-text-inactive)'}}>vs</span>
             <span style={{color:'var(--ins-text-body)'}}>$178K plan</span>
             <span style={{color:'var(--ins-text-inactive)'}}>·</span>
-            <span style={{color:'var(--ins-status-error-fg)',fontWeight:500}}>+$9K (cloud_infra)</span>
+            <span style={{color:'var(--ins-status-error-fg)',fontWeight:500}}>+$24K (cloud_infra)</span>
           </div>
         </div>
 
@@ -590,7 +590,7 @@ function SpotlightStack() {
               <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-body)'}}>gross_burn · Q2 MTD</span>
             </div>
             <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.06em',textTransform:'uppercase',marginTop:'var(--ins-size-1)'}}>
-              FP&amp;A · v3.2 · 4 source systems
+              FP&amp;A · v3.2 · 3 source systems
             </div>
           </div>
           <span style={{
@@ -687,7 +687,7 @@ function FeatureSpotlights() {
       visual:<SpotlightChat />,
     },
     {
-      eyebrow:'Unified Cost Model',
+      eyebrow:'Semantic Layer',
       title:'Every metric has one definition',
       body:'Marketing and Finance often define the same metric differently. Insightis aligns burn, margin, and headcount under a single agreed definition.',
       bullets:['Burn, margin, headcount agreed across teams','Versioning, ownership, and lineage built in'],
@@ -701,10 +701,10 @@ function FeatureSpotlights() {
       visual:<SpotlightAnomalies />,
     },
     {
-      eyebrow:'Audit-Ready',
-      title:'Audit-ready answers, all in one place',
+      eyebrow:'Full Lineage',
+      title:'Audit-ready answers, with full lineage',
       body:'Every figure carries its transactions, owners, and timestamps in one place — auditors and finance see the same trail without a reconciliation pass.',
-      bullets:['Full lineage from KPI down to source transaction','Owner, timestamp, and version stamped on every figure'],
+      bullets:['Full lineage from metric down to the source transaction','Owner, timestamp, and version stamped on every figure'],
       visual:<SpotlightStack />,
     },
   ];
@@ -777,7 +777,7 @@ function UseCases() {
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m6-5h6M8 3v18m8-18v18M16 3h3a2 2 0 0 1 2 2v3M2 9h20M2 15h20M2 21h3m16 0h3" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
       title:'Governed cost definitions',
-      desc:'One unified cost model governs every metric — burn rate, gross margin, COGS — owned and versioned by Finance. No more arguments about whose number is right.',
+      desc:'One Semantic Layer governs burn rate, gross margin, and COGS, owned and versioned by Finance. No more arguing whose number is right.',
     },
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
@@ -786,18 +786,18 @@ function UseCases() {
     },
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M7 9h10M7 13h6" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
-      title:'Ad hoc finance analysis without Excel',
-      desc:'Any finance question answered instantly — gross margin by product, fully-loaded cost by team, runway under different burn scenarios. No more pivot-table archaeology.',
+      title:'Ad hoc finance analysis without SQL',
+      desc:'Any finance question answered instantly — gross margin by product, cost by team, runway by burn scenario. No more pivot-table archaeology.',
     },
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="14" rx="2" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><line x1="3" y1="10" x2="21" y2="10" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><line x1="8" y1="3" x2="8" y2="9" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><line x1="16" y1="3" x2="16" y2="9" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/></svg>,
-      title:'Vendor &amp; SaaS contract tracking',
+      title:'Vendor & SaaS contract tracking',
       desc:'Vendor obligations tracked automatically — past-due invoices, auto-renewing SaaS contracts, unused licenses. Stop discovering them on a renewal email.',
     },
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/><circle cx="9" cy="7" r="4" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M22 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
       title:'Fully-loaded headcount cost in seconds',
-      desc:'Fully-loaded cost by team in seconds — pulling from HR, payroll, and benefits automatically. The kind of answer that used to take a day, before the CEO asked again.',
+      desc:'Fully-loaded cost by team — HR, payroll and benefits pulled automatically. The answer that used to take a day, before the CEO asked again.',
     },
   ];
 
@@ -872,14 +872,14 @@ function RelevantIntegrations() {
     { name:'Zuora',       desc:'Subscription billing' },
     { name:'Recurly',     desc:'Subscription billing' },
     { name:'ChartMogul',  desc:'Subscription analytics' },
-    { name:'Salesforce',  desc:'CRM & revenue' },
-    { name:'HubSpot',     desc:'CRM & revenue' },
+    { name:'Salesforce',  desc:'CRM & pipeline' },
+    { name:'HubSpot',     desc:'CRM & marketing' },
     { name:'Snowflake',   desc:'Data warehouse' },
     { name:'BigQuery',    desc:'Cloud analytics' },
-    { name:'PostgreSQL',  desc:'Data warehouse' },
+    { name:'PostgreSQL',  desc:'Database' },
     { name:'Paddle',      desc:'Payments' },
     { name:'Google Sheets', desc:'Spreadsheet data' },
-    { name:'Notion',      desc:'Reports & docs' },
+    { name:'Notion',      desc:'Docs & planning' },
   ];
 
   return (
@@ -888,7 +888,7 @@ function RelevantIntegrations() {
         <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
             eyebrow="Your Finance Stack"
-            title="Works with every accounting, payroll, and billing tool"
+            title="Connects to every accounting, payroll, and billing tool"
             lede="Insightis integrates with your accounting, billing, payroll, and warehouse stack."
           />
         </div>
@@ -931,7 +931,7 @@ function FAQ() {
     },
     {
       q:'What happens when teams have conflicting metric definitions?',
-      a:'Definitions are resolved at the unified cost model, not in the spreadsheet. Each metric — burn rate, gross margin, fully-loaded headcount cost — has one certified version, an owner, and a version history. When someone asks for "burn" in chat, Insightis answers using the governed definition and links to the source.',
+      a:'Definitions are resolved at the Semantic Layer, not in the spreadsheet. Each metric — burn rate, gross margin, fully-loaded headcount cost — has one certified version, an owner, and a version history. When someone asks for "burn" in chat, Insightis answers using the governed definition and links to the source.',
     },
     {
       q:'How does it handle late-arriving journals and month-end close adjustments?',
@@ -939,11 +939,11 @@ function FAQ() {
     },
     {
       q:'Will this coexist with our existing FP&A or BI tool (Mosaic, Cube, Looker)?',
-      a:'Yes. Most teams keep their FP&A or BI tool for the curated board and forecast deck, and use Insightis for the long-tail finance questions that would otherwise become a Slack thread or another spreadsheet. Both can read the same unified cost model.',
+      a:'Yes. Most teams keep their FP&A or BI tool for the curated board and forecast deck, and use Insightis for the long-tail finance questions that would otherwise become a Slack thread or another spreadsheet. Both can read the same Semantic Layer.',
     },
     {
       q:'How long does implementation take?',
-      a:'Most finance teams are answering real questions within a week — connect QuickBooks or Xero plus your payroll and billing tools, register your top 10–20 metrics in the cost model, and start asking. Broader rollout to ops and department leads typically follows in the second or third week.',
+      a:'Most finance teams are answering real questions within a week — connect QuickBooks or Xero plus your payroll and billing tools, register your top 10–20 metrics in the Semantic Layer, and start asking. Broader rollout to ops and department leads typically follows in the second or third week.',
     },
     {
       q:'How is security and access handled?',
@@ -976,7 +976,7 @@ function BottomCTASection() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
           variant="buttons"
-          title={<>Stop reconciling <BottomCTA.Highlight>spreadsheets.</BottomCTA.Highlight> Start controlling <BottomCTA.Highlight> costs</BottomCTA.Highlight></>}
+          title={<>Stop reconciling <BottomCTA.Highlight>spreadsheets.</BottomCTA.Highlight> Start controlling <BottomCTA.Highlight>costs</BottomCTA.Highlight></>}
           description="Spend, budgets and forecasts in one place — answered the moment you ask. Free to start, no credit card required."
           ctaLabel="Start for free"
           secondaryCtaLabel="Explore Pricing"

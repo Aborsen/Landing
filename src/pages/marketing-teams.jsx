@@ -209,7 +209,7 @@ function SpotlightChat() {
         {/* AI reply */}
         <div className="chat-bubble-ai">
           <div style={{fontSize:'12.5px',lineHeight:1.6,marginBottom:'var(--ins-size-3)'}}>
-            ROAS held up across the board since the <span style={{color:'var(--ins-text-highlight)',fontWeight:500}}>Q2</span> budget shift. <span style={{color:'var(--ins-text-highlight)',fontWeight:500}}>Search</span> leads at 6.2× (+1.4× QoQ); <span style={{color:'var(--ins-status-error-fg)',fontWeight:500}}>Paid social</span> at 2.1× is the soft spot. Biggest lift came from retargeting after the new creative shipped.
+            ROAS improved across the board since the <span style={{color:'var(--ins-text-highlight)',fontWeight:500}}>Q2</span> budget shift — up 1.4× QoQ on average. <span style={{color:'var(--ins-text-highlight)',fontWeight:500}}>Search</span> leads at 6.2×; <span style={{color:'var(--ins-status-error-fg)',fontWeight:500}}>Paid social</span> at 2.1× is the soft spot. Biggest lift came from retargeting after the new creative shipped.
           </div>
 
           {/* KPI blocks */}
@@ -315,7 +315,7 @@ function SpotlightSemantic() {
               letterSpacing:'.06em',textTransform:'uppercase',
             }}>
               <span style={{width:'5px',height:'5px',borderRadius:'50%',background:'var(--ins-status-success-fg)'}}/>
-              Certified · v3.1
+              Certified · v3.2
             </span>
           </div>
           <div style={{
@@ -455,7 +455,7 @@ function SpotlightStack() {
               <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-body)'}}>blended_cac · Q2 MTD</span>
             </div>
             <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.06em',textTransform:'uppercase',marginTop:'var(--ins-size-1)'}}>
-              Marketing Ops · v2.4 · 4 channels
+              Marketing Ops · v3.2 · 4 channels
             </div>
           </div>
           <span style={{
@@ -552,7 +552,7 @@ function FeatureSpotlights() {
       visual:<SpotlightChat />,
     },
     {
-      eyebrow:'One Attribution Model',
+      eyebrow:'Semantic Layer',
       title:'One attribution model everyone trusts',
       body:'Demand Gen counts last-touch, Brand counts first-touch, Finance counts blended CAC. Insightis aligns ROAS and CAC under one certified attribution model the whole company trusts.',
       bullets:['ROAS and CAC agreed across teams','Attribution model defined once, applied everywhere'],
@@ -566,8 +566,8 @@ function FeatureSpotlights() {
       visual:<SpotlightAnomalies />,
     },
     {
-      eyebrow:'Spend Lineage',
-      title:'Every number traced to the spend',
+      eyebrow:'Full Lineage',
+      title:'Audit-ready answers, with full lineage',
       body:'Every ROAS and CAC figure carries its channels, spend, and timestamps in one place — finance and the board see the same trail without a reconciliation pass.',
       bullets:['Full lineage from metric down to the campaign','Channel, spend, and timestamp stamped on every figure'],
       visual:<SpotlightStack />,
@@ -642,27 +642,27 @@ function UseCases() {
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m6-5h6M8 3v18m8-18v18M16 3h3a2 2 0 0 1 2 2v3M2 9h20M2 15h20M2 21h3m16 0h3" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
       title:'One attribution model',
-      desc:'One semantic layer governs every metric — ROAS, CAC, blended CAC — under a single attribution model owned by Marketing Ops. No more arguments about whose number is right.',
+      desc:'One Semantic Layer governs ROAS, CAC and blended CAC under one attribution model owned by Marketing Ops. No more arguing whose number is right.',
     },
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
-      title:'Funnel drop-off alerts',
-      desc:'Funnel leaks flagged before they compound. The moment a stage starts converting worse — Click → MQL, MQL → SQL — you know, not at the end-of-quarter review.',
+      title:'Proactive funnel drop-off alerts',
+      desc:'Funnel leaks flagged before they compound. The moment Click → MQL or MQL → SQL starts converting worse, you know — not at the quarterly review.',
     },
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M7 9h10M7 13h6" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
-      title:'Same-day budget reallocation',
-      desc:'See which channels are over- and under-performing and shift budget the same day — no analyst queue, no pivot-table archaeology, no waiting for the weekly report.',
+      title:'Ad hoc campaign analysis without SQL',
+      desc:'Any campaign question answered instantly — ROAS by channel, CAC by platform, funnel drop-off by source. No analyst queue, no pivot-table archaeology.',
     },
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="14" rx="2" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><line x1="3" y1="10" x2="21" y2="10" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><line x1="8" y1="3" x2="8" y2="9" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><line x1="16" y1="3" x2="16" y2="9" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/></svg>,
-      title:'Campaign cohort analysis',
-      desc:'Slice retention and payback by acquisition campaign, channel, or cohort week — without writing complex joins across ad, analytics, and billing tables.',
+      title:'Same-day budget reallocation',
+      desc:'See which channels are over- and under-performing and shift budget the same day — no analyst queue, no waiting for the weekly report.',
     },
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/><circle cx="9" cy="7" r="4" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M22 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
       title:'Cross-source MQL → customer view',
-      desc:'Correlate ad spend with analytics and CRM in one question — how many MQLs from paid social became paying customers. No SQL, no analyst, no two-week turnaround.',
+      desc:'Correlate ad spend, analytics and CRM in one question — how many MQLs from paid social became customers. No SQL, no analyst, no two-week wait.',
     },
   ];
 
@@ -684,7 +684,7 @@ function UseCases() {
                 See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own campaigns</span>
               </h3>
               <p className="ins-text-body">
-                Connect Google Ads or Meta and ask Insightis the campaign question that always takes too long to answer.
+                Connect Google Ads or Facebook Ads and ask Insightis the campaign question that always takes too long to answer.
               </p>
             </div>
             <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
@@ -702,8 +702,15 @@ function UseCases() {
         <div data-usecase-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'14px'}}>
           {cases.map((c,i) => (
             <div key={i}
-              className="ins-prompt-card"
-              style={{padding:'var(--ins-size-6)', position:'relative', overflow:'hidden'}}
+              style={{
+                background:'rgba(13,17,23,.6)',
+                border:'1px solid var(--ins-color-white-a-06)',
+                borderRadius:'var(--ins-radius-16)',padding:'var(--ins-size-6)',
+                position:'relative',overflow:'hidden',
+                transition:'all .2s',
+              }}
+              onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
+              onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-color-white-a-06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}
             >
               <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
               <div style={{width:'38px',height:'38px',borderRadius:'10px',background:'var(--ins-color-teal-a-08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'14px'}}>
@@ -727,7 +734,7 @@ function RelevantIntegrations() {
     { name:'LinkedIn Ads',   desc:'B2B ads' },
     { name:'TikTok Ads',     desc:'Paid social' },
     { name:'Google Analytics', desc:'Web analytics' },
-    { name:'HubSpot',        desc:'Marketing & CRM' },
+    { name:'HubSpot',        desc:'CRM & marketing' },
     { name:'Salesforce',     desc:'CRM & pipeline' },
     { name:'Marketo',        desc:'Marketing automation' },
     { name:'Klaviyo',        desc:'Email & SMS' },
@@ -735,7 +742,7 @@ function RelevantIntegrations() {
     { name:'Pinterest',      desc:'Paid social' },
     { name:'Segment',        desc:'Customer data' },
     { name:'Amplitude',      desc:'Product analytics' },
-    { name:'Stripe',         desc:'Revenue data' },
+    { name:'Stripe',         desc:'Billing & revenue' },
     { name:'Snowflake',      desc:'Data warehouse' },
     { name:'BigQuery',       desc:'Cloud analytics' },
   ];
@@ -785,7 +792,7 @@ function FAQ() {
   const items = [
     {
       q:'How does Insightis handle multi-touch attribution?',
-      a:'Insightis supports first-touch, last-touch, linear, time-decay, and custom-weight attribution models — applied consistently across every channel. Define the model once in the semantic layer; every question respects it from then on.',
+      a:'Insightis supports first-touch, last-touch, linear, time-decay, and custom-weight attribution models — applied consistently across every channel. Define the model once in the Semantic Layer; every question respects it from then on.',
     },
     {
       q:'Will it work with our existing Google Ads, Meta, and LinkedIn setup?',
@@ -817,7 +824,7 @@ function FAQ() {
             <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>FAQ</span>
           </div>
           <h2 className="ins-text-display mb-3">
-            Questions every CMO asks first
+            Questions marketing teams ask
           </h2>
         </div>
 

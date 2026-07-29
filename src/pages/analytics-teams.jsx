@@ -162,7 +162,7 @@ function Hero() {
               <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'var(--ins-size-2)'}}>
                 {[
                   {label:'Drop',     val:'−41%',     color:'var(--ins-status-error-fg)'},
-                  {label:'Window',   val:'2h 14m',   color:'var(--ins-status-warning-fg)'},
+                  {label:'Window',   val:'2h 00m',   color:'var(--ins-status-warning-fg)'},
                   {label:'Resolved', val:'18:30',    color:'var(--ins-status-success-fg)'},
                 ].map((m,i) => (
                   <div key={i} style={{
@@ -197,11 +197,11 @@ function RelevantIntegrations() {
     { name:'MongoDB',     desc:'NoSQL database' },
     { name:'MariaDB',     desc:'Database' },
     { name:'Segment',     desc:'Customer data' },
-    { name:'Amplitude',   desc:'Behavioral data' },
+    { name:'Amplitude',   desc:'Product analytics' },
     { name:'Google Analytics', desc:'Web analytics' },
-    { name:'Salesforce',  desc:'CRM data' },
-    { name:'HubSpot',     desc:'CRM data' },
-    { name:'Stripe',      desc:'Billing data' },
+    { name:'Salesforce',  desc:'CRM & pipeline' },
+    { name:'HubSpot',     desc:'CRM & marketing' },
+    { name:'Stripe',      desc:'Billing & revenue' },
   ];
 
   return (
@@ -209,7 +209,7 @@ function RelevantIntegrations() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
-            eyebrow="Your Data Sources"
+            eyebrow="Your Data Stack"
             title="Connects to your entire data stack"
             lede="Insightis integrates with your warehouses, transformation tools, and source systems."
           />
@@ -293,8 +293,8 @@ function BottomCTASection() {
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <BottomCTA
           variant="buttons"
-          title={<>Stop being a <BottomCTA.Highlight>reporting service.</BottomCTA.Highlight> Start doing <BottomCTA.Highlight> real analysis</BottomCTA.Highlight></>}
-          description="Hand the ad hoc SQL queue to business users and get back to the deep work. Free to start, no credit card required."
+          title={<>Stop being a <BottomCTA.Highlight>reporting service.</BottomCTA.Highlight> Start doing <BottomCTA.Highlight>real analysis</BottomCTA.Highlight></>}
+          description="Governed metrics every team can self-serve — no SQL, no ticket queue. Free to start, no credit card required."
           ctaLabel="Start for free"
           secondaryCtaLabel="Explore Pricing"
           secondaryCtaHref="/pricing"
@@ -405,7 +405,7 @@ function SpotlightSemantic() {
       display:'flex',
       flexDirection:'column',
     }}>
-      <ChromeHeader label="semantic layer · churn" />
+      <ChromeHeader label="metric · churn" />
       <div style={{padding:'26px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'18px'}}>
           <div style={{display:'flex',alignItems:'center',gap:'10px'}}>
@@ -551,31 +551,11 @@ function SpotlightAnomalies() {
 }
 
 function SpotlightStack() {
-  const sources = [
-    { name:'Snowflake', color:'#29b5e8', bg:'rgba(41,181,232,.12)',
-      icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <line x1="12" y1="2" x2="12" y2="22" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
-        <line x1="2" y1="7" x2="22" y2="17" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
-        <line x1="22" y1="7" x2="2" y2="17" stroke="#29b5e8" strokeWidth="2" strokeLinecap="round"/>
-        <circle cx="12" cy="12" r="2.5" fill="#29b5e8"/>
-      </svg>},
-    { name:'BigQuery', color:'#4285f4', bg:'rgba(66,133,244,.12)',
-      icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#4285f4"/>
-        <path d="M2 17l10 5 10-5" stroke="#34a853" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-        <path d="M2 12l10 5 10-5" stroke="#fbbc04" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-      </svg>},
-    { name:'Redshift', color:'#8c4fff', bg:'rgba(140,79,255,.12)',
-      icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <ellipse cx="12" cy="7" rx="9" ry="3" stroke="#8c4fff" strokeWidth="1.5" fill="#8c4fff" opacity=".2"/>
-        <path d="M3 7v5c0 1.66 4.03 3 9 3s9-1.34 9-3V7" stroke="#8c4fff" strokeWidth="1.5" fill="none"/>
-        <path d="M3 12v5c0 1.66 4.03 3 9 3s9-1.34 9-3v-5" stroke="#8c4fff" strokeWidth="1.5" fill="none"/>
-      </svg>},
-    { name:'Databricks', color:'#e4173f', bg:'rgba(228,23,63,.12)',
-      icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <path d="M12 2L22 8v8l-10 6L2 16V8L12 2z" fill="#e4173f" fillOpacity=".18" stroke="#e4173f" strokeWidth="1.5" strokeLinejoin="round"/>
-        <path d="M12 2v20M2 8l10 6 10-6" stroke="#e4173f" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>},
+  const trace = [
+    {label:'Churned logos',  amt:'142',   src:'Snowflake',  detail:'fct_subscriptions', owner:'Data Eng', ts:'06:30 UTC'},
+    {label:'Starting base',  amt:'2,940', src:'Snowflake',  detail:'dim_customers',     owner:'Data Eng', ts:'06:30 UTC'},
+    {label:'Plan tier',      amt:'SMB',   src:'Salesforce', detail:'dim_accounts',      owner:'RevOps',   ts:'06:30 UTC'},
+    {label:'Billing events', amt:'8.4K',  src:'Stripe',     detail:'stg_invoices',      owner:'Data Eng', ts:'06:30 UTC'},
   ];
   return (
     <div style={{
@@ -583,70 +563,109 @@ function SpotlightStack() {
       background:'rgba(13,17,23,0.9)',
       border:'1px solid var(--ins-color-white-a-08)',
       borderRadius:'var(--ins-radius-20)',
-      boxShadow:'none',
-      position:'relative',
       overflow:'hidden',
+      boxShadow:'none',
       display:'flex',
       flexDirection:'column',
     }}>
-      <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(9,160,157,.06) 0%, transparent 70%)',pointerEvents:'none'}}/>
-      <ChromeHeader label="stack · architecture" />
-      <div style={{padding:'24px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center',position:'relative'}}>
-        {/* Section label */}
-        <div style={{display:'flex',justifyContent:'center',marginBottom:'10px'}}>
-          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>your warehouse</span>
+      <ChromeHeader label="audit · churn_rate" />
+      <div style={{padding:'20px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
+
+        {/* Headline KPI with audit stamp */}
+        <div style={{
+          background:'linear-gradient(135deg, rgba(9,160,157,.10) 0%, rgba(9,160,157,.02) 100%)',
+          border:'1px solid rgba(9,160,157,.32)',
+          borderRadius:'11px',
+          padding:'12px 14px',
+          marginBottom:'var(--ins-size-3)',
+          display:'flex',alignItems:'center',justifyContent:'space-between',gap:'var(--ins-size-3)',
+        }}>
+          <div style={{minWidth:0}}>
+            <div style={{display:'flex',alignItems:'baseline',gap:'10px'}}>
+              <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-22)',fontWeight:500,color:'var(--ins-color-gray-100)',letterSpacing:'-.01em'}}>4.8%</span>
+              <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-body)'}}>churn_rate · SMB monthly</span>
+            </div>
+            <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.06em',textTransform:'uppercase',marginTop:'var(--ins-size-1)'}}>
+              Data Engineering · v3.2 · 4 source tables
+            </div>
+          </div>
+          <span style={{
+            display:'inline-flex',alignItems:'center',gap:'5px',
+            padding:'4px 10px',borderRadius:'999px',
+            background:'rgba(34,197,94,.08)',border:'1px solid rgba(34,197,94,.3)',
+            fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-status-success-fg)',
+            letterSpacing:'.08em',textTransform:'uppercase',whiteSpace:'nowrap',flexShrink:0,
+          }}>
+            <span style={{width:'5px',height:'5px',borderRadius:'50%',background:'var(--ins-status-success-fg)'}}/>
+            audit-ready
+          </span>
         </div>
 
-        {/* Source tiles row */}
-        <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'var(--ins-size-2)',marginBottom:'14px'}}>
-          {sources.map((s,i) => (
-            <div key={i} style={{
-              background:'rgba(255,255,255,.025)',
-              border:`1px solid ${s.color}33`,
-              borderRadius:'var(--ins-radius-12)',
-              padding:'12px 6px',
-              display:'flex',flexDirection:'column',alignItems:'center',gap:'7px',
-              minWidth:0,
-            }}>
+        {/* Trace eyebrow */}
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'7px'}}>
+          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>↳ drill to source</span>
+          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-body)'}}>4 source tables</span>
+        </div>
+
+        {/* Lineage rows */}
+        <div style={{position:'relative',paddingLeft:'14px'}}>
+          {/* Tree spine */}
+          <div style={{
+            position:'absolute',
+            left:'4px',top:'4px',bottom:'14px',
+            width:'1px',
+            background:'rgba(14,196,193,.25)',
+          }}/>
+
+          {trace.map((t,i)=>(
+            <div key={i} style={{position:'relative',marginBottom:i<trace.length-1?'5px':'0'}}>
+              {/* Branch tick */}
               <div style={{
-                width:'34px',height:'34px',borderRadius:'9px',
-                background:s.bg,
-                display:'flex',alignItems:'center',justifyContent:'center',
-              }}>{s.icon}</div>
-              <div style={{fontSize:'var(--ins-font-size-11)',fontWeight:500,color:'var(--ins-color-gray-100)',textAlign:'center'}}>{s.name}</div>
+                position:'absolute',
+                left:'-10px',top:'14px',
+                width:'10px',height:'1px',
+                background:'rgba(14,196,193,.32)',
+              }}/>
+              <div style={{
+                background:'rgba(255,255,255,.022)',
+                border:'1px solid var(--ins-color-white-a-06)',
+                borderRadius:'var(--ins-radius-8)',
+                padding:'8px 11px',
+                display:'flex',alignItems:'center',gap:'10px',
+              }}>
+                <span style={{fontSize:'11.5px',color:'var(--ins-color-gray-100)',fontWeight:500,minWidth:'92px',flexShrink:0}}>{t.label}</span>
+                <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-12)',color:'var(--ins-text-highlight)',fontWeight:500,minWidth:'46px',flexShrink:0}}>{t.amt}</span>
+                <div style={{flex:1,minWidth:0,display:'flex',alignItems:'center',gap:'6px',fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-body)'}}>
+                  <span style={{
+                    color:'var(--ins-status-warning-fg)',
+                    padding:'1px 6px',borderRadius:'var(--ins-radius-4)',
+                    background:'rgba(251,191,36,.08)',
+                    border:'1px solid rgba(251,191,36,.22)',
+                    letterSpacing:'.04em',
+                    flexShrink:0,
+                  }}>{t.src}</span>
+                  <span style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{t.detail} · {t.owner}</span>
+                </div>
+                <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9px',color:'var(--ins-text-inactive)',whiteSpace:'nowrap',flexShrink:0,letterSpacing:'.04em'}}>{t.ts}</span>
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Connector arrow */}
-        <div style={{display:'flex',justifyContent:'center',marginBottom:'10px'}}>
-          <svg width="14" height="22" viewBox="0 0 14 22" fill="none">
-            <path d="M7 1v18m0 0l-5-5m5 5l5-5" stroke="var(--ins-text-highlight)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity=".55"/>
-          </svg>
-        </div>
-
-        {/* Insightis destination */}
+        {/* Audit footer */}
         <div style={{
-          background:'linear-gradient(135deg, rgba(9,160,157,.14) 0%, rgba(9,160,157,.06) 100%)',
-          border:'1px solid rgba(9,160,157,.35)',
-          borderRadius:'var(--ins-radius-12)',
-          padding:'12px 14px',
-          display:'flex',alignItems:'center',gap:'var(--ins-size-3)',
+          marginTop:'var(--ins-size-3)',
+          paddingTop:'10px',
+          borderTop:'1px dashed var(--ins-color-white-a-06)',
+          display:'flex',alignItems:'center',justifyContent:'space-between',
+          fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',
+          letterSpacing:'.04em',
         }}>
-          <div style={{
-            width:'36px',height:'36px',borderRadius:'10px',
-            background:'rgba(9,160,157,.18)',
-            display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,
-          }}>
-            <svg width="20" height="20" viewBox="0 0 26 26" fill="none">
-              <path d="M25.5 10.4L21.7 12.7L25.5 15.1L12.7 22.8L0 15.1L3.8 12.7L0 10.4L5.7 6.9L7.6 8.1L3.8 10.4L12.7 15.8L21.7 10.4L17.8 8.1L19.8 6.9L25.5 10.4Z" fill="var(--ins-text-highlight)"/>
-            </svg>
-          </div>
-          <div style={{flex:1,minWidth:0}}>
-            <div style={{fontSize:'13px',fontWeight:600,color:'var(--ins-color-gray-100)'}}>Insightis</div>
-            <div style={{fontSize:'10.5px',color:'var(--ins-text-inactive)',fontFamily:'var(--ins-font-family-mono)',letterSpacing:'.04em',textTransform:'uppercase',marginTop:'var(--ins-size-half)'}}>Semantic Layer</div>
-          </div>
-          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-highlight)',padding:'3px 9px',borderRadius:'999px',background:'rgba(9,160,157,.1)',border:'1px solid rgba(9,160,157,.25)',letterSpacing:'.08em',textTransform:'uppercase'}}>connected</span>
+          <span style={{display:'inline-flex',alignItems:'center',gap:'6px'}}>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ins-status-success-fg)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+            <span>Audit trail</span>
+          </span>
+          <span>signed off by Data Engineering · 06:42 UTC</span>
         </div>
       </div>
     </div>
@@ -658,7 +677,7 @@ function FeatureSpotlights() {
   const spots = [
     {
       eyebrow:'Self-Serve',
-      title:'Stop the repeat questions',
+      title:'Data answers on demand',
       body:'Insightis sits on top of your Semantic Layer and answers business questions in plain English — so your team focuses on analysis, not reporting.',
       bullets:['Conversational answers across every team','Backlog of ad hoc SQL stops growing'],
       visual:<SpotlightChat />,
@@ -678,10 +697,10 @@ function FeatureSpotlights() {
       visual:<SpotlightAnomalies />,
     },
     {
-      eyebrow:'Stack-Native',
-      title:'Connect any warehouse, any source',
-      body:'Insightis runs on top of Snowflake, BigQuery, Redshift, or Databricks. No data movement — permissions and lineage stay where they belong.',
-      bullets:['Works with every major data warehouse','Zero data movement, zero shadow modeling'],
+      eyebrow:'Full Lineage',
+      title:'Audit-ready answers, with full lineage',
+      body:'Every number carries its source tables, owners, and timestamps in one place — the business and your data team see the same trail without a reconciliation pass.',
+      bullets:['Full lineage from metric down to the source table','Owner, timestamp, and version stamped on every figure'],
       visual:<SpotlightStack />,
     },
   ];
@@ -692,7 +711,7 @@ function FeatureSpotlights() {
         <div style={{marginBottom:'72px'}}>
           <SectionHeader
             eyebrow="How it works"
-            title="Built for how analytics teams work"
+            title="Built for the way analytics teams actually work"
             lede="Four capabilities that turn the data team from a reporting service into a strategic function."
           />
         </div>
@@ -747,9 +766,9 @@ function FeatureSpotlights() {
 function UseCases() {
   const cases = [
     {
-      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M9 8h6M9 12h6M9 16h4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
-      title:'Self-serve for non-technical teams',
-      desc:'Business users self-serve in plain English — sales, marketing, and product stop pinging the data team for repetitive questions.',
+      icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 3v18h18" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/><path d="M7 14l4-4 4 4 5-6" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      title:'Live business metrics vs. plan',
+      desc:'Live business metrics vs. plan anytime — no more waiting on a pull request for numbers. Every team, every metric, real-time.',
     },
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m6-5h6M8 3v18m8-18v18M16 3h3a2 2 0 0 1 2 2v3M2 9h20M2 15h20M2 21h3m16 0h3" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
@@ -758,12 +777,12 @@ function UseCases() {
     },
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
-      title:'Proactive pipeline monitoring',
+      title:'Proactive pipeline alerts',
       desc:'Anomalies surface before anyone complains. Freshness, drops, and schema changes flag the moment they happen.',
     },
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M7 9h10M7 13h6" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
-      title:'Ad hoc analysis without SQL',
+      title:'Ad hoc data analysis without SQL',
       desc:'Complex questions answered without SQL — the team spends time on real analysis instead of clearing a never-ending ticket queue.',
     },
     {
@@ -796,7 +815,7 @@ function UseCases() {
                 See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own data</span>
               </h3>
               <p className="ins-text-body">
-                Connect your warehouse and ask Insightis a real question your team gets every week.
+                Connect Snowflake or BigQuery and ask Insightis the data question that always takes too long to answer.
               </p>
             </div>
             <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
