@@ -85,7 +85,10 @@ export default function Footer() {
             <div>
               <div className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-primary mb-4 whitespace-nowrap">Resources</div>
               <ul className="flex flex-col gap-2.5">
-                {['Documentation', 'Prompt Library', 'Blog', 'Support Center', 'Roadmap', 'Data Connectors'].map(link => (
+                {/* Data Connectors before Roadmap, matching the header's Resources > CONNECT
+                    group. The two navs keep separate label->URL maps, so an order change in
+                    one has to be repeated here by hand. */}
+                {['Documentation', 'Prompt Library', 'Blog', 'Support Center', 'Data Connectors', 'Roadmap'].map(link => (
                   <li key={link}><a href={linkUrls[link] || '#'} aria-current={isActive(link) ? 'page' : undefined} className={`text-sm hover:text-text-primary transition-colors whitespace-nowrap ${isActive(link) ? 'text-text-primary' : 'text-text-secondary'}`}>{link}</a></li>
                 ))}
               </ul>
