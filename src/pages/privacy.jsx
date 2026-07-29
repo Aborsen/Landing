@@ -286,7 +286,7 @@ function PrivacyContent() {
 
           <h3 className="ins-text-h3" style={h3Style}>Data Processing Agreement</h3>
           <p className="ins-text-body-lg" style={pStyle}>
-            Where we process personal data on your behalf as processor — the workspace content described in section 3 — GDPR Art. 28 requires a written agreement between us. Our external sub-processors are engaged under data-processing terms. Skyvia is part of the same corporate group as Insightis rather than an unrelated third party, and is covered in section 8. [[NEEDS CONFIRMATION: whether a customer-facing Data Processing Agreement is available or planned, and how a customer requests it]] Until that is confirmed we are not claiming one is available. Where an agreement is in place and its terms differ from this policy for the content it covers, that agreement prevails.
+            Where we process personal data on your behalf as processor — the workspace content described in section 3 — GDPR Art. 28 requires a written agreement between us. Our external sub-processors are engaged under data-processing terms. Skyvia is part of the same corporate group as Insightis rather than an unrelated third party, and is covered in section 8. A data processing agreement is available on request: write to <a href="mailto:privacy@insightis.ai" className="ins-link--inline">privacy@insightis.ai</a> and we will send one for signature. Where an agreement is in place and its terms differ from this policy for the content it covers, that agreement prevails.
           </p>
         </div>
 
