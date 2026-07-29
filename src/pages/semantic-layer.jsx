@@ -11,6 +11,7 @@ import CodeChip from '../components/CodeChip';
 import BottomCTA from '../components/BottomCTA';
 import StepsProcess from '../components/StepsProcess';
 import CheckIcon from '../components/CheckIcon';
+import MetricsCatalog from '../components/MetricsCatalog';
 
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -414,166 +415,6 @@ function WhatItDoes() {
 }
 
 
-/* ── METRICS DATA — grouped by team ── */
-const CONNECTORS = {
-  'RevOps & BizOps': [
-    { name:'MRR',                  abbr:'MRR', color:'#6772e5', bg:'rgba(103,114,229,.12)', desc:'Recurring revenue normalized per month' },
-    { name:'Pipeline Velocity',    abbr:'PV',  color:'#ff7a59', bg:'rgba(255,122,89,.12)',  desc:'Rate deals move through sales stages' },
-    { name:'Win Rate',             abbr:'WR',  color:'#00a1e0', bg:'rgba(0,161,224,.12)',   desc:'Percentage of deals closed won' },
-    { name:'ARR Churn',            abbr:'CH',  color:'#f76d2b', bg:'rgba(247,109,43,.12)',  desc:'Annualized revenue lost to cancellations' },
-    { name:'Deal Cycle Length',    abbr:'DC',  color:'#1f9e42', bg:'rgba(31,158,66,.12)',   desc:'Average days from first touch to close' },
-    { name:'Net Rev Retention',    abbr:'NRR', color:'#5c90d2', bg:'rgba(92,144,210,.12)',  desc:'Revenue retained plus expansion' },
-    { name:'Quota Attainment',     abbr:'QA',  color:'#2ca01c', bg:'rgba(44,160,28,.12)',   desc:'Percent of reps hitting quota' },
-    { name:'Pipeline Coverage',    abbr:'PC',  color:'#f9ab00', bg:'rgba(249,171,0,.12)',   desc:'Pipeline dollars vs quarterly target' },
-    { name:'ACV',                  abbr:'ACV', color:'#a855f7', bg:'rgba(168,85,247,.12)',  desc:'Average contract value per new customer' },
-    { name:'Stage Duration',       abbr:'SD',  color:'#13b5ea', bg:'rgba(19,181,234,.12)',  desc:'Days spent in each funnel stage' },
-    { name:'Gross Churn',          abbr:'GC',  color:'#4285f4', bg:'rgba(66,133,244,.12)',  desc:'Revenue lost before any expansion' },
-    { name:'Logo Retention',       abbr:'LR',  color:'#9b4dca', bg:'rgba(155,77,202,.12)',  desc:'Customers renewing contracts' },
-    { name:'Expansion MRR',        abbr:'EMR', color:'#7c3aed', bg:'rgba(124,58,237,.12)',  desc:'Upsell + cross-sell revenue per month' },
-    { name:'Lead-to-Opp Rate',     abbr:'L2O', color:'#52bd95', bg:'rgba(82,189,149,.12)',  desc:'Qualified leads converting to opps' },
-    { name:'Rep Productivity',     abbr:'RP',  color:'#ff4081', bg:'rgba(255,64,129,.12)',  desc:'Revenue generated per sales rep' },
-    { name:'Territory Coverage',   abbr:'TC',  color:'#286ef1', bg:'rgba(40,110,241,.12)',  desc:'Accounts worked per territory' },
-    { name:'Forecast Accuracy',    abbr:'FA',  color:'#0a66c2', bg:'rgba(10,102,194,.12)',  desc:'Predicted vs actual quarterly revenue' },
-    { name:'Pipeline Aging',       abbr:'PA',  color:'#47a248', bg:'rgba(71,162,72,.12)',   desc:'Deals stagnant over 60 days' },
-    { name:'Meeting-to-Opp',       abbr:'M2O', color:'#d13212', bg:'rgba(209,50,18,.12)',   desc:'Meetings generating new pipeline' },
-    { name:'Account Health',       abbr:'AHS', color:'#5e6ad2', bg:'rgba(94,106,210,.12)',  desc:'Composite account health signal' },
-  ],
-  'Founders & CEOs': [
-    { name:'ARR',                  abbr:'ARR', color:'#6772e5', bg:'rgba(103,114,229,.12)', desc:'Total annualized subscription revenue' },
-    { name:'CAC',                  abbr:'CAC', color:'#2ca01c', bg:'rgba(44,160,28,.12)',   desc:'Cost to acquire one new customer' },
-    { name:'LTV:CAC Ratio',        abbr:'LTV', color:'#f9ab00', bg:'rgba(249,171,0,.12)',   desc:'Lifetime value vs acquisition cost' },
-    { name:'Burn Rate',            abbr:'BR',  color:'#ff7a59', bg:'rgba(255,122,89,.12)',  desc:'Monthly cash spend vs revenue' },
-    { name:'Runway',               abbr:'RW',  color:'#a855f7', bg:'rgba(168,85,247,.12)',  desc:'Months of cash at current burn' },
-    { name:'Gross Margin',         abbr:'GM',  color:'#13b5ea', bg:'rgba(19,181,234,.12)',  desc:'Revenue minus cost of goods sold' },
-    { name:'Rule of 40',           abbr:'R40', color:'#4285f4', bg:'rgba(66,133,244,.12)',  desc:'Growth rate plus profit margin' },
-    { name:'Net Burn',             abbr:'NB',  color:'#5c90d2', bg:'rgba(92,144,210,.12)',  desc:'Cash consumption after revenue' },
-    { name:'Cash Balance',         abbr:'CB',  color:'#52bd95', bg:'rgba(82,189,149,.12)',  desc:'Current cash on hand' },
-    { name:'Magic Number',         abbr:'MN',  color:'#9b4dca', bg:'rgba(155,77,202,.12)',  desc:'SaaS sales efficiency ratio' },
-    { name:'Quick Ratio',          abbr:'QR',  color:'#7c3aed', bg:'rgba(124,58,237,.12)',  desc:'Growth efficiency per dollar lost' },
-    { name:'CAC Payback',          abbr:'CPB', color:'#f76d2b', bg:'rgba(247,109,43,.12)',  desc:'Months to recover acquisition cost' },
-    { name:'Growth Rate',          abbr:'GR',  color:'#00a1e0', bg:'rgba(0,161,224,.12)',   desc:'Year-over-year revenue growth' },
-    { name:'EBITDA Margin',        abbr:'EBT', color:'#d13212', bg:'rgba(209,50,18,.12)',   desc:'Operating profit before int. and tax' },
-    { name:'Headcount Growth',     abbr:'HCG', color:'#ff4081', bg:'rgba(255,64,129,.12)',  desc:'Monthly team expansion rate' },
-    { name:'Revenue per FTE',      abbr:'RFT', color:'#286ef1', bg:'rgba(40,110,241,.12)',  desc:'Revenue per full-time employee' },
-    { name:'Top-line Growth',      abbr:'TLG', color:'#47a248', bg:'rgba(71,162,72,.12)',   desc:'Total revenue growth across products' },
-    { name:'Customer Concentration',abbr:'CC', color:'#0a66c2', bg:'rgba(10,102,194,.12)',  desc:'Revenue from top 10 accounts' },
-    { name:'Board NPS',            abbr:'BNP', color:'#1f9e42', bg:'rgba(31,158,66,.12)',   desc:'Board satisfaction and alignment' },
-    { name:'Valuation Multiple',   abbr:'VM',  color:'#5e6ad2', bg:'rgba(94,106,210,.12)',  desc:'Revenue multiple vs peer set' },
-  ],
-  'CMOs & Marketers': [
-    { name:'CAC by Channel',       abbr:'CAC', color:'#f9ab00', bg:'rgba(249,171,0,.12)',   desc:'Acquisition cost by channel' },
-    { name:'ROAS',                 abbr:'ROA', color:'#4285f4', bg:'rgba(66,133,244,.12)',  desc:'Revenue per dollar of ad spend' },
-    { name:'MQL Conv. Rate',       abbr:'MQL', color:'#1877f2', bg:'rgba(24,119,242,.12)',  desc:'MQLs converting to pipeline' },
-    { name:'Blended CPL',          abbr:'CPL', color:'#0a66c2', bg:'rgba(10,102,194,.12)',  desc:'Cost per lead across channels' },
-    { name:'Email Open Rate',      abbr:'EOR', color:'#e8a320', bg:'rgba(232,163,32,.12)',  desc:'Emails opened by recipients' },
-    { name:'Attribution Rev.',     abbr:'ATR', color:'#9b4dca', bg:'rgba(155,77,202,.12)',  desc:'Revenue per marketing touchpoint' },
-    { name:'Cost Per Click',       abbr:'CPC', color:'#13b5ea', bg:'rgba(19,181,234,.12)',  desc:'Average CPC across paid campaigns' },
-    { name:'Click-Through Rate',   abbr:'CTR', color:'#00a1e0', bg:'rgba(0,161,224,.12)',   desc:'CTR across ads and emails' },
-    { name:'Conversion Rate',      abbr:'CVR', color:'#52bd95', bg:'rgba(82,189,149,.12)',  desc:'Visitor to lead conversion' },
-    { name:'Landing Page CVR',     abbr:'LPC', color:'#7c3aed', bg:'rgba(124,58,237,.12)',  desc:'Landing page conversion rate' },
-    { name:'Bounce Rate',          abbr:'BNR', color:'#ff7a59', bg:'rgba(255,122,89,.12)',  desc:'Visitors leaving after one page' },
-    { name:'Organic Sessions',     abbr:'OS',  color:'#1f9e42', bg:'rgba(31,158,66,.12)',   desc:'Unpaid web traffic sessions' },
-    { name:'Paid Sessions',        abbr:'PS',  color:'#f76d2b', bg:'rgba(247,109,43,.12)',  desc:'Traffic from paid campaigns' },
-    { name:'Sourced Pipeline',     abbr:'MSP', color:'#286ef1', bg:'rgba(40,110,241,.12)',  desc:'Pipeline attributed to marketing' },
-    { name:'Content Engagement',   abbr:'CEN', color:'#a855f7', bg:'rgba(168,85,247,.12)',  desc:'Time on content per visitor' },
-    { name:'Webinar Attendance',   abbr:'WA',  color:'#d13212', bg:'rgba(209,50,18,.12)',   desc:'Registrants who attended live' },
-    { name:'SQL Conv. Rate',       abbr:'SQL', color:'#5c90d2', bg:'rgba(92,144,210,.12)',  desc:'SQLs converting to opportunities' },
-    { name:'Pipeline Contribution',abbr:'PCT', color:'#47a248', bg:'rgba(71,162,72,.12)',   desc:'Marketing share of pipeline' },
-    { name:'Influenced Revenue',   abbr:'IRV', color:'#ff4081', bg:'rgba(255,64,129,.12)',  desc:'Revenue influenced by marketing' },
-    { name:'Brand Search Volume',  abbr:'BSV', color:'#6772e5', bg:'rgba(103,114,229,.12)', desc:'Monthly branded search queries' },
-  ],
-  'Product Teams': [
-    { name:'DAU / MAU',            abbr:'D/M', color:'#a855f7', bg:'rgba(168,85,247,.12)',  desc:'Daily vs monthly active ratio' },
-    { name:'Feature Adoption',     abbr:'FA',  color:'#2196f3', bg:'rgba(33,150,243,.12)',  desc:'Users activating a feature' },
-    { name:'Time to Activate',     abbr:'TTA', color:'#52bd95', bg:'rgba(82,189,149,.12)',  desc:'Sign-up to first value moment' },
-    { name:'D30 Retention',        abbr:'D30', color:'#7c3aed', bg:'rgba(124,58,237,.12)',  desc:'Users still active after 30 days' },
-    { name:'NPS Score',            abbr:'NPS', color:'#286ef1', bg:'rgba(40,110,241,.12)',  desc:'Net promoter score from surveys' },
-    { name:'Session Depth',        abbr:'SD',  color:'#ff4081', bg:'rgba(255,64,129,.12)',  desc:'Actions per user session' },
-    { name:'WAU',                  abbr:'WAU', color:'#4285f4', bg:'rgba(66,133,244,.12)',  desc:'Weekly active users' },
-    { name:'Stickiness',           abbr:'ST',  color:'#f9ab00', bg:'rgba(249,171,0,.12)',   desc:'DAU over MAU ratio' },
-    { name:'Power User %',         abbr:'PUP', color:'#1f9e42', bg:'rgba(31,158,66,.12)',   desc:'Users in top activity decile' },
-    { name:'Cohort Churn',         abbr:'CCH', color:'#ff7a59', bg:'rgba(255,122,89,.12)',  desc:'Retention across signup cohorts' },
-    { name:'Activation Rate',      abbr:'AR',  color:'#9b4dca', bg:'rgba(155,77,202,.12)',  desc:'Users completing onboarding' },
-    { name:'Feature Usage Freq.',  abbr:'FUF', color:'#13b5ea', bg:'rgba(19,181,234,.12)',  desc:'Times a feature used per user' },
-    { name:'Tickets per User',     abbr:'TPU', color:'#d13212', bg:'rgba(209,50,18,.12)',   desc:'Support volume per active user' },
-    { name:'Time in App',          abbr:'TIA', color:'#5c90d2', bg:'rgba(92,144,210,.12)',  desc:'Average session length per user' },
-    { name:'Onboarding Completion',abbr:'OC',  color:'#47a248', bg:'rgba(71,162,72,.12)',   desc:'Users completing setup flow' },
-    { name:'Trial-to-Paid',        abbr:'T2P', color:'#6772e5', bg:'rgba(103,114,229,.12)', desc:'Trial users converting to paid' },
-    { name:'Feature Discovery',    abbr:'FD',  color:'#2ca01c', bg:'rgba(44,160,28,.12)',   desc:'Discovered within first 7 days' },
-    { name:'Viral Coefficient',    abbr:'VC',  color:'#f76d2b', bg:'rgba(247,109,43,.12)',  desc:'Invites sent per active user' },
-    { name:'Upgrade Rate',         abbr:'UR',  color:'#0a66c2', bg:'rgba(10,102,194,.12)',  desc:'Free to paid upgrade conversions' },
-    { name:'PQLs',                 abbr:'PQL', color:'#5e6ad2', bg:'rgba(94,106,210,.12)',  desc:'Accounts hitting usage threshold' },
-  ],
-  'Data & Analytics': [
-    { name:'Data Freshness',       abbr:'DF',  color:'#336791', bg:'rgba(51,103,145,.12)',  desc:'Age of most recent sync' },
-    { name:'Pipeline Run Time',    abbr:'PRT', color:'#29b5e8', bg:'rgba(41,181,232,.12)',  desc:'End-to-end ETL duration' },
-    { name:'Model Coverage',       abbr:'MC',  color:'#4285f4', bg:'rgba(66,133,244,.12)',  desc:'Metrics backed by dbt models' },
-    { name:'Query Success Rate',   abbr:'QSR', color:'#d13212', bg:'rgba(209,50,18,.12)',   desc:'Queries completing without error' },
-    { name:'Schema Drift',         abbr:'SCH', color:'#47a248', bg:'rgba(71,162,72,.12)',   desc:'Upstream source schema changes' },
-    { name:'Lineage Coverage',     abbr:'LCO', color:'#f76d2b', bg:'rgba(247,109,43,.12)',  desc:'Metrics with full lineage traced' },
-    { name:'Dashboard Latency',    abbr:'DL',  color:'#a855f7', bg:'rgba(168,85,247,.12)',  desc:'Average dashboard load time' },
-    { name:'Query Volume',         abbr:'QV',  color:'#5c90d2', bg:'rgba(92,144,210,.12)',  desc:'Queries executed per day' },
-    { name:'Data Quality Score',   abbr:'DQS', color:'#52bd95', bg:'rgba(82,189,149,.12)',  desc:'Composite correctness score' },
-    { name:'Null Rate',            abbr:'NR',  color:'#ff7a59', bg:'rgba(255,122,89,.12)',  desc:'Nulls in key columns' },
-    { name:'Duplicate Rate',       abbr:'DR',  color:'#ff4081', bg:'rgba(255,64,129,.12)',  desc:'Duplicate records detected' },
-    { name:'SLA Compliance',       abbr:'SLA', color:'#1f9e42', bg:'rgba(31,158,66,.12)',   desc:'Pipelines hitting SLAs' },
-    { name:'Warehouse Spend',      abbr:'WS',  color:'#f9ab00', bg:'rgba(249,171,0,.12)',   desc:'Monthly warehouse cost' },
-    { name:'Compute Utilization',  abbr:'CU',  color:'#00a1e0', bg:'rgba(0,161,224,.12)',   desc:'Warehouse capacity in use' },
-    { name:'Test Coverage',        abbr:'TC',  color:'#7c3aed', bg:'rgba(124,58,237,.12)',  desc:'Models with dbt tests' },
-    { name:'Doc Coverage',         abbr:'DOC', color:'#13b5ea', bg:'rgba(19,181,234,.12)',  desc:'Models with documentation' },
-    { name:'Certified Metric %',   abbr:'CM',  color:'#6772e5', bg:'rgba(103,114,229,.12)', desc:'Metrics with certification' },
-    { name:'Self-Serve Adoption',  abbr:'SSA', color:'#286ef1', bg:'rgba(40,110,241,.12)',  desc:'Teams using self-serve BI' },
-    { name:'Incident MTTR',        abbr:'MTT', color:'#0a66c2', bg:'rgba(10,102,194,.12)',  desc:'Mean time to resolve incidents' },
-    { name:'Model Build Success',  abbr:'MBS', color:'#5e6ad2', bg:'rgba(94,106,210,.12)',  desc:'dbt builds passing' },
-  ],
-  'Ops & Finance': [
-    { name:'Gross Burn',           abbr:'GB',  color:'#2ca01c', bg:'rgba(44,160,28,.12)',   desc:'Total monthly cash outflow' },
-    { name:'Headcount Cost',       abbr:'HC',  color:'#13b5ea', bg:'rgba(19,181,234,.12)',  desc:'Fully-loaded cost per employee' },
-    { name:'Budget vs Act.',       abbr:'BvA', color:'#009ee2', bg:'rgba(0,158,226,.12)',   desc:'Spend deviation from budget' },
-    { name:'DSO',                  abbr:'DSO', color:'#f45d48', bg:'rgba(244,93,72,.12)',   desc:'Days to collect after invoice' },
-    { name:'Op. Margin',           abbr:'OM',  color:'#0052cc', bg:'rgba(0,82,204,.12)',    desc:'Operating income as % of revenue' },
-    { name:'Cash Conv. Cycle',     abbr:'CCC', color:'#5e6ad2', bg:'rgba(94,106,210,.12)',  desc:'Cash out to cash collected' },
-    { name:'AR Aging',             abbr:'ARA', color:'#f76d2b', bg:'rgba(247,109,43,.12)',  desc:'Age distribution of receivables' },
-    { name:'AP Aging',             abbr:'APA', color:'#ff7a59', bg:'rgba(255,122,89,.12)',  desc:'Age distribution of payables' },
-    { name:'Inventory Turnover',   abbr:'IT',  color:'#4285f4', bg:'rgba(66,133,244,.12)',  desc:'Inventory sold and replaced' },
-    { name:'COGS',                 abbr:'CG',  color:'#9b4dca', bg:'rgba(155,77,202,.12)',  desc:'Direct cost of delivering product' },
-    { name:'R&D Spend',            abbr:'RDS', color:'#7c3aed', bg:'rgba(124,58,237,.12)',  desc:'Engineering and product investment' },
-    { name:'G&A Ratio',            abbr:'GnA', color:'#52bd95', bg:'rgba(82,189,149,.12)',  desc:'General & admin as % of revenue' },
-    { name:'Opex Growth',          abbr:'OG',  color:'#286ef1', bg:'rgba(40,110,241,.12)',  desc:'Month-over-month opex growth' },
-    { name:'Burn Multiple',        abbr:'BM',  color:'#ff4081', bg:'rgba(255,64,129,.12)',  desc:'Net burn vs net new ARR' },
-    { name:'Payroll Ratio',        abbr:'PR',  color:'#1f9e42', bg:'rgba(31,158,66,.12)',   desc:'Payroll as % of revenue' },
-    { name:'Revenue per Employee', abbr:'RPE', color:'#6772e5', bg:'rgba(103,114,229,.12)', desc:'Annual revenue per FTE' },
-    { name:'Vendor Spend',         abbr:'VS',  color:'#f9ab00', bg:'rgba(249,171,0,.12)',   desc:'Monthly third-party vendor cost' },
-    { name:'License Utilization',  abbr:'LU',  color:'#47a248', bg:'rgba(71,162,72,.12)',   desc:'Licensed seats actually used' },
-    { name:'Invoice Lead Time',    abbr:'ILT', color:'#a855f7', bg:'rgba(168,85,247,.12)',  desc:'Days from trigger to sent invoice' },
-    { name:'Compliance Incidents', abbr:'CI',  color:'#d13212', bg:'rgba(209,50,18,.12)',   desc:'Compliance issues per quarter' },
-  ],
-};
-
-
-/* ── FEATURES SHOWCASE (V10 style) ── */
-const SHOWCASE_CSS = `
-.sc-wrap{max-width:1060px;margin:0 auto;display:flex;flex-direction:column;gap:36px;position:relative}
-.sc-stepper{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--ins-size-5);position:relative;padding:0 8px}
-.sc-step{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;background:transparent;border:none;color:inherit;padding:0 6px;font-family:inherit}
-.sc-step-connector{position:absolute;top:28px;left:calc(50% + 36px);right:calc(-50% + 36px);height:1px;background:linear-gradient(90deg,rgba(9,160,157,.45) 0%,rgba(9,160,157,.18) 100%);z-index:var(--ins-z-base)}
-.sc-circle{position:relative;z-index:1;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:14px;border:1px solid rgba(9,160,157,.35);background:radial-gradient(circle at 50% 30%,rgba(9,160,157,.10) 0%,rgba(13,17,23,.95) 75%);box-shadow:0 0 18px rgba(9,160,157,.10), inset 0 1px 0 var(--ins-color-white-a-05);transition:border-color .25s,box-shadow .25s,background .25s}
-.sc-step.active .sc-circle{border-color:rgba(9,160,157,.7);background:radial-gradient(circle at 50% 30%,rgba(9,160,157,.22) 0%,rgba(13,17,23,.95) 75%);box-shadow:0 0 28px rgba(9,160,157,.25), inset 0 1px 0 var(--ins-color-white-a-06)}
-.sc-num{font-size:var(--ins-font-size-18);font-weight:600;font-family:var(--ins-font-family-sans);letter-spacing:-.02em;color:rgba(14,196,193,.55);font-variant-numeric:tabular-nums;transition:color .25s}
-.sc-step.active .sc-num{color:var(--ins-text-highlight)}
-.sc-step-label{font-size:13.5px;font-weight:600;letter-spacing:-.01em;color:var(--ins-color-white-a-45);margin-bottom:6px;transition:color .25s;line-height:1.25}
-.sc-step.active .sc-step-label{color:#fff}
-.sc-step-desc{font-size:11.5px;color:rgba(255,255,255,.4);line-height:1.5;max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .35s ease}
-.sc-step.active .sc-step-desc{max-height:60px;opacity:1;color:rgba(255,255,255,.55)}
-.sc-panel-wrap{position:relative;background:radial-gradient(ellipse 100% 80% at 30% 30%,rgba(10,152,150,.06) 0%,transparent 60%),var(--ins-color-page-a-97);border-radius:var(--ins-radius-16);border:1px solid var(--ins-color-white-a-07);box-shadow:0 4px 6px var(--ins-color-black-a-50),0 32px 100px rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;padding:var(--ins-size-7);overflow:hidden;height:520px}
-.sc-panel-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(10,152,150,.6),var(--ins-color-white-a-10),rgba(10,152,150,.6),transparent);z-index:20;pointer-events:none}
-@media (max-width:768px){
-  .sc-stepper{grid-template-columns:1fr;gap:var(--ins-size-6)}
-  .sc-step-connector{display:none}
-}
-`;
-
-// ── PANEL 1: Metrics Catalog (table view) ──
 function Panel1() {
   const metrics = [
     { name:'Customer Acquisition Cost', short:'@CAC',      cat:'Marketing', src:'Google Analytics', active:true  },
@@ -906,83 +747,6 @@ function FeaturesShowcase() {
   );
 }
 
-function ConnectorGallery() {
-  const cats = Object.keys(CONNECTORS);
-  const [activeCat, setActiveCat] = useState(cats[0]);
-
-  return (
-    <section style={{padding:'80px 0 100px', background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
-      <div className="max-w-7xl mx-auto px-6">
-
-        {/* PR 1 canary — replaces hand-rolled eyebrow + h2 + lede with <SectionHeader> */}
-        <div style={{marginBottom:'var(--ins-size-7)'}}>
-          <SectionHeader
-            eyebrow="Metrics catalog"
-            title="Define, certify, and version your metrics"
-            lede="Every metric defined once, certified, and used by every team — across RevOps, Finance, and Marketing."
-            size="lg"
-          />
-        </div>
-
-        {/* Category tabs */}
-        <div style={{display:'flex',justifyContent:'center',gap:'var(--ins-size-2)',marginBottom:'var(--ins-size-7)',flexWrap:'wrap'}}>
-          {cats.map(cat => (
-            <Chip
-              key={cat}
-              as="button"
-              variant="tab"
-              onClick={() => setActiveCat(cat)}
-              aria-pressed={cat === activeCat}
-              style={{padding:'7px 18px', fontSize:'13px', fontWeight:500}}
-            >
-              {cat}
-            </Chip>
-          ))}
-        </div>
-
-        {/* Cards grid */}
-        <div style={{
-          display:'grid',
-          gridTemplateColumns:'repeat(5,minmax(0,1fr))',
-          gap:'10px',
-        }}>
-          {CONNECTORS[activeCat].map((c, i) => (
-            <div key={c.name} className="connector-card">
-              <div
-                className="connector-icon"
-                style={{
-                  background:'rgba(9,160,157,.12)',
-                  color:'var(--ins-text-highlight)',
-                  border:'1px solid rgba(9,160,157,.25)',
-                  fontSize:'var(--ins-font-size-15)',
-                  fontWeight:600,
-                  fontFamily:"var(--ins-font-family-mono)",
-                }}
-                aria-hidden="true"
-              >
-                @
-              </div>
-              <div style={{minWidth:0}}>
-                <div className="ins-text-h4" style={{marginBottom:'3px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>@{c.name}</div>
-                <div style={{fontSize:'var(--ins-font-size-12)',color:'#8A9BA4',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{c.desc}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Footer note */}
-        <div style={{textAlign:'center',marginTop:'var(--ins-size-8)'}}>
-          <span style={{fontSize:'12.5px',color:'#8A9BA4',fontFamily:'var(--ins-font-family-mono)'}}>
-            the only source of truth you need
-          </span>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-
-/* ── BEFORE / AFTER — Without vs With Semantic Layer ── */
 function BeforeAfter() {
   return (
     <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
@@ -1071,7 +835,7 @@ function App() {
       <Hero />
       <WhatItDoes />
       <MidCTA />
-      <ConnectorGallery />
+      <MetricsCatalog />
       <BeforeAfter />
       <BottomCTASection />
             </main>

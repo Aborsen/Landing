@@ -1,0 +1,261 @@
+/* ══════════════════════════════════════════════════════════════════
+   41. METRICS CATALOG
+   Source-family tabs + a metric grid beside a detail panel
+   (see src/components/MetricsCatalog.jsx). Every string it renders is
+   the shipped metric library's own text, and those definitions run from
+   40 to ~1500 characters. That single fact drives the layout: the grid
+   fixes the height, the panel matches it and scrolls inside — never the
+   other way round, or the section would change shape on every click.
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-mcat {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  gap: var(--ins-space-lg);
+  align-items: start;
+}
+@media (max-width: 1023px) {
+  .ins-mcat { grid-template-columns: minmax(0, 1fr); }
+  /* detail first on narrow screens: it is the thing being explained */
+  .ins-mcat__detail { order: -1; }
+  /* stacked, nothing constrains the panel, so cap it here — a 1500-character
+     definition would otherwise run for a screen and a half */
+  .ins-mcat__dinner { max-height: 560px; }
+}
+/* Two halves, one bottom edge — and the SAME edge on all six tabs.
+   The grid is the side that sets the height: ten cards of fixed height, identical
+   whichever tab is open. The panel stretches to it and scrolls inside.
+   It has to be this way round. The panel's own height is driven by the selected
+   definition, and those run from 40 to ~1500 characters — a 37x swing. Letting the
+   panel set the height meant the section changed shape on every tab and every
+   click, which is why it only looked right on CRM. */
+@media (min-width: 1024px) {
+  .ins-mcat__detail { align-self: stretch; position: relative; }
+  /* Absolute, so the definition inside contributes nothing to the row height.
+     align-self:stretch alone only sets a minimum — a long definition still grew the
+     row past the grid, leaving the grid top-aligned and visibly shorter. Out of flow,
+     the grid is the only thing sizing the row, and the panel lands exactly on it. */
+  .ins-mcat__dinner { position: absolute; inset: 0; overflow-y: auto; }
+}
+
+/* ── Metric grid ─────────────────────────────────────────────────── */
+.ins-mcat__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ins-space-sm);
+  /* Airier than the column gap on purpose: five rows at this spacing give the left
+     column the height the detail panel is then matched to. Baked in rather than
+     derived from the panel, because the panel's height is not stable — see below. */
+  row-gap: 18px;
+}
+@media (max-width: 599px) {
+  .ins-mcat__grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+.ins-mcat__card {
+  display: flex;
+  align-items: center;
+  gap: var(--ins-space-md);
+  width: 100%;
+  min-width: 0;
+  padding: 16px 17px;
+  text-align: left;
+  border-radius: var(--ins-radius-lg);
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  background: var(--ins-color-white-a-02);
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color var(--ins-duration-base) var(--ins-easing-standard),
+              background var(--ins-duration-base) var(--ins-easing-standard);
+}
+.ins-mcat__card:hover {
+  border-color: var(--ins-color-teal-a-25);
+  background: var(--ins-color-white-a-04);
+}
+.ins-mcat__card[aria-selected="true"] {
+  border-color: var(--ins-color-teal-a-40);
+  background: var(--ins-color-teal-a-06);
+}
+.ins-mcat__card:focus-visible {
+  outline: none;
+  border-color: var(--ins-border-focus);
+  box-shadow: var(--ins-focus-ring);
+}
+
+/* The source logo doubles as the card's icon. No frame: the sprite marks are
+   already distinct shapes, and boxing ten of them per tab produced a grid of
+   borders competing with the card borders. Kept as a fixed-width box so the text
+   column still lines up from card to card. */
+.ins-mcat__tile {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ins-mcat__txt { min-width: 0 }
+/* Two stacked lines: name, then description. Both are spans, so both need an explicit
+   block box — as inline boxes they share a line and their nowrap/ellipsis do nothing. */
+.ins-mcat__alias,
+.ins-mcat__cardsub { display: block; }
+.ins-mcat__alias {
+  font-family: var(--ins-font-family-mono);
+  font-size: var(--ins-font-size-15, 15px);
+  font-weight: var(--ins-font-weight-600);
+  color: var(--ins-text-heading);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.ins-mcat__card[aria-selected="true"] .ins-mcat__alias { color: var(--ins-text-highlight) }
+/* Exactly one line, like the name above it — so every card in every tab is the same
+   height, and the grid's height is fully deterministic. The text is pre-shortened to
+   54 characters in src/data/metrics-catalog.js; the ellipsis here is a backstop for a
+   narrow column, not the usual case. */
+.ins-mcat__cardsub {
+  font-size: var(--ins-font-size-12);
+  margin-top: 3px;
+  color: var(--ins-text-inactive);
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Detail panel ────────────────────────────────────────────────── */
+.ins-mcat__detail {
+  border-radius: var(--ins-radius-16);
+  border: var(--ins-border-width-1) solid var(--ins-color-teal-a-25);
+  background: linear-gradient(180deg, var(--ins-color-teal-a-06), var(--ins-color-white-a-02) 40%);
+  box-shadow: var(--ins-shadow-lg, 0 12px 48px rgba(0, 0, 0, .45));
+  overflow: hidden;
+}
+.ins-mcat__dinner {
+  padding: var(--ins-space-xl);
+  overflow-y: auto;
+}
+
+/* Two lines reserved, always. Aliases run from 3 to 37 characters, and the long ones
+   (billable_hours_rate_pct, resolved_share_of_ticket_mentions_pct) wrap beside the
+   badge at this size — which pushed every block below down by 33px. One line for all
+   of them would need ~11px type to fit 37 mono characters, so reserve the two. */
+.ins-mcat__dtop {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: var(--ins-space-md); margin-bottom: var(--ins-space-xs);
+  height: 53px;
+}
+.ins-mcat__dalias {
+  font-family: var(--ins-font-family-mono);
+  line-height: 1.2;
+  font-size: var(--ins-font-size-22, 22px);
+  font-weight: var(--ins-font-weight-600);
+  color: var(--ins-text-highlight);
+  overflow-wrap: anywhere;
+}
+/* "Built-in", not "Certified v1" — the library ships no version field, and
+   inventing one on a page about trustworthy definitions would be self-defeating */
+.ins-mcat__badge {
+  display: inline-flex; align-items: center; gap: 5px; flex-shrink: 0;
+  padding: 4px 10px; border-radius: var(--ins-radius-pill);
+  background: var(--ins-status-success-bg, rgba(34, 197, 94, .08));
+  border: var(--ins-border-width-1) solid rgba(34, 197, 94, .25);
+  color: var(--ins-status-success-fg);
+  font-size: var(--ins-font-size-11); font-weight: var(--ins-font-weight-600);
+}
+.ins-mcat__dname {
+  font-size: var(--ins-font-size-14);
+  font-weight: var(--ins-font-weight-500);
+  color: var(--ins-text-body);
+  margin-bottom: var(--ins-space-xs);
+}
+.ins-mcat__dsrc {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: var(--ins-font-size-11);
+  color: var(--ins-text-inactive);
+  margin-bottom: var(--ins-space-md);
+}
+/* Fixed height, not auto: the blocks below have to start at the same y for every
+   metric, and these definitions are 1 to 3 lines. A short one leaves whitespace —
+   that is the trade for "HOW IT IS COMPUTED" never moving. Text is capped to 165
+   characters in src/data/metrics-catalog.js, which is ~3 lines at this width. */
+.ins-mcat__ddesc {
+  font-size: var(--ins-font-size-13, 13px);
+  line-height: var(--ins-line-height-relaxed);
+  color: var(--ins-text-body);
+  margin-bottom: var(--ins-space-lg);
+  height: 60px;
+  overflow: hidden;
+}
+
+.ins-mcat__label {
+  font-family: var(--ins-font-family-mono);
+  font-size: var(--ins-font-size-10, 10px);
+  letter-spacing: var(--ins-letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--ins-text-inactive);
+  margin-bottom: 7px;
+}
+.ins-mcat__sql {
+  padding: 12px 14px;
+  border-radius: var(--ins-radius-md);
+  background: var(--ins-color-black-a-30);
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  font-family: var(--ins-font-family-mono);
+  font-size: var(--ins-font-size-11);
+  line-height: 1.6;
+  color: var(--ins-text-highlight);
+  margin-bottom: var(--ins-space-lg);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  /* Fixed height for the same reason as the description above — the ask box below
+     must not move. ~4.5 lines; 26 of the 60 formulas are longer than that and one
+     runs to 1044 characters, so this scrolls rather than truncates. A clipped SELECT
+     would print something that is not the query. */
+  /* 70 not 80: the longest alias (37 chars) pushes the ask box below to a third line,
+     and this is the block that can give up 10px without losing anything — it already
+     scrolls. Measured: worst-case content 446 against a 448 box. */
+  height: 70px;
+  overflow: auto;
+}
+
+/* Two text lines for every metric, whatever the alias length: 13 of the 60 need only
+   one line and would otherwise leave this box shorter, moving nothing but looking
+   inconsistent beside the rest. Measured line-height is 18.6px, padding 12 + 12,
+   border 1 + 1 -> 63px. */
+.ins-mcat__ask {
+  height: 63px;
+  padding: 12px 14px;
+  border-radius: var(--ins-radius-md);
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  background: var(--ins-color-white-a-02);
+  font-size: var(--ins-font-size-12);
+  line-height: 1.55;
+  color: var(--ins-text-inactive);
+}
+.ins-mcat__ask code {
+  font-family: var(--ins-font-family-mono);
+  color: var(--ins-text-highlight);
+  /* aliases reach 37 characters (resolved_share_of_ticket_mentions_pct); as one
+     unbreakable token it forced this sentence onto a third line and pushed the panel
+     into a scrollbar. Breaking the identifier keeps it at two lines for all 60. */
+  overflow-wrap: anywhere;
+}
+
+/* ── Footer line ─────────────────────────────────────────────────── */
+.ins-mcat__foot {
+  display: flex; align-items: center; justify-content: center;
+  gap: var(--ins-space-sm); flex-wrap: wrap;
+  margin-top: var(--ins-space-xl);
+  font-family: var(--ins-font-family-mono);
+  font-size: var(--ins-font-size-12);
+  color: var(--ins-text-inactive);
+}
+.ins-mcat__foot b { color: var(--ins-text-highlight); font-weight: var(--ins-font-weight-600) }
+.ins-mcat__foot .ins-mcat__dot {
+  width: 3px; height: 3px; border-radius: 50%;
+  background: var(--ins-color-white-a-12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ins-mcat__card { transition: none }
+}

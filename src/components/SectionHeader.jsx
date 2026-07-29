@@ -15,6 +15,9 @@ import React from 'react';
  *  as         'h1' | 'h2' | 'h3'                 (default: 'h2')
  *  (the eyebrow star is drawn by .ins-eyebrow::before — see components/eyebrow.css)
  *  eyebrowVariant  'pill' | 'plain'              (default: 'pill')
+ *  titleId    string — id for the heading itself, so a <section> can point its
+ *             aria-labelledby at the title alone. Without it the only id lands on
+ *             the wrapper, and the accessible name becomes eyebrow + title + lede.
  *
  * All other props pass through to the wrapping <div>.
  */
@@ -26,6 +29,7 @@ function SectionHeader({
   size = 'md',
   as: Heading = 'h2',
   eyebrowVariant = 'pill',
+  titleId,
   className = '',
   ...rest
 }) {
@@ -62,7 +66,7 @@ function SectionHeader({
           {eyebrow}
         </span>
       )}
-      <Heading className={titleClass} style={titleStyle}>{title}</Heading>
+      <Heading id={titleId} className={titleClass} style={titleStyle}>{title}</Heading>
       {lede && (
         <p className="ins-text-body-lg" style={{ margin: 0, maxWidth: align === 'center' ? '640px' : 'none' }}>
           {lede}
