@@ -187,15 +187,15 @@ function Hero() {
 function RelevantIntegrations() {
   const connectors = [
     { name:'Snowflake',   desc:'Data warehouse' },
-    { name:'BigQuery',    desc:'Cloud analytics' },
+    { name:'Google BigQuery', desc:'Cloud analytics' },
     { name:'Redshift',    desc:'Data warehouse' },
     { name:'Databricks',  desc:'Lakehouse' },
     { name:'PostgreSQL',  desc:'Database' },
     { name:'MySQL',       desc:'Database' },
     { name:'SQL Server',  desc:'Database' },
     { name:'Oracle',      desc:'Database' },
-    { name:'MongoDB',     desc:'NoSQL database' },
-    { name:'MariaDB',     desc:'Database' },
+    { name:'Elasticsearch', desc:'Search & analytics' },
+    { name:'AlloyDB',     desc:'Database' },
     { name:'Segment',     desc:'Customer data' },
     { name:'Amplitude',   desc:'Product analytics' },
     { name:'Google Analytics', desc:'Web analytics' },

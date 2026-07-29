@@ -794,11 +794,11 @@ function RelevantIntegrations() {
     { name:'Gong',        desc:'Revenue intelligence' },
     { name:'ChartMogul',  desc:'Subscription analytics' },
     { name:'Snowflake',   desc:'Data warehouse' },
-    { name:'BigQuery',    desc:'Cloud analytics' },
+    { name:'Google BigQuery', desc:'Cloud analytics' },
     { name:'PostgreSQL',  desc:'Database' },
     { name:'Segment',     desc:'Customer data' },
     { name:'NetSuite',    desc:'Finance & ERP' },
-    { name:'QuickBooks',  desc:'Accounting' },
+    { name:'QuickBooks Online', desc:'Accounting' },
     { name:'Xero',        desc:'Accounting' },
   ];
 

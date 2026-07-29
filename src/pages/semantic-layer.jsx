@@ -40,7 +40,7 @@ function SemanticLayerMockAnimation() {
     { source:'GA4',        short:'G4', color:'#E37400', name:'CAC',      value:'$445'    },
     { source:'HubSpot',    short:'H',  color:'#FF7A59', name:'CAC',      value:'$312'    },
     { source:'Salesforce', short:'SF', color:'#00A1E0', name:'Pipeline', value:'$1.2M'   },
-    { source:'Mixpanel',   short:'M',  color:'#7856FF', name:'Churn',    value:'3.4%'    },
+    { source:'Amplitude',  short:'A',  color:'#1F6FFF', name:'Churn',    value:'3.4%'    },
     { source:'Zendesk',    short:'Z',  color:'#03363D', name:'Churn',    value:'2.1%'    },
   ];
   const CERT_METRICS = [

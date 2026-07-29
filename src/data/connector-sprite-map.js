@@ -34,6 +34,14 @@ const ALIAS_MAP = {
   kit: 'hbr_convertkit',
   convertkit: 'hbr_convertkit',
   sugarai: 'sugar',
+  // App-catalog spellings (connectors.js was aligned to the app's connector list).
+  // Old-name keys above are kept while hardcoded lists elsewhere still use them.
+  sugarcrm: 'sugar',
+  azuresynapseanalytics: 'azuredwh',
+  maxioadvancedbilling: 'rst_chargify',
+  marketingcloud: 'exacttarget', // ExactTarget = Salesforce Marketing Cloud's sprite cell
+  myobbusinessaccountright: 'myob',
+  googleanalytics4: 'googleanalytics_v4',
   // cut favicon fallbacks -> existing sprite logos (same brand family)
   googlecloudsqlformysql: 'googlecloudsqlmysql',
   gcsqlforpostgresql: 'googlecloudsqlpostgresql',

@@ -470,7 +470,7 @@ function SpotlightAnomalies() {
     {sev:'high', label:'Cloud Infra +$24K',     when:'Tue 14:32', why:'unplanned scale-up · compute', tag:'infra_spend'},
     {sev:'med',  label:'Contractors +$13K',     when:'Mon 09:15', why:'new vendor · marketing ops',   tag:'contractor_spend'},
     {sev:'med',  label:'SaaS auto-renew $8K',   when:'Sun 22:00', why:'expected · annual seat reset',  tag:'saas_spend'},
-    {sev:'ok',   label:'Payroll on plan',       when:'Today',     why:'matches Gusto run',              tag:'payroll'},
+    {sev:'ok',   label:'Payroll on plan',       when:'Today',     why:'matches QuickBooks Online',      tag:'payroll'},
   ];
   const sevConfig = {
     high: {color:'var(--ins-status-error-fg)', bg:'var(--ins-color-red-a-06)', border:'rgba(248,113,113,.28)', icon:'!', iconBg:'rgba(248,113,113,.18)', iconBorder:'var(--ins-status-error-fg)'},
@@ -556,10 +556,10 @@ function SpotlightAnomalies() {
 
 function SpotlightStack() {
   const trace = [
-    {label:'Payroll',     amt:'$98K', src:'Gusto',      detail:'142 entries',  owner:'HR',  ts:'06:30 UTC'},
-    {label:'SaaS spend',  amt:'$32K', src:'Ramp',       detail:'18 vendors',   owner:'IT',  ts:'06:30 UTC'},
-    {label:'Infra spend', amt:'$42K', src:'QuickBooks', detail:'24 line-items',owner:'Eng', ts:'06:30 UTC'},
-    {label:'Contractors', amt:'$15K', src:'QuickBooks', detail:'6 vendors',    owner:'Ops', ts:'06:30 UTC'},
+    {label:'Payroll',     amt:'$98K', src:'QuickBooks Online', detail:'142 entries',  owner:'HR',  ts:'06:30 UTC'},
+    {label:'SaaS spend',  amt:'$32K', src:'Google Sheets',     detail:'18 vendors',   owner:'IT',  ts:'06:30 UTC'},
+    {label:'Infra spend', amt:'$42K', src:'QuickBooks Online', detail:'24 line-items',owner:'Eng', ts:'06:30 UTC'},
+    {label:'Contractors', amt:'$15K', src:'QuickBooks Online', detail:'6 vendors',    owner:'Ops', ts:'06:30 UTC'},
   ];
   return (
     <div style={{
@@ -590,7 +590,7 @@ function SpotlightStack() {
               <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-body)'}}>gross_burn · Q2 MTD</span>
             </div>
             <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.06em',textTransform:'uppercase',marginTop:'var(--ins-size-1)'}}>
-              FP&amp;A · v3.2 · 3 source systems
+              FP&amp;A · v3.2 · 2 source systems
             </div>
           </div>
           <span style={{
@@ -683,7 +683,7 @@ function FeatureSpotlights() {
       eyebrow:'Self-Serve',
       title:'Finance answers on demand',
       body:'Type any cost or budget question conversationally and get an answer rooted in your real ledger — no spreadsheet maze, no FP&A wait.',
-      bullets:['Conversational answers across budget, payroll, and spend','CFO and ops leads finally self-serve'],
+      bullets:['Conversational answers across budget, headcount, and spend','CFO and ops leads finally self-serve'],
       visual:<SpotlightChat />,
     },
     {
@@ -797,7 +797,7 @@ function UseCases() {
     {
       icon:<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/><circle cx="9" cy="7" r="4" stroke="var(--ins-text-highlight)" strokeWidth="1.5"/><path d="M22 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round"/></svg>,
       title:'Fully-loaded headcount cost in seconds',
-      desc:'Fully-loaded cost by team — HR, payroll and benefits pulled automatically. The answer that used to take a day, before the CEO asked again.',
+      desc:'Fully-loaded cost by team — HR and accounting data pulled automatically. The answer that used to take a day, before the CEO asked again.',
     },
   ];
 
@@ -864,7 +864,7 @@ function UseCases() {
 /* ── RELEVANT INTEGRATIONS ── */
 function RelevantIntegrations() {
   const connectors = [
-    { name:'QuickBooks',  desc:'Accounting' },
+    { name:'QuickBooks Online', desc:'Accounting' },
     { name:'Xero',        desc:'Accounting' },
     { name:'NetSuite',    desc:'Finance & ERP' },
     { name:'Stripe',      desc:'Billing & revenue' },
@@ -875,7 +875,7 @@ function RelevantIntegrations() {
     { name:'Salesforce',  desc:'CRM & pipeline' },
     { name:'HubSpot',     desc:'CRM & marketing' },
     { name:'Snowflake',   desc:'Data warehouse' },
-    { name:'BigQuery',    desc:'Cloud analytics' },
+    { name:'Google BigQuery', desc:'Cloud analytics' },
     { name:'PostgreSQL',  desc:'Database' },
     { name:'Paddle',      desc:'Payments' },
     { name:'Google Sheets', desc:'Spreadsheet data' },
@@ -888,8 +888,8 @@ function RelevantIntegrations() {
         <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
             eyebrow="Your Finance Stack"
-            title="Connects to every accounting, payroll, and billing tool"
-            lede="Insightis integrates with your accounting, billing, payroll, and warehouse stack."
+            title="Connects to every accounting and billing tool"
+            lede="Insightis integrates with your accounting, billing, and warehouse stack."
           />
         </div>
 
@@ -927,7 +927,7 @@ function FAQ() {
   const items = [
     {
       q:'Does Insightis replace QuickBooks or Xero, or sit on top?',
-      a:'It sits on top. Insightis reads your accounting, payroll, billing, and warehouse data in place — no shadow ledger, no parallel chart of accounts. QuickBooks or Xero stays your system of record, owned by Finance.',
+      a:'It sits on top. Insightis reads your accounting, billing, and warehouse data in place — no shadow ledger, no parallel chart of accounts. QuickBooks or Xero stays your system of record, owned by Finance.',
     },
     {
       q:'What happens when teams have conflicting metric definitions?',
@@ -943,7 +943,7 @@ function FAQ() {
     },
     {
       q:'How long does implementation take?',
-      a:'Most finance teams are answering real questions within a week — connect QuickBooks or Xero plus your payroll and billing tools, register your top 10–20 metrics in the Semantic Layer, and start asking. Broader rollout to ops and department leads typically follows in the second or third week.',
+      a:'Most finance teams are answering real questions within a week — connect QuickBooks or Xero plus your billing tools, register your top 10–20 metrics in the Semantic Layer, and start asking. Broader rollout to ops and department leads typically follows in the second or third week.',
     },
     {
       q:'How is security and access handled?',

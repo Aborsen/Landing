@@ -222,7 +222,7 @@ function RelevantIntegrations() {
     { name:'HubSpot',     desc:'CRM & marketing' },
     { name:'Stripe',      desc:'Billing & revenue' },
     { name:'Snowflake',   desc:'Data warehouse' },
-    { name:'BigQuery',    desc:'Cloud analytics' },
+    { name:'Google BigQuery', desc:'Cloud analytics' },
     { name:'PostgreSQL',  desc:'Database' },
   ];
 
@@ -938,8 +938,8 @@ function Testimonials() {
 function FAQ() {
   const items = [
     {
-      q:'Does this replace Mixpanel or Amplitude?',
-      a:'No — Insightis sits on top of them. We connect to Mixpanel, Amplitude, Segment, Firebase, and your warehouse so you can ask cross-tool questions in plain English. The dashboards your team already built keep working; Insightis answers the long-tail questions that would otherwise turn into a data ticket.',
+      q:'Does this replace Amplitude or Google Analytics 4?',
+      a:'No — Insightis sits on top of them. We connect to Amplitude, Segment, FullStory, Google Analytics 4, and your warehouse so you can ask cross-tool questions in plain English. The dashboards your team already built keep working; Insightis answers the long-tail questions that would otherwise turn into a data ticket.',
     },
     {
       q:'How does it join event data with billing and CRM?',

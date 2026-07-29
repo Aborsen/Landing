@@ -343,8 +343,8 @@ function SpotlightSemantic() {
 
 function SpotlightAnomalies() {
   const segments = [
-    {seg:'Paid social · Meta',   val:'+52%', color:'var(--ins-status-error-fg)', bad:true},
-    {seg:'Paid social · TikTok', val:'+38%', color:'var(--ins-status-error-fg)', bad:true},
+    {seg:'Paid social · Facebook Ads', val:'+52%', color:'var(--ins-status-error-fg)', bad:true},
+    {seg:'Paid social · TikTok Ads',   val:'+38%', color:'var(--ins-status-error-fg)', bad:true},
     {seg:'Search',               val:'+3%',  color:'var(--ins-text-body)', bad:false},
   ];
   return (
@@ -422,9 +422,9 @@ function SpotlightAnomalies() {
 function SpotlightStack() {
   const trace = [
     {label:'Search',      amt:'$58K', src:'Google Ads', detail:'271 customers', owner:'Demand Gen', ts:'06:30 UTC'},
-    {label:'Paid social', amt:'$41K', src:'Meta Ads',   detail:'92 customers',  owner:'Demand Gen', ts:'06:30 UTC'},
+    {label:'Paid social', amt:'$41K', src:'Facebook Ads', detail:'92 customers',  owner:'Demand Gen', ts:'06:30 UTC'},
     {label:'Email',       amt:'$6K',  src:'Klaviyo',    detail:'118 customers', owner:'Lifecycle',  ts:'06:30 UTC'},
-    {label:'Organic',     amt:'$0',   src:'GA4',        detail:'204 customers', owner:'Content',    ts:'06:30 UTC'},
+    {label:'Organic',     amt:'$0',   src:'Google Analytics 4', detail:'204 customers', owner:'Content',    ts:'06:30 UTC'},
   ];
   return (
     <div style={{
@@ -744,7 +744,7 @@ function RelevantIntegrations() {
     { name:'Amplitude',      desc:'Product analytics' },
     { name:'Stripe',         desc:'Billing & revenue' },
     { name:'Snowflake',      desc:'Data warehouse' },
-    { name:'BigQuery',       desc:'Cloud analytics' },
+    { name:'Google BigQuery', desc:'Cloud analytics' },
   ];
 
   return (
@@ -795,15 +795,15 @@ function FAQ() {
       a:'Insightis supports first-touch, last-touch, linear, time-decay, and custom-weight attribution models — applied consistently across every channel. Define the model once in the Semantic Layer; every question respects it from then on.',
     },
     {
-      q:'Will it work with our existing Google Ads, Meta, and LinkedIn setup?',
-      a:'Yes. Native connectors for Google Ads, Meta, LinkedIn, TikTok, and 200+ other ad platforms. Spend, impressions, clicks, and conversions sync automatically — no UTM-tagging gymnastics or manual exports required.',
+      q:'Will it work with our existing Google Ads, Facebook Ads, and LinkedIn Ads setup?',
+      a:'Yes. Native connectors for Google Ads, Facebook Ads, LinkedIn Ads, and TikTok Ads — part of a catalog of 200+ tools spanning ads, analytics, CRM, and billing. Spend, impressions, clicks, and conversions sync automatically — no UTM-tagging gymnastics or manual exports required.',
     },
     {
       q:'How quickly can it surface a CAC anomaly across channels?',
       a:'Same day. Insightis flags channel-level CAC drift the moment it crosses your defined threshold — by Slack, email, or in the AI Chat insights feed. No more month-end surprises buried under blended numbers.',
     },
     {
-      q:'Does this replace our existing analytics stack (GA4, Adobe, Mixpanel)?',
+      q:'Does this replace our existing analytics stack (GA4, Amplitude, FullStory)?',
       a:'No, it sits on top. Insightis reads from your existing analytics tools and unifies them with CRM and billing data — so you can ask "how many MQLs from paid social converted to paying customers?" in a single question.',
     },
     {

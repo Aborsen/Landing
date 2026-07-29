@@ -48,12 +48,12 @@ The **My Connections** tab lists every source you have connected, showing each c
 
 Connectors are grouped by category to make finding the right one quick:
 
-- **Warehouses & databases** — PostgreSQL, MySQL, BigQuery, Snowflake, Redshift, Databricks, ClickHouse.
+- **Warehouses & databases** — PostgreSQL, MySQL, BigQuery, Snowflake, Redshift, Databricks, Azure Synapse Analytics.
 - **CRMs & customer data** — HubSpot, Salesforce, Pipedrive, Intercom, Zendesk.
-- **Billing & finance** — Stripe, Chargebee, QuickBooks, Xero, NetSuite.
-- **Marketing & ads** — Google Ads, Meta Ads, TikTok Ads, LinkedIn Ads, Google Analytics, Mailchimp.
-- **Product analytics** — Amplitude, Mixpanel, Segment, PostHog.
-- **Spreadsheets & files** — Google Sheets, Excel Online, Airtable, CSV uploads, S3.
+- **Billing & finance** — Stripe, Chargebee, QuickBooks Online, Xero, NetSuite.
+- **Marketing & ads** — Google Ads, Facebook Ads, TikTok Ads, LinkedIn Ads, Google Analytics, Mailchimp.
+- **Product analytics** — Amplitude, FullStory, Segment, Google Analytics 4.
+- **Spreadsheets & files** — Google Sheets, Excel Online, Airtable, SharePoint Lists, CSV uploads.
 
 The full catalogue and current connector status is on the [Data Connectors page](/resources/connectors).
 

@@ -10,7 +10,7 @@ breadcrumb: Docs / Getting started / Quick start
 
 ## Step 2 — Connect a data source
 
-Open **Data Sources** in the sidebar and find your source on the **Catalog** tab — warehouses (BigQuery, Snowflake, PostgreSQL), CRMs (HubSpot, Salesforce), billing (Stripe, Chargebee), product analytics (Amplitude, Mixpanel), and 200+ more. Click **Connect**, enter the connection details, and **Save**. Full walkthrough in [Data Connectors](/docs/data-connectors), and you can browse the whole catalogue on the [Data Connectors page](/resources/connectors).
+Open **Data Sources** in the sidebar and find your source on the **Catalog** tab — warehouses (BigQuery, Snowflake, PostgreSQL), CRMs (HubSpot, Salesforce), billing (Stripe, Chargebee), product analytics (Amplitude, FullStory), and 200+ more. Click **Connect**, enter the connection details, and **Save**. Full walkthrough in [Data Connectors](/docs/data-connectors), and you can browse the whole catalogue on the [Data Connectors page](/resources/connectors).
 
 ## Step 3 — Define your first metric
 

@@ -70,7 +70,7 @@ const CONN_SOURCES = [
   {name:'HubSpot',   slug:'hubspot',        domain:'hubspot.com',   color:'#FF7A59', desc:'CRM'},
   {name:'Stripe',    slug:'stripe',         domain:'stripe.com',    color:'#635BFF', desc:'Payments'},
   {name:'Intercom',  slug:'intercom',       domain:'intercom.com',  color:'#1F8DED', desc:'Support'},
-  {name:'BigQuery',  slug:'googlebigquery', domain:null,            color:'#669DF6', desc:'Warehouse'},
+  {name:'Google BigQuery', slug:'googlebigquery', domain:null,      color:'#669DF6', desc:'Warehouse'},
   {name:'Snowflake', slug:'snowflake',      domain:'snowflake.com', color:'#29B5E8', desc:'Warehouse'},
   {name:'Jira',      slug:'jira',           domain:'atlassian.com', color:'#2684FF', desc:'Tickets'},
 ];
@@ -342,7 +342,7 @@ const AUDIENCE_TABS = {
     { name: "Xero", desc: "SMB accounting" },
     { name: "Snowflake", desc: "Core business warehouse" },
     { name: "Google BigQuery", desc: "Cloud-scale analytics" },
-    { name: "Amazon Redshift", desc: "Warehouse on AWS" },
+    { name: "Redshift", desc: "Warehouse on AWS", slug: "amazonredshift", domain: "aws.amazon.com" },
     { name: "Salesforce", desc: "Pipeline & forecast" },
     { name: "HubSpot", desc: "Funnel & ICP signals" },
     { name: "Slack", desc: "Team activity & alerts" },
@@ -351,7 +351,7 @@ const AUDIENCE_TABS = {
     { name: "FullStory", desc: "User journeys" },
     { name: "Notion", desc: "Strategy docs & wiki" },
     { name: "Sage Accounting", desc: "Books & GL" },
-    { name: "Maxio Billing", desc: "Recurring revenue ops" },
+    { name: "Maxio Advanced Billing", desc: "Recurring revenue ops", slug: "maxiobilling", domain: "maxio.com" },
     { name: "ChartMogul", desc: "Subscription analytics" },
     { name: "Recurly", desc: "Billing & retention" },
     { name: "Asana", desc: "Cross-team initiatives" },
@@ -363,7 +363,7 @@ const AUDIENCE_TABS = {
     { name: "Klaviyo", desc: "E-commerce email & SMS" },
     { name: "ActiveCampaign", desc: "Marketing automation" },
     { name: "Marketo", desc: "Enterprise nurture" },
-    { name: "Salesforce Marketing Cloud", desc: "Cross-channel orchestration" },
+    { name: "Marketing Cloud", desc: "Cross-channel orchestration", slug: "salesforce", domain: "salesforce.com" },
     { name: "Google Ads", desc: "Paid search performance" },
     { name: "Facebook Ads", desc: "Paid social — Meta" },
     { name: "LinkedIn Ads", desc: "B2B paid social" },
@@ -404,28 +404,28 @@ const AUDIENCE_TABS = {
   "Data & Analytics": [
     { name: "Snowflake", desc: "Cloud data warehouse" },
     { name: "Google BigQuery", desc: "Serverless analytics warehouse" },
-    { name: "Amazon Redshift", desc: "AWS data warehouse" },
+    { name: "Redshift", desc: "AWS data warehouse", slug: "amazonredshift", domain: "aws.amazon.com" },
     { name: "Databricks", desc: "Lakehouse & ML platform" },
-    { name: "Azure Synapse", desc: "Microsoft warehouse" },
+    { name: "Azure Synapse Analytics", desc: "Microsoft warehouse", slug: "azuresynapse", domain: "azure.microsoft.com" },
     { name: "PostgreSQL", desc: "Open-source relational DB" },
     { name: "MySQL", desc: "Open-source relational DB" },
-    { name: "MariaDB", desc: "MySQL fork" },
-    { name: "Amazon Aurora", desc: "AWS-managed Postgres/MySQL" },
+    { name: "Airtable", desc: "No-code relational database" },
+    { name: "DigitalOcean", desc: "Managed cloud databases" },
     { name: "AlloyDB", desc: "Google-managed Postgres" },
-    { name: "Heroku Postgres", desc: "Managed Postgres on Heroku" },
-    { name: "Azure MySQL", desc: "Managed MySQL on Azure" },
-    { name: "Azure PostgreSQL", desc: "Managed Postgres on Azure" },
+    { name: "Zoho Analytics", desc: "BI & analytics platform" },
+    { name: "Azure Application Insights", desc: "App telemetry & logs" },
+    { name: "Azure DevOps", desc: "Repos, boards & pipelines" },
     { name: "SQL Server", desc: "Microsoft SQL Server" },
     { name: "Oracle", desc: "Oracle Database" },
     { name: "Elasticsearch", desc: "Search & log analytics" },
     { name: "Hive", desc: "Hadoop-warehouse SQL" },
-    { name: "GC SQL for PostgreSQL", desc: "Managed Postgres on GCP" },
+    { name: "Segment", desc: "Customer data pipeline" },
     { name: "Excel Online", desc: "Sheet-based modelling" },
     { name: "Google Sheets", desc: "Collaborative sheets" },
   ],
   "Ops & Finance": [
     { name: "QuickBooks Online", desc: "Accounting & invoicing" },
-    { name: "QuickBooks Desktop", desc: "On-prem accounting" },
+    { name: "Acumatica", desc: "Cloud ERP & accounting" },
     { name: "QuickBooks Time", desc: "Time tracking & payroll" },
     { name: "Xero", desc: "SMB accounting" },
     { name: "Stripe", desc: "Payments & invoicing" },
@@ -435,7 +435,7 @@ const AUDIENCE_TABS = {
     { name: "Zoho Books", desc: "SMB accounting" },
     { name: "Avalara", desc: "Sales tax compliance" },
     { name: "FreshBooks", desc: "Service-business books" },
-    { name: "Maxio Billing", desc: "Recurring revenue ops" },
+    { name: "Maxio Advanced Billing", desc: "Recurring revenue ops", slug: "maxiobilling", domain: "maxio.com" },
     { name: "ChartMogul", desc: "Subscription analytics" },
     { name: "Exact Online", desc: "EU SMB accounting" },
     { name: "Paddle", desc: "Merchant of record billing" },
@@ -495,7 +495,7 @@ function ConnectorsGallery() {
           {AUDIENCE_TABS[activeCat].map((c, i) => {
             const master = MASTER_CONNECTORS.find(m => m.name === c.name);
             return (
-            <ConnectorCard key={`${activeCat}-${i}-${c.name}`} name={c.name} slug={master?.slug} domain={master?.domain} />
+            <ConnectorCard key={`${activeCat}-${i}-${c.name}`} name={c.name} slug={c.slug || master?.slug} domain={c.domain || master?.domain} />
             );
           })}
         </div>
@@ -503,7 +503,7 @@ function ConnectorsGallery() {
         {/* Footer note */}
         <div style={{textAlign:'center',marginTop:'var(--ins-size-8)'}}>
           <span style={{fontSize:'12.5px',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-mono)'}}>
-            + 200 more connectors available ·{' '}
+            + 180 more connectors available ·{' '}
             <a href="/resources/connectors" className="ins-link--inline">see full list →</a>
           </span>
         </div>
@@ -724,9 +724,9 @@ function App() {
 
           Q2. Which data sources does Insightis integrate with?
           A. Insightis supports 200+ connectors across CRMs (HubSpot, Salesforce, Pipedrive),
-          warehouses (Snowflake, BigQuery, Redshift), ad platforms (Google Ads, Meta, LinkedIn),
-          product analytics (Mixpanel, Amplitude, PostHog), finance (Stripe, QuickBooks, NetSuite)
-          and ops tools (Jira, Linear, Slack). New connectors are added monthly based on customer demand.
+          warehouses (Snowflake, BigQuery, Redshift), ad platforms (Google Ads, Facebook Ads, LinkedIn Ads),
+          product analytics (Amplitude, FullStory, Segment), finance (Stripe, QuickBooks Online, NetSuite)
+          and ops tools (Jira, Asana, Slack). New connectors are added monthly based on customer demand.
 
           Q3. Do I need SQL or a data engineer to use Insightis integrations?
           A. No. Insightis' semantic layer maps every connected source to certified business metrics -
