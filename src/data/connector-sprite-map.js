@@ -7,6 +7,16 @@ import { SPRITE_CLASSES } from './sprite-classes.js';
 
 // our identifier (slug or derived name) -> exact sprite class
 const ALIAS_MAP = {
+  // Renamed away from the connector's own name on purpose: as a bare class token,
+  // `googleads` is hidden outright by EasyList's cosmetic filters, so the logo
+  // vanished for anyone running an ad blocker — on the deployed site only, since
+  // blockers do not filter localhost. The sprite cell is unchanged.
+  googleads: 'gaw',
+  facebookads: 'fbk',
+  linkedinads: 'lnkd',
+  microsoftads: 'bing',
+  tiktokads: 'ttk',
+  twitterads: 'twtr',
   googlebigquery: 'bigquery',
   bigquery: 'bigquery',
   amazonredshift: 'redshift',
@@ -19,7 +29,7 @@ const ALIAS_MAP = {
   confluence: 'rst_confluence_cloud',
   confluencecloud: 'rst_confluence_cloud',
   mondaydotcom: 'mondaycom',
-  xads: 'twitterads',
+  xads: 'twtr',
   brevo: 'hbr_sendinblue',
   kit: 'hbr_convertkit',
   convertkit: 'hbr_convertkit',
@@ -59,7 +69,7 @@ export const DARK_SPRITE_LOGOS = new Set([
   'hbr_square', 'hbr_teamwork', 'hbr_teamwork_crm', 'hbr_teamwork_desk', 'hbr_tempo',
   'hbr_thinkific', 'hbr_unbounce', 'mailchimp', 'openai', 'rst_chargify',
   'rst_formstack_documents', 'rst_okta', 'rst_paymo', 'rst_recharge', 'rst_survicate',
-  'sageaccounting', 'scoro', 'shipstation', 'sugar', 'tiktokads', 'twitterads',
+  'sageaccounting', 'scoro', 'shipstation', 'sugar', 'ttk', 'twtr',
   'wordpress', 'zendesk', 'zohoanalytics',
 ]);
 
