@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import SectionHeader from '../components/SectionHeader';
+import BottomCTA from '../components/BottomCTA';
 import CheckIcon from '../components/CheckIcon';
 import Button from '../components/Button';
 
@@ -18,8 +20,8 @@ function TreeHero() {
 
   const milestones = [
     { id: 'MVP', label: 'Insightis Public MVP', sub: 'Q2 2026',                   x: 120, dir: null,   color: 'var(--ins-text-highlight)' },
-    { id: 'V1',  label: 'V1',                   sub: 'DWH & Team Support',        x: 308, dir: 'up',   color: '#A78BFA' },
-    { id: 'V2',  label: 'V2',                   sub: 'MCP & Advanced Dashboards', x: 490, dir: 'down', color: '#A78BFA' },
+    { id: 'V1',  label: 'V1',                   sub: 'DWH & MCP',                 x: 308, dir: 'up',   color: '#A78BFA' },
+    { id: 'V2',  label: 'V2',                   sub: 'Team Support & Dashboard',  x: 490, dir: 'down', color: '#A78BFA' },
     { id: 'V3',  label: 'V3',                   sub: 'Signals & Automations',     x: 672, dir: 'up',   color: 'var(--ins-text-body)' },
     { id: 'V4',  label: 'V4',                   sub: 'Custom Agents',             x: 854, dir: 'down', color: '#5E8290' },
   ];
@@ -301,9 +303,9 @@ const ROADMAP_COLUMNS = [
     color: 'var(--ins-text-highlight)',
     glow: 'var(--ins-color-teal-a-15)',
     items: [
-      { title: 'AI Connect — Private Beta',     desc: 'Pipe your Insightis data into Claude, ChatGPT, and custom agents.' },
-      { title: 'Memory & Storage',              desc: 'Long-term business context so Insightis learns your company over time.' },
-      { title: 'Slack & Teams Notifications',   desc: 'Push metric alerts and anomalies to your team channels.' },
+      { title: 'AI Chat',                       desc: 'Ask any business question in plain English and get a sourced answer back in seconds.' },
+      { title: 'Connectors',                    desc: 'Prebuilt sources across CRM, billing and analytics, plus REST and GraphQL for the rest.' },
+      { title: 'Semantic Layer (metrics)',      desc: 'One certified definition per metric, versioned and shared across every team that asks.' },
     ],
   },
   {
@@ -312,9 +314,9 @@ const ROADMAP_COLUMNS = [
     color: '#A78BFA',
     glow: 'rgba(139,92,246,.12)',
     items: [
-      { title: 'AI Connect — MCP Server',       desc: 'Expose your workspace to Claude, Cursor, and any MCP-compatible tool.' },
-      { title: 'Custom Dashboard Builder',      desc: 'Drag-and-drop dashboards built from saved AI Chat answers.' },
-      { title: 'Scheduled Reports',             desc: 'Auto-generated weekly and monthly business reports, delivered by email.' },
+      { title: 'AI Connect — MCP Server',       desc: 'Expose your workspace to Claude, Cursor, and any other MCP-compatible tool you use.' },
+      { title: 'Memory & Storage',              desc: 'Long-term business context, so Insightis learns how your company works over time.' },
+      { title: 'Scheduled Reports',             desc: 'Weekly and monthly business reports generated for you and delivered straight to email.' },
     ],
   },
   {
@@ -323,17 +325,17 @@ const ROADMAP_COLUMNS = [
     color: 'var(--ins-text-body)',
     glow: 'rgba(127,160,172,.08)',
     items: [
-      { title: 'Multi-Workspace Support',       desc: 'Manage multiple companies or business units from one account.' },
-      { title: 'Embedded Analytics',            desc: 'White-label Insightis inside your own product.' },
-      { title: 'Advanced Formula Metrics',      desc: 'Window functions, cohorts, and conditional aggregations.' },
+      { title: 'Multi-Workspace Support',       desc: 'Manage several companies or business units from a single Insightis account.' },
+      { title: 'Custom Agents',                 desc: 'Purpose-built agents that watch a metric for you and act on the rules you set.' },
+      { title: 'Alerts',                        desc: 'Threshold and anomaly alerts pushed to Slack, Teams, or email the moment they fire.' },
     ],
   },
 ];
 
 const RECENTLY_SHIPPED = [
-  { title: 'Insights Engine',       desc: 'Automated deep analysis of root causes and anomalies.' },
-  { title: '200+ Data Connectors',  desc: 'HubSpot, Stripe, Postgres, Snowflake, Salesforce, and more.' },
-  { title: 'Semantic Layer v2',     desc: 'Certified metrics, cross-source joins, and full documentation.' },
+  { title: 'Insights Engine',       desc: 'Automated deep analysis that finds root causes and anomalies without being asked.' },
+  { title: '200+ Data Connectors',  desc: 'HubSpot, Stripe, PostgreSQL, Snowflake, Salesforce and nearly two hundred more.' },
+  { title: 'Semantic Layer v2',     desc: 'Certified metrics, cross-source joins, and full documentation for every definition.' },
 ];
 
 function RoadmapSections() {
@@ -341,14 +343,14 @@ function RoadmapSections() {
     <section style={{position:'relative', zIndex:1, paddingBottom:48, paddingTop:140}}>
       <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
 
-        {/* Section heading */}
+        {/* Section heading — SectionHeader supplies the eyebrow pill (its star is drawn by
+            .ins-eyebrow::before), the centred alignment and the centred measure. */}
         <div style={{marginBottom:40}}>
-          <h2 className="ins-text-h1" style={{marginBottom:12}}>
-            What's on deck
-          </h2>
-          <p className="ins-text-body-lg" style={{maxWidth:520, margin:0}}>
-            A curated look at what we're building. Curated by hand — not auto-generated.
-          </p>
+          <SectionHeader
+            eyebrow="What we're building"
+            title="What's on deck"
+            lede="A curated look at what we're building. Curated by hand — not auto-generated."
+          />
         </div>
 
         {/* Divider */}
@@ -454,34 +456,25 @@ function SuggestCTA() {
   return (
     <>
       {/* ── CTA STRIP ── */}
+      {/* The shared BottomCTA rather than a bespoke card: .ins-bottom-cta already draws the
+          border, radius, gradient, top hairline and glow this block used to hand-roll with
+          hardcoded rgba values and a clamp() heading. Same copy as every other page. */}
       <section style={{padding:'64px 0 80px', position:'relative', zIndex:1}}>
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-          <div style={{
-            position:'relative', borderRadius:16,
-            border:'1px solid rgba(30,30,48,1)',
-            padding:'32px 48px', overflow:'hidden',
-            display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-between',
-            gap:24, flexWrap:'wrap',
-            background:'linear-gradient(135deg,rgba(18,18,31,.95) 0%,rgba(13,13,26,.98) 50%,rgba(18,18,31,.95) 100%)',
-          }}>
-            <div style={{position:'absolute',top:0,left:0,right:0,height:1,background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
-            <div style={{maxWidth:520}}>
-              <h3 style={{fontSize:'clamp(18px,2.5vw,24px)', fontWeight:500, color:'var(--ins-text-heading-soft)', letterSpacing:'-.02em', marginBottom:8}}>
-                Missing something? <span style={{color:'var(--ins-button-primary-bg)'}}>Suggest a feature</span>
-              </h3>
-              <p className="ins-text-body">
-                Tell us what you'd like to see in Insightis. We review every suggestion.
-              </p>
-            </div>
-            <Button
-              variant="primary"
-              size="md"
-              radius="md"
-              onClick={() => setOpen(true)}
-              style={{flexShrink:0}}
-              iconEnd={<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>}
-            >
-              Request a feature
+          <BottomCTA
+            variant="buttons"
+            title={<>Get answers from your data <BottomCTA.Highlight>in seconds</BottomCTA.Highlight>, not days</>}
+            description="Ask your first question in under two minutes — no SQL, no analyst queue, no waiting. Free to start, no credit card required."
+            ctaLabel="Start for free"
+            secondaryCtaLabel="Explore Pricing"
+            secondaryCtaHref="/pricing"
+          />
+          {/* The suggestion modal is opened by state, and BottomCTA only accepts
+              secondaryCtaHref — no click handler — so wiring it as a secondary CTA would
+              have rendered a dead button. It gets its own trigger under the card instead. */}
+          <div style={{marginTop:'var(--ins-size-5)', textAlign:'center'}}>
+            <Button variant="ghost" size="md" onClick={() => setOpen(true)}>
+              Missing something? Suggest a feature
             </Button>
           </div>
         </div>

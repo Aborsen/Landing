@@ -4,8 +4,9 @@ import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
-import IconBadge from '../components/IconBadge';
 import SectionHeader from '../components/SectionHeader';
+import CheckIcon from '../components/CheckIcon';
+import StepsProcess from '../components/StepsProcess';
 import StatStrip from '../components/StatStrip';
 import BottomCTA from '../components/BottomCTA';
 
@@ -103,22 +104,30 @@ function MissionVision() {
 }
 
 /* ── VALUES ── */
+/* Rendered with the shared <StepsProcess> — the numbered-circle-and-connector treatment the
+   platform pages use for "From question to answer in seconds" — rather than the three icon
+   cards this was. Each body is tuned to render exactly THREE lines in the ~360px step column;
+   the previous copy ran to four on two of the three, which is what made the row look ragged.
+   Re-measure if you edit one: three lines is the spec, character count only approximates it. */
 function MissionValues() {
-  const values = [
+  const steps = [
     {
-      icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>,
+      n: '01',
       title: 'Data should be accessible',
-      desc: 'Business intelligence shouldn\'t require a data team. Anyone should be able to ask a question and get an answer from their own data — in seconds, in plain English.',
+      body: 'Business intelligence should not need a data team. Anyone should be able to ask a question and get an answer from their own data, in plain English.',
+      example: 'plain English in → answer out',
     },
     {
-      icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>,
+      n: '02',
       title: 'Accuracy is non-negotiable',
-      desc: 'Generic AI guesses from internet averages. Insightis answers from your real data, through a certified semantic layer — so every answer is grounded, traceable, and trustworthy.',
+      body: 'Generic AI guesses from internet averages. Insightis answers from your data through a certified semantic layer, so every answer is traceable.',
+      example: 'your data + certified metrics → grounded',
     },
     {
-      icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2z"/></svg>,
+      n: '03',
       title: 'Complexity should be invisible',
-      desc: 'Behind every simple answer is real work — cross-source joins, metric definitions, live data. Our job is to make that disappear so you can focus on the decision.',
+      body: 'Behind every simple answer is real work: cross-source joins, metric definitions, live data. Our job is to hide all of it so you can decide.',
+      example: 'joins + definitions → hidden',
     },
   ];
 
@@ -131,17 +140,7 @@ function MissionValues() {
             title="Three principles behind everything we build"
           />
         </div>
-        {/* No inline gridTemplateColumns — it used to override the Tailwind classes
-            and pin this grid to 3-across on mobile. */}
-        <div className="grid gap-4 md:grid-cols-3">
-          {values.map((v, i) => (
-            <div key={i} className="ins-feature-card">
-              <IconBadge tone="teal" icon={v.icon} style={{marginBottom:'var(--ins-size-4)'}} />
-              <h3 className="ins-text-h3" style={{marginBottom:'var(--ins-size-2)'}}>{v.title}</h3>
-              <p className="ins-text-body" style={{maxWidth:'420px', marginInline:'auto'}}>{v.desc}</p>
-            </div>
-          ))}
-        </div>
+        <StepsProcess steps={steps} />
       </div>
     </section>
   );
@@ -149,12 +148,42 @@ function MissionValues() {
 
 /* ── OUR STORY TIMELINE ── */
 function OurStory() {
+  /* Timeline structure kept (owner's choice) with the solutions-page spotlight STYLING laid
+     over it: the year is an eyebrow pill, the body sits at the spotlight type scale, and each
+     milestone carries two check-bullets. Every bullet restates something the milestone's own
+     description already said — this page's claims guardrails are at the top of the file, and
+     no new company history is asserted here. */
   const milestones = [
-    { year: '1997', title: 'Devart is founded', desc: 'It starts with a single Oracle connectivity product and one commitment: build data tools that simply work, for developers who demand reliability.' },
-    { year: '2005', title: 'Data tools at scale', desc: 'The dbForge product line launches — database development and management tools now used by hundreds of thousands of developers worldwide.' },
-    { year: '2014', title: 'Cloud & connectivity', desc: 'Skyvia brings cloud data integration to 200+ SaaS apps and databases — cementing Devart as a full-stack data company.' },
-    { year: '2026', title: 'Insightis is born', desc: 'Built on nearly three decades of data expertise, Insightis brings conversational AI analytics to every business team. Ask in plain English. Get trusted answers instantly.' },
-    { year: '∞', title: 'The journey continues', desc: 'Expanding integrations, deepening the semantic layer, and building the analytics layer every modern business deserves.' },
+    {
+      year: '1997',
+      title: 'Devart is founded',
+      desc: 'It starts with a single Oracle connectivity product and one commitment: build data tools that simply work.',
+      bullets: ['One Oracle connectivity product to begin with', 'Built for developers who demand reliability'],
+    },
+    {
+      year: '2005',
+      title: 'Data tools at scale',
+      desc: 'The dbForge product line launches — database development and management, now used worldwide.',
+      bullets: ['dbForge covers development and management', 'Hundreds of thousands of developers using it'],
+    },
+    {
+      year: '2014',
+      title: 'Cloud & connectivity',
+      desc: 'Skyvia brings cloud data integration to hundreds of SaaS apps and databases.',
+      bullets: ['Cloud integration across apps and databases', 'Devart becomes a full-stack data company'],
+    },
+    {
+      year: '2025',
+      title: 'Insightis is born',
+      desc: 'Nearly three decades of data expertise, pointed at conversational analytics for every team.',
+      bullets: ['Ask in plain English, get a trusted answer', 'Built for business teams, not just analysts'],
+    },
+    {
+      year: '∞',
+      title: 'The journey continues',
+      desc: 'Expanding integrations, deepening the semantic layer, building the analytics layer every business deserves.',
+      bullets: ['More integrations, a deeper semantic layer', 'The analytics layer modern business deserves'],
+    },
   ];
   return (
     <section style={{paddingTop:'var(--ins-size-20)', paddingBottom:'var(--ins-size-24)'}}>
@@ -166,29 +195,27 @@ function OurStory() {
             lede="We didn't start yesterday. Insightis is the newest chapter in a story Devart has been writing since 1997 — and the same obsession with reliability runs through all of it."
           />
         </div>
-        {/* TODO(assets): team / office / culture photo row per the CMO reference —
-            enable once real photos are provided.
-        <div className="grid gap-4 md:grid-cols-3" style={{marginBottom:'var(--ins-size-10)'}}>
-          {['Team photo','Office / culture photo','Product / work photo'].map(p => (
-            <div key={p} style={{aspectRatio:'4/3', borderRadius:'var(--ins-radius-16)', border:'1px dashed var(--ins-color-white-a-10)', display:'flex', alignItems:'center', justifyContent:'center', color:'var(--ins-text-disabled)', fontSize:'var(--ins-font-size-12)', fontFamily:'var(--ins-font-family-mono)'}}>{p}</div>
-          ))}
-        </div>
-        */}
-        {/* Centred stack, at every width. The old layout hung off an absolute rail
-            at left:120px with a fixed year gutter and a dot column — all of it
-            left-anchored, so centring the copy alone left the rail, years and dots
-            stranded on the left. This is the layout the page already rendered on
-            mobile (year above title), now used everywhere: no rail, no dots, no
-            gutter, and no new CSS. */}
         <div style={{display:'flex', flexDirection:'column', gap:'var(--ins-size-12)'}}>
           {milestones.map((m, i) => (
             <div key={i}>
-              <div
-                className={m.year === '∞' ? 'ins-text-h2 ins-text--mono' : 'ins-text-mono ins-text-mono-sm'}
-                style={{color:'var(--ins-text-highlight)', marginBottom:'var(--ins-size-2)', lineHeight:1}}
-              >{m.year}</div>
-              <h3 className="ins-text-h3" style={{marginBottom:'var(--ins-size-2)'}}>{m.title}</h3>
-              <p className="ins-text-body-lg" style={{maxWidth:'680px', marginInline:'auto'}}>{m.desc}</p>
+              {/* The year as an eyebrow pill, exactly as the spotlights label each capability.
+                  .ins-eyebrow is inline-flex, so the centred text-align centres it. */}
+              <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-4)'}}>
+                {m.year}
+              </div>
+              <h3 className="ins-text-h2" style={{marginBottom:'var(--ins-size-3)'}}>{m.title}</h3>
+              <p className="ins-text-body-lg" style={{maxWidth:'640px', marginInline:'auto'}}>{m.desc}</p>
+              {/* Check-bullets, centred as a stack of inline-flex rows: a centred <ul> with
+                  left-hanging markers reads as broken, which is why each row is its own
+                  inline-flex and the column centres them. */}
+              <ul style={{listStyle:'none', padding:0, margin:'var(--ins-size-4) 0 0', display:'flex', flexDirection:'column', gap:'var(--ins-size-2)', alignItems:'center'}}>
+                {m.bullets.map((b, j) => (
+                  <li key={j} style={{display:'inline-flex', alignItems:'center', gap:'var(--ins-size-2)', textAlign:'left'}}>
+                    <CheckIcon />
+                    <span className="ins-text-body">{b}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
@@ -200,10 +227,10 @@ function OurStory() {
 /* ── DEVART FAMILY ── */
 function DevartFamily() {
   const products = [
-    { abbr: 'dF', name: 'dbForge',           desc: 'Database development and management for developers and DBAs.' },
-    { abbr: '↔',  name: 'Data Connectivity', desc: 'ODBC, ADO.NET and JDBC drivers for every major data source.' },
-    { abbr: 'Sk', name: 'Skyvia',            desc: 'Cloud data integration and backup across 200+ apps and databases.' },
-    { abbr: 'TM', name: 'TMetric',           desc: 'Time tracking and team productivity for businesses of every size.' },
+    { name: 'dbForge', href: 'https://www.devart.com/dbforge/',           desc: 'Database development and management for developers and DBAs.' },
+    { name: 'Data Connectivity', href: 'https://www.devart.com/data-connectivity/', desc: 'ODBC, ADO.NET and JDBC drivers for every major data source.' },
+    { name: 'Skyvia', href: 'https://skyvia.com/',            desc: 'Cloud data integration and backup across 200+ apps and databases.' },
+    { name: 'TMetric', href: 'https://tmetric.com/',           desc: 'Time tracking and team productivity for businesses of every size.' },
   ];
   return (
     <section style={{paddingTop:'var(--ins-size-10)', paddingBottom:'var(--ins-size-24)'}}>
@@ -217,37 +244,24 @@ function DevartFamily() {
         </div>
         <div className="grid gap-4 md:grid-cols-4">
           {products.map((p) => (
-            <div key={p.name} className="ins-feature-card ins-feature-card--interactive">
-              <IconBadge
-                tone="teal"
-                icon={<span className="ins-text-mono" style={{color:'inherit', fontWeight:'var(--ins-font-weight-700)'}}>{p.abbr}</span>}
-                style={{marginBottom:'var(--ins-size-4)'}}
-              />
+            /* Anchor, not a div: the cards name real products and a reader had no way to
+               reach them. External, so target=_blank with rel=noopener noreferrer. */
+            <a
+              key={p.name}
+              href={p.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ins-feature-card ins-feature-card--interactive"
+              style={{textDecoration:'none', display:'block'}}
+            >
               <h3 className="ins-text-h3" style={{marginBottom:'var(--ins-size-2)'}}>{p.name}</h3>
               <p className="ins-text-body" style={{maxWidth:'320px', marginInline:'auto'}}>{p.desc}</p>
-            </div>
+            </a>
           ))}
         </div>
         {/* Insightis — the newest member, featured. Centred column: the old layout
             was a space-between row with the CTA pinned hard right, where
             text-align was a no-op. */}
-        <div
-          className="ins-feature-card"
-          style={{
-            marginTop:'var(--ins-size-4)',
-            borderColor:'var(--ins-border-brand)',
-            background:'linear-gradient(120deg, var(--ins-surface-card) 30%, var(--ins-color-teal-a-10))',
-          }}
-        >
-          <span className="ins-badge ins-badge--brand" style={{marginBottom:'var(--ins-size-3)'}}>New · the latest from Devart</span>
-          <h3 className="ins-text-h2" style={{marginBottom:'var(--ins-size-2)'}}>Insightis</h3>
-          <p className="ins-text-body-lg" style={{maxWidth:'540px', marginInline:'auto'}}>Conversational AI analytics — trusted answers from your data, in plain English, in seconds.</p>
-          <div style={{marginTop:'var(--ins-size-6)'}}>
-            <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
-              Start for free
-            </Button>
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -317,8 +331,8 @@ function BottomCTASection() {
             top hairline (::before) and the left glow (::after). No wrapper. */}
         <BottomCTA
           variant="buttons"
-          title={<>Ready to see your data <BottomCTA.Highlight>clearly?</BottomCTA.Highlight></>}
-          description="Connect your first tool free in minutes. No credit card, cancel anytime."
+          title={<>Get answers from your data <BottomCTA.Highlight>in seconds</BottomCTA.Highlight>, not days</>}
+          description="Ask your first question in under two minutes — no SQL, no analyst queue, no waiting. Free to start, no credit card required."
           ctaLabel="Start for free"
           secondaryCtaLabel="Explore Pricing"
           secondaryCtaHref="/pricing"
@@ -336,9 +350,12 @@ function App() {
       <AboutHero />
       <MissionVision />
       <MissionValues />
+      {/* TrustedBy sits directly above Our Story: the customer logos are the proof that
+          earns the history that follows. It replaced the connector marquee here — this
+          page is about the company, not the integration catalogue. */}
+      <TrustedBy />
       <OurStory />
       <DevartFamily />
-      <TrustedBy />
       <BottomCTASection />
       <Footer />
     </div>

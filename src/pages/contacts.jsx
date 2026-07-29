@@ -456,15 +456,13 @@ function BottomCTASection() {
   return (
     <Section padding="md" tone="tint">
       <BottomCTA
-        variant="buttons"
-        title={<>Still have <BottomCTA.Highlight>questions?</BottomCTA.Highlight></>}
-        description="Start free in minutes and see it on your own data — or email us and someone on the team will get back to you."
-        ctaLabel="Start for free"
-        ctaHref="/auth/sign-up/"
-        secondaryCtaLabel="Email support"
-        secondaryCtaHref={`mailto:${SUPPORT_EMAIL}`}
-        trustNote="Free plan · No credit card required"
-      />
+          variant="buttons"
+          title={<>Get answers from your data <BottomCTA.Highlight>in seconds</BottomCTA.Highlight>, not days</>}
+          description="Ask your first question in under two minutes — no SQL, no analyst queue, no waiting. Free to start, no credit card required."
+          ctaLabel="Start for free"
+          secondaryCtaLabel="Explore Pricing"
+          secondaryCtaHref="/pricing"
+        />
     </Section>
   );
 }

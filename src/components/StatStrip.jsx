@@ -20,10 +20,11 @@ import React from 'react';
  *    time by scripts/prerender.mjs, so the value state INITIALIZES AT `target`:
  *    the shipped HTML — and the first hydrated paint — carry the real figures.
  *    Crawlers and no-JS visitors see "40,000+", never "0+". The count-up is pure
- *    enhancement, armed in an effect (never during render, which must not touch
- *    `window` or IntersectionObserver) and only for stats that are still below
- *    the fold at mount. An above-fold stat keeps its final number rather than
- *    flashing target → 0 → target.
+ *    enhancement, armed in a LAYOUT effect (never during render, which must not
+ *    touch `window` or IntersectionObserver) so the reset to 0 lands before the
+ *    browser paints and the real figure never flashes. See the comment on that
+ *    effect — doing this in a passive effect instead is what forced the previous
+ *    version to skip animating anything above the fold.
  *  - prefers-reduced-motion. If the visitor asked for less motion we simply
  *    never arm the animation, which leaves the final number on screen.
  *
@@ -60,18 +61,39 @@ export function AnimatedStat({ target, suffix = '', prefix = '', duration = 1800
   const [started, setStarted] = React.useState(false);
   const ref = React.useRef(null);
 
-  // Arm the animation, or leave the final number in place. Runs once, after
-  // mount — so nothing here executes during SSR / prerender.
-  React.useEffect(() => {
+  // Arm the animation, or leave the final number in place.
+  //
+  // useLayoutEffect, not useEffect, and this is the whole trick: the value state
+  // initialises at `target` so the prerendered HTML carries the real figure, which
+  // means the client's first render also shows the real figure. Resetting to 0 in a
+  // passive effect would therefore paint `40,000+` and only then jump to `0` — a
+  // visible flash. A layout effect runs after the commit but BEFORE the browser
+  // paints, so the reset is invisible and the visitor sees the count start at 0.
+  //
+  // The earlier version dodged the flash by skipping the animation for anything
+  // already on screen at mount. That silently disabled it wherever the strip sits
+  // above the fold — which is exactly where it is on the About page, so the figures
+  // never moved. Hence the layout effect: it animates everywhere instead.
+  //
+  // Still nothing here runs during SSR / prerender: React does not invoke layout
+  // effects on the server, and the guards below cover a non-DOM environment.
+  React.useLayoutEffect(() => {
     if (typeof window === 'undefined' || !ref.current) return;
     if (prefersReducedMotion()) return;
-    if (typeof IntersectionObserver === 'undefined') return;
 
+    setCount(0);
+
+    // Already on screen: start immediately rather than waiting for an intersection
+    // that has, in effect, already happened.
     const rect = ref.current.getBoundingClientRect();
-    // Already on screen at hydration time: animating would read as a glitch.
-    if (rect.top < window.innerHeight && rect.bottom > 0) return;
-
-    setCount(0); // armed — below the fold, so the 0 is never seen
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setStarted(true);
+      return;
+    }
+    if (typeof IntersectionObserver === 'undefined') {
+      setStarted(true);
+      return;
+    }
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setStarted(true);
