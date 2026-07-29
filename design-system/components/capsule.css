@@ -1,0 +1,43 @@
+/* ══════════════════════════════════════════════════════════════════
+   45. CAPSULE
+   The floating pill shell shared by the header (block 19) and the
+   consent notice (block 44): a bordered, rounded, shadowed bar inset
+   from the viewport edges. Composed, never used alone — a consumer
+   adds its own position (sticky vs fixed), fill and padding.
+
+   Extracted because those two blocks had independently declared the
+   same radius, border and measure, and stayed in agreement only
+   because the values were copied across by hand.
+
+   FILL IS DELIBERATELY NOT HERE. The header is translucent glass over
+   whatever it scrolls above; the consent notice is solid grey so it
+   reads as a distinct panel over the near-black page. Putting a
+   background in this primitive would force one of them to override it.
+
+   BLUR IS ALSO NOT HERE, for a build reason worth knowing: lightningcss
+   DROPS the unprefixed `backdrop-filter` when it is written after the
+   -webkit- one, shipping only the prefixed property so Chrome applies
+   nothing while the computed style still reads "none". Any consumer that
+   wants blur must write it prefixed-first, unprefixed-last, with a
+   literal length — see .ins-cookie-notice in block 44.
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-capsule {
+  /* inset 0 + auto margins rather than left:50% + translateX: no transform, so the element
+     never becomes the containing block for a descendant's absolute positioning, and text
+     inside is not pushed onto a subpixel boundary */
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  max-width: var(--ins-capsule-max, 1240px);
+  width: calc(100% - 32px);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ins-space-md);
+
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  border-radius: var(--ins-capsule-radius, 50px);
+  box-shadow: var(--ins-shadow-navbar);
+}

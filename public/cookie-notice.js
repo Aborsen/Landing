@@ -32,7 +32,9 @@
 
   function build() {
     var bar = document.createElement('div');
-    bar.className = 'ins-cookie-notice';
+    // Both classes: .ins-capsule (block 45) is the floating pill shell shared with the
+    // header, .ins-cookie-notice adds only what is specific to this bar.
+    bar.className = 'ins-capsule ins-cookie-notice';
     // region, not alertdialog: it is not modal, it interrupts nothing, and it must not
     // steal focus from whatever the visitor was doing.
     bar.setAttribute('role', 'region');

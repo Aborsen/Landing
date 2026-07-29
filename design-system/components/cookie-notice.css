@@ -12,22 +12,12 @@
    already dismissed it never sees a flash.
    ══════════════════════════════════════════════════════════════════ */
 
+/* Composes .ins-capsule (block 45): measure, border, radius, shadow and the flex row come
+   from there. public/cookie-notice.js therefore sets BOTH classes on the bar. */
 .ins-cookie-notice {
   position: fixed;
   bottom: var(--ins-space-md);
-  /* inset 0 + auto margins, not left:50%/translateX: no transform, so the element does not
-     become the containing block for anything and there is no subpixel blur on the text */
-  left: 0;
-  right: 0;
-  margin-inline: auto;
-  max-width: 1240px;
-  width: calc(100% - 32px);
   z-index: var(--ins-z-sticky);
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--ins-space-md);
   padding: var(--ins-space-sm) var(--ins-space-sm) var(--ins-space-sm) var(--ins-space-lg);
 
   /* Grey, and solid rather than the header's glass: the point of the grey is to read as a
@@ -38,9 +28,6 @@
      anything used it; the live header escapes only because Header.jsx sets blur inline.
      gray-700 against gray-950 keeps --ins-text-body at 8.3:1, well past AA. */
   background: var(--ins-surface-elevated);
-  border: var(--ins-border-width-1) solid var(--ins-border-default);
-  border-radius: 50px;
-  box-shadow: var(--ins-shadow-navbar);
 }
 @media (min-width: 768px) {
   .ins-cookie-notice { padding: var(--ins-space-sm) var(--ins-space-sm) var(--ins-space-sm) var(--ins-space-xl); }

@@ -2,23 +2,25 @@
    19. NAVBAR
    ══════════════════════════════════════════════════════════════════ */
 
+/* Composes .ins-capsule (block 45) for the shell: measure, border, radius, shadow and the
+   flex row. Only what is navbar-specific lives here.
+   NOTE the markup does not carry .ins-capsule today — src/components/Header.jsx styles the
+   live header inline and never uses .ins-navbar — so this class is currently unconsumed.
+   Anything adopting it must add BOTH classes: class="ins-capsule ins-navbar". */
 .ins-navbar {
   position: sticky;
   top: var(--ins-space-md);
   z-index: var(--ins-z-sticky);
   height: 52px;
   padding: 0 var(--ins-space-sm) 0 var(--ins-space-lg);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--ins-space-md);
   background: var(--ins-surface-container);           /* solid fallback */
   background: var(--ins-surface-glass);
-  backdrop-filter: blur(var(--ins-blur-16));
-  -webkit-backdrop-filter: blur(var(--ins-blur-16));
-  border: var(--ins-border-width-1) solid var(--ins-border-default);
-  border-radius: 50px;
-  box-shadow: var(--ins-shadow-navbar);
+  /* prefixed FIRST, unprefixed LAST, literal length: written the other way round,
+     lightningcss drops the unprefixed property and Chrome applies no blur at all.
+     This block previously had exactly that bug — see the note in block 45. */
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  /* the capsule's own margin-inline:auto centres it; the navbar wants a fixed gutter */
   margin-inline: var(--ins-space-md);
   transition: border-radius var(--ins-duration-slow) var(--ins-easing-standard);
 }
@@ -36,8 +38,8 @@
   margin-inline: var(--ins-space-md);
   padding: calc(var(--ins-space-lg) * 2) var(--ins-space-xl) var(--ins-space-xl);
   background: var(--ins-color-page-a-97);
-  backdrop-filter: blur(var(--ins-blur-24));
-  -webkit-backdrop-filter: blur(var(--ins-blur-24));
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
   border: var(--ins-border-width-1) solid var(--ins-border-default);
   border-top: 0;                          /* blends into capsule bottom */
   border-radius: 0 0 var(--ins-radius-2xl) var(--ins-radius-2xl);
