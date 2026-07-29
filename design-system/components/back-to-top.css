@@ -1,0 +1,63 @@
+/* ══════════════════════════════════════════════════════════════════
+   46. BACK TO TOP
+   Floating circular button, bottom-right, past 400px of scroll
+   (see public/back-to-top.js). Ported from the inline-styled React
+   component that used to live in src/components/BlogPost.jsx so every
+   page gets it; the hardcoded box-shadow there became a token.
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ins-surface-card);
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  color: var(--ins-text-body);
+  cursor: pointer;
+  /* below the consent notice and any modal, above page content */
+  z-index: var(--ins-z-fixed);
+  box-shadow: var(--ins-shadow-lg);
+
+  /* hidden until the script adds .is-visible, and inert while hidden so it can never
+     take a click or a tab stop it does not deserve */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity var(--ins-duration-base) var(--ins-easing-standard),
+              transform var(--ins-duration-base) var(--ins-easing-standard),
+              color var(--ins-duration-base) var(--ins-easing-standard),
+              border-color var(--ins-duration-base) var(--ins-easing-standard);
+}
+.ins-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.ins-to-top:hover {
+  color: var(--ins-text-heading);
+  border-color: var(--ins-border-hover);
+}
+.ins-to-top:focus-visible {
+  outline: none;
+  border-color: var(--ins-border-focus);
+  box-shadow: var(--ins-focus-ring);
+}
+
+/* The consent notice is a full-width capsule pinned to the bottom, so at right:32px this
+   button would land on top of it. Lift it clear while the notice is up — the notice's script
+   puts .has-ins-cookie-notice on <html> and removes it on dismissal. */
+.has-ins-cookie-notice .ins-to-top { bottom: 116px; }
+@media (max-width: 767px) {
+  .ins-to-top { bottom: 20px; right: 20px; }
+  .has-ins-cookie-notice .ins-to-top { bottom: 180px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ins-to-top { transition: none; }
+}
