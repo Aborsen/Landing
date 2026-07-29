@@ -16,7 +16,7 @@ Current plans and prices are always on the [Pricing page](/pricing).
 
 ## Payment methods
 
-Insightis accepts major credit and debit cards, processed by Stripe. Card details are handled by Stripe and are not stored on Insightis servers — only the last four digits and the card brand are kept so you can recognise the card on file.
+Insightis accepts major credit and debit cards, processed by 2Checkout, the authorised payment provider for Devart products. Card details are handled by 2Checkout and are not stored on Insightis servers — only the last four digits and the card brand are kept so you can recognise the card on file.
 
 ## Buying more tokens
 

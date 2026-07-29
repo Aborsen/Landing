@@ -1,0 +1,112 @@
+/* ══════════════════════════════════════════════════════════════════
+   44. COOKIE NOTICE
+   A floating grey capsule at the foot of every page until dismissed
+   (see public/cookie-notice.js). Takes the header's SHAPE — 50px radius,
+   1px default border, and the same 1240px / calc(100% - 32px) measure —
+   so it reads as the header's counterpart at the bottom of the page
+   rather than a full-bleed consent bar, but fills grey instead of the
+   header's near-black glass so it is legible as a separate panel.
+
+   The markup is created by the script rather than prerendered, so these
+   rules only ever apply to a live DOM node and a returning visitor who
+   already dismissed it never sees a flash.
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-cookie-notice {
+  position: fixed;
+  bottom: var(--ins-space-md);
+  /* inset 0 + auto margins, not left:50%/translateX: no transform, so the element does not
+     become the containing block for anything and there is no subpixel blur on the text */
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  max-width: 1240px;
+  width: calc(100% - 32px);
+  z-index: var(--ins-z-sticky);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ins-space-md);
+  padding: var(--ins-space-sm) var(--ins-space-sm) var(--ins-space-sm) var(--ins-space-lg);
+
+  /* Grey, and solid rather than the header's glass: the point of the grey is to read as a
+     distinct panel over the page (--ins-surface-page is gray-950 #0A0E13), and a translucent
+     fill would sample whatever sits behind it and stop looking grey. Solid also sidesteps a
+     build trap -- lightningcss drops the unprefixed backdrop-filter when it is written after
+     the -webkit- one, which is why block 19's .ins-navbar would silently lose its blur if
+     anything used it; the live header escapes only because Header.jsx sets blur inline.
+     gray-700 against gray-950 keeps --ins-text-body at 8.3:1, well past AA. */
+  background: var(--ins-surface-elevated);
+  border: var(--ins-border-width-1) solid var(--ins-border-default);
+  border-radius: 50px;
+  box-shadow: var(--ins-shadow-navbar);
+}
+@media (min-width: 768px) {
+  .ins-cookie-notice { padding: var(--ins-space-sm) var(--ins-space-sm) var(--ins-space-sm) var(--ins-space-xl); }
+}
+
+.ins-cookie-notice__text {
+  margin: 0;
+  font-size: var(--ins-font-size-13, 13px);
+  line-height: var(--ins-line-height-relaxed);
+  color: var(--ins-text-body);
+  min-width: 0;
+}
+
+.ins-cookie-notice__link {
+  color: var(--ins-text-highlight);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.ins-cookie-notice__link:hover { color: var(--ins-color-teal-400) }
+.ins-cookie-notice__link:focus-visible {
+  outline: none;
+  border-radius: var(--ins-radius-sm, 4px);
+  box-shadow: var(--ins-focus-ring);
+}
+
+.ins-cookie-notice__btn {
+  flex-shrink: 0;
+  padding: 8px 20px;
+  border-radius: var(--ins-radius-pill);
+  border: var(--ins-border-width-1) solid var(--ins-color-teal-a-40);
+  background: var(--ins-color-teal-a-08);
+  color: var(--ins-text-highlight);
+  font-family: inherit;
+  font-size: var(--ins-font-size-13, 13px);
+  font-weight: var(--ins-font-weight-500);
+  cursor: pointer;
+  transition: background var(--ins-duration-base) var(--ins-easing-standard),
+              border-color var(--ins-duration-base) var(--ins-easing-standard);
+}
+.ins-cookie-notice__btn:hover {
+  background: var(--ins-color-teal-a-18);
+  border-color: var(--ins-color-teal-400);
+}
+.ins-cookie-notice__btn:focus-visible {
+  outline: none;
+  border-color: var(--ins-border-focus);
+  box-shadow: var(--ins-focus-ring);
+}
+
+/* Reserve the capsule's height plus its bottom inset at the end of the document while it is
+   up, so it cannot sit permanently on top of the footer's own links. Set on <html> by the
+   script and removed on dismissal. */
+.has-ins-cookie-notice body { padding-bottom: 92px }
+
+/* Below the pill's comfortable single-line width the text wraps, so drop the capsule radius
+   to a rounded card and stack the button full-width. */
+@media (max-width: 767px) {
+  .ins-cookie-notice {
+    flex-wrap: wrap;
+    border-radius: var(--ins-radius-2xl, 20px);
+    padding: var(--ins-space-md);
+  }
+  .ins-cookie-notice__btn { width: 100% }
+  .has-ins-cookie-notice body { padding-bottom: 168px }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ins-cookie-notice__btn { transition: none }
+}
