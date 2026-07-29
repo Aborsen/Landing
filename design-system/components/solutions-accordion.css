@@ -157,11 +157,26 @@
 @media (min-width: 1280px) {
   .ins-solacc__panel:not([data-open]) .ins-solacc__label { font-size: var(--ins-font-size-15); }
 }
-/* A collapsed strip shows the bare role: "Marketing", not "For Marketing Teams". Both
-   affixes go, not just the tail — one word is what holds a line at this width, and the
-   framing repeats on all six strips. display:none rather than a clip, so the strip's
-   accessible name is exactly what you can read. */
-.ins-solacc__panel:not([data-open]) .ins-solacc__labelaffix { display: none; }
+/* ── Opening reveal: show NOTHING until the width has arrived ───────────
+   On click the React state flips instantly but the width animates for
+   --ins-duration-slow (320ms), so the title, description and link used to cram
+   into a 104px strip and wrap hideously for the whole animation. The open
+   panel therefore reveals its text only once the width has settled — ALL of
+   it, the team name included (owner call: an expanding panel is bare photo
+   until it lands). An animation with `backwards` fill, not a transition: the
+   label never leaves the DOM on the collapsed->open flip, so a transition has
+   no 0-opacity state to start from, while `backwards` holds the from{} frame
+   through the delay for persistent and display:none elements alike. Closing
+   needs no counterpart: removing [data-open] removes the animation, so the
+   collapsed label is back at full opacity the same frame. */
+@keyframes ins-solacc-reveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.ins-solacc__panel[data-open] .ins-solacc__label,
+.ins-solacc__panel[data-open] .ins-solacc__region {
+  animation: ins-solacc-reveal var(--ins-duration-base) var(--ins-easing-standard) 280ms backwards;
+}
 
 /* Below 1280 the strip is 104px, which leaves "Marketing" only 6px of slack at 14px —
    under 10% of the word, so a font substitution could wrap it. Trimming the collapsed
@@ -288,4 +303,8 @@
    snap in one frame — so cancel the zoom outright, as button.css does. */
 @media (prefers-reduced-motion: reduce) {
   .ins-solacc__panel:not([data-open]):hover .ins-solacc__img { transform: none; }
+  /* no delayed reveal either — with zeroed durations the 280ms delay would read
+     as the text stuttering in after the panel has already snapped open */
+  .ins-solacc__panel[data-open] .ins-solacc__label,
+  .ins-solacc__panel[data-open] .ins-solacc__region { animation: none; }
 }

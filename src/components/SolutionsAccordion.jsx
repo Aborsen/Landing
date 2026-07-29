@@ -89,15 +89,13 @@ function SolutionsAccordion({
             const open = i === active;
             const hdId = `solacc-hd-${item.id}`;
             const rgId = `solacc-rg-${item.id}`;
-            // A collapsed strip shows the bare role — "Marketing", not "For Marketing
-            // Teams". The strip is 104-116px, so one word is what holds a line, and the
-            // "For …" / "… Teams" framing repeats on all six anyway. Split here rather
-            // than in the data so a title stays a single string to edit; the affixes are
-            // display:none'd rather than clipped, so a strip's accessible name is exactly
-            // the word on screen.
-            const labelLead = item.title.startsWith('For ') ? 'For ' : '';
-            const labelTail = item.title.endsWith(' Teams') ? ' Teams' : '';
-            const labelCore = item.title.slice(labelLead.length, item.title.length - labelTail.length);
+            // The accordion shows the bare role everywhere — "Executive", never "For
+            // Executive Teams". Collapsed strips are 104-116px, so one word is what holds
+            // a line; and the open panel drops the framing too (owner call, 2026-07-29):
+            // it repeats on all six panels, and the link line below already reads
+            // "Solutions for executive teams". Derived here rather than in the data so
+            // the full title stays the single string the mobile cards keep using.
+            const label = item.title.replace(/^For /, '').replace(/ Teams$/, '');
             return (
               <div key={item.id} className="ins-solacc__panel" data-open={open || undefined}>
                 {item.image ? (
@@ -133,11 +131,7 @@ function SolutionsAccordion({
                           title without touching the button: a transform on the button would
                           make it the containing block for its own ::after — which is what
                           stretches the hit area over the whole panel */}
-                      <span className="ins-solacc__label">
-                        {labelLead && <span className="ins-solacc__labelaffix">{labelLead}</span>}
-                        {labelCore}
-                        {labelTail && <span className="ins-solacc__labelaffix">{labelTail}</span>}
-                      </span>
+                      <span className="ins-solacc__label">{label}</span>
                     </button>
                   </h3>
                   <div className="ins-solacc__region" id={rgId} role="region" aria-labelledby={hdId} hidden={!open}>
