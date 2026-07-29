@@ -26,7 +26,12 @@
   min-width: 0;
   /* Collapsed strips are deliberately narrow. The reference has four panels, so 190px
      strips still leave the open one ~590px; with six, five 190px strips would eat
-     1050px of a 1222px row and starve it. 104px strips + vertical titles leave ~640px.
+     1050px of a 1222px row and starve it. These leave the open panel ~390-580px.
+
+     A strip only ever holds ONE word — the collapsed label drops the "For …" / "… Teams"
+     framing — so 104px carries it at 1024 and 116px sits comfortably above 1280. Going
+     wider is not free: at 1024 the row is only 976px, and five 122px strips would leave
+     the open panel under 300px, narrower than its own description column.
 
      Every panel keeps the SAME flex-basis and only flex-grow changes, so the open panel
      is "one strip plus all the slack". Animating basis as well would interpolate a
@@ -130,20 +135,40 @@
   cursor: default;
 }
 
-/* ── Collapsed: the title runs up the strip ──────────────────────────
-   vertical-rl writes top-to-bottom; the 180° flip makes it read bottom-to-top,
-   which is the convention for a vertical tab label. */
+/* ── Collapsed: the title sits horizontally at the foot of the strip ──
+   Horizontal, so it reads without turning your head — no writing-mode, no rotation.
+   None of the six titles fits a strip on one line, so they wrap; text-wrap:balance
+   evens the lines instead of leaving "For" stranded on its own. */
 .ins-solacc__panel:not([data-open]) .ins-solacc__body {
   inset: 0;
   display: flex;
   align-items: flex-end;
 }
 .ins-solacc__panel:not([data-open]) .ins-solacc__label {
-  display: inline-block;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  white-space: nowrap;
-  font-size: var(--ins-font-size-16);
+  /* block, not inline-block: an inline-block shrink-wraps to its longest word, so the
+     text would never wrap to the strip's width in the first place */
+  display: block;
+  font-size: var(--ins-font-size-14);
+  line-height: 1.25;
+  text-wrap: balance;
+}
+/* Placed after the base rule, not merged into the 1280 block above: same specificity,
+   so it only wins on source order. */
+@media (min-width: 1280px) {
+  .ins-solacc__panel:not([data-open]) .ins-solacc__label { font-size: var(--ins-font-size-15); }
+}
+/* A collapsed strip shows the bare role: "Marketing", not "For Marketing Teams". Both
+   affixes go, not just the tail — one word is what holds a line at this width, and the
+   framing repeats on all six strips. display:none rather than a clip, so the strip's
+   accessible name is exactly what you can read. */
+.ins-solacc__panel:not([data-open]) .ins-solacc__labelaffix { display: none; }
+
+/* Below 1280 the strip is 104px, which leaves "Marketing" only 6px of slack at 14px —
+   under 10% of the word, so a font substitution could wrap it. Trimming the collapsed
+   strip's inset buys 8px more; widening the strip instead would take it off the open
+   panel, which at 1024 is already down to 386px. */
+@media (max-width: 1279px) {
+  .ins-solacc__panel:not([data-open]) .ins-solacc__body { padding: var(--ins-space-md); }
 }
 /* The open panel's own link must sit above the trigger's hit area, or the ::after
    overlay would swallow the click that actually navigates. */

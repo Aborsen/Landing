@@ -81,6 +81,9 @@ export const SOLUTIONS = [
 
 // Copy for the home page. The component takes title/lede overrides if the section is
 // ever mounted somewhere the "six starting points" pitch does not fit.
-export const SOLUTIONS_HEADING = 'Built for every team';
+// Not "Built for …": the Features section immediately above this one on the home page
+// is already "Built for decision velocity", and two adjacent headings opening on the
+// same word read as a template.
+export const SOLUTIONS_HEADING = 'Made for every team';
 export const SOLUTIONS_LEDE =
   'Six starting points, one semantic layer. Pick the team you are on and see the metrics, connectors and questions Insightis already handles.';
