@@ -210,10 +210,10 @@ function PrivacyContent() {
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>May be sent:</strong> your question text and the relevant metric definitions, so a query plan and the written explanation that comes with an answer can be produced.</li>
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Not sent:</strong> raw rows from your connected sources, unless you explicitly ask for them — for example when you ask to see the underlying records.</li>
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Never sent:</strong> your connection credentials. They stay in the secrets vault.</li>
-            <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Provider retention:</strong> nothing is retained by the providers beyond the minimum required to return a response.</li>
+            <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Provider retention:</strong> each provider holds the request for a limited period under its standard API terms, for abuse monitoring only, and then deletes it. Neither uses it to train a model.</li>
           </ul>
           <p className="ins-text-body-lg" style={pStyle}>
-            Insightis Light, Medium, and Pro combine OpenAI and Anthropic models, routing each step of a question to whichever provider handles it best; both are named as sub-processors in section 8. Choosing a configuration changes how much reasoning is applied and how many tokens you spend, never what is sent or where it goes. [[NEEDS CONFIRMATION: the region from which model API calls are served, and that zero-retention, no-training terms are executed with each model provider]]
+            Insightis Light, Medium, and Pro combine OpenAI and Anthropic models, routing each step of a question to whichever provider handles it best; both are named as sub-processors in section 8. Choosing a configuration changes how much reasoning is applied and how many tokens you spend, never what is sent or where it goes. Model calls are served by OpenAI&rsquo;s and Anthropic&rsquo;s own API infrastructure, which may process a request outside the EEA even though the application itself runs in Europe. Both are used through their business APIs, under the standard API terms: request content is not used to train their models, and is retained only briefly for abuse monitoring. We do not use either company&rsquo;s consumer products, where different terms apply.
           </p>
 
           <h3 className="ins-text-h3" style={h3Style}>We Do Not Train AI Models on Your Data</h3>
@@ -221,7 +221,7 @@ function PrivacyContent() {
             Insightis is not a training pipeline. Your data is never used to train, fine-tune, or improve any AI or machine-learning model, ours or a third party's — not the data read from your connected sources or the results of your queries, not your questions or chat transcripts, not the files you upload or the files the Service generates, not your metric definitions or cached schema metadata, and not the answers you receive.
           </p>
           <p className="ins-text-body-lg" style={pStyle}>
-            This is not something you have to opt out of; there is no checkbox and no plan on which it works differently. Question text and metric definitions go to model providers under enterprise agreements that prohibit training on customer content, and nothing is retained beyond what is needed to answer, so there is no corpus to train on. Product improvement relies on the aggregate telemetry in section 2.
+            This is not something you have to opt out of; there is no checkbox and no plan on which it works differently. Question text and metric definitions go to model providers under API terms that prohibit training on the content of a request. That prohibition is what the commitment rests on: the providers do hold a request briefly for abuse monitoring, so the guarantee is contractual rather than a claim that nothing is ever stored anywhere. Product improvement relies on the aggregate telemetry in section 2.
           </p>
 
           <h3 className="ins-text-h3" style={h3Style}>Accuracy and Verification</h3>
@@ -237,7 +237,7 @@ function PrivacyContent() {
         <div id="where-stored" style={sectionStyle}>
           <h2 className="ins-text-h2" style={{marginBottom:'var(--ins-size-4)'}}>6. Where the Data is Stored</h2>
           <p className="ins-text-body-lg" style={pStyle}>
-            Insightis runs on managed cloud infrastructure. [[NEEDS CONFIRMATION: the hosting provider and the region or regions where the application, its caches, and its backups run]]
+            Insightis runs on managed cloud infrastructure in Europe. The application, its caches and its backups are hosted in the European Union. The exception is the model providers: as section 5 explains, a question sent to a model is processed on their own infrastructure, which may sit outside the EEA.
           </p>
           <p className="ins-text-body-lg" style={pStyle}>
             Because we rely on third-party model providers and on connector infrastructure, personal data may be processed outside the country you are in. Sending question text to a model endpoint in another country is itself a transfer, not an incidental technical step. Where data leaves the EEA, the UK, or Switzerland we rely on the European Commission's Standard Contractual Clauses. We do not currently offer a choice of data region, so if in-region processing is a requirement for you, talk to us before you connect a source.
@@ -274,7 +274,7 @@ function PrivacyContent() {
           <ul style={ulStyle}>
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Account data:</strong> kept while your account exists, and for up to 30 days after closure so it can be reactivated.</li>
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Metric definitions and files:</strong> kept until you delete them.</li>
-            <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Prompts and chat transcripts:</strong> kept as the working record of a chat until you delete the chat. [[NEEDS CONFIRMATION: whether prompt or generated-query content can appear in application or infrastructure logs, and how long those logs are kept]]</li>
+            <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Prompts and chat transcripts:</strong> kept as the working record of a chat until you delete the chat. Prompt content is never written to our application or infrastructure logs &mdash; it is transmitted to the model provider to answer the question, and nowhere else.</li>
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Cached query results:</strong> purged within 24 hours unless you save the result.</li>
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Cached schema metadata:</strong> purged on the Metadata Cache interval set for the connection.</li>
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Usage logs:</strong> kept for up to 12 months for analytics and security, then anonymised or deleted.</li>
@@ -286,7 +286,7 @@ function PrivacyContent() {
 
           <h3 className="ins-text-h3" style={h3Style}>Data Processing Agreement</h3>
           <p className="ins-text-body-lg" style={pStyle}>
-            Where we process personal data on your behalf as processor — the workspace content described in section 3 — GDPR Art. 28 requires a written agreement between us. We hold data-processing agreements with the sub-processors named in section 8. [[NEEDS CONFIRMATION: whether a customer-facing Data Processing Agreement is available or planned, and how a customer requests it]] Until that is confirmed we are not claiming one is available. Where an agreement is in place and its terms differ from this policy for the content it covers, that agreement prevails.
+            Where we process personal data on your behalf as processor — the workspace content described in section 3 — GDPR Art. 28 requires a written agreement between us. Our external sub-processors are engaged under data-processing terms. Skyvia is part of the same corporate group as Insightis rather than an unrelated third party, and is covered in section 8. [[NEEDS CONFIRMATION: whether a customer-facing Data Processing Agreement is available or planned, and how a customer requests it]] Until that is confirmed we are not claiming one is available. Where an agreement is in place and its terms differ from this policy for the content it covers, that agreement prevails.
           </p>
         </div>
 
@@ -297,7 +297,7 @@ function PrivacyContent() {
             We do not sell your personal data and we do not share it for advertising. We do use a small number of providers to run Insightis, each processing personal data only on our instructions and under a written agreement. Feel free to check out their own privacy policies to find out more.
           </p>
           <ul style={ulStyle}>
-            <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Skyvia</strong> — our data connectors provider, reached through Skyvia's embedded MCP integration. It sits in the path between a connected source and Insightis when a query runs. Skyvia is also a Devart product, so this is a provider inside our own group rather than an unrelated third party. [[NEEDS CONFIRMATION: where connector traffic is processed, and what, if anything, Skyvia retains]]</li>
+            <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Skyvia</strong> — our data connectors provider, reached through Skyvia's embedded MCP integration. It sits in the path between a connected source and Insightis when a query runs. Skyvia is also a Devart product, so this is a provider inside our own group rather than an unrelated third party. Connector traffic is processed on Skyvia&rsquo;s platform, and what it retains is governed by Skyvia&rsquo;s own terms.</li>
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>OpenAI</strong> — AI model provider, used for structured reasoning and for turning a question into a query plan. Receives question text and metric definitions.</li>
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>Anthropic</strong> — AI model provider, used for long-context reasoning and for the written explanation attached to an answer. Receives question text and metric definitions.</li>
             <li><strong style={{ color: 'var(--ins-color-gray-100)' }}>2Checkout</strong> — payment processing, as the authorised payment provider for Devart products. Receives your card and billing details directly; we receive the card brand and the last four digits.</li>
