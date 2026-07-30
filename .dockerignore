@@ -1,0 +1,25 @@
+# Keep the build context small and the image clean. node_modules especially:
+# copying a Windows-built tree into a linux image ships the wrong binaries, and
+# `npm ci` in the build stage installs a correct one anyway.
+node_modules
+dist
+.git
+.gitignore
+.claude
+.vercel
+
+# Never let a local secret into the build context. The Zoho form URLs are runtime
+# configuration; .env* is git-ignored, and it has no business in an image either.
+.env
+.env.*
+!.env.example
+
+# Local scratch and unrelated working files.
+*.log
+audit_media
+audit_map.txt
+exec_text.txt
+legal-export
+connector-dark-theme-kit
+connector-dark-theme-kit.zip
+seo-audit

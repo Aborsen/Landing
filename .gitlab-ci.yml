@@ -1,0 +1,67 @@
+# Insightis site pipeline.
+#
+# This is the pipeline DevOps wrote in ef11b04 ("Update ci prod", !26), kept
+# structurally identical — same stages, same .clean_tag_function, same harbor tag
+# scheme, same staging/production runner tags, same manual production gate. The
+# site it deploys changed; how it deploys did not.
+#
+# Only addition: NOINDEX on staging (one line, in deploy-staging below).
+#
+# ── CI/CD variables this needs (Settings -> CI/CD -> Variables) ──
+# Docker Compose substitutes ${VAR} from the job environment, and GitLab exports
+# CI/CD variables into it, so these reach the container without any script step
+# writing them to disk:
+#
+#   ZOHO_CONNECTOR_FORM_URL   the RequestConnector .../records URL
+#   ZOHO_SUPPORT_FORM_URL     the ContactSupport   .../records URL
+#   ZOHO_SALES_FORM_URL       the ContactSales     .../records URL
+#   ALLOWED_FORM_ORIGINS      staging hostname(s), comma-separated
+#
+# Mark them Protected. Expect GitLab to REFUSE to mask them: masking rejects some
+# characters that appear in these URLs. Protected-but-unmasked is the right
+# trade-off here — or use File-type variables. They are unauthenticated write
+# endpoints, so they must not be committed; if one is missing that form answers
+# 503 and the page shows its email fallback instead of a false success.
+
+stages:
+  - Staging deploy
+  - Production deploy
+
+.clean_tag_function:
+  script: |
+    clean_tag=$(echo "$CI_COMMIT_REF_NAME" | sed 's/[^A-Za-z0-9._-]/-/g' | cut -c1-128)
+    echo "SITE_IMAGE_NAME=harbor.devart.info/ai/insightis/site:$clean_tag" > .env
+
+.deploy:
+  variables:
+    GIT_STRATEGY: fetch
+  stage: Staging deploy
+  script:
+    - !reference [.clean_tag_function, script]
+    - docker compose up -d --build
+    - docker compose push
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      when: on_success
+    - when: manual
+  allow_failure: false
+  tags:
+    - staging
+
+deploy-staging:
+  extends: .deploy
+  variables:
+    # Sends X-Robots-Tag: noindex, which is what the old vercel.json rule did for
+    # preview hosts. Deliberately absent from deploy-production. `extends` deep
+    # merges variables, so GIT_STRATEGY from .deploy is preserved.
+    NOINDEX: "1"
+
+deploy-production:
+  extends: .deploy
+  stage: Production deploy
+  script:
+    - !reference [.clean_tag_function, script]
+    - docker compose up -d --no-build
+  when: manual
+  tags:
+    - production

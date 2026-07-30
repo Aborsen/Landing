@@ -1,0 +1,34 @@
+# Kept deliberately close to the existing insightis-site compose file so the
+# pipeline DevOps wrote in ef11b04 works unchanged: one service named `site`, one
+# image tag from ${SITE_IMAGE_NAME}, the same ${SITE_PORT:-8080} host mapping.
+#
+# Two differences, both consequences of the site now being built rather than
+# hand-written:
+#   - the container port is 8080, not 80, because the process runs unprivileged
+#     and cannot bind a port below 1024. The HOST side is unchanged.
+#   - `environment` passes the three Zoho form endpoints in at runtime. They are
+#     unauthenticated write URLs, so they are never baked into the image or
+#     committed; set them as GitLab CI/CD variables (protected). If one is
+#     missing, that form answers 503 and the page shows its email fallback rather
+#     than reporting a success that did not happen. The container logs which are
+#     set at boot.
+services:
+  site:
+    image: ${SITE_IMAGE_NAME:-insightis/site:dev}
+    build:
+      context: .
+    container_name: insightis-site-static
+    ports:
+      - "${SITE_PORT:-8080}:8080"
+    environment:
+      ZOHO_CONNECTOR_FORM_URL: ${ZOHO_CONNECTOR_FORM_URL:-}
+      ZOHO_SUPPORT_FORM_URL: ${ZOHO_SUPPORT_FORM_URL:-}
+      ZOHO_SALES_FORM_URL: ${ZOHO_SALES_FORM_URL:-}
+      # Hostnames allowed to post to /api/*, comma-separated. insightis.ai and its
+      # subdomains are already allowed in code; add the staging hostname here or
+      # the browser gets a 403 from the origin check.
+      ALLOWED_FORM_ORIGINS: ${ALLOWED_FORM_ORIGINS:-}
+      # 1 on staging only — sends X-Robots-Tag: noindex, which is what the old
+      # vercel.json rule did for preview hosts. Must stay unset in production.
+      NOINDEX: ${NOINDEX:-}
+    restart: unless-stopped
