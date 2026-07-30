@@ -1,27 +1,18 @@
-import React, { useState, useEffect, useId, useRef } from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import '../app.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Section from '../components/Section';
 import Button from '../components/Button';
-import Input from '../components/Input';
 import IconBadge from '../components/IconBadge';
 import SectionHeader from '../components/SectionHeader';
 import BottomCTA from '../components/BottomCTA';
+import SupportTicketModal from '../components/SupportTicketModal';
+import SalesEnquiryModal from '../components/SalesEnquiryModal';
 
 /* One support address for the whole page — same one contact-support.jsx quotes. */
 const SUPPORT_EMAIL = 'support@insightis.io';
-
-/* The page is centred, and so are the form's own labels and helper text — but the
-   value a visitor types stays left-aligned. Centred field text drags the caret
-   mid-word, hides the left reading edge (worst on email / company), turns the
-   multiline description into centred prose, and slides <option> text under the
-   select chevron. Pinned explicitly so no future centred ancestor can leak in. */
-const FIELD_TEXT_LEFT = { textAlign: 'left' };
-
-/* Native <option> lists don't inherit the dark surface — tint them from the token. */
-const OPTION_STYLE = { background: 'var(--ins-surface-card)' };
 
 /* ── ICONS ── */
 /* No stroke colour: .ins-icon-badge--teal supplies it via currentColor, and
@@ -34,9 +25,6 @@ const HeadsetIcon = () => (
 );
 const HelpIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-);
-const CloseIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
 );
 
 /* ── CONTACT HERO ── */
@@ -103,258 +91,6 @@ function ContactOptions({ onOpenDemo, onOpenSupport }) {
 
       </div>
     </Section>
-  );
-}
-
-/* ── SELECT FIELD ──
-   Input.jsx has no select mode, so this mirrors its label + field shape using the
-   kit .ins-select (which ships its own chevron, focus ring and 16px iOS-safe size). */
-function SelectField({ label, name, value, onChange, required, children }) {
-  const id = useId();
-  return (
-    <>
-      <label htmlFor={id} className="ins-text-label-sm" style={{display:'block', marginBottom:'var(--ins-size-2)'}}>
-        {label}
-      </label>
-      <select
-        id={id}
-        name={name}
-        value={value}
-        onChange={onChange}
-        required={required}
-        className="ins-select"
-        style={FIELD_TEXT_LEFT}
-      >
-        {children}
-      </select>
-    </>
-  );
-}
-
-const EMPTY_VALUES = {
-  name: '', email: '', company: '', jobTitle: '', teamSize: '', message: '',
-  product: '', priority: '', subject: '', description: '',
-};
-
-/* ── MODAL FORM ── */
-function ModalForm({ open, onClose, type }) {
-  const isDemo = type === 'demo';
-  const titleId = useId();
-  const [values, setValues] = useState(EMPTY_VALUES);
-  const [submitted, setSubmitted] = useState(false);
-  const dialogRef = useRef(null);
-  const returnFocusRef = useRef(null);
-
-  /* onClose arrives as a fresh arrow on every App render. Held in a ref so the
-     open/close effect below keys off `open` alone — otherwise a parent re-render
-     would wipe the half-filled form and yank focus back to the trigger. */
-  const onCloseRef = useRef(onClose);
-  useEffect(() => { onCloseRef.current = onClose; }, [onClose]);
-
-  useEffect(() => {
-    if (!open) return undefined;
-
-    setValues(EMPTY_VALUES);
-    setSubmitted(false);
-    returnFocusRef.current = document.activeElement;
-    document.body.style.overflow = 'hidden';
-
-    const onKeyDown = (e) => { if (e.key === 'Escape') onCloseRef.current(); };
-    document.addEventListener('keydown', onKeyDown);
-    /* Focus the dialog itself (tabIndex -1) rather than a child: Button is a plain
-       function component, so it cannot take a ref. */
-    const focusTimer = window.setTimeout(() => { dialogRef.current?.focus(); }, 0);
-
-    return () => {
-      document.removeEventListener('keydown', onKeyDown);
-      window.clearTimeout(focusTimer);
-      document.body.style.overflow = '';
-      const trigger = returnFocusRef.current;
-      if (trigger && typeof trigger.focus === 'function') trigger.focus();
-    };
-  }, [open]);
-
-  if (!open) return null;
-
-  const set = (key) => (e) => setValues((v) => ({ ...v, [key]: e.target.value }));
-
-  /* Real delivery, no stub: the filled-in fields are handed to the visitor's mail
-     client addressed to SUPPORT_EMAIL, so a submitted form actually reaches a human.
-     Swap this for a POST the day an endpoint exists — every field already has a name. */
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const subject = isDemo
-      ? `Demo request — ${values.company || values.name}`
-      : `Support ticket — ${values.subject}`;
-    const lines = isDemo
-      ? [
-          `Name: ${values.name}`,
-          `Work email: ${values.email}`,
-          `Company: ${values.company}`,
-          `Job title: ${values.jobTitle}`,
-          `Team size: ${values.teamSize}`,
-          '',
-          'Message:',
-          values.message || '—',
-        ]
-      : [
-          `Name: ${values.name}`,
-          `Work email: ${values.email}`,
-          `Company: ${values.company}`,
-          `Product: ${values.product}`,
-          `Priority: ${values.priority}`,
-          `Subject: ${values.subject}`,
-          '',
-          'Description:',
-          values.description,
-        ];
-    window.location.href = `mailto:${SUPPORT_EMAIL}`
-      + `?subject=${encodeURIComponent(subject)}`
-      + `&body=${encodeURIComponent(lines.join('\r\n'))}`;
-    setSubmitted(true);
-  };
-
-  /* Keep Tab inside the dialog while it owns the screen. */
-  const trapTab = (e) => {
-    if (e.key !== 'Tab') return;
-    const nodes = dialogRef.current?.querySelectorAll(
-      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled])'
-    );
-    if (!nodes || nodes.length === 0) return;
-    const first = nodes[0];
-    const last = nodes[nodes.length - 1];
-    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-  };
-
-  return (
-    <div className="ins-modal" onClick={onClose} role="presentation">
-      <div
-        ref={dialogRef}
-        className="ins-modal__dialog"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby={titleId}
-        onClick={(e) => e.stopPropagation()}
-        onKeyDown={trapTab}
-        tabIndex={-1}
-        style={{position:'relative'}}
-      >
-        <Button
-          variant="icon"
-          size="sm"
-          aria-label="Close dialog"
-          onClick={onClose}
-          style={{position:'absolute', top:'var(--ins-space-md)', right:'var(--ins-space-md)', zIndex:1}}
-        >
-          <CloseIcon />
-        </Button>
-
-        {/* Centred dialog header — eyebrow + title + lede by hand rather than
-            SectionHeader: this is a dialog, not a page section, and SectionHeader
-            renders its title at the 36px .ins-text-display scale. */}
-        <div className="ins-modal__body" style={{textAlign:'center'}}>
-          <div style={{marginBottom:'var(--ins-size-7)'}}>
-            {/* The eyebrow star comes from .ins-eyebrow::before — never hand-added.
-                Spacing lives on the h2 below: the pill is inline-flex, so its own
-                margin-bottom would not affect the line box. */}
-            <span className="ins-eyebrow ins-eyebrow--pill ins-eyebrow--center">
-              {isDemo ? 'Demo request' : 'Support ticket'}
-            </span>
-            <h2 id={titleId} className="ins-text-h1" style={{marginTop:'var(--ins-size-4)'}}>
-              {isDemo ? 'Book a personalized demo' : 'Submit a support ticket'}
-            </h2>
-            <p className="ins-text-body ins-text--muted" style={{marginTop:'var(--ins-size-2)'}}>
-              {isDemo
-                ? 'Tell us about your team and we\'ll tailor the demo to your needs.'
-                : 'Describe your issue and our team will get back to you as soon as possible.'}
-            </p>
-          </div>
-
-          {/* textAlign:center is inherited by the labels only — every field pins
-              text-align:left through FIELD_TEXT_LEFT. */}
-          <form onSubmit={handleSubmit} style={{display:'flex', flexDirection:'column', gap:'var(--ins-size-4)', textAlign:'center'}}>
-            <div>
-              <Input label="Name" name="name" type="text" placeholder="Your name" required value={values.name} onChange={set('name')} style={FIELD_TEXT_LEFT} />
-            </div>
-            <div>
-              <Input label="Work email" name="email" type="email" placeholder="you@company.com" required value={values.email} onChange={set('email')} style={FIELD_TEXT_LEFT} />
-            </div>
-            <div>
-              <Input label="Company" name="company" type="text" placeholder="Your company name" required value={values.company} onChange={set('company')} style={FIELD_TEXT_LEFT} />
-            </div>
-
-            {isDemo ? (
-              <>
-                <div>
-                  <Input label="Job title" name="jobTitle" type="text" placeholder="e.g. Data Lead, CTO" required value={values.jobTitle} onChange={set('jobTitle')} style={FIELD_TEXT_LEFT} />
-                </div>
-                <div>
-                  <SelectField label="Team size" name="teamSize" required value={values.teamSize} onChange={set('teamSize')}>
-                    <option value="" style={OPTION_STYLE}>Select team size</option>
-                    <option value="1-10" style={OPTION_STYLE}>1–10</option>
-                    <option value="11-50" style={OPTION_STYLE}>11–50</option>
-                    <option value="51-200" style={OPTION_STYLE}>51–200</option>
-                    <option value="200+" style={OPTION_STYLE}>200+</option>
-                  </SelectField>
-                </div>
-                <div>
-                  <Input
-                    multiline
-                    label={<>Message <span style={{fontWeight:'var(--ins-font-weight-400)', textTransform:'none', letterSpacing:0}}>(optional)</span></>}
-                    name="message"
-                    placeholder="Anything specific you'd like us to cover?"
-                    rows={3}
-                    value={values.message}
-                    onChange={set('message')}
-                    style={FIELD_TEXT_LEFT}
-                  />
-                </div>
-              </>
-            ) : (
-              <>
-                <div>
-                  <SelectField label="Product" name="product" required value={values.product} onChange={set('product')}>
-                    <option value="" style={OPTION_STYLE}>Select product</option>
-                    <option value="insightis" style={OPTION_STYLE}>Insightis</option>
-                    <option value="other" style={OPTION_STYLE}>Other</option>
-                  </SelectField>
-                </div>
-                <div>
-                  <SelectField label="Priority" name="priority" required value={values.priority} onChange={set('priority')}>
-                    <option value="" style={OPTION_STYLE}>Select priority</option>
-                    <option value="low" style={OPTION_STYLE}>Low</option>
-                    <option value="medium" style={OPTION_STYLE}>Medium</option>
-                    <option value="high" style={OPTION_STYLE}>High</option>
-                    <option value="critical" style={OPTION_STYLE}>Critical</option>
-                  </SelectField>
-                </div>
-                <div>
-                  <Input label="Subject" name="subject" type="text" placeholder="Brief summary of your issue" required value={values.subject} onChange={set('subject')} style={FIELD_TEXT_LEFT} />
-                </div>
-                <div>
-                  <Input multiline label="Description" name="description" placeholder="Describe the issue in detail" rows={4} required value={values.description} onChange={set('description')} style={FIELD_TEXT_LEFT} />
-                </div>
-              </>
-            )}
-
-            <Button type="submit" variant="primary" size="md" radius="lg" className="w-full">
-              {isDemo ? 'Request demo' : 'Submit ticket'}
-            </Button>
-
-            <p className="ins-text-body-sm ins-text--muted ins-text--mono">
-              Or email us directly at <a className="ins-link--inline" href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
-            </p>
-
-            <p className="ins-text-body ins-text--success ins-text--medium" role="status" aria-live="polite">
-              {submitted
-                ? 'Your email app is opening with these details filled in — send it and we\'ll reply shortly.'
-                : ''}
-            </p>
-          </form>
-        </div>
-      </div>
-    </div>
   );
 }
 
@@ -480,7 +216,12 @@ function App() {
       <OurOffices />
       <BottomCTASection />
       <Footer />
-      <ModalForm open={modalType !== null} onClose={() => setModalType(null)} type={modalType} />
+      {/* Both dialogs are now shared components that file to Zoho. They replaced
+          this page's ModalForm, whose two branches each composed a mailto: link —
+          so on a machine with no mail client configured, clicking either button
+          did nothing at all. */}
+      <SalesEnquiryModal open={modalType === 'demo'} onClose={() => setModalType(null)} />
+      <SupportTicketModal open={modalType === 'support'} onClose={() => setModalType(null)} />
     </div>
   );
 }
