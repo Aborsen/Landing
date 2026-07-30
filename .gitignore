@@ -6,3 +6,10 @@ dist/
 
 .vercel
 .claude/
+
+# Local secrets. The connector-request form's Zoho endpoint is an unauthenticated
+# write URL, so it lives in the environment and never in the repository — which
+# has been public on GitHub and stays worth protecting after the GitLab move.
+.env
+.env.*
+!.env.example
