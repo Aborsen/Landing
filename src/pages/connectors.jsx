@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import Button from '../components/Button';
 import SearchInput from '../components/SearchInput';
 import ConnectorIcon from '../components/ConnectorIcon';
+import RequestConnectorModal from '../components/RequestConnectorModal';
 import { CATEGORIES, CONNECTORS } from '../data/connectors';
 
 const ArrowRightIcon = () => (
@@ -471,6 +472,7 @@ function App() {
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('All');
   const [assistantQuery, setAssistantQuery] = useState(null);
+  const [requestOpen, setRequestOpen] = useState(false);
 
   const q = query.trim().toLowerCase();
   const filtered = CONNECTORS.filter(c =>
@@ -491,9 +493,10 @@ function App() {
     return acc;
   }, {});
 
-  const handleRequestConnector = () => {
-    setAssistantQuery('I want to request a new data connector. How do I submit the request and what info do you need?');
-  };
+  /* Both triggers — the sidebar button and the bottom CTA — open the real form.
+     They used to hand the visitor a canned line for the demo assistant panel,
+     which told them how to ask rather than letting them ask. */
+  const handleRequestConnector = () => setRequestOpen(true);
 
   return (
     <div>
@@ -548,6 +551,9 @@ function App() {
       </div>
             </main>
       <Footer />
+      {/* Renders nothing while closed, so the prerendered HTML is unchanged and
+          hydration has nothing to reconcile. */}
+      <RequestConnectorModal open={requestOpen} onClose={() => setRequestOpen(false)} />
     </div>
   );
 }
