@@ -21,7 +21,9 @@
     { "source": "/Company/About%20Insightis", "destination": "/company/about-insightis", "permanent": true },
     { "source": "/Company/Press%20Media", "destination": "/company/press-media", "permanent": true },
     { "source": "/Company/Success%20Stories", "destination": "/company/success-stories", "permanent": true },
-    { "source": "/Security/Cookie%20Settings", "destination": "/security/cookie-settings", "permanent": true }
+    { "source": "/Security/Cookie%20Settings", "destination": "/security/cookie-settings", "permanent": true },
+    { "source": "/privacy-policy.html", "destination": "/security/privacy", "permanent": true },
+    { "source": "/privacy-policy", "destination": "/security/privacy", "permanent": true }
   ],
   "headers": [
     {
