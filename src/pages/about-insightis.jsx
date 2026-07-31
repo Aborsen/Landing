@@ -45,7 +45,10 @@ function AboutHero() {
   ];
   return (
     <section style={{paddingTop:'var(--ins-size-32)', paddingBottom:'var(--ins-size-20)', position:'relative', overflow:'hidden'}}>
-      <div className="ins-hero-glow" />
+      {/* Centred glow, restored: the DS alignment pass (46847cb) swapped this for
+          .ins-hero-glow, whose two ellipses sit at 72%/20% — this page's glow was
+          always centred on the block. Same recipe as before that commit. */}
+      <div style={{position:'absolute', inset:0, background:'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(9,160,157,.30) 0%, transparent 70%)', pointerEvents:'none'}}/>
       <div className="ins-container" style={{textAlign:'center', position:'relative', zIndex:10}}>
         <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-6)'}}>
           Insightis, a Devart product

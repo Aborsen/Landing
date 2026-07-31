@@ -309,9 +309,12 @@ h1, h2, h3, h4, h5, h6 { font-weight: inherit; font-size: inherit; }
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background:
-    radial-gradient(ellipse 70% 60% at 72% 50%, rgba(9,160,157,0.09) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 50% at 20% 50%, rgba(59,31,94,0.12) 0%, transparent 70%);
+  /* Centred single teal wash, matching the block glows across the site. This was
+     an off-centre teal (0.09) + purple (0.12) pair — faint enough to read as
+     nothing, and pointing away from the block's centre. Strength sits at the
+     site-wide level set in the 2026-07-31 visibility pass (owner-tuned: the
+     original 0.06-0.08 washes were measurably present but imperceptible). */
+  background: radial-gradient(ellipse 60% 50% at 50% 60%, rgba(9,160,157,.30) 0%, transparent 70%);
 }
 
 /* Container */

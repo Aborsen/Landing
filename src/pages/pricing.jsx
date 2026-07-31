@@ -266,8 +266,12 @@ function FAQ() {
 /* ── BOTTOM CTA ── */
 function BottomCTASection() {
   return (
-    <section style={{padding:'80px 0 100px'}}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
+    <section style={{padding:'80px 0 100px', position:'relative', overflow:'hidden'}}>
+      {/* Centred glow behind the CTA, restored: the header-standardisation pass
+          (d928c22, June 2) dropped it while swapping in the shared BottomCTA.
+          Same 700x420 centred ellipse it had before that commit. */}
+      <div style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:'700px',height:'420px',background:'radial-gradient(ellipse, rgba(9,160,157,0.44) 0%, transparent 70%)',pointerEvents:'none'}}/>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px',position:'relative'}}>
         <BottomCTA
           variant="buttons"
           title={<>Start free. <BottomCTA.Highlight>Upgrade when you're ready</BottomCTA.Highlight></>}

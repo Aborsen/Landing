@@ -48,8 +48,15 @@ function MetricsCatalog({
 
   const pickFamily = (i) => { setFamIdx(i); setMetIdx(0); };
 
+  /* The section carries the centred teal glow — the same recipe the home page
+     sections and this page's sibling sections use. The old metrics section had
+     it, and the catalog rebuild (0d387d3) dropped it by accident. */
   return (
-    <section className="py-24 relative" aria-labelledby={headingId}>
+    <section
+      className="py-24 relative"
+      style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)' }}
+      aria-labelledby={headingId}
+    >
       <div className="max-w-7xl mx-auto px-6">
         <div style={{ marginBottom: 'var(--ins-size-7)' }}>
           <SectionHeader eyebrow={eyebrow} title={title} lede={lede} size="lg" titleId={headingId} />

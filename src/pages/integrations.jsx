@@ -86,7 +86,7 @@ function ConnectionChatAnimation() {
         position:'relative', height:'500px',
         borderRadius:'var(--ins-radius-16)',
         border:'1px solid var(--ins-color-white-a-10)',
-        background:'#0C1117', overflow:'hidden', boxShadow:'none',
+        background:'radial-gradient(ellipse 80% 70% at 50% 60%, rgba(9,160,157,0.17) 0%, transparent 72%), #0C1117', overflow:'hidden', boxShadow:'none',
       }} aria-hidden="true"/>
     );
   }
@@ -145,12 +145,12 @@ function ConnectionChatAnimationInner() {
       height:'500px',
       borderRadius:'var(--ins-radius-16)',
       border:'1px solid var(--ins-color-white-a-10)',
-      background:'#0C1117',
+      background:'radial-gradient(ellipse 80% 70% at 50% 60%, rgba(9,160,157,0.17) 0%, transparent 72%), #0C1117',
       overflow:'hidden',
       boxShadow:'none',
     }}>
       {/* Background */}
-      <div style={{position:'absolute',inset:0,pointerEvents:'none',background:'radial-gradient(ellipse 55% 50% at 50% 55%, rgba(14,196,193,0.09) 0%, transparent 65%)'}}/>
+      <div style={{position:'absolute',inset:0,pointerEvents:'none',background:'radial-gradient(ellipse 55% 50% at 50% 55%, rgba(14,196,193,0.18) 0%, transparent 65%)'}}/>
 
       {/* SVG beams from each fixed source to center, with animated colored particles */}
       <svg
@@ -453,7 +453,7 @@ function ConnectorsGallery() {
   const [activeCat, setActiveCat] = useState(cats[0]);
 
   return (
-    <section style={{padding:'100px 0 120px', background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
+    <section style={{padding:'100px 0 120px', background:'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)'}}>
       <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 1.5rem'}}>
 
         {/* Heading */}
@@ -537,7 +537,7 @@ function HowSyncWorks() {
   ];
 
   return (
-    <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
+    <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)'}}>
       <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 1.5rem'}}>
         <div style={{marginBottom:'var(--ins-size-16)'}}>
           <SectionHeader
@@ -562,7 +562,7 @@ function IntegrationImpact() {
   ];
 
   return (
-    <section style={{padding:'120px 0 140px', background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)'}}>
+    <section style={{padding:'120px 0 140px', background:'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)'}}>
       <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 1.5rem'}}>
 
         {/* Heading */}

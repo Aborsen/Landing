@@ -26,10 +26,13 @@ export default function HeroMockup({ title, accentLine = 'rgba(14,196,193,.55)',
     <div className="fu2" style={{ position: 'relative' }}>
       {/* Ambient glow removed — its blurred box was rendering a faint rectangle/line behind the panel. */}
 
-      {/* Main panel */}
+      {/* Main panel. The radial layer is the inner teal wash (2026-07-31 visibility
+          pass): the panels were near page-black and read as holes once the section
+          glows around them were brightened — this backlights the content the same
+          way, centred low like the block glows. */}
       <div style={{
         position: 'relative',
-        background: 'linear-gradient(135deg, rgba(13,17,23,0.95) 0%, rgba(15,20,28,0.92) 100%)',
+        background: 'radial-gradient(ellipse 80% 70% at 50% 60%, rgba(9,160,157,0.16) 0%, transparent 72%), linear-gradient(135deg, rgba(13,17,23,0.95) 0%, rgba(15,20,28,0.92) 100%)',
         border: '1px solid var(--ins-color-white-a-08)',
         borderRadius: '24px',
         padding: 'var(--ins-size-6)',

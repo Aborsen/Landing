@@ -221,7 +221,7 @@ function Hero() {
     <>
     <section className="relative flex flex-col items-center justify-center overflow-hidden" style={{minHeight: 'min(100vh, 900px)', paddingTop: 'var(--ins-size-20)', paddingBottom: 'var(--ins-size-10)'}}>
       {/* Purple radial glow */}
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)' }}></div>
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)' }}></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
         {/* Headline */}
@@ -548,7 +548,7 @@ function Architecture() {
 
   return (
     <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 50% 40% at 50% 50%, rgba(7,128,126,0.06) 0%, transparent 70%)' }}></div>
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 50% 40% at 50% 60%, rgba(7,128,126,0.30) 0%, transparent 70%)' }}></div>
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <FadeUp>
           <div className="text-center mb-16 arch-heading">
@@ -756,7 +756,7 @@ function HowItWorks() {
     { n: '03', title: 'Ask in plain English', desc: 'Your team asks questions. Insightis queries the right sources and returns precise answers in seconds.' },
   ];
   return (
-    <section id="how-it-works" style={{padding:'100px 0', background:'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)', position:'relative'}}>
+    <section id="how-it-works" style={{padding:'100px 0', background:'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)', position:'relative'}}>
       {/* Mobile / reduced-motion text-only summary — hidden on desktop via responsive.css */}
       <div className="how-it-works-text-only" style={{display:'none', maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
         <div style={{textAlign:'center', marginBottom:'var(--ins-size-10)'}}>
@@ -795,7 +795,7 @@ function WhatIsInsightis() {
   ];
 
   return (
-    <section className="py-24 relative" style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(7,128,126,0.08) 0%, transparent 70%)' }}>
+    <section className="py-24 relative" style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)' }}>
       <div className="max-w-7xl mx-auto px-6">
         <FadeUp>
           <div className="text-center mb-14">
@@ -836,7 +836,7 @@ function Pricing() {
 
   return (
     <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 50% 40% at 50% 50%, rgba(7,128,126,0.06) 0%, transparent 70%)' }}></div>
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 50% 40% at 50% 60%, rgba(7,128,126,0.30) 0%, transparent 70%)' }}></div>
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <FadeUp>
           <div className="text-center mb-14">
@@ -874,7 +874,9 @@ function Pricing() {
 function Solutions() {
   return (
     <FadeUp>
-      <SolutionsAccordion />
+      {/* Same centred section glow as the page's other blocks (how-it-works etc.)
+          — the accordion section shipped without one and read flat next to them. */}
+      <SolutionsAccordion style={{background:'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)'}} />
     </FadeUp>
   );
 }
