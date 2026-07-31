@@ -1,19 +1,25 @@
 import React from 'react';
+import WaitlistForm from './WaitlistForm';
 
 /*
  * Shared placeholder for /auth/sign-in and /auth/sign-up.
  *
- * Insightis auth is not live yet, so these are a plain "coming soon" notice:
- * NO form, NO email field, NO password, NO data collection of any kind. There
- * is nothing a user can submit, so the page cannot be mistaken for a
- * credential- or contact-harvesting form (which is what trips Safe Browsing
- * "deceptive page" detection). Just a message and a link back home.
+ * Insightis auth is not live yet, so this is a "coming soon" notice. It carries
+ * NO password field and NO credential input of any kind, which is the line that
+ * matters: a page that looks like a login it cannot honour is what trips Safe
+ * Browsing's "deceptive page" heuristics.
+ *
+ * With `waitlist`, one email field is added so a visitor who arrives here can
+ * still leave an address. That stays on the safe side of the same line — it is a
+ * mailing-list signup, labelled as one, with a "Join the waitlist" button and no
+ * second field. See src/components/WaitlistForm.jsx for the constraints to keep.
  *
  * Props:
- *   title: heading text
- *   blurb: explanatory copy under the heading
+ *   title:    heading text
+ *   blurb:    explanatory copy under the heading
+ *   waitlist: render the email capture (default false — sign-up stays a notice)
  */
-export default function AuthCard({ title, blurb }) {
+export default function AuthCard({ title, blurb, waitlist = false }) {
   return (
     <section style={{
       flex: 1,
@@ -62,6 +68,8 @@ export default function AuthCard({ title, blurb }) {
           fontSize:'var(--ins-font-size-15)', lineHeight:1.6, color:'var(--ins-text-inactive)',
           margin:'0 auto 28px', maxWidth:'34ch',
         }}>{blurb}</p>
+
+        {waitlist && <WaitlistForm />}
 
         {/* Back to home */}
         <a href="/" style={{

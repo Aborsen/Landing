@@ -21,6 +21,7 @@ function localApiPlugin() {
     '/api/request-connector': 'server/request-connector.js',
     '/api/contact-support': 'server/contact-support.js',
     '/api/contact-sales': 'server/contact-sales.js',
+    '/api/waitlist': 'server/waitlist.js',
   }
 
   const mount = (server) => {
@@ -52,7 +53,7 @@ function localApiPlugin() {
     name: 'insightis-local-api',
     config(_config, { mode }) {
       const env = loadEnv(mode, process.cwd(), '')
-      for (const key of ['ZOHO_CONNECTOR_FORM_URL', 'ZOHO_SUPPORT_FORM_URL', 'ZOHO_SALES_FORM_URL', 'ALLOWED_FORM_ORIGINS']) {
+      for (const key of ['ZOHO_CONNECTOR_FORM_URL', 'ZOHO_SUPPORT_FORM_URL', 'ZOHO_SALES_FORM_URL', 'ZOHO_WAITLIST_FORM_URL', 'ALLOWED_FORM_ORIGINS']) {
         if (env[key] && !process.env[key]) process.env[key] = env[key]
       }
     },

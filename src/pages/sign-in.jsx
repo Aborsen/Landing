@@ -9,7 +9,8 @@ function App() {
     <AuthShell>
       <AuthCard
         title="Sign-in is coming soon"
-        blurb="Insightis isn't live just yet — we're putting the finishing touches on it. Check back shortly to log in."
+        blurb="Insightis isn't live just yet — we're putting the finishing touches on it. Leave your email and we'll tell you the moment you can log in."
+        waitlist
       />
     </AuthShell>
   );

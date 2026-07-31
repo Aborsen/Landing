@@ -31,6 +31,7 @@ import { dirname } from 'node:path';
 import { nodeHandler as requestConnector } from './request-connector.js';
 import { nodeHandler as contactSupport } from './contact-support.js';
 import { nodeHandler as contactSales } from './contact-sales.js';
+import { nodeHandler as waitlist } from './waitlist.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolvePath(process.env.SITE_ROOT || join(__dirname, '..', 'dist'));
@@ -39,10 +40,14 @@ const PORT = Number(process.env.PORT || 8080);
    rule that applied noindex to *.vercel.app. */
 const NOINDEX = process.env.NOINDEX === '1';
 
+/* Every endpoint must appear in FOUR places or it 404s somewhere: here (the
+   container), api/<name>.js (Vercel), the ROUTES map in vite.config.js (local),
+   and the client's fetch. This map is the one that decides production. */
 const API_ROUTES = {
   '/api/request-connector': requestConnector,
   '/api/contact-support': contactSupport,
   '/api/contact-sales': contactSales,
+  '/api/waitlist': waitlist,
 };
 
 const MIME = {
