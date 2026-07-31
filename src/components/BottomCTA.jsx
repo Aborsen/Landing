@@ -31,6 +31,12 @@ const ArrowRightIcon = () => (
  *  ctaHref            string — form action / anchor href (default: "/auth/sign-up/")
  *  secondaryCtaLabel  string — for "buttons" variant
  *  secondaryCtaHref   string — for "buttons" variant
+ *  onSecondaryCtaClick  function — for "buttons" variant. When given, the
+ *                     secondary CTA renders as a real <button> that calls this
+ *                     instead of an <a href>, so it can open a dialog. Takes
+ *                     precedence over secondaryCtaHref. Previously this prop did
+ *                     not exist and passing it was silently ignored, which shipped
+ *                     a dead button on the roadmap page.
  *  trustNote          string — optional one-line reassurance strip rendered
  *                     under the actions (e.g. "Free plan · No credit card")
  *  className          string — extra classes on outer .ins-bottom-cta
@@ -63,6 +69,7 @@ function BottomCTA({
   ctaHref = '/auth/sign-up/',
   secondaryCtaLabel,
   secondaryCtaHref,
+  onSecondaryCtaClick,
   trustNote,
   className = '',
   style,
@@ -129,14 +136,28 @@ function BottomCTA({
             {ctaLabel}
           </Button>
           {secondaryCtaLabel && (
-            <Button
-              as="a"
-              href={secondaryCtaHref || '#'}
-              variant="secondary"
-              size="lg"
-            >
-              {secondaryCtaLabel}
-            </Button>
+            /* A dialog trigger must be a real <button>, not an anchor with a
+               placeholder href — an <a href="#"> is announced as a link, moves
+               focus, and adds a history entry. */
+            onSecondaryCtaClick ? (
+              <Button
+                type="button"
+                onClick={onSecondaryCtaClick}
+                variant="secondary"
+                size="lg"
+              >
+                {secondaryCtaLabel}
+              </Button>
+            ) : (
+              <Button
+                as="a"
+                href={secondaryCtaHref || '#'}
+                variant="secondary"
+                size="lg"
+              >
+                {secondaryCtaLabel}
+              </Button>
+            )
           )}
         </div>
       )}

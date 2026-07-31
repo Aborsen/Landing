@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import BottomCTA from '../components/BottomCTA';
+import SalesEnquiryModal from '../components/SalesEnquiryModal';
 import FAQAccordion from '../components/FAQAccordion';
 import SectionHeader from '../components/SectionHeader';
 import CheckIcon from '../components/CheckIcon';
@@ -264,7 +265,7 @@ function FAQ() {
 }
 
 /* ── BOTTOM CTA ── */
-function BottomCTASection() {
+function BottomCTASection({ onTalkToSales }) {
   return (
     <section style={{padding:'80px 0 100px', position:'relative', overflow:'hidden'}}>
       {/* Centred glow behind the CTA, restored: the header-standardisation pass
@@ -272,6 +273,9 @@ function BottomCTASection() {
           Same 700x420 centred ellipse it had before that commit. */}
       <div style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:'700px',height:'420px',background:'radial-gradient(ellipse, rgba(9,160,157,0.24) 0%, transparent 100%)',pointerEvents:'none'}}/>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px',position:'relative'}}>
+        {/* "Talk to sales" opens the same dialog the contacts page uses, rather
+            than sending the visitor to /company/contacts to find and click it
+            again. */}
         <BottomCTA
           variant="buttons"
           title={<>Start free. <BottomCTA.Highlight>Upgrade when you're ready</BottomCTA.Highlight></>}
@@ -279,7 +283,7 @@ function BottomCTASection() {
           ctaLabel="Start for free"
           ctaHref="/auth/sign-up/"
           secondaryCtaLabel="Talk to sales"
-          secondaryCtaHref="/company/contacts"
+          onSecondaryCtaClick={onTalkToSales}
         />
       </div>
     </section>
@@ -287,6 +291,8 @@ function BottomCTASection() {
 }
 
 function App() {
+  const [salesOpen, setSalesOpen] = useState(false);
+
   return (
     <div>
       <Header />
@@ -295,9 +301,11 @@ function App() {
       <PricingCards />
       <FeatureComparison />
       <FAQ />
-      <BottomCTASection />
+      <BottomCTASection onTalkToSales={() => setSalesOpen(true)} />
             </main>
       <Footer />
+      {/* Renders nothing while closed, so the prerendered HTML is unchanged. */}
+      <SalesEnquiryModal open={salesOpen} onClose={() => setSalesOpen(false)} />
     </div>
   );
 }
