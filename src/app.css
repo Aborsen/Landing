@@ -418,7 +418,10 @@ nav{
 
 /* FOOTER */
 footer{background:rgba(8,11,15,.98);border-top:1px solid rgba(255,255,255,.05);color:var(--ins-text-body);position:relative;overflow:hidden}
-footer::before{content:'';position:absolute;width:500px;height:300px;background:radial-gradient(ellipse,rgba(7,128,126,.38) 0%,transparent 70%);top:-80px;right:10%;filter:blur(60px);pointer-events:none}
+/* No glow in the footer. It was a 500x300 blurred ellipse pinned off-centre at
+   right:10%, which the 2026-07-31 visibility pass made prominent enough to read
+   as a stray smudge above the footer rather than ambience — and unlike the block
+   glows it sat under no content at all. */
 .ft-dv-title{font-family:var(--ins-font-family-sans);font-size:16px;font-weight:500;color:var(--ins-text-heading);margin-bottom:6px;letter-spacing:-.026em}
 .ft-dv-sub{font-size:13px;color:var(--ins-text-body);max-width:380px;line-height:1.62;margin-bottom:14px}
 .dv-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;background:rgba(7,128,126,.08);border:1px solid rgba(7,128,126,.25);border-radius:var(--ins-radius-lg);font-size:11px;font-weight:500;color:rgba(7,200,180,.7);letter-spacing:.08em;font-family:var(--ins-font-family-mono)}

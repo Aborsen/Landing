@@ -314,7 +314,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: inherit; font-size: inherit; }
      nothing, and pointing away from the block's centre. Strength sits at the
      site-wide level set in the 2026-07-31 visibility pass (owner-tuned: the
      original 0.06-0.08 washes were measurably present but imperceptible). */
-  background: radial-gradient(ellipse 60% 50% at 50% 60%, rgba(9,160,157,.30) 0%, transparent 70%);
+  background: radial-gradient(ellipse 38% 42% at 50% 60%, rgba(9,160,157,.16) 0%, transparent 100%);
 }
 
 /* Container */
@@ -350,7 +350,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: inherit; font-size: inherit; }
 /* Tone modifiers — opt-in background treatments. */
 .ins-section--tint {
   background:
-    radial-gradient(ellipse 60% 50% at 50% 0%, var(--ins-color-teal-a-08), transparent 70%),
+    radial-gradient(ellipse 38% 42% at 50% 0%, var(--ins-color-teal-a-08), transparent 70%),
     radial-gradient(ellipse 40% 40% at 50% 100%, var(--ins-color-teal-a-06), transparent 70%);
 }
 .ins-section--dark {
@@ -423,9 +423,9 @@ h1, h2, h3, h4, h5, h6 { font-weight: inherit; font-size: inherit; }
 }
 .ins-bg-aurora {
   background:
-    radial-gradient(ellipse 60% 50% at 20% 10%, var(--ins-color-teal-a-20), transparent 60%),
+    radial-gradient(ellipse 38% 42% at 20% 10%, var(--ins-color-teal-a-20), transparent 60%),
     radial-gradient(ellipse 40% 35% at 80% 0%,  var(--ins-color-teal-a-12), transparent 70%),
-    radial-gradient(ellipse 50% 40% at 50% 40%, var(--ins-color-teal-a-08), transparent 80%),
+    radial-gradient(ellipse 32% 34% at 50% 40%, var(--ins-color-teal-a-08), transparent 80%),
     radial-gradient(ellipse 30% 30% at 10% 60%, var(--ins-color-teal-a-12), transparent 70%),
     radial-gradient(ellipse 40% 30% at 90% 70%, var(--ins-color-teal-a-08), transparent 70%),
     radial-gradient(ellipse 60% 40% at 30% 100%,var(--ins-color-teal-a-12), transparent 70%),

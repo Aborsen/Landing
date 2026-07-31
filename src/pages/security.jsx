@@ -122,7 +122,7 @@ function SecurityContent() {
     <>
       {/* Hero Section */}
       <section style={{padding:'120px 0 60px', position:'relative'}}>
-        <div style={{position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:'100%', height:'100%', background:'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(9,160,157,.30) 0%, transparent 70%)', pointerEvents:'none'}}/>
+        <div style={{position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:'100%', height:'100%', background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(9,160,157,.16) 0%, transparent 100%)', pointerEvents:'none'}}/>
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px', textAlign:'center', position:'relative'}}>
           <div className="fu0 ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'var(--ins-size-5)'}}>
             <span style={{fontSize:'10px', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase', fontFamily:'var(--ins-font-family-mono)'}}>Security</span>
@@ -233,7 +233,7 @@ function SecurityContent() {
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
           <div style={{background:'rgba(9,160,157,.04)', border:'1px solid rgba(9,160,157,.2)', borderRadius:'24px', padding:'64px 32px', textAlign:'center', position:'relative', overflow:'hidden'}}>
             <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(9,160,157,.4),transparent)'}}/>
-            <div style={{position:'absolute', inset:0, background:'radial-gradient(ellipse 50% 60% at 50% 0%, var(--ins-surface-brand-tint) 0%, transparent 70%)', pointerEvents:'none'}}/>
+            <div style={{position:'absolute', inset:0, background:'radial-gradient(ellipse 50% 60% at 50% 0%, var(--ins-surface-brand-tint) 0%, transparent 100%)', pointerEvents:'none'}}/>
             <div style={{position:'relative'}}>
               <h3 style={{fontSize:'clamp(24px,3.5vw,36px)', fontWeight:500, color:'var(--ins-text-heading)', letterSpacing:'-.02em', marginBottom:'var(--ins-size-4)'}}>
                 Have security questions?

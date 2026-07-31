@@ -202,7 +202,7 @@ function RelevantIntegrations() {
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)'}}>
+    <section style={{padding:'100px 0',background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
@@ -504,7 +504,7 @@ function SpotlightStack() {
       display:'flex',
       flexDirection:'column',
     }}>
-      <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 70% 60% at 50% 60%, rgba(9,160,157,.30) 0%, transparent 70%)',pointerEvents:'none'}}/>
+      <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 44% 48% at 50% 60%, rgba(9,160,157,.16) 0%, transparent 100%)',pointerEvents:'none'}}/>
       <ChromeHeader label="lineage · board-ready" />
       <div style={{padding:'24px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center',position:'relative'}}>
         {/* Section label */}
@@ -602,7 +602,7 @@ function FeatureSpotlights() {
   ];
 
   return (
-    <section id="spotlights" style={{padding:'80px 0 100px',background:'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)'}}>
+    <section id="spotlights" style={{padding:'80px 0 100px',background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{marginBottom:'72px'}}>
           <SectionHeader
@@ -694,7 +694,7 @@ function UseCases() {
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)'}}>
+    <section style={{padding:'100px 0',background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{marginBottom:'var(--ins-size-20)'}}>
           <div style={{
@@ -783,7 +783,7 @@ function FAQ() {
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)'}}>
+    <section style={{padding:'100px 0',background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}}>
       <div style={{maxWidth:'880px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'52px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>

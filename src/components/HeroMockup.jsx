@@ -32,7 +32,7 @@ export default function HeroMockup({ title, accentLine = 'rgba(14,196,193,.55)',
           way, centred low like the block glows. */}
       <div style={{
         position: 'relative',
-        background: 'radial-gradient(ellipse 80% 70% at 50% 60%, rgba(9,160,157,0.16) 0%, transparent 72%), linear-gradient(135deg, rgba(13,17,23,0.95) 0%, rgba(15,20,28,0.92) 100%)',
+        background: 'radial-gradient(ellipse 80% 70% at 50% 60%, rgba(9,160,157,0.10) 0%, transparent 100%), linear-gradient(135deg, rgba(13,17,23,0.95) 0%, rgba(15,20,28,0.92) 100%)',
         border: '1px solid var(--ins-color-white-a-08)',
         borderRadius: '24px',
         padding: 'var(--ins-size-6)',

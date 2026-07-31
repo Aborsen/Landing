@@ -679,7 +679,7 @@ function QuestionsGallery() {
   };
 
   return (
-    <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)'}}>
+    <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}}>
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Heading */}
@@ -729,7 +729,7 @@ function QuestionsGallery() {
 
           {/* RIGHT */}
           <div key={activeCat+activeQ} style={{
-            background:'radial-gradient(ellipse 100% 80% at 30% 30%, rgba(9,160,157,.14) 0%, transparent 60%), rgba(10,14,19,.97)',
+            background:'radial-gradient(ellipse 100% 80% at 30% 30%, rgba(9,160,157,.09) 0%, transparent 95%), rgba(10,14,19,.97)',
             display:'flex', flexDirection:'column',
             animation:'fadeIn .15s ease both',
             height:'520px', overflow:'hidden',
@@ -842,7 +842,7 @@ function HowItWorks() {
   ];
 
   return (
-    <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)'}}>
+    <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}}>
       <div className="max-w-7xl mx-auto px-6">
         <div style={{marginBottom:'var(--ins-size-16)'}}>
           <SectionHeader
@@ -862,7 +862,7 @@ function HowItWorks() {
 /* ── ACCURACY COMPARISON ── */
 function AccuracyComparison() {
   return (
-    <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)'}}>
+    <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}}>
       <div className="max-w-7xl mx-auto px-6">
         <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
@@ -972,7 +972,7 @@ function ChatMockAnimation() {
       <div style={{
         borderRadius:'var(--ins-radius-16)',
         border:'1px solid rgba(255,255,255,0.09)',
-        background:'radial-gradient(ellipse 80% 70% at 50% 60%, rgba(9,160,157,0.17) 0%, transparent 72%), #0C1117',
+        background:'radial-gradient(ellipse 80% 70% at 50% 60%, rgba(9,160,157,0.10) 0%, transparent 100%), #0C1117',
         overflow:'hidden',
         display:'flex',
         flexDirection:'column',
@@ -1058,7 +1058,7 @@ function ChatMockAnimationInner() {
     <div style={{
       borderRadius: 'var(--ins-radius-16)',
       border: '1px solid rgba(255,255,255,0.09)',
-      background: 'radial-gradient(ellipse 80% 70% at 50% 60%, rgba(9,160,157,0.17) 0%, transparent 72%), #0C1117',
+      background: 'radial-gradient(ellipse 80% 70% at 50% 60%, rgba(9,160,157,0.10) 0%, transparent 100%), #0C1117',
       overflow: 'hidden',
       display: 'flex',
       flexDirection: 'column',
