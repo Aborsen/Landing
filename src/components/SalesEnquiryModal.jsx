@@ -4,10 +4,15 @@ import CheckIcon from './CheckIcon';
 /**
  * SalesEnquiryModal — the "Talk to sales" dialog.
  *
- * A sibling of SupportTicketModal: same shell, same chip row, same field styling,
- * same submit/error/success mechanics. Different questions, because a sales
- * enquiry needs to identify the person and their company, where a support ticket
- * needs to classify a problem.
+ * A sibling of SupportTicketModal: same shell, same field styling, same
+ * submit/error/success mechanics. Three questions only — name, work email, and an
+ * optional note. Company and team size were asked for originally and dropped on
+ * 2026-07-31: the shorter the lead form, the more leads it returns, and sales can
+ * ask the rest in the reply.
+ *
+ * NOTE ON THE ZOHO KEYS: the form upstream still has five fields, so the payload
+ * skips SingleLine1 (company) and SingleLine3 (team size) rather than renumbering.
+ * See server/contact-sales.js — closing those gaps would misfile every address.
  *
  * Posts to /api/contact-sales, which forwards to the Zoho ContactSales form
  * server-side — the browser never sees the Zoho URL, because that endpoint takes
@@ -25,12 +30,7 @@ import CheckIcon from './CheckIcon';
  *  onClose   () => void
  */
 
-/* Groups rather than a free-text number: a range is what sales actually segments
-   on, and it is one tap instead of typing. Kept in step with TEAM_SIZES in
-   server/contact-sales.js, which allowlists these exact strings. */
-const TEAM_SIZES = ['1-10', '11-100', '101-500', '501-1000', '1000+'];
-
-const EMPTY = { name: '', company: '', email: '', teamSize: '', details: '' };
+const EMPTY = { name: '', email: '', details: '' };
 
 /* The endpoint answers with a short machine code, never a sentence, so the copy
    lives here and the server stays silent about its internals. Anything unmapped
@@ -38,9 +38,7 @@ const EMPTY = { name: '', company: '', email: '', teamSize: '', details: '' };
    on the difference between a missing env var and an upstream timeout. */
 const ERROR_COPY = {
   name: 'Please enter your name as plain text.',
-  company: 'Please enter your company name as plain text.',
   email: 'Please enter a valid work email so we can reply.',
-  teamSize: 'Please choose a team size.',
   length: 'That is longer than the form accepts. Please shorten it and try again.',
   invalid: 'Something in the form was rejected. Please check it and try again.',
   rate: 'That is several requests in quick succession. Please try again in a few minutes.',
@@ -81,9 +79,7 @@ function SalesEnquiryModal({ open, onClose }) {
      round trip. The server re-checks everything regardless — this is courtesy,
      not a control. */
   const ready = form.name.trim().length >= 2
-    && form.company.trim().length >= 2
-    && /^[^\s@]+@[^\s@.]+\.[^\s@]{2,}$/.test(form.email.trim())
-    && TEAM_SIZES.includes(form.teamSize);
+    && /^[^\s@]+@[^\s@.]+\.[^\s@]{2,}$/.test(form.email.trim());
 
   const submit = async () => {
     if (sending || !ready) return;
@@ -95,9 +91,7 @@ function SalesEnquiryModal({ open, onClose }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: form.name,
-          company: form.company,
           email: form.email,
-          teamSize: form.teamSize,
           details: form.details,
           /* Empty unless a script filled the off-screen field in. */
           hp: honeypotRef.current ? honeypotRef.current.value : '',
@@ -204,7 +198,7 @@ function SalesEnquiryModal({ open, onClose }) {
 
               {/* Full name */}
               <div>
-                <label htmlFor="sales-name" style={labelStyle}>FULL NAME *</label>
+                <label htmlFor="sales-name" style={labelStyle}>YOUR NAME *</label>
                 <input
                   id="sales-name"
                   value={form.name}
@@ -215,22 +209,6 @@ function SalesEnquiryModal({ open, onClose }) {
                   autoComplete="name"
                   maxLength={80}
                   style={inputStyle('name')}
-                />
-              </div>
-
-              {/* Company */}
-              <div>
-                <label htmlFor="sales-company" style={labelStyle}>COMPANY NAME *</label>
-                <input
-                  id="sales-company"
-                  value={form.company}
-                  onChange={e => setForm(f => ({ ...f, company: e.target.value }))}
-                  onFocus={() => setFocused('company')}
-                  onBlur={() => setFocused(null)}
-                  placeholder="e.g. Northwind Analytics"
-                  autoComplete="organization"
-                  maxLength={100}
-                  style={inputStyle('company')}
                 />
               </div>
 
@@ -249,38 +227,6 @@ function SalesEnquiryModal({ open, onClose }) {
                   maxLength={254}
                   style={inputStyle('email')}
                 />
-              </div>
-
-              {/* Team size pills */}
-              <div>
-                <label style={{ ...labelStyle, marginBottom: 'var(--ins-size-2)' }}>TEAM SIZE *</label>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }} role="group" aria-label="Team size">
-                  {TEAM_SIZES.map(size => {
-                    const active = form.teamSize === size;
-                    return (
-                      <button
-                        key={size}
-                        type="button"
-                        aria-pressed={active}
-                        onClick={() => setForm(f => ({ ...f, teamSize: size }))}
-                        style={{
-                          display: 'inline-flex', alignItems: 'center',
-                          padding: '5px 12px', borderRadius: '999px',
-                          background: active ? 'rgba(14,196,193,0.12)' : 'var(--ins-color-white-a-04)',
-                          border: active ? '1px solid rgba(14,196,193,0.42)' : '1px solid var(--ins-color-white-a-07)',
-                          color: active ? 'var(--ins-text-highlight)' : 'var(--ins-text-body)',
-                          fontSize: 'var(--ins-font-size-12)', fontWeight: active ? 600 : 400,
-                          fontFamily: 'inherit', cursor: 'pointer',
-                          transition: 'all .15s',
-                        }}
-                        onMouseEnter={e => { if (!active) { e.currentTarget.style.borderColor = 'rgba(255,255,255,.14)'; e.currentTarget.style.color = '#C8E6EA'; } }}
-                        onMouseLeave={e => { if (!active) { e.currentTarget.style.borderColor = 'var(--ins-color-white-a-07)'; e.currentTarget.style.color = 'var(--ins-text-body)'; } }}
-                      >
-                        {size}
-                      </button>
-                    );
-                  })}
-                </div>
               </div>
 
               {/* Details */}

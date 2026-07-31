@@ -1,11 +1,15 @@
 /* Sales-enquiry endpoint — POST /api/contact-sales.
  *
- * Field mapping to the Zoho ContactSales form, as specified:
- *   Full Name           -> SingleLine
- *   Name of the company -> SingleLine1
+ * Field mapping to the Zoho ContactSales form:
+ *   Your Name           -> SingleLine
  *   Email               -> SingleLine2
- *   Team Size           -> SingleLine3
  *   Additional Details  -> SingleLine4
+ *
+ * THE GAPS ARE DELIBERATE. The Zoho form still has five fields; the company and
+ * team-size questions were dropped from the dialog on 2026-07-31, so SingleLine1
+ * and SingleLine3 are simply not sent. Do NOT renumber to close the gaps — the
+ * keys are positional in Zoho, so shifting email to SingleLine1 would file every
+ * address under "Name of the company" and quietly corrupt the sheet.
  *
  * Same shape as the other two form endpoints; the shared rules (secret handling,
  * origin check, honeypot, fill-time, rate limit, upstream call, Node bridge) live
@@ -22,18 +26,12 @@ import {
   createFormHandler, oneLine, multiLine, hasAlnum, looksLikeEmail,
 } from './zoho-form-endpoint.js';
 
-/* Allowlisted, and sent to Zoho as the label the visitor actually saw — a fixed
-   choice means an unrecognised value is a forged payload, not a typo. Kept in
-   step with TEAM_SIZES in src/components/SalesEnquiryModal.jsx. */
-const TEAM_SIZES = ['1-10', '11-100', '101-500', '501-1000', '1000+'];
-
 const MAX_NAME = 80;
-const MAX_COMPANY = 100;
 const MAX_EMAIL = 254;
 const MAX_DETAILS = 2000;
 
-/* A person's name and a company name have no business containing a URL or markup;
-   the details box may, since a prospect might reasonably link to their site. */
+/* A person's name has no business containing a URL or markup; the details box may,
+   since a prospect might reasonably link to their site. */
 const SPAMMY = /(https?:|ftp:|www\.|<[a-z/!]|\[url|\{\{)/i;
 
 function build(data) {
@@ -41,16 +39,10 @@ function build(data) {
   if (name.length < 2 || name.length > MAX_NAME) return { error: 'name' };
   if (!hasAlnum(name) || SPAMMY.test(name)) return { error: 'name' };
 
-  const company = oneLine(data.company);
-  if (company.length < 2 || company.length > MAX_COMPANY) return { error: 'company' };
-  if (!hasAlnum(company) || SPAMMY.test(company)) return { error: 'company' };
-
-  /* Required, unlike the support form. */
+  /* Required, unlike the support form: a sales enquiry with no reply path is not
+     a lead, and this form no longer asks anything else identifying. */
   const email = oneLine(data.email);
   if (!email || email.length > MAX_EMAIL || !looksLikeEmail(email)) return { error: 'email' };
-
-  const teamSize = oneLine(data.teamSize);
-  if (!TEAM_SIZES.includes(teamSize)) return { error: 'teamSize' };
 
   /* No control-character check here: multiLine() has already stripped them apart
      from the newlines it deliberately keeps, and \n is itself a control character
@@ -58,12 +50,12 @@ function build(data) {
   const details = multiLine(data.details);
   if (details.length > MAX_DETAILS) return { error: 'length' };
 
+  /* SingleLine1 (company) and SingleLine3 (team size) are intentionally absent —
+     see the header. Zoho leaves them blank; renumbering would misfile the data. */
   return {
     fields: {
       SingleLine: name,
-      SingleLine1: company,
       SingleLine2: email,
-      SingleLine3: teamSize,
       SingleLine4: details,
     },
   };
