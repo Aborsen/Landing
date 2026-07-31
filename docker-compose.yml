@@ -24,6 +24,12 @@ services:
       ZOHO_CONNECTOR_FORM_URL: ${ZOHO_CONNECTOR_FORM_URL:-}
       ZOHO_SUPPORT_FORM_URL: ${ZOHO_SUPPORT_FORM_URL:-}
       ZOHO_SALES_FORM_URL: ${ZOHO_SALES_FORM_URL:-}
+      ZOHO_WAITLIST_FORM_URL: ${ZOHO_WAITLIST_FORM_URL:-}
+      # Adding an endpoint means FIVE edits, not four: server/serve.js, api/<name>.js,
+      # the ROUTES map in vite.config.js, the client fetch — and this list. Omit it
+      # here and the container starts fine, the route answers, and that one form
+      # returns 503 while the others work. Which is exactly what happened to the
+      # waitlist on 2026-07-31.
       # Hostnames allowed to post to /api/*, comma-separated. insightis.ai and its
       # subdomains are already allowed in code; add the staging hostname here or
       # the browser gets a 403 from the origin check.
