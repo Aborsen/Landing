@@ -83,7 +83,21 @@
 /* Glow — brand-tint surface with colored glow. Theme modifier controls color.
    Replaces .ins-card--answer and .ins-card--branded. Scales to new themes via new modifiers. */
 .ins-card--glow {
-  background: var(--ins-surface-brand-tint);
+  /* Tint over an OPAQUE base, following the platform pages' .mdc recipe
+     (src/app.css, rgba(13,17,23,.95) — i.e. gray-900 at 95%). The tint on its own
+     was --ins-surface-brand-tint, teal at 8%, which left the card 92%
+     transparent: any section wash behind it showed straight through and coloured
+     the card instead of pooling around it. That is also why the homepage
+     comparison glow had to be pinned to a 300px heading band to stay off these
+     cards — with an opaque base it no longer has to be.
+
+     linear-gradient(c, c) is how a translucent colour layer gets ABOVE
+     background-color in a single declaration: a bare colour cannot be a
+     background *image*, and only the image layers paint over the colour. Written
+     this way the tint stays a live token instead of a hardcoded composite. */
+  background:
+    linear-gradient(var(--ins-surface-brand-tint), var(--ins-surface-brand-tint)),
+    var(--ins-color-gray-900);
   border-color: var(--ins-border-brand);
   position: relative;
 }
@@ -98,7 +112,13 @@
 }
 .ins-card--glow--brand { box-shadow: var(--ins-shadow-glow-brand); }
 .ins-card--glow--error {
-  background: var(--ins-status-error-bg);
+  /* Same opaque-base treatment as .ins-card--glow. This rule has to restate the
+     whole background, not just the tint: it overrides the base class's
+     `background` outright, so setting only a colour here would drop the layer
+     stack and put the card back to a 10% translucent red. */
+  background:
+    linear-gradient(var(--ins-status-error-bg), var(--ins-status-error-bg)),
+    var(--ins-color-gray-900);
   border-color: var(--ins-color-red-a-25);
   box-shadow: var(--ins-glow-error);
 }

@@ -854,11 +854,18 @@ function Pricing() {
 
   return (
     <section className="py-24 relative overflow-hidden">
-      {/* Glow confined to the heading band instead of inset:0. The comparison
-          cards use --ins-surface-brand-tint, which is translucent, so a
-          full-section wash showed through and tinted both cards. A fixed
-          height clears them whatever their content length. */}
-      <div className="absolute left-0 right-0 top-0 pointer-events-none" style={{ height: '300px', background: 'radial-gradient(ellipse 32% 60% at 50% 45%, rgba(7,128,126,0.16) 0%, transparent 100%)' }}></div>
+      {/* Glow sits low, behind the cards. It used to be pinned to a 300px band at
+          the top of the section, purely to keep it off the comparison cards --
+          those were 8-10% translucent, so a wash reaching them bled through and
+          tinted them rather than pooling behind. The glow cards now carry an
+          opaque base (.ins-card--glow in design-system/components/card.css,
+          following the platform pages' .mdc), so the wash can cover the section
+          and the cards simply sit on top of it.
+
+          Centre at 68% puts it over the card band rather than the heading. Since
+          the cards are opaque, what reads is the light around and between them --
+          they sit in the pool instead of being coloured by it. */}
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 30% 40% at 50% 68%, rgba(7,128,126,0.16) 0%, transparent 100%)' }}></div>
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <FadeUp>
           <div className="text-center mb-14">
