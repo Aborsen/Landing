@@ -1258,15 +1258,16 @@ function Hero() {
   );
 }
 function App() {
+  /* ins-bg-noise dithers the section washes out of visible contour rings, and
+     unlike blur it works on section backgrounds, which cannot be filtered without
+     blurring their own headings and cards. It goes on the page wrapper rather than
+     <main>: the noise is white and lifts what it covers by ~2 levels, so scoping it
+     to <main> left the sticky header strip above it unlifted and drew a dark band
+     under the navbar. See the fuller note in src/main.jsx. */
   return (
-    <div>
+    <div className="ins-bg-noise">
       <Header />
-      {/* ins-bg-noise dithers the section washes out of visible contour rings —
-          see the note on <main> in src/main.jsx for the arithmetic. At <main>
-          it covers all three washes at once, and unlike blur it works on
-          section backgrounds, which cannot be filtered without blurring their
-          own headings and cards. */}
-      <main className="ins-bg-noise">
+      <main>
       <Hero />
       {/* TODO SEO [P0]: Insert <TLDR/> component here (between Hero and HowItWorks).
           Required: Block 0 executive summary, 80–100 words, format Problem → Insightis → Benefit.

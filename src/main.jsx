@@ -220,12 +220,26 @@ function Hero() {
   return (
     <>
     <section className="relative flex flex-col items-center justify-center overflow-hidden" style={{minHeight: 'min(100vh, 900px)', paddingTop: 'var(--ins-size-20)', paddingBottom: 'var(--ins-size-10)'}}>
-      {/* Hero glow. (Teal, not purple — the old label was left over from an
-          earlier palette.) blur() here softens the band edges but is not what
-          fixes the contouring; the noise layer on <main> is. Blur cannot add
-          output levels, and too few levels across too many pixels is the actual
-          cause, so it re-quantises to roughly the same spacing afterwards. */}
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)', filter: 'blur(60px)' }}></div>
+      {/* Hero glow, sized and centred to sit behind the content. (Teal, not
+          purple — the old label was left over from an earlier palette.)
+
+          Was `38% 42% at 50% 60%`, which read as a wide off-centre pool. The
+          radii are a share of the SECTION, and the section is full-bleed, so 38%
+          meant a 1446px-wide glow behind a ~540px column — nearly three times the
+          content. 26% brings that to ~990px, still a soft halo wider than the
+          text but recognisably behind it.
+
+          The centre moved 60% -> 52% because 60% was not where the content is.
+          The section is min(100vh,900px) with 80px/40px padding and centres its
+          content in what is left, which puts the content's midpoint at ~52.5% of
+          the section height — so the old glow sat roughly 60px low.
+
+          No blur: it widened the glow, which is the complaint here, and it was
+          never what fixed the contour rings. The noise layer on the page wrapper
+          does that. Tightening actually helps the banding slightly too — the same
+          ~23 levels now span 495px instead of 723px, so the steps sit closer
+          together and read less like arcs. */}
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 26% 32% at 50% 52%, rgba(7,128,126,0.20) 0%, transparent 100%)' }}></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
         {/* Headline */}
@@ -920,18 +934,23 @@ function BottomCTASection() {
 
 // ─── APP ───
 function App() {
+  /* ins-bg-noise dithers the glows. The washes band into visible contour rings
+     because the whole ramp is only ~23 levels wide: teal at 0.20 over the #0A0E13
+     page composites to rgb(9,37,40), so green travels 14 -> 37 and blue 19 -> 40.
+     That is one 8-bit step every ~20-30px, which the eye joins into arcs. A few
+     levels of noise scatter each pixel across the step boundaries so the ramp
+     reads continuous.
+
+     It goes on the page wrapper below, not on <main>. The noise is white, so it
+     lifts whatever it covers by ~2 levels on average. <Header> is a sticky sibling
+     sitting ABOVE <main> in the layout, so scoping the noise to <main> lifted the
+     page from <main>'s top edge down and left the header strip at the unlifted
+     colour — a visible dark band under the navbar. On the wrapper, header, main
+     and footer all get the same lift and there is no edge to see. */
   return (
-    <div className="font-body">
+    <div className="font-body ins-bg-noise">
       <Header />
-      {/* ins-bg-noise dithers the glows. The washes band into visible contour
-          rings because the whole ramp is only ~23 levels wide: teal at 0.20 over
-          the #0A0E13 page composites to rgb(9,37,40), so green travels 14 -> 37
-          and blue 19 -> 40, spread across a 38%-of-viewport radius. That is one
-          8-bit step every ~30px, which the eye joins into arcs. A few levels of
-          noise scatter each pixel across the step boundaries so the ramp reads
-          continuous. Applied at <main> so it covers every glow on the page at
-          once, including the section-background washes that cannot be blurred. */}
-      <main id="main-content" className="ins-bg-noise">
+      <main id="main-content">
         <header>
           <Hero />
         </header>
