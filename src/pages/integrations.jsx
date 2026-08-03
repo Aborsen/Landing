@@ -690,7 +690,7 @@ function CTA() {
 /* ── APP ── */
 function App() {
   return (
-    <div>
+    <div className="ins-bg-noise">
       <Header/>
       <main>
       <Hero/>

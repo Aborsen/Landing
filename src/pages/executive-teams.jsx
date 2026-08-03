@@ -695,7 +695,7 @@ function FAQ() {
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'var(--ins-glow-section)'}}>
+    <section style={{padding:'100px 0'}}>
       <div style={{maxWidth:'880px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'52px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
@@ -715,7 +715,7 @@ function FAQ() {
 /* ── APP ── */
 function App() {
   return (
-    <div>
+    <div className="ins-bg-noise">
       <Header />
       <main>
       <Hero />

@@ -118,29 +118,45 @@
      different design. Home had four sizes of its own; about-insightis, security
      and .ins-hero-glow used teal-500 while everything else used teal-650.
 
-     SIZED IN PIXELS, NOT PERCENTAGES — this is the part that actually makes them
-     consistent. A percentage radius resolves against the element, so one token
-     still rendered a different glow on every section: measured on revenue-teams,
-     38% x 42% produced a 924px wash covering 84% of an 1100px section, while the
-     same recipe on the 1080px "How it works" section covered 44%. Section heights
-     across this site run from roughly 600px to over 2000px, so no percentage can
-     look the same on all of them, and chasing it per page is how ten recipes
-     accumulated in the first place.
+     CENTRED, AND SIZED SO THE ELLIPSE FITS INSIDE ITS BOX
+     A background is painted only within its element, so anything outside is
+     sliced off — and because alpha peaks at the centre, an ellipse whose top edge
+     lands above y=0 leaves a hard bright band across the section boundary. A
+     px-sized attempt at these tokens did exactly that: radius 340px centred 280px
+     down put the top edge at -60px, and every section showed a cut edge.
 
-     Absolute radii give one glow, identical everywhere, and the tall-section
-     problem disappears rather than needing its own token: a section that stacks
-     four spotlight rows now gets exactly the same 680px glow behind its heading
-     as a short FAQ does, instead of scaling it up into a full-viewport wash.
+     Percentages are the right unit for the constraint, because the constraint is
+     relative to the box: centre - radius >= 0 and centre + radius <= 100%. At
+     centre 50% the radius may go to 50% before it clips, so 32% leaves 18% of
+     clear space above and below. Measured across the 12 washed pages, the 35
+     washed sections run 849px to 1160px — a 1.37x spread, narrow enough for one
+     recipe to read consistently on all of them.
 
-       hero      centred on the hero, which is a uniform full-screen block
-       section   a fixed ellipse anchored over the heading zone, ~280px down,
-                 which is where the eyebrow and h2 sit after section padding
+       hero      26% x 32% at 50% 50%  ->  spans 18%..82%
+       section   36% x 32% at 50% 50%  ->  spans 18%..82%, i.e. 64% of the block
 
-     Alpha is owner-tuned (2026-07-31 visibility pass): the original 0.06–0.08
+     FAQ sections deliberately carry no wash: they are long lists of text and a
+     glow behind an accordion reads as a smudge rather than emphasis.
+
+     KNOWN CHARACTERISTIC, ACCEPTED ON PURPOSE (2026-08-03)
+     A per-section wash fades to zero at its own top and bottom edge, so two
+     washed sections stacked back-to-back always leave a dark seam between them.
+     Measured composited alpha down revenue-teams: 0.20 -> 0.00 -> 0.20 -> 0.00 ->
+     0.20, three seams. Home and AI Chat show it less only because their washed
+     sections come in two pairs separated by a ~1000px unwashed gap, so it reads as
+     "wash, then none" instead of a rhythm of stripes.
+
+     The alternative — one continuous page-level wash on the wrapper, measured at
+     zero seams on every page — was built and set aside at the owner's choice. It
+     lives in the stash entry "atmosphere-final" and as
+     scratchpad/atmosphere-final.patch. Do not re-derive this: tuning the geometry
+     of a per-section wash cannot remove the seams, only move them.
+
+     Alpha is owner-tuned (2026-07-31 visibility pass): the original 0.06-0.08
      washes were measurably present and imperceptible. Keep the falloff at 100% —
-     anything less leaves a hard edge where the gradient stops. */
-  --ins-glow-hero:    radial-gradient(ellipse 760px 460px at 50% 45%, rgba(7,128,126,0.20) 0%, transparent 100%);
-  --ins-glow-section: radial-gradient(ellipse 620px 340px at 50% 280px, rgba(7,128,126,0.20) 0%, transparent 100%);
+     anything less leaves a rim where the gradient stops short of transparent. */
+  --ins-glow-hero:    radial-gradient(ellipse 26% 32% at 50% 50%, rgba(7,128,126,0.20) 0%, transparent 100%);
+  --ins-glow-section: radial-gradient(ellipse 36% 32% at 50% 50%, rgba(7,128,126,0.20) 0%, transparent 100%);
 
   --ins-text-body:         var(--ins-color-gray-100);  /* #C0D4DC — lifted from gray-200 on 2026-08-03 for headroom on cards */
   --ins-text-inactive:     var(--ins-color-gray-200);  /* #A8BFC8 — lifted from gray-300, which was only marginal on card surfaces */
