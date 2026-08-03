@@ -26,18 +26,28 @@ export default function HeroMockup({ title, accentLine = 'rgba(14,196,193,.55)',
     <div className="fu2" style={{ position: 'relative' }}>
       {/* Ambient glow removed — its blurred box was rendering a faint rectangle/line behind the panel. */}
 
-      {/* Main panel. The radial layer is the inner teal wash (2026-07-31 visibility
-          pass): the panels were near page-black and read as holes once the section
-          glows around them were brightened — this backlights the content the same
-          way, centred low like the block glows. */}
+      {/* Main panel — flat opaque surface, so the hero's teal wash stays behind it
+          instead of coming through it. Three things were letting it through:
+
+            - the base was `linear-gradient(135deg, rgba(13,17,23,0.95),
+              rgba(15,20,28,0.92))`, i.e. 5-8% see-through across the whole panel
+            - backdropFilter: blur(24px) does not just soften, it SAMPLES what is
+              behind the element and paints it back in, so the .ins-hero-glow
+              underneath was being drawn into the panel by design
+            - a `radial-gradient(… rgba(9,160,157,0.10) …)` teal layer on top of
+              that, added in the 2026-07-31 visibility pass to stop the panels
+              reading as holes
+
+          Now #0C1117, matching the platform pages' hero panels exactly, so all
+          nine hero mockups share one surface colour. The backdrop filters are gone
+          with it — they cost a full-panel offscreen raster per hero and had
+          nothing left to blur. */}
       <div style={{
         position: 'relative',
-        background: 'radial-gradient(ellipse 80% 70% at 50% 60%, rgba(9,160,157,0.10) 0%, transparent 100%), linear-gradient(135deg, rgba(13,17,23,0.95) 0%, rgba(15,20,28,0.92) 100%)',
+        background: '#0C1117',
         border: '1px solid var(--ins-color-white-a-08)',
         borderRadius: '24px',
         padding: 'var(--ins-size-6)',
-        backdropFilter: 'blur(24px)',
-        WebkitBackdropFilter: 'blur(24px)',
         boxShadow: 'none',
         overflow: 'hidden',
         zIndex: 1,

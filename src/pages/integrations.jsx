@@ -86,7 +86,7 @@ function ConnectionChatAnimation() {
         position:'relative', height:'500px',
         borderRadius:'var(--ins-radius-16)',
         border:'1px solid var(--ins-color-white-a-10)',
-        background:'radial-gradient(ellipse 80% 70% at 50% 60%, rgba(9,160,157,0.10) 0%, transparent 100%), #0C1117', overflow:'hidden', boxShadow:'none',
+        background:'#0C1117', overflow:'hidden', boxShadow:'none',
       }} aria-hidden="true"/>
     );
   }
@@ -145,7 +145,7 @@ function ConnectionChatAnimationInner() {
       height:'500px',
       borderRadius:'var(--ins-radius-16)',
       border:'1px solid var(--ins-color-white-a-10)',
-      background:'radial-gradient(ellipse 80% 70% at 50% 60%, rgba(9,160,157,0.10) 0%, transparent 100%), #0C1117',
+      background:'#0C1117',
       overflow:'hidden',
       boxShadow:'none',
     }}>
