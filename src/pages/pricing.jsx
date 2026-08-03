@@ -268,36 +268,13 @@ function FAQ() {
 function BottomCTASection({ onTalkToSales }) {
   return (
     <section style={{padding:'80px 0 100px', position:'relative', overflow:'hidden'}}>
-      {/* Ambient glow behind the CTA, ported from the product app's chat shell
-          (frontend `bg-chat-glow` in packages/ui/tailwind.config.ts, applied in
-          ChatLayout/ChatLayoutContent.tsx) so the marketing site and the app read
-          as one surface. Their recipe, and why each part carries weight:
-
-            - A full-bleed inset:0 layer rather than a fixed 700x420 box. The
-              ellipse then floats inside a paint box much larger than itself, so
-              the falloff finishes with room to spare and there is no boundary
-              left to clip. The old fixed box is exactly what produced the
-              visible teal rectangle: unsized, `ellipse` defaults to
-              farthest-corner, so `transparent 100%` landed at the CORNERS and
-              was still ~0.07 alpha where the box cut it off on all four sides.
-            - Explicit radii plus `transparent 65%`, so the fade completes well
-              inside the layer instead of at its corners.
-            - blur(70px), matching their dark-theme `dark:blur-[70px]`.
-
-          Two deliberate deviations from a literal copy:
-
-          Radii are percentages, not `55vw 45vh`. Theirs is viewport-sized
-          because their chat shell IS viewport-height (h-full); this section is a
-          fixed ~440px (80px + card + 100px), so a 45vh radius overruns it on
-          tall screens and reintroduces the clipped rim. Percentages resolve
-          against the paint box, which is what vh is doing for them.
-
-          Hue is our own --ins-color-teal-700 (#0A9896) at their 18% alpha,
-          rather than their --brand-tertiary (#14A8AF). Keeps the landing on its
-          own palette; the two teals differ by a few percent and the softness,
-          not the hue, is what makes this effect read the way it does. */}
-      <div style={{position:'absolute',inset:0,zIndex:0,background:'radial-gradient(ellipse 55% 70% at 50% 50%, rgba(10,152,150,0.18), transparent 65%)',filter:'blur(70px)',pointerEvents:'none'}}/>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px',position:'relative',zIndex:1}}>
+      {/* No glow behind this CTA. It carried a teal ellipse through several
+          rounds — a fixed 700x420 box that clipped its own falloff into a visible
+          rectangle, then the app's blurred chat-shell recipe — and the call was
+          that the CTA reads better unwashed. The card supplies its own teal
+          edge and 135deg gradient (see design-system/components/bottom-cta.css),
+          which is enough brand presence at the foot of the page. */}
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px',position:'relative'}}>
         {/* "Talk to sales" opens the same dialog the contacts page uses, rather
             than sending the visitor to /company/contacts to find and click it
             again. */}

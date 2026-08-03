@@ -679,7 +679,7 @@ function QuestionsGallery() {
   };
 
   return (
-    <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}}>
+    <section style={{padding:'120px 0 140px'}}>
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Heading */}
@@ -842,7 +842,7 @@ function HowItWorks() {
   ];
 
   return (
-    <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}}>
+    <section style={{padding:'120px 0 140px'}}>
       <div className="max-w-7xl mx-auto px-6">
         <div style={{marginBottom:'var(--ins-size-16)'}}>
           <SectionHeader
@@ -862,7 +862,7 @@ function HowItWorks() {
 /* ── ACCURACY COMPARISON ── */
 function AccuracyComparison() {
   return (
-    <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}}>
+    <section style={{padding:'120px 0 140px'}}>
       <div className="max-w-7xl mx-auto px-6">
         <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
