@@ -16,6 +16,7 @@ import StepsProcess from '../components/StepsProcess';
 import SectionHeader from '../components/SectionHeader';
 import CheckIcon from '../components/CheckIcon';
 import ArrowRightIcon from '../components/ArrowRightIcon';
+import MidCTA from '../components/MidCTA';
 
 const { motion, useInView, AnimatePresence } = (typeof window !== 'undefined' ? window["framer-motion"] : null) || { motion: { div: 'div', span: 'span', p: 'p', h1: 'h1', h2: 'h2', h3: 'h3', button: 'button', a: 'a', section: 'section', nav: 'nav', header: 'header', li: 'li', img: 'img' }, useInView: () => true, AnimatePresence: ({ children }) => children };
 const MotionDiv = motion.div;
@@ -620,25 +621,6 @@ function IntegrationImpact() {
   );
 }
 
-/* ── CTA SECTION ── */
-
-/* ── MID-PAGE CTA BANNER ── */
-function MidCTA() {
-  return (
-    <section className="pt-16 pb-16 relative">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="fade-up is-visible">
-          <BottomCTA
-            variant="text"
-            title={<>Skip the data engineering. <BottomCTA.Highlight>Start asking</BottomCTA.Highlight></>}
-            ctaLabel="Start for free"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ── BOTTOM CTA ── */
 function CTA() {
   return (
@@ -677,7 +659,7 @@ function App() {
 
           See audit: C:/Users/victorg/.claude/plans/d-landing-new-integrations-2-html-using-smooth-cupcake.md */}
       <HowSyncWorks/>
-      <MidCTA/>
+      <MidCTA lead="Skip the data engineering."/>
       <ConnectorsGallery/>
       <IntegrationImpact/>
       {/* TODO SEO [P1]: Insert FAQ section here (5 Q&A, answers 40-60 words each) before the CTA.

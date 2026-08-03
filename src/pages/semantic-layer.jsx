@@ -13,6 +13,7 @@ import StepsProcess from '../components/StepsProcess';
 import CheckIcon from '../components/CheckIcon';
 import MetricsCatalog from '../components/MetricsCatalog';
 import ArrowRightIcon from '../components/ArrowRightIcon';
+import MidCTA from '../components/MidCTA';
 
 /* ── HERO CANVAS — Chaotic data connections calming down ── */
 /* ── HERO CANVAS — Sources converge → green orb → disappear ── */
@@ -468,23 +469,6 @@ function BeforeAfter() {
   );
 }
 
-/* ── MID-PAGE CTA BANNER ── */
-function MidCTA() {
-  return (
-    <section className="pt-16 pb-16 relative">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="fade-up is-visible">
-          <BottomCTA
-            variant="text"
-            title={<>Skip the metric debates. <BottomCTA.Highlight>Start asking</BottomCTA.Highlight></>}
-            ctaLabel="Start for free"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ── BOTTOM CTA ── */
 function BottomCTASection() {
   return (
@@ -511,7 +495,7 @@ function App() {
       <main>
       <Hero />
       <WhatItDoes />
-      <MidCTA />
+      <MidCTA lead="Skip the metric debates." />
       <MetricsCatalog />
       <BeforeAfter />
       <BottomCTASection />

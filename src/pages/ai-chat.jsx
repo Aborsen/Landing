@@ -12,6 +12,7 @@ import StepsProcess from '../components/StepsProcess';
 import SectionHeader from '../components/SectionHeader';
 import CheckIcon from '../components/CheckIcon';
 import ArrowRightIcon from '../components/ArrowRightIcon';
+import MidCTA from '../components/MidCTA';
 
 
 /* ── INLINE CHART COMPONENTS ── */
@@ -1259,6 +1260,7 @@ function App() {
           See plan: C:\Users\victorg\.claude\plans\snappy-rolling-hedgehog.md
       */}
       <HowItWorks />
+      <MidCTA lead="Skip the SQL." />
       <QuestionsGallery />
       <AccuracyComparison />
       {/* TODO SEO [P1]: Insert <FAQ/> component here (between AccuracyComparison and BottomCTA).
