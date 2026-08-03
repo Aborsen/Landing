@@ -84,7 +84,13 @@ function PrivacyContent() {
             To exercise any of the rights mentioned in this Privacy Policy, or in the event of questions or comments relating to the use of personal data, please write to <a href="mailto:privacy@insightis.ai" className="ins-link--inline">privacy@insightis.ai</a>.
           </p>
           <p className="ins-text-body-lg" style={pStyle}>
-            One thing to know about timing: the Insightis application is not open yet. Sign-up and sign-in are placeholders that collect nothing, and no form on the Site submits anything to us. Where this policy describes accounts, billing, connections, and in-product processing, it describes how that data will be handled once the application is available.
+            One thing to know about timing: the Insightis application is not open yet. There is no account to create and nothing is processed inside a workspace, so where this policy describes accounts, billing, connections, and in-product processing, it describes how that data will be handled once the application is available.
+          </p>
+          <p className="ins-text-body-lg" style={pStyle}>
+            What the Site does collect today is what you type into it. Five forms are live: the waitlist field on the sign-in page (your email address), the connector request on the Connectors page (the name of a connector), the support ticket on the Support and Contacts pages (a category, subject, description and your email address), and the sales enquiry (your name, email address and any note you add). Each one submits only when you press the button, and only the fields listed. We do not ask for a password anywhere on the Site, and there is nothing to sign in to.
+          </p>
+          <p className="ins-text-body-lg" style={pStyle}>
+            Those submissions are delivered into Zoho Forms, hosted in the EU, where they reach the team who answers you — sales, support, or the launch list. We use them to reply to you and to plan the launch, not to build a profile or to advertise to you. Support tickets accept a file selection in the browser, but the files themselves are not uploaded: only the filenames reach us, so send anything you need us to read as a reply to our email instead. To have a submission deleted, write to <a href="mailto:privacy@insightis.ai" className="ins-link--inline">privacy@insightis.ai</a> and say which form it was.
           </p>
         </div>
 

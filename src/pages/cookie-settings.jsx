@@ -27,8 +27,23 @@ import Footer from '../components/Footer';
  * tmetric.com/cookies-policy verbatim, cookie lists included. Insightis will run the same
  * Devart stack — ASP.NET/OpenID Connect sign-in plus the Google Analytics, LinkedIn Insight,
  * Microsoft UET and ActiveCampaign tags — so sections 3 and 4 describe that planned
- * deployment rather than what the static site sets today. ins_cookie_notice is the one entry
- * live right now. If the tag plan changes before launch, cut the lists back to match.
+ * deployment rather than what the static site sets today. If the tag plan changes before
+ * launch, cut the lists back to match.
+ *
+ * UPDATE 2026-07-31: the "no tag manager" note above is now history on insightis.ai.
+ * Google Tag Manager (GTM-TSTTC7TZ) is injected into the container build — see
+ * scripts/inject-gtm.mjs — so the GitLab deployment loads it and whatever tags the
+ * container publishes. The Vercel build still sets nothing but ins_cookie_notice. Sections
+ * 3 and 4 are the disclosure that has to stay true as tags are added to that container.
+ *
+ * UPDATE 2026-08-03: section 4 now names Tag Manager itself, because that is the part
+ * this repository can state as fact — the loader ships, it sets no cookies of its own, and
+ * it can introduce a tag without any code change here. What it does NOT do is claim the
+ * container currently publishes exactly the four listed partners: that list came from the
+ * product owner's 2026-07-29 decision, not from the container, and nothing in this codebase
+ * can read GTM-TSTTC7TZ to confirm it. Whoever has access should compare this section
+ * against the container's live tags and cut or extend the lists to match; until then the
+ * wording claims only an approved set, not an observed one.
  */
 
 const SECTIONS = [
@@ -209,6 +224,15 @@ function CookieContent() {
               by this site. Our Cookies Policy and Privacy Policy do not apply to these cookies. They are
               governed by the policies of the companies providing them. The list of cookies used by our
               partners may change from time to time.
+            </p>
+            <h3 className="ins-text-h3" style={{ marginTop: 'var(--ins-size-6)', marginBottom: 'var(--ins-size-2)' }}>Google Tag Manager</h3>
+            <p className="ins-text-body-lg" style={pStyle}>
+              insightis.ai loads Google Tag Manager (container <strong style={strong}>GTM-TSTTC7TZ</strong>). Tag Manager
+              is the delivery mechanism rather than a tracker in its own right: it sets no cookies and collects no
+              analytics itself, but it loads the tags listed in this section, and those tags do. Because the container
+              is configured outside this website, a tag can start setting cookies without any change to the site&rsquo;s
+              code — so treat the lists below as the set of partners we have approved for this container, and expect
+              this page to be updated when that set changes.
             </p>
             <h3 className="ins-text-h3" style={{ marginTop: 'var(--ins-size-6)', marginBottom: 'var(--ins-size-2)' }}>ActiveCampaign</h3>
             <ul style={ulStyle}>
