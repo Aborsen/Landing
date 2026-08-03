@@ -486,7 +486,7 @@ function FeatureSpotlights() {
   return (
     <SharedFeatureSpotlights
       spots={spots}
-      background="var(--ins-glow-section-tall)"
+      background="var(--ins-glow-section)"
       title="Built for the way marketing teams actually work"
       lede="Four capabilities that turn marketing data from a Monday-morning bottleneck into answers you can act on today."
     />

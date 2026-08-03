@@ -842,7 +842,7 @@ function HowItWorks() {
   ];
 
   return (
-    <section style={{padding:'120px 0 140px',background:'var(--ins-glow-section-tall)'}}>
+    <section style={{padding:'120px 0 140px',background:'var(--ins-glow-section)'}}>
       <div className="max-w-7xl mx-auto px-6">
         <div style={{marginBottom:'var(--ins-size-16)'}}>
           <SectionHeader

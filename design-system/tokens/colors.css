@@ -118,25 +118,29 @@
      different design. Home had four sizes of its own; about-insightis, security
      and .ins-hero-glow used teal-500 while everything else used teal-650.
 
-     Three roles, because the height of the thing being washed is what decides
-     how big the ellipse should be:
+     SIZED IN PIXELS, NOT PERCENTAGES — this is the part that actually makes them
+     consistent. A percentage radius resolves against the element, so one token
+     still rendered a different glow on every section: measured on revenue-teams,
+     38% x 42% produced a 924px wash covering 84% of an 1100px section, while the
+     same recipe on the 1080px "How it works" section covered 44%. Section heights
+     across this site run from roughly 600px to over 2000px, so no percentage can
+     look the same on all of them, and chasing it per page is how ten recipes
+     accumulated in the first place.
 
-       hero          one screen tall. Tight and high, sits behind the headline.
-       section       a normal one- or two-screen section. The site-wide default.
-       section-tall  a section that stacks several full-width rows — "How it
-                     works" is four spotlight rows and runs past 2000px. The
-                     standard ellipse scales with the element, so at that height
-                     it stops being a glow behind the heading and becomes a wash
-                     over the whole viewport. This one is smaller and anchored
-                     near the top, so it lights the heading and lets the rows
-                     below sit on the page background.
+     Absolute radii give one glow, identical everywhere, and the tall-section
+     problem disappears rather than needing its own token: a section that stacks
+     four spotlight rows now gets exactly the same 680px glow behind its heading
+     as a short FAQ does, instead of scaling it up into a full-viewport wash.
+
+       hero      centred on the hero, which is a uniform full-screen block
+       section   a fixed ellipse anchored over the heading zone, ~280px down,
+                 which is where the eyebrow and h2 sit after section padding
 
      Alpha is owner-tuned (2026-07-31 visibility pass): the original 0.06–0.08
      washes were measurably present and imperceptible. Keep the falloff at 100% —
-     anything less leaves a hard edge where the gradient ends. */
-  --ins-glow-hero:         radial-gradient(ellipse 26% 32% at 50% 52%, rgba(7,128,126,0.20) 0%, transparent 100%);
-  --ins-glow-section:      radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%);
-  --ins-glow-section-tall: radial-gradient(ellipse 30% 22% at 50% 16%, rgba(7,128,126,0.18) 0%, transparent 100%);
+     anything less leaves a hard edge where the gradient stops. */
+  --ins-glow-hero:    radial-gradient(ellipse 760px 460px at 50% 45%, rgba(7,128,126,0.20) 0%, transparent 100%);
+  --ins-glow-section: radial-gradient(ellipse 620px 340px at 50% 280px, rgba(7,128,126,0.20) 0%, transparent 100%);
 
   --ins-text-body:         var(--ins-color-gray-100);  /* #C0D4DC — lifted from gray-200 on 2026-08-03 for headroom on cards */
   --ins-text-inactive:     var(--ins-color-gray-200);  /* #A8BFC8 — lifted from gray-300, which was only marginal on card surfaces */

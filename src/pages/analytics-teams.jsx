@@ -617,7 +617,7 @@ function FeatureSpotlights() {
   return (
     <SharedFeatureSpotlights
       spots={spots}
-      background="var(--ins-glow-section-tall)"
+      background="var(--ins-glow-section)"
       title="Built for the way analytics teams actually work"
       lede="Four capabilities that turn the data team from a reporting service into a strategic function."
     />

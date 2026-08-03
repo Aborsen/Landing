@@ -612,7 +612,7 @@ function FeatureSpotlights() {
   return (
     <SharedFeatureSpotlights
       spots={spots}
-      background="var(--ins-glow-section-tall)"
+      background="var(--ins-glow-section)"
       title="Built for the way executive teams actually work"
       lede="Four capabilities that put live company metrics at the founder's and the board's fingertips."
     />

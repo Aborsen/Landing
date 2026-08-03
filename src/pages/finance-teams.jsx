@@ -621,7 +621,7 @@ function FeatureSpotlights() {
   return (
     <SharedFeatureSpotlights
       spots={spots}
-      background="var(--ins-glow-section-tall)"
+      background="var(--ins-glow-section)"
       title="Built for the way finance teams actually work"
       lede="Four capabilities that turn finance from a spreadsheet pipeline into a real-time control function."
     />

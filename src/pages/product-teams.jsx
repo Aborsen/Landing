@@ -643,7 +643,7 @@ function FeatureSpotlights() {
   return (
     <SharedFeatureSpotlights
       spots={spots}
-      background="var(--ins-glow-section-tall)"
+      background="var(--ins-glow-section)"
       title="Built for the way product teams actually work"
       lede="Four capabilities that turn the data layer from a bottleneck into something you can ship against."
     />

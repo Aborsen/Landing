@@ -774,7 +774,7 @@ function HowItWorks() {
     { n: '03', title: 'Ask in plain English', desc: 'Your team asks questions. Insightis queries the right sources and returns precise answers in seconds.' },
   ];
   return (
-    <section id="how-it-works" style={{padding:'100px 0', background:'var(--ins-glow-section-tall)', position:'relative'}}>
+    <section id="how-it-works" style={{padding:'100px 0', background:'var(--ins-glow-section)', position:'relative'}}>
       {/* Mobile / reduced-motion text-only summary — hidden on desktop via responsive.css */}
       <div className="how-it-works-text-only" style={{display:'none', maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
         <div style={{textAlign:'center', marginBottom:'var(--ins-size-10)'}}>

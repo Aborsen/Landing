@@ -47,7 +47,7 @@ function FeatureSpotlights({
   /* Tall by default: this section stacks one full-width row per spotlight and
      runs past 2000px, where the standard ellipse scales up into a wash over the
      whole viewport instead of a glow behind the heading. */
-  background = 'var(--ins-glow-section-tall)',
+  background = 'var(--ins-glow-section)',
   title,
   lede,
   eyebrow = 'How it works',

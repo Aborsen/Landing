@@ -541,7 +541,7 @@ function FeatureSpotlights() {
   return (
     <SharedFeatureSpotlights
       spots={spots}
-      background="var(--ins-glow-section-tall)"
+      background="var(--ins-glow-section)"
       title="Built for the way revenue teams actually work"
       lede="Four capabilities that turn RevOps from a reporting queue into a real-time revenue engine."
     />
