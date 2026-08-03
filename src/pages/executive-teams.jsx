@@ -11,6 +11,14 @@ import CheckIcon from '../components/CheckIcon';
 import ConnectorCard from '../components/ConnectorCard';
 import HeroMockup from '../components/HeroMockup';
 
+/* The two section shells below are shared. This page keeps a same-named local
+   wrapper for each that supplies its own data and copy, so App()'s composition
+   never changes and the page-local mockups stay page-local. SpotlightStack is
+   deliberately NOT shared here: this page's version is a different visual that
+   only shares the name. Aliased on import to leave the wrapper names free. */
+import SharedFeatureSpotlights from '../components/FeatureSpotlights';
+import SharedUseCases from '../components/UseCases';
+
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
 );
@@ -602,59 +610,12 @@ function FeatureSpotlights() {
   ];
 
   return (
-    <section id="spotlights" style={{padding:'80px 0 100px',background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{marginBottom:'72px'}}>
-          <SectionHeader
-            eyebrow="How it works"
-            title="Built for the way executive teams actually work"
-            lede="Four capabilities that put live company metrics at the founder's and the board's fingertips."
-          />
-        </div>
-
-        <div style={{display:'flex',flexDirection:'column',gap:'88px'}}>
-          {spots.map((s,i) => {
-            const reverse = i % 2 === 1;
-            return (
-              <div key={i} data-spotlight-grid style={{
-                display:'grid',
-                gridTemplateColumns:'1fr 1fr',
-                gap:'var(--ins-size-16)',
-                alignItems:'center',
-              }}>
-                <div data-spotlight-text style={{order: reverse ? 2 : 0}}>
-                  <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'18px'}}>
-                    <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>{s.eyebrow}</span>
-                  </div>
-                  <h3 className="ins-text-h2" style={{marginBottom:'18px'}}>
-                    {s.title}
-                  </h3>
-                  <p className="ins-text-body-lg" style={{marginBottom:'22px'}}>
-                    {s.body}
-                  </p>
-                  <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px'}}>
-                    {s.bullets.map((b,bi) => (
-                      <li key={bi} style={{display:'flex',alignItems:'flex-start',gap:'10px',fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)',lineHeight:1.55}}>
-                        <CheckIcon size={12} style={{flexShrink:0,marginTop:'var(--ins-size-1)'}} />
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div data-spotlight-visual style={{
-                  order: reverse ? 0 : 2,
-                  display:'flex',
-                  alignItems:'stretch',
-                  height:'440px',
-                }}>
-                  {s.visual}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
+    <SharedFeatureSpotlights
+      spots={spots}
+      background="radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)"
+      title="Built for the way executive teams actually work"
+      lede="Four capabilities that put live company metrics at the founder's and the board's fingertips."
+    />
   );
 }
 
@@ -694,62 +655,13 @@ function UseCases() {
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{marginBottom:'var(--ins-size-20)'}}>
-          <div style={{
-            position:'relative',borderRadius:'var(--ins-radius-16)',
-            border:'1px solid rgba(30,30,48,1)',
-            padding:'32px 48px',overflow:'hidden',
-            display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'var(--ins-size-6)',
-            flexWrap:'wrap',
-            background:'linear-gradient(135deg,var(--ins-color-promo-a) 0%,var(--ins-color-promo-b) 50%,var(--ins-color-promo-a) 100%)',
-          }}>
-            <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
-            <div style={{flex:'1 1 360px',minWidth:0}}>
-              <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'var(--ins-size-2)'}}>
-                See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own numbers</span>
-              </h3>
-              <p className="ins-text-body">
-                Connect Salesforce or NetSuite and ask Insightis the company-health question that always takes too long to answer.
-              </p>
-            </div>
-            <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
-              Start for free
-            </Button>
-          </div>
-        </div>
-        <div style={{marginBottom:'var(--ins-size-14)'}}>
-          <SectionHeader
-            eyebrow="Use cases"
-            title="What executive teams use Insightis for"
-          />
-        </div>
-
-        <div data-usecase-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'14px'}}>
-          {cases.map((c,i) => (
-            <div key={i}
-              style={{
-                background:'rgba(13,17,23,.6)',
-                border:'1px solid var(--ins-color-white-a-06)',
-                borderRadius:'var(--ins-radius-16)',padding:'var(--ins-size-6)',
-                position:'relative',overflow:'hidden',
-                transition:'all .2s',
-              }}
-              onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-              onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-color-white-a-06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}
-            >
-              <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
-              <div style={{width:'38px',height:'38px',borderRadius:'10px',background:'var(--ins-color-teal-a-08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'14px'}}>
-                {c.icon}
-              </div>
-              <h3 style={{fontSize:'var(--ins-font-size-15)',fontWeight:600,color:'var(--ins-text-heading-soft)',marginBottom:'6px'}}>{c.title}</h3>
-              <p className="ins-text-body">{c.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <SharedUseCases
+      cases={cases}
+      background="radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)"
+      promoTitle={<>See it on <SharedUseCases.Highlight>your own numbers</SharedUseCases.Highlight></>}
+      promoDesc="Connect Salesforce or NetSuite and ask Insightis the company-health question that always takes too long to answer."
+      title="What executive teams use Insightis for"
+    />
   );
 }
 

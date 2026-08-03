@@ -14,6 +14,15 @@ import CheckIcon from '../components/CheckIcon';
 import ConnectorCard from '../components/ConnectorCard';
 import HeroMockup from '../components/HeroMockup';
 
+/* The three section shells below are shared. Each page keeps a same-named local
+   wrapper that supplies its own data and copy, so App()'s composition never
+   changes and the page-local mockups (SpotlightChat/Semantic/Anomalies and
+   ChromeHeader) stay page-local. Aliased on import to leave those wrapper names
+   free. */
+import SharedFeatureSpotlights from '../components/FeatureSpotlights';
+import SharedUseCases from '../components/UseCases';
+import SharedSpotlightStack from '../components/SpotlightStack';
+
 const ArrowRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
 );
@@ -558,117 +567,17 @@ function SpotlightStack() {
     {label:'Billing events', amt:'8.4K',  src:'Stripe',     detail:'stg_invoices',      owner:'Data Eng', ts:'06:30 UTC'},
   ];
   return (
-    <div style={{
-      width:'100%',
-      background:'rgba(13,17,23,0.9)',
-      border:'1px solid var(--ins-color-white-a-08)',
-      borderRadius:'var(--ins-radius-20)',
-      overflow:'hidden',
-      boxShadow:'none',
-      display:'flex',
-      flexDirection:'column',
-    }}>
-      <ChromeHeader label="audit · churn_rate" />
-      <div style={{padding:'20px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
-
-        {/* Headline KPI with audit stamp */}
-        <div style={{
-          background:'linear-gradient(135deg, rgba(9,160,157,.10) 0%, rgba(9,160,157,.02) 100%)',
-          border:'1px solid rgba(9,160,157,.32)',
-          borderRadius:'11px',
-          padding:'12px 14px',
-          marginBottom:'var(--ins-size-3)',
-          display:'flex',alignItems:'center',justifyContent:'space-between',gap:'var(--ins-size-3)',
-        }}>
-          <div style={{minWidth:0}}>
-            <div style={{display:'flex',alignItems:'baseline',gap:'10px'}}>
-              <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-22)',fontWeight:500,color:'var(--ins-color-gray-100)',letterSpacing:'-.01em'}}>4.8%</span>
-              <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-11)',color:'var(--ins-text-body)'}}>churn_rate · SMB monthly</span>
-            </div>
-            <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',letterSpacing:'.06em',textTransform:'uppercase',marginTop:'var(--ins-size-1)'}}>
-              Data Engineering · v3.2 · 4 source tables
-            </div>
-          </div>
-          <span style={{
-            display:'inline-flex',alignItems:'center',gap:'5px',
-            padding:'4px 10px',borderRadius:'999px',
-            background:'rgba(34,197,94,.08)',border:'1px solid rgba(34,197,94,.3)',
-            fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-status-success-fg)',
-            letterSpacing:'.08em',textTransform:'uppercase',whiteSpace:'nowrap',flexShrink:0,
-          }}>
-            <span style={{width:'5px',height:'5px',borderRadius:'50%',background:'var(--ins-status-success-fg)'}}/>
-            audit-ready
-          </span>
-        </div>
-
-        {/* Trace eyebrow */}
-        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'7px'}}>
-          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'10px',color:'var(--ins-text-inactive)',letterSpacing:'.1em',textTransform:'uppercase'}}>↳ drill to source</span>
-          <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-body)'}}>4 source tables</span>
-        </div>
-
-        {/* Lineage rows */}
-        <div style={{position:'relative',paddingLeft:'14px'}}>
-          {/* Tree spine */}
-          <div style={{
-            position:'absolute',
-            left:'4px',top:'4px',bottom:'14px',
-            width:'1px',
-            background:'rgba(14,196,193,.25)',
-          }}/>
-
-          {trace.map((t,i)=>(
-            <div key={i} style={{position:'relative',marginBottom:i<trace.length-1?'5px':'0'}}>
-              {/* Branch tick */}
-              <div style={{
-                position:'absolute',
-                left:'-10px',top:'14px',
-                width:'10px',height:'1px',
-                background:'rgba(14,196,193,.32)',
-              }}/>
-              <div style={{
-                background:'rgba(255,255,255,.022)',
-                border:'1px solid var(--ins-color-white-a-06)',
-                borderRadius:'var(--ins-radius-8)',
-                padding:'8px 11px',
-                display:'flex',alignItems:'center',gap:'10px',
-              }}>
-                <span style={{fontSize:'11.5px',color:'var(--ins-color-gray-100)',fontWeight:500,minWidth:'92px',flexShrink:0}}>{t.label}</span>
-                <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-12)',color:'var(--ins-text-highlight)',fontWeight:500,minWidth:'46px',flexShrink:0}}>{t.amt}</span>
-                <div style={{flex:1,minWidth:0,display:'flex',alignItems:'center',gap:'6px',fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-body)'}}>
-                  <span style={{
-                    color:'var(--ins-status-warning-fg)',
-                    padding:'1px 6px',borderRadius:'var(--ins-radius-4)',
-                    background:'rgba(251,191,36,.08)',
-                    border:'1px solid rgba(251,191,36,.22)',
-                    letterSpacing:'.04em',
-                    flexShrink:0,
-                  }}>{t.src}</span>
-                  <span style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{t.detail} · {t.owner}</span>
-                </div>
-                <span style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'9px',color:'var(--ins-text-inactive)',whiteSpace:'nowrap',flexShrink:0,letterSpacing:'.04em'}}>{t.ts}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Audit footer */}
-        <div style={{
-          marginTop:'var(--ins-size-3)',
-          paddingTop:'10px',
-          borderTop:'1px dashed var(--ins-color-white-a-06)',
-          display:'flex',alignItems:'center',justifyContent:'space-between',
-          fontFamily:'var(--ins-font-family-mono)',fontSize:'9.5px',color:'var(--ins-text-inactive)',
-          letterSpacing:'.04em',
-        }}>
-          <span style={{display:'inline-flex',alignItems:'center',gap:'6px'}}>
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ins-status-success-fg)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
-            <span>Audit trail</span>
-          </span>
-          <span>signed off by Data Engineering · 06:42 UTC</span>
-        </div>
-      </div>
-    </div>
+    <SharedSpotlightStack
+      chrome={<ChromeHeader label="audit · churn_rate" />}
+      kpiValue="4.8%"
+      kpiMeta="churn_rate · SMB monthly"
+      ownerLine="Data Engineering · v3.2 · 4 source tables"
+      traceEyebrow="drill to source"
+      traceCount="4 source tables"
+      trace={trace}
+      footerLabel="Audit trail"
+      signoff="signed off by Data Engineering · 06:42 UTC"
+    />
   );
 }
 
@@ -706,59 +615,12 @@ function FeatureSpotlights() {
   ];
 
   return (
-    <section id="spotlights" style={{padding:'80px 0 100px',background:'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)'}}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{marginBottom:'72px'}}>
-          <SectionHeader
-            eyebrow="How it works"
-            title="Built for the way analytics teams actually work"
-            lede="Four capabilities that turn the data team from a reporting service into a strategic function."
-          />
-        </div>
-
-        <div style={{display:'flex',flexDirection:'column',gap:'88px'}}>
-          {spots.map((s,i) => {
-            const reverse = i % 2 === 1;
-            return (
-              <div key={i} data-spotlight-grid style={{
-                display:'grid',
-                gridTemplateColumns:'1fr 1fr',
-                gap:'var(--ins-size-16)',
-                alignItems:'center',
-              }}>
-                <div data-spotlight-text style={{order: reverse ? 2 : 0}}>
-                  <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'18px'}}>
-                    <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>{s.eyebrow}</span>
-                  </div>
-                  <h3 className="ins-text-h2" style={{marginBottom:'18px'}}>
-                    {s.title}
-                  </h3>
-                  <p className="ins-text-body-lg" style={{marginBottom:'22px'}}>
-                    {s.body}
-                  </p>
-                  <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'10px'}}>
-                    {s.bullets.map((b,bi) => (
-                      <li key={bi} style={{display:'flex',alignItems:'flex-start',gap:'10px',fontSize:'var(--ins-font-size-14)',color:'var(--ins-text-body)',lineHeight:1.55}}>
-                        <CheckIcon size={12} style={{flexShrink:0,marginTop:'var(--ins-size-1)'}} />
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div data-spotlight-visual style={{
-                  order: reverse ? 0 : 2,
-                  display:'flex',
-                  alignItems:'stretch',
-                  height:'440px',
-                }}>
-                  {s.visual}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
+    <SharedFeatureSpotlights
+      spots={spots}
+      background="radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)"
+      title="Built for the way analytics teams actually work"
+      lede="Four capabilities that turn the data team from a reporting service into a strategic function."
+    />
   );
 }
 
@@ -798,62 +660,13 @@ function UseCases() {
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)'}}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{marginBottom:'var(--ins-size-20)'}}>
-          <div style={{
-            position:'relative',borderRadius:'var(--ins-radius-16)',
-            border:'1px solid rgba(30,30,48,1)',
-            padding:'32px 48px',overflow:'hidden',
-            display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:'var(--ins-size-6)',
-            flexWrap:'wrap',
-            background:'linear-gradient(135deg,var(--ins-color-promo-a) 0%,var(--ins-color-promo-b) 50%,var(--ins-color-promo-a) 100%)',
-          }}>
-            <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
-            <div style={{flex:'1 1 360px',minWidth:0}}>
-              <h3 style={{fontSize:'clamp(22px,3vw,30px)',fontWeight:500,color:'var(--ins-text-heading)',letterSpacing:'-.03em',lineHeight:1.2,marginBottom:'var(--ins-size-2)'}}>
-                See it on <span style={{color:'var(--ins-button-primary-bg)'}}>your own data</span>
-              </h3>
-              <p className="ins-text-body">
-                Connect Snowflake or BigQuery and ask Insightis the data question that always takes too long to answer.
-              </p>
-            </div>
-            <Button as="a" href="/auth/sign-up/" variant="primary" size="lg" iconEnd={<ArrowRightIcon />}>
-              Start for free
-            </Button>
-          </div>
-        </div>
-        <div style={{marginBottom:'var(--ins-size-14)'}}>
-          <SectionHeader
-            eyebrow="Use cases"
-            title="What analytics teams use Insightis for"
-          />
-        </div>
-
-        <div data-usecase-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'14px'}}>
-          {cases.map((c,i) => (
-            <div key={i}
-              style={{
-                background:'rgba(13,17,23,.6)',
-                border:'1px solid var(--ins-color-white-a-06)',
-                borderRadius:'var(--ins-radius-16)',padding:'var(--ins-size-6)',
-                position:'relative',overflow:'hidden',
-                transition:'all .2s',
-              }}
-              onMouseEnter={e=>{e.currentTarget.style.borderColor='rgba(9,160,157,.25)';e.currentTarget.style.background='rgba(9,160,157,.04)';}}
-              onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--ins-color-white-a-06)';e.currentTarget.style.background='rgba(13,17,23,.6)';}}
-            >
-              <div style={{position:'absolute',top:0,left:0,right:0,height:'1px',background:'linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)'}}/>
-              <div style={{width:'38px',height:'38px',borderRadius:'10px',background:'var(--ins-color-teal-a-08)',border:'1px solid rgba(9,160,157,.2)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'14px'}}>
-                {c.icon}
-              </div>
-              <h3 style={{fontSize:'var(--ins-font-size-15)',fontWeight:600,color:'var(--ins-text-heading-soft)',marginBottom:'6px'}}>{c.title}</h3>
-              <p className="ins-text-body">{c.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <SharedUseCases
+      cases={cases}
+      background="radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)"
+      promoTitle={<>See it on <SharedUseCases.Highlight>your own data</SharedUseCases.Highlight></>}
+      promoDesc="Connect Snowflake or BigQuery and ask Insightis the data question that always takes too long to answer."
+      title="What analytics teams use Insightis for"
+    />
   );
 }
 
