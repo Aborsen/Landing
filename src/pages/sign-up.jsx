@@ -8,6 +8,7 @@ function App() {
   return (
     <AuthShell>
       <AuthCard
+        waitlist
         title="Sign-up is coming soon"
         blurb="Insightis isn't open to the public yet. We're almost there — check back soon to create your account."
       />

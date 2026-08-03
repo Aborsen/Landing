@@ -22,27 +22,9 @@ import HeroMockup from '../components/HeroMockup';
 import SharedFeatureSpotlights from '../components/FeatureSpotlights';
 import SharedUseCases from '../components/UseCases';
 import SharedSpotlightStack from '../components/SpotlightStack';
-
-const ArrowRightIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-);
+import ArrowRightIcon from '../components/ArrowRightIcon';
 
 /* ── CHART COMPONENTS (verbatim from AI Chat.html) ── */
-function MiniBarChart({ data, color }) {
-  const max = Math.max(...data);
-  return (
-    <div style={{display:'flex',alignItems:'flex-end',gap:'3px',height:'36px',marginTop:'10px'}}>
-      {data.map((v,i) => (
-        <div key={i} style={{
-          flex:1, borderRadius:'2px 2px 0 0',
-          background: i===data.length-1 ? color : color+'55',
-          height:`${(v/max)*100}%`,
-          minHeight:'4px',
-        }}/>
-      ))}
-    </div>
-  );
-}
 
 /* ── HERO ── */
 function Hero() {
@@ -276,46 +258,6 @@ function RelevantIntegrations() {
 }
 
 /* ── BEFORE / AFTER ── */
-function BeforeAfter() {
-  return (
-    <section style={{padding:'100px 0',background:'var(--ins-glow-section)'}}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'52px'}}>
-          <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>The Difference</span>
-          </div>
-          <h2 className="ins-text-display mb-3">
-            Data teams before vs. after Insightis
-          </h2>        </div>
-
-        <ComparisonCards
-          before={{
-            label: 'Before Insightis',
-            items: [
-              'Team drowning in repetitive data requests',
-              'Each team has its own metric definitions',
-              'Pipeline failures found reactively',
-              'Ad hoc SQL queue never empties',
-              'Schema drift breaks models silently',
-              'Data ROI impossible to quantify',
-            ],
-          }}
-          after={{
-            label: 'With Insightis',
-            items: [
-              'Business users self-serve in plain English',
-              'One Semantic Layer governs all definitions',
-              'Anomalies surface before anyone complains',
-              'Complex questions answered without SQL',
-              'Schema changes flagged automatically',
-              'Data impact visible and measurable',
-            ],
-          }}
-        />
-      </div>
-    </section>
-  );
-}
 
 /* ── BOTTOM CTA ── */
 function BottomCTASection() {
@@ -697,55 +639,6 @@ function UseCases() {
 }
 
 /* ── TESTIMONIALS ── */
-function Testimonials() {
-  const items = [
-    {
-      quote:'In the first month we deflected ~70% of ad hoc SQL tickets. The team finally has time for real analysis instead of clearing a queue.',
-      name:'Maya Chen',
-      role:'Head of Data',
-      company:'Series-B SaaS',
-    },
-    {
-      quote:'Marketing and Finance had three different definitions of CAC. Insightis on top of our dbt models killed the debate — one metric, one owner, one source of truth.',
-      name:'Daniel Okafor',
-      role:'Senior Analytics Engineer',
-      company:'B2B Marketplace',
-    },
-    {
-      quote:'A schema change on Stripe used to mean a Slack-storm Monday morning. Now we see the alert and the affected dbt models before anyone notices the dashboard.',
-      name:'Priya Raman',
-      role:'Analytics Manager',
-      company:'Consumer Fintech',
-    },
-  ];
-
-  return (
-    <section style={{padding:'100px 0',background:'var(--ins-glow-section)'}}>
-      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
-        <div style={{textAlign:'center',marginBottom:'var(--ins-size-14)'}}>
-          <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
-            <span style={{fontSize:'10px',fontWeight:500,letterSpacing:'.12em',textTransform:'uppercase',fontFamily:'var(--ins-font-family-mono)'}}>Stories</span>
-          </div>
-          <h2 className="ins-text-display mb-3">
-            Data teams who stopped firefighting
-          </h2>
-        </div>
-
-        <div data-testimonials-grid style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'var(--ins-size-4)'}}>
-          {items.map((t,i) => (
-            <TestimonialCard
-              key={i}
-              quote={t.quote}
-              name={t.name}
-              role={t.role}
-              company={t.company}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ── FAQ ── */
 function FAQ() {

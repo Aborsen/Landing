@@ -11,10 +11,8 @@ import BottomCTA from '../components/BottomCTA';
 import StepsProcess from '../components/StepsProcess';
 import SectionHeader from '../components/SectionHeader';
 import CheckIcon from '../components/CheckIcon';
+import ArrowRightIcon from '../components/ArrowRightIcon';
 
-const ArrowRightIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-);
 
 /* ── INLINE CHART COMPONENTS ── */
 /* Brand-aligned categorical palette — cool, teal-forward tones that sit on the
@@ -913,24 +911,6 @@ function AccuracyComparison() {
 }
 
 /* ── MID-PAGE CTA BANNER ── */
-function MidCTA() {
-  return (
-    <section className="pt-16 pb-16 relative">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="fade-up is-visible">
-          <BottomCTA
-          variant="buttons"
-          title={<>Get answers from your data <BottomCTA.Highlight>in seconds</BottomCTA.Highlight>, not days</>}
-          description="Ask your first question in under two minutes — no SQL, no analyst queue, no waiting. Free to start, no credit card required."
-          ctaLabel="Start for free"
-          secondaryCtaLabel="Explore Pricing"
-          secondaryCtaHref="/pricing"
-        />
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ── BOTTOM CTA ── */
 function BottomCTASection() {
@@ -1279,7 +1259,6 @@ function App() {
           See plan: C:\Users\victorg\.claude\plans\snappy-rolling-hedgehog.md
       */}
       <HowItWorks />
-      <MidCTA />
       <QuestionsGallery />
       <AccuracyComparison />
       {/* TODO SEO [P1]: Insert <FAQ/> component here (between AccuracyComparison and BottomCTA).

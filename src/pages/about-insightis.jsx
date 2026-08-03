@@ -9,10 +9,7 @@ import CheckIcon from '../components/CheckIcon';
 import StepsProcess from '../components/StepsProcess';
 import StatStrip from '../components/StatStrip';
 import BottomCTA from '../components/BottomCTA';
-
-const ArrowRightIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-);
+import ArrowRightIcon from '../components/ArrowRightIcon';
 
 /*
  * About page — rebuilt to the CMO launch-pack reference (about-insightis.html).

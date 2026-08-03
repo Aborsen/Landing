@@ -12,10 +12,7 @@ import BottomCTA from '../components/BottomCTA';
 import StepsProcess from '../components/StepsProcess';
 import CheckIcon from '../components/CheckIcon';
 import MetricsCatalog from '../components/MetricsCatalog';
-
-const ArrowRightIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-);
+import ArrowRightIcon from '../components/ArrowRightIcon';
 
 /* ── HERO CANVAS — Chaotic data connections calming down ── */
 /* ── HERO CANVAS — Sources converge → green orb → disappear ── */
@@ -374,7 +371,6 @@ function Hero() {
   );
 }
 
-
 /* ── WHAT THE SEMANTIC LAYER DOES ── */
 function WhatItDoes() {
   const features = [
@@ -414,312 +410,13 @@ function WhatItDoes() {
   );
 }
 
-
-function Panel1() {
-  const metrics = [
-    { name:'Customer Acquisition Cost', short:'@CAC',      cat:'Marketing', src:'Google Analytics', active:true  },
-    { name:'Conversion Rate',           short:'@ConvRate',  cat:'Marketing', src:'Stripe',           active:true  },
-    { name:'MQL Score',                 short:'@MQL',       cat:'Marketing', src:'PostgreSQL',        active:true  },
-    { name:'Cost Per Click',            short:'@CPC',       cat:'Marketing', src:'Salesforce',        active:true  },
-    { name:'Net Revenue Retention',     short:'@NRR',       cat:'RevOps',    src:'Stripe',           active:true  },
-    { name:'Return on Ad Spend',        short:'@ROAS',      cat:'Marketing', src:'PostgreSQL',        active:false },
-  ];
-  const CAT_COLORS = { Marketing:'rgba(14,196,193,.12)', RevOps:'rgba(99,91,255,.12)' };
-  const CAT_TEXT   = { Marketing:'var(--ins-text-highlight)', RevOps:'#8b7cf8' };
-
-  return (
-    <div style={{width:'100%',background:'var(--ins-glow-section), rgba(10,14,19,.95)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none'}}>
-      {/* Toolbar */}
-      <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'10px 16px',background:'var(--ins-color-white-a-02)',borderBottom:'1px solid var(--ins-color-white-a-06)'}}>
-        <div style={{display:'flex',gap:5}}>
-          {['All 12','Marketing 10','RevOps 2'].map((l,i)=>(
-            <div key={i} style={{padding:'3px 10px',borderRadius:'999px',fontSize:'var(--ins-font-size-11)',fontWeight:600,fontFamily:'var(--ins-font-family-mono)',background:i===0?'var(--mint)':'var(--ins-color-white-a-04)',color:i===0?'#fff':'rgba(255,255,255,.4)',border:`1px solid ${i===0?'var(--mint)':'var(--ins-color-white-a-07)'}`}}>{l}</div>
-          ))}
-        </div>
-        <div style={{display:'inline-flex',alignItems:'center',gap:'6px',padding:'5px 12px',background:'rgba(9,160,157,.1)',border:'1px solid rgba(9,160,157,.3)',borderRadius:'var(--ins-radius-8)',fontSize:'11.5px',fontWeight:600,color:'var(--ins-text-highlight)',cursor:'pointer'}}>
-          <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/></svg>
-          + New Metric
-        </div>
-      </div>
-      {/* Table header */}
-      <div style={{display:'grid',gridTemplateColumns:'40px 1fr 100px 90px 110px 36px',padding:'6px 16px',borderBottom:'1px solid var(--ins-color-white-a-05)'}}>
-        {['','Metric Name','Short Name','Category','Source',''].map((h,i)=>(
-          <div key={i} style={{fontSize:'10px',fontFamily:'var(--ins-font-family-mono)',fontWeight:600,color:'rgba(255,255,255,.4)',textTransform:'uppercase',letterSpacing:'.08em'}}>{h}</div>
-        ))}
-      </div>
-      {/* Rows */}
-      {metrics.map((m,i)=>(
-        <div key={i} style={{display:'grid',gridTemplateColumns:'40px 1fr 100px 90px 110px 36px',padding:'9px 16px',borderBottom:'1px solid var(--ins-color-white-a-03)',alignItems:'center',background:i===0?'rgba(9,160,157,.05)':'transparent'}}>
-          <div style={{width:'28px',height:'16px',borderRadius:'var(--ins-radius-8)',background:m.active?'rgba(9,160,157,.15)':'var(--ins-color-white-a-06)',border:`1px solid ${m.active?'rgba(9,160,157,.4)':'var(--ins-color-white-a-10)'}`,position:'relative'}}>
-            <div style={{position:'absolute',top:'2px',width:'10px',height:'10px',borderRadius:'50%',background:m.active?'var(--ins-text-highlight)':'rgba(255,255,255,.25)',transition:'left .2s',left:m.active?'14px':'2px'}}/>
-          </div>
-          <div style={{fontSize:'var(--ins-font-size-12)',color:'rgba(232,242,245,.85)',fontWeight:500,whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',paddingRight:'var(--ins-size-2)'}}>{m.name}</div>
-          <div style={{fontSize:'var(--ins-font-size-11)',fontFamily:'var(--ins-font-family-mono)',color:'var(--ins-text-highlight)',background:'rgba(9,160,157,.07)',padding:'2px 6px',borderRadius:'var(--ins-radius-4)',width:'fit-content'}}>{m.short}</div>
-          <div style={{fontSize:'var(--ins-font-size-11)',padding:'2px 8px',borderRadius:'var(--ins-radius-4)',background:CAT_COLORS[m.cat]||'var(--ins-color-white-a-06)',color:CAT_TEXT[m.cat]||'var(--ins-text-body)',width:'fit-content'}}>{m.cat}</div>
-          <div style={{fontSize:'var(--ins-font-size-11)',color:'rgba(255,255,255,.4)',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{m.src}</div>
-          <div style={{color:'rgba(255,255,255,.2)',fontSize:'var(--ins-font-size-14)',cursor:'pointer'}}>···</div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 // ── PANEL 2: AI Auto-Mapping ──
-function Panel2() {
-  const [step, setStep] = React.useState(0);
-  useEffect(()=>{
-    const t = setInterval(()=> setStep(s => s<4 ? s+1 : 0), 1200);
-    return () => clearInterval(t);
-  },[]);
-
-  const fields = ['@marketing_spend','@sales_spend','@new_customers'];
-  const mapped = ['Amount (SUM)','Spend (SUM)','Customers (COUNT)'];
-  const srcs   = ['Google Analytics','Stripe','HubSpot'];
-
-  return (
-    <div style={{width:'100%',maxWidth:'420px',background:'var(--ins-glow-section), rgba(10,14,19,.95)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'var(--ins-size-5)'}}>
-      <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)',marginBottom:'var(--ins-size-4)'}}>
-        <div style={{width:'22px',height:'22px',borderRadius:'var(--ins-radius-6)',background:'rgba(9,160,157,.12)',border:'1px solid rgba(9,160,157,.25)',display:'flex',alignItems:'center',justifyContent:'center'}}>
-          <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z" stroke="var(--ins-text-highlight)" strokeWidth="1.2" strokeLinejoin="round"/></svg>
-        </div>
-        <span style={{fontSize:'var(--ins-font-size-12)',fontWeight:600,color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)'}}>AI Auto-Mapping</span>
-        <div style={{marginLeft:'auto',display:'flex',alignItems:'center',gap:'var(--ins-size-1)',fontSize:'10px',color:'rgba(34,197,94,.8)',fontFamily:'var(--ins-font-family-mono)'}}>
-          <div style={{width:'5px',height:'5px',borderRadius:'50%',background:'var(--ins-status-success-fg)',boxShadow:'0 0 5px var(--ins-status-success-fg)',animation:'pulse 1.5s infinite'}}/>
-          mapping...
-        </div>
-      </div>
-
-      <div style={{fontSize:'var(--ins-font-size-12)',color:'rgba(255,255,255,.35)',marginBottom:'var(--ins-size-3)',fontFamily:'var(--ins-font-family-mono)'}}>Customer Acquisition Cost → CAC</div>
-
-      <div style={{fontSize:'11.5px',color:'var(--ins-text-body)',marginBottom:'var(--ins-size-3)',lineHeight:1.6}}>
-        Connecting <span style={{color:'var(--ins-text-highlight)'}}>(@marketing_spend + @sales_spend) / @new_customers</span>
-      </div>
-
-      <div style={{display:'flex',flexDirection:'column',gap:'var(--ins-size-2)'}}>
-        {fields.map((f,i) => {
-          const done = step > i;
-          const active = step === i;
-          return (
-            <div key={i} style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)',padding:'9px 12px',borderRadius:'10px',border:`1px solid ${done?'rgba(9,160,157,.3)':active?'rgba(9,160,157,.15)':'var(--ins-color-white-a-06)'}`,background:done?'rgba(9,160,157,.06)':active?'rgba(9,160,157,.03)':'var(--ins-color-white-a-02)',transition:'all .3s'}}>
-              <div style={{fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-11)',color:done?'var(--ins-text-highlight)':'rgba(255,255,255,.4)',flex:1}}>{f}</div>
-              {(done||active) && (
-                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" style={{flexShrink:0,opacity:active?0.5:1}}><path d="M3 8h10M9 4l4 4-4 4" stroke="var(--ins-text-highlight)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              )}
-              {done && (
-                <div style={{display:'flex',flexDirection:'column',alignItems:'flex-end'}}>
-                  <div style={{fontSize:'10.5px',color:'rgba(255,255,255,.6)',fontFamily:'var(--ins-font-family-mono)'}}>{srcs[i]}</div>
-                  <div style={{fontSize:'10px',color:'rgba(9,160,157,.7)',fontFamily:'var(--ins-font-family-mono)'}}>{mapped[i]}</div>
-                </div>
-              )}
-              {active && (
-                <div style={{display:'flex',gap:'3px',alignItems:'center'}}>
-                  {[0,1,2].map(d=><div key={d} style={{width:'4px',height:'4px',borderRadius:'50%',background:'var(--ins-text-highlight)',animation:`pulse ${0.9+d*0.15}s ease-in-out infinite`,animationDelay:`${d*0.15}s`}}/>)}
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-
-      {step >= 4 && (
-        <div style={{marginTop:'var(--ins-size-3)',padding:'10px 14px',borderRadius:'10px',background:'rgba(34,197,94,.06)',border:'1px solid rgba(34,197,94,.2)',display:'flex',alignItems:'center',gap:'var(--ins-size-2)',animation:'slideUp .3s ease both'}}>
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><polyline points="2 8 6 12 14 4" stroke="var(--ins-status-success-fg)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          <span style={{fontSize:'var(--ins-font-size-12)',color:'rgba(34,197,94,.9)',fontWeight:500}}>All fields mapped — metric certified ✓</span>
-        </div>
-      )}
-    </div>
-  );
-}
 
 // ── PANEL 3: Create Metric modal ──
-function Panel3() {
-  return (
-    <div style={{width:'100%',maxWidth:'380px',background:'var(--ins-glow-section), rgba(13,17,23,.97)',border:'1px solid var(--ins-color-white-a-10)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'var(--ins-size-6)'}}>
-      <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'var(--ins-size-5)'}}>
-        <span style={{fontSize:'var(--ins-font-size-15)',fontWeight:600,color:'var(--ins-color-gray-100)'}}>Create New Metric</span>
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 2l12 12M14 2L2 14" stroke="rgba(255,255,255,.3)" strokeWidth="1.5" strokeLinecap="round"/></svg>
-      </div>
-      {[{label:'Name',ph:'e.g., Customer Acquisition Cost'},{label:'Short name',ph:'@CAC'}].map((f,i)=>(
-        <div key={i} style={{marginBottom:'14px'}}>
-          <div style={{fontSize:'11.5px',color:'rgba(255,255,255,.4)',marginBottom:'6px',fontFamily:'var(--ins-font-family-mono)'}}>{f.label}</div>
-          <div style={{padding:'9px 12px',borderRadius:'var(--ins-radius-8)',border:'1px solid var(--ins-color-white-a-10)',background:'var(--ins-color-white-a-04)',fontSize:'13px',color:'rgba(255,255,255,.6)',fontFamily:'var(--ins-font-family-mono)'}}>{i===0?'Customer Acquisition Cost':f.ph}</div>
-        </div>
-      ))}
-      <div style={{marginBottom:'14px'}}>
-        <div style={{fontSize:'11.5px',color:'rgba(255,255,255,.4)',marginBottom:'6px',fontFamily:'var(--ins-font-family-mono)'}}>Definition Method</div>
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',borderRadius:'var(--ins-radius-8)',overflow:'hidden',border:'1px solid var(--ins-color-white-a-08)'}}>
-          <div style={{padding:'var(--ins-size-2)',textAlign:'center',background:'var(--ins-color-white-a-08)',fontSize:'var(--ins-font-size-12)',color:'var(--ins-color-gray-100)',fontWeight:500,display:'flex',alignItems:'center',justifyContent:'center',gap:'5px'}}>
-            <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3v10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
-            Direct Mapping
-          </div>
-          <div style={{padding:'var(--ins-size-2)',textAlign:'center',background:'transparent',fontSize:'var(--ins-font-size-12)',color:'rgba(255,255,255,.3)',display:'flex',alignItems:'center',justifyContent:'center',gap:'5px'}}>
-            <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M4 12l8-8M8 4h4v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
-            Formula
-          </div>
-        </div>
-      </div>
-      <div style={{padding:'14px',borderRadius:'10px',border:'1px solid var(--ins-color-white-a-07)',background:'var(--ins-color-white-a-03)'}}>
-        <div style={{display:'grid',gridTemplateColumns:'1fr auto 1fr',gap:'var(--ins-size-2)',alignItems:'center',marginBottom:'10px'}}>
-          <div>
-            <div style={{fontSize:'10px',color:'rgba(255,255,255,.3)',marginBottom:'var(--ins-size-1)',fontFamily:'var(--ins-font-family-mono)'}}>Source</div>
-            <div style={{padding:'6px 10px',borderRadius:'7px',border:'1px solid var(--ins-color-white-a-10)',background:'var(--ins-color-white-a-04)',fontSize:'11.5px',color:'rgba(255,255,255,.6)',display:'flex',alignItems:'center',gap:'5px'}}>
-              <span style={{fontSize:'9px'}}>📊</span> Google Analytics
-            </div>
-          </div>
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="rgba(9,160,157,.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          <div>
-            <div style={{fontSize:'10px',color:'rgba(255,255,255,.3)',marginBottom:'var(--ins-size-1)',fontFamily:'var(--ins-font-family-mono)'}}>Object</div>
-            <div style={{padding:'6px 10px',borderRadius:'7px',border:'1px solid rgba(9,160,157,.3)',background:'rgba(9,160,157,.06)',fontSize:'11.5px',color:'var(--ins-text-highlight)'}}>Charges</div>
-          </div>
-        </div>
-        <div style={{display:'grid',gridTemplateColumns:'1fr auto 1fr',gap:'var(--ins-size-2)',alignItems:'center'}}>
-          <div>
-            <div style={{fontSize:'10px',color:'rgba(255,255,255,.3)',marginBottom:'var(--ins-size-1)',fontFamily:'var(--ins-font-family-mono)'}}>Field</div>
-            <div style={{padding:'6px 10px',borderRadius:'7px',border:'1px solid rgba(9,160,157,.3)',background:'rgba(9,160,157,.06)',fontSize:'11.5px',color:'var(--ins-text-highlight)'}}>Amount</div>
-          </div>
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="rgba(9,160,157,.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          <div>
-            <div style={{fontSize:'10px',color:'rgba(255,255,255,.3)',marginBottom:'var(--ins-size-1)',fontFamily:'var(--ins-font-family-mono)'}}>Aggregation</div>
-            <div style={{padding:'6px 10px',borderRadius:'7px',border:'1px solid var(--ins-color-white-a-10)',background:'var(--ins-color-white-a-04)',fontSize:'11.5px',color:'rgba(255,255,255,.6)'}}>SUM</div>
-          </div>
-        </div>
-      </div>
-      <div style={{display:'flex',gap:'var(--ins-size-2)',marginTop:'var(--ins-size-4)'}}>
-        <div style={{flex:1,padding:'9px',borderRadius:'var(--ins-radius-8)',border:'1px solid var(--ins-color-white-a-10)',textAlign:'center',fontSize:'13px',color:'rgba(255,255,255,.4)',cursor:'pointer'}}>Cancel</div>
-        <div style={{flex:1,padding:'9px',borderRadius:'var(--ins-radius-8)',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',textAlign:'center',fontSize:'13px',fontWeight:600,color:'var(--ins-text-body)',cursor:'pointer',boxShadow:'0 0 12px rgba(9,160,157,.3)'}}>Create Metric</div>
-      </div>
-    </div>
-  );
-}
 
 // ── PANEL 4: Formula metric (CAC = @Sales_Spend / @New_Orders) ──
-function Panel4() {
-  const [solved, setSolved] = React.useState(false);
-  useEffect(()=>{ const t=setTimeout(()=>setSolved(true),1200); return()=>clearTimeout(t); },[]);
-  const parts = [
-    { label:'@Marketing_Spend', value:'$28,400', color:'#6772E5' },
-    { label:'@Sales_Spend',     value:'$18,200', color:'#FF7A59' },
-    { label:'@New_Customers',   value:'108',      color:'var(--ins-text-highlight)' },
-  ];
-  return (
-    <div style={{width:'100%',maxWidth:'420px',background:'var(--ins-glow-section), rgba(10,14,19,.95)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'22px'}}>
-      <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)',marginBottom:'18px'}}>
-        <div style={{fontSize:'13px',fontWeight:600,color:'var(--ins-color-gray-100)'}}>Customer Acquisition Cost</div>
-        <div style={{fontSize:'10px',fontFamily:'var(--ins-font-family-mono)',color:'var(--ins-text-highlight)',background:'var(--ins-color-teal-a-08)',padding:'2px 7px',borderRadius:'var(--ins-radius-4)'}}>@CAC</div>
-      </div>
-
-      {/* Formula */}
-      <div style={{background:'var(--ins-color-white-a-03)',border:'1px solid var(--ins-color-white-a-07)',borderRadius:'10px',padding:'14px 16px',marginBottom:'var(--ins-size-4)'}}>
-        <div style={{fontSize:'10px',fontFamily:'var(--ins-font-family-mono)',color:'rgba(255,255,255,.3)',marginBottom:'var(--ins-size-2)',textTransform:'uppercase',letterSpacing:'.08em'}}>Formula</div>
-        <div style={{fontSize:'13px',fontFamily:'var(--ins-font-family-mono)',color:'var(--ins-text-body)',lineHeight:1.6}}>
-          <span style={{color:'#6772E5'}}>@Marketing_Spend</span>
-          <span style={{color:'rgba(255,255,255,.35)'}}> + </span>
-          <span style={{color:'#FF7A59'}}>@Sales_Spend</span>
-          <span style={{color:'rgba(255,255,255,.35)'}}> / </span>
-          <span style={{color:'var(--ins-text-highlight)'}}>@New_Customers</span>
-        </div>
-      </div>
-
-      {/* Live values */}
-      <div style={{fontSize:'10px',fontFamily:'var(--ins-font-family-mono)',color:'rgba(255,255,255,.3)',marginBottom:'var(--ins-size-2)',textTransform:'uppercase',letterSpacing:'.08em'}}>Live values — Nov 2024</div>
-      <div style={{display:'flex',flexDirection:'column',gap:'7px',marginBottom:'var(--ins-size-4)'}}>
-        {parts.map((p,i)=>(
-          <div key={i} style={{display:'flex',alignItems:'center',gap:'10px',padding:'8px 12px',borderRadius:'var(--ins-radius-8)',background:'rgba(255,255,255,.025)',border:'1px solid var(--ins-color-white-a-05)'}}>
-            <div style={{width:'3px',height:'20px',borderRadius:'var(--ins-radius-2)',background:p.color,flexShrink:0}}/>
-            <span style={{fontSize:'var(--ins-font-size-12)',fontFamily:'var(--ins-font-family-mono)',color:p.color,flex:1}}>{p.label}</span>
-            <span style={{fontSize:'var(--ins-font-size-12)',fontFamily:'var(--ins-font-family-mono)',color:'rgba(255,255,255,.7)',fontWeight:600}}>{p.value}</span>
-          </div>
-        ))}
-      </div>
-
-      {/* Result */}
-      <div style={{
-        padding:'12px 16px',borderRadius:'10px',
-        background: solved?'var(--ins-color-teal-a-08)':'var(--ins-color-white-a-03)',
-        border:`1px solid ${solved?'rgba(9,160,157,.3)':'var(--ins-color-white-a-07)'}`,
-        display:'flex',alignItems:'center',justifyContent:'space-between',
-        transition:'all .5s ease',
-      }}>
-        <div style={{fontSize:'var(--ins-font-size-11)',fontFamily:'var(--ins-font-family-mono)',color:'rgba(255,255,255,.4)'}}>@CAC =</div>
-        <div style={{fontSize:'var(--ins-font-size-22)',fontWeight:500,fontFamily:'var(--ins-font-family-mono)',color:solved?'var(--ins-text-highlight)':'rgba(255,255,255,.2)',transition:'color .5s ease'}}>
-          {solved ? '$431' : '...'}
-        </div>
-        {solved && <div style={{fontSize:'10px',color:'rgba(34,197,94,.8)',background:'rgba(34,197,94,.06)',border:'1px solid rgba(34,197,94,.2)',padding:'2px 8px',borderRadius:'var(--ins-radius-4)',fontFamily:'var(--ins-font-family-mono)'}}>● certified</div>}
-      </div>
-    </div>
-  );
-}
 
 // ── PANEL 5: AI Chat with @ metric mention ──
-function Panel5() {
-  const [step, setStep] = React.useState(0);
-  useEffect(()=>{
-    const timers = [
-      setTimeout(()=>setStep(1), 600),
-      setTimeout(()=>setStep(2), 1400),
-      setTimeout(()=>setStep(3), 2400),
-    ];
-    return()=>timers.forEach(clearTimeout);
-  },[]);
-
-  return (
-    <div style={{width:'100%',maxWidth:'440px',background:'var(--ins-glow-section), rgba(10,14,19,.95)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none'}}>
-      {/* Chat header */}
-      <div style={{padding:'12px 16px',borderBottom:'1px solid var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'var(--ins-size-2)'}}>
-        <div style={{width:'20px',height:'20px',borderRadius:'var(--ins-radius-6)',background:'rgba(9,160,157,.12)',border:'1px solid rgba(9,160,157,.25)',display:'flex',alignItems:'center',justifyContent:'center'}}>
-          <svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z" stroke="var(--ins-text-highlight)" strokeWidth="1.2" strokeLinejoin="round"/></svg>
-        </div>
-        <span style={{fontSize:'var(--ins-font-size-12)',fontWeight:600,color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)'}}>Insightis AI</span>
-        <div style={{marginLeft:'auto',display:'flex',alignItems:'center',gap:4,fontSize:'10px',color:'rgba(34,197,94,.8)',fontFamily:'var(--ins-font-family-mono)'}}>
-          <div style={{width:5,height:5,borderRadius:'50%',background:'var(--ins-status-success-fg)',boxShadow:'0 0 4px var(--ins-status-success-fg)'}}/>live
-        </div>
-      </div>
-
-      <div style={{padding:'var(--ins-size-4)',display:'flex',flexDirection:'column',gap:'10px',minHeight:'220px'}}>
-        {/* User message with @ mention */}
-        {step >= 1 && (
-          <div style={{alignSelf:'flex-end',background:'rgba(9,160,157,.1)',border:'1px solid rgba(9,160,157,.2)',borderRadius:'14px 14px 3px 14px',padding:'9px 13px',fontSize:'13px',color:'var(--ins-color-gray-100)',maxWidth:'90%',animation:'slideUp .2s ease both'}}>
-            Why did{' '}
-            <span style={{background:'rgba(9,160,157,.15)',border:'1px solid rgba(9,160,157,.3)',borderRadius:'var(--ins-radius-4)',padding:'1px 6px',color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-12)',fontWeight:600}}>@CAC</span>
-            {' '}spike last month?
-          </div>
-        )}
-
-        {/* AI typing */}
-        {step === 2 && (
-          <div style={{alignSelf:'flex-start',background:'var(--ins-color-white-a-04)',border:'1px solid var(--ins-color-white-a-07)',borderRadius:'3px 14px 14px 14px',padding:'10px 13px',animation:'slideUp .2s ease both'}}>
-            <div style={{display:'flex',gap:4,alignItems:'center'}}>
-              {[0,1,2].map(d=><div key={d} style={{width:5,height:5,borderRadius:'50%',background:'var(--ins-text-highlight)',animation:`pulse ${0.9+d*0.15}s ease-in-out infinite`,animationDelay:`${d*0.15}s`}}/>)}
-            </div>
-          </div>
-        )}
-
-        {/* AI answer */}
-        {step >= 3 && (
-          <div style={{alignSelf:'flex-start',background:'var(--ins-color-white-a-04)',border:'1px solid var(--ins-color-white-a-07)',borderRadius:'3px 14px 14px 14px',padding:'10px 13px',fontSize:'13px',color:'var(--ins-text-body)',maxWidth:'95%',lineHeight:1.65,animation:'slideUp .2s ease both'}}>
-            <span style={{color:'var(--ins-text-highlight)',fontFamily:'var(--ins-font-family-mono)',fontSize:'var(--ins-font-size-12)',fontWeight:600,background:'var(--ins-color-teal-a-08)',padding:'1px 6px',borderRadius:'var(--ins-radius-4)'}}>@CAC</span>
-            {' '}rose to <strong style={{color:'var(--ins-color-gray-100)'}}>$431</strong> in Nov — up from $394 in Oct (+9.4%). Main driver: <strong style={{color:'var(--ins-color-gray-100)'}}>@Marketing_Spend</strong> increased $4.2K while <strong style={{color:'var(--ins-color-gray-100)'}}>@New_Customers</strong> grew only 3%.
-            <div style={{marginTop:'var(--ins-size-2)',display:'flex',gap:5}}>
-              {['Stripe','HubSpot','PostgreSQL'].map(s=>(
-                <span key={s} style={{fontSize:'10px',fontFamily:'var(--ins-font-family-mono)',padding:'2px 6px',borderRadius:'var(--ins-radius-4)',background:'var(--ins-color-white-a-04)',border:'1px solid var(--ins-color-white-a-07)',color:'var(--ins-text-body)'}}>{s}</span>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Input */}
-      <div style={{padding:'10px 14px',borderTop:'1px solid var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'var(--ins-size-2)'}}>
-        <div style={{flex:1,background:'var(--ins-color-white-a-04)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'var(--ins-radius-8)',padding:'8px 12px',fontSize:'12.5px',color:'var(--ins-text-body)',fontFamily:'var(--ins-font-family-sans)'}}>
-          Ask anything... use <span style={{color:'var(--ins-color-teal-a-50)',fontFamily:'var(--ins-font-family-mono)'}}>@</span> to reference metrics
-        </div>
-        <div style={{width:'26px',height:'26px',borderRadius:'7px',background:'linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg))',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
-          <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 const SHOWCASE_STEPS = [
   { n:'01', title:'Metrics Catalog',    body:'All your team metrics in one place — with descriptions, sources and certification status.',                          example:'@CAC · @MRR · @Churn — defined once, used everywhere' },
@@ -728,24 +425,6 @@ const SHOWCASE_STEPS = [
   { n:'04', title:'Custom Metrics',     body:'Add and configure any metric quickly — direct mapping or formula, no SQL or analysts needed.',                            example:'Define & map any metric in minutes' },
   { n:'05', title:'Chat with @ Metrics',body:'Ask in chat with a reference to a specific metric via @ for 100% accurate answers from certified data.',                  example:'"@MRR by month" → certified answer' },
 ];
-function FeaturesShowcase() {
-  return (
-    <section style={{padding:'120px 0 140px',background:'var(--ins-glow-section)'}}>
-      <div className="max-w-7xl mx-auto px-6">
-        <div style={{marginBottom:'var(--ins-size-16)'}}>
-          <SectionHeader
-            eyebrow="How it works"
-            title="Your Semantic Layer, fully in control"
-            size="lg"
-          />
-        </div>
-
-        {/* Horizontal stepper */}
-        <StepsProcess steps={SHOWCASE_STEPS} />
-      </div>
-    </section>
-  );
-}
 
 function BeforeAfter() {
   return (
@@ -789,7 +468,6 @@ function BeforeAfter() {
   );
 }
 
-
 /* ── MID-PAGE CTA BANNER ── */
 function MidCTA() {
   return (
@@ -824,7 +502,6 @@ function BottomCTASection() {
     </section>
   );
 }
-
 
 /* ── APP ── */
 function App() {

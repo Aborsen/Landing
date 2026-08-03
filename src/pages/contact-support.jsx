@@ -545,38 +545,6 @@ function AIAssistantPanel({ query, onClose }) {
 }
 
 /* ── SUPPORT STATUS ── */
-function SupportStatus() {
-  return (
-    <div style={{
-      background:'rgba(34,197,94,.04)',
-      borderTop:'1px solid rgba(34,197,94,.15)',
-      borderBottom:'1px solid rgba(34,197,94,.15)',
-      padding:'16px 24px',
-      position:'relative', zIndex:1,
-    }}>
-      <div style={{
-        maxWidth:'1280px', margin:'0 auto',
-        display:'flex', alignItems:'center', justifyContent:'center',
-        gap:'var(--ins-size-3)', flexWrap:'wrap',
-      }}>
-        <div style={{
-          width:'8px', height:'8px', borderRadius:'50%',
-          background:'var(--ins-status-success-fg)',
-          boxShadow:'0 0 8px var(--ins-status-success-fg)',
-          animation:'statusPulse 2s ease infinite',
-          flexShrink:0,
-        }} />
-        <span style={{
-          fontSize:'var(--ins-font-size-12)', color:'var(--ins-status-success-fg)',
-          fontFamily:'var(--ins-font-family-mono)',
-        }}>All systems operational</span>
-        <span style={{
-          fontSize:'var(--ins-font-size-11)', color:'var(--ins-text-inactive)',
-        }}>Last checked: 2 minutes ago</span>
-      </div>
-    </div>
-  );
-}
 
 /* ── CONTACT SUPPORT ── */
 function ContactSupport() {

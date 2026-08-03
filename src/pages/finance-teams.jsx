@@ -19,27 +19,9 @@ import HeroMockup from '../components/HeroMockup';
 import SharedFeatureSpotlights from '../components/FeatureSpotlights';
 import SharedUseCases from '../components/UseCases';
 import SharedSpotlightStack from '../components/SpotlightStack';
-
-const ArrowRightIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-);
+import ArrowRightIcon from '../components/ArrowRightIcon';
 
 /* ── MINI BAR CHART ── */
-function MiniBarChart({ data, color }) {
-  const max = Math.max(...data);
-  return (
-    <div style={{display:'flex',alignItems:'flex-end',gap:'3px',height:'36px',marginTop:'10px'}}>
-      {data.map((v,i) => (
-        <div key={i} style={{
-          flex:1, borderRadius:'2px 2px 0 0',
-          background: i===data.length-1 ? color : color+'55',
-          height:`${(v/max)*100}%`,
-          minHeight:'4px',
-        }}/>
-      ))}
-    </div>
-  );
-}
 
 /* ── HERO ── */
 function Hero() {

@@ -12,18 +12,8 @@ import BottomCTABlock from '../components/BottomCTA';
 // /blog/<slug> page consume the same list.
 import { POSTS } from '../components/BlogPost';
 
-const ArrowRightIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-);
 
 /* ── INSIGHTIS LOGO MARK SVG ── */
-function InsightisLogoMark({ size = 60, opacity = 1 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" style={{opacity}}>
-      <path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="var(--ins-text-highlight)"/>
-    </svg>
-  );
-}
 
 /* ── BLOG HERO ── */
 function BlogHero() {
@@ -43,51 +33,6 @@ function BlogHero() {
 }
 
 /* ── FEATURED POST ── */
-function FeaturedPost() {
-  return (
-    <section style={{padding:'0 0 60px'}}>
-      <div style={{maxWidth:'1280px', margin:'0 auto', padding:'0 24px'}}>
-        <div style={{
-          position:'relative',
-          background:'var(--ins-color-white-a-03)',
-          border:'1px solid var(--ins-color-white-a-07)',
-          borderRadius:'var(--ins-radius-16)',
-          padding:'0',
-          overflow:'hidden',
-        }}>
-          {/* Top glow line */}
-          <div style={{position:'absolute', top:0, left:0, right:0, height:'1px', background:'linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)'}}/>
-
-          <div style={{display:'flex', flexWrap:'wrap'}}>
-            {/* Left: Text content (60%) */}
-            <div style={{flex:'1 1 340px', padding:'36px 40px', display:'flex', flexDirection:'column', justifyContent:'center', gap:'var(--ins-size-4)'}}>
-              <div>
-                <span style={{fontSize:'var(--ins-font-size-11)', padding:'4px 10px', borderRadius:'999px', background:'rgba(9,160,157,.1)', border:'1px solid rgba(9,160,157,.25)', color:'var(--ins-text-highlight)', fontWeight:500, letterSpacing:'0.04em'}}>Product Update</span>
-              </div>
-              <h2 style={{fontSize:'var(--ins-font-size-24)', fontWeight:500, color:'var(--ins-text-heading-soft)', lineHeight:1.35, letterSpacing:'-.02em'}}>
-                Introducing Insights Engine: From Surface Answers to Root Causes
-              </h2>
-              <p className="ins-text-body">
-                AI Chat gives you the what. Insights Engine tells you the why. Today we're launching the deep analysis layer that connects dots across your entire data ecosystem.
-              </p>
-              <div style={{fontSize:'var(--ins-font-size-12)', color:'var(--ins-text-disabled)', fontFamily:'var(--ins-font-family-mono)'}}>
-                Apr 1, 2026 &middot; 6 min read
-              </div>
-              <a href="#" style={{fontSize:'var(--ins-font-size-14)', color:'var(--ins-text-highlight)', textDecoration:'none', fontWeight:500, marginTop:'var(--ins-size-1)'}}>
-                Read Article &rarr;
-              </a>
-            </div>
-
-            {/* Right: Featured image */}
-            <div style={{flex:'0 0 40%', minHeight:'280px', overflow:'hidden', borderLeft:'1px solid rgba(9,160,157,.15)'}}>
-              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=560&fit=crop" alt="" style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}} />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ── CATEGORY FILTER ── */
 function CategoryFilter({ activeCategory, setActiveCategory }) {
@@ -122,20 +67,7 @@ function CategoryFilter({ activeCategory, setActiveCategory }) {
   );
 }
 
-/* ── BLOG GRID — legacy hardcoded list left for reference, no longer rendered ── */
-// eslint-disable-next-line no-unused-vars
-const _LEGACY_ARTICLES = [
-  { title: 'Introducing Insights Engine: From Surface Answers to Root Causes', category: 'Product Updates', date: 'Apr 1, 2026', readTime: '6 min', excerpt: 'AI Chat gives you the what. Insights Engine tells you the why. Launching the deep analysis layer for your data ecosystem.', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=320&fit=crop' },
-  { title: 'How to Write Better Questions for AI Chat', category: 'Guides & Tutorials', date: 'Mar 28, 2026', readTime: '4 min', excerpt: 'Get more accurate, actionable answers by structuring your queries with context, constraints, and clarity.', image: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&h=320&fit=crop' },
-  { title: "Why Your MRR Numbers Don't Match (And How to Fix It)", category: 'Data Analytics', date: 'Mar 22, 2026', readTime: '8 min', excerpt: 'The three most common reasons your monthly recurring revenue looks different across tools, and a framework to reconcile them.', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=320&fit=crop' },
-  { title: 'What is a Semantic Layer? A Non-Technical Explanation', category: 'Guides & Tutorials', date: 'Mar 15, 2026', readTime: '5 min', excerpt: 'Think of it as a universal translator between your messy data and the clean metrics your team actually needs.', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=320&fit=crop' },
-  { title: 'How a Series A SaaS Replaced Looker with Insightis', category: 'Customer Stories', date: 'Mar 10, 2026', readTime: '7 min', excerpt: 'A 40-person team cut their analytics stack cost by 60% and got answers 10x faster. Here is their playbook.', image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=320&fit=crop' },
-  { title: 'Building the Memory System: How Insightis Learns Your Business', category: 'Engineering', date: 'Mar 5, 2026', readTime: '10 min', excerpt: 'A deep dive into the architecture behind contextual memory, entity resolution, and persistent business knowledge.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=320&fit=crop' },
-  { title: '5 Revenue Metrics Every RevOps Team Should Track Weekly', category: 'Data Analytics', date: 'Feb 28, 2026', readTime: '6 min', excerpt: 'Pipeline velocity, net revenue retention, and three more KPIs that separate guessing from knowing.', image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=320&fit=crop' },
-  { title: 'New: 50 More Data Source Connectors', category: 'Product Updates', date: 'Feb 20, 2026', readTime: '3 min', excerpt: 'From Notion to NetSuite, we just made it easier to plug in the tools your team already uses every day.', image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=320&fit=crop' },
-  { title: 'The Future of Business Intelligence is Conversational', category: 'Data Analytics', date: 'Feb 14, 2026', readTime: '9 min', excerpt: 'Dashboards were built for an era of patience. AI chat is built for an era of speed. Here is what changes.', image: 'https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=600&h=320&fit=crop' },
-];
-
+/* ── BLOG GRID ── */
 function BlogGrid({ activeCategory, activeTag }) {
   let filtered = activeCategory === 'All'
     ? POSTS
@@ -196,13 +128,6 @@ function BlogGrid({ activeCategory, activeTag }) {
 }
 
 /* ── LOAD MORE ── */
-function LoadMore() {
-  return (
-    <div style={{padding:'40px 0 60px', textAlign:'center'}}>
-      <Button variant="secondary" size="md">Load More Articles</Button>
-    </div>
-  );
-}
 
 /* ── BOTTOM CTA ── */
 function BottomCTA() {

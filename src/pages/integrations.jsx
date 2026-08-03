@@ -15,32 +15,12 @@ import BottomCTA from '../components/BottomCTA';
 import StepsProcess from '../components/StepsProcess';
 import SectionHeader from '../components/SectionHeader';
 import CheckIcon from '../components/CheckIcon';
-
-const ArrowRightIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-);
+import ArrowRightIcon from '../components/ArrowRightIcon';
 
 const { motion, useInView, AnimatePresence } = (typeof window !== 'undefined' ? window["framer-motion"] : null) || { motion: { div: 'div', span: 'span', p: 'p', h1: 'h1', h2: 'h2', h3: 'h3', button: 'button', a: 'a', section: 'section', nav: 'nav', header: 'header', li: 'li', img: 'img' }, useInView: () => true, AnimatePresence: ({ children }) => children };
 const MotionDiv = motion.div;
 
-function FadeUp({ children, delay = 0, className = "" }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-  return (
-    <MotionDiv ref={ref} initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }} transition={{ duration: 0.6, delay, ease: [0.25, 0.1, 0.25, 1] }} className={className}>
-      {children}
-    </MotionDiv>
-  );
-}
-
 /* ── CHAT UI HELPERS ── */
-function InsightisIcon({size=20}) {
-  return (
-    <svg width={size} height={Math.round(size*0.895)} viewBox="0 0 25.5 22.84" fill="none">
-      <path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="#1498B9"/>
-    </svg>
-  );
-}
 function GridIcon({size=36, color='var(--ins-text-highlight)'}) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -48,16 +28,6 @@ function GridIcon({size=36, color='var(--ins-text-highlight)'}) {
       <rect x="14" y="3" width="7" height="7"/>
       <rect x="14" y="14" width="7" height="7"/>
       <rect x="3" y="14" width="7" height="7"/>
-    </svg>
-  );
-}
-function HubSpotMark({size=20}) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 32 32" fill="none">
-      <circle cx="22.5" cy="22" r="5.2" stroke="#FF7A59" strokeWidth="2.4" fill="rgba(255,122,89,0.18)"/>
-      <circle cx="22.5" cy="9.5" r="2.5" fill="#FF7A59"/>
-      <path d="M13.2 13.8l6.4 5.2" stroke="#FF7A59" strokeWidth="2.2" strokeLinecap="round"/>
-      <circle cx="10" cy="15" r="3.8" stroke="#FF7A59" strokeWidth="2.2" fill="none"/>
     </svg>
   );
 }
