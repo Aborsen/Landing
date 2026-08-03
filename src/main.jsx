@@ -220,8 +220,12 @@ function Hero() {
   return (
     <>
     <section className="relative flex flex-col items-center justify-center overflow-hidden" style={{minHeight: 'min(100vh, 900px)', paddingTop: 'var(--ins-size-20)', paddingBottom: 'var(--ins-size-10)'}}>
-      {/* Purple radial glow */}
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)' }}></div>
+      {/* Hero glow. (Teal, not purple — the old label was left over from an
+          earlier palette.) blur() here softens the band edges but is not what
+          fixes the contouring; the noise layer on <main> is. Blur cannot add
+          output levels, and too few levels across too many pixels is the actual
+          cause, so it re-quantises to roughly the same spacing afterwards. */}
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)', filter: 'blur(60px)' }}></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
         {/* Headline */}
@@ -919,7 +923,15 @@ function App() {
   return (
     <div className="font-body">
       <Header />
-      <main id="main-content">
+      {/* ins-bg-noise dithers the glows. The washes band into visible contour
+          rings because the whole ramp is only ~23 levels wide: teal at 0.20 over
+          the #0A0E13 page composites to rgb(9,37,40), so green travels 14 -> 37
+          and blue 19 -> 40, spread across a 38%-of-viewport radius. That is one
+          8-bit step every ~30px, which the eye joins into arcs. A few levels of
+          noise scatter each pixel across the step boundaries so the ramp reads
+          continuous. Applied at <main> so it covers every glow on the page at
+          once, including the section-background washes that cannot be blurred. */}
+      <main id="main-content" className="ins-bg-noise">
         <header>
           <Hero />
         </header>
