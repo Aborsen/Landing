@@ -1,0 +1,651 @@
+{
+  "intro": "Everything known to be worth doing on this site, with the evidence for each. Hand-maintained on purpose — static analysis can tell you a component is unreferenced, but not whether deleting it is the right call this week. Edit this file directly: set \"status\": \"done\" to strike an item through. Numbers cited here come from tools/insight/data.json unless a file:line says otherwise.",
+  "notes": [
+    "DROPPED — \"Replace the devart.com root links with deep cluster links\": no longer true. index.html's three https://www.devart.com/ occurrences (lines 32, 41, 58) are JSON-LD publisher/Organization url fields, where the root is correct, not anchors; the audit's cited anchors at old lines 1275-1279 do not exist in the current code. src/pages/about-insightis.jsx:233-234 already ships descriptive deep links to https://www.devart.com/dbforge/ and https://www.devart.com/data-connectivity/, and Footer.jsx:103-104 links /company/ and /vacancies/.",
+    "MOVED TO NOTES, not items — three raw entries were verified-accurate analyses recommending *against* work, so they are non-goals rather than dashboard tasks: (1) do not consolidate SpotlightChat/SpotlightSemantic/SpotlightAnomalies — all 18 definitions confirmed at the cited lines, each name splitting into three visual families of two pages, so consolidation would yield 9 components serving 2 call sites each; (2) do not consolidate Hero — 9 distinct definitions confirmed (marketing/revenue/executive/finance at :36, product/analytics at :39, ai-chat:1206, integrations:261, semantic-layer:321), each with a bespoke HeroMockup payload; (3) do not consolidate App — the page composition root, identical across the six Solutions pages only incidentally. Worth recording in AUDIT.md so a later pass does not redo the analysis.",
+    "Four raw claims were wrong and are corrected inside the merged items: href=\"#\" occurrences are 6 not 8, and 4 of them sit inside components already slated for deletion; contact-support.jsx does render FloatingChat and AIAssistantPanel (lines 644, 646) so the dead-panel sweep covers only connectors/docs/prompt-library; Unsplash hotlinks total 24 not 25 (the 25th grep hit is prose in privacy.jsx:100); design-system/global.css sets no overflow-x, so only app.css and responsive.css contend over it.",
+    "Two cited source documents — \"Insightis site UI analysis.docx\" and insightis-landing-launch-pack.md — are not in this worktree; they live untracked in the main checkout at D:\\Insightis Landing New. I extracted both and confirmed the specific directives quoted (the two token changes, the shared-search-component and article-FAQ notes, and launch-pack P0-1/P0-2/P2-1/P2-3). Because they are untracked, these requirements can vanish from any fresh clone — worth committing or moving into AUDIT.md.",
+    "Sequencing that the ranking alone does not express: the responsive.css load-order fix is the root cause of the h1/h2 conflict and the duplicated-global-rules item, so if the visual regression pass is funded, do it first and the other two shrink. Likewise run the two dead-code sweeps before the href=\"#\" and Unsplash items, since deletion removes 4 of the 6 placeholder links and 8 of the 24 hotlinks for free.",
+    "Nine items are genuinely blocked and cannot start: three on legal or counsel (privacy policy wording, cookie disclosure pending the GTM-TSTTC7TZ tag list, implied-consent review), one on product sourcing the 3x accuracy claim, one on author copy for AI Chat FAQ answers 4-6, one on real blog/customer-story imagery, one on a design asset, one on an owner decision about the untracked artefacts, and the responsive.css reorder on a 31-page visual regression pass."
+  ],
+  "items": [
+    {
+      "title": "Tell visitors their support-ticket attachments are not actually uploaded",
+      "detail": "The support modal shows a dropzone labelled \"ATTACHMENTS (up to 5 files, 10 MB each)\" with \"Click or drag files to attach\", but only filenames are POSTed and the server appends a note that the files were not transmitted. Nothing in the UI tells the visitor the bytes were dropped, so they will believe screenshots and logs were sent.",
+      "evidence": "src/components/SupportTicketModal.jsx:312 (10 MB copy), :333 ('Click or drag files to attach'), :134 (`fileNames: files.map((f) => f.name)`); server/contact-support.js:88 (\"[Attachments the visitor selected but which were not transmitted: …]\")",
+      "category": "qa-bug",
+      "effort": "small",
+      "impact": "high",
+      "blocked_on": "",
+      "status": "open",
+      "outcome": "Skipped at the user's direction on 2026-08-03. Note the privacy policy now discloses it in prose even though the dialog copy still does not."
+    },
+    {
+      "title": "Delete the unrendered components across the nine target pages (~646 lines)",
+      "detail": "One sweep: MiniBarChart is defined 6 times with zero usages; product-teams and analytics-teams each define Testimonials and BeforeAfter that their App does not render; semantic-layer defines Panel1-Panel5 plus FeaturesShowcase that nothing renders; integrations has FadeUp, InsightisIcon and HubSpotMark; analytics-teams has Positioning. Leave semantic-layer's BeforeAfter alone — it is rendered.",
+      "evidence": "MiniBarChart at marketing-teams.jsx:19, revenue-teams.jsx:19, executive-teams.jsx:19, finance-teams.jsx:19, product-teams.jsx:22, analytics-teams.jsx:22 with no other grep hits; product-teams.jsx:270 + :887 and analytics-teams.jsx:248 + :861 absent from the App bodies at product-teams.jsx:985-1000 and analytics-teams.jsx:959-974; semantic-layer.jsx:418, 468, 535, 596, 654, 731 absent from App at :830-845 (which renders Hero, WhatItDoes, MidCTA, MetricsCatalog, BeforeAfter, BottomCTASection); integrations.jsx:26, :37, :54; analytics-teams.jsx:308",
+      "category": "dead-code",
+      "effort": "trivial",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Delete the _LEGACY_ARTICLES dead array in blog.jsx",
+      "detail": "An 8-entry hardcoded article list, commented as legacy and no longer rendered, silenced with an eslint-disable. It also carries an unsourced \"cut their analytics stack cost by 60% and got answers 10x faster\" claim and 8 Unsplash hotlinks, so one deletion clears three problems.",
+      "evidence": "src/pages/blog.jsx:127 (`const _LEGACY_ARTICLES = [`), unsourced stat inside the array; blog.jsx accounts for 10 of the 24 Unsplash hotlinks in src/",
+      "category": "dead-code",
+      "effort": "trivial",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Fix the duplicate CTA on ai-chat — MidCTA and BottomCTASection render identical copy",
+      "detail": "ai-chat renders MidCTA mid-page and BottomCTASection above the footer and both pass byte-identical BottomCTA props: same variant, title, description, ctaLabel, secondaryCtaLabel and secondaryCtaHref. The same call-to-action appears twice on one page, unlike integrations and semantic-layer whose MidCTA uses distinct copy.",
+      "evidence": "src/pages/ai-chat.jsx:916-933 (MidCTA) and :936-951 (BottomCTASection) — both `variant=\"buttons\"`, title \"Get answers from your data in seconds, not days\", same description, ctaLabel \"Start for free\", secondaryCtaHref \"/pricing\"",
+      "category": "content",
+      "effort": "trivial",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Extract ArrowRightIcon to src/components/ArrowRightIcon.jsx — 15 byte-identical copies",
+      "detail": "The same 3-line arrow icon is defined 15 times; it needs zero props because it uses currentColor and inherits size from Button's iconEnd slot, so extraction removes ~42 lines. Peers CheckIcon.jsx and XIcon.jsx already live in src/components. Do not fold in the two divergent variants.",
+      "evidence": "17 ArrowRightIcon definitions in src/; the divergent two are src/main.jsx:54 (takes size/color) and src/components/BlogPost.jsx:120 (line+polyline geometry); identical copies include about-insightis.jsx:13, ai-chat.jsx:15, analytics-teams.jsx:17, connectors.jsx:12, docs.jsx:26, integrations.jsx:19, pricing.jsx:16, semantic-layer.jsx:16 and src/components/BottomCTA.jsx:4",
+      "category": "consolidation",
+      "effort": "trivial",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Replace \"X3 accuracy\" on the home page with 3× or remove the claim",
+      "detail": "The launch pack asks to unify X3 accuracy / 3x on 3× or delete it if unsourced, and requires every number on the page to have a defensible source. semantic-layer already uses \"3× more accurate on real data\", so main.jsx is the only remaining inconsistent instance — and both instances are still unsourced.",
+      "evidence": "src/main.jsx:542 (`desc: 'X3 accuracy'`) rendered via the outputs array at :633 (ArchRight) and :715 (mobile map); src/pages/semantic-layer.jsx:393 (\"3× more accurate on real data\"); insightis-landing-launch-pack.md:79 (P2-3) and :23 (P0-2), in the main checkout",
+      "category": "legal",
+      "effort": "trivial",
+      "impact": "medium",
+      "blocked_on": "Product must source the 3x claim or approve deletion",
+      "status": "open"
+    },
+    {
+      "title": "Offer the waitlist form on /auth/sign-up as well as /auth/sign-in",
+      "detail": "AuthCard takes a `waitlist` prop and sign-in passes it; sign-up does not, so half the traffic that lands on an auth page has no way to leave an address. One word.",
+      "evidence": "src/components/AuthCard.jsx `waitlist = false`; src/pages/sign-up.jsx does not pass it",
+      "category": "content",
+      "effort": "trivial",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Delete the unrendered chat/assistant panels in connectors, docs, prompt-library and blog",
+      "detail": "AIAssistantPanel and FloatingChat are defined in connectors.jsx, docs.jsx and prompt-library.jsx with zero JSX usage in any of the three; blog.jsx's FeaturedPost, LoadMore, InsightisLogoMark and ArrowRightIcon are likewise unrendered, and contact-support.jsx's SupportStatus has no usage. Because every copy is dead the action is deletion, not extraction. Correction to the input: contact-support.jsx DOES render FloatingChat and AIAssistantPanel, so those two copies must stay.",
+      "evidence": "Definitions at connectors.jsx:18 and :115, docs.jsx:870 and :968, prompt-library.jsx:526 and :623 — `grep -n '<FloatingChat\\|<AIAssistantPanel'` exits 1 in all three; blog.jsx:46 (FeaturedPost), :199 (LoadMore) unused; contact-support.jsx:548 (SupportStatus) has only its definition; rendered copies at contact-support.jsx:644 and :646",
+      "category": "dead-code",
+      "effort": "small",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Reconcile the three duplicated global CSS rules across global.css, app.css and responsive.css",
+      "detail": "Three global rules are written more than once with load order deciding the winner. The prefers-reduced-motion universal kill-switch exists in all three files and the durations disagree (0.01ms vs 0.001ms), all with !important, so two copies are unreachable. Scrollbar width is 10px in global.css and 8px in app.css, which wins. overflow-x is set in app.css (clip) and re-set in responsive.css (hidden !important, then clip !important four lines later under @supports), with the same iOS sticky-header rationale written out twice. Correction to the input: global.css sets no overflow-x, so only two files contend there.",
+      "evidence": "prefers-reduced-motion at design-system/global.css:449, src/app.css:29 (universal selector at :35), public/assets/responsive.css:32; scrollbar at design-system/global.css:129 (`*::-webkit-scrollbar { width: 10px }`) vs src/app.css:110 (`::-webkit-scrollbar { width: 8px }`); overflow-x at src/app.css:121 (`body{overflow-x:clip}`) vs public/assets/responsive.css:162 and :167, with duplicated rationale at src/app.css:117 and responsive.css:158",
+      "category": "consolidation",
+      "effort": "small",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Fix the contradictory :focus-visible rule — global.css sets outline:none, app.css sets a 2px outline",
+      "detail": "Both layers define the bare :focus-visible selector with opposing values for outline (none vs 2px solid) and border-radius (--ins-radius-sm vs a hardcoded 4px). app.css wins because it comes after its own import of the design system, so global.css's outline:none is dead and the DS radius token is silently overridden by a magic number. Anyone reading global.css concludes the focus ring is box-shadow-only, which is wrong — and this is the keyboard focus indicator.",
+      "evidence": "design-system/global.css:112 (`:focus-visible { outline: none; box-shadow: var(--ins-focus-ring); border-radius: var(--ins-radius-sm); }`) vs src/app.css:14-19 (`outline: 2px solid var(--ins-text-highlight, #0EC4C1); outline-offset: 2px; border-radius: 4px`)",
+      "category": "accessibility",
+      "effort": "small",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Collapse the 11 BottomCTASection/MidCTA wrappers into one CTASection",
+      "detail": "All 8 BottomCTASection and all 3 MidCTA definitions (176 lines) are already thin wrappers around the shared src/components/BottomCTA.jsx; only the section chrome is duplicated, so ~150 lines go. One decision first: the six Solutions pages use paddingBottom var(--ins-size-32) = 128px while ai-chat and semantic-layer use pb-16 = 64px, a 2x mismatch. The other three values are equivalent.",
+      "evidence": "BottomCTASection at marketing-teams.jsx:838, revenue-teams.jsx:893, executive-teams.jsx:245, product-teams.jsx:312, analytics-teams.jsx:290, finance-teams.jsx:973, ai-chat.jsx:936, semantic-layer.jsx:811; MidCTA at ai-chat.jsx:916, integrations.jsx:656, semantic-layer.jsx:794; tokens at design-system/tokens/spacing.css:11 and :19",
+      "category": "consolidation",
+      "effort": "small",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Extract ChromeHeader to src/components/WindowChrome.jsx and reconcile HeroMockup's inlined copy",
+      "detail": "ChromeHeader is identical in all 6 Solutions pages (14 lines each, 84 total) and used 22 times, so extraction removes ~70 lines with its one existing label prop. HeroMockup already inlines the same macOS window chrome with divergent details a shared component would settle — amber #FFBD2E at opacity .6 vs #FEBC2E at full opacity, dot gap 5px vs 6px, padding 14px/18px vs 10px/14px, flex:1 vs absolute label centring.",
+      "evidence": "src/pages/marketing-teams.jsx:173, revenue-teams.jsx:169, executive-teams.jsx:297, product-teams.jsx:395, analytics-teams.jsx:381, finance-teams.jsx:249 (all `function ChromeHeader({ label })`); inlined duplicate at src/components/HeroMockup.jsx:52-77",
+      "category": "consolidation",
+      "effort": "small",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Extract RelevantIntegrations across all 6 Solutions pages",
+      "detail": "59 lines in all six pages (354 total), single structure; already delegates to shared SectionHeader and ConnectorCard, so the duplication is the section wrapper, the 4-column grid, and the hand-rolled \"See all 200+ integrations\" pill with identical inline onMouseEnter/onMouseLeave handlers that belong in CSS. Removes ~195 lines. Props: connectors[] ({name,desc}), eyebrow, title, lede, glow variant.",
+      "evidence": "src/pages/marketing-teams.jsx:730, revenue-teams.jsx:785, executive-teams.jsx:184, product-teams.jsx:209, analytics-teams.jsx:187, finance-teams.jsx:865 (all `function RelevantIntegrations()`)",
+      "category": "consolidation",
+      "effort": "small",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Extend prerender.mjs to write noindex for draft blog articles",
+      "detail": "Draft handling is runtime-only: BlogPost flips the robots meta in a useEffect, but the static HTML wrapper ships index,follow, so a crawler reading the prerendered HTML sees a draft article as indexable. The TODO asks prerender.mjs to read blog/Articles/<slug>.md and patch dist/blog/<slug>.html at build time.",
+      "evidence": "src/components/BlogPost.jsx:672-675 (`TODO(prerender)`: have prerender.mjs inspect blog/Articles/<slug>.md and rewrite the robots meta) and the runtime useEffect at :677",
+      "category": "correctness",
+      "effort": "small",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Add offers[] back to the SoftwareApplication JSON-LD now that pricing is final",
+      "detail": "The TODO gates this on public pricing tiers being finalized, and they now are: pricing.js ships Free plus monthly 9.99/19.99 and yearly 7.99/15.99 with struck-through standard rates, and pricing.jsx renders those values. The precondition is met so the offers block can be written. The SEO audit separately flags the old placeholder price as misleading.",
+      "evidence": "index.html:17 (`<!-- TODO SEO: Add offers[] back once public pricing tiers are finalized -->`); src/data/pricing.js:49-50 (Starter 9.99/19.99) and :64-65 (Pro 19.99/39.99); rendered at src/pages/pricing.jsx:84; seo-audit/index-20260423.md:203-209",
+      "category": "content",
+      "effort": "small",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Build the shared TL;DR block and mount it on AI Chat and Integrations",
+      "detail": "Two P0 TODOs mark the insertion points (ai-chat between Hero and HowItWorks, integrations below Hero) and each carries approved draft copy verbatim in the comment — 88 words and 96 words respectively. No TLDR component exists in either file; grep returns only the TODOs. One component, two mount points.",
+      "evidence": "src/pages/ai-chat.jsx:1266 (`TODO SEO [P0]: Insert <TLDR/> component here`); src/pages/integrations.jsx:697-699 (`Add TL;DR / Executive Summary block here`, \"Build a <TLDR/> component…\", verbatim draft copy)",
+      "category": "content",
+      "effort": "small",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Emit semantic <table> companions for the AI Chat and Integrations comparisons",
+      "detail": "Both comparisons ship as two <div>-based cards with no extractable table. The TODOs supply the exact 4-row content for each (AI Chat's Generic-AI-vs-Insightis accuracy grid, Integrations' \"Dimension | Disconnected data | Insightis\") and note AI crawlers prioritise tabular data; the visual cards can stay as long as a table also renders, sr-only if preferred.",
+      "evidence": "src/pages/ai-chat.jsx:875 (`TODO SEO [P1]: Emit a semantic <table> companion to the comparison cards below`); src/pages/integrations.jsx:575 (`TODO SEO [P1]: Replace the two <div>-based comparison cards below with a semantic <table>`); seo-audit/index-20260423.md:235",
+      "category": "content",
+      "effort": "small",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Add external authority outlinks",
+      "detail": "The SEO audit graded linking strategy FAIL for having no outbound authority links despite the pages naming Snowflake, BigQuery, Redshift, PostgreSQL, SQL Server, Stripe and HubSpot. Still zero: the only occurrences of those hosts in src/ are `domain:` data fields used for connector logos, never an href.",
+      "evidence": "seo-audit/index-20260423.md:179-189 (\"No links to Microsoft Learn, Snowflake docs, BigQuery docs, Postgres docs…\"); grep for those hosts in src/ hits only data fields — src/data/connectors.js:94 and :177, src/main.jsx:323, src/pages/integrations.jsx:74",
+      "category": "content",
+      "effort": "small",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Replace the 6 remaining href=\"#\" placeholder links",
+      "detail": "A P1 TODO says to replace every href=\"#\" before launch. Correction to the input: six remain, not eight — the other two hits are the TODO itself and a comment in BottomCTA.jsx:140 that documents the correct pattern (use a real button for dialog triggers). Four of the six sit inside components slated for deletion as dead code, so sequence this after that sweep and only blog-free contact-support.jsx:178 and :467 will remain.",
+      "evidence": "src/pages/ai-chat.jsx:1299 (the TODO); live occurrences at blog.jsx:76 (inside the unrendered FeaturedPost at :46), connectors.jsx:259 (inside unrendered AIAssistantPanel at :115), docs.jsx:1112 (inside unrendered AIAssistantPanel at :968), prompt-library.jsx:767 (inside unrendered AIAssistantPanel at :623), contact-support.jsx:178 and :467 (both in rendered code)",
+      "category": "accessibility",
+      "effort": "small",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Fix the CI catch-22 that blocks every merge request into master",
+      "detail": "In .gitlab-ci.yml the .deploy job carries `- when: manual` with `allow_failure: false`. A manual job that has not been run counts as pending, and the merge request requires a successful pipeline — so every MR needs its staging job triggered by hand before it can merge. That is DevOps' file; raise it rather than edit it.",
+      "evidence": ".gitlab-ci.yml:43-47",
+      "category": "deploy",
+      "effort": "small",
+      "impact": "medium",
+      "blocked_on": "DevOps owns .gitlab-ci.yml",
+      "status": "open"
+    },
+    {
+      "title": "Add a focus trap and Escape handler to the two shared dialogs",
+      "detail": "SupportTicketModal and SalesEnquiryModal open over the page but leave focus behind them, so a keyboard user tabs into the page underneath and Escape does nothing. Both are now used on four pages between them, so the fix pays four times.",
+      "evidence": "src/components/SupportTicketModal.jsx, src/components/SalesEnquiryModal.jsx — neither has a keydown handler or focus management",
+      "category": "accessibility",
+      "effort": "small",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Rewrite README's Stack and Layout sections",
+      "detail": "They describe an architecture that no longer exists: \"Static HTML + Babel-CDN inline JSX for every other page under public/\", Tailwind from a CDN, pages at public/Pricing.html and public/Solutions/*.html. The site has been 31 Vite entries prerendered to 44 pages for months. Anyone onboarding reads this first.",
+      "evidence": "README.md:7-33",
+      "category": "content",
+      "effort": "small",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Split page-specific showcase CSS out of src/app.css so 31 pages stop downloading it",
+      "detail": "src/app.css is 956 lines, of which roughly 800 style a single animated showcase and its panels (.ds-*, .mx-*, .ch-*, edit modal, success toast, metrics library, chat composer). Because it is a plain import on the shared entry, all 31 pages pull it inside the 199,593 B bundle. Moving it to a stylesheet imported only by the showcase cuts shared critical CSS substantially.",
+      "evidence": "src/app.css is 956 lines (wc -l); section markers at :493 (P1 METRICS PANEL), :505 (EDIT MODAL), :580 (SUCCESS TOAST), :598 (P0 DATA SOURCES ds-*), :654 (P1 METRICS LIBRARY mx-*), :818 (CURSOR), :828 (P2 CHAT PANEL ch-*), :904 (Composer); dist/assets/jsx-runtime-uKE_cBh3.css is 199,593 B, linked from dist/index.html:106",
+      "category": "performance",
+      "effort": "medium",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Render visible FAQ sections on AI Chat and Integrations to match the head FAQPage JSON-LD",
+      "detail": "Both pages already emit FAQPage structured data but neither has visible Q&A, and Google's FAQ rich-result policy requires the content to be visible. AI Chat's TODO asks for an H2 plus 6 pairs of 40-60 words; Integrations' asks for 5 pairs matching its JSON-LD word-for-word so the validator does not flag a DOM/schema mismatch, with verbatim drafts in the comment.",
+      "evidence": "src/pages/ai-chat.jsx:1279 (`TODO SEO [P1]: Insert <FAQ/> component here`, notes answers 4-6 need author copy); src/pages/integrations.jsx:713 (`Insert FAQ section here (5 Q&A, answers 40-60 words each)`); seo-audit/index-20260423.md:211-215",
+      "category": "content",
+      "effort": "medium",
+      "impact": "medium",
+      "blocked_on": "Author copy for AI Chat FAQ answers 4-6",
+      "status": "open"
+    },
+    {
+      "title": "Localise the remaining Unsplash hotlinks",
+      "detail": "src/data/solutions.js records these as explicitly outstanding after the solutions images were localised. Correction to the input: 24 hotlinks remain, not 25 — BlogPost.jsx 4, blog.jsx 10 (8 inside the dead _LEGACY_ARTICLES), success-stories.jsx 9, docs.jsx 1; the 25th grep hit is prose in the privacy policy. Clearing them also lets the policy drop its images.unsplash.com third-party-host disclosure.",
+      "evidence": "src/data/solutions.js:24-25 (\"the remaining Unsplash hotlinks in BlogPost.jsx/blog.jsx/success-stories.jsx are still outstanding\"); src/components/BlogPost.jsx:80-88 (COVER_IMAGES, \"Swap to /assets/blog/<slug>.webp once real assets are produced\"); per-file counts BlogPost 4, blog 10, success-stories 9, docs 1; disclosure at src/pages/privacy.jsx:100",
+      "category": "data-hygiene",
+      "effort": "medium",
+      "impact": "medium",
+      "blocked_on": "Real blog and customer-story imagery must be produced",
+      "status": "open"
+    },
+    {
+      "title": "Do the full standalone-SVG accessibility pass",
+      "detail": "A TODO on the Architecture section asks for every standalone svg to be classified as meaningful (role=\"img\" plus title) or decorative (aria-hidden). The SEO audit reached the same conclusion independently, grading semantic HTML and a11y a FAIL because every visual is inline SVG with no accessibility attributes and there are no img tags at all.",
+      "evidence": "src/main.jsx:478-483 (`TODO SEO: full SVG accessibility pass — classify each standalone <svg>…`); seo-audit/index-20260423.md:219-233 ([P2] no img tags, every visual is inline SVG with no accessibility attributes)",
+      "category": "accessibility",
+      "effort": "large",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Reconcile the Hero variants across the ten pages that define one",
+      "detail": "Ten copies, ten distinct bodies, 1,449 lines. Not a mechanical merge — each has drifted — but it is the biggest pool of near-duplicate code in the repo and the reason a hero change means editing ten files. Worth a design pass before any more Solutions pages are added.",
+      "evidence": "Combine tab, variants group: Hero, 10 copies / 10 distinct, 1,449 loc",
+      "category": "consolidation",
+      "effort": "large",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Unify the 3 InsightisIcon copies behind one fill prop and delete the 2 dead logo-mark twins",
+      "detail": "InsightisIcon is defined 3 times with an identical path and only the hardcoded fill differing (#0EC4C1 on ai-chat, #1498B9 on integrations and semantic-layer), so one fill prop absorbs it and removes ~14 lines. The same path is inlined twice more as InsightisLogoMark, both dead. Note Logo.jsx is not a substitute — it renders an img pointing at /assets/insightis-logo.svg, so a new shared inline mark is needed.",
+      "evidence": "src/pages/ai-chat.jsx:955, integrations.jsx:37 (unused), semantic-layer.jsx:26; dead twins at blog.jsx:20 and prompt-library.jsx:12 (no JSX usage in either file); src/components/Logo.jsx:6-16 is an img wrapper",
+      "category": "consolidation",
+      "effort": "trivial",
+      "impact": "low",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Delete the dead local ConnectorIcon, connectorColors, ConnectorPill and ArchOutputCards in main.jsx",
+      "detail": "AUDIT.md called for deleting the local connector trio in favour of the shared component; the shared one is already imported as RealConnectorIcon and used at three call sites, leaving the local trio fully unreachable (ConnectorPill has zero JSX usages, the local ConnectorIcon is referenced only from inside it, connectorColors nowhere). The ArchOutputCards no-op stub in the same file is referenced nowhere either.",
+      "evidence": "src/main.jsx:118 (local ConnectorIcon), :132 (connectorColors), :138 (ConnectorPill) and :475 (`function ArchOutputCards({ outputs }) { return null; }`) vs :14 (import RealConnectorIcon) with usages at :329, :588, :676; AUDIT.md:113 (\"Delete the local copies, import from ./components/ConnectorIcon\")",
+      "category": "dead-code",
+      "effort": "trivial",
+      "impact": "low",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Remove the TikTok social links from the blog article rail",
+      "detail": "The launch pack says remove TikTok and keep LinkedIn plus X. Footer.jsx has been cleaned, but the blog/article social lists still render \"Insightis on TikTok\" pointing at tiktok.com/@insightisai in two places, along with a dedicated TikTokIcon. The TikTok Ads connector entries are product data and stay.",
+      "evidence": "src/components/BlogPost.jsx:194 and :320 (`label: 'Insightis on TikTok', href: 'https://www.tiktok.com/@insightisai'`), :116 (TikTokIcon); insightis-landing-launch-pack.md:77 (P2-1), in the main checkout",
+      "category": "content",
+      "effort": "trivial",
+      "impact": "low",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Remove the randomuser.me URL from the TestimonialCard doc comment",
+      "detail": "The launch pack's done-when condition is no randomuser.me images or invented company names anywhere on the site. The only remaining occurrence is an example avatar URL in the component's JSDoc block, and TestimonialCard is live, so maintainers read the file and the example invites the pattern back.",
+      "evidence": "src/components/TestimonialCard.jsx:56 (`avatar=\"https://randomuser.me/api/portraits/women/44.jpg\"` in the JSDoc) — the only randomuser hit in src/; insightis-landing-launch-pack.md:21 (P0-1 done-when)",
+      "category": "data-hygiene",
+      "effort": "trivial",
+      "impact": "low",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Delete the stale TODO SEO comments whose work is already done",
+      "detail": "Three TODOs now describe completed or superseded work and will mislead the next reader: index.html:11 asks to switch Vercel previews to noindex, already handled by header rules and the server; platform/ai-chat.html:14 asks to confirm the production canonical, and 29 shells now canonicalise to insightis.ai; integrations.jsx:519 says the step card reads \"40+\" when it reads 200+ and no 40+ connector claim remains in the repo.",
+      "evidence": "index.html:11 vs vercel.json:28-34 (X-Robots-Tag noindex on *.vercel.app) and server/serve.js:201; platform/ai-chat.html:14 vs 29 shells matching `rel=\"canonical\" href=\"https://insightis.ai`; src/pages/integrations.jsx:519-522 vs :524-525 (body and example both say 200+), and grep for 40+ connector/integration claims in src/ exits 1",
+      "category": "data-hygiene",
+      "effort": "trivial",
+      "impact": "low",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Update comments that still point at the pre-migration base.css / tokens.css filenames",
+      "detail": "MIGRATION.md records that base.css became design-system/global.css and that tokens.css was split into per-concern files under tokens/, but live comments in shipping files still send readers to base.css and a monolithic tokens.css. Anyone chasing the scrollbar or focus-ring rules from these comments looks for files that no longer exist.",
+      "evidence": "design-system/MIGRATION.md:12-13 (base.css → global.css, tokens.css → tokens/*.css); stale refs at src/app.css:7 and :109, design-system/components/index.css:4, design-system/components/footer.css:70, design-system/components/scroll-spy-toc.css:37, pricing.html:13",
+      "category": "content",
+      "effort": "trivial",
+      "impact": "low",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Remove the 29-line .ins-bg-aurora / .ins-bg-noise block from global.css",
+      "detail": "Both classes are opt-in utilities with zero opt-ins anywhere in the repo, so the 29 lines — including seven stacked radial gradients and a /img/noise.svg fetch reference — compile into the bundle loaded by all 31 pages and can never match a selector.",
+      "evidence": "design-system/global.css:408 (.ins-bg-noise), :412 (::before), :424 (.ins-bg-aurora); a repo-wide grep across .html/.jsx/.js/.css/.md outside dist and node_modules returns only those three definition lines",
+      "category": "dead-code",
+      "effort": "trivial",
+      "impact": "low",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Decide the fate of the untracked working-tree artefacts, including the diverged connector kit",
+      "detail": "Several untracked artefacts sit in the tree with no consumer: audit_map.txt, audit_media/, exec_text.txt, legal-export/, tools/, and connector-dark-theme-kit.zip plus its unpacked directory. The kit is the sharpest one — not a duplicate but a stale fork of the DS sprite that still uses pre-rename class names and lacks the Amazon RDS dark-mode correction, so anyone copying from it reintroduces fixed bugs. It ships nowhere (.dockerignore excludes it), making it purely a trap. Either commit, gitignore or delete each.",
+      "evidence": "`git status --porcelain` lists `?? audit_map.txt`, `?? audit_media/`, `?? exec_text.txt`, `?? legal-export/`, `?? tools/`, `?? connector-dark-theme-kit.zip` (136,935 B), `?? connector-dark-theme-kit/`; grep for connector-dark-theme-kit across tracked source exits 1; .dockerignore:23-24; diff of connector-dark-theme-kit/connector-sprite.css vs design-system/components/connector-sprite.css shows 32px literals where the DS uses var(--ins-size-8), missing `.ins-connector-logo.amazonrds.is-dark::before`, and missing .bing rule",
+      "category": "data-hygiene",
+      "effort": "trivial",
+      "impact": "low",
+      "blocked_on": "Owner must say which of these are deliverables",
+      "status": "open"
+    },
+    {
+      "title": "Clear the test rows out of the four Zoho forms",
+      "detail": "Roughly ten ZZ-TEST / zz- rows plus several blank submissions from endpoint development are sitting in RequestConnector, ContactSupport, ContactSales and Waitlist. Blank rows exist because all four endpoints accept POST {} with a 200 — the validation is entirely ours, so nothing upstream rejected them.",
+      "evidence": "Verified live on 2026-07-30: POST {} returns 200 with a success payload on all four forms",
+      "category": "data-hygiene",
+      "effort": "trivial",
+      "impact": "low",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Put graphify's Scripts directory on PATH",
+      "detail": "graphify installed cleanly but its executables landed in a directory that is not on PATH, so the command only resolves with a full path or a per-session PATH prepend.",
+      "evidence": "C:\\Users\\victorg\\AppData\\Local\\Python\\pythoncore-3.14-64\\Scripts",
+      "category": "tooling",
+      "effort": "trivial",
+      "impact": "low",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Extract the FAQ section wrapper across all 6 Solutions pages",
+      "detail": "45 lines in all six pages (270 total), single structure, already delegating to the shared FAQAccordion — the duplicated part is only the section wrapper plus a hand-rolled eyebrow and heading, so ~85 lines go. Props: items[] ({q,a}) and the heading string; eyebrow \"FAQ\" and the gradient are constant. Smallest of the six-way wins, so do it last of that group.",
+      "evidence": "src/pages/marketing-teams.jsx:791, revenue-teams.jsx:846, executive-teams.jsx:757, product-teams.jsx:938, analytics-teams.jsx:912, finance-teams.jsx:926 (all `function FAQ()`); shared component used at e.g. executive-teams.jsx:797 and analytics-teams.jsx:952",
+      "category": "consolidation",
+      "effort": "small",
+      "impact": "low",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Finish the SectionHeader migration — 10 hand-rolled copies remain in the Solutions pages",
+      "detail": "src/components/SectionHeader.jsx exists and its docstring claims to have replaced 22+ hand-rolled occurrences, but 32 raw ins-eyebrow--pill blocks remain in src/pages and ten are the exact centred eyebrow-pill plus ins-text-display h2 pattern the component renders (~70 lines becoming ~30). The inconsistency shows within one feature: semantic-layer's BeforeAfter uses SectionHeader while product-teams' and analytics-teams' hand-roll it. Exclude the Hero eyebrows and the per-item FeatureSpotlights eyebrows.",
+      "evidence": "Hand-rolled at marketing-teams.jsx:823, revenue-teams.jsx:878, executive-teams.jsx:789, product-teams.jsx:275 & 913 & 970, analytics-teams.jsx:253 & 887 & 944, finance-teams.jsx:958 (all `ins-eyebrow ins-eyebrow--pill` with marginBottom 14px); src/components/SectionHeader.jsx:6-7 docstring; `grep -rh 'ins-eyebrow--pill' src/pages/ | wc -l` = 32",
+      "category": "consolidation",
+      "effort": "small",
+      "impact": "low",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Route the docs sidebar search through the shared SearchInput component",
+      "detail": "The UI review asks that search on documentation, prompt library, support and connectors be the same component with the same behaviour and styles. Three of the four already import SearchInput; docs.jsx hand-rolls ins-input markup with its own clear button and wrap, and reaches into it by DOM query for the Ctrl/Cmd-K shortcut.",
+      "evidence": "\"Insightis site UI analysis.docx\" (\"Search on the documentations, prompt library, support page, connections, should be same component\"); src/pages/docs.jsx:287-305 (raw ins-input-wrap markup) and :1268 (`document.querySelector('.docs-sidebar-col input')`); SearchInput used at connectors.jsx:514, contact-support.jsx:43, prompt-library.jsx:902",
+      "category": "consolidation",
+      "effort": "small",
+      "impact": "low",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Create the per-page OG image for the Integrations page",
+      "detail": "A P1 TODO asks for a 1200x630 asset at https://insightis.ai/og/integrations.png. No public/og/ directory exists, so the page falls back to the shared site-wide OG image and every page has the same social preview. Sequence with the og:image dimension fix so both land on one asset spec.",
+      "evidence": "platform/integrations.html:16 (`TODO SEO [P1]: Create and upload OG image asset at https://insightis.ai/og/integrations.png (1200x630)`) and :136 (og:image falls back to /assets/V_1_Dark_corrected.png); `ls public/og` — no such directory",
+      "category": "content",
+      "effort": "small",
+      "impact": "low",
+      "blocked_on": "Design must produce the asset",
+      "status": "open"
+    },
+    {
+      "title": "Decide whether graphify needs a Python 3.12 interpreter for Leiden clustering",
+      "detail": "The leiden extra depends on graspologic, which is pinned to Python <3.13; this machine runs 3.14, so clustering fell back to a weaker algorithm — 40 communities with cohesion scores as low as 0.07. If the back-end team's graph is on 3.12, their community map is better than ours and the two are not comparable.",
+      "evidence": "graphifyy 0.9.32 requires_dist marks the leiden extra Python <3.13; local Python is 3.14.0",
+      "category": "tooling",
+      "effort": "small",
+      "impact": "low",
+      "blocked_on": "ask the back-end team which interpreter they use",
+      "status": "open"
+    },
+    {
+      "title": "Consolidate the article FAQ markup onto the shared FAQ styles",
+      "detail": "The UI review says to reuse the FAQ styles from the page instead of a new section in articles, and separately that the security page should reuse the homepage FAQ classes. Eight pages use the shared FAQAccordion; BlogPost.jsx emits bespoke blog-faq-item / blog-faq-q / blog-faq-chev details markup with its own 30-line style block because the content comes from markdown. Extract the shared styling so both paths use it.",
+      "evidence": "\"Insightis site UI analysis.docx\" (\"Reuse the FAQ styles from the page instead of new section in articles\"); src/components/BlogPost.jsx:593-603 (bespoke markup) and :968-995 (its own styles) vs src/components/FAQAccordion.jsx used by analytics-teams.jsx:952, executive-teams.jsx:797 and six more",
+      "category": "consolidation",
+      "effort": "medium",
+      "impact": "low",
+      "blocked_on": "",
+      "status": "open"
+    },
+    {
+      "title": "Get counsel review of the implied-consent cookie posture before EU launch",
+      "detail": "The cookie bar is Devart's standard implied-consent notice: dismissal records acknowledgement and gates nothing. The file carries an explicit outstanding action for counsel to review the posture for GDPR, which matters more now that GTM ships in the container build.",
+      "evidence": "public/cookie-notice.js:49 (\"Counsel should still review the implied-consent posture for GDPR before EU launch\"), posture described at :45-52",
+      "category": "legal",
+      "effort": "small",
+      "impact": "high",
+      "blocked_on": "Counsel review",
+      "status": "in progress",
+      "outcome": "With counsel (per the user, 2026-08-03)."
+    },
+    {
+      "title": "Reconcile the cookies-policy disclosure with what GTM-TSTTC7TZ actually publishes",
+      "detail": "Sections 3 and 4 mirror tmetric.com/cookies-policy verbatim, describing a planned GA / LinkedIn Insight / Microsoft UET / ActiveCampaign stack rather than what this site sets. The file's own notes say to cut the lists back if the tag plan changes and that these sections must stay true as tags are added. GTM now ships in the container build, so the disclosure has to be checked against the published tags.",
+      "evidence": "src/pages/cookie-settings.jsx:26-37 (both UPDATE notes, including \"Sections 3 and 4 are the disclosure that has to stay true\"); Dockerfile:59 (`ARG GTM_ID=GTM-TSTTC7TZ`); scripts/inject-gtm.mjs",
+      "category": "legal",
+      "effort": "small",
+      "impact": "high",
+      "blocked_on": "Published tag list from the GTM-TSTTC7TZ container",
+      "status": "partial",
+      "outcome": "Section 4 now names Tag Manager itself, states that it sets no cookies of its own but can introduce tags without a code change, and claims only an APPROVED partner set rather than an observed one. The live tag list still needs reading off the GTM-TSTTC7TZ container by someone with access — nothing in this repo can see it."
+    },
+    {
+      "title": "Settle the Skyvia GDPR Art. 28 contract and the EEA transfer mechanism",
+      "detail": "Unresolved from the legal review. It gates nothing technically, and it gates launch legally.",
+      "evidence": "Legal review 2026-07; no processor agreement or transfer mechanism recorded",
+      "category": "legal",
+      "effort": "medium",
+      "impact": "high",
+      "blocked_on": "counsel",
+      "status": "blocked",
+      "outcome": "legal/skyvia-processor-terms.md sets out the Art. 28(3) clause-by-clause gap, the transfer question, and what to obtain. Executing an agreement between two legal entities is not something this repo can do."
+    },
+    {
+      "title": "Commit the GTM change set to GitHub so the two remotes stop diverging",
+      "detail": "The GTM work is committed on GitLab (branch gtm-container-only, 665f650: Dockerfile, README, cookie-settings.jsx and the new scripts/inject-gtm.mjs together) but is still uncommitted in this worktree, so GitHub's Dockerfile has no GTM step. Nothing is broken — the four files move together on both sides — but Dockerfile now differs between the remotes, and that divergence is exactly what made the pricing CTA appear to work locally and not in production.",
+      "evidence": "`git status --porcelain` here shows \" M Dockerfile\" and \"?? scripts/inject-gtm.mjs\"; GitLab commit 665f650 contains all four files",
+      "category": "deploy",
+      "effort": "trivial",
+      "impact": "high",
+      "blocked_on": "",
+      "status": "done",
+      "outcome": "Committed and pushed to GitHub master in this batch, so Dockerfile no longer differs between the remotes."
+    },
+    {
+      "title": "Replace the four stale vercel.app URLs in index.html JSON-LD with insightis.ai",
+      "detail": "The canonical tag is https://insightis.ai/ but four JSON-LD values still point at the Vercel preview host: SoftwareApplication.url, SoftwareApplication.image, WebSite.url and the BreadcrumbList home item. Structured data disagreeing with the canonical splits entity signals and advertises the staging domain.",
+      "evidence": "index.html:76 (canonical=https://insightis.ai/) vs index.html:27, :28, :54, :71 (all https://insightis-landing.vercel.app/)",
+      "category": "correctness",
+      "effort": "trivial",
+      "impact": "high",
+      "blocked_on": "",
+      "status": "done",
+      "outcome": "All four JSON-LD values now read https://insightis.ai/ — verified absent from the built page."
+    },
+    {
+      "title": "Merge GTM into GitLab master so the tag reaches insightis.ai",
+      "detail": "MR !34 is open and unmerged. Until it lands and a production deploy runs, Google Tag Manager is not on the live site at all. Needs the manual deploy-staging job triggered first to satisfy the pipeline check.",
+      "evidence": "https://git.devart.com/devart/ai-innovations-team/simplebi/insightis-site/-/merge_requests/34 — branch gtm-container-only, commit 665f650",
+      "category": "deploy",
+      "effort": "trivial",
+      "impact": "high",
+      "blocked_on": "someone with Maintainer on GitLab",
+      "status": "done",
+      "outcome": "MR !34 merged and approved (confirmed by the user on 2026-08-03)."
+    },
+    {
+      "title": "Confirm production was redeployed after pricing-sales-cta merged",
+      "detail": "GitLab master now contains both the pricing CTA fix and the shortened sales form (merges eb99ed1 and 3928036), but deploy-production is a manual job. If nobody triggered it, insightis.ai is still serving the old anchor that navigates to Contacts instead of opening the sales dialog.",
+      "evidence": "origin/master at 3928036; src/pages/pricing.jsx on master contains onSecondaryCtaClick. Check by clicking \"Talk to sales\" in the pricing bottom CTA on insightis.ai.",
+      "category": "deploy",
+      "effort": "trivial",
+      "impact": "high",
+      "blocked_on": "",
+      "status": "done",
+      "outcome": "Confirmed deployed by the user on 2026-08-03."
+    },
+    {
+      "title": "Stop responsive.css from stealing mobile h1/h2 sizing from the design system",
+      "detail": "global.css deliberately neutralizes native heading sizing so the .ins-text-* role classes are the only source of heading type; responsive.css then re-asserts font-size and line-height on bare h1/h2 with !important inside a ≤640px query. On phones any h1 sized by a DS role class loses that size — the most visible element on every page.",
+      "evidence": "design-system/global.css:104 (`h1, h2, h3, h4, h5, h6 { font-weight: inherit; font-size: inherit; }`) vs public/assets/responsive.css:135 (`font-size: clamp(1.85rem, 8vw, 2.6rem) !important`) and :139 (h2 clamp !important)",
+      "category": "correctness",
+      "effort": "small",
+      "impact": "high",
+      "blocked_on": "",
+      "status": "done",
+      "outcome": "The h1/h2 phone clamps lost their !important, so the .ins-text-* role classes win on specificity as intended and the clamps still catch unclassed headings."
+    },
+    {
+      "title": "Fix the og:image dimension declaration — the asset is 1440x1024, not 1200x630",
+      "detail": "index.html carries a TODO asking to verify the OG image is 1200x630. It is not: the PNG header reports 1440x1024, yet 25 HTML shells declare og:image:width 1200 / og:image:height 630. LinkedIn, X and Slack will crop or reject the preview. Either re-export at 1200x630 or correct the declarations everywhere.",
+      "evidence": "index.html:14 (`<!-- TODO SEO: verify og image is 1200x630 -->`); public/assets/V_1_Dark_corrected.png IHDR reports 1440x1024; 25 non-dist shells declare og:image:width 1200 (e.g. platform/integrations.html:137-138)",
+      "category": "content",
+      "effort": "small",
+      "impact": "high",
+      "blocked_on": "",
+      "status": "done",
+      "outcome": "All 25 shells now declare 1440x1024, matching the PNG header. A 1.91:1 re-export at 1200x630 remains the nicer answer and needs an image tool this toolchain does not have."
+    },
+    {
+      "title": "Apply the two token contrast lifts: ins-text-body to gray-100, ins-text-inactive to gray-200",
+      "detail": "The final two directives of the UI analysis document are \"Update ins-text-body to be gray-100 Instead of gray-200\" and \"Update ins-text-inactive to be gray-200 Instead of gray-300\". Neither is applied — both tokens still hold their old values. This is a site-wide contrast lift; re-check WCAG on card surfaces afterwards.",
+      "evidence": "\"Insightis site UI analysis.docx\" final two paragraphs (file lives in the main checkout at D:\\Insightis Landing New, untracked) vs design-system/tokens/colors.css:111 (`--ins-text-body: var(--ins-color-gray-200)`) and :112 (`--ins-text-inactive: var(--ins-color-gray-300)`)",
+      "category": "content",
+      "effort": "small",
+      "impact": "high",
+      "blocked_on": "",
+      "status": "done",
+      "outcome": "--ins-text-body is gray-100 and --ins-text-inactive is gray-200 in design-system/tokens/colors.css."
+    },
+    {
+      "title": "Fix the privacy policy claim that no form on the site submits anything",
+      "detail": "The policy states that sign-up and sign-in collect nothing and \"no form on the Site submits anything to us.\" Four Zoho-backed POST endpoints now ship and the sign-in placeholder mounts a waitlist email capture, so a published legal document makes a false statement about personal-data collection.",
+      "evidence": "src/pages/privacy.jsx:87 vs server/serve.js:47-50 (routes /api/request-connector, /api/contact-support, /api/contact-sales, /api/waitlist), server/waitlist.js:17, and src/components/AuthCard.jsx:72 (`{waitlist && <WaitlistForm />}`)",
+      "category": "legal",
+      "effort": "small",
+      "impact": "high",
+      "blocked_on": "Counsel sign-off on the replacement wording",
+      "status": "done",
+      "outcome": "Replaced with an accurate account of the five live forms, the fields each sends, that they are delivered into Zoho Forms in the EU, and that support attachments are not uploaded."
+    },
+    {
+      "title": "Recover the endpoint test suite into the repo behind `npm test`",
+      "detail": "There is not one test file tracked in git and no test script in package.json. Roughly 200 working assertions covering the four Zoho endpoints and all 45 built pages exist only in a session scratchpad directory that gets wiped. Everything else on this list is cleanup; this is the only item that changes whether the next change can break something silently.",
+      "evidence": "`git ls-files | grep test` returns two unrelated files. package.json has no test script. Assertions live in %TEMP%/claude/.../scratchpad/test-{endpoint,support,sales,waitlist,serve}.mjs",
+      "category": "tooling",
+      "effort": "small",
+      "impact": "high",
+      "blocked_on": "",
+      "status": "done",
+      "outcome": "test/ now holds five suites behind `npm test`: 227 assertions, 0 failed. Paths resolve from import.meta.url so they run from any checkout, and the Dockerfile runs them."
+    },
+    {
+      "title": "Fail the build when a route or env var is registered in only some of its places",
+      "detail": "Both waitlist outages were this shape: /api/waitlist was in vite.config.js but not server/serve.js (404 in the container), then ZOHO_WAITLIST_FORM_URL was read by the endpoint but not passed by docker-compose (503 in production). The Health tab already computes both matrices — wiring `node tools/insight/analyze.mjs` plus a threshold check into the Dockerfile or CI turns a silent outage into a red build.",
+      "evidence": "Health tab, routeMatrix and envMatrix. docker-compose.yml:28 carries a comment describing the five places an endpoint must be registered.",
+      "category": "tooling",
+      "effort": "small",
+      "impact": "high",
+      "blocked_on": "",
+      "status": "done",
+      "outcome": "scripts/check-wiring.mjs compares the /api route registry across vite.config.js, server/serve.js, api/*.js and the client fetches, and every env var server/ reads against docker-compose.yml. Wired into the Dockerfile before the build."
+    },
+    {
+      "title": "Extract FeatureSpotlights across all 6 Solutions pages — one structure, zero style variance",
+      "detail": "88 lines in all six pages (528 total) with a single structure and not even a gradient difference; every diff is copy inside the spots array or the header title and lede. Removes ~280 lines. Props: spots[] ({eyebrow,title,body,bullets[],visual}), header title, header lede — the eyebrow \"How it works\" is constant and can be a default. Lowest-risk of the six-way extractions, so do it first.",
+      "evidence": "src/pages/marketing-teams.jsx:545, revenue-teams.jsx:600, executive-teams.jsx:572, product-teams.jsx:702, analytics-teams.jsx:676, finance-teams.jsx:680 (all `function FeatureSpotlights()`, 88 lines each)",
+      "category": "consolidation",
+      "effort": "medium",
+      "impact": "high",
+      "blocked_on": "",
+      "status": "done",
+      "outcome": "src/components/FeatureSpotlights.jsx, shared by all six Solutions pages. Rendered markup byte-identical on all 45 pages."
+    },
+    {
+      "title": "Extract UseCases across all 6 Solutions pages — one structure, copy-only variance",
+      "detail": "93 lines in every one of the six pages (558 total), a single structure; removes ~295 lines. Props: items[] ({icon,title,desc}), SectionHeader title, the two CTA-card strings, and one glow variant. The gradient is the only style difference and it is page-level, not section-level: marketing/revenue/executive/finance use rgba(7,128,126,0.20) at ellipse 38% 42%, product/analytics use rgba(7,128,126,0.38) at ellipse 60% 50%.",
+      "evidence": "src/pages/marketing-teams.jsx:635, revenue-teams.jsx:690, executive-teams.jsx:662, product-teams.jsx:792, analytics-teams.jsx:766, finance-teams.jsx:770 (all `function UseCases()`)",
+      "category": "consolidation",
+      "effort": "medium",
+      "impact": "high",
+      "blocked_on": "",
+      "status": "done",
+      "outcome": "src/components/UseCases.jsx, shared by all six Solutions pages. Rendered markup byte-identical."
+    },
+    {
+      "title": "Extract SpotlightStack for 5 of 6 Solutions pages — excluding executive-teams",
+      "detail": "121 lines each in marketing, revenue, product, analytics and finance (605 lines), structurally identical with every difference a string literal; highest single-item payoff at ~456 lines removed. Needs ~9 props: trace[] ({label,amt,src,detail,owner,ts}), chromeLabel, kpiValue, kpiMeta, ownerLine, traceEyebrow, traceCount, footerLabel, signoff. Exclude executive-teams — a genuinely different visual sharing only the name.",
+      "evidence": "src/pages/marketing-teams.jsx:422, revenue-teams.jsx:477, product-teams.jsx:579, analytics-teams.jsx:553, finance-teams.jsx:557; the excluded different visual is executive-teams.jsx:469",
+      "category": "consolidation",
+      "effort": "medium",
+      "impact": "high",
+      "blocked_on": "",
+      "status": "done",
+      "outcome": "src/components/SpotlightStack.jsx, shared by the five pages that had the same shell. executive-teams.jsx keeps its own, which is genuinely different."
+    },
+    {
+      "title": "Load responsive.css after the bundle, or fold it in — it currently loads first",
+      "detail": "Every shell links responsive.css in the first few lines of head while Vite injects the bundle stylesheet much later, so the override layer loads before what it overrides — which is why nearly every rule in it carries !important. That inverted cascade is the root cause of the h1/h2, overflow-x and reduced-motion conflicts listed separately. Moving the link after the bundle, or importing it from app.css, lets specificity do the work.",
+      "evidence": "dist/index.html:15 (`<link rel=\"stylesheet\" href=\"/assets/responsive.css\">`, 11,970 B) vs dist/index.html:106 (bundle CSS, 199,593 B); source side index.html:8, pricing.html:7 and 29 more shells; design-system/AUDIT.md:32 documents the same load graph",
+      "category": "correctness",
+      "effort": "medium",
+      "impact": "high",
+      "blocked_on": "Visual regression pass across all 31 pages — removing !important reliance will shift mobile layout",
+      "status": "done",
+      "outcome": "Folded onto the end of src/app.css and the <link> removed from all 31 shells, so source order gives the responsive layer the last word instead of !important compensating for load order."
+    },
+    {
+      "title": "Fix the mobile horizontal overflow on the six Solutions pages",
+      "detail": "QA reported a block running off the right edge at 402/420/440px. Root cause was the single-column collapse using 1fr, whose auto floor equals the dense mockups' min-content, plus a later generic rule of equal specificity overriding the spotlight rule. All four parts of the approved fix are present in responsive.css. Still wants a QA sign-off at the reported widths.",
+      "evidence": "public/assets/responsive.css contains [data-spotlight-grid][data-spotlight-grid], 5 uses of minmax(0, 1fr), data-usecase-grid, data-connectors-grid and the hero badge offsets",
+      "category": "qa-bug",
+      "effort": "medium",
+      "impact": "high",
+      "blocked_on": "",
+      "status": "done"
+    },
+    {
+      "title": "Delete the orphaned index2 asset pair, including the root duplicates",
+      "detail": "public/assets/index2.css (68,649 B) and index2.js (53,206 B) are referenced by nothing — no link in any of the 31 shells, no import, no @import — yet vite.config.js sets no publicDir override so both are copied verbatim into dist and served. Byte-identical copies also sit in repo-root assets/, which never ship and exist only to be edited by mistake. — Deleted in 3cac989, merged as f472b8f (bebf49e on master): 4 files, 6,050 deletions. Rescan confirms unreachable files 2→0, orphaned stylesheets 2→0, duplicate groups 2→0.",
+      "evidence": "grep for index2 across non-dist *.html/*.jsx/*.css in src/ and design-system/ exits 1; dist/assets/index2.css 68,649 B and dist/assets/index2.js 53,206 B exist; `grep -c publicDir vite.config.js` = 0; assets/index2.css and assets/index2.js are byte-identical to the public/ copies; design-system/AUDIT.md:32 records the storybook history",
+      "category": "dead-code",
+      "effort": "trivial",
+      "impact": "medium",
+      "blocked_on": "",
+      "status": "done"
+    }
+  ]
+}

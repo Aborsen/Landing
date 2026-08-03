@@ -65,6 +65,25 @@ npx vercel --prod --yes
 
 `vercel.json` sets `framework: vite`, build command `npm run build`, output `dist/`.
 
+### Analytics — GitLab deployment only
+
+Google Tag Manager (`GTM-TSTTC7TZ`) is deliberately **not** in the source HTML. It
+is injected into `dist/` by `scripts/inject-gtm.mjs`, which is invoked from the
+`Dockerfile` and nowhere else — so the container image behind insightis.ai carries
+the tag and the Vercel build cannot, even by accident. `npm run build` does not
+run it.
+
+The container ID lives in the Dockerfile (`ARG GTM_ID`). It is a public value —
+Tag Manager exposes it in the page source of every site that uses it — so it is
+in the repo rather than a CI variable. No pipeline change is involved.
+
+To see the tagged output locally (`dist/` is git-ignored, so this leaves nothing
+behind):
+
+```bash
+npm run build && node scripts/inject-gtm.mjs GTM-TSTTC7TZ
+```
+
 ## Conventions
 
 - **Don't add backwards-compatibility shims**. If something is unused, delete it.

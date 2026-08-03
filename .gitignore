@@ -7,6 +7,19 @@ dist/
 .vercel
 .claude/
 
+# Graphify's code-knowledge-graph output: ~1.4 MB of generated graph.json +
+# graph.html, rebuilt from the tree by `graphify update .` in about 20 seconds.
+# Ignored rather than committed so it does not put a megabyte of churn into every
+# merge request. If we'd rather the whole team start with a prebuilt map, drop
+# this line and run `graphify hook install`, which registers a union merge driver
+# for graph.json so two branches' graphs do not conflict.
+graphify-out/
+
+# The Insight dashboard's measurements, regenerated from the tree by
+# `npm run insight:build` in about a second. backlog.json next to it is the
+# opposite — hand-maintained, and committed on purpose.
+tools/insight/data.json
+
 # Local secrets. The connector-request form's Zoho endpoint is an unauthenticated
 # write URL, so it lives in the environment and never in the repository — which
 # has been public on GitHub and stays worth protecting after the GitLab move.

@@ -6,7 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && node scripts/prerender.mjs",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "insight": "node tools/insight/analyze.mjs && node tools/insight/serve.mjs",
+    "insight:build": "node tools/insight/analyze.mjs",
+    "insight:check": "node tools/insight/analyze.mjs && node tools/insight/verify.mjs",
+    "test": "node test/run.mjs",
+    "check:wiring": "node scripts/check-wiring.mjs"
   },
   "repository": {
     "type": "git",
