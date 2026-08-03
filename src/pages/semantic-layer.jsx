@@ -396,7 +396,7 @@ function WhatItDoes() {
   ];
 
   return (
-    <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}}>
+    <section style={{padding:'120px 0 140px',background:'var(--ins-glow-section)'}}>
       <div className="max-w-7xl mx-auto px-6">
         {/* PR 1 canary — replaces hand-rolled eyebrow + h2 with <SectionHeader> */}
         <div style={{marginBottom:'var(--ins-size-16)'}}>
@@ -428,7 +428,7 @@ function Panel1() {
   const CAT_TEXT   = { Marketing:'var(--ins-text-highlight)', RevOps:'#8b7cf8' };
 
   return (
-    <div style={{width:'100%',background:'radial-gradient(ellipse 80% 70% at 50% 60%, rgba(9,160,157,0.10) 0%, transparent 100%), rgba(10,14,19,.95)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none'}}>
+    <div style={{width:'100%',background:'var(--ins-glow-section), rgba(10,14,19,.95)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none'}}>
       {/* Toolbar */}
       <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'10px 16px',background:'var(--ins-color-white-a-02)',borderBottom:'1px solid var(--ins-color-white-a-06)'}}>
         <div style={{display:'flex',gap:5}}>
@@ -477,7 +477,7 @@ function Panel2() {
   const srcs   = ['Google Analytics','Stripe','HubSpot'];
 
   return (
-    <div style={{width:'100%',maxWidth:'420px',background:'radial-gradient(ellipse 80% 70% at 50% 60%, rgba(9,160,157,0.10) 0%, transparent 100%), rgba(10,14,19,.95)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'var(--ins-size-5)'}}>
+    <div style={{width:'100%',maxWidth:'420px',background:'var(--ins-glow-section), rgba(10,14,19,.95)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'var(--ins-size-5)'}}>
       <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)',marginBottom:'var(--ins-size-4)'}}>
         <div style={{width:'22px',height:'22px',borderRadius:'var(--ins-radius-6)',background:'rgba(9,160,157,.12)',border:'1px solid rgba(9,160,157,.25)',display:'flex',alignItems:'center',justifyContent:'center'}}>
           <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z" stroke="var(--ins-text-highlight)" strokeWidth="1.2" strokeLinejoin="round"/></svg>
@@ -534,7 +534,7 @@ function Panel2() {
 // ── PANEL 3: Create Metric modal ──
 function Panel3() {
   return (
-    <div style={{width:'100%',maxWidth:'380px',background:'radial-gradient(ellipse 80% 70% at 50% 60%, rgba(9,160,157,0.09) 0%, transparent 100%), rgba(13,17,23,.97)',border:'1px solid var(--ins-color-white-a-10)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'var(--ins-size-6)'}}>
+    <div style={{width:'100%',maxWidth:'380px',background:'var(--ins-glow-section), rgba(13,17,23,.97)',border:'1px solid var(--ins-color-white-a-10)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'var(--ins-size-6)'}}>
       <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'var(--ins-size-5)'}}>
         <span style={{fontSize:'var(--ins-font-size-15)',fontWeight:600,color:'var(--ins-color-gray-100)'}}>Create New Metric</span>
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 2l12 12M14 2L2 14" stroke="rgba(255,255,255,.3)" strokeWidth="1.5" strokeLinecap="round"/></svg>
@@ -602,7 +602,7 @@ function Panel4() {
     { label:'@New_Customers',   value:'108',      color:'var(--ins-text-highlight)' },
   ];
   return (
-    <div style={{width:'100%',maxWidth:'420px',background:'radial-gradient(ellipse 80% 70% at 50% 60%, rgba(9,160,157,0.10) 0%, transparent 100%), rgba(10,14,19,.95)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'22px'}}>
+    <div style={{width:'100%',maxWidth:'420px',background:'var(--ins-glow-section), rgba(10,14,19,.95)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none',padding:'22px'}}>
       <div style={{display:'flex',alignItems:'center',gap:'var(--ins-size-2)',marginBottom:'18px'}}>
         <div style={{fontSize:'13px',fontWeight:600,color:'var(--ins-color-gray-100)'}}>Customer Acquisition Cost</div>
         <div style={{fontSize:'10px',fontFamily:'var(--ins-font-family-mono)',color:'var(--ins-text-highlight)',background:'var(--ins-color-teal-a-08)',padding:'2px 7px',borderRadius:'var(--ins-radius-4)'}}>@CAC</div>
@@ -663,7 +663,7 @@ function Panel5() {
   },[]);
 
   return (
-    <div style={{width:'100%',maxWidth:'440px',background:'radial-gradient(ellipse 80% 70% at 50% 60%, rgba(9,160,157,0.10) 0%, transparent 100%), rgba(10,14,19,.95)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none'}}>
+    <div style={{width:'100%',maxWidth:'440px',background:'var(--ins-glow-section), rgba(10,14,19,.95)',border:'1px solid var(--ins-color-white-a-08)',borderRadius:'14px',overflow:'hidden',boxShadow:'none'}}>
       {/* Chat header */}
       <div style={{padding:'12px 16px',borderBottom:'1px solid var(--ins-color-white-a-06)',display:'flex',alignItems:'center',gap:'var(--ins-size-2)'}}>
         <div style={{width:'20px',height:'20px',borderRadius:'var(--ins-radius-6)',background:'rgba(9,160,157,.12)',border:'1px solid rgba(9,160,157,.25)',display:'flex',alignItems:'center',justifyContent:'center'}}>
@@ -730,7 +730,7 @@ const SHOWCASE_STEPS = [
 ];
 function FeaturesShowcase() {
   return (
-    <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}}>
+    <section style={{padding:'120px 0 140px',background:'var(--ins-glow-section)'}}>
       <div className="max-w-7xl mx-auto px-6">
         <div style={{marginBottom:'var(--ins-size-16)'}}>
           <SectionHeader
@@ -749,7 +749,7 @@ function FeaturesShowcase() {
 
 function BeforeAfter() {
   return (
-    <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}}>
+    <section style={{padding:'120px 0 140px',background:'var(--ins-glow-section)'}}>
       <div className="max-w-7xl mx-auto px-6">
         <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader

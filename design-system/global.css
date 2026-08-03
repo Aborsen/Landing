@@ -314,7 +314,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: inherit; font-size: inherit; }
      nothing, and pointing away from the block's centre. Strength sits at the
      site-wide level set in the 2026-07-31 visibility pass (owner-tuned: the
      original 0.06-0.08 washes were measurably present but imperceptible). */
-  background: radial-gradient(ellipse 38% 42% at 50% 60%, rgba(9,160,157,.16) 0%, transparent 100%);
+  background: var(--ins-glow-section);
 }
 
 /* Container */

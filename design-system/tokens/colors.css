@@ -108,6 +108,36 @@
   */
   --ins-text-heading:      var(--ins-color-white);
   --ins-text-heading-soft: var(--ins-color-gray-50);   /* display sizes on surface-page only */
+  /* ── section glow ──────────────────────────────────────────────────────
+     The teal wash behind page sections, as three tokens instead of the 55
+     hand-written gradients that were here before. Those had drifted into ten
+     recipes across two hues, four alphas and ten geometries: analytics-teams and
+     product-teams ran at alpha 0.38 with a 70% falloff — nearly double the
+     opacity of everywhere else, and stopping short of transparent leaves a
+     visible rim rather than fading out — which is why those pages read as a
+     different design. Home had four sizes of its own; about-insightis, security
+     and .ins-hero-glow used teal-500 while everything else used teal-650.
+
+     Three roles, because the height of the thing being washed is what decides
+     how big the ellipse should be:
+
+       hero          one screen tall. Tight and high, sits behind the headline.
+       section       a normal one- or two-screen section. The site-wide default.
+       section-tall  a section that stacks several full-width rows — "How it
+                     works" is four spotlight rows and runs past 2000px. The
+                     standard ellipse scales with the element, so at that height
+                     it stops being a glow behind the heading and becomes a wash
+                     over the whole viewport. This one is smaller and anchored
+                     near the top, so it lights the heading and lets the rows
+                     below sit on the page background.
+
+     Alpha is owner-tuned (2026-07-31 visibility pass): the original 0.06–0.08
+     washes were measurably present and imperceptible. Keep the falloff at 100% —
+     anything less leaves a hard edge where the gradient ends. */
+  --ins-glow-hero:         radial-gradient(ellipse 26% 32% at 50% 52%, rgba(7,128,126,0.20) 0%, transparent 100%);
+  --ins-glow-section:      radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%);
+  --ins-glow-section-tall: radial-gradient(ellipse 30% 22% at 50% 16%, rgba(7,128,126,0.18) 0%, transparent 100%);
+
   --ins-text-body:         var(--ins-color-gray-100);  /* #C0D4DC — lifted from gray-200 on 2026-08-03 for headroom on cards */
   --ins-text-inactive:     var(--ins-color-gray-200);  /* #A8BFC8 — lifted from gray-300, which was only marginal on card surfaces */
   --ins-text-disabled:     var(--ins-color-gray-400);  /* #6E8D9A — exempt from AA */

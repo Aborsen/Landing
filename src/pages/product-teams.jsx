@@ -236,7 +236,7 @@ function RelevantIntegrations() {
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)'}}>
+    <section style={{padding:'100px 0',background:'var(--ins-glow-section)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
@@ -278,7 +278,7 @@ function RelevantIntegrations() {
 /* ── BEFORE / AFTER ── */
 function BeforeAfter() {
   return (
-    <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)'}}>
+    <section style={{padding:'100px 0',background:'var(--ins-glow-section)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'52px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
@@ -643,7 +643,7 @@ function FeatureSpotlights() {
   return (
     <SharedFeatureSpotlights
       spots={spots}
-      background="radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)"
+      background="var(--ins-glow-section-tall)"
       title="Built for the way product teams actually work"
       lede="Four capabilities that turn the data layer from a bottleneck into something you can ship against."
     />
@@ -688,7 +688,7 @@ function UseCases() {
   return (
     <SharedUseCases
       cases={cases}
-      background="radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)"
+      background="var(--ins-glow-section)"
       promoTitle={<>See it on <SharedUseCases.Highlight>your own product data</SharedUseCases.Highlight></>}
       promoDesc="Connect Amplitude or Segment and ask Insightis the product question that always takes too long to answer."
       title="What product teams use Insightis for"
@@ -720,7 +720,7 @@ function Testimonials() {
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)'}}>
+    <section style={{padding:'100px 0',background:'var(--ins-glow-section)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'var(--ins-size-14)'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>
@@ -777,7 +777,7 @@ function FAQ() {
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(7,128,126,0.38) 0%, transparent 70%)'}}>
+    <section style={{padding:'100px 0',background:'var(--ins-glow-section)'}}>
       <div style={{maxWidth:'880px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'52px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>

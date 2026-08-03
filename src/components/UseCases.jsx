@@ -40,7 +40,7 @@ const ArrowRightIcon = () => (
  * Example:
  *   <UseCases
  *     cases={cases}
- *     background="radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)"
+ *     background="var(--ins-glow-section)"
  *     promoTitle={<>See it on <UseCases.Highlight>your own campaigns</UseCases.Highlight></>}
  *     promoDesc="Connect Google Ads and ask Insightis the campaign question that always takes too long."
  *     title="What marketing teams use Insightis for"
@@ -48,7 +48,9 @@ const ArrowRightIcon = () => (
  */
 function UseCases({
   cases,
-  background,
+  /* The site-wide section wash. Kept a prop so a page can opt out, but no page
+     should need its own recipe — that is how ten of them accumulated. */
+  background = 'var(--ins-glow-section)',
   promoTitle,
   promoDesc,
   title,

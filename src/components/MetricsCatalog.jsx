@@ -54,7 +54,7 @@ function MetricsCatalog({
   return (
     <section
       className="py-24 relative"
-      style={{ background: 'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)' }}
+      style={{ background: 'var(--ins-glow-section)' }}
       aria-labelledby={headingId}
     >
       <div className="max-w-7xl mx-auto px-6">

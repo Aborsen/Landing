@@ -210,7 +210,7 @@ function RelevantIntegrations() {
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}}>
+    <section style={{padding:'100px 0',background:'var(--ins-glow-section)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
@@ -512,7 +512,7 @@ function SpotlightStack() {
       display:'flex',
       flexDirection:'column',
     }}>
-      <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 44% 48% at 50% 60%, rgba(9,160,157,.16) 0%, transparent 100%)',pointerEvents:'none'}}/>
+      <div style={{position:'absolute',inset:0,background:'var(--ins-glow-section)',pointerEvents:'none'}}/>
       <ChromeHeader label="lineage · board-ready" />
       <div style={{padding:'24px 22px',flex:1,display:'flex',flexDirection:'column',justifyContent:'center',position:'relative'}}>
         {/* Section label */}
@@ -612,7 +612,7 @@ function FeatureSpotlights() {
   return (
     <SharedFeatureSpotlights
       spots={spots}
-      background="radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)"
+      background="var(--ins-glow-section-tall)"
       title="Built for the way executive teams actually work"
       lede="Four capabilities that put live company metrics at the founder's and the board's fingertips."
     />
@@ -657,7 +657,7 @@ function UseCases() {
   return (
     <SharedUseCases
       cases={cases}
-      background="radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)"
+      background="var(--ins-glow-section)"
       promoTitle={<>See it on <SharedUseCases.Highlight>your own numbers</SharedUseCases.Highlight></>}
       promoDesc="Connect Salesforce or NetSuite and ask Insightis the company-health question that always takes too long to answer."
       title="What executive teams use Insightis for"
@@ -695,7 +695,7 @@ function FAQ() {
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}}>
+    <section style={{padding:'100px 0',background:'var(--ins-glow-section)'}}>
       <div style={{maxWidth:'880px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'52px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>

@@ -541,7 +541,7 @@ function FeatureSpotlights() {
   return (
     <SharedFeatureSpotlights
       spots={spots}
-      background="radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)"
+      background="var(--ins-glow-section-tall)"
       title="Built for the way revenue teams actually work"
       lede="Four capabilities that turn RevOps from a reporting queue into a real-time revenue engine."
     />
@@ -586,7 +586,7 @@ function UseCases() {
   return (
     <SharedUseCases
       cases={cases}
-      background="radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)"
+      background="var(--ins-glow-section)"
       promoTitle={<>See it on <SharedUseCases.Highlight>your own pipeline</SharedUseCases.Highlight></>}
       promoDesc="Connect Salesforce or HubSpot and ask Insightis the revenue question that always takes too long to answer."
       title="What revenue teams use Insightis for"
@@ -616,7 +616,7 @@ function RelevantIntegrations() {
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}}>
+    <section style={{padding:'100px 0',background:'var(--ins-glow-section)'}}>
       <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{marginBottom:'var(--ins-size-14)'}}>
           <SectionHeader
@@ -685,7 +685,7 @@ function FAQ() {
   ];
 
   return (
-    <section style={{padding:'100px 0',background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}}>
+    <section style={{padding:'100px 0',background:'var(--ins-glow-section)'}}>
       <div style={{maxWidth:'880px',margin:'0 auto',padding:'0 24px'}}>
         <div style={{textAlign:'center',marginBottom:'52px'}}>
           <div className="ins-eyebrow ins-eyebrow--pill" style={{marginBottom:'14px'}}>

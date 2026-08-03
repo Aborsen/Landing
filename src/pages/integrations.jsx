@@ -453,7 +453,7 @@ function ConnectorsGallery() {
   const [activeCat, setActiveCat] = useState(cats[0]);
 
   return (
-    <section style={{padding:'100px 0 120px', background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}}>
+    <section style={{padding:'100px 0 120px', background:'var(--ins-glow-section)'}}>
       <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 1.5rem'}}>
 
         {/* Heading */}
@@ -537,7 +537,7 @@ function HowSyncWorks() {
   ];
 
   return (
-    <section style={{padding:'120px 0 140px',background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}}>
+    <section style={{padding:'120px 0 140px',background:'var(--ins-glow-section)'}}>
       <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 1.5rem'}}>
         <div style={{marginBottom:'var(--ins-size-16)'}}>
           <SectionHeader
@@ -562,7 +562,7 @@ function IntegrationImpact() {
   ];
 
   return (
-    <section style={{padding:'120px 0 140px', background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}}>
+    <section style={{padding:'120px 0 140px', background:'var(--ins-glow-section)'}}>
       <div style={{maxWidth:'80rem',margin:'0 auto',padding:'0 1.5rem'}}>
 
         {/* Heading */}

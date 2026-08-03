@@ -37,14 +37,17 @@ import CheckIcon from './CheckIcon';
  * Example:
  *   <FeatureSpotlights
  *     spots={spots}
- *     background="radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)"
+ *     background="var(--ins-glow-section)"
  *     title="Built for the way marketing teams actually work"
  *     lede="Four capabilities that turn marketing data into answers you can act on today."
  *   />
  */
 function FeatureSpotlights({
   spots,
-  background,
+  /* Tall by default: this section stacks one full-width row per spotlight and
+     runs past 2000px, where the standard ellipse scales up into a wash over the
+     whole viewport instead of a glow behind the heading. */
+  background = 'var(--ins-glow-section-tall)',
   title,
   lede,
   eyebrow = 'How it works',
