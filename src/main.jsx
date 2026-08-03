@@ -548,6 +548,7 @@ function Architecture() {
 
   return (
     <section className="py-24 relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 32% 34% at 50% 60%, rgba(7,128,126,0.16) 0%, transparent 100%)' }}></div>
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <FadeUp>
           <div className="text-center mb-16 arch-heading">
@@ -755,7 +756,7 @@ function HowItWorks() {
     { n: '03', title: 'Ask in plain English', desc: 'Your team asks questions. Insightis queries the right sources and returns precise answers in seconds.' },
   ];
   return (
-    <section id="how-it-works" style={{padding:'100px 0', position:'relative'}}>
+    <section id="how-it-works" style={{padding:'100px 0', background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)', position:'relative'}}>
       {/* Mobile / reduced-motion text-only summary — hidden on desktop via responsive.css */}
       <div className="how-it-works-text-only" style={{display:'none', maxWidth:'720px', margin:'0 auto', padding:'0 24px'}}>
         <div style={{textAlign:'center', marginBottom:'var(--ins-size-10)'}}>
@@ -794,7 +795,7 @@ function WhatIsInsightis() {
   ];
 
   return (
-    <section className="py-24 relative">
+    <section className="py-24 relative" style={{ background: 'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)' }}>
       <div className="max-w-7xl mx-auto px-6">
         <FadeUp>
           <div className="text-center mb-14">
@@ -835,6 +836,11 @@ function Pricing() {
 
   return (
     <section className="py-24 relative overflow-hidden">
+      {/* Glow confined to the heading band instead of inset:0. The comparison
+          cards use --ins-surface-brand-tint, which is translucent, so a
+          full-section wash showed through and tinted both cards. A fixed
+          height clears them whatever their content length. */}
+      <div className="absolute left-0 right-0 top-0 pointer-events-none" style={{ height: '300px', background: 'radial-gradient(ellipse 32% 60% at 50% 45%, rgba(7,128,126,0.16) 0%, transparent 100%)' }}></div>
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <FadeUp>
           <div className="text-center mb-14">
@@ -872,7 +878,9 @@ function Pricing() {
 function Solutions() {
   return (
     <FadeUp>
-      <SolutionsAccordion />
+      {/* Same centred section glow as the page's other blocks (how-it-works etc.)
+          — the accordion section shipped without one and read flat next to them. */}
+      <SolutionsAccordion style={{background:'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)'}} />
     </FadeUp>
   );
 }
