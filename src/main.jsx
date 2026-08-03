@@ -812,8 +812,10 @@ function WhatIsInsightis() {
     { target: 40000, suffix: "+", prefix: "", label: "Companies",            sub: "rely on Devart data tools" },
   ];
 
+  /* No wash on this section, deliberately — owner call. The other blocks on this
+     page keep theirs, so don't "restore consistency" here without asking. */
   return (
-    <section className="py-24 relative" style={{ background: 'radial-gradient(ellipse 38% 42% at 50% 60%, rgba(7,128,126,0.20) 0%, transparent 100%)' }}>
+    <section className="py-24 relative">
       <div className="max-w-7xl mx-auto px-6">
         <FadeUp>
           <div className="text-center mb-14">
