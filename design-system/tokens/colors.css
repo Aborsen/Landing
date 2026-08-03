@@ -108,8 +108,8 @@
   */
   --ins-text-heading:      var(--ins-color-white);
   --ins-text-heading-soft: var(--ins-color-gray-50);   /* display sizes on surface-page only */
-  --ins-text-body:         var(--ins-color-gray-200);  /* #A8BFC8 — AA everywhere */
-  --ins-text-inactive:     var(--ins-color-gray-300);  /* #7FA0AC — AA on page, marginal on card */
+  --ins-text-body:         var(--ins-color-gray-100);  /* #C0D4DC — lifted from gray-200 on 2026-08-03 for headroom on cards */
+  --ins-text-inactive:     var(--ins-color-gray-200);  /* #A8BFC8 — lifted from gray-300, which was only marginal on card surfaces */
   --ins-text-disabled:     var(--ins-color-gray-400);  /* #6E8D9A — exempt from AA */
   --ins-text-highlight:    var(--ins-color-teal-400);
   /* Muted caption foregrounds — negative (red) vs positive (teal) comparison captions.

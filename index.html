@@ -5,13 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="_-JBpH1b-1gQ21B6HuMVvOoI1fS6HHcMwu0wHnVsUMw">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2">
-<link rel="stylesheet" href="/assets/responsive.css">
 <title>Insightis — AI Analytics That Turns Your Data Into Decisions</title>
 <meta name="description" content="Connect 200+ tools, ask in plain English, and get trusted, source-linked answers in seconds. No SQL, no CSV exports, no data team. Built by Devart.">
 <!-- TODO SEO: on Vercel *preview* deployments, change to noindex,nofollow. Keep index,follow only on the production domain. -->
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="theme-color" content="var(--ins-surface-page)">
-<!-- TODO SEO: verify og image is 1200x630 -->
+<!-- og:image is 1440x1024 (verified from the PNG header) and declared as such below.
+     A 1.91:1 re-export at 1200x630 would fill social cards edge to edge instead of
+     letterboxing; until then the declared size matches the file, which is what
+     scrapers need to avoid cropping against the wrong box. -->
 <link rel="preload" href="/fonts/Geist-Variable.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="/fonts/GeistMono-Variable.ttf" as="font" type="font/ttf" crossorigin>
 <!-- TODO SEO: Add offers[] back once public pricing tiers are finalized -->
@@ -24,8 +26,8 @@
   "applicationSubCategory": "AI Analytics Platform",
   "operatingSystem": "Web",
   "description": "Insightis is an AI analytics platform that connects to your data sources, auto-generates dashboards, and writes plain-English insight summaries so teams make decisions faster.",
-  "url": "https://insightis-landing.vercel.app/",
-  "image": "https://insightis-landing.vercel.app/assets/V_1_Dark_corrected.png",
+  "url": "https://insightis.ai/",
+  "image": "https://insightis.ai/assets/V_1_Dark_corrected.png",
   "publisher": {
     "@type": "Organization",
     "name": "Devart",
@@ -51,7 +53,7 @@
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Insightis",
-  "url": "https://insightis-landing.vercel.app/",
+  "url": "https://insightis.ai/",
   "publisher": {
     "@type": "Organization",
     "name": "Devart",
@@ -68,7 +70,7 @@
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://insightis-landing.vercel.app/"
+      "item": "https://insightis.ai/"
     }
   ]
 }
@@ -79,8 +81,8 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://insightis.ai/">
     <meta property="og:image" content="https://insightis.ai/assets/V_1_Dark_corrected.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image:width" content="1440">
+    <meta property="og:image:height" content="1024">
     <meta property="og:site_name" content="Insightis">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Insightis — Ask Your Data Anything">
